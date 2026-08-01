@@ -1,24 +1,143 @@
 {%- comment -%}
   Emits the whole design system as CSS custom properties from theme settings.
 
-  Nothing downstream hardcodes a colour, size, spacing step or easing curve —
-  every section and snippet reads these variables, so changing a setting in the
-  theme editor changes the entire site.
+  Every token carries a fallback equal to the approved design's value. Those
+  literals exist ONLY as fallbacks and are deliberately confined to this one
+  file: whenever a setting has a value it wins, so the theme editor still
+  controls the entire design. The fallbacks mean the site renders correctly
+  even if a setting is cleared, or if the settings schema is unavailable —
+  which otherwise leaves every colour and size empty and strips the design
+  back to unstyled HTML.
 
   Rendered once, in the <head>, from layout/theme.liquid.
 {%- endcomment -%}
 {%- liquid
-  assign paper = settings.color_paper
-  assign alpha_45 = settings.paper_45 | divided_by: 100.0
-  assign alpha_70 = settings.paper_70 | divided_by: 100.0
-  assign alpha_80 = settings.paper_80 | divided_by: 100.0
-  assign alpha_rule = settings.rule_dark_opacity | divided_by: 100.0
+  # ---------- Colour ----------
+  assign c_ink = settings.color_ink | default: '#111111'
+  assign c_ink_80 = settings.color_ink_80 | default: '#35383c'
+  assign c_grey = settings.color_grey | default: '#69727d'
+  assign c_paper = settings.color_paper | default: '#ffffff'
+  assign c_wash = settings.color_wash | default: '#f4f6f8'
+  assign c_wash_deep = settings.color_wash_deep | default: '#eaeef1'
+  assign c_plate = settings.color_plate | default: '#e1ded7'
+  assign c_hairline = settings.color_hairline | default: '#e4e7ea'
+  assign c_hairline_strong = settings.color_hairline_strong | default: '#cfd4d9'
+  assign c_blue = settings.color_blue | default: '#0093ff'
+  assign c_blue_hover = settings.color_blue_hover | default: '#0084e6'
+  assign c_blue_deep = settings.color_blue_deep | default: '#0864a8'
+  assign c_blue_wash = settings.color_blue_wash | default: '#eaf5ff'
+  assign c_success = settings.color_success | default: '#00c758'
+  assign c_error = settings.color_error | default: '#fb2c36'
 
+  assign a_45 = settings.paper_45 | default: 45 | divided_by: 100.0
+  assign a_70 = settings.paper_70 | default: 70 | divided_by: 100.0
+  assign a_80 = settings.paper_80 | default: 80 | divided_by: 100.0
+  assign a_rule = settings.rule_dark_opacity | default: 14 | divided_by: 100.0
+
+  # ---------- Type sizes ----------
+  assign vw_lo = settings.fluid_min_vw | default: 320
+  assign vw_hi = settings.fluid_max_vw | default: 1440
+
+  assign dxl_lo = settings.type_display_xl_min | default: 34
+  assign dxl_hi = settings.type_display_xl_max | default: 84
+  assign h1_lo = settings.type_h1_min | default: 34
+  assign h1_hi = settings.type_h1_max | default: 72
+  assign h2_lo = settings.type_h2_min | default: 28
+  assign h2_hi = settings.type_h2_max | default: 56
+  assign h3_lo = settings.type_h3_min | default: 24
+  assign h3_hi = settings.type_h3_max | default: 38
+  assign h4_lo = settings.type_h4_min | default: 20
+  assign h4_hi = settings.type_h4_max | default: 28
+  assign hb_lo = settings.type_hero_body_min | default: 17
+  assign hb_hi = settings.type_hero_body_max | default: 20
+  assign bd_lo = settings.type_body_min | default: 16
+  assign bd_hi = settings.type_body_max | default: 18
+
+  assign t_small = settings.type_small_body | default: 16 | divided_by: 16.0
+  assign t_nav = settings.type_nav | default: 14 | divided_by: 16.0
+  assign t_caption = settings.type_caption | default: 14 | divided_by: 16.0
+  assign t_label = settings.type_label | default: 12 | divided_by: 16.0
+
+  # ---------- Tracking, in thousandths of an em ----------
+  assign k_dxl = settings.tracking_display_xl | default: -35 | divided_by: 1000.0
+  assign k_h1 = settings.tracking_h1 | default: -30 | divided_by: 1000.0
+  assign k_h2 = settings.tracking_h2 | default: -25 | divided_by: 1000.0
+  assign k_h3 = settings.tracking_h3 | default: -15 | divided_by: 1000.0
+  assign k_h4 = settings.tracking_h4 | default: -10 | divided_by: 1000.0
+  assign k_hb = settings.tracking_hero_body | default: -2 | divided_by: 1000.0
+  assign k_bd = settings.tracking_body | default: 0 | divided_by: 1000.0
+  assign k_small = settings.tracking_small_body | default: 0 | divided_by: 1000.0
+  assign k_nav = settings.tracking_nav | default: 0 | divided_by: 1000.0
+  assign k_caption = settings.tracking_caption | default: 0 | divided_by: 1000.0
+  assign k_label = settings.tracking_label | default: 180 | divided_by: 1000.0
+
+  # ---------- Leading, as a ratio ----------
+  assign l_dxl = settings.leading_display_xl | default: 105 | divided_by: 100.0
+  assign l_h1 = settings.leading_h1 | default: 106 | divided_by: 100.0
+  assign l_h2 = settings.leading_h2 | default: 107 | divided_by: 100.0
+  assign l_h3 = settings.leading_h3 | default: 116 | divided_by: 100.0
+  assign l_h4 = settings.leading_h4 | default: 121 | divided_by: 100.0
+  assign l_hb = settings.leading_hero_body | default: 170 | divided_by: 100.0
+  assign l_bd = settings.leading_body | default: 167 | divided_by: 100.0
+  assign l_small = settings.leading_small_body | default: 175 | divided_by: 100.0
+  assign l_nav = settings.leading_nav | default: 143 | divided_by: 100.0
+  assign l_caption = settings.leading_caption | default: 157 | divided_by: 100.0
+  assign l_label = settings.leading_label | default: 150 | divided_by: 100.0
+  assign l_snug = settings.leading_snug | default: 137 | divided_by: 100.0
+  assign l_relaxed = settings.leading_relaxed | default: 162 | divided_by: 100.0
+
+  # ---------- Layout ----------
+  assign chrome = settings.chrome_height | default: 104 | divided_by: 16.0
+  assign shell = settings.shell_max | default: 1600
+  assign g_base = settings.gutter_base | default: 16 | divided_by: 16.0
+  assign g_sm = settings.gutter_sm | default: 20 | divided_by: 16.0
+  assign g_md = settings.gutter_md | default: 32 | divided_by: 16.0
+  assign g_lg = settings.gutter_lg | default: 40 | divided_by: 16.0
+  assign g_xl = settings.gutter_xl | default: 64 | divided_by: 16.0
+
+  # ---------- Rhythm ----------
+  assign pt_lo = settings.pace_tight_min | default: 56 | divided_by: 16.0
+  assign pt_vw = settings.pace_tight_vw | default: 5
+  assign pt_hi = settings.pace_tight_max | default: 80 | divided_by: 16.0
+  assign pb_lo = settings.pace_base_min | default: 80 | divided_by: 16.0
+  assign pb_vw = settings.pace_base_vw | default: 8
+  assign pb_hi = settings.pace_base_max | default: 112 | divided_by: 16.0
+  assign pl_lo = settings.pace_loose_min | default: 112 | divided_by: 16.0
+  assign pl_vw = settings.pace_loose_vw | default: 11
+  assign pl_hi = settings.pace_loose_max | default: 160 | divided_by: 16.0
+  assign pv_lo = settings.pace_vast_min | default: 144 | divided_by: 16.0
+  assign pv_vw = settings.pace_vast_vw | default: 15
+  assign pv_hi = settings.pace_vast_max | default: 224 | divided_by: 16.0
+
+  # ---------- Corners ----------
+  assign r_md = settings.radius_md | default: 6
+  assign r_lg = settings.radius_lg | default: 8
+  assign r_xl = settings.radius_xl | default: 12
+  assign r_2xl = settings.radius_2xl | default: 16
+  assign r_pill = settings.radius_pill | default: 500
+
+  # ---------- Motion ----------
+  assign d_press = settings.duration_press | default: 160
+  assign d_reveal = settings.duration_reveal | default: 640
+  assign d_drawer = settings.duration_drawer | default: 250
+  assign e_out = settings.ease_out | default: 'cubic-bezier(0.23, 1, 0.32, 1)'
+  assign e_in = settings.ease_in | default: 'cubic-bezier(0.4, 0, 1, 1)'
+  assign e_in_out = settings.ease_in_out | default: 'cubic-bezier(0.77, 0, 0.175, 1)'
+  assign e_drawer = settings.ease_drawer | default: 'cubic-bezier(0.32, 0.72, 0, 1)'
+
+  # ---------- Fonts ----------
   assign body_font = settings.font_body
   assign heading_font = settings.font_heading
-  assign use_bundled = false
-  if settings.font_source != 'shopify'
-    assign use_bundled = true
+  assign use_bundled = true
+  if settings.font_source == 'shopify' and body_font != blank
+    assign use_bundled = false
+  endif
+
+  # Motion is on unless the merchant has explicitly turned it off. An absent
+  # setting reads as nil, not false, so motion stays on by default.
+  assign motion_on = true
+  if settings.motion_enabled == false
+    assign motion_on = false
   endif
 -%}
 {%- if use_bundled -%}
@@ -27,8 +146,7 @@
     approved design serves, so the type renders identically rather than
     depending on the Shopify font library carrying Inter.
 
-    The fallback face is metric-matched to Inter, so nothing reflows while the
-    real font loads.
+    The fallback face is metric-matched to Inter, so nothing reflows on load.
   {%- endcomment -%}
   {{ 'inter-latin.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
   <style>
@@ -73,25 +191,25 @@
 <style>
   :root {
     /* ---------- Colour ---------- */
-    --ink: {{ settings.color_ink }};
-    --ink-80: {{ settings.color_ink_80 }};
-    --grey: {{ settings.color_grey }};
-    --paper: {{ paper }};
-    --paper-45: {{ paper | color_modify: 'alpha', alpha_45 }};
-    --paper-70: {{ paper | color_modify: 'alpha', alpha_70 }};
-    --paper-80: {{ paper | color_modify: 'alpha', alpha_80 }};
-    --wash: {{ settings.color_wash }};
-    --wash-deep: {{ settings.color_wash_deep }};
-    --plate: {{ settings.color_plate }};
-    --hairline: {{ settings.color_hairline }};
-    --hairline-strong: {{ settings.color_hairline_strong }};
-    --rule-dark: {{ paper | color_modify: 'alpha', alpha_rule }};
-    --blue: {{ settings.color_blue }};
-    --blue-hover: {{ settings.color_blue_hover }};
-    --blue-deep: {{ settings.color_blue_deep }};
-    --blue-wash: {{ settings.color_blue_wash }};
-    --success: {{ settings.color_success }};
-    --error: {{ settings.color_error }};
+    --ink: {{ c_ink }};
+    --ink-80: {{ c_ink_80 }};
+    --grey: {{ c_grey }};
+    --paper: {{ c_paper }};
+    --paper-45: {{ c_paper | color_modify: 'alpha', a_45 }};
+    --paper-70: {{ c_paper | color_modify: 'alpha', a_70 }};
+    --paper-80: {{ c_paper | color_modify: 'alpha', a_80 }};
+    --wash: {{ c_wash }};
+    --wash-deep: {{ c_wash_deep }};
+    --plate: {{ c_plate }};
+    --hairline: {{ c_hairline }};
+    --hairline-strong: {{ c_hairline_strong }};
+    --rule-dark: {{ c_paper | color_modify: 'alpha', a_rule }};
+    --blue: {{ c_blue }};
+    --blue-hover: {{ c_blue_hover }};
+    --blue-deep: {{ c_blue_deep }};
+    --blue-wash: {{ c_blue_wash }};
+    --success: {{ c_success }};
+    --error: {{ c_error }};
 
     /* Scheme defaults. Sections override these to invert on ink. */
     --surface: var(--paper);
@@ -115,86 +233,86 @@
     --weight-medium: 500;
     --weight-semibold: 600;
 
-    --type-display-xl: {% render 'hs-fluid', min: settings.type_display_xl_min, max: settings.type_display_xl_max %};
-    --type-h1: {% render 'hs-fluid', min: settings.type_h1_min, max: settings.type_h1_max %};
-    --type-h2: {% render 'hs-fluid', min: settings.type_h2_min, max: settings.type_h2_max %};
-    --type-h3: {% render 'hs-fluid', min: settings.type_h3_min, max: settings.type_h3_max %};
-    --type-h4: {% render 'hs-fluid', min: settings.type_h4_min, max: settings.type_h4_max %};
-    --type-hero-body: {% render 'hs-fluid', min: settings.type_hero_body_min, max: settings.type_hero_body_max %};
-    --type-body: {% render 'hs-fluid', min: settings.type_body_min, max: settings.type_body_max %};
-    --type-small-body: {{ settings.type_small_body | divided_by: 16.0 }}rem;
-    --type-nav: {{ settings.type_nav | divided_by: 16.0 }}rem;
-    --type-caption: {{ settings.type_caption | divided_by: 16.0 }}rem;
-    --type-label: {{ settings.type_label | divided_by: 16.0 }}rem;
+    --type-display-xl: {% render 'hs-fluid', min: dxl_lo, max: dxl_hi, vmin: vw_lo, vmax: vw_hi %};
+    --type-h1: {% render 'hs-fluid', min: h1_lo, max: h1_hi, vmin: vw_lo, vmax: vw_hi %};
+    --type-h2: {% render 'hs-fluid', min: h2_lo, max: h2_hi, vmin: vw_lo, vmax: vw_hi %};
+    --type-h3: {% render 'hs-fluid', min: h3_lo, max: h3_hi, vmin: vw_lo, vmax: vw_hi %};
+    --type-h4: {% render 'hs-fluid', min: h4_lo, max: h4_hi, vmin: vw_lo, vmax: vw_hi %};
+    --type-hero-body: {% render 'hs-fluid', min: hb_lo, max: hb_hi, vmin: vw_lo, vmax: vw_hi %};
+    --type-body: {% render 'hs-fluid', min: bd_lo, max: bd_hi, vmin: vw_lo, vmax: vw_hi %};
+    --type-small-body: {{ t_small }}rem;
+    --type-nav: {{ t_nav }}rem;
+    --type-caption: {{ t_caption }}rem;
+    --type-label: {{ t_label }}rem;
 
-    --tracking-display-xl: {{ settings.tracking_display_xl | divided_by: 1000.0 }}em;
-    --tracking-h1: {{ settings.tracking_h1 | divided_by: 1000.0 }}em;
-    --tracking-h2: {{ settings.tracking_h2 | divided_by: 1000.0 }}em;
-    --tracking-h3: {{ settings.tracking_h3 | divided_by: 1000.0 }}em;
-    --tracking-h4: {{ settings.tracking_h4 | divided_by: 1000.0 }}em;
-    --tracking-hero-body: {{ settings.tracking_hero_body | divided_by: 1000.0 }}em;
-    --tracking-body: {{ settings.tracking_body | divided_by: 1000.0 }}em;
-    --tracking-small-body: {{ settings.tracking_small_body | divided_by: 1000.0 }}em;
-    --tracking-nav: {{ settings.tracking_nav | divided_by: 1000.0 }}em;
-    --tracking-caption: {{ settings.tracking_caption | divided_by: 1000.0 }}em;
-    --tracking-label: {{ settings.tracking_label | divided_by: 1000.0 }}em;
+    --tracking-display-xl: {{ k_dxl }}em;
+    --tracking-h1: {{ k_h1 }}em;
+    --tracking-h2: {{ k_h2 }}em;
+    --tracking-h3: {{ k_h3 }}em;
+    --tracking-h4: {{ k_h4 }}em;
+    --tracking-hero-body: {{ k_hb }}em;
+    --tracking-body: {{ k_bd }}em;
+    --tracking-small-body: {{ k_small }}em;
+    --tracking-nav: {{ k_nav }}em;
+    --tracking-caption: {{ k_caption }}em;
+    --tracking-label: {{ k_label }}em;
 
-    --leading-display-xl: {{ settings.leading_display_xl | divided_by: 100.0 }};
-    --leading-h1: {{ settings.leading_h1 | divided_by: 100.0 }};
-    --leading-h2: {{ settings.leading_h2 | divided_by: 100.0 }};
-    --leading-h3: {{ settings.leading_h3 | divided_by: 100.0 }};
-    --leading-h4: {{ settings.leading_h4 | divided_by: 100.0 }};
-    --leading-hero-body: {{ settings.leading_hero_body | divided_by: 100.0 }};
-    --leading-body: {{ settings.leading_body | divided_by: 100.0 }};
-    --leading-small-body: {{ settings.leading_small_body | divided_by: 100.0 }};
-    --leading-nav: {{ settings.leading_nav | divided_by: 100.0 }};
-    --leading-caption: {{ settings.leading_caption | divided_by: 100.0 }};
-    --leading-label: {{ settings.leading_label | divided_by: 100.0 }};
-    --leading-snug: {{ settings.leading_snug | divided_by: 100.0 }};
-    --leading-relaxed: {{ settings.leading_relaxed | divided_by: 100.0 }};
+    --leading-display-xl: {{ l_dxl }};
+    --leading-h1: {{ l_h1 }};
+    --leading-h2: {{ l_h2 }};
+    --leading-h3: {{ l_h3 }};
+    --leading-h4: {{ l_h4 }};
+    --leading-hero-body: {{ l_hb }};
+    --leading-body: {{ l_bd }};
+    --leading-small-body: {{ l_small }};
+    --leading-nav: {{ l_nav }};
+    --leading-caption: {{ l_caption }};
+    --leading-label: {{ l_label }};
+    --leading-snug: {{ l_snug }};
+    --leading-relaxed: {{ l_relaxed }};
 
     /* ---------- Layout ---------- */
-    --chrome: {{ settings.chrome_height | divided_by: 16.0 }}rem;
-    --shell-max: {{ settings.shell_max }}px;
-    --gutter: {{ settings.gutter_base | divided_by: 16.0 }}rem;
+    --chrome: {{ chrome }}rem;
+    --shell-max: {{ shell }}px;
+    --gutter: {{ g_base }}rem;
 
     /* ---------- Vertical rhythm ---------- */
-    --pace-tight: clamp({{ settings.pace_tight_min | divided_by: 16.0 }}rem, {{ settings.pace_tight_vw }}vw, {{ settings.pace_tight_max | divided_by: 16.0 }}rem);
-    --pace-base: clamp({{ settings.pace_base_min | divided_by: 16.0 }}rem, {{ settings.pace_base_vw }}vw, {{ settings.pace_base_max | divided_by: 16.0 }}rem);
-    --pace-loose: clamp({{ settings.pace_loose_min | divided_by: 16.0 }}rem, {{ settings.pace_loose_vw }}vw, {{ settings.pace_loose_max | divided_by: 16.0 }}rem);
-    --pace-vast: clamp({{ settings.pace_vast_min | divided_by: 16.0 }}rem, {{ settings.pace_vast_vw }}vw, {{ settings.pace_vast_max | divided_by: 16.0 }}rem);
+    --pace-tight: clamp({{ pt_lo }}rem, {{ pt_vw }}vw, {{ pt_hi }}rem);
+    --pace-base: clamp({{ pb_lo }}rem, {{ pb_vw }}vw, {{ pb_hi }}rem);
+    --pace-loose: clamp({{ pl_lo }}rem, {{ pl_vw }}vw, {{ pl_hi }}rem);
+    --pace-vast: clamp({{ pv_lo }}rem, {{ pv_vw }}vw, {{ pv_hi }}rem);
 
     /* ---------- Corners ---------- */
-    --radius-md: {{ settings.radius_md }}px;
-    --radius-lg: {{ settings.radius_lg }}px;
-    --radius-xl: {{ settings.radius_xl }}px;
-    --radius-2xl: {{ settings.radius_2xl }}px;
-    --radius-pill: {{ settings.radius_pill }}px;
+    --radius-md: {{ r_md }}px;
+    --radius-lg: {{ r_lg }}px;
+    --radius-xl: {{ r_xl }}px;
+    --radius-2xl: {{ r_2xl }}px;
+    --radius-pill: {{ r_pill }}px;
 
     /* ---------- Motion ---------- */
-    --duration-press: {{ settings.duration_press }}ms;
-    --duration-reveal: {{ settings.duration_reveal }}ms;
-    --duration-drawer: {{ settings.duration_drawer }}ms;
-    --ease-out: {{ settings.ease_out }};
-    --ease-in: {{ settings.ease_in }};
-    --ease-in-out: {{ settings.ease_in_out }};
-    --ease-drawer: {{ settings.ease_drawer }};
+    --duration-press: {{ d_press }}ms;
+    --duration-reveal: {{ d_reveal }}ms;
+    --duration-drawer: {{ d_drawer }}ms;
+    --ease-out: {{ e_out }};
+    --ease-in: {{ e_in }};
+    --ease-in-out: {{ e_in_out }};
+    --ease-drawer: {{ e_drawer }};
   }
 
   @media (min-width: 40rem) {
-    :root { --gutter: {{ settings.gutter_sm | divided_by: 16.0 }}rem; }
+    :root { --gutter: {{ g_sm }}rem; }
   }
   @media (min-width: 48rem) {
-    :root { --gutter: {{ settings.gutter_md | divided_by: 16.0 }}rem; }
+    :root { --gutter: {{ g_md }}rem; }
   }
   @media (min-width: 64rem) {
-    :root { --gutter: {{ settings.gutter_lg | divided_by: 16.0 }}rem; }
+    :root { --gutter: {{ g_lg }}rem; }
   }
   @media (min-width: 80rem) {
-    :root { --gutter: {{ settings.gutter_xl | divided_by: 16.0 }}rem; }
+    :root { --gutter: {{ g_xl }}rem; }
   }
 
-  {%- unless settings.motion_enabled -%}
+  {%- unless motion_on -%}
   /* Motion switched off in theme settings. */
   :root { --duration-reveal: 1ms; }
   .hs-reveal, [data-hs-reveal] { opacity: 1 !important; transform: none !important; }

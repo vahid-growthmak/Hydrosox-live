@@ -187,6 +187,29 @@
   opacity: 1;
 }
 
+/*
+  Hover and keyboard focus open the panel in CSS alone, exactly as the design
+  does, so the mega menu still works if the navigation script has not loaded.
+  The .is-open class above is what touch devices and Escape-to-close use.
+*/
+@media (hover: hover) and (pointer: fine) {
+  .hs-header__group:hover .hs-header__panel,
+  .hs-header__group:focus-within .hs-header__panel {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .hs-header__group:hover > .hs-header__nav-link,
+  .hs-header__group:focus-within > .hs-header__nav-link {
+    color: var(--blue);
+  }
+
+  .hs-header__group:hover .hs-header__chevron,
+  .hs-header__group:focus-within .hs-header__chevron {
+    transform: rotate(180deg);
+  }
+}
+
 .hs-header__panel-list {
   width: 22rem;
   max-width: calc(100vw - var(--gutter) * 2);

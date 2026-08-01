@@ -54,25 +54,7 @@
       href="{{ routes.root_url }}"
       aria-label="{{ shop.name | escape }} — {{ 'general.accessibility.skip_to_content' | t | downcase }}"
     >
-      {%- if settings.logo != blank -%}
-        <img
-          src="{{ settings.logo | image_url: width: 480 }}"
-          srcset="
-            {{ settings.logo | image_url: width: 240 }} 240w,
-            {{ settings.logo | image_url: width: 480 }} 480w
-          "
-          sizes="{{ settings.logo_width }}px"
-          alt="{{ shop.name | escape }}"
-          width="{{ settings.logo.width }}"
-          height="{{ settings.logo.height }}"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-          class="hs-header__logo-img"
-        >
-      {%- else -%}
-        <span class="hs-h4 hs-header__logo-text">{{ shop.name }}</span>
-      {%- endif -%}
+      {% render 'hs-logo', class: 'hs-header__logo-img', eager: true %}
     </a>
 
     {%- comment -%} Desktop navigation {%- endcomment -%}

@@ -92,7 +92,7 @@
     "radius_lg": 8,
     "radius_xl": 12,
     "radius_2xl": 16,
-    "radius_pill": 999,
+    "radius_pill": 500,
     "motion_enabled": true,
     "duration_press": 160,
     "duration_reveal": 640,
@@ -102,6 +102,7 @@
     "ease_in_out": "cubic-bezier(0.77, 0, 0.175, 1)",
     "ease_drawer": "cubic-bezier(0.32, 0.72, 0, 1)",
     "cart_type": "drawer",
-    "cart_show_note": false
+    "cart_show_note": false,
+    "font_source": "bundled"
   }
 }

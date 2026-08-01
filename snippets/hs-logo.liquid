@@ -1,0 +1,54 @@
+{%- comment -%}
+  The brand mark.
+
+  Prefers the logo uploaded in theme settings. If none has been uploaded it
+  falls back to the logo bundled with the theme, so the header and footer are
+  never reduced to plain text on a fresh install.
+
+  Accepts:
+  - inverse: {Boolean} Prefer the dark-background logo. Optional.
+  - class: {String} Classes for the <img>. Optional.
+  - eager: {Boolean} Load immediately. Optional.
+
+  Usage:
+  {% render 'hs-logo', class: 'hs-header__logo-img', eager: true %}
+{%- endcomment -%}
+{%- liquid
+  assign chosen = settings.logo
+  if inverse and settings.logo_inverse != blank
+    assign chosen = settings.logo_inverse
+  endif
+
+  assign loading_attr = 'lazy'
+  assign priority_attr = 'auto'
+  if eager
+    assign loading_attr = 'eager'
+    assign priority_attr = 'high'
+  endif
+-%}
+{%- if chosen != blank -%}
+  <img
+    src="{{ chosen | image_url: width: 480 }}"
+    srcset="{{ chosen | image_url: width: 240 }} 240w, {{ chosen | image_url: width: 480 }} 480w"
+    sizes="{{ settings.logo_width }}px"
+    alt="{{ shop.name | escape }}"
+    width="{{ chosen.width }}"
+    height="{{ chosen.height }}"
+    loading="{{ loading_attr }}"
+    fetchpriority="{{ priority_attr }}"
+    decoding="async"
+    class="{{ class }}"
+  >
+{%- else -%}
+  {%- comment -%} Bundled fallback. Its intrinsic size is 500 x 135. {%- endcomment -%}
+  <img
+    src="{{ 'hydrosox-logo.png' | asset_url }}"
+    alt="{{ shop.name | escape }}"
+    width="500"
+    height="135"
+    loading="{{ loading_attr }}"
+    fetchpriority="{{ priority_attr }}"
+    decoding="async"
+    class="{{ class }}"
+  >
+{%- endif -%}

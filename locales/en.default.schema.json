@@ -88,7 +88,11 @@
         "label": "Label — line height",
         "snug": "Snug (card headings)",
         "relaxed": "Relaxed (long paragraphs)"
-      }
+      },
+      "font_source": "Font source",
+      "font_source_info": "Inter is the typeface the approved design was built in, and it ships with this theme. Switch to a Shopify font only if you intend to depart from the design.",
+      "font_source_bundled": "Inter (bundled with the theme)",
+      "font_source_shopify": "A Shopify library font"
     },
     "layout": {
       "name": "Layout and rhythm",

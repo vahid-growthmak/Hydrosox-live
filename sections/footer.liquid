@@ -11,32 +11,9 @@
     <div class="hs-footer__top">
       {%- comment -%} Brand and contact {%- endcomment -%}
       <div class="hs-footer__brand">
-        {%- liquid
-          assign footer_logo = settings.logo_inverse
-          if footer_logo == blank
-            assign footer_logo = settings.logo
-          endif
-        -%}
-        {%- if footer_logo != blank -%}
-          <a href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
-            <img
-              src="{{ footer_logo | image_url: width: 480 }}"
-              srcset="
-                {{ footer_logo | image_url: width: 240 }} 240w,
-                {{ footer_logo | image_url: width: 480 }} 480w
-              "
-              sizes="{{ settings.logo_width }}px"
-              alt="{{ shop.name | escape }}"
-              width="{{ footer_logo.width }}"
-              height="{{ footer_logo.height }}"
-              loading="lazy"
-              decoding="async"
-              class="hs-footer__logo-img"
-            >
-          </a>
-        {%- else -%}
-          <span class="hs-h4">{{ shop.name }}</span>
-        {%- endif -%}
+        <a href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+          {% render 'hs-logo', inverse: true, class: 'hs-footer__logo-img' %}
+        </a>
 
         {%- if section.settings.company_heading != blank -%}
           <p class="hs-eyebrow">{{ section.settings.company_heading }}</p>

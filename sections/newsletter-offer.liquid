@@ -1,0 +1,171 @@
+{%- comment -%}
+  Newsletter offer.
+
+  Uses Shopify's own customer form, so a submission creates a real marketing
+  contact and the success and error states come back from the platform rather
+  than being faked in the theme.
+{%- endcomment -%}
+
+<section
+  class="hs-signup hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-tight">
+    <div class="hs-signup__grid">
+      <div class="hs-signup__lead">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="hs-h3 hs-signup__heading hs-measure-22 hs-balance">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.body != blank -%}
+          <div class="hs-small-body hs-signup__body hs-measure-46 hs-pretty hs-muted">
+            {{ section.settings.body }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="hs-signup__form-col">
+        {%- form 'customer', id: 'hs-signup-form', class: 'hs-signup__form' -%}
+          <input type="hidden" name="contact[tags]" value="{{ section.settings.tag | escape }}">
+          <input type="hidden" name="contact[accepts_marketing]" value="true">
+
+          <div class="hs-signup__field-row">
+            <label class="hs-visually-hidden" for="hs-signup-email-{{ section.id }}">
+              {{ section.settings.field_label | default: 'general.newsletter.email' | t }}
+            </label>
+            <input
+              class="hs-field hs-signup__input"
+              id="hs-signup-email-{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              value="{{ form.email }}"
+              placeholder="{{ section.settings.field_label | escape }}"
+              autocomplete="email"
+              required
+              {% if form.errors %}
+                aria-invalid="true"
+                aria-describedby="hs-signup-error-{{ section.id }}"
+              {% endif %}
+            >
+            {% render 'hs-button',
+              label: section.settings.submit_label,
+              style: 'primary',
+              type: 'submit',
+              class: 'hs-signup__submit'
+            %}
+          </div>
+
+          {%- if form.errors -%}
+            <p class="hs-form-error hs-signup__message" id="hs-signup-error-{{ section.id }}" role="alert">
+              {{ form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email }}
+            </p>
+          {%- elsif form.posted_successfully? -%}
+            <p class="hs-form-success hs-signup__message" role="status">
+              {{ section.settings.success_message | default: 'general.newsletter.success' | t }}
+            </p>
+          {%- endif -%}
+
+          {%- if section.settings.note != blank -%}
+            <div class="hs-caption hs-signup__note hs-pretty hs-muted">
+              {{ section.settings.note }}
+            </div>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.signup.name",
+  "class": "hs-signup-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "wash"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "£5 off your first pair"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "Get the code before the weather turns."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "t:common.body",
+      "default": "<p>Applies to a single pair. The two-pair saving is already built into the price.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.signup.form_group"
+    },
+    {
+      "type": "text",
+      "id": "field_label",
+      "label": "t:sections.signup.field_label",
+      "default": "Email address"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "t:sections.signup.submit_label",
+      "default": "Send my code"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "t:sections.signup.success_message",
+      "default": "Thanks. Your code is on its way."
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "t:sections.signup.tag",
+      "info": "t:sections.signup.tag_info",
+      "default": "newsletter"
+    },
+    {
+      "type": "richtext",
+      "id": "note",
+      "label": "t:sections.signup.note",
+      "default": "<p>One email to set you up, then only when there is something worth sending. Unsubscribe any time.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.signup.name"
+    }
+  ]
+}
+{% endschema %}

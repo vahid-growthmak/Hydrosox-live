@@ -1,0 +1,41 @@
+{%- comment -%} Collection grid. {%- endcomment -%}
+<section class="hs-scheme-{{ section.settings.color_scheme }}">
+  <div class="hs-shell hs-pace-base">
+    <header class="hs-page__head">
+      <h1 class="hs-h2 hs-measure-19 hs-balance hs-page__title">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="hs-body hs-measure-46 hs-pretty hs-muted hs-page__lede">{{ collection.description }}</div>
+      {%- endif -%}
+    </header>
+
+    {%- paginate collection.products by section.settings.per_page -%}
+      {%- if collection.products.size > 0 -%}
+        <ul class="hs-grid hs-stagger" role="list">
+          {%- for product in collection.products -%}
+            <li class="hs-reveal">
+              {% render 'hs-product-card', card_product: product, eager: forloop.first %}
+            </li>
+          {%- endfor -%}
+        </ul>
+        {% render 'hs-pagination', paginate: paginate %}
+      {%- else -%}
+        <p class="hs-body hs-muted">{{ 'collections.general.no_products' | t }}</p>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "t:sections.collection.name",
+  "settings": [
+    { "type": "select", "id": "color_scheme", "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ], "default": "paper" },
+    { "type": "range", "id": "per_page", "min": 6, "max": 48, "step": 3,
+      "label": "t:sections.collection.per_page", "default": 12 }
+  ]
+}
+{% endschema %}

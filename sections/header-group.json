@@ -1,0 +1,133 @@
+{
+  "name": "t:section_groups.header",
+  "type": "header",
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "blocks": {
+        "delivery": {
+          "type": "message",
+          "settings": {
+            "text": "Free UK delivery on two pairs or more",
+            "link": "/#faq"
+          }
+        },
+        "shop": {
+          "type": "message",
+          "settings": {
+            "text": "Shop the socks",
+            "link": "/#buy",
+            "hide_on_mobile": true
+          }
+        }
+      },
+      "block_order": ["delivery", "shop"],
+      "settings": {
+        "color_scheme": "ink",
+        "divider": "/"
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "shop": {
+          "type": "link",
+          "settings": {
+            "label": "Shop",
+            "link": "/#buy"
+          }
+        },
+        "activity": {
+          "type": "dropdown",
+          "settings": {
+            "label": "Shop by Activity",
+            "link": "/#activity"
+          }
+        },
+        "act_hiking": {
+          "type": "dropdown_item",
+          "settings": {
+            "label": "Hiking",
+            "description": "Boots that wet out four hours into a long day in the hills.",
+            "link": "/#activity"
+          }
+        },
+        "act_walking": {
+          "type": "dropdown_item",
+          "settings": {
+            "label": "Walking",
+            "description": "Wet grass at eight in the morning, in shoes that were never waterproof.",
+            "link": "/#activity"
+          }
+        },
+        "act_boots": {
+          "type": "dropdown_item",
+          "settings": {
+            "label": "All Day in Boots",
+            "description": "Boots that keep the rain out and then seal the sweat in.",
+            "link": "/#activity"
+          }
+        },
+        "act_cycling": {
+          "type": "dropdown_item",
+          "settings": {
+            "label": "Cycling & Commuting",
+            "description": "Overshoes that leak at the ankle, and shoes still wet at home time.",
+            "link": "/#activity"
+          }
+        },
+        "act_running": {
+          "type": "dropdown_item",
+          "settings": {
+            "label": "Running & Trail",
+            "description": "Cold, soaked feet on winter miles, and blisters in a wet race.",
+            "link": "/#activity"
+          }
+        },
+        "technology": {
+          "type": "link",
+          "settings": {
+            "label": "Technology",
+            "link": "/#construction"
+          }
+        },
+        "guides": {
+          "type": "link",
+          "settings": {
+            "label": "Guides",
+            "link": "/#faq"
+          }
+        },
+        "about": {
+          "type": "link",
+          "settings": {
+            "label": "About",
+            "link": "/#about"
+          }
+        }
+      },
+      "block_order": [
+        "shop",
+        "activity",
+        "act_hiking",
+        "act_walking",
+        "act_boots",
+        "act_cycling",
+        "act_running",
+        "technology",
+        "guides",
+        "about"
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "nav_label": "Primary",
+        "show_search": true,
+        "mobile_breakpoint": "64",
+        "cta_label": "Shop HydroSox",
+        "cta_link": "/#buy",
+        "drawer_heading": "Menu"
+      }
+    }
+  },
+  "order": ["announcement", "header"]
+}

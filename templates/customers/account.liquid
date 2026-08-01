@@ -1,0 +1,30 @@
+<section class="hs-scheme-paper">
+  <div class="hs-shell hs-pace-base">
+    <header class="hs-page__head">
+      <h1 class="hs-h2 hs-balance hs-page__title">{{ 'customer.account.title' | t }}</h1>
+      <p class="hs-caption">
+        <a class="hs-link" href="{{ routes.account_logout_url }}">{{ 'customer.account.logout' | t }}</a>
+      </p>
+    </header>
+    <h2 class="hs-h4">{{ 'customer.account.orders' | t }}</h2>
+    {%- paginate customer.orders by 20 -%}
+      {%- if customer.orders.size > 0 -%}
+        <ul class="hs-orders" role="list">
+          {%- for order in customer.orders -%}
+            <li class="hs-orders__row">
+              <a class="hs-small-body hs-link" href="{{ order.customer_url }}">{{ order.name }}</a>
+              <span class="hs-caption hs-muted">{{ order.created_at | date: format: 'date' }}</span>
+              <span class="hs-caption hs-tnum">{{ order.total_price | money }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+        {% render 'hs-pagination', paginate: paginate %}
+      {%- else -%}
+        <p class="hs-body hs-muted">{{ 'customer.account.no_orders' | t }}</p>
+      {%- endif -%}
+    {%- endpaginate -%}
+    <p class="hs-caption">
+      <a class="hs-link" href="{{ routes.account_addresses_url }}">{{ 'customer.addresses.title' | t }}</a>
+    </p>
+  </div>
+</section>

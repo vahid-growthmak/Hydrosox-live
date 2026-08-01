@@ -1,0 +1,33 @@
+{%- comment -%} Not found. {%- endcomment -%}
+<section class="hs-scheme-{{ section.settings.color_scheme }}">
+  <div class="hs-shell hs-pace-loose hs-notfound">
+    <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+    <h1 class="hs-h1 hs-measure-19 hs-balance hs-page__title">
+      {{ section.settings.heading | default: 'general.404.title' | t }}
+    </h1>
+    {%- if section.settings.body != blank -%}
+      <div class="hs-body hs-measure-46 hs-pretty hs-muted hs-notfound__body">{{ section.settings.body }}</div>
+    {%- endif -%}
+    <div class="hs-notfound__actions">
+      {% render 'hs-button', label: section.settings.cta_label, href: routes.root_url, style: 'primary' %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "t:sections.notfound.name",
+  "settings": [
+    { "type": "select", "id": "color_scheme", "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ], "default": "paper" },
+    { "type": "text", "id": "eyebrow", "label": "t:common.eyebrow", "default": "404" },
+    { "type": "text", "id": "heading", "label": "t:common.heading", "default": "That page does not exist." },
+    { "type": "richtext", "id": "body", "label": "t:common.body",
+      "default": "<p>The link may be out of date, or the page may have moved.</p>" },
+    { "type": "text", "id": "cta_label", "label": "t:common.button_label", "default": "Go to the homepage" }
+  ]
+}
+{% endschema %}

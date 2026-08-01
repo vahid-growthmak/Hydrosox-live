@@ -1,0 +1,574 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-split",
+      "blocks": {
+        "s1": { "type": "spec", "settings": { "label": "Membrane", "value": "Porelle®" } },
+        "s2": { "type": "spec", "settings": { "label": "Construction", "value": "Three-layer" } },
+        "s3": { "type": "spec", "settings": { "label": "Chemistry", "value": "PFOA free" } },
+        "s4": { "type": "spec", "settings": { "label": "Origin", "value": "UK company, UK stock" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"],
+      "settings": {
+        "color_scheme": "ink",
+        "full_height": true,
+        "heading": "Wet feet are\na solved problem.",
+        "body": "<p>A Porelle® waterproof-breathable membrane, in a three-layer knit. Hiking, running, cycling, commuting and work — the day carries on when the weather turns.</p>",
+        "cta_label": "Buy a pair",
+        "cta_link": "/#buy",
+        "link_label": "See how it is built",
+        "link_url": "/#construction",
+        "image_alt": "Four HydroSox colourways shown together — black, white, black with navy and black with grey.",
+        "image_aspect": "9 / 8",
+        "image_position": "50% 41%",
+        "line_stagger": 90,
+        "body_delay": 260,
+        "actions_delay": 420
+      }
+    },
+    "buy": {
+      "type": "buy-widget",
+      "blocks": {
+        "c1": { "type": "colour", "settings": { "value": "Black", "colour_one": "#111111" } },
+        "c2": {
+          "type": "colour",
+          "settings": { "value": "Black / Grey", "colour_one": "#111111", "colour_two": "#8b9096" }
+        },
+        "c3": {
+          "type": "colour",
+          "settings": { "value": "Black / Navy", "colour_one": "#111111", "colour_two": "#1f3160" }
+        },
+        "c4": { "type": "colour", "settings": { "value": "White", "colour_one": "#f4f6f8" } },
+        "z1": { "type": "size", "settings": { "value": "S", "sublabel": "UK 3-5" } },
+        "z2": { "type": "size", "settings": { "value": "M", "sublabel": "UK 6-8" } },
+        "z3": { "type": "size", "settings": { "value": "L", "sublabel": "UK 9-11" } },
+        "z4": { "type": "size", "settings": { "value": "XL", "sublabel": "UK 12-14" } },
+        "t1": { "type": "tier", "settings": { "label": "Single pair", "quantity": 1, "discount": 0 } },
+        "t2": { "type": "tier", "settings": { "label": "Two pairs", "quantity": 2, "discount": 3.01 } },
+        "t3": { "type": "tier", "settings": { "label": "Three pairs", "quantity": 3, "discount": 7.01 } },
+        "t4": { "type": "tier", "settings": { "label": "Four pairs", "quantity": 4, "discount": 12.01 } },
+        "t5": { "type": "tier", "settings": { "label": "Five pairs", "quantity": 5, "discount": 20.01 } },
+        "r1": {
+          "type": "trust",
+          "settings": { "label": "Delivery", "value": "Free UK delivery on two pairs or more" }
+        },
+        "r2": { "type": "trust", "settings": { "label": "Dispatch", "value": "UK company, UK warehouse" } },
+        "r3": { "type": "trust", "settings": { "label": "Checkout", "value": "Guest — no account required" } },
+        "r4": {
+          "type": "trust",
+          "settings": {
+            "label": "Payment",
+            "value": "Visa · Mastercard · American Express · Apple Pay · Google Pay · Shop Pay"
+          }
+        },
+        "l1": {
+          "type": "link",
+          "settings": { "label": "Full product details", "use_product_url": true }
+        },
+        "l2": { "type": "link", "settings": { "label": "How it is built", "link": "/#construction" } },
+        "l3": { "type": "link", "settings": { "label": "Delivery and sizing", "link": "/#faq" } },
+        "g1": {
+          "type": "guide_row",
+          "settings": { "size": "S", "foot_length": "22.0 - 24.0 cm", "uk_shoe": "UK 3-5" }
+        },
+        "g2": {
+          "type": "guide_row",
+          "settings": { "size": "M", "foot_length": "24.5 - 26.5 cm", "uk_shoe": "UK 6-8" }
+        },
+        "g3": {
+          "type": "guide_row",
+          "settings": { "size": "L", "foot_length": "27.0 - 29.0 cm", "uk_shoe": "UK 9-11" }
+        },
+        "g4": {
+          "type": "guide_row",
+          "settings": { "size": "XL", "foot_length": "29.5 - 32.0 cm", "uk_shoe": "UK 12-14" }
+        },
+        "n1": {
+          "type": "guide_note",
+          "settings": {
+            "label": "How to measure",
+            "body": "Stand on a sheet of paper with your heel to a wall, mark the tip of your longest toe, and measure heel to mark."
+          }
+        },
+        "n2": {
+          "type": "guide_note",
+          "settings": {
+            "label": "Between two sizes",
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit — a size down grips the toes and shortens the life of the membrane."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "z1",
+        "z2",
+        "z3",
+        "z4",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "l1",
+        "l2",
+        "l3",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "n1",
+        "n2"
+      ],
+      "settings": {
+        "product": "hydrosox-waterproof-socks",
+        "color_scheme": "paper",
+        "anchor_id": "buy",
+        "eyebrow": "Order",
+        "heading": "Two decisions and a quantity.",
+        "lede": "<p>One product, one page, one price that does not change depending on how you found us.</p>",
+        "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
+        "colour_option_name": "Colour",
+        "size_option_name": "Size",
+        "quantity_label": "Quantity",
+        "default_quantity": 2,
+        "add_label": "Add to cart",
+        "save_label": "Save",
+        "per_unit_label": "per pair",
+        "guide_label": "Size guide",
+        "guide_heading": "Size guide",
+        "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_col_size": "Size",
+        "guide_col_length": "Foot length",
+        "guide_col_shoe": "UK shoe",
+        "guide_link_label": "The full sizing and fit guide",
+        "guide_close_label": "Close"
+      }
+    },
+    "comparison": {
+      "type": "comparison-table",
+      "blocks": {
+        "k1": {
+          "type": "criterion",
+          "settings": {
+            "label": "Waterproof layer",
+            "ours_value": "Porelle®, named and licensed",
+            "ours_note": "A membrane you can look up is a membrane someone else has to stand behind.",
+            "theirs_value": "An unnamed “waterproof” laminate"
+          }
+        },
+        "k2": {
+          "type": "criterion",
+          "settings": {
+            "label": "Construction",
+            "ours_value": "Three layers, each one specified",
+            "theirs_value": "Layer count rarely published"
+          }
+        },
+        "k3": {
+          "type": "criterion",
+          "settings": {
+            "label": "Chemistry",
+            "ours_value": "PFOA free, stated",
+            "theirs_value": "Usually not stated either way"
+          }
+        },
+        "k4": {
+          "type": "criterion",
+          "settings": {
+            "label": "Price per pair",
+            "ours_value": "£20.00",
+            "ours_note": "Cheaper waterproof socks exist, including entry models from the category leader at £15–£20. Those are the ones that do not name a membrane.",
+            "theirs_value": "£35–£55 for mid-range and premium"
+          }
+        },
+        "k5": {
+          "type": "criterion",
+          "settings": {
+            "label": "Stated limitations",
+            "ours_value": "Published on this page",
+            "ours_note": "The one claim no competitor in the category makes.",
+            "theirs_value": "Not stated anywhere in the mapped set"
+          }
+        },
+        "k6": {
+          "type": "criterion",
+          "settings": {
+            "label": "Who you are buying from",
+            "ours_value": "UK company, address and phone published",
+            "theirs_value": "Often a marketplace seller with neither"
+          }
+        }
+      },
+      "block_order": ["k1", "k2", "k3", "k4", "k5", "k6"],
+      "settings": {
+        "color_scheme": "wash",
+        "anchor_id": "comparison",
+        "eyebrow": "The difference",
+        "heading": "Everything here is checkable.",
+        "lede": "<p>We are new, and you have no reason to take our word for anything. So this compares the things you can verify yourself in about four minutes — not the things we would like you to feel.</p>",
+        "table_caption": "HydroSox compared against a typical waterproof sock, across six verifiable criteria.",
+        "col_criterion": "What matters",
+        "col_ours": "HydroSox",
+        "col_theirs": "A typical waterproof sock",
+        "link_label": "Check the membrane spec",
+        "link_url": "/#construction"
+      }
+    },
+    "limits": {
+      "type": "honest-limits",
+      "blocks": {
+        "m1": {
+          "type": "limit",
+          "settings": {
+            "heading": "They are not a boot replacement.",
+            "body": "<p>One component of a system. If your footwear is wrong for the ground, this will not fix it.</p>",
+            "width": "1",
+            "tone": "wash"
+          }
+        },
+        "m2": {
+          "type": "limit",
+          "settings": {
+            "heading": "Water over the cuff gets in.",
+            "body": "<p>A sock is open at the top. Go deeper than the cuff and you are wet, and no waterproof sock behaves otherwise.</p>",
+            "width": "1",
+            "tone": "wash"
+          }
+        },
+        "m3": {
+          "type": "limit",
+          "settings": {
+            "heading": "They are not indestructible.",
+            "body": "<p>A membrane is a membrane. Abrasion, toenails and the wrong wash cycle will eventually end one.</p>",
+            "width": "2",
+            "tone": "blue"
+          }
+        },
+        "m4": {
+          "type": "limit",
+          "settings": {
+            "heading": "Breathable does not mean dry inside.",
+            "body": "<p>Work hard enough and you will sweat faster than any membrane can move vapour. Breathability slows that. It does not repeal it.</p>",
+            "width": "4",
+            "tone": "wash",
+            "side_by_side": true
+          }
+        }
+      },
+      "block_order": ["m1", "m2", "m3", "m4"],
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "limits",
+        "eyebrow": "Honest limits",
+        "heading": "What these socks will not do.",
+        "lede": "<p>Every brand in this category tells you what their socks do. Here is the other half, so you can decide with the whole picture rather than find out in a bog.</p>",
+        "cta_label": "Buy a pair",
+        "cta_link": "/#buy",
+        "link_label": "How it is built",
+        "link_url": "/#construction"
+      }
+    },
+    "film": {
+      "type": "product-film",
+      "blocks": {
+        "f1": {
+          "type": "chapter",
+          "settings": {
+            "title": "Water thrown at the line",
+            "caption": "All four colourways on a washing line, hit at once.",
+            "poster_fallback": "wet-four-colourways.webp",
+            "poster_alt": "Four HydroSox colourways pegged to a washing line against a blue ground, with water thrown across them."
+          }
+        },
+        "f2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Rain on a city street",
+            "caption": "Kerb spray and standing water, then the knit face in close-up.",
+            "poster_fallback": "wet-city-rain.webp",
+            "poster_alt": "Rain falling on a city street, with kerb spray and standing water."
+          }
+        },
+        "f3": {
+          "type": "chapter",
+          "settings": {
+            "title": "Straight through the puddle",
+            "caption": "Road and trail, at running pace, taking the wet line.",
+            "poster_fallback": "wet-running.webp",
+            "poster_alt": "A runner taking the wet line straight through a puddle."
+          }
+        },
+        "f4": {
+          "type": "chapter",
+          "settings": {
+            "title": "Wet road, then mud",
+            "caption": "The unglamorous half — churned ground and a soaked verge.",
+            "poster_fallback": "wet-road-and-mud.webp",
+            "poster_alt": "Churned muddy ground beside a soaked grass verge."
+          }
+        },
+        "fl": {
+          "type": "link",
+          "settings": { "label": "The membrane it is all resting on", "link": "/#construction" }
+        }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "fl"],
+      "settings": {
+        "color_scheme": "ink",
+        "anchor_id": "in-the-wet",
+        "eyebrow": "The product film",
+        "heading": "The sock, in the weather it is for.",
+        "lede": "<p>This is our own film rather than an independent test, so take it for what it is — the product in the conditions it is sold for. The claim underneath it is checkable, and that is the membrane, not the footage.</p>",
+        "stage_caption": "Four HydroSox colourways — black, white, black with navy and black with grey — pegged to a washing line against a blue ground, with water thrown across them.",
+        "play_label": "Play the clip"
+      }
+    },
+    "construction": {
+      "type": "construction-layers",
+      "blocks": {
+        "y1": {
+          "type": "layer",
+          "settings": {
+            "heading": "Inner layer",
+            "role": "Next to the skin",
+            "body": "<p>A soft knitted lining that moves sweat off the foot and stops the membrane sitting against the skin.</p>",
+            "tint": "#eaeef1"
+          }
+        },
+        "y2": {
+          "type": "layer",
+          "settings": {
+            "heading": "Porelle® membrane",
+            "role": "The waterproof barrier",
+            "body": "<p>A licensed third-party waterproof-breathable membrane — not a name we invented. Water cannot get in; vapour from the foot can get out. PFOA free.</p>",
+            "tint": "#0093ff"
+          }
+        },
+        "y3": {
+          "type": "layer",
+          "settings": {
+            "heading": "Outer layer",
+            "role": "Wear surface",
+            "body": "<p>The knitted face that takes the abrasion inside a boot or shoe, and holds the sock's shape when it is not being worn.</p>",
+            "tint": "#111111"
+          }
+        },
+        "yl": { "type": "link", "settings": { "label": "How it compares", "link": "/#comparison" } }
+      },
+      "block_order": ["y1", "y2", "y3", "yl"],
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "construction",
+        "eyebrow": "Construction",
+        "heading": "Three layers, and what each one is for.",
+        "lede": "<p>“Waterproof” is a claim anybody can print on a label. This is the mechanism underneath it, so you can judge it rather than take our word.</p>",
+        "scroll_hint": "Scroll to take it apart.",
+        "track_height": 320,
+        "separation": 22,
+        "tilt": 8
+      }
+    },
+    "activity": {
+      "type": "activity-grid",
+      "blocks": {
+        "a1": {
+          "type": "activity",
+          "settings": {
+            "title": "Hiking",
+            "problem": "Boots that wet out four hours into a long day in the hills.",
+            "meta": "Long days, wet ground",
+            "image_fallback": "activity-hiking.webp",
+            "image_alt": "A walker stopped on a rocky mountain path in white HydroSox."
+          }
+        },
+        "a2": {
+          "type": "activity",
+          "settings": {
+            "title": "Walking",
+            "problem": "Wet grass at eight in the morning, in shoes that were never waterproof.",
+            "meta": "Everyday miles, all year",
+            "image_fallback": "activity-walking.webp",
+            "image_alt": "A walker mid-stride on a tree-lined park path in white HydroSox."
+          }
+        },
+        "a3": {
+          "type": "activity",
+          "settings": {
+            "title": "All Day in Boots",
+            "problem": "Boots that keep the rain out and then seal the sweat in.",
+            "meta": "Long shifts, five days a week",
+            "image_fallback": "activity-all-day-in-boots.webp",
+            "image_alt": "Brown leather lace-up boots on a city pavement, worn with HydroSox."
+          }
+        },
+        "a4": {
+          "type": "activity",
+          "settings": {
+            "title": "Cycling & Commuting",
+            "problem": "Overshoes that leak at the ankle, and shoes still wet at home time.",
+            "meta": "No drying option at the other end",
+            "image_fallback": "activity-cycling-and-commuting.webp",
+            "image_alt": "A commuter riding across a city bridge in white HydroSox."
+          }
+        },
+        "a5": {
+          "type": "activity",
+          "settings": {
+            "title": "Running & Trail",
+            "problem": "Cold, soaked feet on winter miles, and blisters in a wet race.",
+            "meta": "Weight and bulk, stated honestly",
+            "image_fallback": "activity-running-and-trail.webp",
+            "image_alt": "A runner mid-stride on a stony mountain trail in white HydroSox."
+          }
+        }
+      },
+      "block_order": ["a1", "a2", "a3", "a4", "a5"],
+      "settings": {
+        "color_scheme": "ink",
+        "anchor_id": "activity",
+        "eyebrow": "Shop by activity",
+        "heading": "Find the version of wet feet you actually have.",
+        "lede": "<p>One sock. Five different problems it solves, described the way the people with those problems describe them.</p>",
+        "footnote": "Same sock either way — the activity only changes which pair you reach for.",
+        "card_aspect": "4 / 5"
+      }
+    },
+    "wudu": {
+      "type": "feature-band",
+      "settings": {
+        "color_scheme": "wash",
+        "anchor_id": "wudu",
+        "eyebrow": "Designed with wudu in mind",
+        "heading": "Built for the three conditions masah turns on.",
+        "body": "<p>Waterproof, structured to hold its shape, shaped to stay on the foot — the three physical properties the masah conditions rest on. No certificate has been issued yet, and we say so plainly on the page.</p>",
+        "link_label": "How it is built for masah",
+        "link_url": "/#construction"
+      }
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Are these actually waterproof, or just water resistant?",
+            "answer": "<p>Waterproof. The middle layer is a Porelle® membrane — a licensed third-party laminate, not a name we invented — sealed inside a three-layer knit. Water that goes in over the top of the cuff is inside the sock, and no waterproof sock behaves otherwise.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Will my feet still sweat?",
+            "answer": "<p>If you work hard enough, yes. The membrane moves vapour out, which delays the point at which the foot is wet from the inside. It does not repeal it. Breathable and dry are not the same word.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Do they replace waterproof boots?",
+            "answer": "<p>No. They are one component of a system. If your footwear is wrong for the ground you are on, a sock will not fix it.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "What size should I order?",
+            "answer": "<p>Four bands: S covers UK 3-5, M covers UK 6-8, L covers UK 9-11, XL covers UK 12-14. The size guide opens over the buy widget without leaving the page, and it is measurement-led — shoe sizing is not consistent between brands.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "How much is delivery?",
+            "answer": "<p>Free UK delivery on two pairs or more. On a single pair, delivery is charged at checkout and shown before you pay. No delivery speed is printed anywhere on this site, because we will not promise one that confirmed stock cannot support.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Why are there no reviews on this site?",
+            "answer": "<p>Because there are none yet. HydroSox is new, and a rating with nothing behind it is worth nothing. When there is real review volume it will be published here — including the reviews that do not flatter us.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "Who am I buying from?",
+            "answer": "<p>HydroSox, a UK registered company at 399-405 Oxford Street, Mayfair, London W1C 2BU. The phone number and email are published on every page of this site, not held behind a contact form.</p>"
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7"],
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "faq",
+        "one_at_a_time": false,
+        "eyebrow": "Questions",
+        "heading": "The things people ask before they buy.",
+        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/#about",
+        "cta_label": "Buy a pair",
+        "cta_link": "/#buy",
+        "cta_note": "Two decisions and a quantity. No account needed."
+      }
+    },
+    "about": {
+      "type": "company-details",
+      "blocks": {
+        "d1": {
+          "type": "row",
+          "settings": { "label": "Company", "kind": "text", "value": "HydroSox, UK registered" }
+        },
+        "d2": { "type": "row", "settings": { "label": "Registered address", "kind": "address" } },
+        "d3": { "type": "row", "settings": { "label": "Phone", "kind": "tel" } },
+        "d4": { "type": "row", "settings": { "label": "Email", "kind": "email" } }
+      },
+      "block_order": ["d1", "d2", "d3", "d4"],
+      "settings": {
+        "color_scheme": "wash",
+        "anchor_id": "about",
+        "eyebrow": "The company",
+        "heading": "Who you are buying from, in full.",
+        "lede": "<p>If something goes wrong you should know exactly who you are dealing with. So: the company, the address, and two ways to reach a person — published here rather than buried in a policy page.</p>",
+        "link_label": "Read the questions first",
+        "link_url": "/#faq"
+      }
+    },
+    "signup": {
+      "type": "newsletter-offer",
+      "settings": {
+        "color_scheme": "wash",
+        "eyebrow": "£5 off your first pair",
+        "heading": "Get the code before the weather turns.",
+        "body": "<p>Applies to a single pair. The two-pair saving is already built into the price.</p>",
+        "field_label": "Email address",
+        "submit_label": "Send my code",
+        "success_message": "Thanks. Your code is on its way.",
+        "tag": "newsletter",
+        "note": "<p>One email to set you up, then only when there is something worth sending. Unsubscribe any time.</p>"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "buy",
+    "comparison",
+    "limits",
+    "film",
+    "construction",
+    "activity",
+    "wudu",
+    "faq",
+    "about",
+    "signup"
+  ]
+}

@@ -1,0 +1,239 @@
+{%- comment -%}
+  Honest limits.
+
+  A bento grid: a dark intro card holding the section heading and calls to
+  action, then one numbered card per limitation. Each card's width and tint are
+  block settings, so the merchant can rebalance the grid without touching code.
+{%- endcomment -%}
+
+<section
+  class="hs-limits hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-base">
+    <div class="hs-limits__grid">
+      {%- comment -%} Intro card {%- endcomment -%}
+      <div class="hs-limits__intro hs-scheme-ink">
+        <div>
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="hs-h3 hs-limits__heading hs-measure-14 hs-balance">
+              {{ section.settings.heading }}
+            </h2>
+          {%- endif -%}
+          {%- if section.settings.lede != blank -%}
+            <div class="hs-small-body hs-limits__lede hs-measure-40 hs-pretty hs-muted">
+              {{ section.settings.lede }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.cta_label != blank or section.settings.link_label != blank -%}
+          <div class="hs-limits__actions">
+            {% render 'hs-button',
+              label: section.settings.cta_label,
+              href: section.settings.cta_link,
+              style: 'primary'
+            %}
+            {%- if section.settings.link_label != blank -%}
+              <a class="hs-tap hs-small-body hs-limits__link" href="{{ section.settings.link_url | default: '#' }}">
+                {{- section.settings.link_label -}}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Limitation cards {%- endcomment -%}
+      {%- for block in section.blocks -%}
+        <article
+          class="hs-reveal hs-limits__card hs-limits__card--span-{{ block.settings.width }} hs-limits__card--{{ block.settings.tone }}{% if block.settings.side_by_side %} hs-limits__card--split{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {% render 'hs-index-number', index: forloop.index0, class: 'hs-limits__index' %}
+          <div class="hs-limits__card-body">
+            {%- if block.settings.heading != blank -%}
+              <h3 class="hs-h4 hs-limits__card-heading hs-measure-22 hs-pretty">
+                {{ block.settings.heading }}
+              </h3>
+            {%- endif -%}
+            {%- if block.settings.body != blank -%}
+              <div class="hs-small-body hs-limits__card-text hs-measure-54 hs-pretty hs-muted">
+                {{ block.settings.body }}
+              </div>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.limits.name",
+  "class": "hs-limits-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info",
+      "default": "limits"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.limits.intro_group"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "Honest limits"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "What these socks will not do."
+    },
+    {
+      "type": "richtext",
+      "id": "lede",
+      "label": "t:common.lede",
+      "default": "<p>Every brand in this category tells you what their socks do. Here is the other half, so you can decide with the whole picture rather than find out in a bog.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:common.button_label",
+      "default": "Buy a pair"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "t:common.button_link"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:common.link_label",
+      "default": "How it is built"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:common.link_url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "limit",
+      "name": "t:sections.limits.block_limit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:common.heading",
+          "default": "They are not a boot replacement."
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "t:common.body"
+        },
+        {
+          "type": "select",
+          "id": "width",
+          "label": "t:sections.limits.width",
+          "info": "t:sections.limits.width_info",
+          "options": [
+            { "value": "1", "label": "t:sections.limits.width_1" },
+            { "value": "2", "label": "t:sections.limits.width_2" },
+            { "value": "4", "label": "t:sections.limits.width_4" }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "select",
+          "id": "tone",
+          "label": "t:sections.limits.tone",
+          "options": [
+            { "value": "wash", "label": "t:common.scheme_wash" },
+            { "value": "blue", "label": "t:sections.limits.tone_blue" },
+            { "value": "paper", "label": "t:common.scheme_paper" }
+          ],
+          "default": "wash"
+        },
+        {
+          "type": "checkbox",
+          "id": "side_by_side",
+          "label": "t:sections.limits.side_by_side",
+          "info": "t:sections.limits.side_by_side_info",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.limits.name",
+      "blocks": [
+        {
+          "type": "limit",
+          "settings": {
+            "heading": "They are not a boot replacement.",
+            "body": "<p>One component of a system. If your footwear is wrong for the ground, this will not fix it.</p>",
+            "width": "1",
+            "tone": "wash"
+          }
+        },
+        {
+          "type": "limit",
+          "settings": {
+            "heading": "Water over the cuff gets in.",
+            "body": "<p>A sock is open at the top. Go deeper than the cuff and you are wet, and no waterproof sock behaves otherwise.</p>",
+            "width": "1",
+            "tone": "wash"
+          }
+        },
+        {
+          "type": "limit",
+          "settings": {
+            "heading": "They are not indestructible.",
+            "body": "<p>A membrane is a membrane. Abrasion, toenails and the wrong wash cycle will eventually end one.</p>",
+            "width": "2",
+            "tone": "blue"
+          }
+        },
+        {
+          "type": "limit",
+          "settings": {
+            "heading": "Breathable does not mean dry inside.",
+            "body": "<p>Work hard enough and you will sweat faster than any membrane can move vapour. Breathability slows that. It does not repeal it.</p>",
+            "width": "4",
+            "tone": "wash",
+            "side_by_side": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

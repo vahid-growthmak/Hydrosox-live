@@ -1,0 +1,31 @@
+{%- comment -%}
+  Product card for collection and search grids.
+
+  Accepts:
+  - card_product: {Object} A product. Required.
+  - eager: {Boolean} Load the image immediately. Optional.
+{%- endcomment -%}
+<a class="hs-card hs-zoom-parent" href="{{ card_product.url }}">
+  {% render 'hs-image',
+    image: card_product.featured_image,
+    alt: card_product.featured_image.alt | default: card_product.title,
+    aspect: '4 / 5',
+    eager: eager,
+    sizes: '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw',
+    wrapper_class: 'hs-card__media hs-media--zoom'
+  %}
+  <div class="hs-card__body">
+    <h3 class="hs-h4 hs-card__title">{{ card_product.title }}</h3>
+    <p class="hs-small-body hs-tnum hs-card__price">
+      {%- if card_product.compare_at_price > card_product.price -%}
+        <span class="hs-card__price-sale">{{ card_product.price | money }}</span>
+        <s class="hs-muted">{{ card_product.compare_at_price | money }}</s>
+      {%- else -%}
+        {{ card_product.price | money }}
+      {%- endif -%}
+    </p>
+    {%- unless card_product.available -%}
+      <p class="hs-caption hs-muted">{{ 'products.product.sold_out' | t }}</p>
+    {%- endunless -%}
+  </div>
+</a>

@@ -1,0 +1,32 @@
+<section class="hs-scheme-paper">
+  <div class="hs-shell hs-pace-base">
+    <header class="hs-page__head">
+      <h1 class="hs-h2 hs-balance hs-page__title">{{ 'customer.order.title' | t: name: order.name }}</h1>
+      <p class="hs-caption hs-muted">
+        {{ 'customer.order.date' | t: date: order.created_at | date: format: 'date' }}
+      </p>
+    </header>
+    <table class="hs-small-body hs-orders__table">
+      <thead>
+        <tr>
+          <th class="hs-eyebrow hs-muted" scope="col">{{ 'customer.order.product' | t }}</th>
+          <th class="hs-eyebrow hs-muted" scope="col">{{ 'customer.order.quantity' | t }}</th>
+          <th class="hs-eyebrow hs-muted" scope="col">{{ 'customer.order.total' | t }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%- for line in order.line_items -%}
+          <tr>
+            <td>{{ line.title }}</td>
+            <td class="hs-tnum">{{ line.quantity }}</td>
+            <td class="hs-tnum">{{ line.final_line_price | money }}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+    <p class="hs-h4 hs-tnum hs-cart__subtotal">
+      <span>{{ 'customer.order.total' | t }}</span>
+      <span>{{ order.total_price | money }}</span>
+    </p>
+  </div>
+</section>

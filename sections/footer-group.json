@@ -1,0 +1,182 @@
+{
+  "name": "t:section_groups.footer",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "col_shop": {
+          "type": "column",
+          "settings": { "heading": "Shop" }
+        },
+        "shop_1": {
+          "type": "column_link",
+          "settings": { "label": "Waterproof Socks", "link": "/#buy" }
+        },
+        "shop_2": {
+          "type": "column_link",
+          "settings": { "label": "Hiking", "link": "/#activity" }
+        },
+        "shop_3": {
+          "type": "column_link",
+          "settings": { "label": "Walking", "link": "/#activity" }
+        },
+        "shop_4": {
+          "type": "column_link",
+          "settings": { "label": "All Day in Boots", "link": "/#activity" }
+        },
+        "shop_5": {
+          "type": "column_link",
+          "settings": { "label": "Cycling & Commuting", "link": "/#activity" }
+        },
+        "shop_6": {
+          "type": "column_link",
+          "settings": { "label": "Running & Trail", "link": "/#activity" }
+        },
+        "shop_7": {
+          "type": "column_link",
+          "settings": { "label": "Wudu Socks", "link": "/#wudu" }
+        },
+        "shop_8": {
+          "type": "column_link",
+          "settings": { "label": "Size Guide", "link": "/#buy" }
+        },
+        "col_explore": {
+          "type": "column",
+          "settings": { "heading": "Explore" }
+        },
+        "exp_1": {
+          "type": "column_link",
+          "settings": { "label": "The Technology", "link": "/#construction" }
+        },
+        "exp_2": {
+          "type": "column_link",
+          "settings": { "label": "Guides", "link": "/#faq" }
+        },
+        "exp_3": {
+          "type": "column_link",
+          "settings": { "label": "How to Make Masah", "link": "/#wudu" }
+        },
+        "exp_4": {
+          "type": "column_link",
+          "settings": { "label": "Reviews", "link": "/#faq" }
+        },
+        "exp_5": {
+          "type": "column_link",
+          "settings": { "label": "About HydroSox", "link": "/#about" }
+        },
+        "exp_6": {
+          "type": "column_link",
+          "settings": { "label": "Our Partners", "link": "/#about" }
+        },
+        "col_help": {
+          "type": "column",
+          "settings": { "heading": "Help & Trade" }
+        },
+        "help_1": {
+          "type": "column_link",
+          "settings": { "label": "Shipping & Delivery", "link": "/policies/shipping-policy" }
+        },
+        "help_2": {
+          "type": "column_link",
+          "settings": { "label": "Returns & Refunds", "link": "/policies/refund-policy" }
+        },
+        "help_3": {
+          "type": "column_link",
+          "settings": { "label": "Warranty", "link": "/#faq" }
+        },
+        "help_4": {
+          "type": "column_link",
+          "settings": { "label": "Care & Washing", "link": "/#faq" }
+        },
+        "help_5": {
+          "type": "column_link",
+          "settings": { "label": "Track Order", "link": "/account" }
+        },
+        "help_6": {
+          "type": "column_link",
+          "settings": { "label": "FAQ", "link": "/#faq" }
+        },
+        "help_7": {
+          "type": "column_link",
+          "settings": { "label": "Contact Us", "link": "/#about" }
+        },
+        "help_8": {
+          "type": "column_link",
+          "settings": { "label": "Partner With Us", "link": "/#about" }
+        },
+        "help_9": {
+          "type": "column_link",
+          "settings": { "label": "Press", "link": "/#about" }
+        },
+        "legal_1": {
+          "type": "legal_link",
+          "settings": { "label": "Privacy Policy", "link": "/policies/privacy-policy" }
+        },
+        "legal_2": {
+          "type": "legal_link",
+          "settings": { "label": "Terms of Service", "link": "/policies/terms-of-service" }
+        },
+        "legal_3": {
+          "type": "legal_link",
+          "settings": { "label": "Refund Policy", "link": "/policies/refund-policy" }
+        },
+        "legal_4": {
+          "type": "legal_link",
+          "settings": { "label": "Shipping Policy", "link": "/policies/shipping-policy" }
+        }
+      },
+      "block_order": [
+        "col_shop",
+        "shop_1",
+        "shop_2",
+        "shop_3",
+        "shop_4",
+        "shop_5",
+        "shop_6",
+        "shop_7",
+        "shop_8",
+        "col_explore",
+        "exp_1",
+        "exp_2",
+        "exp_3",
+        "exp_4",
+        "exp_5",
+        "exp_6",
+        "col_help",
+        "help_1",
+        "help_2",
+        "help_3",
+        "help_4",
+        "help_5",
+        "help_6",
+        "help_7",
+        "help_8",
+        "help_9",
+        "legal_1",
+        "legal_2",
+        "legal_3",
+        "legal_4"
+      ],
+      "settings": {
+        "color_scheme": "ink",
+        "company_heading": "Company",
+        "fineprint": "HydroSox is a UK registered company. All prices in GBP and include VAT."
+      }
+    },
+    "buybar": {
+      "type": "sticky-buy-bar",
+      "settings": {
+        "enabled": true,
+        "color_scheme": "paper",
+        "title": "HydroSox Waterproof Socks",
+        "note": "Free UK delivery on two pairs or more",
+        "cta_label": "Buy a pair",
+        "cta_link": "/#buy",
+        "show_after": 80,
+        "hide_near_selector": "#buy"
+      }
+    }
+  },
+  "order": ["footer", "buybar"]
+}

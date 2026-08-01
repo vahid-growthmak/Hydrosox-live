@@ -1,0 +1,18 @@
+<section class="hs-scheme-paper">
+  <div class="hs-shell hs-pace-base">
+    <h1 class="hs-h2 hs-balance hs-page__title">{{ 'customer.addresses.title' | t }}</h1>
+    {%- paginate customer.addresses by 10 -%}
+      <ul class="hs-orders" role="list">
+        {%- for address in customer.addresses -%}
+          <li class="hs-orders__row">
+            <span class="hs-small-body">{{ address | format_address }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+      {% render 'hs-pagination', paginate: paginate %}
+    {%- endpaginate -%}
+    <p class="hs-caption">
+      <a class="hs-link" href="{{ routes.account_url }}">{{ 'customer.account.title' | t }}</a>
+    </p>
+  </div>
+</section>

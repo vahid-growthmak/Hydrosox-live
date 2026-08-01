@@ -1,0 +1,98 @@
+{%- comment -%}
+  Responsive image with a generated srcset, lazy loading and a reserved aspect
+  box so nothing shifts as it loads.
+
+  Accepts:
+  - image: {Object} A Shopify image (image_picker, product, media). Optional.
+  - fallback: {String} Filename in assets/, used when `image` is empty. Optional.
+  - alt: {String} Alternative text. Falls back to the image's own alt.
+  - class: {String} Classes for the <img>. Optional.
+  - wrapper_class: {String} Classes for the aspect box. Optional.
+  - aspect: {String} CSS aspect-ratio for the box, e.g. '9 / 8'. Optional.
+  - sizes: {String} The sizes attribute. Defaults to full viewport width.
+  - eager: {Boolean} Load immediately and raise fetch priority. Defaults false.
+  - position: {String} object-position value. Optional.
+  - widths: {String} Comma separated candidate widths. Optional.
+
+  Usage:
+  {% render 'hs-image', image: block.settings.image, fallback: 'activity-hiking.webp', aspect: '4 / 5' %}
+{%- endcomment -%}
+{%- liquid
+  assign candidate_widths = widths | default: '320,480,640,828,1080,1280,1600,2000' | split: ','
+  assign img_alt = alt | default: image.alt | default: ''
+  assign loading_attr = 'lazy'
+  assign priority_attr = 'auto'
+  if eager
+    assign loading_attr = 'eager'
+    assign priority_attr = 'high'
+  endif
+  assign sizes_attr = sizes | default: '100vw'
+
+  # Intrinsic size for the bundled-asset fallback, so the browser reserves the
+  # right box before CSS lands. Derived from `aspect` when one is given.
+  assign fb_width = 1600
+  assign fb_height = 1200
+  if aspect != blank
+    assign ratio_parts = aspect | split: '/'
+    if ratio_parts.size == 2
+      assign ratio_w = ratio_parts[0] | strip | times: 1.0
+      assign ratio_h = ratio_parts[1] | strip | times: 1.0
+      if ratio_w > 0 and ratio_h > 0
+        assign fb_height = fb_width | times: ratio_h | divided_by: ratio_w | round
+      endif
+    endif
+  endif
+-%}
+
+<div
+  class="hs-media {{ wrapper_class }}"
+  {% if aspect %}style="aspect-ratio: {{ aspect }};"{% endif %}
+>
+  {%- if image != blank -%}
+    {%- liquid
+      assign srcset_parts = ''
+      for w in candidate_widths
+        assign width_num = w | plus: 0
+        if width_num <= image.width
+          assign entry = image | image_url: width: width_num | append: ' ' | append: width_num | append: 'w'
+          if srcset_parts == ''
+            assign srcset_parts = entry
+          else
+            assign srcset_parts = srcset_parts | append: ', ' | append: entry
+          endif
+        endif
+      endfor
+      # Very small source images still need at least one candidate.
+      if srcset_parts == ''
+        assign srcset_parts = image | image_url: width: image.width | append: ' ' | append: image.width | append: 'w'
+      endif
+    -%}
+    <img
+      src="{{ image | image_url: width: 1080 }}"
+      srcset="{{ srcset_parts }}"
+      sizes="{{ sizes_attr }}"
+      alt="{{ img_alt | escape }}"
+      width="{{ image.width }}"
+      height="{{ image.height }}"
+      loading="{{ loading_attr }}"
+      fetchpriority="{{ priority_attr }}"
+      decoding="async"
+      class="{{ class }}"
+      {% if position %}style="object-position: {{ position }};"{% endif %}
+    >
+  {%- elsif fallback != blank -%}
+    <img
+      src="{{ fallback | asset_url }}"
+      alt="{{ img_alt | escape }}"
+      width="{{ fb_width }}"
+      height="{{ fb_height }}"
+      loading="{{ loading_attr }}"
+      fetchpriority="{{ priority_attr }}"
+      decoding="async"
+      class="{{ class }}"
+      {% if position %}style="object-position: {{ position }};"{% endif %}
+    >
+  {%- else -%}
+    {{ 'image' | placeholder_svg_tag: 'hs-placeholder' }}
+  {%- endif -%}
+</div>

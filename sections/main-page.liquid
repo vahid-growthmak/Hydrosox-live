@@ -1,0 +1,28 @@
+{%- comment -%} Standard page content. {%- endcomment -%}
+<section class="hs-scheme-{{ section.settings.color_scheme }}">
+  <div class="hs-shell hs-pace-base">
+    <header class="hs-page__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h1 class="hs-h1 hs-measure-19 hs-balance hs-page__title">{{ page.title }}</h1>
+    </header>
+    {%- if page.content != blank -%}
+      <div class="hs-body hs-rte hs-measure-54 hs-pretty">{{ page.content }}</div>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "t:sections.page.name",
+  "settings": [
+    { "type": "select", "id": "color_scheme", "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ], "default": "paper" },
+    { "type": "text", "id": "eyebrow", "label": "t:common.eyebrow" }
+  ]
+}
+{% endschema %}

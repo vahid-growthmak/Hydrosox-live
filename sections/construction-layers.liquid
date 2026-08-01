@@ -1,0 +1,362 @@
+{%- comment -%}
+  Construction — a sticky scroll-scrub that takes the sock apart.
+
+  The section is a tall scroll track holding a pinned panel. Scroll progress
+  through the track drives three things at once: the layers separate in the
+  visual, the matching description cross-fades in, and the progress rail fills.
+
+  Each layer is a block, so the merchant can add or remove layers and the
+  track, the visual and the rail all follow.
+{%- endcomment -%}
+
+{%- liquid
+  assign layers = section.blocks | where: 'type', 'layer'
+  assign layer_count = layers | size
+-%}
+
+{% style %}
+  #shopify-section-{{ section.id }} .hs-layers__track {
+    --hs-separation: {{ section.settings.separation }}%;
+    --hs-tilt: {{ section.settings.tilt }}deg;
+  }
+{% endstyle %}
+
+<section
+  class="hs-layers hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  {%- comment -%} Heading {%- endcomment -%}
+  <div class="hs-shell hs-layers__head">
+    <div class="hs-section-head">
+      <div class="hs-section-head__lead">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="hs-h2 hs-section-head__heading hs-measure-18 hs-balance">
+            {{ section.settings.heading }}
+          </h2>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.lede != blank or section.settings.scroll_hint != blank -%}
+        <div class="hs-body hs-section-head__lede hs-measure-46 hs-pretty hs-muted">
+          {{ section.settings.lede }}
+          {%- if section.settings.scroll_hint != blank -%}
+            <span class="hs-layers__hint">{{ section.settings.scroll_hint }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if layer_count > 0 -%}
+    <div class="hs-shell">
+      <hs-layers
+        class="hs-layers__track"
+        style="--hs-track-height: {{ section.settings.track_height }}svh;"
+        data-count="{{ layer_count }}"
+      >
+        <div class="hs-layers__pin">
+          <div class="hs-layers__grid">
+            {%- comment -%} Layered visual {%- endcomment -%}
+            <div class="hs-layers__visual-col">
+              <div class="hs-layers__stage">
+                {%- for block in layers -%}
+                  {%- liquid
+                    assign depth = forloop.index0
+                    assign from_middle = depth | minus: 1
+                  -%}
+                  <div
+                    class="hs-layers__plane"
+                    data-hs-plane="{{ depth }}"
+                    style="
+                      --hs-plane-index: {{ depth }};
+                      --hs-plane-offset: {{ from_middle }};
+                      --hs-plane-z: {{ layer_count | minus: depth }};
+                      {% if block.settings.tint != blank %}--hs-plane-tint: {{ block.settings.tint }};{% endif %}
+                    "
+                    {{ block.shopify_attributes }}
+                  >
+                    {%- if block.settings.image != blank -%}
+                      {% render 'hs-image',
+                        image: block.settings.image,
+                        alt: block.settings.image_alt,
+                        sizes: '(min-width: 64rem) 52vw, 100vw',
+                        wrapper_class: 'hs-layers__plane-media',
+                        class: 'hs-layers__plane-img'
+                      %}
+                    {%- else -%}
+                      <span class="hs-layers__plane-fill" aria-hidden="true"></span>
+                    {%- endif -%}
+                    <span class="hs-label hs-layers__plane-tag">{{ block.settings.heading }}</span>
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+
+            {%- comment -%} Cross-fading descriptions {%- endcomment -%}
+            <div class="hs-layers__copy-col">
+              <div class="hs-layers__panels">
+                {%- for block in layers -%}
+                  <div
+                    class="hs-layers__panel{% if forloop.first %} is-active{% endif %}"
+                    data-hs-panel="{{ forloop.index0 }}"
+                    {% unless forloop.first %}
+                      aria-hidden="true"
+                    {% endunless %}
+                  >
+                    {% render 'hs-index-number',
+                      index: forloop.index0,
+                      class: 'hs-layers__panel-index'
+                    %}
+                    {%- if block.settings.heading != blank -%}
+                      <h3 class="hs-h3 hs-layers__panel-heading">{{ block.settings.heading }}</h3>
+                    {%- endif -%}
+                    {%- if block.settings.role != blank -%}
+                      <p class="hs-eyebrow hs-layers__panel-role hs-muted">{{ block.settings.role }}</p>
+                    {%- endif -%}
+                    {%- if block.settings.body != blank -%}
+                      <div class="hs-body hs-layers__panel-body hs-pretty hs-muted">
+                        {{ block.settings.body }}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endfor -%}
+              </div>
+
+              {%- comment -%} Progress rail {%- endcomment -%}
+              <ol class="hs-layers__rail" aria-hidden="true">
+                {%- for block in layers -%}
+                  <li class="hs-layers__rail-item" data-hs-rail="{{ forloop.index0 }}">
+                    <span class="hs-layers__rail-track">
+                      <span class="hs-layers__rail-fill"></span>
+                    </span>
+                    <span class="hs-eyebrow hs-layers__rail-label">{{ block.settings.heading }}</span>
+                  </li>
+                {%- endfor -%}
+              </ol>
+            </div>
+          </div>
+        </div>
+      </hs-layers>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Footer links {%- endcomment -%}
+  {%- liquid
+    assign link_blocks = section.blocks | where: 'type', 'link'
+    assign link_count = link_blocks | size
+  -%}
+  {%- if link_count > 0 -%}
+    <div class="hs-shell hs-layers__foot-wrap">
+      <div class="hs-layers__foot">
+        {%- for block in link_blocks -%}
+          <a
+            class="hs-tap hs-small-body hs-layers__foot-link"
+            href="{{ block.settings.link | default: '#' }}"
+            {{ block.shopify_attributes }}
+          >
+            {{- block.settings.label -}}
+          </a>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+<script src="{{ 'hs-layers.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "t:sections.layers.name",
+  "class": "hs-layers-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info",
+      "default": "construction"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "Construction"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "Three layers, and what each one is for."
+    },
+    {
+      "type": "richtext",
+      "id": "lede",
+      "label": "t:common.lede",
+      "default": "<p>“Waterproof” is a claim anybody can print on a label. This is the mechanism underneath it, so you can judge it rather than take our word.</p>"
+    },
+    {
+      "type": "text",
+      "id": "scroll_hint",
+      "label": "t:sections.layers.scroll_hint",
+      "default": "Scroll to take it apart."
+    },
+    {
+      "type": "header",
+      "content": "t:common.motion"
+    },
+    {
+      "type": "range",
+      "id": "track_height",
+      "min": 150,
+      "max": 500,
+      "step": 10,
+      "unit": "svh",
+      "label": "t:sections.layers.track_height",
+      "info": "t:sections.layers.track_height_info",
+      "default": 320
+    },
+    {
+      "type": "range",
+      "id": "separation",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "%",
+      "label": "t:sections.layers.separation",
+      "info": "t:sections.layers.separation_info",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "tilt",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "deg",
+      "label": "t:sections.layers.tilt",
+      "info": "t:sections.layers.tilt_info",
+      "default": 8
+    }
+  ],
+  "blocks": [
+    {
+      "type": "layer",
+      "name": "t:sections.layers.block_layer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:common.heading",
+          "default": "Inner layer"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "t:sections.layers.role",
+          "default": "Next to the skin"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "t:common.body"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:common.image",
+          "info": "t:sections.layers.image_info"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "t:common.image_alt"
+        },
+        {
+          "type": "color",
+          "id": "tint",
+          "label": "t:sections.layers.tint",
+          "info": "t:sections.layers.tint_info"
+        }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "t:sections.layers.block_link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label",
+          "default": "How it compares"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:common.link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.layers.name",
+      "blocks": [
+        {
+          "type": "layer",
+          "settings": {
+            "heading": "Inner layer",
+            "role": "Next to the skin",
+            "body": "<p>A soft knitted lining that moves sweat off the foot and stops the membrane sitting against the skin.</p>",
+            "tint": "#eaeef1"
+          }
+        },
+        {
+          "type": "layer",
+          "settings": {
+            "heading": "Porelle® membrane",
+            "role": "The waterproof barrier",
+            "body": "<p>A licensed third-party waterproof-breathable membrane — not a name we invented. Water cannot get in; vapour from the foot can get out. PFOA free.</p>",
+            "tint": "#0093ff"
+          }
+        },
+        {
+          "type": "layer",
+          "settings": {
+            "heading": "Outer layer",
+            "role": "Wear surface",
+            "body": "<p>The knitted face that takes the abrasion inside a boot or shoe, and holds the sock's shape when it is not being worn.</p>",
+            "tint": "#111111"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "How it compares",
+            "link": "/#comparison"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

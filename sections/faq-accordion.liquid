@@ -1,0 +1,256 @@
+{%- comment -%}
+  Questions.
+
+  Native <details>/<summary> so every answer is readable, findable by the
+  browser's own find-in-page, and expandable before any JavaScript runs. The
+  component only adds the height transition and the one-open-at-a-time option.
+{%- endcomment -%}
+
+{%- liquid
+  assign questions = section.blocks | where: 'type', 'question'
+  assign question_count = questions | size
+-%}
+
+<section
+  class="hs-faq hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-base">
+    <div class="hs-section-head">
+      <div class="hs-section-head__lead">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="hs-h2 hs-section-head__heading hs-measure-19 hs-balance">
+            {{ section.settings.heading }}
+          </h2>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.lede != blank or section.settings.help_label != blank -%}
+        <div class="hs-section-head__lede hs-measure-46 hs-leading-relaxed hs-pretty hs-muted">
+          {{ section.settings.lede }}
+          {%- if section.settings.help_label != blank -%}
+            <span class="hs-faq__help">
+              {{ section.settings.help_prefix }}
+              <a class="hs-link hs-link--accent hs-faq__help-link" href="{{ section.settings.help_link | default: '#' }}">
+                {{- section.settings.help_label -}}
+              </a>
+            </span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if question_count > 0 -%}
+      <hs-accordion
+        class="hs-faq__list"
+        {% if section.settings.one_at_a_time %}
+          data-single
+        {% endif %}
+      >
+        {%- for block in questions -%}
+          <details class="hs-faq__item" {{ block.shopify_attributes }}>
+            <summary class="hs-faq__summary">
+              <span class="hs-h4 hs-faq__question hs-pretty">{{ block.settings.question }}</span>
+              <span class="hs-faq__marker" aria-hidden="true">
+                {% render 'hs-icon', icon: 'plus', size: 18 %}
+              </span>
+            </summary>
+            <div class="hs-faq__answer-wrap">
+              <div class="hs-small-body hs-faq__answer hs-measure-54 hs-pretty hs-muted">
+                {{ block.settings.answer }}
+              </div>
+            </div>
+          </details>
+        {%- endfor -%}
+      </hs-accordion>
+
+      <script src="{{ 'hs-accordion.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <div class="hs-faq__foot">
+        {% render 'hs-button',
+          label: section.settings.cta_label,
+          href: section.settings.cta_link,
+          style: 'primary'
+        %}
+        {%- if section.settings.cta_note != blank -%}
+          <p class="hs-caption hs-faq__foot-note hs-pretty hs-muted">{{ section.settings.cta_note }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.faq.name",
+  "class": "hs-faq-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info",
+      "default": "faq"
+    },
+    {
+      "type": "checkbox",
+      "id": "one_at_a_time",
+      "label": "t:sections.faq.one_at_a_time",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "Questions"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "The things people ask before they buy."
+    },
+    {
+      "type": "richtext",
+      "id": "lede",
+      "label": "t:common.lede",
+      "default": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>"
+    },
+    {
+      "type": "text",
+      "id": "help_prefix",
+      "label": "t:sections.faq.help_prefix",
+      "default": "Something not here?"
+    },
+    {
+      "type": "text",
+      "id": "help_label",
+      "label": "t:sections.faq.help_label",
+      "default": "Phone or email us"
+    },
+    {
+      "type": "url",
+      "id": "help_link",
+      "label": "t:common.link"
+    },
+    {
+      "type": "header",
+      "content": "t:common.actions"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:common.button_label",
+      "default": "Buy a pair"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "t:common.button_link"
+    },
+    {
+      "type": "text",
+      "id": "cta_note",
+      "label": "t:sections.faq.cta_note",
+      "default": "Two decisions and a quantity. No account needed."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "t:sections.faq.block_question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "t:sections.faq.question",
+          "default": "Are these actually waterproof, or just water resistant?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "t:sections.faq.answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.faq.name",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "question": "Are these actually waterproof, or just water resistant?",
+            "answer": "<p>Waterproof. The middle layer is a Porelle® membrane — a licensed third-party laminate, not a name we invented — sealed inside a three-layer knit. Water that goes in over the top of the cuff is inside the sock, and no waterproof sock behaves otherwise.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Will my feet still sweat?",
+            "answer": "<p>If you work hard enough, yes. The membrane moves vapour out, which delays the point at which the foot is wet from the inside. It does not repeal it. Breathable and dry are not the same word.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Do they replace waterproof boots?",
+            "answer": "<p>No. They are one component of a system. If your footwear is wrong for the ground you are on, a sock will not fix it.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "What size should I order?",
+            "answer": "<p>Four bands: S covers UK 3-5, M covers UK 6-8, L covers UK 9-11, XL covers UK 12-14. The size guide opens over the buy widget without leaving the page, and it is measurement-led — shoe sizing is not consistent between brands.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "How much is delivery?",
+            "answer": "<p>Free UK delivery on two pairs or more. On a single pair, delivery is charged at checkout and shown before you pay. No delivery speed is printed anywhere on this site, because we will not promise one that confirmed stock cannot support.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Why are there no reviews on this site?",
+            "answer": "<p>Because there are none yet. HydroSox is new, and a rating with nothing behind it is worth nothing. When there is real review volume it will be published here — including the reviews that do not flatter us.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Who am I buying from?",
+            "answer": "<p>HydroSox, a UK registered company at 399-405 Oxford Street, Mayfair, London W1C 2BU. The phone number and email are published on every page of this site, not held behind a contact form.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

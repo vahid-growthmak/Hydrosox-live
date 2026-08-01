@@ -1,0 +1,101 @@
+{%- comment -%}
+  Product page. Deliberately plain: the homepage buy widget is the primary
+  purchase path, and this page carries the full detail and media.
+{%- endcomment -%}
+<section class="hs-scheme-{{ section.settings.color_scheme }}">
+  <div class="hs-shell hs-pace-base">
+    <div class="hs-pdp">
+      <div class="hs-pdp__media">
+        {%- if product.media.size > 0 -%}
+          <ul class="hs-pdp__media-list" role="list">
+            {%- for media in product.media -%}
+              <li>
+                {% render 'hs-image', image: media.preview_image,
+                   alt: media.alt | default: product.title, aspect: '4 / 5',
+                   eager: forloop.first, sizes: '(min-width: 64rem) 50vw, 100vw',
+                   wrapper_class: 'hs-pdp__media-item' %}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      <div class="hs-pdp__info">
+        <div class="hs-pdp__sticky">
+          {%- if product.vendor != blank and section.settings.show_vendor -%}
+            <p class="hs-eyebrow">{{ product.vendor }}</p>
+          {%- endif -%}
+          <h1 class="hs-h2 hs-balance hs-pdp__title">{{ product.title }}</h1>
+          <p class="hs-hero-body hs-tnum hs-pdp__price">
+            {%- if product.compare_at_price > product.price -%}
+              {{ product.price | money }}
+              <s class="hs-muted">{{ product.compare_at_price | money }}</s>
+            {%- else -%}
+              {{ product.price | money }}
+            {%- endif -%}
+          </p>
+
+          {%- form 'product', product, class: 'hs-pdp__form' -%}
+            {%- unless product.has_only_default_variant -%}
+              {%- for option in product.options_with_values -%}
+                <div class="hs-pdp__option">
+                  <label class="hs-eyebrow hs-muted" for="hs-opt-{{ forloop.index }}-{{ section.id }}">
+                    {{ option.name }}
+                  </label>
+                  <select class="hs-field hs-pdp__select" id="hs-opt-{{ forloop.index }}-{{ section.id }}"
+                    name="options[{{ option.name | escape }}]">
+                    {%- for value in option.values -%}
+                      <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>
+                        {{ value }}
+                      </option>
+                    {%- endfor -%}
+                  </select>
+                </div>
+              {%- endfor -%}
+            {%- endunless -%}
+
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+            {%- liquid
+              assign chosen = product.selected_or_first_available_variant
+              if chosen.available
+                assign submit_label = section.settings.add_label
+                assign submit_disabled = false
+              else
+                assign submit_label = 'products.product.sold_out' | t
+                assign submit_disabled = true
+              endif
+            -%}
+            {% render 'hs-button',
+              label: submit_label,
+              style: 'primary',
+              type: 'submit',
+              name: 'add',
+              full: true,
+              disabled: submit_disabled
+            %}
+          {%- endform -%}
+
+          {%- if product.description != blank -%}
+            <div class="hs-body hs-rte hs-pdp__desc hs-pretty">{{ product.description }}</div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "t:sections.product.name",
+  "settings": [
+    { "type": "select", "id": "color_scheme", "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ], "default": "paper" },
+    { "type": "checkbox", "id": "show_vendor", "label": "t:sections.product.show_vendor", "default": false },
+    { "type": "text", "id": "add_label", "label": "t:sections.buy.add_label", "default": "Add to cart" }
+  ]
+}
+{% endschema %}

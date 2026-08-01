@@ -1,0 +1,81 @@
+{%- comment -%} Cart. {%- endcomment -%}
+<section class="hs-scheme-{{ section.settings.color_scheme }}">
+  <div class="hs-shell hs-pace-base">
+    <header class="hs-page__head">
+      <h1 class="hs-h2 hs-balance hs-page__title">{{ 'cart.general.title' | t }}</h1>
+    </header>
+
+    {%- if cart.item_count > 0 -%}
+      {%- form 'cart', cart, class: 'hs-cart__form' -%}
+        <ul class="hs-cart__list" role="list">
+          {%- for item in cart.items -%}
+            <li class="hs-cart__item">
+              <a class="hs-cart__item-media" href="{{ item.url }}">
+                {% render 'hs-image', image: item.image, alt: item.product.title,
+                   aspect: '1 / 1', sizes: '96px', wrapper_class: 'hs-cart__thumb' %}
+              </a>
+              <div class="hs-cart__item-body">
+                <a class="hs-small-body hs-cart__item-title" href="{{ item.url }}">{{ item.product.title }}</a>
+                {%- unless item.product.has_only_default_variant -%}
+                  <p class="hs-caption hs-muted">{{ item.variant.title }}</p>
+                {%- endunless -%}
+                {%- if item.line_level_discount_allocations.size > 0 -%}
+                  {%- for allocation in item.line_level_discount_allocations -%}
+                    <p class="hs-caption hs-cart__discount">
+                      {{ allocation.discount_application.title }}
+                      (&minus;{{ allocation.amount | money }})
+                    </p>
+                  {%- endfor -%}
+                {%- endif -%}
+                <div class="hs-cart__item-controls">
+                  <label class="hs-visually-hidden" for="hs-qty-{{ item.index | plus: 1 }}">
+                    {{ 'products.product.quantity' | t }}
+                  </label>
+                  <input class="hs-field hs-cart__qty" id="hs-qty-{{ item.index | plus: 1 }}"
+                    type="number" name="updates[]" value="{{ item.quantity }}" min="0" inputmode="numeric">
+                  <a class="hs-tap hs-caption hs-cart__remove" href="{{ item.url_to_remove }}">
+                    {{ 'cart.general.remove' | t }}
+                  </a>
+                </div>
+              </div>
+              <p class="hs-small-body hs-tnum hs-cart__item-total">{{ item.final_line_price | money }}</p>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        <div class="hs-cart__foot">
+          {%- if cart.cart_level_discount_applications.size > 0 -%}
+            {%- for discount in cart.cart_level_discount_applications -%}
+              <p class="hs-caption hs-cart__discount">
+                {{ discount.title }} (&minus;{{ discount.total_allocated_amount | money }})
+              </p>
+            {%- endfor -%}
+          {%- endif -%}
+          <p class="hs-h4 hs-tnum hs-cart__subtotal">
+            <span>{{ 'cart.general.subtotal' | t }}</span>
+            <span>{{ cart.total_price | money }}</span>
+          </p>
+          <p class="hs-caption hs-muted">{{ 'cart.general.taxes_and_shipping' | t }}</p>
+          {% render 'hs-button', label: 'cart.general.checkout' | t, style: 'primary',
+             type: 'submit', name: 'checkout', full: true %}
+        </div>
+      {%- endform -%}
+    {%- else -%}
+      <p class="hs-body hs-muted">{{ 'cart.general.empty' | t }}</p>
+      {% render 'hs-button', label: 'general.continue_shopping' | t, href: routes.root_url, style: 'primary' %}
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "t:sections.cart.name",
+  "settings": [
+    { "type": "select", "id": "color_scheme", "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ], "default": "paper" }
+  ]
+}
+{% endschema %}

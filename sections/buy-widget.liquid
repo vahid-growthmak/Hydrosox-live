@@ -1,0 +1,790 @@
+{%- comment -%}
+  Buy widget.
+
+  Bound to a real product: colours and sizes are read from the product's own
+  options, and the blocks only supply presentation (a swatch colour, a UK shoe
+  range). If the merchant renames an option value in Shopify, the widget still
+  renders it — the block simply stops decorating it.
+
+  Quantity tiers state a discount per tier rather than a finished price, so the
+  figure shown here is the same number configured on the matching automatic
+  discount and the two cannot drift apart.
+{%- endcomment -%}
+
+{%- liquid
+  assign product = all_products[section.settings.product]
+  assign has_product = false
+  if product != blank and product.id
+    assign has_product = true
+  endif
+
+  assign current_variant = product.selected_or_first_available_variant
+  assign unit_price = current_variant.price | default: product.price | default: 0
+
+  # Locate the colour and size options by the names the merchant gave them.
+  # Compared case-insensitively, so "Colour" and "colour" both match.
+  assign colour_option_index = 0
+  assign size_option_index = 0
+  assign wanted_colour = section.settings.colour_option_name | downcase | strip
+  assign wanted_size = section.settings.size_option_name | downcase | strip
+
+  for option in product.options_with_values
+    assign option_name = option.name | downcase | strip
+    if option_name == wanted_colour
+      assign colour_option_index = forloop.index
+    endif
+    if option_name == wanted_size
+      assign size_option_index = forloop.index
+    endif
+  endfor
+
+  # Zero-based positions, since a filter cannot be used inside a subscript.
+  assign colour_i = colour_option_index | minus: 1
+  assign size_i = size_option_index | minus: 1
+  assign colour_option = product.options_with_values[colour_i]
+  assign size_option = product.options_with_values[size_i]
+-%}
+
+<section
+  class="hs-buy hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-buy__pad">
+    {%- comment -%} Heading {%- endcomment -%}
+    <div class="hs-buy__head">
+      {% render 'hs-section-head',
+        eyebrow: section.settings.eyebrow,
+        heading: section.settings.heading,
+        lede: section.settings.lede,
+        heading_size: 'h3',
+        heading_measure: 'hs-measure-22',
+        lede_measure: 'hs-measure-40'
+      %}
+    </div>
+
+    <div class="hs-buy__body">
+      {%- comment -%} Product image {%- endcomment -%}
+      <div class="hs-buy__gallery">
+        <div class="hs-buy__gallery-sticky">
+          {%- liquid
+            assign gallery_image = section.settings.image
+            if gallery_image == blank and has_product
+              assign gallery_image = product.featured_image
+            endif
+          -%}
+          {% render 'hs-image',
+            image: gallery_image,
+            fallback: 'hydrosox-colourways.jpg',
+            alt: section.settings.image_alt,
+            aspect: '4 / 5',
+            sizes: '(min-width: 64rem) 38vw, 100vw',
+            wrapper_class: 'hs-buy__media'
+          %}
+        </div>
+      </div>
+
+      {%- comment -%} Form {%- endcomment -%}
+      <div class="hs-buy__form-col">
+        {%- if has_product -%}
+          <hs-buy
+            data-product-url="{{ product.url }}"
+            data-colour-index="{{ colour_option_index }}"
+            data-size-index="{{ size_option_index }}"
+            data-money-format="{{ shop.money_format | escape }}"
+            data-unit-price="{{ unit_price }}"
+            data-label-save="{{ section.settings.save_label | escape }}"
+            data-label-per-unit="{{ section.settings.per_unit_label | escape }}"
+            data-label-against="{{ 'products.product.against' | t: amount: '__AMOUNT__' | escape }}"
+            data-label-unavailable="{{ 'products.product.unavailable_variant' | t | escape }}"
+            data-label-sold-out="{{ 'products.product.sold_out' | t | escape }}"
+            data-label-add="{{ section.settings.add_label | escape }}"
+          >
+            {%- comment -%} Variant data for the client, straight from the product. {%- endcomment -%}
+            <script type="application/json" data-hs-variants>
+              [
+                {%- for variant in product.variants -%}
+                  {
+                    "id": {{ variant.id }},
+                    "available": {{ variant.available }},
+                    "price": {{ variant.price }},
+                    "options": {{ variant.options | json }},
+                    "title": {{ variant.title | json }}
+                  }{%- unless forloop.last -%},{%- endunless -%}
+                {%- endfor -%}
+              ]
+            </script>
+
+            {% form 'product', product, id: 'hs-buy-form', class: 'hs-buy__form', novalidate: 'novalidate' %}
+              <input type="hidden" name="id" value="{{ current_variant.id }}" data-hs-variant-id>
+              <input type="hidden" name="quantity" value="{{ section.settings.default_quantity | default: 1 }}" data-hs-quantity>
+
+              {%- comment -%} Colour {%- endcomment -%}
+              {%- if colour_option_index > 0 -%}
+                <fieldset class="hs-buy__fieldset">
+                  <legend class="hs-eyebrow hs-buy__legend">{{ colour_option.name }}</legend>
+                  <div class="hs-buy__swatches" role="radiogroup" aria-label="{{ colour_option.name | escape }}">
+                    {%- for value in colour_option.values -%}
+                      {%- liquid
+                        assign swatch_one = ''
+                        assign swatch_two = ''
+                        for block in section.blocks
+                          if block.type == 'colour' and block.settings.value == value
+                            assign swatch_one = block.settings.colour_one
+                            assign swatch_two = block.settings.colour_two
+                            break
+                          endif
+                        endfor
+                        assign is_selected = false
+                        if current_variant.options[colour_i] == value
+                          assign is_selected = true
+                        endif
+                      -%}
+                      <button
+                        type="button"
+                        class="hs-buy__swatch{% if is_selected %} is-selected{% endif %}"
+                        role="radio"
+                        aria-checked="{{ is_selected }}"
+                        data-hs-option="colour"
+                        data-hs-value="{{ value | escape }}"
+                      >
+                        <span class="hs-buy__swatch-ring">
+                          <span
+                            class="hs-buy__swatch-dot"
+                            {% if swatch_two != blank %}
+                              style="background: linear-gradient(90deg, {{ swatch_one }} 0 50%, {{ swatch_two }} 50% 100%);"
+                            {% elsif swatch_one != blank %}
+                              style="background-color: {{ swatch_one }};"
+                            {% endif %}
+                          ></span>
+                        </span>
+                        <span class="hs-caption hs-buy__swatch-label hs-balance">{{ value }}</span>
+                      </button>
+                    {%- endfor -%}
+                  </div>
+                </fieldset>
+              {%- endif -%}
+
+              {%- comment -%} Size {%- endcomment -%}
+              {%- if size_option_index > 0 -%}
+                <fieldset class="hs-buy__fieldset hs-buy__fieldset--ruled">
+                  <div class="hs-buy__legend-row">
+                    <legend class="hs-eyebrow hs-buy__legend">{{ size_option.name }}</legend>
+                    {%- if section.settings.guide_label != blank -%}
+                      <button class="hs-tap hs-caption hs-buy__guide-open" type="button" data-hs-guide-open>
+                        {{ section.settings.guide_label }}
+                      </button>
+                    {%- endif -%}
+                  </div>
+                  <div class="hs-buy__sizes" role="radiogroup" aria-label="{{ size_option.name | escape }}">
+                    {%- for value in size_option.values -%}
+                      {%- liquid
+                        assign sublabel = ''
+                        for block in section.blocks
+                          if block.type == 'size' and block.settings.value == value
+                            assign sublabel = block.settings.sublabel
+                            break
+                          endif
+                        endfor
+                        assign is_selected = false
+                        if current_variant.options[size_i] == value
+                          assign is_selected = true
+                        endif
+                      -%}
+                      <button
+                        type="button"
+                        class="hs-buy__size{% if is_selected %} is-selected{% endif %}"
+                        role="radio"
+                        aria-checked="{{ is_selected }}"
+                        data-hs-option="size"
+                        data-hs-value="{{ value | escape }}"
+                      >
+                        <span class="hs-small-body hs-buy__size-name">{{ value }}</span>
+                        {%- if sublabel != blank -%}
+                          <span class="hs-caption hs-tnum hs-buy__size-sub">{{ sublabel }}</span>
+                        {%- endif -%}
+                      </button>
+                    {%- endfor -%}
+                  </div>
+                </fieldset>
+              {%- endif -%}
+
+              {%- comment -%} Quantity tiers {%- endcomment -%}
+              {%- liquid
+                assign tier_count = 0
+                for block in section.blocks
+                  if block.type == 'tier'
+                    assign tier_count = tier_count | plus: 1
+                  endif
+                endfor
+              -%}
+              {%- if tier_count > 0 -%}
+                <fieldset class="hs-buy__fieldset hs-buy__fieldset--ruled">
+                  <legend class="hs-eyebrow hs-buy__legend">{{ section.settings.quantity_label }}</legend>
+                  <div class="hs-buy__tiers" role="radiogroup" aria-label="{{ section.settings.quantity_label | escape }}">
+                    {%- assign tier_i = 0 -%}
+                    {%- for block in section.blocks -%}
+                      {%- if block.type == 'tier' -%}
+                        {%- liquid
+                          assign tier_i = tier_i | plus: 1
+                          assign qty = block.settings.quantity | at_least: 1
+                          assign discount_cents = block.settings.discount | times: 100 | round
+                          assign gross = unit_price | times: qty
+                          assign net = gross | minus: discount_cents
+                          assign per_unit = net | divided_by: qty
+                          assign is_default = false
+                          if block.settings.quantity == section.settings.default_quantity
+                            assign is_default = true
+                          endif
+                        -%}
+                        <button
+                          type="button"
+                          class="hs-buy__tier{% if is_default %} is-selected{% endif %}"
+                          role="radio"
+                          aria-checked="{{ is_default }}"
+                          data-hs-tier
+                          data-hs-qty="{{ qty }}"
+                          data-hs-discount="{{ discount_cents }}"
+                          {{ block.shopify_attributes }}
+                        >
+                          <span class="hs-buy__tier-mark" aria-hidden="true">
+                            {% render 'hs-icon', icon: 'check', size: 12, class: 'hs-buy__tier-check' %}
+                          </span>
+                          <span class="hs-buy__tier-main">
+                            <span class="hs-small-body hs-buy__tier-label">{{ block.settings.label }}</span>
+                            {%- if discount_cents > 0 -%}
+                              <span class="hs-caption hs-tnum hs-buy__tier-save">
+                                {{ section.settings.save_label }} {{ discount_cents | money }}
+                              </span>
+                            {%- endif -%}
+                          </span>
+                          <span class="hs-buy__tier-price hs-tnum">
+                            <span class="hs-small-body hs-buy__tier-total">{{ net | money }}</span>
+                            {%- if qty > 1 -%}
+                              <span class="hs-caption hs-buy__tier-unit">
+                                {{ per_unit | money }} {{ section.settings.per_unit_label }}
+                              </span>
+                            {%- endif -%}
+                          </span>
+                        </button>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                </fieldset>
+              {%- endif -%}
+
+              {%- comment -%} Add to cart {%- endcomment -%}
+              <button
+                class="hs-buy__submit hs-small-body"
+                type="submit"
+                name="add"
+                data-hs-submit
+                {% unless current_variant.available %}
+                  disabled
+                {% endunless %}
+              >
+                <span data-hs-submit-label>
+                  {%- if current_variant.available -%}
+                    {{ section.settings.add_label }}
+                  {%- else -%}
+                    {{ 'products.product.sold_out' | t }}
+                  {%- endif -%}
+                </span>
+                <span class="hs-buy__submit-rule" aria-hidden="true"></span>
+                <span class="hs-tnum" data-hs-submit-total></span>
+              </button>
+
+              <p class="hs-caption hs-tnum hs-buy__savings" data-hs-savings aria-live="polite"></p>
+            {% endform %}
+          </hs-buy>
+        {%- else -%}
+          {%- comment -%}
+            No product chosen yet. Say so in the editor rather than rendering a
+            widget that cannot add anything to a cart.
+          {%- endcomment -%}
+          <div class="hs-buy__empty">
+            <p class="hs-small-body">{{ 'products.product.unavailable' | t }}</p>
+            <p class="hs-caption hs-muted">{{ section.settings.empty_help }}</p>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Trust rows {%- endcomment -%}
+        {%- liquid
+          assign trust_count = 0
+          for block in section.blocks
+            if block.type == 'trust'
+              assign trust_count = trust_count | plus: 1
+            endif
+          endfor
+        -%}
+        {%- if trust_count > 0 -%}
+          <dl class="hs-buy__trust">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'trust' -%}
+                <div class="hs-buy__trust-row" {{ block.shopify_attributes }}>
+                  <dt class="hs-eyebrow hs-muted">{{ block.settings.label }}</dt>
+                  <dd class="hs-caption hs-buy__trust-value">{{ block.settings.value }}</dd>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </dl>
+        {%- endif -%}
+
+        {%- comment -%} Detail links {%- endcomment -%}
+        {%- liquid
+          assign link_count = 0
+          for block in section.blocks
+            if block.type == 'link'
+              assign link_count = link_count | plus: 1
+            endif
+          endfor
+        -%}
+        {%- if link_count > 0 -%}
+          <div class="hs-buy__links">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'link' -%}
+                {%- liquid
+                  assign link_url = block.settings.link
+                  if link_url == blank and block.settings.use_product_url and has_product
+                    assign link_url = product.url
+                  endif
+                -%}
+                <a
+                  class="hs-tap hs-small-body hs-buy__detail-link"
+                  href="{{ link_url | default: '#' }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {{- block.settings.label -}}
+                </a>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} Size guide, in a native dialog {%- endcomment -%}
+  {%- liquid
+    assign guide_rows = 0
+    for block in section.blocks
+      if block.type == 'guide_row'
+        assign guide_rows = guide_rows | plus: 1
+      endif
+    endfor
+  -%}
+  {%- if guide_rows > 0 -%}
+    <dialog class="hs-guide" data-hs-guide aria-labelledby="hs-guide-title-{{ section.id }}">
+      <div class="hs-guide__inner">
+        <h3 class="hs-h4" id="hs-guide-title-{{ section.id }}">{{ section.settings.guide_heading }}</h3>
+        {%- if section.settings.guide_intro != blank -%}
+          <p class="hs-caption hs-guide__intro hs-muted">{{ section.settings.guide_intro }}</p>
+        {%- endif -%}
+
+        <table class="hs-caption hs-guide__table">
+          <thead>
+            <tr>
+              <th class="hs-eyebrow hs-muted" scope="col">{{ section.settings.guide_col_size }}</th>
+              <th class="hs-eyebrow hs-muted" scope="col">{{ section.settings.guide_col_length }}</th>
+              <th class="hs-eyebrow hs-muted hs-guide__cell--end" scope="col">
+                {{ section.settings.guide_col_shoe }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'guide_row' -%}
+                <tr {{ block.shopify_attributes }}>
+                  <td class="hs-guide__cell--name">{{ block.settings.size }}</td>
+                  <td class="hs-tnum">{{ block.settings.foot_length }}</td>
+                  <td class="hs-tnum hs-guide__cell--end hs-muted">{{ block.settings.uk_shoe }}</td>
+                </tr>
+              {%- endif -%}
+            {%- endfor -%}
+          </tbody>
+        </table>
+
+        {%- liquid
+          assign note_count = 0
+          for block in section.blocks
+            if block.type == 'guide_note'
+              assign note_count = note_count | plus: 1
+            endif
+          endfor
+        -%}
+        {%- if note_count > 0 -%}
+          <div class="hs-guide__notes">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'guide_note' -%}
+                <div {{ block.shopify_attributes }}>
+                  <p class="hs-eyebrow hs-muted">{{ block.settings.label }}</p>
+                  <p class="hs-caption hs-guide__note-body hs-pretty">{{ block.settings.body }}</p>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.guide_link_label != blank -%}
+          <a class="hs-tap hs-caption hs-guide__link" href="{{ section.settings.guide_link_url | default: '#' }}">
+            {{- section.settings.guide_link_label -}}
+          </a>
+        {%- endif -%}
+
+        <button class="hs-caption hs-guide__close" type="button" data-hs-guide-close>
+          {{ section.settings.guide_close_label }}
+        </button>
+      </div>
+    </dialog>
+  {%- endif -%}
+</section>
+
+<script src="{{ 'hs-buy.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "t:sections.buy.name",
+  "class": "hs-buy-section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:common.product",
+      "info": "t:sections.buy.product_info"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info",
+      "default": "buy"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "Order"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "Two decisions and a quantity."
+    },
+    {
+      "type": "richtext",
+      "id": "lede",
+      "label": "t:common.lede",
+      "default": "<p>One product, one page, one price that does not change depending on how you found us.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:common.image",
+      "info": "t:sections.buy.image_info"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "t:common.image_alt",
+      "default": "The four HydroSox colourways side by side."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.buy.options_group"
+    },
+    {
+      "type": "text",
+      "id": "colour_option_name",
+      "label": "t:sections.buy.colour_option_name",
+      "info": "t:sections.buy.option_name_info",
+      "default": "Colour"
+    },
+    {
+      "type": "text",
+      "id": "size_option_name",
+      "label": "t:sections.buy.size_option_name",
+      "info": "t:sections.buy.option_name_info",
+      "default": "Size"
+    },
+    {
+      "type": "text",
+      "id": "quantity_label",
+      "label": "t:sections.buy.quantity_label",
+      "default": "Quantity"
+    },
+    {
+      "type": "number",
+      "id": "default_quantity",
+      "label": "t:sections.buy.default_quantity",
+      "info": "t:sections.buy.default_quantity_info",
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "t:sections.buy.labels_group"
+    },
+    {
+      "type": "text",
+      "id": "add_label",
+      "label": "t:sections.buy.add_label",
+      "default": "Add to cart"
+    },
+    {
+      "type": "text",
+      "id": "save_label",
+      "label": "t:sections.buy.save_label",
+      "default": "Save"
+    },
+    {
+      "type": "text",
+      "id": "per_unit_label",
+      "label": "t:sections.buy.per_unit_label",
+      "default": "per pair"
+    },
+    {
+      "type": "text",
+      "id": "empty_help",
+      "label": "t:sections.buy.empty_help",
+      "default": "Choose a product for this section in the theme editor."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.buy.guide_group"
+    },
+    {
+      "type": "text",
+      "id": "guide_label",
+      "label": "t:sections.buy.guide_label",
+      "default": "Size guide"
+    },
+    {
+      "type": "text",
+      "id": "guide_heading",
+      "label": "t:common.heading",
+      "default": "Size guide"
+    },
+    {
+      "type": "textarea",
+      "id": "guide_intro",
+      "label": "t:common.lede",
+      "default": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit."
+    },
+    {
+      "type": "text",
+      "id": "guide_col_size",
+      "label": "t:sections.buy.guide_col_size",
+      "default": "Size"
+    },
+    {
+      "type": "text",
+      "id": "guide_col_length",
+      "label": "t:sections.buy.guide_col_length",
+      "default": "Foot length"
+    },
+    {
+      "type": "text",
+      "id": "guide_col_shoe",
+      "label": "t:sections.buy.guide_col_shoe",
+      "default": "UK shoe"
+    },
+    {
+      "type": "text",
+      "id": "guide_link_label",
+      "label": "t:common.link_label",
+      "default": "The full sizing and fit guide"
+    },
+    {
+      "type": "url",
+      "id": "guide_link_url",
+      "label": "t:common.link_url"
+    },
+    {
+      "type": "text",
+      "id": "guide_close_label",
+      "label": "t:sections.buy.guide_close_label",
+      "default": "Close"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "colour",
+      "name": "t:sections.buy.block_colour",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.buy.block_colour_info"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "t:sections.buy.option_value",
+          "default": "Black"
+        },
+        {
+          "type": "color",
+          "id": "colour_one",
+          "label": "t:sections.buy.swatch_one",
+          "default": "#111111"
+        },
+        {
+          "type": "color",
+          "id": "colour_two",
+          "label": "t:sections.buy.swatch_two",
+          "info": "t:sections.buy.swatch_two_info"
+        }
+      ]
+    },
+    {
+      "type": "size",
+      "name": "t:sections.buy.block_size",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.buy.block_size_info"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "t:sections.buy.option_value",
+          "default": "S"
+        },
+        {
+          "type": "text",
+          "id": "sublabel",
+          "label": "t:sections.buy.sublabel",
+          "default": "UK 3-5"
+        }
+      ]
+    },
+    {
+      "type": "tier",
+      "name": "t:sections.buy.block_tier",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.buy.block_tier_info"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label",
+          "default": "Two pairs"
+        },
+        {
+          "type": "number",
+          "id": "quantity",
+          "label": "t:sections.buy.tier_quantity",
+          "default": 2
+        },
+        {
+          "type": "number",
+          "id": "discount",
+          "label": "t:sections.buy.tier_discount",
+          "info": "t:sections.buy.tier_discount_info",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "trust",
+      "name": "t:sections.buy.block_trust",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label",
+          "default": "Delivery"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "t:common.value",
+          "default": "Free UK delivery on two pairs or more"
+        }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "t:sections.buy.block_link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label",
+          "default": "Full product details"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:common.link"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_product_url",
+          "label": "t:sections.buy.use_product_url",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "guide_row",
+      "name": "t:sections.buy.block_guide_row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "size",
+          "label": "t:sections.buy.guide_col_size",
+          "default": "S"
+        },
+        {
+          "type": "text",
+          "id": "foot_length",
+          "label": "t:sections.buy.guide_col_length",
+          "default": "22.0 - 24.0 cm"
+        },
+        {
+          "type": "text",
+          "id": "uk_shoe",
+          "label": "t:sections.buy.guide_col_shoe",
+          "default": "UK 3-5"
+        }
+      ]
+    },
+    {
+      "type": "guide_note",
+      "name": "t:sections.buy.block_guide_note",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label",
+          "default": "How to measure"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "t:common.body"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

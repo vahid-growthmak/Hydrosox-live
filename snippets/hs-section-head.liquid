@@ -1,0 +1,52 @@
+{%- comment -%}
+  The standard section header: an eyebrow and heading on the left, a lede
+  paragraph settling to the baseline on the right.
+
+  Accepts:
+  - eyebrow: {String} Small uppercase kicker. Optional.
+  - heading: {String} The section heading. Optional.
+  - lede: {String} Supporting paragraph, rendered in the right column. Optional.
+  - heading_size: {String} Type role for the heading: 'h2' (default) or 'h3'.
+  - heading_tag: {String} Element to render the heading as. Defaults to 'h2'.
+  - heading_measure: {String} Measure class for the heading. Default 'hs-measure-19'.
+  - lede_measure: {String} Measure class for the lede. Default 'hs-measure-46'.
+  - id: {String} id for the heading, for aria-labelledby. Optional.
+  - class: {String} Extra classes on the wrapper. Optional.
+
+  Usage:
+  {% render 'hs-section-head',
+     eyebrow: section.settings.eyebrow,
+     heading: section.settings.heading,
+     lede: section.settings.lede %}
+{%- endcomment -%}
+{%- liquid
+  assign tag = heading_tag | default: 'h2'
+  assign size_class = 'hs-h2'
+  if heading_size == 'h3'
+    assign size_class = 'hs-h3'
+  endif
+  assign heading_measure_class = heading_measure | default: 'hs-measure-19'
+  assign lede_measure_class = lede_measure | default: 'hs-measure-46'
+-%}
+{%- if eyebrow != blank or heading != blank or lede != blank -%}
+  <div class="hs-section-head {{ class }}">
+    <div class="hs-section-head__lead">
+      {%- if eyebrow != blank -%}
+        <p class="hs-eyebrow">{{ eyebrow }}</p>
+      {%- endif -%}
+      {%- if heading != blank -%}
+        <{{ tag }}
+          {% if id %}id="{{ id }}"{% endif %}
+          class="{{ size_class }} hs-section-head__heading {{ heading_measure_class }} hs-balance"
+        >
+          {{- heading -}}
+        </{{ tag }}>
+      {%- endif -%}
+    </div>
+    {%- if lede != blank -%}
+      <div class="hs-section-head__lede {{ lede_measure_class }} hs-leading-relaxed hs-pretty hs-muted">
+        {{ lede }}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

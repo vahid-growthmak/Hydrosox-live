@@ -1,0 +1,73 @@
+{%- comment -%}
+  A call to action. Renders an <a> when a link is given and a <button>
+  otherwise, so the same settings drive both.
+
+  Accepts:
+  - label: {String} Visible text. Renders nothing when empty.
+  - href: {String} Destination. Omit for a button.
+  - style: {String} 'primary' | 'ink' | 'paper' | 'outline' | 'link'. Default 'primary'.
+  - class: {String} Extra classes. Optional.
+  - full: {Boolean} Keep full width at every breakpoint. Optional.
+  - type: {String} Button type when there is no href. Default 'button'.
+  - name/value: {String} Form attributes for a button. Optional.
+  - aria: {String} aria-label, when the visible text needs more context.
+  - id: {String} Element id. Optional.
+  - disabled: {Boolean} Optional.
+  - attrs: {String} Extra raw attributes, e.g. 'data-open="size-guide"'. Optional.
+
+  Usage:
+  {% render 'hs-button', label: section.settings.cta_label, href: section.settings.cta_link, style: 'primary' %}
+{%- endcomment -%}
+{%- liquid
+  if label == blank
+    break
+  endif
+
+  assign variant = style | default: 'primary'
+
+  case variant
+    when 'link'
+      assign base_class = 'hs-link'
+    when 'ink'
+      assign base_class = 'hs-btn hs-btn--ink'
+    when 'paper'
+      assign base_class = 'hs-btn hs-btn--paper'
+    when 'outline'
+      assign base_class = 'hs-btn hs-btn--outline'
+    else
+      assign base_class = 'hs-btn hs-btn--primary'
+  endcase
+
+  assign final_class = base_class
+  if full and variant != 'link'
+    assign final_class = final_class | append: ' hs-btn--full'
+  endif
+  if class != blank
+    assign final_class = final_class | append: ' ' | append: class
+  endif
+-%}
+{%- if href != blank -%}
+  <a
+    {% if id %}id="{{ id }}"{% endif %}
+    href="{{ href }}"
+    class="{{ final_class }}"
+    {% if aria %}aria-label="{{ aria | escape }}"{% endif %}
+    {% if disabled %}aria-disabled="true" tabindex="-1"{% endif %}
+    {{ attrs }}
+  >
+    {{- label -}}
+  </a>
+{%- else -%}
+  <button
+    {% if id %}id="{{ id }}"{% endif %}
+    type="{{ type | default: 'button' }}"
+    class="{{ final_class }}"
+    {% if name %}name="{{ name }}"{% endif %}
+    {% if value %}value="{{ value }}"{% endif %}
+    {% if aria %}aria-label="{{ aria | escape }}"{% endif %}
+    {% if disabled %}disabled{% endif %}
+    {{ attrs }}
+  >
+    {{- label -}}
+  </button>
+{%- endif -%}

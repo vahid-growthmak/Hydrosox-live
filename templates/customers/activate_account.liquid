@@ -1,0 +1,16 @@
+<section class="hs-scheme-paper">
+  <div class="hs-shell hs-pace-base hs-auth">
+    <h1 class="hs-h2 hs-balance hs-page__title">{{ 'customer.activate_account.title' | t }}</h1>
+    {%- form 'activate_customer_password', class: 'hs-auth__form' -%}
+      {%- if form.errors -%}
+        <p class="hs-form-error" role="alert">{{ form.errors | default_errors }}</p>
+      {%- endif -%}
+      <label class="hs-eyebrow hs-muted" for="hs-act-pw">{{ 'customer.activate_account.password' | t }}</label>
+      <input class="hs-field" id="hs-act-pw" type="password" name="customer[password]" autocomplete="new-password">
+      <label class="hs-eyebrow hs-muted" for="hs-act-pw2">{{ 'customer.activate_account.password_confirm' | t }}</label>
+      <input class="hs-field" id="hs-act-pw2" type="password" name="customer[password_confirmation]" autocomplete="new-password">
+      {% render 'hs-button', label: 'customer.activate_account.submit' | t, style: 'primary', type: 'submit', full: true %}
+      {% render 'hs-button', label: 'customer.activate_account.decline' | t, style: 'outline', type: 'submit', name: 'decline', full: true %}
+    {%- endform -%}
+  </div>
+</section>

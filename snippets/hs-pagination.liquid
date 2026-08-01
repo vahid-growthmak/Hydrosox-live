@@ -1,0 +1,33 @@
+{%- comment -%}
+  Pagination controls.
+
+  Accepts:
+  - paginate: {Object} The paginate object from a paginate tag. Required.
+{%- endcomment -%}
+{%- if paginate.pages > 1 -%}
+  <nav class="hs-pagination" aria-label="{{ 'general.pagination.label' | t }}">
+    {%- if paginate.previous -%}
+      <a class="hs-tap hs-nav hs-pagination__step" href="{{ paginate.previous.url }}" rel="prev">
+        {{ 'general.pagination.previous' | t }}
+      </a>
+    {%- endif -%}
+    <ol class="hs-pagination__list" role="list">
+      {%- for part in paginate.parts -%}
+        <li>
+          {%- if part.is_link -%}
+            <a class="hs-tap hs-nav hs-pagination__page" href="{{ part.url }}">{{ part.title }}</a>
+          {%- elsif part.title == current_page -%}
+            <span class="hs-tap hs-nav hs-pagination__page is-current" aria-current="page">{{ part.title }}</span>
+          {%- else -%}
+            <span class="hs-tap hs-nav hs-pagination__page">{{ part.title }}</span>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ol>
+    {%- if paginate.next -%}
+      <a class="hs-tap hs-nav hs-pagination__step" href="{{ paginate.next.url }}" rel="next">
+        {{ 'general.pagination.next' | t }}
+      </a>
+    {%- endif -%}
+  </nav>
+{%- endif -%}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" dir="{{ settings.text_direction | default: 'ltr' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="{{ settings.color_ink }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+    {%- if settings.logo -%}
+      <link rel="icon" type="image/png" href="{{ settings.logo | image_url: width: 48 }}">
+    {%- endif -%}
+
+    <title>
+      {{- page_title -}}
+      {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
+      {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {% render 'hs-meta-social' %}
+
+    {{ 'hs-base.css' | asset_url | stylesheet_tag }}
+    {{ 'hs-chrome.css' | asset_url | stylesheet_tag }}
+    {{ 'hs-home.css' | asset_url | stylesheet_tag }}
+    {{ 'hs-pages.css' | asset_url | stylesheet_tag }}
+
+    {% render 'hs-tokens' %}
+
+    {{ content_for_header }}
+  </head>
+
+  <body
+    class="hs-body template-{{ template.name | handle }}{% if template.suffix %} template-suffix-{{ template.suffix | handle }}{% endif %}"
+  >
+    <a class="hs-skip" href="#hs-main">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+    {% sections 'header-group' %}
+
+    <main id="hs-main" role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    <script src="{{ 'hs-reveal.js' | asset_url }}" defer></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<section class="hs-scheme-paper">
+  <div class="hs-shell hs-pace-base hs-auth">
+    <p class="hs-eyebrow">{{ 'gift_cards.issued.title' | t }}</p>
+    {%- assign gift_card_value = gift_card.initial_value | money -%}
+    <h1 class="hs-h2 hs-balance hs-page__title">
+      {{ 'gift_cards.issued.subtitle' | t: value: gift_card_value, shop: shop.name }}
+    </h1>
+    <p class="hs-eyebrow hs-muted">{{ 'gift_cards.issued.code' | t }}</p>
+    <p class="hs-h3 hs-tnum">{{ gift_card.code | format_code }}</p>
+    {%- if gift_card.expires_on -%}
+      <p class="hs-caption hs-muted">
+        {{ 'gift_cards.issued.expires' | t: date: gift_card.expires_on | date: format: 'date' }}
+      </p>
+    {%- endif -%}
+    {% render 'hs-button', label: 'gift_cards.issued.shop' | t, href: shop.url, style: 'primary' %}
+  </div>
+</section>

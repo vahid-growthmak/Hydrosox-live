@@ -1,0 +1,219 @@
+{%- comment -%}
+  Footer.
+
+  A "column" block can take its links either from a navigation menu — so the
+  merchant manages them once in Navigation — or from the "column link" blocks
+  that follow it in the editor. Whichever is filled in wins, menu first.
+{%- endcomment -%}
+
+<footer class="hs-footer hs-scheme-{{ section.settings.color_scheme }}" {{ section.shopify_attributes }}>
+  <div class="hs-shell hs-pace-tight">
+    <div class="hs-footer__top">
+      {%- comment -%} Brand and contact {%- endcomment -%}
+      <div class="hs-footer__brand">
+        {%- liquid
+          assign footer_logo = settings.logo_inverse
+          if footer_logo == blank
+            assign footer_logo = settings.logo
+          endif
+        -%}
+        {%- if footer_logo != blank -%}
+          <a href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+            <img
+              src="{{ footer_logo | image_url: width: 480 }}"
+              srcset="
+                {{ footer_logo | image_url: width: 240 }} 240w,
+                {{ footer_logo | image_url: width: 480 }} 480w
+              "
+              sizes="{{ settings.logo_width }}px"
+              alt="{{ shop.name | escape }}"
+              width="{{ footer_logo.width }}"
+              height="{{ footer_logo.height }}"
+              loading="lazy"
+              decoding="async"
+              class="hs-footer__logo-img"
+            >
+          </a>
+        {%- else -%}
+          <span class="hs-h4">{{ shop.name }}</span>
+        {%- endif -%}
+
+        {%- if section.settings.company_heading != blank -%}
+          <p class="hs-eyebrow">{{ section.settings.company_heading }}</p>
+        {%- endif -%}
+
+        {%- if settings.address != blank -%}
+          <address class="hs-footer__address hs-small-body">
+            {{ settings.address | newline_to_br }}
+          </address>
+        {%- endif -%}
+
+        <div class="hs-footer__contact hs-small-body">
+          {%- if settings.phone != blank -%}
+            <a class="hs-footer__contact-link" href="tel:{{ settings.phone | replace: ' ', '' }}">
+              {% render 'hs-icon', icon: 'phone', size: 15 %}
+              {{ settings.phone }}
+            </a>
+          {%- endif -%}
+          {%- if settings.email != blank -%}
+            <a class="hs-footer__contact-link" href="mailto:{{ settings.email }}">
+              {% render 'hs-icon', icon: 'mail', size: 15 %}
+              {{ settings.email }}
+            </a>
+          {%- endif -%}
+        </div>
+
+        {% render 'hs-social' %}
+      </div>
+
+      {%- comment -%} Link columns {%- endcomment -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'column' -%}
+          <div {{ block.shopify_attributes }}>
+            {%- if block.settings.heading != blank -%}
+              <h2 class="hs-eyebrow hs-footer__col-heading">{{ block.settings.heading }}</h2>
+            {%- endif -%}
+            <ul class="hs-footer__list hs-small-body" role="list">
+              {%- if block.settings.menu != blank -%}
+                {%- for link in block.settings.menu.links -%}
+                  <li>
+                    <a class="hs-footer__link" href="{{ link.url }}">{{ link.title }}</a>
+                  </li>
+                {%- endfor -%}
+              {%- else -%}
+                {%- for item in section.blocks offset: forloop.index -%}
+                  {%- unless item.type == 'column_link' -%}
+                    {%- break -%}
+                  {%- endunless -%}
+                  <li {{ item.shopify_attributes }}>
+                    <a class="hs-footer__link" href="{{ item.settings.link | default: '#' }}">
+                      {{- item.settings.label -}}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              {%- endif -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} Legal row {%- endcomment -%}
+    <div class="hs-footer__bottom hs-caption">
+      {%- liquid
+        assign has_legal = false
+        for block in section.blocks
+          if block.type == 'legal_link'
+            assign has_legal = true
+            break
+          endif
+        endfor
+      -%}
+      {%- if has_legal -%}
+        <ul class="hs-footer__legal" role="list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'legal_link' -%}
+              <li {{ block.shopify_attributes }}>
+                <a class="hs-footer__link" href="{{ block.settings.link | default: '#' }}">
+                  {{- block.settings.label -}}
+                </a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.fineprint != blank -%}
+        <p class="hs-footer__fineprint">{{ section.settings.fineprint }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "class": "hs-footer-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "ink", "label": "t:common.scheme_ink" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "paper", "label": "t:common.scheme_paper" }
+      ],
+      "default": "ink"
+    },
+    {
+      "type": "text",
+      "id": "company_heading",
+      "label": "t:sections.footer.company_heading",
+      "default": "Company"
+    },
+    {
+      "type": "textarea",
+      "id": "fineprint",
+      "label": "t:sections.footer.fineprint",
+      "default": "HydroSox is a UK registered company. All prices in GBP and include VAT."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "t:sections.footer.block_column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:common.heading",
+          "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "t:sections.footer.column_menu",
+          "info": "t:sections.footer.column_menu_info"
+        }
+      ]
+    },
+    {
+      "type": "column_link",
+      "name": "t:sections.footer.block_column_link",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.footer.block_column_link_info"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:common.link"
+        }
+      ]
+    },
+    {
+      "type": "legal_link",
+      "name": "t:sections.footer.block_legal",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:common.link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

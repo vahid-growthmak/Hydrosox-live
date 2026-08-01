@@ -1,0 +1,47 @@
+{%- comment -%}
+  Renders a CSS clamp() that scales linearly between two viewport widths.
+
+  Reproduces the source design's fluid scale exactly: a size pinned at `min`
+  up to the narrow viewport, interpolated across the range, pinned at `max`
+  from the wide viewport onward.
+
+  Accepts:
+  - min: {Number} Size in px at (and below) the narrow viewport. Required.
+  - max: {Number} Size in px at (and above) the wide viewport. Required.
+  - vmin: {Number} Narrow viewport in px. Defaults to the theme setting.
+  - vmax: {Number} Wide viewport in px. Defaults to the theme setting.
+
+  Usage:
+  --type-h1: {% render 'hs-fluid', min: settings.type_h1_min, max: settings.type_h1_max %};
+{%- endcomment -%}
+{%- liquid
+  assign vw_min = vmin | default: settings.fluid_min_vw | default: 320 | plus: 0
+  assign vw_max = vmax | default: settings.fluid_max_vw | default: 1440 | plus: 0
+  assign size_min = min | plus: 0
+  assign size_max = max | plus: 0
+
+  # Guard against an inverted or collapsed viewport range, which would divide by zero.
+  assign span = vw_max | minus: vw_min
+  if span <= 0
+    assign span = 1
+  endif
+
+  assign rem_min = size_min | divided_by: 16.0 | round: 4
+  assign rem_max = size_max | divided_by: 16.0 | round: 4
+
+  # vw coefficient: how many px of growth per 1% of viewport width.
+  assign delta = size_max | minus: size_min
+  assign coefficient = delta | times: 100.0 | divided_by: span
+
+  # rem offset: the y-intercept of that line at viewport 0.
+  assign shift = coefficient | times: vw_min | divided_by: 100.0
+  assign offset = size_min | minus: shift | divided_by: 16.0
+
+  assign coefficient = coefficient | round: 4
+  assign offset = offset | round: 4
+-%}
+{%- if delta == 0 -%}
+{{ rem_min }}rem
+{%- else -%}
+clamp({{ rem_min }}rem, {{ offset }}rem + {{ coefficient }}vw, {{ rem_max }}rem)
+{%- endif -%}

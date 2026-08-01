@@ -1,0 +1,3 @@
+# Shopify theme check configuration.
+root: "."
+extends: "theme-check:recommended"

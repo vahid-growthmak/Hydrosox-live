@@ -1,0 +1,138 @@
+{%- comment -%}
+  Sticky buy bar.
+
+  Slides up once the visitor has scrolled past the hero, and gets out of the
+  way whenever the real buy widget is on screen so the page never shows two
+  competing calls to action.
+{%- endcomment -%}
+
+{%- if section.settings.enabled and section.settings.cta_label != blank -%}
+  {%- liquid
+    assign bar_product = all_products[section.settings.product]
+    assign title = section.settings.title
+    if title == blank and bar_product != blank
+      assign title = bar_product.title
+    endif
+  -%}
+
+  {% style %}
+    #shopify-section-{{ section.id }} .hs-buybar {
+      --hs-bar-bg: {{ settings.color_paper | color_modify: 'alpha', 0.95 }};
+    }
+
+    #shopify-section-{{ section.id }} .hs-buybar-spacer {
+      background-color: {{ settings.color_ink }};
+    }
+  {% endstyle %}
+
+  {%- comment -%} Keeps the last of the page clear of the fixed bar. {%- endcomment -%}
+  <div class="hs-buybar-spacer" aria-hidden="true"></div>
+
+  <hs-buybar
+    class="hs-buybar hs-scheme-{{ section.settings.color_scheme }}"
+    data-show-after="{{ section.settings.show_after }}"
+    data-hide-near="{{ section.settings.hide_near_selector }}"
+    {{ section.shopify_attributes }}
+  >
+    <div class="hs-buybar__inner">
+      <p class="hs-buybar__copy">
+        {%- if title != blank -%}
+          <span class="hs-buybar__title hs-small-body">{{ title }}</span>
+        {%- endif -%}
+        {%- if section.settings.note != blank -%}
+          <span class="hs-buybar__note hs-caption hs-pretty">{{ section.settings.note }}</span>
+        {%- endif -%}
+      </p>
+
+      {% render 'hs-button',
+        label: section.settings.cta_label,
+        href: section.settings.cta_link,
+        style: 'primary',
+        class: 'hs-buybar__cta'
+      %}
+    </div>
+  </hs-buybar>
+
+  <script src="{{ 'hs-buybar.js' | asset_url }}" defer></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.buybar.name",
+  "class": "hs-buybar-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "t:sections.buybar.enabled",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:common.product",
+      "info": "t:sections.buybar.product_info"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:common.title",
+      "info": "t:sections.buybar.title_info"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "t:sections.buybar.note",
+      "default": "Free UK delivery on two pairs or more"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.buybar.cta_group"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:common.button_label",
+      "default": "Buy a pair"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "t:common.button_link"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.buybar.behaviour_group"
+    },
+    {
+      "type": "range",
+      "id": "show_after",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "unit": "%",
+      "label": "t:sections.buybar.show_after",
+      "info": "t:sections.buybar.show_after_info",
+      "default": 80
+    },
+    {
+      "type": "text",
+      "id": "hide_near_selector",
+      "label": "t:sections.buybar.hide_near",
+      "info": "t:sections.buybar.hide_near_info",
+      "default": "#buy"
+    }
+  ]
+}
+{% endschema %}

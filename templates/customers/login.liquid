@@ -1,0 +1,19 @@
+<section class="hs-scheme-paper">
+  <div class="hs-shell hs-pace-base hs-auth">
+    <h1 class="hs-h2 hs-balance hs-page__title">{{ 'customer.login.title' | t }}</h1>
+    <p class="hs-caption hs-muted">{{ 'customer.login.guest_note' | t }}</p>
+    {%- form 'customer_login', class: 'hs-auth__form' -%}
+      {%- if form.errors -%}
+        <p class="hs-form-error" role="alert">{{ form.errors | default_errors }}</p>
+      {%- endif -%}
+      <label class="hs-eyebrow hs-muted" for="hs-login-email">{{ 'customer.login.email' | t }}</label>
+      <input class="hs-field" id="hs-login-email" type="email" name="customer[email]" autocomplete="email" required>
+      <label class="hs-eyebrow hs-muted" for="hs-login-password">{{ 'customer.login.password' | t }}</label>
+      <input class="hs-field" id="hs-login-password" type="password" name="customer[password]" autocomplete="current-password">
+      {% render 'hs-button', label: 'customer.login.submit' | t, style: 'primary', type: 'submit', full: true %}
+    {%- endform -%}
+    <p class="hs-caption">
+      <a class="hs-link" href="{{ routes.account_register_url }}">{{ 'customer.login.create' | t }}</a>
+    </p>
+  </div>
+</section>

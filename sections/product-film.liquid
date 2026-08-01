@@ -1,0 +1,287 @@
+{%- comment -%}
+  Product film.
+
+  Each chapter is a block carrying a poster image and, optionally, a video. The
+  stage shows the selected chapter's poster with a play affordance; when that
+  chapter has a video the play button loads and plays it, and when it does not
+  the poster simply stands as the still. Adding the video files later needs no
+  code change — they are a block setting.
+{%- endcomment -%}
+
+{%- liquid
+  assign chapters = section.blocks | where: 'type', 'chapter'
+  assign chapter_count = chapters | size
+-%}
+
+<section
+  class="hs-film hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-base">
+    {% render 'hs-section-head',
+      eyebrow: section.settings.eyebrow,
+      heading: section.settings.heading,
+      lede: section.settings.lede
+    %}
+
+    {%- if chapter_count > 0 -%}
+      <hs-film class="hs-film__wrap">
+        {%- comment -%} Stage {%- endcomment -%}
+        <div class="hs-film__stage">
+          {%- for block in chapters -%}
+            <div
+              class="hs-film__slide{% if forloop.first %} is-active{% endif %}"
+              data-hs-slide="{{ forloop.index0 }}"
+              {% unless forloop.first %}
+                aria-hidden="true"
+              {% endunless %}
+            >
+              {%- if block.settings.video != blank -%}
+                {{
+                  block.settings.video
+                  | video_tag:
+                    image_size: '1600x',
+                    controls: true,
+                    preload: 'metadata',
+                    class: 'hs-film__video'
+                }}
+              {%- else -%}
+                {% render 'hs-image',
+                  image: block.settings.poster,
+                  fallback: block.settings.poster_fallback,
+                  alt: block.settings.poster_alt,
+                  aspect: '16 / 9',
+                  sizes: '(min-width: 64rem) 70vw, 100vw',
+                  wrapper_class: 'hs-film__poster'
+                %}
+                {%- if section.settings.play_label != blank -%}
+                  <button class="hs-film__play" type="button" data-hs-film-play>
+                    <span class="hs-film__play-icon" aria-hidden="true">
+                      {% render 'hs-icon', icon: 'play', size: 18 %}
+                    </span>
+                    <span class="hs-caption hs-film__play-label">{{ section.settings.play_label }}</span>
+                  </button>
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if section.settings.stage_caption != blank -%}
+          <p class="hs-caption hs-film__caption hs-pretty hs-muted">{{ section.settings.stage_caption }}</p>
+        {%- endif -%}
+
+        {%- comment -%} Chapter list {%- endcomment -%}
+        <ol class="hs-film__chapters hs-stagger">
+          {%- for block in chapters -%}
+            <li {{ block.shopify_attributes }}>
+              <button
+                class="hs-film__chapter{% if forloop.first %} is-active{% endif %}"
+                type="button"
+                data-hs-chapter="{{ forloop.index0 }}"
+                aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+              >
+                {% render 'hs-index-number', index: forloop.index0, size: 'h4', class: 'hs-film__chapter-index' %}
+                <span class="hs-small-body hs-film__chapter-title">{{ block.settings.title }}</span>
+                {%- if block.settings.caption != blank -%}
+                  <span class="hs-caption hs-film__chapter-caption hs-pretty hs-muted">
+                    {{- block.settings.caption -}}
+                  </span>
+                {%- endif -%}
+              </button>
+            </li>
+          {%- endfor -%}
+        </ol>
+      </hs-film>
+
+      <script src="{{ 'hs-film.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
+    {%- liquid
+      assign film_links = section.blocks | where: 'type', 'link'
+      assign film_link_count = film_links | size
+    -%}
+    {%- if film_link_count > 0 -%}
+      <div class="hs-film__foot">
+        {%- for block in film_links -%}
+          <a
+            class="hs-tap hs-small-body hs-film__foot-link"
+            href="{{ block.settings.link | default: '#' }}"
+            {{ block.shopify_attributes }}
+          >
+            {{- block.settings.label -}}
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.film.name",
+  "class": "hs-film-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "ink", "label": "t:common.scheme_ink" },
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" }
+      ],
+      "default": "ink"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info",
+      "default": "in-the-wet"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "The product film"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "The sock, in the weather it is for."
+    },
+    {
+      "type": "richtext",
+      "id": "lede",
+      "label": "t:common.lede",
+      "default": "<p>This is our own film rather than an independent test, so take it for what it is — the product in the conditions it is sold for.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "stage_caption",
+      "label": "t:sections.film.stage_caption",
+      "default": "Four HydroSox colourways — black, white, black with navy and black with grey — pegged to a washing line against a blue ground, with water thrown across them."
+    },
+    {
+      "type": "text",
+      "id": "play_label",
+      "label": "t:sections.film.play_label",
+      "default": "Play the clip"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "chapter",
+      "name": "t:sections.film.block_chapter",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:common.title",
+          "default": "Water thrown at the line"
+        },
+        {
+          "type": "textarea",
+          "id": "caption",
+          "label": "t:sections.film.chapter_caption"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "t:sections.film.video",
+          "info": "t:sections.film.video_info"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "t:sections.film.poster",
+          "info": "t:sections.film.poster_info"
+        },
+        {
+          "type": "text",
+          "id": "poster_alt",
+          "label": "t:common.image_alt"
+        },
+        {
+          "type": "text",
+          "id": "poster_fallback",
+          "label": "t:sections.film.poster_fallback",
+          "info": "t:sections.film.poster_fallback_info"
+        }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "t:sections.film.block_link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label",
+          "default": "The membrane it is all resting on"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:common.link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.film.name",
+      "blocks": [
+        {
+          "type": "chapter",
+          "settings": {
+            "title": "Water thrown at the line",
+            "caption": "All four colourways on a washing line, hit at once.",
+            "poster_fallback": "wet-four-colourways.webp"
+          }
+        },
+        {
+          "type": "chapter",
+          "settings": {
+            "title": "Rain on a city street",
+            "caption": "Kerb spray and standing water, then the knit face in close-up.",
+            "poster_fallback": "wet-city-rain.webp"
+          }
+        },
+        {
+          "type": "chapter",
+          "settings": {
+            "title": "Straight through the puddle",
+            "caption": "Road and trail, at running pace, taking the wet line.",
+            "poster_fallback": "wet-running.webp"
+          }
+        },
+        {
+          "type": "chapter",
+          "settings": {
+            "title": "Wet road, then mud",
+            "caption": "The unglamorous half — churned ground and a soaked verge.",
+            "poster_fallback": "wet-road-and-mud.webp"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "The membrane it is all resting on",
+            "link": "/#construction"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,130 @@
+{%- comment -%}
+  Announcement bar. Each message is a block, so the merchant can add, remove
+  and reorder them, and set whether each one hides on small screens.
+{%- endcomment -%}
+
+{%- if section.blocks.size > 0 -%}
+  <div
+    class="hs-announcement hs-scheme-{{ section.settings.color_scheme }}"
+    {{ section.shopify_attributes }}
+  >
+    <div class="hs-shell hs-announcement__inner">
+      <p class="hs-caption hs-announcement__text">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign hide_on_mobile = false
+            if block.settings.hide_on_mobile
+              assign hide_on_mobile = true
+            endif
+          -%}
+          {%- if forloop.index0 > 0 -%}
+            <span
+              class="hs-announcement__part{% if hide_on_mobile %} hs-announcement__part--desktop{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              <span class="hs-announcement__divider" aria-hidden="true">
+                {{- section.settings.divider -}}
+              </span>
+              {%- if block.settings.link != blank -%}
+                <a class="hs-tap hs-announcement__link" href="{{ block.settings.link }}">
+                  {{- block.settings.text -}}
+                </a>
+              {%- else -%}
+                <span class="hs-announcement__link">{{ block.settings.text }}</span>
+              {%- endif -%}
+            </span>
+          {%- else -%}
+            {%- if block.settings.link != blank -%}
+              <a
+                class="hs-tap hs-announcement__link hs-announcement__link--muted{% if hide_on_mobile %} hs-announcement__part--desktop{% endif %}"
+                href="{{ block.settings.link }}"
+                {{ block.shopify_attributes }}
+              >
+                {{- block.settings.text -}}
+              </a>
+            {%- else -%}
+              <span
+                class="hs-announcement__link hs-announcement__link--muted{% if hide_on_mobile %} hs-announcement__part--desktop{% endif %}"
+                {{ block.shopify_attributes }}
+              >
+                {{- block.settings.text -}}
+              </span>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </p>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.announcement.name",
+  "class": "hs-announcement-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "ink", "label": "t:common.scheme_ink" },
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" }
+      ],
+      "default": "ink"
+    },
+    {
+      "type": "text",
+      "id": "divider",
+      "label": "t:sections.announcement.divider",
+      "default": "/"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "t:sections.announcement.block_message",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:common.text",
+          "default": "Free UK delivery on two pairs or more"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:common.link"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_on_mobile",
+          "label": "t:sections.announcement.hide_on_mobile",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.announcement.name",
+      "blocks": [
+        {
+          "type": "message",
+          "settings": {
+            "text": "Free UK delivery on two pairs or more"
+          }
+        },
+        {
+          "type": "message",
+          "settings": {
+            "text": "Shop the socks",
+            "hide_on_mobile": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

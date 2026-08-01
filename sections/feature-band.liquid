@@ -1,0 +1,133 @@
+{%- comment -%}
+  Feature band — a compact two-column statement with an optional image.
+
+  Used on the homepage for the wudu section, but deliberately generic: it is a
+  reusable band for any single claim that needs its own breathing room.
+{%- endcomment -%}
+
+<section
+  class="hs-band hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-tight">
+    <div class="hs-band__grid{% if section.settings.image != blank %} hs-band__grid--with-image{% endif %}">
+      {%- if section.settings.image != blank -%}
+        <div class="hs-band__media-col">
+          {% render 'hs-image',
+            image: section.settings.image,
+            alt: section.settings.image_alt,
+            aspect: '4 / 3',
+            sizes: '(min-width: 64rem) 30vw, 100vw',
+            wrapper_class: 'hs-band__media'
+          %}
+        </div>
+      {%- endif -%}
+
+      <div class="hs-band__lead">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="hs-h3 hs-band__heading hs-measure-22 hs-balance">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+
+      <div class="hs-band__body-col">
+        {%- if section.settings.body != blank -%}
+          <div class="hs-small-body hs-band__body hs-measure-54 hs-leading-relaxed hs-pretty hs-muted">
+            {{ section.settings.body }}
+          </div>
+        {%- endif -%}
+        {%- if section.settings.link_label != blank -%}
+          <a class="hs-tap hs-small-body hs-band__link" href="{{ section.settings.link_url | default: '#' }}">
+            {{- section.settings.link_label -}}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.band.name",
+  "class": "hs-band-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "wash"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "t:common.body"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:common.link_label"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:common.link_url"
+    },
+    {
+      "type": "header",
+      "content": "t:common.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:common.image",
+      "info": "t:sections.band.image_info"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "t:common.image_alt"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.band.name",
+      "settings": {
+        "eyebrow": "Designed with wudu in mind",
+        "heading": "Built for the three conditions masah turns on.",
+        "body": "<p>Waterproof, structured to hold its shape, shaped to stay on the foot — the three physical properties the masah conditions rest on. No certificate has been issued yet, and we say so plainly on the page.</p>",
+        "link_label": "How it is built for masah"
+      }
+    }
+  ]
+}
+{% endschema %}

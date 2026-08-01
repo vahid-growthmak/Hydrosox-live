@@ -1,0 +1,251 @@
+{%- comment -%}
+  Shop by activity.
+
+  One card per activity, each stating the problem in the words the person with
+  that problem would use. Cards are blocks, so activities can be added,
+  reordered or pointed at their own pages later without touching the layout.
+{%- endcomment -%}
+
+{%- liquid
+  assign activities = section.blocks | where: 'type', 'activity'
+  assign activity_count = activities | size
+-%}
+
+<section
+  class="hs-activity hs-scheme-{{ section.settings.color_scheme }} hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-base">
+    {% render 'hs-section-head',
+      eyebrow: section.settings.eyebrow,
+      heading: section.settings.heading,
+      lede: section.settings.lede
+    %}
+
+    {%- if activity_count > 0 -%}
+      <ul class="hs-activity__grid hs-stagger" role="list">
+        {%- for block in activities -%}
+          <li class="hs-reveal hs-activity__item" {{ block.shopify_attributes }}>
+            {%- liquid
+              assign has_link = false
+              if block.settings.link != blank
+                assign has_link = true
+              endif
+            -%}
+            {%- if has_link -%}
+              <a class="hs-activity__card hs-zoom-parent" href="{{ block.settings.link }}">
+            {%- else -%}
+              <div class="hs-activity__card">
+            {%- endif -%}
+
+            {% render 'hs-image',
+              image: block.settings.image,
+              fallback: block.settings.image_fallback,
+              alt: block.settings.image_alt,
+              aspect: section.settings.card_aspect,
+              sizes: '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw',
+              wrapper_class: 'hs-activity__media hs-media--zoom'
+            %}
+
+            <div class="hs-activity__body">
+              {% render 'hs-index-number',
+                index: forloop.index0,
+                size: 'label',
+                class: 'hs-activity__index'
+              %}
+              {%- if block.settings.title != blank -%}
+                <h3 class="hs-h4 hs-activity__title">{{ block.settings.title }}</h3>
+              {%- endif -%}
+              {%- if block.settings.problem != blank -%}
+                <p class="hs-small-body hs-activity__problem hs-pretty hs-muted">
+                  {{ block.settings.problem }}
+                </p>
+              {%- endif -%}
+              {%- if block.settings.meta != blank -%}
+                <p class="hs-eyebrow hs-activity__meta hs-faint">{{ block.settings.meta }}</p>
+              {%- endif -%}
+            </div>
+
+            {%- if has_link -%}
+              </a>
+            {%- else -%}
+              </div>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if section.settings.footnote != blank -%}
+      <p class="hs-caption hs-activity__footnote hs-pretty hs-muted">{{ section.settings.footnote }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.activity.name",
+  "class": "hs-activity-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "ink", "label": "t:common.scheme_ink" },
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" }
+      ],
+      "default": "ink"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info",
+      "default": "activity"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "Shop by activity"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "Find the version of wet feet you actually have."
+    },
+    {
+      "type": "richtext",
+      "id": "lede",
+      "label": "t:common.lede",
+      "default": "<p>One sock. Five different problems it solves, described the way the people with those problems describe them.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "footnote",
+      "label": "t:sections.activity.footnote",
+      "default": "Same sock either way — the activity only changes which pair you reach for."
+    },
+    {
+      "type": "text",
+      "id": "card_aspect",
+      "label": "t:sections.activity.card_aspect",
+      "info": "t:sections.activity.card_aspect_info",
+      "default": "4 / 5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "activity",
+      "name": "t:sections.activity.block_activity",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:common.title",
+          "default": "Hiking"
+        },
+        {
+          "type": "textarea",
+          "id": "problem",
+          "label": "t:sections.activity.problem",
+          "info": "t:sections.activity.problem_info"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "t:sections.activity.meta"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:common.link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:common.image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "t:common.image_alt"
+        },
+        {
+          "type": "text",
+          "id": "image_fallback",
+          "label": "t:sections.activity.image_fallback",
+          "info": "t:sections.film.poster_fallback_info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.activity.name",
+      "blocks": [
+        {
+          "type": "activity",
+          "settings": {
+            "title": "Hiking",
+            "problem": "Boots that wet out four hours into a long day in the hills.",
+            "meta": "Long days, wet ground",
+            "image_fallback": "activity-hiking.webp",
+            "image_alt": "A walker stopped on a rocky mountain path in white HydroSox."
+          }
+        },
+        {
+          "type": "activity",
+          "settings": {
+            "title": "Walking",
+            "problem": "Wet grass at eight in the morning, in shoes that were never waterproof.",
+            "meta": "Everyday miles, all year",
+            "image_fallback": "activity-walking.webp",
+            "image_alt": "A walker mid-stride on a tree-lined park path in white HydroSox."
+          }
+        },
+        {
+          "type": "activity",
+          "settings": {
+            "title": "All Day in Boots",
+            "problem": "Boots that keep the rain out and then seal the sweat in.",
+            "meta": "Long shifts, five days a week",
+            "image_fallback": "activity-all-day-in-boots.webp",
+            "image_alt": "Brown leather lace-up boots on a city pavement, worn with HydroSox."
+          }
+        },
+        {
+          "type": "activity",
+          "settings": {
+            "title": "Cycling & Commuting",
+            "problem": "Overshoes that leak at the ankle, and shoes still wet at home time.",
+            "meta": "No drying option at the other end",
+            "image_fallback": "activity-cycling-and-commuting.webp",
+            "image_alt": "A commuter riding across a city bridge in white HydroSox."
+          }
+        },
+        {
+          "type": "activity",
+          "settings": {
+            "title": "Running & Trail",
+            "problem": "Cold, soaked feet on winter miles, and blisters in a wet race.",
+            "meta": "Weight and bulk, stated honestly",
+            "image_fallback": "activity-running-and-trail.webp",
+            "image_alt": "A runner mid-stride on a stony mountain trail in white HydroSox."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

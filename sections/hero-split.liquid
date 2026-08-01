@@ -1,0 +1,284 @@
+{%- comment -%}
+  Hero.
+
+  The heading is a textarea: each line the merchant types becomes its own
+  masked line that rises into place, so the staged entrance keeps working
+  however the copy is rewritten.
+
+  The spec strip beneath is built from blocks, so rows can be added, removed
+  and reordered.
+{%- endcomment -%}
+
+{%- liquid
+  assign heading_lines = section.settings.heading | strip | newline_to_br | split: '<br />'
+  assign line_stagger = section.settings.line_stagger
+-%}
+
+<section
+  class="hs-hero hs-scheme-{{ section.settings.color_scheme }}{% if section.settings.full_height %} hs-hero--tall{% endif %}"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell-flush hs-hero__frame">
+    <div class="hs-hero__grid">
+      {%- comment -%} Image plate {%- endcomment -%}
+      <div class="hs-hero__plate hs-hero-plate">
+        {% render 'hs-image',
+          image: section.settings.image,
+          fallback: 'hydrosox-colourways.jpg',
+          alt: section.settings.image_alt,
+          aspect: section.settings.image_aspect,
+          eager: true,
+          sizes: '(min-width: 64rem) 42vw, 100vw',
+          position: section.settings.image_position,
+          wrapper_class: 'hs-hero__media',
+          class: 'hs-hero__img'
+        %}
+      </div>
+
+      {%- comment -%} Copy {%- endcomment -%}
+      <div class="hs-hero__copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hs-eyebrow hs-hero-rise hs-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h1 class="hs-display-xl hs-balance hs-hero__heading">
+            {%- for line in heading_lines -%}
+              <span class="hs-hero-line">
+                <span
+                  class="hs-hero__line-inner"
+                  style="animation-delay: {{ forloop.index0 | times: line_stagger }}ms;"
+                >
+                  {{- line | strip_html | strip -}}
+                </span>
+              </span>
+            {%- endfor -%}
+          </h1>
+        {%- endif -%}
+
+        {%- if section.settings.body != blank -%}
+          <div
+            class="hs-hero-body hs-hero-rise hs-hero__body hs-measure-44 hs-pretty hs-muted"
+            style="animation-delay: {{ section.settings.body_delay }}ms;"
+          >
+            {{ section.settings.body }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.cta_label != blank or section.settings.link_label != blank -%}
+          <div
+            class="hs-hero-rise hs-hero__actions-wrap"
+            style="animation-delay: {{ section.settings.actions_delay }}ms;"
+          >
+            <div class="hs-hero__actions">
+              {% render 'hs-button',
+                label: section.settings.cta_label,
+                href: section.settings.cta_link,
+                style: 'primary'
+              %}
+              {% render 'hs-button',
+                label: section.settings.link_label,
+                href: section.settings.link_url,
+                style: 'link'
+              %}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} Spec strip {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="hs-hero__specs-wrap">
+        <dl class="hs-shell-flush hs-hero__specs">
+          {%- for block in section.blocks -%}
+            <div class="hs-hero__spec" {{ block.shopify_attributes }}>
+              <dt class="hs-eyebrow hs-faint">{{ block.settings.label }}</dt>
+              <dd class="hs-small-body hs-hero__spec-value">{{ block.settings.value }}</dd>
+            </div>
+          {%- endfor -%}
+        </dl>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.hero.name",
+  "class": "hs-hero-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "ink", "label": "t:common.scheme_ink" },
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" }
+      ],
+      "default": "ink"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_height",
+      "label": "t:sections.hero.full_height",
+      "info": "t:sections.hero.full_height_info",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:common.heading",
+      "info": "t:sections.hero.heading_info",
+      "default": "Wet feet are\na solved problem."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "t:common.body",
+      "default": "<p>A Porelle® waterproof-breathable membrane, in a three-layer knit. Hiking, running, cycling, commuting and work — the day carries on when the weather turns.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:common.actions"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:common.button_label",
+      "default": "Buy a pair"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "t:common.button_link"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:common.link_label",
+      "default": "See how it is built"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:common.link_url"
+    },
+    {
+      "type": "header",
+      "content": "t:common.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:common.image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "t:common.image_alt",
+      "info": "t:common.image_alt_info",
+      "default": "Four HydroSox colourways shown together — black, white, black with navy and black with grey."
+    },
+    {
+      "type": "text",
+      "id": "image_aspect",
+      "label": "t:sections.hero.image_aspect",
+      "info": "t:sections.hero.image_aspect_info",
+      "default": "9 / 8"
+    },
+    {
+      "type": "text",
+      "id": "image_position",
+      "label": "t:sections.hero.image_position",
+      "info": "t:sections.hero.image_position_info",
+      "default": "50% 41%"
+    },
+    {
+      "type": "header",
+      "content": "t:common.motion"
+    },
+    {
+      "type": "range",
+      "id": "line_stagger",
+      "min": 0,
+      "max": 300,
+      "step": 10,
+      "unit": "ms",
+      "label": "t:sections.hero.line_stagger",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "body_delay",
+      "min": 0,
+      "max": 900,
+      "step": 20,
+      "unit": "ms",
+      "label": "t:sections.hero.body_delay",
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "actions_delay",
+      "min": 0,
+      "max": 1200,
+      "step": 20,
+      "unit": "ms",
+      "label": "t:sections.hero.actions_delay",
+      "default": 420
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "t:sections.hero.block_spec",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label",
+          "default": "Membrane"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "t:common.value",
+          "default": "Porelle®"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.hero.name",
+      "blocks": [
+        { "type": "spec", "settings": { "label": "Membrane", "value": "Porelle®" } },
+        { "type": "spec", "settings": { "label": "Construction", "value": "Three-layer" } },
+        { "type": "spec", "settings": { "label": "Chemistry", "value": "PFOA free" } },
+        { "type": "spec", "settings": { "label": "Origin", "value": "UK company, UK stock" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

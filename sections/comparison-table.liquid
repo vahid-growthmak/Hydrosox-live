@@ -1,0 +1,280 @@
+{%- comment -%}
+  Comparison table.
+
+  A real <table> with a proper header row on wide screens; on narrow screens
+  each row becomes a stacked card and the column headings repeat inline, so the
+  comparison stays readable without horizontal scrolling.
+
+  Each criterion is a block.
+{%- endcomment -%}
+
+<section
+  class="hs-compare hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-base">
+    {% render 'hs-section-head',
+      eyebrow: section.settings.eyebrow,
+      heading: section.settings.heading,
+      lede: section.settings.lede
+    %}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="hs-compare__wrap">
+        <table class="hs-compare__table">
+          {%- if section.settings.table_caption != blank -%}
+            <caption class="hs-visually-hidden">{{ section.settings.table_caption }}</caption>
+          {%- endif -%}
+
+          <thead class="hs-compare__thead">
+            <tr>
+              <th class="hs-eyebrow hs-compare__th hs-compare__th--criterion" scope="col">
+                {{ section.settings.col_criterion }}
+              </th>
+              <th class="hs-eyebrow hs-compare__th hs-compare__th--ours" scope="col">
+                {{ section.settings.col_ours }}
+              </th>
+              <th class="hs-eyebrow hs-compare__th hs-compare__th--theirs" scope="col">
+                {{ section.settings.col_theirs }}
+              </th>
+            </tr>
+          </thead>
+
+          <tbody class="hs-stagger">
+            {%- for block in section.blocks -%}
+              <tr class="hs-compare__row" {{ block.shopify_attributes }}>
+                <th class="hs-small-body hs-compare__criterion hs-leading-snug" scope="row">
+                  {{ block.settings.label }}
+                </th>
+
+                <td class="hs-compare__cell hs-compare__cell--ours">
+                  <span class="hs-eyebrow hs-compare__inline-label">{{ section.settings.col_ours }}</span>
+                  <span class="hs-small-body hs-compare__value hs-leading-snug hs-pretty">
+                    {{- block.settings.ours_value -}}
+                  </span>
+                  {%- if block.settings.ours_note != blank -%}
+                    <span class="hs-caption hs-compare__note hs-leading-relaxed hs-pretty">
+                      {{- block.settings.ours_note -}}
+                    </span>
+                  {%- endif -%}
+                </td>
+
+                <td class="hs-compare__cell hs-compare__cell--theirs">
+                  <span class="hs-eyebrow hs-compare__inline-label hs-compare__inline-label--theirs">
+                    {{- section.settings.col_theirs -}}
+                  </span>
+                  <span class="hs-small-body hs-compare__value hs-compare__value--theirs hs-leading-snug hs-pretty">
+                    {{- block.settings.theirs_value -}}
+                  </span>
+                  {%- if block.settings.theirs_note != blank -%}
+                    <span class="hs-caption hs-compare__note hs-compare__note--theirs hs-leading-relaxed hs-pretty">
+                      {{- block.settings.theirs_note -}}
+                    </span>
+                  {%- endif -%}
+                </td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.link_label != blank -%}
+      <div class="hs-compare__foot">
+        <a class="hs-tap hs-small-body hs-compare__foot-link" href="{{ section.settings.link_url | default: '#' }}">
+          {{- section.settings.link_label -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.compare.name",
+  "class": "hs-compare-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "wash"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info",
+      "default": "comparison"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "The difference"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "Everything here is checkable."
+    },
+    {
+      "type": "richtext",
+      "id": "lede",
+      "label": "t:common.lede",
+      "default": "<p>We are new, and you have no reason to take our word for anything. So this compares the things you can verify yourself in about four minutes — not the things we would like you to feel.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.compare.columns"
+    },
+    {
+      "type": "text",
+      "id": "table_caption",
+      "label": "t:sections.compare.table_caption",
+      "info": "t:sections.compare.table_caption_info",
+      "default": "HydroSox compared against a typical waterproof sock, across six verifiable criteria."
+    },
+    {
+      "type": "text",
+      "id": "col_criterion",
+      "label": "t:sections.compare.col_criterion",
+      "default": "What matters"
+    },
+    {
+      "type": "text",
+      "id": "col_ours",
+      "label": "t:sections.compare.col_ours",
+      "default": "HydroSox"
+    },
+    {
+      "type": "text",
+      "id": "col_theirs",
+      "label": "t:sections.compare.col_theirs",
+      "default": "A typical waterproof sock"
+    },
+    {
+      "type": "header",
+      "content": "t:common.actions"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:common.link_label",
+      "default": "Check the membrane spec"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:common.link_url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "criterion",
+      "name": "t:sections.compare.block_criterion",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:sections.compare.criterion_label",
+          "default": "Waterproof layer"
+        },
+        {
+          "type": "text",
+          "id": "ours_value",
+          "label": "t:sections.compare.ours_value",
+          "default": "Porelle®, named and licensed"
+        },
+        {
+          "type": "textarea",
+          "id": "ours_note",
+          "label": "t:sections.compare.ours_note"
+        },
+        {
+          "type": "text",
+          "id": "theirs_value",
+          "label": "t:sections.compare.theirs_value",
+          "default": "An unnamed “waterproof” laminate"
+        },
+        {
+          "type": "textarea",
+          "id": "theirs_note",
+          "label": "t:sections.compare.theirs_note"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.compare.name",
+      "blocks": [
+        {
+          "type": "criterion",
+          "settings": {
+            "label": "Waterproof layer",
+            "ours_value": "Porelle®, named and licensed",
+            "ours_note": "A membrane you can look up is a membrane someone else has to stand behind.",
+            "theirs_value": "An unnamed “waterproof” laminate"
+          }
+        },
+        {
+          "type": "criterion",
+          "settings": {
+            "label": "Construction",
+            "ours_value": "Three layers, each one specified",
+            "theirs_value": "Layer count rarely published"
+          }
+        },
+        {
+          "type": "criterion",
+          "settings": {
+            "label": "Chemistry",
+            "ours_value": "PFOA free, stated",
+            "theirs_value": "Usually not stated either way"
+          }
+        },
+        {
+          "type": "criterion",
+          "settings": {
+            "label": "Price per pair",
+            "ours_value": "£20.00",
+            "ours_note": "Cheaper waterproof socks exist, including entry models from the category leader at £15–£20. Those are the ones that do not name a membrane.",
+            "theirs_value": "£35–£55 for mid-range and premium"
+          }
+        },
+        {
+          "type": "criterion",
+          "settings": {
+            "label": "Stated limitations",
+            "ours_value": "Published on this page",
+            "ours_note": "The one claim no competitor in the category makes.",
+            "theirs_value": "Not stated anywhere in the mapped set"
+          }
+        },
+        {
+          "type": "criterion",
+          "settings": {
+            "label": "Who you are buying from",
+            "ours_value": "UK company, address and phone published",
+            "theirs_value": "Often a marketplace seller with neither"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

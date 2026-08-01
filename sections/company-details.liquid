@@ -1,0 +1,193 @@
+{%- comment -%}
+  Company details.
+
+  A label/value list where each row states its own kind, so a phone number
+  renders as a tel: link and an email as a mailto:, without the merchant having
+  to build the link. Rows left on "text" stay plain.
+
+  Values default to the global brand settings, so the phone number and address
+  are maintained in one place for the whole theme.
+{%- endcomment -%}
+
+<section
+  class="hs-company hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-base">
+    {% render 'hs-section-head',
+      eyebrow: section.settings.eyebrow,
+      heading: section.settings.heading,
+      lede: section.settings.lede
+    %}
+
+    {%- if section.blocks.size > 0 -%}
+      <dl class="hs-company__list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'row' -%}
+            {%- liquid
+              # Fall back to the global brand setting when the row is left empty.
+              assign value = block.settings.value
+              if value == blank
+                case block.settings.kind
+                  when 'tel'
+                    assign value = settings.phone
+                  when 'email'
+                    assign value = settings.email
+                  when 'address'
+                    assign value = settings.address
+                endcase
+              endif
+            -%}
+            {%- if value != blank -%}
+              <div class="hs-company__row" {{ block.shopify_attributes }}>
+                <dt class="hs-eyebrow hs-muted">{{ block.settings.label }}</dt>
+                <dd class="hs-small-body hs-company__value">
+                  {%- case block.settings.kind -%}
+                    {%- when 'tel' -%}
+                      <a class="hs-company__link" href="tel:{{ value | replace: ' ', '' }}">{{ value }}</a>
+                    {%- when 'email' -%}
+                      <a class="hs-company__link" href="mailto:{{ value }}">{{ value }}</a>
+                    {%- when 'address' -%}
+                      <address class="hs-company__address">{{ value | strip_newlines }}</address>
+                    {%- else -%}
+                      {{ value }}
+                  {%- endcase -%}
+                </dd>
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </dl>
+    {%- endif -%}
+
+    {%- if section.settings.link_label != blank -%}
+      <div class="hs-company__foot">
+        <a class="hs-tap hs-small-body hs-company__foot-link" href="{{ section.settings.link_url | default: '#' }}">
+          {{- section.settings.link_label -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.company.name",
+  "class": "hs-company-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "wash"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info",
+      "default": "about"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "The company"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "Who you are buying from, in full."
+    },
+    {
+      "type": "richtext",
+      "id": "lede",
+      "label": "t:common.lede",
+      "default": "<p>If something goes wrong you should know exactly who you are dealing with. So: the company, the address, and two ways to reach a person — published here rather than buried in a policy page.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:common.actions"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:common.link_label",
+      "default": "Read the questions first"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:common.link_url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "t:sections.company.block_row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label",
+          "default": "Company"
+        },
+        {
+          "type": "select",
+          "id": "kind",
+          "label": "t:sections.company.kind",
+          "options": [
+            { "value": "text", "label": "t:sections.company.kind_text" },
+            { "value": "address", "label": "t:sections.company.kind_address" },
+            { "value": "tel", "label": "t:sections.company.kind_tel" },
+            { "value": "email", "label": "t:sections.company.kind_email" }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "textarea",
+          "id": "value",
+          "label": "t:common.value",
+          "info": "t:sections.company.value_info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.company.name",
+      "blocks": [
+        {
+          "type": "row",
+          "settings": { "label": "Company", "kind": "text", "value": "HydroSox, UK registered" }
+        },
+        {
+          "type": "row",
+          "settings": { "label": "Registered address", "kind": "address" }
+        },
+        {
+          "type": "row",
+          "settings": { "label": "Phone", "kind": "tel" }
+        },
+        {
+          "type": "row",
+          "settings": { "label": "Email", "kind": "email" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,147 @@
+{%- comment -%}
+  Emits the whole design system as CSS custom properties from theme settings.
+
+  Nothing downstream hardcodes a colour, size, spacing step or easing curve —
+  every section and snippet reads these variables, so changing a setting in the
+  theme editor changes the entire site.
+
+  Rendered once, in the <head>, from layout/theme.liquid.
+{%- endcomment -%}
+{%- liquid
+  assign paper = settings.color_paper
+  assign alpha_45 = settings.paper_45 | divided_by: 100.0
+  assign alpha_70 = settings.paper_70 | divided_by: 100.0
+  assign alpha_80 = settings.paper_80 | divided_by: 100.0
+  assign alpha_rule = settings.rule_dark_opacity | divided_by: 100.0
+
+  assign body_font = settings.font_body
+  assign heading_font = settings.font_heading
+-%}
+{{ body_font | font_face: font_display: 'swap' }}
+{{ body_font | font_modify: 'weight', '500' | font_face: font_display: 'swap' }}
+{{ body_font | font_modify: 'weight', '600' | font_face: font_display: 'swap' }}
+{{ heading_font | font_face: font_display: 'swap' }}
+{{ heading_font | font_modify: 'weight', '800' | font_face: font_display: 'swap' }}
+<style>
+  :root {
+    /* ---------- Colour ---------- */
+    --ink: {{ settings.color_ink }};
+    --ink-80: {{ settings.color_ink_80 }};
+    --grey: {{ settings.color_grey }};
+    --paper: {{ paper }};
+    --paper-45: {{ paper | color_modify: 'alpha', alpha_45 }};
+    --paper-70: {{ paper | color_modify: 'alpha', alpha_70 }};
+    --paper-80: {{ paper | color_modify: 'alpha', alpha_80 }};
+    --wash: {{ settings.color_wash }};
+    --wash-deep: {{ settings.color_wash_deep }};
+    --plate: {{ settings.color_plate }};
+    --hairline: {{ settings.color_hairline }};
+    --hairline-strong: {{ settings.color_hairline_strong }};
+    --rule-dark: {{ paper | color_modify: 'alpha', alpha_rule }};
+    --blue: {{ settings.color_blue }};
+    --blue-hover: {{ settings.color_blue_hover }};
+    --blue-deep: {{ settings.color_blue_deep }};
+    --blue-wash: {{ settings.color_blue_wash }};
+    --success: {{ settings.color_success }};
+    --error: {{ settings.color_error }};
+
+    /* Scheme defaults. Sections override these to invert on ink. */
+    --surface: var(--paper);
+    --on-surface: var(--ink);
+    --on-surface-muted: var(--grey);
+    --rule: var(--hairline);
+    --rule-strong: var(--hairline-strong);
+
+    /* ---------- Type ---------- */
+    --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+    --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+    --weight-body: {{ body_font.weight }};
+    --weight-heading: {{ heading_font.weight }};
+    --weight-medium: 500;
+    --weight-semibold: 600;
+
+    --type-display-xl: {% render 'hs-fluid', min: settings.type_display_xl_min, max: settings.type_display_xl_max %};
+    --type-h1: {% render 'hs-fluid', min: settings.type_h1_min, max: settings.type_h1_max %};
+    --type-h2: {% render 'hs-fluid', min: settings.type_h2_min, max: settings.type_h2_max %};
+    --type-h3: {% render 'hs-fluid', min: settings.type_h3_min, max: settings.type_h3_max %};
+    --type-h4: {% render 'hs-fluid', min: settings.type_h4_min, max: settings.type_h4_max %};
+    --type-hero-body: {% render 'hs-fluid', min: settings.type_hero_body_min, max: settings.type_hero_body_max %};
+    --type-body: {% render 'hs-fluid', min: settings.type_body_min, max: settings.type_body_max %};
+    --type-small-body: {{ settings.type_small_body | divided_by: 16.0 }}rem;
+    --type-nav: {{ settings.type_nav | divided_by: 16.0 }}rem;
+    --type-caption: {{ settings.type_caption | divided_by: 16.0 }}rem;
+    --type-label: {{ settings.type_label | divided_by: 16.0 }}rem;
+
+    --tracking-display-xl: {{ settings.tracking_display_xl | divided_by: 1000.0 }}em;
+    --tracking-h1: {{ settings.tracking_h1 | divided_by: 1000.0 }}em;
+    --tracking-h2: {{ settings.tracking_h2 | divided_by: 1000.0 }}em;
+    --tracking-h3: {{ settings.tracking_h3 | divided_by: 1000.0 }}em;
+    --tracking-h4: {{ settings.tracking_h4 | divided_by: 1000.0 }}em;
+    --tracking-hero-body: {{ settings.tracking_hero_body | divided_by: 1000.0 }}em;
+    --tracking-body: {{ settings.tracking_body | divided_by: 1000.0 }}em;
+    --tracking-small-body: {{ settings.tracking_small_body | divided_by: 1000.0 }}em;
+    --tracking-nav: {{ settings.tracking_nav | divided_by: 1000.0 }}em;
+    --tracking-caption: {{ settings.tracking_caption | divided_by: 1000.0 }}em;
+    --tracking-label: {{ settings.tracking_label | divided_by: 1000.0 }}em;
+
+    --leading-display-xl: {{ settings.leading_display_xl | divided_by: 100.0 }};
+    --leading-h1: {{ settings.leading_h1 | divided_by: 100.0 }};
+    --leading-h2: {{ settings.leading_h2 | divided_by: 100.0 }};
+    --leading-h3: {{ settings.leading_h3 | divided_by: 100.0 }};
+    --leading-h4: {{ settings.leading_h4 | divided_by: 100.0 }};
+    --leading-hero-body: {{ settings.leading_hero_body | divided_by: 100.0 }};
+    --leading-body: {{ settings.leading_body | divided_by: 100.0 }};
+    --leading-small-body: {{ settings.leading_small_body | divided_by: 100.0 }};
+    --leading-nav: {{ settings.leading_nav | divided_by: 100.0 }};
+    --leading-caption: {{ settings.leading_caption | divided_by: 100.0 }};
+    --leading-label: {{ settings.leading_label | divided_by: 100.0 }};
+    --leading-snug: {{ settings.leading_snug | divided_by: 100.0 }};
+    --leading-relaxed: {{ settings.leading_relaxed | divided_by: 100.0 }};
+
+    /* ---------- Layout ---------- */
+    --chrome: {{ settings.chrome_height | divided_by: 16.0 }}rem;
+    --shell-max: {{ settings.shell_max }}px;
+    --gutter: {{ settings.gutter_base | divided_by: 16.0 }}rem;
+
+    /* ---------- Vertical rhythm ---------- */
+    --pace-tight: clamp({{ settings.pace_tight_min | divided_by: 16.0 }}rem, {{ settings.pace_tight_vw }}vw, {{ settings.pace_tight_max | divided_by: 16.0 }}rem);
+    --pace-base: clamp({{ settings.pace_base_min | divided_by: 16.0 }}rem, {{ settings.pace_base_vw }}vw, {{ settings.pace_base_max | divided_by: 16.0 }}rem);
+    --pace-loose: clamp({{ settings.pace_loose_min | divided_by: 16.0 }}rem, {{ settings.pace_loose_vw }}vw, {{ settings.pace_loose_max | divided_by: 16.0 }}rem);
+    --pace-vast: clamp({{ settings.pace_vast_min | divided_by: 16.0 }}rem, {{ settings.pace_vast_vw }}vw, {{ settings.pace_vast_max | divided_by: 16.0 }}rem);
+
+    /* ---------- Corners ---------- */
+    --radius-md: {{ settings.radius_md }}px;
+    --radius-lg: {{ settings.radius_lg }}px;
+    --radius-xl: {{ settings.radius_xl }}px;
+    --radius-2xl: {{ settings.radius_2xl }}px;
+    --radius-pill: {{ settings.radius_pill }}px;
+
+    /* ---------- Motion ---------- */
+    --duration-press: {{ settings.duration_press }}ms;
+    --duration-reveal: {{ settings.duration_reveal }}ms;
+    --duration-drawer: {{ settings.duration_drawer }}ms;
+    --ease-out: {{ settings.ease_out }};
+    --ease-in: {{ settings.ease_in }};
+    --ease-in-out: {{ settings.ease_in_out }};
+    --ease-drawer: {{ settings.ease_drawer }};
+  }
+
+  @media (min-width: 40rem) {
+    :root { --gutter: {{ settings.gutter_sm | divided_by: 16.0 }}rem; }
+  }
+  @media (min-width: 48rem) {
+    :root { --gutter: {{ settings.gutter_md | divided_by: 16.0 }}rem; }
+  }
+  @media (min-width: 64rem) {
+    :root { --gutter: {{ settings.gutter_lg | divided_by: 16.0 }}rem; }
+  }
+  @media (min-width: 80rem) {
+    :root { --gutter: {{ settings.gutter_xl | divided_by: 16.0 }}rem; }
+  }
+
+  {%- unless settings.motion_enabled -%}
+  /* Motion switched off in theme settings. */
+  :root { --duration-reveal: 1ms; }
+  .hs-reveal, [data-hs-reveal] { opacity: 1 !important; transform: none !important; }
+  {%- endunless -%}
+</style>

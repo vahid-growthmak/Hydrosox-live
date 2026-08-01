@@ -1,0 +1,55 @@
+{%- comment -%} Search results. {%- endcomment -%}
+<section class="hs-scheme-{{ section.settings.color_scheme }}">
+  <div class="hs-shell hs-pace-base">
+    <header class="hs-page__head">
+      <h1 class="hs-h2 hs-balance hs-page__title">{{ 'general.search.heading' | t }}</h1>
+    </header>
+
+    <form class="hs-search__form" action="{{ routes.search_url }}" method="get" role="search">
+      <label class="hs-visually-hidden" for="hs-search-input">{{ 'general.search.placeholder' | t }}</label>
+      <input class="hs-field hs-search__input" id="hs-search-input" type="search" name="q"
+        value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}">
+      {% render 'hs-button', label: 'general.search.submit' | t, style: 'primary', type: 'submit' %}
+    </form>
+
+    {%- if search.performed -%}
+      <p class="hs-caption hs-muted hs-search__count">
+        {{ 'general.search.results_count' | t: count: search.results_count }}
+      </p>
+      {%- if search.results_count > 0 -%}
+        {%- paginate search.results by section.settings.per_page -%}
+          <ul class="hs-search__results" role="list">
+            {%- for item in search.results -%}
+              <li class="hs-search__result">
+                <a class="hs-search__result-link" href="{{ item.url }}">
+                  <span class="hs-h4">{{ item.title }}</span>
+                  {%- if item.object_type == 'product' and item.price -%}
+                    <span class="hs-small-body hs-tnum hs-muted">{{ item.price | money }}</span>
+                  {%- endif -%}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+          {% render 'hs-pagination', paginate: paginate %}
+        {%- endpaginate -%}
+      {%- else -%}
+        <p class="hs-body hs-muted">{{ 'general.search.no_results' | t: terms: search.terms }}</p>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "t:sections.search.name",
+  "settings": [
+    { "type": "select", "id": "color_scheme", "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ], "default": "paper" },
+    { "type": "range", "id": "per_page", "min": 6, "max": 48, "step": 6,
+      "label": "t:sections.collection.per_page", "default": 24 }
+  ]
+}
+{% endschema %}

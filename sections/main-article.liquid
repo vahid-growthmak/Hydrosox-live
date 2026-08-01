@@ -1,0 +1,36 @@
+{%- comment -%} Article. {%- endcomment -%}
+<section class="hs-scheme-{{ section.settings.color_scheme }}">
+  <div class="hs-shell hs-pace-base">
+    <article class="hs-article">
+      <header class="hs-article__head">
+        <p class="hs-eyebrow">{{ article.published_at | date: format: 'date' }}</p>
+        <h1 class="hs-h1 hs-measure-19 hs-balance hs-page__title">{{ article.title }}</h1>
+        {%- if section.settings.show_author and article.author != blank -%}
+          <p class="hs-caption hs-muted">{{ 'blogs.article.by' | t: author: article.author }}</p>
+        {%- endif -%}
+      </header>
+      {%- if article.image -%}
+        {% render 'hs-image', image: article.image, alt: article.title, aspect: '16 / 9',
+           eager: true, sizes: '100vw', wrapper_class: 'hs-article__hero' %}
+      {%- endif -%}
+      <div class="hs-body hs-rte hs-measure-54 hs-pretty hs-article__body">{{ article.content }}</div>
+      <p class="hs-article__back">
+        <a class="hs-link" href="{{ blog.url }}">{{ 'blogs.article.back' | t }}</a>
+      </p>
+    </article>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "t:sections.article.name",
+  "settings": [
+    { "type": "select", "id": "color_scheme", "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ], "default": "paper" },
+    { "type": "checkbox", "id": "show_author", "label": "t:sections.article.show_author", "default": false }
+  ]
+}
+{% endschema %}

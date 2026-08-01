@@ -1,0 +1,38 @@
+{%- comment -%} All collections. {%- endcomment -%}
+<section class="hs-scheme-{{ section.settings.color_scheme }}">
+  <div class="hs-shell hs-pace-base">
+    <header class="hs-page__head">
+      <h1 class="hs-h2 hs-balance hs-page__title">{{ page_title }}</h1>
+    </header>
+    <ul class="hs-grid" role="list">
+      {%- for collection in collections -%}
+        <li>
+          <a class="hs-card hs-zoom-parent" href="{{ collection.url }}">
+            {% render 'hs-image', image: collection.featured_image, alt: collection.title,
+               aspect: '4 / 5', wrapper_class: 'hs-card__media hs-media--zoom',
+               sizes: '(min-width: 64rem) 30vw, 100vw' %}
+            <div class="hs-card__body">
+              <h2 class="hs-h4 hs-card__title">{{ collection.title }}</h2>
+              <p class="hs-caption hs-muted">
+                {{ 'collections.general.product_count' | t: count: collection.products_count }}
+              </p>
+            </div>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "t:sections.list_collections.name",
+  "settings": [
+    { "type": "select", "id": "color_scheme", "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ], "default": "paper" }
+  ]
+}
+{% endschema %}

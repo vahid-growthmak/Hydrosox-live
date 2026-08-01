@@ -1,0 +1,68 @@
+{%- comment -%}
+  Inline SVG icons, drawn in the same 24px stroked style as the design.
+
+  Kept inline rather than sprited so there is no extra request and the icon
+  inherits currentColor.
+
+  Accepts:
+  - icon: {String} One of: chevron-down, chevron-right, search, bag, menu,
+    close, plus, minus, arrow-right, play, check, phone, mail, external.
+  - class: {String} Classes for the <svg>. Optional.
+  - size: {Number} Pixel size, applied as width and height. Default 24.
+
+  Usage:
+  {% render 'hs-icon', icon: 'search', size: 18 %}
+{%- endcomment -%}
+{%- liquid
+  assign px = size | default: 24
+-%}
+<svg
+  class="hs-icon {{ class }}"
+  width="{{ px }}"
+  height="{{ px }}"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+>
+  {%- case icon -%}
+    {%- when 'chevron-down' -%}
+      <path d="m6 9 6 6 6-6" />
+    {%- when 'chevron-right' -%}
+      <path d="m9 18 6-6-6-6" />
+    {%- when 'search' -%}
+      <circle cx="11" cy="11" r="8" /><path d="m21 21-4.34-4.34" />
+    {%- when 'bag' -%}
+      <path d="M16 10a4 4 0 0 1-8 0" /><path d="M3.103 6.034h17.794" /><path
+        d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"
+      />
+    {%- when 'menu' -%}
+      <path d="M4 6h16" /><path d="M4 12h16" /><path d="M4 18h16" />
+    {%- when 'close' -%}
+      <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+    {%- when 'plus' -%}
+      <path d="M5 12h14" /><path d="M12 5v14" />
+    {%- when 'minus' -%}
+      <path d="M5 12h14" />
+    {%- when 'arrow-right' -%}
+      <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+    {%- when 'play' -%}
+      <path d="M6 3.5v17a1 1 0 0 0 1.5.87l13-8.5a1 1 0 0 0 0-1.74l-13-8.5A1 1 0 0 0 6 3.5z" fill="currentColor" stroke="none" />
+    {%- when 'check' -%}
+      <path d="M20 6 9 17l-5-5" />
+    {%- when 'phone' -%}
+      <path
+        d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
+      />
+    {%- when 'mail' -%}
+      <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" />
+    {%- when 'external' -%}
+      <path d="M15 3h6v6" /><path d="M10 14 21 3" /><path
+        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+      />
+  {%- endcase -%}
+</svg>

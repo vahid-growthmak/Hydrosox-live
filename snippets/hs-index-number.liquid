@@ -1,0 +1,25 @@
+{%- comment -%}
+  A zero-padded index numeral, as used on the limits, film and activity cards.
+
+  Accepts:
+  - index: {Number} The zero-based loop index (forloop.index0). Required.
+  - class: {String} Extra classes. Optional.
+  - size: {String} Type role: 'h3' (default), 'h4' or 'label'.
+
+  Usage:
+  {% render 'hs-index-number', index: forloop.index0 %}
+{%- endcomment -%}
+{%- liquid
+  assign n = index | plus: 1
+  assign padded = n | prepend: '0' | slice: -2, 2
+
+  case size
+    when 'h4'
+      assign size_class = 'hs-h4'
+    when 'label'
+      assign size_class = 'hs-label'
+    else
+      assign size_class = 'hs-h3'
+  endcase
+-%}
+<span class="hs-index {{ size_class }} hs-tnum {{ class }}" aria-hidden="true">{{ padded }}</span>

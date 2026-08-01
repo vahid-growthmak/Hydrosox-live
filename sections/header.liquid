@@ -1,0 +1,370 @@
+{%- comment -%}
+  Sticky header.
+
+  Navigation is built from blocks so the merchant controls the order. A
+  "dropdown" block owns every "dropdown item" block that follows it, until the
+  next link or dropdown — which lets a mega menu carry its own descriptions
+  without nesting blocks.
+{%- endcomment -%}
+
+{%- comment -%}
+  A media query cannot read a custom property, so the breakpoint at which the
+  desktop nav replaces the burger is emitted here from the section setting.
+{%- endcomment -%}
+{%- assign bp = section.settings.mobile_breakpoint | plus: 0 -%}
+{% style %}
+  #shopify-section-{{ section.id }} .hs-header {
+    --hs-bar-bg: {{ settings.color_paper | color_modify: 'alpha', 0.85 }};
+  }
+
+  {%- if section.settings.color_scheme == 'ink' %}
+  #shopify-section-{{ section.id }} .hs-header {
+    --hs-bar-bg: {{ settings.color_ink | color_modify: 'alpha', 0.85 }};
+  }
+  {%- elsif section.settings.color_scheme == 'wash' %}
+  #shopify-section-{{ section.id }} .hs-header {
+    --hs-bar-bg: {{ settings.color_wash | color_modify: 'alpha', 0.85 }};
+  }
+  {%- endif %}
+
+  @media (min-width: {{ bp }}rem) {
+    #shopify-section-{{ section.id }} .hs-header__nav {
+      display: flex;
+    }
+
+    #shopify-section-{{ section.id }} .hs-header__cta {
+      display: inline-flex;
+    }
+
+    #shopify-section-{{ section.id }} .hs-header__burger {
+      display: none;
+    }
+  }
+{% endstyle %}
+
+<hs-nav
+  class="hs-header hs-scheme-{{ section.settings.color_scheme }}"
+  data-breakpoint="{{ section.settings.mobile_breakpoint }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-header__bar">
+    {%- comment -%} Logo {%- endcomment -%}
+    <a
+      class="hs-header__logo"
+      href="{{ routes.root_url }}"
+      aria-label="{{ shop.name | escape }} — {{ 'general.accessibility.skip_to_content' | t | downcase }}"
+    >
+      {%- if settings.logo != blank -%}
+        <img
+          src="{{ settings.logo | image_url: width: 480 }}"
+          srcset="
+            {{ settings.logo | image_url: width: 240 }} 240w,
+            {{ settings.logo | image_url: width: 480 }} 480w
+          "
+          sizes="{{ settings.logo_width }}px"
+          alt="{{ shop.name | escape }}"
+          width="{{ settings.logo.width }}"
+          height="{{ settings.logo.height }}"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="hs-header__logo-img"
+        >
+      {%- else -%}
+        <span class="hs-h4 hs-header__logo-text">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    {%- comment -%} Desktop navigation {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <nav class="hs-header__nav" aria-label="{{ section.settings.nav_label | escape }}">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'link' -%}
+              <a
+                class="hs-header__nav-link hs-caption"
+                href="{{ block.settings.link | default: '#' }}"
+                {{ block.shopify_attributes }}
+              >
+                {{- block.settings.label -}}
+              </a>
+
+            {%- when 'dropdown' -%}
+              <div class="hs-header__group" {{ block.shopify_attributes }}>
+                <a
+                  class="hs-header__nav-link hs-header__nav-link--trigger hs-caption"
+                  href="{{ block.settings.link | default: '#' }}"
+                  aria-expanded="false"
+                  data-hs-dropdown-trigger
+                >
+                  {{ block.settings.label }}
+                  {% render 'hs-icon', icon: 'chevron-down', size: 14, class: 'hs-header__chevron' %}
+                </a>
+                <div class="hs-header__panel">
+                  <ul class="hs-header__panel-list" role="list">
+                    {%- for item in section.blocks offset: forloop.index -%}
+                      {%- unless item.type == 'dropdown_item' -%}
+                        {%- break -%}
+                      {%- endunless -%}
+                      <li {{ item.shopify_attributes }}>
+                        <a class="hs-header__panel-link" href="{{ item.settings.link | default: '#' }}">
+                          <span class="hs-small-body hs-header__panel-title">
+                            {{- item.settings.label -}}
+                          </span>
+                          {%- if item.settings.description != blank -%}
+                            <span class="hs-caption hs-header__panel-desc hs-pretty">
+                              {{- item.settings.description -}}
+                            </span>
+                          {%- endif -%}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+
+    {%- comment -%} Actions {%- endcomment -%}
+    <div class="hs-header__actions">
+      {%- if section.settings.show_search -%}
+        <a
+          class="hs-header__icon-btn"
+          href="{{ routes.search_url }}"
+          aria-label="{{ 'general.accessibility.search' | t }}"
+        >
+          {% render 'hs-icon', icon: 'search', size: 20, class: 'hs-header__icon' %}
+        </a>
+      {%- endif -%}
+
+      <a
+        class="hs-header__icon-btn"
+        href="{{ routes.cart_url }}"
+        aria-label="{{ 'general.accessibility.cart' | t }}"
+      >
+        {% render 'hs-icon', icon: 'bag', size: 20, class: 'hs-header__icon' %}
+        {%- if cart.item_count > 0 -%}
+          <span class="hs-header__cart-count" aria-hidden="true">{{ cart.item_count }}</span>
+          <span class="hs-visually-hidden">
+            {{- 'cart.general.item_count' | t: count: cart.item_count -}}
+          </span>
+        {%- endif -%}
+      </a>
+
+      {%- if section.settings.cta_label != blank -%}
+        <a class="hs-header__cta hs-caption" href="{{ section.settings.cta_link | default: '#' }}">
+          {{- section.settings.cta_label -}}
+        </a>
+      {%- endif -%}
+
+      <button
+        class="hs-header__icon-btn hs-header__burger"
+        type="button"
+        aria-label="{{ 'general.accessibility.menu' | t }}"
+        aria-expanded="false"
+        aria-controls="hs-drawer"
+        data-hs-nav-open
+      >
+        {% render 'hs-icon', icon: 'menu', size: 24, class: 'hs-header__icon' %}
+      </button>
+    </div>
+  </div>
+
+  {%- comment -%} Mobile drawer {%- endcomment -%}
+  <div class="hs-drawer" id="hs-drawer" hidden>
+    <div class="hs-drawer__scrim" data-hs-nav-close></div>
+    <div class="hs-drawer__panel" role="dialog" aria-modal="true" aria-label="{{ section.settings.nav_label | escape }}">
+      <div class="hs-drawer__head">
+        <span class="hs-eyebrow">{{ section.settings.drawer_heading }}</span>
+        <button
+          class="hs-header__icon-btn"
+          type="button"
+          aria-label="{{ 'general.accessibility.close' | t }}"
+          data-hs-nav-close
+        >
+          {% render 'hs-icon', icon: 'close', size: 24, class: 'hs-header__icon' %}
+        </button>
+      </div>
+
+      <nav class="hs-drawer__nav" aria-label="{{ section.settings.nav_label | escape }}">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'link' -%}
+              <a class="hs-drawer__link hs-h4" href="{{ block.settings.link | default: '#' }}">
+                {{- block.settings.label -}}
+              </a>
+
+            {%- when 'dropdown' -%}
+              <a class="hs-drawer__link hs-h4" href="{{ block.settings.link | default: '#' }}">
+                {{- block.settings.label -}}
+              </a>
+              <ul class="hs-drawer__sublist" role="list">
+                {%- for item in section.blocks offset: forloop.index -%}
+                  {%- unless item.type == 'dropdown_item' -%}
+                    {%- break -%}
+                  {%- endunless -%}
+                  <li>
+                    <a class="hs-drawer__sublink hs-small-body" href="{{ item.settings.link | default: '#' }}">
+                      {{- item.settings.label -}}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+          {%- endcase -%}
+        {%- endfor -%}
+      </nav>
+
+      <div class="hs-drawer__foot">
+        {%- if section.settings.cta_label != blank -%}
+          {% render 'hs-button',
+            label: section.settings.cta_label,
+            href: section.settings.cta_link,
+            style: 'primary',
+            full: true
+          %}
+        {%- endif -%}
+        {%- if settings.phone != blank -%}
+          <a class="hs-drawer__phone hs-small-body" href="tel:{{ settings.phone | replace: ' ', '' }}">
+            {% render 'hs-icon', icon: 'phone', size: 16 %}
+            {{ settings.phone }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</hs-nav>
+
+<script src="{{ 'hs-nav.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "class": "hs-header-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "text",
+      "id": "nav_label",
+      "label": "t:sections.header.nav_label",
+      "default": "Primary"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "t:sections.header.show_search",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "mobile_breakpoint",
+      "label": "t:sections.header.mobile_breakpoint",
+      "info": "t:sections.header.mobile_breakpoint_info",
+      "options": [
+        { "value": "48", "label": "768px" },
+        { "value": "64", "label": "1024px" },
+        { "value": "80", "label": "1280px" }
+      ],
+      "default": "64"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.cta_group"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:common.button_label",
+      "default": "Shop HydroSox"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "t:common.button_link"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.drawer_group"
+    },
+    {
+      "type": "text",
+      "id": "drawer_heading",
+      "label": "t:sections.header.drawer_heading",
+      "default": "Menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "t:sections.header.block_link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label",
+          "default": "Shop"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:common.link"
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "name": "t:sections.header.block_dropdown",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.header.block_dropdown_info"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label",
+          "default": "Shop by Activity"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:common.link"
+        }
+      ]
+    },
+    {
+      "type": "dropdown_item",
+      "name": "t:sections.header.block_dropdown_item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label",
+          "default": "Hiking"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "t:common.description"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:common.link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

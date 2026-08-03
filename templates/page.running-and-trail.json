@@ -1,0 +1,320 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "color_scheme": "ink",
+        "min_height": 36,
+        "index_label": "05",
+        "eyebrow": "Shop by activity",
+        "heading": "The two objections come before the miles do.",
+        "lede": "<p>Runners ask about weight and bulk before anything else, and they are right to. Here is the honest version of that trade, and what the sock is actually for.</p>",
+        "image_fallback": "activity-running-and-trail.webp",
+        "image_alt": "Running & Trail in HydroSox waterproof socks",
+        "focal_point": "center",
+        "scrim_vertical": 70,
+        "scrim_horizontal": 55,
+        "cta_label": "Buy a pair",
+        "cta_url": "/products/hydrosox-waterproof-socks",
+        "link_label": "See how it is built",
+        "link_url": "/#construction"
+      }
+    },
+    "specs": {
+      "type": "spec-strip",
+      "settings": {
+        "color_scheme": "ink",
+        "hidden_heading": "Product facts"
+      },
+      "blocks": {
+        "f1": {
+          "type": "spec",
+          "settings": {
+            "label": "Membrane",
+            "value": "Porelle®"
+          }
+        },
+        "f2": {
+          "type": "spec",
+          "settings": {
+            "label": "Construction",
+            "value": "Three-layer"
+          }
+        },
+        "f3": {
+          "type": "spec",
+          "settings": {
+            "label": "Chemistry",
+            "value": "PFOA free"
+          }
+        },
+        "f4": {
+          "type": "spec",
+          "settings": {
+            "label": "Origin",
+            "value": "UK company, UK stock"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ]
+    },
+    "problem": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "row_density": "compact",
+        "eyebrow": "The problem",
+        "heading": "Wet feet are a race problem, not a comfort problem.",
+        "lede": "<p>On a long winter run the cost of soaked feet is not that they feel unpleasant. It is that wet skin blisters, and a blister at eight miles decides the rest of the run.</p>"
+      },
+      "blocks": {
+        "p1": {
+          "type": "item",
+          "settings": {
+            "title": "Softened skin gives up early",
+            "body": "<p>Wet skin under repeated rub is the blister mechanism. Dry skin takes considerably more of it before it breaks down.</p>"
+          }
+        },
+        "p2": {
+          "type": "item",
+          "settings": {
+            "title": "Trail shoes are built to drain",
+            "body": "<p>A mesh upper is designed to let water out, which necessarily means letting it in. That is the right design for the shoe. It still leaves the foot wet.</p>"
+          }
+        },
+        "p3": {
+          "type": "item",
+          "settings": {
+            "title": "Cold arrives with the wet",
+            "body": "<p>A soaked foot at winter temperatures gets cold quickly and stays cold, however hard the rest of you is working.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ]
+    },
+    "answers": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "ink",
+        "layout": "list",
+        "numbered": true,
+        "eyebrow": "What answers it",
+        "heading": "What it is, without the marketing.",
+        "head_note": "<p>It is a three-layer sock with a membrane in it, so it is thicker than a racing sock. It is not a compression sock and it is not a lightweight. Knowing that is what lets you decide correctly.</p>",
+        "link_label": "The three layers, in section",
+        "link_url": "/#construction"
+      },
+      "blocks": {
+        "a1": {
+          "type": "item",
+          "settings": {
+            "title": "The membrane is the point",
+            "body": "<p>A licensed Porelle® waterproof-breathable laminate between two knits. Water stops at the sock; vapour still moves outward.</p>"
+          }
+        },
+        "a2": {
+          "type": "item",
+          "settings": {
+            "title": "Thicker than a race sock — that is the trade",
+            "body": "<p>Three bonded layers are not as thin as a single-layer technical sock. On wet winter miles that trade is usually worth taking. In a dry summer 10k it is not.</p>"
+          }
+        },
+        "a3": {
+          "type": "item",
+          "settings": {
+            "title": "Crew height, above the shoe",
+            "body": "<p>The cuff clears a trail shoe collar, which is also where most of the spray and grit arrives.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ]
+    },
+    "inuse": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "gallery",
+        "eyebrow": "In use",
+        "heading": "The same pair, in the conditions this page is about.",
+        "head_note": "<p>Product imagery rather than a documentary shoot, so read it for what the sock is and where it goes — not as evidence. The checkable claim is the membrane.</p>",
+        "gallery_aspect": "4 / 5"
+      },
+      "blocks": {
+        "g1": {
+          "type": "image",
+          "settings": {
+            "caption": "Off-road, dust coming up",
+            "image_fallback": "activity-running-and-trail-01.webp",
+            "image_alt": "Off-road, dust coming up"
+          }
+        },
+        "g2": {
+          "type": "image",
+          "settings": {
+            "caption": "Pavement miles, first light",
+            "image_fallback": "activity-running-and-trail-02.webp",
+            "image_alt": "Pavement miles, first light"
+          }
+        },
+        "g3": {
+          "type": "image",
+          "settings": {
+            "caption": "Frame to come"
+          }
+        },
+        "g4": {
+          "type": "image",
+          "settings": {
+            "caption": "Frame to come"
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ]
+    },
+    "practice": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "eyebrow": "In practice",
+        "heading": "Choosing honestly.",
+        "link_label": "Size guide",
+        "link_url": "/pages/size-guide",
+        "link2_label": "Care & washing",
+        "link2_url": "/pages/care-and-washing"
+      },
+      "blocks": {
+        "w1": {
+          "type": "item",
+          "settings": {
+            "title": "Try them on a training run first",
+            "body": "<p>Never on race day. Any change in sock thickness changes how a shoe fits, and a race is the wrong place to find that out.</p>"
+          }
+        },
+        "w2": {
+          "type": "item",
+          "settings": {
+            "title": "Wet-weather kit, not everyday kit",
+            "body": "<p>Plenty of runners keep a pair for winter and wet races and run in their usual socks the rest of the year. That is a reasonable way to use them.</p>"
+          }
+        },
+        "w3": {
+          "type": "item",
+          "settings": {
+            "title": "Cool wash, no conditioner or dryer",
+            "body": "<p>Standard care for anything with a membrane in it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "w1",
+        "w2",
+        "w3"
+      ]
+    },
+    "limits": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "blue",
+        "max_width": 46,
+        "eyebrow": "What it will not do",
+        "heading": "The honest limit.",
+        "body": "<p>Breathable does not mean dry inside. Run hard enough and you will sweat faster than any membrane can move vapour — so on a hard effort your feet will be damp from the inside, at body temperature, rather than cold from a puddle. That is a real difference. It is also not the same as dry.</p>",
+        "footnote": "<p>Every limit we know about is published, not only this one. <a href=\"/#limits\">Read the rest</a>.</p>"
+      }
+    },
+    "siblings": {
+      "type": "link-cards",
+      "settings": {
+        "color_scheme": "paper",
+        "columns": 4,
+        "eyebrow": "Not your problem?",
+        "heading": "Same sock, different day."
+      },
+      "blocks": {
+        "s1": {
+          "type": "card",
+          "settings": {
+            "title": "Hiking",
+            "body": "Boots that wet out four hours into a long day in the hills.",
+            "link": "/pages/hiking"
+          }
+        },
+        "s2": {
+          "type": "card",
+          "settings": {
+            "title": "Walking",
+            "body": "Wet grass at eight in the morning, in shoes that were never waterproof.",
+            "link": "/pages/walking"
+          }
+        },
+        "s3": {
+          "type": "card",
+          "settings": {
+            "title": "All Day in Boots",
+            "body": "Boots that keep the rain out and then seal the sweat in.",
+            "link": "/pages/all-day-in-boots"
+          }
+        },
+        "s4": {
+          "type": "card",
+          "settings": {
+            "title": "Cycling & Commuting",
+            "body": "Overshoes that leak at the ankle, and shoes still wet at home time.",
+            "link": "/pages/cycling-and-commuting"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ]
+    },
+    "close": {
+      "type": "closing-cta",
+      "settings": {
+        "color_scheme": "paper",
+        "show_rule": false,
+        "heading": "One sock. Weight and bulk, stated honestly.",
+        "cta_label": "Buy a pair",
+        "cta_url": "/products/hydrosox-waterproof-socks",
+        "alt_label": "How it compares",
+        "alt_url": "/#comparison"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "specs",
+    "problem",
+    "answers",
+    "inuse",
+    "practice",
+    "limits",
+    "siblings",
+    "close"
+  ]
+}

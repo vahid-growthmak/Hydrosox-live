@@ -285,6 +285,10 @@ summary::-webkit-details-marker {
   max-width: 46ch;
 }
 
+.hs-measure-56 {
+  max-width: 56ch;
+}
+
 .hs-measure-54 {
   max-width: 54ch;
 }
@@ -335,6 +339,7 @@ summary::-webkit-details-marker {
 
 .hs-scheme-paper,
 .hs-scheme-wash,
+.hs-scheme-blue,
 .hs-scheme-ink {
   background-color: var(--surface);
   color: var(--on-surface);
@@ -354,6 +359,19 @@ summary::-webkit-details-marker {
 
 .hs-scheme-wash {
   --surface: var(--wash);
+  --on-surface: var(--ink);
+  --on-surface-muted: var(--grey);
+  --on-surface-faint: var(--grey);
+  --rule: var(--hairline);
+  --rule-strong: var(--hairline-strong);
+  --eyebrow: var(--blue-deep);
+  --well: var(--paper);
+  --well-deep: var(--wash-deep);
+}
+
+/* The pale blue band, used where a page states a limit or a caveat. */
+.hs-scheme-blue {
+  --surface: var(--blue-wash);
   --on-surface: var(--ink);
   --on-surface-muted: var(--grey);
   --on-surface-faint: var(--grey);

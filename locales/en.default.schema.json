@@ -195,7 +195,11 @@
     "scheme_ink": "Ink (dark)",
     "anchor_id": "Anchor id",
     "anchor_id_info": "Lets links elsewhere jump to this section, for example #buy.",
-    "product": "Product"
+    "product": "Product",
+    "cta_label": "Primary button label",
+    "cta_url": "Primary button link",
+    "media": "Media",
+    "scheme_blue": "Pale blue"
   },
   "sections": {
     "announcement": {
@@ -447,6 +451,68 @@
     "article": {
       "name": "Article",
       "show_author": "Show author"
+    },
+    "phero": {
+      "name": "Page hero",
+      "min_height": "Minimum height",
+      "index_label": "Index",
+      "index_label_info": "A short number shown before the eyebrow, e.g. 01.",
+      "image_fallback": "Bundled image filename",
+      "image_fallback_info": "Used when no image is chosen above. A file in the theme assets folder, e.g. activity-hiking.webp.",
+      "focal_point": "Focal point",
+      "focal_point_info": "Which part of the photograph to keep as it crops, e.g. center, top, 50% 30%.",
+      "scrim_vertical": "Scrim from the foot",
+      "scrim_horizontal": "Scrim from the left"
+    },
+    "specs": {
+      "name": "Spec strip",
+      "hidden_heading": "Heading for screen readers",
+      "hidden_heading_info": "Names the strip for assistive technology. Not shown on the page.",
+      "block_spec": "Fact"
+    },
+    "cols": {
+      "name": "Content columns",
+      "layout": "Content layout",
+      "layout_list": "Ruled list",
+      "layout_gallery": "Image gallery",
+      "layout_prose": "Rich text",
+      "numbered": "Number the rows",
+      "numbered_info": "Ruled list only.",
+      "hide_rule": "Hide the rule below this section",
+      "heading_column": "Heading column",
+      "content_column": "Content column",
+      "head_note": "Note under the heading",
+      "prose": "Rich text",
+      "prose_info": "Rich text layout only.",
+      "gallery_aspect": "Image shape",
+      "gallery_aspect_info": "A CSS aspect ratio, e.g. 4 / 5.",
+      "footnote": "Footnote",
+      "block_item": "List row",
+      "block_image": "Gallery image",
+      "caption": "Caption",
+      "image_fallback": "Bundled image filename",
+      "image_fallback_info": "Used when no image is chosen. A file in the theme assets folder.",
+      "link2_label": "Second link label",
+      "link2_url": "Second link",
+      "row_density": "Row spacing",
+      "row_density_standard": "Standard",
+      "row_density_compact": "Compact"
+    },
+    "note": {
+      "name": "Centre note",
+      "max_width": "Maximum width"
+    },
+    "cards": {
+      "name": "Link cards",
+      "columns": "Columns on large screens",
+      "block_card": "Card",
+      "meta": "Meta line"
+    },
+    "close": {
+      "name": "Closing call to action",
+      "show_rule": "Show a rule below this section",
+      "alt_label": "Secondary button label",
+      "alt_url": "Secondary button link"
     }
   }
 }

@@ -1,0 +1,84 @@
+{%- comment -%}
+  Spec strip — a ruled row of label/value pairs running the full width.
+
+  The same component the homepage hero carries under its copy, available as a
+  standalone band so any page can state its four hard facts straight after the
+  hero. Two columns on phones, four from large up.
+{%- endcomment -%}
+
+{%- if section.blocks.size > 0 -%}
+  <section
+    class="hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
+    {% if section.settings.anchor_id != blank %}
+      id="{{ section.settings.anchor_id }}"
+    {% endif %}
+    {{ section.shopify_attributes }}
+  >
+    {%- if section.settings.hidden_heading != blank -%}
+      <h2 class="hs-visually-hidden">{{ section.settings.hidden_heading }}</h2>
+    {%- endif -%}
+    <dl class="hs-shell-flush hs-specs">
+      {%- for block in section.blocks -%}
+        <div class="hs-specs__cell" {{ block.shopify_attributes }}>
+          <dt class="hs-eyebrow hs-faint">{{ block.settings.label }}</dt>
+          <dd class="hs-small-body hs-specs__value">{{ block.settings.value }}</dd>
+        </div>
+      {%- endfor -%}
+    </dl>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.specs.name",
+  "class": "hs-specs-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "ink", "label": "t:common.scheme_ink" },
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "blue", "label": "t:common.scheme_blue" }
+      ],
+      "default": "ink"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    {
+      "type": "text",
+      "id": "hidden_heading",
+      "label": "t:sections.specs.hidden_heading",
+      "info": "t:sections.specs.hidden_heading_info",
+      "default": "Product facts"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "t:sections.specs.block_spec",
+      "settings": [
+        { "type": "text", "id": "label", "label": "t:common.label", "default": "Membrane" },
+        { "type": "text", "id": "value", "label": "t:common.value", "default": "Porelle®" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.specs.name",
+      "blocks": [
+        { "type": "spec", "settings": { "label": "Membrane", "value": "Porelle®" } },
+        { "type": "spec", "settings": { "label": "Construction", "value": "Three-layer" } },
+        { "type": "spec", "settings": { "label": "Chemistry", "value": "PFOA free" } },
+        { "type": "spec", "settings": { "label": "Origin", "value": "UK company, UK stock" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

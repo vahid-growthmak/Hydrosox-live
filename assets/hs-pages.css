@@ -459,3 +459,494 @@
     background-color: var(--well);
   }
 }
+
+/* ==========================================================================
+   Shared page sections
+
+   Used by every page beyond the homepage: activity pages, technology, wudu,
+   policy pages and the rest. Layout only — colour, size and spacing resolve to
+   the same custom properties the homepage uses.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Page hero
+   -------------------------------------------------------------------------- */
+
+.hs-phero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: var(--hs-phero-min, 26rem);
+  overflow: hidden;
+}
+
+.hs-phero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--wash-deep);
+}
+
+.hs-phero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Two scrims: one lifting the copy off the foot, one off the left edge. */
+.hs-phero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hs-phero__scrim--v {
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--ink) calc(var(--hs-scrim, 0.7) * 100%), transparent) 0%,
+    transparent 72%
+  );
+}
+
+.hs-phero__scrim--h {
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--ink) calc(var(--hs-scrim, 0.55) * 100%), transparent) 0%,
+    transparent 68%
+  );
+}
+
+.hs-phero__pad {
+  padding-top: 6rem;
+  padding-bottom: 2.5rem;
+}
+
+@media (min-width: 40rem) {
+  .hs-phero__pad {
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .hs-phero__pad {
+    padding-bottom: 4rem;
+  }
+}
+
+.hs-phero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--blue);
+}
+
+.hs-phero__heading {
+  margin-top: 1.25rem;
+}
+
+.hs-phero__lede {
+  margin-top: 1.5rem;
+}
+
+.hs-phero__lede > :first-child {
+  margin-top: 0;
+}
+
+.hs-phero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 2rem;
+  margin-top: 2.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   Content columns
+   -------------------------------------------------------------------------- */
+
+.hs-cols__grid {
+  display: grid;
+  gap: 2.5rem 4rem;
+}
+
+@media (min-width: 64rem) {
+  .hs-cols__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .hs-cols__head-col {
+    grid-column: span 5;
+  }
+
+  .hs-cols__body-col {
+    grid-column: span 7;
+  }
+
+  /* The heading holds while the reader works down the column beside it. */
+  .hs-cols__head-sticky {
+    position: sticky;
+    top: calc(var(--chrome) + 2rem);
+  }
+}
+
+.hs-cols__heading {
+  margin-top: 1.25rem;
+}
+
+.hs-cols__head-note {
+  margin-top: 1.25rem;
+}
+
+.hs-cols__head-note > :first-child {
+  margin-top: 0;
+}
+
+.hs-cols__head-link {
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  font-weight: var(--weight-medium);
+  color: var(--eyebrow);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--eyebrow) 35%, transparent);
+  text-underline-offset: 5px;
+  transition: text-decoration-color var(--duration-press) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hs-cols__head-link:hover {
+    text-decoration-color: var(--eyebrow);
+  }
+}
+
+.hs-cols__head-link-icon {
+  flex-shrink: 0;
+}
+
+.hs-cols__lede > :first-child {
+  margin-top: 0;
+}
+
+/* ---- List variant ---- */
+
+.hs-cols__list {
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+/* With nothing above it the content starts at the top of its column, level
+   with the heading beside it. The margin is only there to clear a lede. */
+.hs-cols__list:first-child,
+.hs-cols__gallery:first-child,
+.hs-cols__prose:first-child {
+  margin-top: 0;
+}
+
+.hs-cols__row {
+  display: block;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (min-width: 64rem) {
+  .hs-cols__row {
+    padding-block: 1.75rem;
+  }
+}
+
+/* The number sits on its own line above the title rather than beside it, so
+   long titles keep the full column width. */
+.hs-cols__row-index {
+  display: block;
+}
+
+.hs-cols__row-index + .hs-cols__row-text .hs-cols__row-title {
+  margin-top: 0.75rem;
+}
+
+.hs-cols__row-text {
+  min-width: 0;
+}
+
+.hs-cols__row-body {
+  margin-top: 0.625rem;
+}
+
+.hs-cols__row-body > :first-child {
+  margin-top: 0;
+}
+
+.hs-cols__row-link {
+  margin-top: 0.75rem;
+  font-weight: var(--weight-medium);
+  color: var(--eyebrow);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+/* ---- Gallery variant ---- */
+
+.hs-cols__gallery {
+  display: grid;
+  gap: 1.25rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 40rem) {
+  .hs-cols__gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.hs-cols__shot {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--well-deep);
+}
+
+.hs-cols__shot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hs-cols__caption {
+  margin-top: 1rem;
+}
+
+/* ---- Prose variant ---- */
+
+.hs-cols__prose > :first-child {
+  margin-top: 0;
+}
+
+.hs-cols__footnote {
+  margin-top: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   Centre note
+   -------------------------------------------------------------------------- */
+
+.hs-note__inner {
+  max-width: var(--hs-note-max, 46rem);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.hs-note__heading {
+  margin-top: 1.25rem;
+}
+
+.hs-note__body {
+  margin-top: 1.5rem;
+  margin-inline: auto;
+}
+
+.hs-note__body > :first-child {
+  margin-top: 0;
+}
+
+.hs-note__footnote {
+  margin-top: 2rem;
+  margin-inline: auto;
+}
+
+.hs-note__footnote > :first-child {
+  margin-top: 0;
+}
+
+.hs-note__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   Link cards
+   -------------------------------------------------------------------------- */
+
+.hs-cards__head {
+  max-width: 44rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.hs-cards__heading {
+  margin-top: 1.25rem;
+}
+
+.hs-cards__lede {
+  margin-top: 1.25rem;
+}
+
+.hs-cards__lede > :first-child {
+  margin-top: 0;
+}
+
+.hs-cards__grid {
+  display: grid;
+  gap: 1.25rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 40rem) {
+  .hs-cards__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .hs-cards__grid {
+    grid-template-columns: repeat(var(--hs-cards-cols, 4), minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+}
+
+.hs-cards__item {
+  display: flex;
+}
+
+.hs-cards__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-xl);
+  transition:
+    transform var(--duration-drawer) var(--ease-out),
+    border-color var(--duration-drawer) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.hs-cards__card:hover {
+    transform: translateY(-0.25rem);
+    border-color: var(--rule-strong);
+  }
+}
+
+.hs-cards__media {
+  overflow: hidden;
+  background-color: var(--well-deep);
+}
+
+.hs-cards__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.hs-cards__card:hover .hs-cards__img {
+    transform: scale(1.04);
+  }
+}
+
+.hs-cards__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.75rem;
+}
+
+.hs-cards__text-group {
+  display: block;
+}
+
+.hs-cards__title {
+  display: block;
+  color: var(--on-surface);
+  transition: color var(--duration-press) var(--ease-out);
+}
+
+.hs-cards__arrow {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  color: var(--rule);
+  transition:
+    translate var(--duration-drawer) var(--ease-out),
+    color var(--duration-drawer) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.hs-cards__card:hover .hs-cards__title {
+    color: var(--blue);
+  }
+
+  a.hs-cards__card:hover .hs-cards__arrow {
+    color: var(--blue);
+    translate: 0.125rem -0.125rem;
+  }
+}
+
+.hs-cards__text {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.hs-cards__meta {
+  display: block;
+  margin-top: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   Closing CTA
+   -------------------------------------------------------------------------- */
+
+.hs-close__pad {
+  text-align: center;
+}
+
+.hs-close__heading {
+  margin-inline: auto;
+}
+
+.hs-close__body {
+  margin-top: 1.25rem;
+  margin-inline: auto;
+}
+
+.hs-close__body > :first-child {
+  margin-top: 0;
+}
+
+.hs-close__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.hs-cols__head-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  margin-top: 1.5rem;
+}
+
+/* Compact rows keep the tighter spacing at every width. */
+@media (min-width: 64rem) {
+  .hs-cols__list--compact .hs-cols__row {
+    padding-block: 1.5rem;
+  }
+}

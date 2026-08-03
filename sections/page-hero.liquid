@@ -1,0 +1,238 @@
+{%- comment -%}
+  Page hero — a full-bleed photograph with the message set over it.
+
+  Used by every page that is not the homepage. The image sits behind two
+  scrims: a vertical one so the copy stays legible over a busy photograph, and
+  a horizontal one so the right-hand side does not go flat. Both are strengths
+  the merchant can set, because how much scrim a photograph needs depends on
+  the photograph.
+{%- endcomment -%}
+
+{%- liquid
+  assign eyebrow = section.settings.eyebrow
+  assign index = section.settings.index_label
+-%}
+
+<section
+  class="hs-phero hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  style="--hs-phero-min: {{ section.settings.min_height }}rem;"
+  {{ section.shopify_attributes }}
+>
+  {%- if section.settings.image != blank -%}
+    {% render 'hs-image',
+      image: section.settings.image,
+      alt: section.settings.image_alt,
+      sizes: '100vw',
+      eager: true,
+      wrapper_class: 'hs-phero__media',
+      class: 'hs-phero__img',
+      position: section.settings.focal_point
+    %}
+  {%- elsif section.settings.image_fallback != blank -%}
+    <div class="hs-media hs-phero__media">
+      <img
+        class="hs-phero__img"
+        src="{{ section.settings.image_fallback | asset_url }}"
+        alt="{{ section.settings.image_alt | escape }}"
+        width="1672"
+        height="941"
+        fetchpriority="high"
+        decoding="async"
+        {% if section.settings.focal_point != blank %}
+          style="object-position: {{ section.settings.focal_point }};"
+        {% endif %}
+      >
+    </div>
+  {%- endif -%}
+
+  <span
+    class="hs-phero__scrim hs-phero__scrim--v"
+    aria-hidden="true"
+    style="--hs-scrim: {{ section.settings.scrim_vertical | divided_by: 100.0 }};"
+  ></span>
+  <span
+    class="hs-phero__scrim hs-phero__scrim--h"
+    aria-hidden="true"
+    style="--hs-scrim: {{ section.settings.scrim_horizontal | divided_by: 100.0 }};"
+  ></span>
+
+  <div class="hs-shell hs-phero__pad">
+    {%- if eyebrow != blank or index != blank -%}
+      <p class="hs-eyebrow hs-phero__eyebrow">
+        {%- if index != blank -%}
+          <span class="hs-tnum">{{ index }}</span>
+          <span aria-hidden="true">&mdash;</span>
+        {%- endif -%}
+        {{ eyebrow }}
+      </p>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h1 class="hs-h1 hs-phero__heading hs-measure-18 hs-balance">
+        {{- section.settings.heading -}}
+      </h1>
+    {%- endif -%}
+
+    {%- if section.settings.lede != blank -%}
+      <div class="hs-hero-body hs-phero__lede hs-measure-54 hs-pretty hs-muted">
+        {{ section.settings.lede }}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank or section.settings.link_label != blank -%}
+      <div class="hs-phero__actions">
+        {%- if section.settings.cta_label != blank -%}
+          {% render 'hs-button',
+            label: section.settings.cta_label,
+            href: section.settings.cta_url,
+            style: 'primary'
+          %}
+        {%- endif -%}
+        {%- if section.settings.link_label != blank -%}
+          <a class="hs-link hs-phero__link" href="{{ section.settings.link_url | default: '#' }}">
+            {{- section.settings.link_label -}}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.phero.name",
+  "class": "hs-phero-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "ink", "label": "t:common.scheme_ink" },
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "blue", "label": "t:common.scheme_blue" }
+      ],
+      "default": "ink"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "unit": "rem",
+      "label": "t:sections.phero.min_height",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    {
+      "type": "text",
+      "id": "index_label",
+      "label": "t:sections.phero.index_label",
+      "info": "t:sections.phero.index_label_info"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "A clear promise, in one line."
+    },
+    {
+      "type": "richtext",
+      "id": "lede",
+      "label": "t:common.lede"
+    },
+    {
+      "type": "header",
+      "content": "t:common.media"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:common.image"
+    },
+    {
+      "type": "text",
+      "id": "image_fallback",
+      "label": "t:sections.phero.image_fallback",
+      "info": "t:sections.phero.image_fallback_info"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "t:common.image_alt"
+    },
+    {
+      "type": "text",
+      "id": "focal_point",
+      "label": "t:sections.phero.focal_point",
+      "info": "t:sections.phero.focal_point_info",
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "scrim_vertical",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "t:sections.phero.scrim_vertical",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "scrim_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "t:sections.phero.scrim_horizontal",
+      "default": 55
+    },
+    {
+      "type": "header",
+      "content": "t:common.actions"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:common.cta_label",
+      "default": "Buy a pair"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "t:common.cta_url"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:common.link_label"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:common.link_url"
+    }
+  ],
+  "presets": [{ "name": "t:sections.phero.name" }]
+}
+{% endschema %}

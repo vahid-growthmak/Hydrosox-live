@@ -1,0 +1,114 @@
+{%- comment -%}
+  Centre note — a single centred statement.
+
+  Used where a page has to say one plain thing without a list or an image
+  competing with it: the limits band on an activity page, a scope caveat, a
+  short policy statement.
+{%- endcomment -%}
+
+<section
+  class="hs-note hs-scheme-{{ section.settings.color_scheme }}{% unless section.settings.hide_rule %} hs-border-b{% endunless %} hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-base">
+    <div class="hs-note__inner" style="--hs-note-max: {{ section.settings.max_width }}rem;">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="hs-h3 hs-note__heading hs-balance">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.body != blank -%}
+        <div class="hs-body hs-note__body hs-measure-58 hs-pretty hs-muted">
+          {{ section.settings.body }}
+        </div>
+      {%- endif -%}
+      {%- if section.settings.footnote != blank -%}
+        <div class="hs-caption hs-note__footnote hs-measure-52 hs-pretty hs-faint">
+          {{ section.settings.footnote }}
+        </div>
+      {%- endif -%}
+      {%- if section.settings.cta_label != blank or section.settings.link_label != blank -%}
+        <div class="hs-note__actions">
+          {%- if section.settings.cta_label != blank -%}
+            {% render 'hs-button',
+              label: section.settings.cta_label,
+              href: section.settings.cta_url,
+              style: 'primary'
+            %}
+          {%- endif -%}
+          {%- if section.settings.link_label != blank -%}
+            {% render 'hs-button',
+              label: section.settings.link_label,
+              href: section.settings.link_url,
+              style: 'outline'
+            %}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.note.name",
+  "class": "hs-note-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "blue", "label": "t:common.scheme_blue" },
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "blue"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_rule",
+      "label": "t:sections.cols.hide_rule",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 24,
+      "max": 64,
+      "step": 1,
+      "unit": "rem",
+      "label": "t:sections.note.max_width",
+      "default": 46
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    { "type": "text", "id": "eyebrow", "label": "t:common.eyebrow", "default": "What it will not do" },
+    { "type": "text", "id": "heading", "label": "t:common.heading", "default": "Where it stops." },
+    { "type": "richtext", "id": "body", "label": "t:common.body" },
+    { "type": "richtext", "id": "footnote", "label": "t:sections.cols.footnote" },
+    {
+      "type": "header",
+      "content": "t:common.actions"
+    },
+    { "type": "text", "id": "cta_label", "label": "t:common.cta_label" },
+    { "type": "url", "id": "cta_url", "label": "t:common.cta_url" },
+    { "type": "text", "id": "link_label", "label": "t:common.link_label" },
+    { "type": "url", "id": "link_url", "label": "t:common.link_url" }
+  ],
+  "presets": [{ "name": "t:sections.note.name" }]
+}
+{% endschema %}

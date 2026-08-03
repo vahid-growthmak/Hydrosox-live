@@ -1,0 +1,310 @@
+{%- comment -%}
+  Content columns — the workhorse content section.
+
+  A heading column that stays with the reader while a second column runs past
+  it. The right column renders one of three things, chosen by `layout`:
+
+  - list     ruled rows of title and body, optionally numbered
+  - gallery  a two-up grid of captioned images
+  - prose    a single block of rich text
+
+  This is the shape the design uses for almost every explanatory section, so
+  most pages are built from repeats of it rather than one-off sections.
+{%- endcomment -%}
+
+{%- liquid
+  assign layout = section.settings.layout | default: 'list'
+  assign items = section.blocks | where: 'type', 'item'
+  assign shots = section.blocks | where: 'type', 'image'
+  assign list_tag = 'ul'
+  if section.settings.numbered
+    assign list_tag = 'ol'
+  endif
+-%}
+
+<section
+  class="hs-cols hs-scheme-{{ section.settings.color_scheme }}{% unless section.settings.hide_rule %} hs-border-b{% endunless %} hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-base">
+    <div class="hs-cols__grid">
+      {%- comment -%} Heading column {%- endcomment -%}
+      <div class="hs-cols__head-col">
+        <div class="hs-cols__head-sticky">
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="hs-h2 hs-cols__heading hs-measure-18 hs-balance">
+              {{- section.settings.heading -}}
+            </h2>
+          {%- endif -%}
+          {%- if section.settings.head_note != blank -%}
+            <div class="hs-small-body hs-cols__head-note hs-measure-42 hs-pretty hs-muted">
+              {{ section.settings.head_note }}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.link_label != blank or section.settings.link2_label != blank -%}
+            <p class="hs-cols__head-links">
+              {%- if section.settings.link_label != blank -%}
+                <a class="hs-tap hs-small-body hs-cols__head-link" href="{{ section.settings.link_url | default: '#' }}">
+                  {{- section.settings.link_label -}}
+                </a>
+              {%- endif -%}
+              {%- if section.settings.link2_label != blank -%}
+                <a class="hs-tap hs-small-body hs-cols__head-link" href="{{ section.settings.link2_url | default: '#' }}">
+                  {{- section.settings.link2_label -}}
+                </a>
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- comment -%} Content column {%- endcomment -%}
+      <div class="hs-cols__body-col">
+        {%- if section.settings.lede != blank -%}
+          <div class="hs-body hs-cols__lede hs-measure-58 hs-pretty hs-muted">
+            {{ section.settings.lede }}
+          </div>
+        {%- endif -%}
+
+        {%- case layout -%}
+          {%- when 'gallery' -%}
+            {%- if shots.size > 0 -%}
+              <ul class="hs-cols__gallery hs-stagger" role="list">
+                {%- for block in shots -%}
+                  <li {{ block.shopify_attributes }}>
+                    {% render 'hs-image',
+                      image: block.settings.image,
+                      fallback: block.settings.image_fallback,
+                      alt: block.settings.image_alt,
+                      aspect: section.settings.gallery_aspect,
+                      sizes: '(min-width: 64rem) 30vw, (min-width: 40rem) 45vw, 100vw',
+                      wrapper_class: 'hs-cols__shot',
+                      class: 'hs-cols__shot-img'
+                    %}
+                    {%- if block.settings.caption != blank -%}
+                      <p class="hs-caption hs-cols__caption hs-pretty hs-muted">
+                        {{- block.settings.caption -}}
+                      </p>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+
+          {%- when 'prose' -%}
+            {%- if section.settings.prose != blank -%}
+              <div class="hs-body hs-cols__prose hs-rte hs-measure-58 hs-pretty">
+                {{ section.settings.prose }}
+              </div>
+            {%- endif -%}
+
+          {%- else -%}
+            {%- if items.size > 0 -%}
+              <{{ list_tag }} class="hs-cols__list hs-cols__list--{{ section.settings.row_density | default: 'standard' }} hs-stagger" role="list">
+                {%- for block in items -%}
+                  <li class="hs-cols__row" {{ block.shopify_attributes }}>
+                    {%- if section.settings.numbered -%}
+                      {% render 'hs-index-number',
+                        index: forloop.index0,
+                        size: 'label',
+                        class: 'hs-cols__row-index hs-faint'
+                      %}
+                    {%- endif -%}
+                    <div class="hs-cols__row-text">
+                      {%- if block.settings.title != blank -%}
+                        <h3 class="hs-h4 hs-cols__row-title">{{ block.settings.title }}</h3>
+                      {%- endif -%}
+                      {%- if block.settings.body != blank -%}
+                        <div class="hs-small-body hs-cols__row-body hs-measure-56 hs-pretty hs-muted">
+                          {{ block.settings.body }}
+                        </div>
+                      {%- endif -%}
+                      {%- if block.settings.link_label != blank -%}
+                        <a class="hs-tap hs-small-body hs-cols__row-link" href="{{ block.settings.link_url | default: '#' }}">
+                          {{- block.settings.link_label -}}
+                        </a>
+                      {%- endif -%}
+                    </div>
+                  </li>
+                {%- endfor -%}
+              </{{ list_tag }}>
+            {%- endif -%}
+        {%- endcase -%}
+
+        {%- if section.settings.footnote != blank -%}
+          <p class="hs-caption hs-cols__footnote hs-measure-52 hs-pretty hs-faint">
+            {{- section.settings.footnote -}}
+          </p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.cols.name",
+  "class": "hs-cols-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" },
+        { "value": "blue", "label": "t:common.scheme_blue" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:sections.cols.layout",
+      "options": [
+        { "value": "list", "label": "t:sections.cols.layout_list" },
+        { "value": "gallery", "label": "t:sections.cols.layout_gallery" },
+        { "value": "prose", "label": "t:sections.cols.layout_prose" }
+      ],
+      "default": "list"
+    },
+    {
+      "type": "checkbox",
+      "id": "numbered",
+      "label": "t:sections.cols.numbered",
+      "info": "t:sections.cols.numbered_info",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "row_density",
+      "label": "t:sections.cols.row_density",
+      "options": [
+        { "value": "standard", "label": "t:sections.cols.row_density_standard" },
+        { "value": "compact", "label": "t:sections.cols.row_density_compact" }
+      ],
+      "default": "standard"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_rule",
+      "label": "t:sections.cols.hide_rule",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.cols.heading_column"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "The problem"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "What this section is about."
+    },
+    {
+      "type": "richtext",
+      "id": "head_note",
+      "label": "t:sections.cols.head_note"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:common.link_label"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:common.link_url"
+    },
+    {
+      "type": "text",
+      "id": "link2_label",
+      "label": "t:sections.cols.link2_label"
+    },
+    {
+      "type": "url",
+      "id": "link2_url",
+      "label": "t:sections.cols.link2_url"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.cols.content_column"
+    },
+    {
+      "type": "richtext",
+      "id": "lede",
+      "label": "t:common.lede"
+    },
+    {
+      "type": "richtext",
+      "id": "prose",
+      "label": "t:sections.cols.prose",
+      "info": "t:sections.cols.prose_info"
+    },
+    {
+      "type": "text",
+      "id": "gallery_aspect",
+      "label": "t:sections.cols.gallery_aspect",
+      "info": "t:sections.cols.gallery_aspect_info",
+      "default": "4 / 5"
+    },
+    {
+      "type": "textarea",
+      "id": "footnote",
+      "label": "t:sections.cols.footnote"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "t:sections.cols.block_item",
+      "settings": [
+        { "type": "text", "id": "title", "label": "t:common.title", "default": "A point worth making" },
+        { "type": "richtext", "id": "body", "label": "t:common.body" },
+        { "type": "text", "id": "link_label", "label": "t:common.link_label" },
+        { "type": "url", "id": "link_url", "label": "t:common.link_url" }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "t:sections.cols.block_image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "t:common.image" },
+        {
+          "type": "text",
+          "id": "image_fallback",
+          "label": "t:sections.cols.image_fallback",
+          "info": "t:sections.cols.image_fallback_info"
+        },
+        { "type": "text", "id": "image_alt", "label": "t:common.image_alt" },
+        { "type": "text", "id": "caption", "label": "t:sections.cols.caption" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.cols.name",
+      "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }]
+    }
+  ]
+}
+{% endschema %}

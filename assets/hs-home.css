@@ -191,50 +191,50 @@
   }
 }
 
-.hs-hero__specs-wrap {
+.hs-specs-wrap {
   position: relative;
   border-top: 1px solid var(--rule);
 }
 
-.hs-hero__specs {
+.hs-specs {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.hs-hero__spec {
+.hs-specs__cell {
   padding: 1.25rem max(var(--gutter), env(safe-area-inset-right)) 1.25rem
     max(var(--gutter), env(safe-area-inset-left));
   border-color: var(--rule);
 }
 
 /* Two columns on small screens: rule between them, and above later rows. */
-.hs-hero__spec:not(:nth-child(2n)) {
+.hs-specs__cell:not(:nth-child(2n)) {
   border-right: 1px solid var(--rule);
 }
 
-.hs-hero__spec:nth-child(n + 3) {
+.hs-specs__cell:nth-child(n + 3) {
   border-top: 1px solid var(--rule);
 }
 
 @media (min-width: 64rem) {
-  .hs-hero__specs {
+  .hs-specs {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .hs-hero__spec:nth-child(n + 3) {
+  .hs-specs__cell:nth-child(n + 3) {
     border-top: 0;
   }
 
-  .hs-hero__spec:not(:last-child) {
+  .hs-specs__cell:not(:last-child) {
     border-right: 1px solid var(--rule);
   }
 
-  .hs-hero__spec:last-child {
+  .hs-specs__cell:last-child {
     border-right: 0;
   }
 }
 
-.hs-hero__spec-value {
+.hs-specs__value {
   margin-top: 0.5rem;
   font-weight: var(--weight-medium);
   letter-spacing: -0.01em;

@@ -1,0 +1,316 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "color_scheme": "ink",
+        "min_height": 36,
+        "index_label": "03",
+        "eyebrow": "Shop by activity",
+        "heading": "By hour ten it is not the rain.",
+        "lede": "<p>A good boot already keeps water out. What it also does, across a twelve-hour shift, is keep everything your foot produces on the inside of it.</p>",
+        "image_fallback": "activity-all-day-in-boots.webp",
+        "image_alt": "All Day in Boots in HydroSox waterproof socks",
+        "focal_point": "center",
+        "scrim_vertical": 70,
+        "scrim_horizontal": 55,
+        "cta_label": "Buy a pair",
+        "cta_url": "/products/hydrosox-waterproof-socks",
+        "link_label": "See how it is built",
+        "link_url": "/#construction"
+      }
+    },
+    "specs": {
+      "type": "spec-strip",
+      "settings": {
+        "color_scheme": "ink",
+        "hidden_heading": "Product facts"
+      },
+      "blocks": {
+        "f1": {
+          "type": "spec",
+          "settings": {
+            "label": "Membrane",
+            "value": "Porelle®"
+          }
+        },
+        "f2": {
+          "type": "spec",
+          "settings": {
+            "label": "Construction",
+            "value": "Three-layer"
+          }
+        },
+        "f3": {
+          "type": "spec",
+          "settings": {
+            "label": "Chemistry",
+            "value": "PFOA free"
+          }
+        },
+        "f4": {
+          "type": "spec",
+          "settings": {
+            "label": "Origin",
+            "value": "UK company, UK stock"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ]
+    },
+    "problem": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "row_density": "compact",
+        "eyebrow": "The problem",
+        "heading": "The problem changes shape after lunch.",
+        "lede": "<p>For the first few hours a waterproof boot is doing its job well. The longer it stays on, the more of what it is sealing in comes from the foot rather than from the weather.</p>"
+      },
+      "blocks": {
+        "p1": {
+          "type": "item",
+          "settings": {
+            "title": "Sweat has nowhere to go",
+            "body": "<p>A sealed boot with a soaked lining is wet whether or not it has rained. The dampness at the end of a shift usually is not weather.</p>"
+          }
+        },
+        "p2": {
+          "type": "item",
+          "settings": {
+            "title": "Wet skin is what blisters",
+            "body": "<p>Softened skin and a seam in the same place for ten hours is the mechanism. Dry skin takes far more rubbing before it gives.</p>"
+          }
+        },
+        "p3": {
+          "type": "item",
+          "settings": {
+            "title": "The boots go back on tomorrow",
+            "body": "<p>Work boots rarely get a full day to dry. Monday's damp lining is still there on Tuesday morning.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ]
+    },
+    "answers": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "ink",
+        "layout": "list",
+        "numbered": true,
+        "eyebrow": "What answers it",
+        "heading": "Built to move vapour, not only to block water.",
+        "head_note": "<p>The membrane works in both directions. On a long shift, the outward direction is the one that decides how the day ends.</p>",
+        "link_label": "The three layers, in section",
+        "link_url": "/#construction"
+      },
+      "blocks": {
+        "a1": {
+          "type": "item",
+          "settings": {
+            "title": "Breathable, not just waterproof",
+            "body": "<p>Porelle® is a waterproof-breathable laminate. Vapour from the foot moves out through it while liquid water cannot come in.</p>"
+          }
+        },
+        "a2": {
+          "type": "item",
+          "settings": {
+            "title": "The knit next to the skin",
+            "body": "<p>The inner layer is a soft knit that moves sweat off the foot and keeps the membrane itself off your skin.</p>"
+          }
+        },
+        "a3": {
+          "type": "item",
+          "settings": {
+            "title": "PFOA free, and stated",
+            "body": "<p>The chemistry is published rather than left unmentioned — which is worth something for a layer worn against skin ten hours a day.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ]
+    },
+    "inuse": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "gallery",
+        "eyebrow": "In use",
+        "heading": "The same pair, in the conditions this page is about.",
+        "head_note": "<p>Product imagery rather than a documentary shoot, so read it for what the sock is and where it goes — not as evidence. The checkable claim is the membrane.</p>",
+        "gallery_aspect": "4 / 5"
+      },
+      "blocks": {
+        "g1": {
+          "type": "image",
+          "settings": {
+            "caption": "Frame to come"
+          }
+        },
+        "g2": {
+          "type": "image",
+          "settings": {
+            "caption": "Frame to come"
+          }
+        },
+        "g3": {
+          "type": "image",
+          "settings": {
+            "caption": "Frame to come"
+          }
+        },
+        "g4": {
+          "type": "image",
+          "settings": {
+            "caption": "Frame to come"
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ]
+    },
+    "practice": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "eyebrow": "In practice",
+        "heading": "For a working week.",
+        "link_label": "Size guide",
+        "link_url": "/pages/size-guide",
+        "link2_label": "Care & washing",
+        "link2_url": "/pages/care-and-washing"
+      },
+      "blocks": {
+        "w1": {
+          "type": "item",
+          "settings": {
+            "title": "Rotate them",
+            "body": "<p>Two or three pairs across a week means each one dries properly between wears, which is also how you get the most life out of a membrane.</p>"
+          }
+        },
+        "w2": {
+          "type": "item",
+          "settings": {
+            "title": "Check the boot fit once",
+            "body": "<p>They sit a little thicker than a cotton work sock. Worth one shift's attention if your boots are already tight over the instep.</p>"
+          }
+        },
+        "w3": {
+          "type": "item",
+          "settings": {
+            "title": "No conditioner, no tumble dryer",
+            "body": "<p>Fabric conditioner blocks a membrane and dryer heat degrades one. A cool wash and air-drying is the whole routine.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "w1",
+        "w2",
+        "w3"
+      ]
+    },
+    "limits": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "blue",
+        "max_width": 46,
+        "eyebrow": "What it will not do",
+        "heading": "Stated plainly.",
+        "body": "<p>Breathable does not mean dry inside. Work hard enough, in a sealed boot, and you will produce sweat faster than any membrane can move it. This slows that down. It does not repeal it.</p>",
+        "footnote": "<p>Every limit we know about is published, not only this one. <a href=\"/#limits\">Read the rest</a>.</p>"
+      }
+    },
+    "siblings": {
+      "type": "link-cards",
+      "settings": {
+        "color_scheme": "paper",
+        "columns": 4,
+        "eyebrow": "Not your problem?",
+        "heading": "Same sock, different day."
+      },
+      "blocks": {
+        "s1": {
+          "type": "card",
+          "settings": {
+            "title": "Hiking",
+            "body": "Boots that wet out four hours into a long day in the hills.",
+            "link": "/pages/hiking"
+          }
+        },
+        "s2": {
+          "type": "card",
+          "settings": {
+            "title": "Walking",
+            "body": "Wet grass at eight in the morning, in shoes that were never waterproof.",
+            "link": "/pages/walking"
+          }
+        },
+        "s3": {
+          "type": "card",
+          "settings": {
+            "title": "Cycling & Commuting",
+            "body": "Overshoes that leak at the ankle, and shoes still wet at home time.",
+            "link": "/pages/cycling-and-commuting"
+          }
+        },
+        "s4": {
+          "type": "card",
+          "settings": {
+            "title": "Running & Trail",
+            "body": "Cold, soaked feet on winter miles, and blisters in a wet race.",
+            "link": "/pages/running-and-trail"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ]
+    },
+    "close": {
+      "type": "closing-cta",
+      "settings": {
+        "color_scheme": "paper",
+        "show_rule": false,
+        "heading": "One sock. Long shifts, five days a week.",
+        "cta_label": "Buy a pair",
+        "cta_url": "/products/hydrosox-waterproof-socks",
+        "alt_label": "How it compares",
+        "alt_url": "/#comparison"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "specs",
+    "problem",
+    "answers",
+    "inuse",
+    "practice",
+    "limits",
+    "siblings",
+    "close"
+  ]
+}

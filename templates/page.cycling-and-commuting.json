@@ -1,0 +1,318 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "color_scheme": "ink",
+        "min_height": 36,
+        "index_label": "04",
+        "eyebrow": "Shop by activity",
+        "heading": "The water comes off the road, not the sky.",
+        "lede": "<p>Overshoes seal everywhere except the one place the water actually arrives, and there is nowhere at the office to dry a cycling shoe before the ride home.</p>",
+        "image_fallback": "activity-cycling-and-commuting.webp",
+        "image_alt": "Cycling & Commuting in HydroSox waterproof socks",
+        "focal_point": "center",
+        "scrim_vertical": 70,
+        "scrim_horizontal": 55,
+        "cta_label": "Buy a pair",
+        "cta_url": "/products/hydrosox-waterproof-socks",
+        "link_label": "See how it is built",
+        "link_url": "/#construction"
+      }
+    },
+    "specs": {
+      "type": "spec-strip",
+      "settings": {
+        "color_scheme": "ink",
+        "hidden_heading": "Product facts"
+      },
+      "blocks": {
+        "f1": {
+          "type": "spec",
+          "settings": {
+            "label": "Membrane",
+            "value": "Porelle®"
+          }
+        },
+        "f2": {
+          "type": "spec",
+          "settings": {
+            "label": "Construction",
+            "value": "Three-layer"
+          }
+        },
+        "f3": {
+          "type": "spec",
+          "settings": {
+            "label": "Chemistry",
+            "value": "PFOA free"
+          }
+        },
+        "f4": {
+          "type": "spec",
+          "settings": {
+            "label": "Origin",
+            "value": "UK company, UK stock"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ]
+    },
+    "problem": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "row_density": "compact",
+        "eyebrow": "The problem",
+        "heading": "Two rides, one pair of shoes.",
+        "lede": "<p>A wet commute is not one event. It is a wet ride in, eight hours of a shoe not drying under a desk, and a wet ride home in the same kit.</p>"
+      },
+      "blocks": {
+        "p1": {
+          "type": "item",
+          "settings": {
+            "title": "Spray travels upward",
+            "body": "<p>Most of what soaks a rider comes off the front wheel and the road surface, aimed straight at the ankle and the shoe opening.</p>"
+          }
+        },
+        "p2": {
+          "type": "item",
+          "settings": {
+            "title": "Overshoes leak where they close",
+            "body": "<p>They are cut to go over a shoe, which means an opening at the ankle — which is exactly where the spray is going.</p>"
+          }
+        },
+        "p3": {
+          "type": "item",
+          "settings": {
+            "title": "Nothing dries at the office",
+            "body": "<p>A cycling shoe under a desk for eight hours is a cycling shoe that is still wet at half past five.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ]
+    },
+    "answers": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "ink",
+        "layout": "list",
+        "numbered": true,
+        "eyebrow": "What answers it",
+        "heading": "Waterproofing that stays on the foot.",
+        "head_note": "<p>Sealing a shoe from the outside is a losing geometry. This seals the foot instead, and the foot is inside all of it.</p>",
+        "link_label": "The three layers, in section",
+        "link_url": "/#construction"
+      },
+      "blocks": {
+        "a1": {
+          "type": "item",
+          "settings": {
+            "title": "The barrier is inside the shoe",
+            "body": "<p>Spray that gets through the shoe or past an overshoe stops at the sock. What the shoe does or does not do stops being the deciding factor.</p>"
+          }
+        },
+        "a2": {
+          "type": "item",
+          "settings": {
+            "title": "It works with the shoes you ride in",
+            "body": "<p>No cleat compatibility to check and nothing to stretch over a sole. It goes under whatever you already clip or lace into.</p>"
+          }
+        },
+        "a3": {
+          "type": "item",
+          "settings": {
+            "title": "It comes inside with you",
+            "body": "<p>You are not carrying a wet overshoe around the building. The sock comes off with the rest of your kit.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ]
+    },
+    "inuse": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "gallery",
+        "eyebrow": "In use",
+        "heading": "The same pair, in the conditions this page is about.",
+        "head_note": "<p>Product imagery rather than a documentary shoot, so read it for what the sock is and where it goes — not as evidence. The checkable claim is the membrane.</p>",
+        "gallery_aspect": "4 / 5"
+      },
+      "blocks": {
+        "g1": {
+          "type": "image",
+          "settings": {
+            "caption": "Stopped at the café, still in the kit",
+            "image_fallback": "activity-cycling-and-commuting-01.webp",
+            "image_alt": "Stopped at the café, still in the kit"
+          }
+        },
+        "g2": {
+          "type": "image",
+          "settings": {
+            "caption": "Frame to come"
+          }
+        },
+        "g3": {
+          "type": "image",
+          "settings": {
+            "caption": "Frame to come"
+          }
+        },
+        "g4": {
+          "type": "image",
+          "settings": {
+            "caption": "Frame to come"
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ]
+    },
+    "practice": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "eyebrow": "In practice",
+        "heading": "For the commute.",
+        "link_label": "Size guide",
+        "link_url": "/pages/size-guide",
+        "link2_label": "Care & washing",
+        "link2_url": "/pages/care-and-washing"
+      },
+      "blocks": {
+        "w1": {
+          "type": "item",
+          "settings": {
+            "title": "Crew height clears a shoe collar",
+            "body": "<p>The cuff sits above the top of most cycling and commuting shoes, so the sock's opening is not level with the shoe's.</p>"
+          }
+        },
+        "w2": {
+          "type": "item",
+          "settings": {
+            "title": "A spare pair in the bag is the whole plan",
+            "body": "<p>Change at the far end and the ride home starts dry. That is lighter and cheaper than a second pair of shoes.</p>"
+          }
+        },
+        "w3": {
+          "type": "item",
+          "settings": {
+            "title": "Cool wash, air dry",
+            "body": "<p>They are back in the rotation the next morning without needing a dryer.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "w1",
+        "w2",
+        "w3"
+      ]
+    },
+    "limits": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "blue",
+        "max_width": 46,
+        "eyebrow": "What it will not do",
+        "heading": "Where the geometry still wins.",
+        "body": "<p>Water above the cuff gets in, and once it is in, the sock holds it about as well as it kept it out. On a commute that means kerbside puddles rather than a flooded lane.</p>",
+        "footnote": "<p>Every limit we know about is published, not only this one. <a href=\"/#limits\">Read the rest</a>.</p>"
+      }
+    },
+    "siblings": {
+      "type": "link-cards",
+      "settings": {
+        "color_scheme": "paper",
+        "columns": 4,
+        "eyebrow": "Not your problem?",
+        "heading": "Same sock, different day."
+      },
+      "blocks": {
+        "s1": {
+          "type": "card",
+          "settings": {
+            "title": "Hiking",
+            "body": "Boots that wet out four hours into a long day in the hills.",
+            "link": "/pages/hiking"
+          }
+        },
+        "s2": {
+          "type": "card",
+          "settings": {
+            "title": "Walking",
+            "body": "Wet grass at eight in the morning, in shoes that were never waterproof.",
+            "link": "/pages/walking"
+          }
+        },
+        "s3": {
+          "type": "card",
+          "settings": {
+            "title": "All Day in Boots",
+            "body": "Boots that keep the rain out and then seal the sweat in.",
+            "link": "/pages/all-day-in-boots"
+          }
+        },
+        "s4": {
+          "type": "card",
+          "settings": {
+            "title": "Running & Trail",
+            "body": "Cold, soaked feet on winter miles, and blisters in a wet race.",
+            "link": "/pages/running-and-trail"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ]
+    },
+    "close": {
+      "type": "closing-cta",
+      "settings": {
+        "color_scheme": "paper",
+        "show_rule": false,
+        "heading": "One sock. No drying option at the other end.",
+        "cta_label": "Buy a pair",
+        "cta_url": "/products/hydrosox-waterproof-socks",
+        "alt_label": "How it compares",
+        "alt_url": "/#comparison"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "specs",
+    "problem",
+    "answers",
+    "inuse",
+    "practice",
+    "limits",
+    "siblings",
+    "close"
+  ]
+}

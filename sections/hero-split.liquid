@@ -92,12 +92,12 @@
 
     {%- comment -%} Spec strip {%- endcomment -%}
     {%- if section.blocks.size > 0 -%}
-      <div class="hs-hero__specs-wrap">
-        <dl class="hs-shell-flush hs-hero__specs">
+      <div class="hs-specs-wrap">
+        <dl class="hs-shell-flush hs-specs">
           {%- for block in section.blocks -%}
-            <div class="hs-hero__spec" {{ block.shopify_attributes }}>
+            <div class="hs-specs__cell" {{ block.shopify_attributes }}>
               <dt class="hs-eyebrow hs-faint">{{ block.settings.label }}</dt>
-              <dd class="hs-small-body hs-hero__spec-value">{{ block.settings.value }}</dd>
+              <dd class="hs-small-body hs-specs__value">{{ block.settings.value }}</dd>
             </div>
           {%- endfor -%}
         </dl>

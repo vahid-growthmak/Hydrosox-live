@@ -1,0 +1,176 @@
+{%- comment -%}
+  Link cards — a centred heading over a row of compact cards.
+
+  The sibling-activity row at the foot of an activity page, and the same shape
+  wherever a page has to offer a short set of onward routes: recovery links on
+  a 404, self-service routes on a contact page, related guides.
+
+  Cards are text-only by default and take an optional image, so the same
+  section serves both a tight cross-link row and a richer teaser grid.
+{%- endcomment -%}
+
+{%- liquid
+  assign cards = section.blocks | where: 'type', 'card'
+  assign card_count = cards | size
+  assign columns = section.settings.columns | default: 4
+-%}
+
+{%- if card_count > 0 -%}
+  <section
+    class="hs-cards hs-scheme-{{ section.settings.color_scheme }}{% unless section.settings.hide_rule %} hs-border-b{% endunless %} hs-anchor"
+    {% if section.settings.anchor_id != blank %}
+      id="{{ section.settings.anchor_id }}"
+    {% endif %}
+    style="--hs-cards-cols: {{ columns }};"
+    {{ section.shopify_attributes }}
+  >
+    <div class="hs-shell hs-pace-base">
+      {%- if section.settings.eyebrow != blank or section.settings.heading != blank -%}
+        <div class="hs-cards__head">
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="hs-h3 hs-cards__heading hs-balance">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.lede != blank -%}
+            <div class="hs-small-body hs-cards__lede hs-pretty hs-muted">
+              {{ section.settings.lede }}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <ul class="hs-cards__grid hs-stagger" role="list">
+        {%- for block in cards -%}
+          {%- liquid
+            assign has_link = false
+            if block.settings.link != blank
+              assign has_link = true
+            endif
+            assign tag = 'div'
+            if has_link
+              assign tag = 'a'
+            endif
+          -%}
+          <li class="hs-reveal hs-cards__item" {{ block.shopify_attributes }}>
+            <{{ tag }}
+              class="hs-cards__card"
+              {% if has_link %}
+                href="{{ block.settings.link }}"
+              {% endif %}
+            >
+              {%- if block.settings.image != blank or block.settings.image_fallback != blank -%}
+                {% render 'hs-image',
+                  image: block.settings.image,
+                  fallback: block.settings.image_fallback,
+                  alt: block.settings.image_alt,
+                  aspect: '16 / 9',
+                  sizes: '(min-width: 64rem) 24vw, (min-width: 40rem) 45vw, 100vw',
+                  wrapper_class: 'hs-cards__media',
+                  class: 'hs-cards__img'
+                %}
+              {%- endif -%}
+
+              <span class="hs-cards__body">
+                <span class="hs-cards__text-group">
+                  <span class="hs-h4 hs-cards__title">{{ block.settings.title }}</span>
+                  {%- if block.settings.body != blank -%}
+                    <span class="hs-small-body hs-cards__text hs-pretty hs-muted">
+                      {{- block.settings.body -}}
+                    </span>
+                  {%- endif -%}
+                  {%- if block.settings.meta != blank -%}
+                    <span class="hs-eyebrow hs-cards__meta hs-faint">{{ block.settings.meta }}</span>
+                  {%- endif -%}
+                </span>
+                {%- comment -%}
+                  The arrow settles at the foot of the card, so a row of cards
+                  with different amounts of copy still lines its arrows up.
+                {%- endcomment -%}
+                {%- if has_link -%}
+                  {% render 'hs-icon', icon: 'arrow-up-right', size: 20, class: 'hs-cards__arrow' %}
+                {%- endif -%}
+              </span>
+            </{{ tag }}>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.cards.name",
+  "class": "hs-cards-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" },
+        { "value": "blue", "label": "t:common.scheme_blue" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "t:sections.cards.columns",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_rule",
+      "label": "t:sections.cols.hide_rule",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    { "type": "text", "id": "eyebrow", "label": "t:common.eyebrow", "default": "Not your problem?" },
+    { "type": "text", "id": "heading", "label": "t:common.heading", "default": "Same sock, different day." },
+    { "type": "richtext", "id": "lede", "label": "t:common.lede" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "t:sections.cards.block_card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "t:common.title", "default": "Walking" },
+        { "type": "textarea", "id": "body", "label": "t:common.body" },
+        { "type": "text", "id": "meta", "label": "t:sections.cards.meta" },
+        { "type": "url", "id": "link", "label": "t:common.link_url" },
+        { "type": "image_picker", "id": "image", "label": "t:common.image" },
+        {
+          "type": "text",
+          "id": "image_fallback",
+          "label": "t:sections.cols.image_fallback",
+          "info": "t:sections.cols.image_fallback_info"
+        },
+        { "type": "text", "id": "image_alt", "label": "t:common.image_alt" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.cards.name",
+      "blocks": [{ "type": "card" }, { "type": "card" }, { "type": "card" }, { "type": "card" }]
+    }
+  ]
+}
+{% endschema %}

@@ -1,8 +1,458 @@
 {
   "sections": {
-    "main": {
-      "type": "main-product"
+    "buy": {
+      "type": "buy-widget",
+      "blocks": {
+        "c1": {
+          "type": "colour",
+          "settings": {
+            "value": "Black",
+            "colour_one": "#111111"
+          }
+        },
+        "c2": {
+          "type": "colour",
+          "settings": {
+            "value": "Black / Grey",
+            "colour_one": "#111111",
+            "colour_two": "#8b9096"
+          }
+        },
+        "c3": {
+          "type": "colour",
+          "settings": {
+            "value": "Black / Navy",
+            "colour_one": "#111111",
+            "colour_two": "#1f3160"
+          }
+        },
+        "c4": {
+          "type": "colour",
+          "settings": {
+            "value": "White",
+            "colour_one": "#f4f6f8"
+          }
+        },
+        "z1": {
+          "type": "size",
+          "settings": {
+            "value": "S",
+            "sublabel": "UK 3-5"
+          }
+        },
+        "z2": {
+          "type": "size",
+          "settings": {
+            "value": "M",
+            "sublabel": "UK 6-8"
+          }
+        },
+        "z3": {
+          "type": "size",
+          "settings": {
+            "value": "L",
+            "sublabel": "UK 9-11"
+          }
+        },
+        "z4": {
+          "type": "size",
+          "settings": {
+            "value": "XL",
+            "sublabel": "UK 12-14"
+          }
+        },
+        "t1": {
+          "type": "tier",
+          "settings": {
+            "label": "Single pair",
+            "quantity": 1,
+            "discount": 0
+          }
+        },
+        "t2": {
+          "type": "tier",
+          "settings": {
+            "label": "Two pairs",
+            "quantity": 2,
+            "discount": 3.01
+          }
+        },
+        "t3": {
+          "type": "tier",
+          "settings": {
+            "label": "Three pairs",
+            "quantity": 3,
+            "discount": 7.01
+          }
+        },
+        "t4": {
+          "type": "tier",
+          "settings": {
+            "label": "Four pairs",
+            "quantity": 4,
+            "discount": 12.01
+          }
+        },
+        "t5": {
+          "type": "tier",
+          "settings": {
+            "label": "Five pairs",
+            "quantity": 5,
+            "discount": 20.01
+          }
+        },
+        "r1": {
+          "type": "trust",
+          "settings": {
+            "label": "Delivery",
+            "value": "Free UK delivery on two pairs or more"
+          }
+        },
+        "r2": {
+          "type": "trust",
+          "settings": {
+            "label": "Dispatch",
+            "value": "UK company, UK warehouse"
+          }
+        },
+        "r3": {
+          "type": "trust",
+          "settings": {
+            "label": "Checkout",
+            "value": "Guest — no account required"
+          }
+        },
+        "r4": {
+          "type": "trust",
+          "settings": {
+            "label": "Payment",
+            "value": "Visa · Mastercard · American Express · Apple Pay · Google Pay · Shop Pay"
+          }
+        },
+        "l1": {
+          "type": "link",
+          "settings": {
+            "label": "Full product details",
+            "use_product_url": true
+          }
+        },
+        "l2": {
+          "type": "link",
+          "settings": {
+            "label": "How it is built",
+            "link": "/#construction"
+          }
+        },
+        "l3": {
+          "type": "link",
+          "settings": {
+            "label": "Delivery and sizing",
+            "link": "/#faq"
+          }
+        },
+        "g1": {
+          "type": "guide_row",
+          "settings": {
+            "size": "S",
+            "foot_length": "22.0 - 24.0 cm",
+            "uk_shoe": "UK 3-5"
+          }
+        },
+        "g2": {
+          "type": "guide_row",
+          "settings": {
+            "size": "M",
+            "foot_length": "24.5 - 26.5 cm",
+            "uk_shoe": "UK 6-8"
+          }
+        },
+        "g3": {
+          "type": "guide_row",
+          "settings": {
+            "size": "L",
+            "foot_length": "27.0 - 29.0 cm",
+            "uk_shoe": "UK 9-11"
+          }
+        },
+        "g4": {
+          "type": "guide_row",
+          "settings": {
+            "size": "XL",
+            "foot_length": "29.5 - 32.0 cm",
+            "uk_shoe": "UK 12-14"
+          }
+        },
+        "n1": {
+          "type": "guide_note",
+          "settings": {
+            "label": "How to measure",
+            "body": "Stand on a sheet of paper with your heel to a wall, mark the tip of your longest toe, and measure heel to mark."
+          }
+        },
+        "n2": {
+          "type": "guide_note",
+          "settings": {
+            "label": "Between two sizes",
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit — a size down grips the toes and shortens the life of the membrane."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "z1",
+        "z2",
+        "z3",
+        "z4",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "l1",
+        "l2",
+        "l3",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "n1",
+        "n2"
+      ],
+      "settings": {
+        "product": "hydrosox-waterproof-socks",
+        "color_scheme": "paper",
+        "anchor_id": "buy",
+        "eyebrow": "What it is",
+        "heading": "Two decisions and a quantity.",
+        "lede": "<p>One product, one page, one price that does not change depending on how you found us.</p>",
+        "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
+        "colour_option_name": "Colour",
+        "size_option_name": "Size",
+        "quantity_label": "Quantity",
+        "default_quantity": 2,
+        "add_label": "Add to cart",
+        "save_label": "Save",
+        "per_unit_label": "per pair",
+        "guide_label": "Size guide",
+        "guide_heading": "Size guide",
+        "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_col_size": "Size",
+        "guide_col_length": "Foot length",
+        "guide_col_shoe": "UK shoe",
+        "guide_link_label": "The full sizing and fit guide",
+        "guide_close_label": "Close"
+      }
+    },
+    "about": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "media",
+        "anchor_id": "what-it-is",
+        "eyebrow": "What it is",
+        "heading": "A membrane, sealed inside a knitted sock.",
+        "head_note": "<p>A crew-height sock with a waterproof-breathable membrane sealed between two knitted layers. One height, one construction, sized in bands rather than by gender.</p>",
+        "link_label": "The three layers, in section",
+        "link_url": "/#construction",
+        "media_fallback": "hydrosox-colourways.jpg",
+        "media_alt": "Four HydroSox colourways standing unsupported"
+      }
+    },
+    "detail": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "detail",
+        "eyebrow": "In detail",
+        "heading": "The specification, in full.",
+        "lede": "<p>Folded away so the page stays short. Nothing here contradicts anything above it.</p>"
+      },
+      "blocks": {
+        "s1": {
+          "type": "question",
+          "settings": {
+            "question": "Three-layer construction",
+            "answer": "<p>A knitted lining next to the skin, a licensed Porelle® waterproof-breathable membrane, and a knitted outer that takes the abrasion. Bonded, not stitched together.</p>"
+          }
+        },
+        "s2": {
+          "type": "question",
+          "settings": {
+            "question": "What it will not do",
+            "answer": "<p>Water over the cuff still gets in, and no waterproof sock behaves otherwise. Every limit we know about is published rather than left for you to find.</p>"
+          }
+        },
+        "s3": {
+          "type": "question",
+          "settings": {
+            "question": "Materials and care",
+            "answer": "<p>A cool machine wash. No fabric conditioner and no tumble dryer — one coats a membrane and the other degrades it.</p>"
+          }
+        },
+        "s4": {
+          "type": "question",
+          "settings": {
+            "question": "Shipping, returns and warranty",
+            "answer": "<p>Free UK delivery on two pairs or more. The full terms are published on their own pages as each one is confirmed rather than stated early.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ]
+    },
+    "activities": {
+      "type": "link-cards",
+      "settings": {
+        "color_scheme": "paper",
+        "columns": 3,
+        "anchor_id": "activities",
+        "eyebrow": "Where it gets used",
+        "heading": "Same sock, different problem."
+      },
+      "blocks": {
+        "a1": {
+          "type": "card",
+          "settings": {
+            "title": "Hiking",
+            "body": "Boots that wet out four hours into a long day in the hills.",
+            "link": "/pages/hiking"
+          }
+        },
+        "a2": {
+          "type": "card",
+          "settings": {
+            "title": "Walking",
+            "body": "Wet grass at eight in the morning, in shoes that were never waterproof.",
+            "link": "/pages/walking"
+          }
+        },
+        "a3": {
+          "type": "card",
+          "settings": {
+            "title": "All Day in Boots",
+            "body": "Boots that keep the rain out and then seal the sweat in.",
+            "link": "/pages/all-day-in-boots"
+          }
+        },
+        "a4": {
+          "type": "card",
+          "settings": {
+            "title": "Cycling & Commuting",
+            "body": "Overshoes that leak at the ankle, and shoes still wet at home time.",
+            "link": "/pages/cycling-and-commuting"
+          }
+        },
+        "a5": {
+          "type": "card",
+          "settings": {
+            "title": "Running & Trail",
+            "body": "Cold, soaked feet on winter miles, and blisters in a wet race.",
+            "link": "/pages/running-and-trail"
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3",
+        "a4",
+        "a5"
+      ]
+    },
+    "questions": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Are these actually waterproof, or just water resistant?",
+            "answer": "<p>Waterproof. The middle layer is a Porelle® membrane — a licensed third-party laminate, not a name we invented — sealed inside a three-layer knit. Water that goes in over the top of the cuff is inside the sock, and no waterproof sock behaves otherwise.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Will my feet still sweat?",
+            "answer": "<p>If you work hard enough, yes. The membrane moves vapour out, which delays the point at which the foot is wet from the inside. It does not repeal it. Breathable and dry are not the same word.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Do they replace waterproof boots?",
+            "answer": "<p>No. They are one component of a system. If your footwear is wrong for the ground you are on, a sock will not fix it.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "What size should I order?",
+            "answer": "<p>Four bands: S covers UK 3-5, M covers UK 6-8, L covers UK 9-11, XL covers UK 12-14. The size guide opens over the buy widget without leaving the page, and it is measurement-led — shoe sizing is not consistent between brands.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "How much is delivery?",
+            "answer": "<p>Free UK delivery on two pairs or more. On a single pair, delivery is charged at checkout and shown before you pay. No delivery speed is printed anywhere on this site, because we will not promise one that confirmed stock cannot support.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Why are there no reviews on this site?",
+            "answer": "<p>Because there are none yet. HydroSox is new, and a rating with nothing behind it is worth nothing. When there is real review volume it will be published here — including the reviews that do not flatter us.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "Who am I buying from?",
+            "answer": "<p>HydroSox, a UK registered company at 399-405 Oxford Street, Mayfair, London W1C 2BU. The phone number and email are published on every page of this site, not held behind a contact form.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7"
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "questions",
+        "one_at_a_time": false,
+        "eyebrow": "Questions",
+        "heading": "The things people ask before they buy.",
+        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/#about",
+        "cta_label": "Buy a pair",
+        "cta_link": "/#buy",
+        "cta_note": "Two decisions and a quantity. No account needed."
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "buy",
+    "about",
+    "detail",
+    "activities",
+    "questions"
+  ]
 }

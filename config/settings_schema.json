@@ -26,6 +26,47 @@
         "default": 108
       },
       {
+        "type": "range",
+        "id": "logo_height_mobile",
+        "min": 14,
+        "max": 56,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings.brand.logo_height_mobile",
+        "default": 24
+      },
+      {
+        "type": "range",
+        "id": "logo_height",
+        "min": 14,
+        "max": 64,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings.brand.logo_height",
+        "info": "t:settings.brand.logo_height_info",
+        "default": 28
+      },
+      {
+        "type": "range",
+        "id": "logo_height_footer",
+        "min": 12,
+        "max": 56,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings.brand.logo_height_footer",
+        "default": 22
+      },
+      {
+        "type": "range",
+        "id": "logo_footer_opacity",
+        "min": 30,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "t:settings.brand.logo_footer_opacity",
+        "default": 75
+      },
+      {
         "type": "image_picker",
         "id": "logo_inverse",
         "label": "t:settings.brand.logo_inverse",

@@ -50,6 +50,16 @@
     });
   };
 
+  /*
+    Safety net. Content must never depend on an animation firing: if the
+    observer has not reported anything in a few seconds — a broken or throttled
+    implementation, a background tab that never composites — everything is shown
+    regardless. Losing the entrance animation is fine; losing the page is not.
+  */
+  window.setTimeout(() => {
+    document.querySelectorAll(SELECTOR).forEach((el) => el.classList.add('is-revealed'));
+  }, 3000);
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => observe(), { once: true });
   } else {

@@ -91,6 +91,11 @@
   # ---------- Layout ----------
   assign chrome = settings.chrome_height | default: 104 | divided_by: 16.0
   assign shell = settings.shell_max | default: 1600
+  assign logo_h_sm = settings.logo_height_mobile | default: 24 | divided_by: 16.0
+  assign logo_h_lg = settings.logo_height | default: 28 | divided_by: 16.0
+  assign logo_h_ft = settings.logo_height_footer | default: 22 | divided_by: 16.0
+  assign logo_op_ft = settings.logo_footer_opacity | default: 75 | divided_by: 100.0
+
   assign g_base = settings.gutter_base | default: 16 | divided_by: 16.0
   assign g_sm = settings.gutter_sm | default: 20 | divided_by: 16.0
   assign g_md = settings.gutter_md | default: 32 | divided_by: 16.0
@@ -279,6 +284,9 @@
     --chrome: {{ chrome }}rem;
     --shell-max: {{ shell }}px;
     --gutter: {{ g_base }}rem;
+    --logo-height: {{ logo_h_sm }}rem;
+    --logo-height-footer: {{ logo_h_ft }}rem;
+    --logo-opacity-footer: {{ logo_op_ft }};
 
     /* ---------- Vertical rhythm ---------- */
     --pace-tight: clamp({{ pt_lo }}rem, {{ pt_vw }}vw, {{ pt_hi }}rem);
@@ -318,6 +326,11 @@
   }
   @media (min-width: 80rem) {
     :root { --gutter: {{ g_xl }}rem; }
+  }
+
+  {%- comment -%} The logo steps up once there is room beside the navigation. {%- endcomment -%}
+  @media (min-width: 40rem) {
+    :root { --logo-height: {{ logo_h_lg }}rem; }
   }
 
   {%- unless motion_on -%}

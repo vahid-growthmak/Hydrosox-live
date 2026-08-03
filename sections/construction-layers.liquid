@@ -12,14 +12,29 @@
 {%- liquid
   assign layers = section.blocks | where: 'type', 'layer'
   assign layer_count = layers | size
+
+  # The frame sequence. Names are built from the prefix plus a three-digit
+  # index, so assets/<prefix>000.<ext> upwards.
+  assign frame_count = section.settings.frame_count | default: 0
+  assign frame_prefix = section.settings.frame_prefix | default: 'hs-layer-frame-'
+  assign frame_ext = section.settings.frame_ext | default: 'webp'
+  assign first_frame = frame_prefix | append: '000.' | append: frame_ext
 -%}
 
-{% style %}
-  #shopify-section-{{ section.id }} .hs-layers__track {
-    --hs-separation: {{ section.settings.separation }}%;
-    --hs-tilt: {{ section.settings.tilt }}deg;
-  }
-{% endstyle %}
+{%- if frame_count > 0 -%}
+  {%- liquid
+    assign frame_last = frame_count | minus: 1
+  -%}
+  {%- capture frame_json -%}
+    [
+    {%- for i in (0..frame_last) -%}
+      {%- assign pad = i | prepend: '00' | slice: -3, 3 -%}
+      {%- assign name = frame_prefix | append: pad | append: '.' | append: frame_ext -%}
+      "{{ name | asset_url }}"{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+    ]
+  {%- endcapture -%}
+{%- endif -%}
 
 <section
   class="hs-layers hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
@@ -58,42 +73,57 @@
         class="hs-layers__track"
         style="--hs-track-height: {{ section.settings.track_height }}svh;"
         data-count="{{ layer_count }}"
+        data-frame-count="{{ frame_count }}"
       >
         <div class="hs-layers__pin">
           <div class="hs-layers__grid">
-            {%- comment -%} Layered visual {%- endcomment -%}
+            {%- comment -%}
+              Exploded visual — a frame sequence scrubbed by scroll position.
+              The frames live in assets/ under a shared prefix, so the whole
+              sequence can be swapped by uploading a new set under the same
+              names and setting the count to match.
+            {%- endcomment -%}
             <div class="hs-layers__visual-col">
-              <div class="hs-layers__stage">
-                {%- for block in layers -%}
-                  {%- liquid
-                    assign depth = forloop.index0
-                    assign from_middle = depth | minus: 1
-                  -%}
-                  <div
-                    class="hs-layers__plane"
-                    data-hs-plane="{{ depth }}"
-                    style="
-                      --hs-plane-index: {{ depth }};
-                      --hs-plane-offset: {{ from_middle }};
-                      --hs-plane-z: {{ layer_count | minus: depth }};
-                      {% if block.settings.tint != blank %}--hs-plane-tint: {{ block.settings.tint }};{% endif %}
-                    "
-                    {{ block.shopify_attributes }}
+              <div
+                class="hs-layers__stage"
+                {% if section.settings.stage_background != blank %}
+                  style="background-color: {{ section.settings.stage_background }};"
+                {% endif %}
+              >
+                {%- if frame_count > 0 -%}
+                  {%- comment -%}
+                    The first frame is a plain <img> so the stage is filled
+                    immediately and still reads without JavaScript. It is
+                    hidden once the canvas has painted.
+                  {%- endcomment -%}
+                  <img
+                    class="hs-layers__first"
+                    data-hs-first
+                    src="{{ first_frame | asset_url }}"
+                    alt="{{ section.settings.frame_alt | escape }}"
+                    width="{{ section.settings.frame_width }}"
+                    height="{{ section.settings.frame_height }}"
+                    fetchpriority="high"
+                    decoding="async"
                   >
-                    {%- if block.settings.image != blank -%}
-                      {% render 'hs-image',
-                        image: block.settings.image,
-                        alt: block.settings.image_alt,
-                        sizes: '(min-width: 64rem) 52vw, 100vw',
-                        wrapper_class: 'hs-layers__plane-media',
-                        class: 'hs-layers__plane-img'
-                      %}
-                    {%- else -%}
-                      <span class="hs-layers__plane-fill" aria-hidden="true"></span>
-                    {%- endif -%}
-                    <span class="hs-label hs-layers__plane-tag">{{ block.settings.heading }}</span>
-                  </div>
-                {%- endfor -%}
+                  <canvas
+                    class="hs-layers__canvas"
+                    data-hs-canvas
+                    width="{{ section.settings.frame_width }}"
+                    height="{{ section.settings.frame_height }}"
+                    aria-hidden="true"
+                  ></canvas>
+                  <script type="application/json" data-hs-frames>{{ frame_json }}</script>
+                {%- else -%}
+                  {%- comment -%} No sequence set — fall back to a still. {%- endcomment -%}
+                  {% render 'hs-image',
+                    image: section.settings.fallback_image,
+                    alt: section.settings.frame_alt,
+                    sizes: '(min-width: 64rem) 52vw, 100vw',
+                    wrapper_class: 'hs-layers__still',
+                    class: 'hs-layers__still-img'
+                  %}
+                {%- endif -%}
               </div>
             </div>
 
@@ -236,26 +266,69 @@
       "default": 320
     },
     {
-      "type": "range",
-      "id": "separation",
-      "min": 0,
-      "max": 40,
-      "step": 1,
-      "unit": "%",
-      "label": "t:sections.layers.separation",
-      "info": "t:sections.layers.separation_info",
-      "default": 22
+      "type": "header",
+      "content": "t:sections.layers.sequence"
     },
     {
       "type": "range",
-      "id": "tilt",
+      "id": "frame_count",
       "min": 0,
-      "max": 24,
-      "step": 1,
-      "unit": "deg",
-      "label": "t:sections.layers.tilt",
-      "info": "t:sections.layers.tilt_info",
-      "default": 8
+      "max": 200,
+      "step": 2,
+      "label": "t:sections.layers.frame_count",
+      "info": "t:sections.layers.frame_count_info",
+      "default": 100
+    },
+    {
+      "type": "text",
+      "id": "frame_prefix",
+      "label": "t:sections.layers.frame_prefix",
+      "info": "t:sections.layers.frame_prefix_info",
+      "default": "hs-layer-frame-"
+    },
+    {
+      "type": "text",
+      "id": "frame_ext",
+      "label": "t:sections.layers.frame_ext",
+      "default": "webp"
+    },
+    {
+      "type": "text",
+      "id": "frame_alt",
+      "label": "t:sections.layers.frame_alt",
+      "default": "A HydroSox sock separating into its three layers"
+    },
+    {
+      "type": "range",
+      "id": "frame_width",
+      "min": 320,
+      "max": 2560,
+      "step": 40,
+      "unit": "px",
+      "label": "t:sections.layers.frame_width",
+      "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "frame_height",
+      "min": 180,
+      "max": 1440,
+      "step": 20,
+      "unit": "px",
+      "label": "t:sections.layers.frame_height",
+      "default": 720
+    },
+    {
+      "type": "color",
+      "id": "stage_background",
+      "label": "t:sections.layers.stage_background",
+      "default": "#f0ede8"
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "t:sections.layers.fallback_image",
+      "info": "t:sections.layers.fallback_image_info"
     }
   ],
   "blocks": [

@@ -1170,61 +1170,38 @@
   overflow: hidden;
   border-radius: var(--radius-lg);
   background-color: var(--plate);
-  perspective: 1200px;
 }
 
-.hs-layers__plane {
+/*
+  The sequence is drawn into a canvas stretched over the stage. The first frame
+  sits underneath as an ordinary image so the stage is never empty — including
+  when JavaScript never runs — and is faded out once the canvas has painted.
+*/
+.hs-layers__canvas,
+.hs-layers__first {
   position: absolute;
-  inset: 12% 10%;
-  z-index: var(--hs-plane-z, 1);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: 0 12px 24px -12px color-mix(in srgb, var(--ink) 45%, transparent);
-  transform-style: preserve-3d;
-  /*
-    Scroll progress drives how far this plane travels from the stack's middle,
-    how far it tilts, and how much it shrinks. Separation and tilt come from the
-    section's own settings.
-  */
-  transform: translateY(
-      calc(var(--hs-progress, 0) * var(--hs-plane-offset, 0) * var(--hs-separation, 22%) * 2)
-    )
-    rotateX(calc(var(--hs-progress, 0) * var(--hs-tilt, 8deg) * -1))
-    scale(calc(1 - var(--hs-progress, 0) * 0.04));
-  transition: box-shadow var(--duration-drawer) var(--ease-out);
-}
-
-.hs-layers__plane-media,
-.hs-layers__plane-fill {
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
-.hs-layers__plane-fill {
-  background-color: var(--hs-plane-tint, var(--wash-deep));
+.hs-layers__canvas {
+  opacity: 0;
+  transition: opacity var(--duration-press) var(--ease-out);
 }
 
-.hs-layers__plane-img {
+.hs-layers__track.is-painted .hs-layers__canvas {
+  opacity: 1;
+}
+
+.hs-layers__still,
+.hs-layers__still-img {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-
-.hs-layers__plane-tag {
-  position: absolute;
-  left: 0.75rem;
-  bottom: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-md);
-  background-color: var(--paper-80);
-  color: var(--ink);
-  opacity: 0;
-  transition: opacity var(--duration-drawer) var(--ease-out);
-}
-
-.hs-layers__plane.is-active .hs-layers__plane-tag {
-  opacity: 1;
+  object-fit: contain;
 }
 
 /* ---- Cross-fading descriptions ---- */
@@ -1773,8 +1750,17 @@
 .hs-activity__body {
   display: flex;
   flex-direction: column;
-  flex: 1;
   padding: 1.5rem;
+}
+
+/*
+  Standard cards give the spare height to the copy, so their meta line settles
+  at the bottom. The featured card gives it to the image instead and lets the
+  copy stay its natural height — otherwise its meta line is pushed a long way
+  clear of the description.
+*/
+.hs-activity__card:not(.hs-activity__card--featured) .hs-activity__body {
+  flex: 1;
 }
 
 @media (min-width: 64rem) {

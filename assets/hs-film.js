@@ -13,9 +13,21 @@ class HSFilm extends HTMLElement {
     this.playButton = this.querySelector('[data-hs-film-play]');
     this.active = 0;
 
-    this.chapters.forEach((button) =>
-      button.addEventListener('click', () => this.select(parseInt(button.dataset.hsChapter, 10)))
-    );
+    // Hover is the primary way in on a precise pointer — moving across the
+    // chapter list swaps the stage as you go. Click and keyboard focus stay
+    // wired up so touch and keyboard reach every chapter too.
+    this.finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    this.chapters.forEach((button) => {
+      const index = () => parseInt(button.dataset.hsChapter, 10);
+
+      button.addEventListener('click', () => this.select(index()));
+      button.addEventListener('focus', () => this.select(index()));
+      button.addEventListener('pointerenter', (event) => {
+        if (event.pointerType === 'touch' || !this.finePointer.matches) return;
+        this.select(index());
+      });
+    });
 
     if (this.playButton) {
       this.playButton.addEventListener('click', () => this.togglePlayback());

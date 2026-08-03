@@ -8,7 +8,12 @@
       "logo_inverse_info": "Used in the footer and any section on the ink background. Falls back to the main logo.",
       "phone": "Phone number",
       "email": "Email address",
-      "address": "Registered address"
+      "address": "Registered address",
+      "logo_height_mobile": "Logo height on phones",
+      "logo_height": "Logo height",
+      "logo_height_info": "Applies from 640px up. The header bar grows to fit if the logo is taller than the bar allows.",
+      "logo_height_footer": "Footer logo height",
+      "logo_footer_opacity": "Footer logo opacity"
     },
     "colours": {
       "name": "Colours",
@@ -328,16 +333,24 @@
       "scroll_hint": "Scroll hint",
       "track_height": "Scroll distance",
       "track_height_info": "How far the visitor scrolls while the panel stays pinned. Longer feels slower.",
-      "separation": "Layer separation",
-      "separation_info": "How far the layers pull apart at full scroll.",
-      "tilt": "Layer tilt",
-      "tilt_info": "How far the layers rotate as they separate.",
       "block_layer": "Layer",
       "role": "Role",
       "image_info": "Optional. Without an image the layer shows the tint below.",
       "tint": "Layer tint",
       "tint_info": "Used when there is no image.",
-      "block_link": "Footer link"
+      "block_link": "Footer link",
+      "sequence": "Exploded sequence",
+      "frame_count": "Number of frames",
+      "frame_count_info": "Set to 0 to show a single still instead of the sequence.",
+      "frame_prefix": "Frame filename prefix",
+      "frame_prefix_info": "Frames are read from assets using this prefix plus a three-digit number and the extension below, starting at 000 — for example hs-layer-frame-000.webp.",
+      "frame_ext": "Frame file extension",
+      "frame_alt": "Sequence description",
+      "frame_width": "Frame width",
+      "frame_height": "Frame height",
+      "stage_background": "Stage background",
+      "fallback_image": "Still image",
+      "fallback_image_info": "Shown when the number of frames is 0."
     },
     "film": {
       "name": "Product film",

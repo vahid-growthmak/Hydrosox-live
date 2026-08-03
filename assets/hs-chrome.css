@@ -114,14 +114,8 @@
 }
 
 .hs-header__logo-img {
-  height: 1.25rem;
+  height: var(--logo-height);
   width: auto;
-}
-
-@media (min-width: 40rem) {
-  .hs-header__logo-img {
-    height: 1.375rem;
-  }
 }
 
 .hs-header__nav {
@@ -670,9 +664,9 @@
 }
 
 .hs-footer__mark {
-  height: 1rem;
+  height: var(--logo-height-footer);
   width: auto;
-  opacity: 0.6;
+  opacity: var(--logo-opacity-footer);
 }
 
 .hs-footer__legal {

@@ -49,9 +49,17 @@
               assign card_tag = 'a'
             endif
           -%}
-          <li class="hs-activity__item hs-activity__item--{{ size }}" {{ block.shopify_attributes }}>
+          {%- comment -%}
+            The reveal sits on the item, not the card, for two reasons: it is a
+            direct child of .hs-stagger so it picks up its own delay, and it
+            keeps the entrance transform off the element the hover lift uses.
+          {%- endcomment -%}
+          <li
+            class="hs-reveal hs-activity__item hs-activity__item--{{ size }}"
+            {{ block.shopify_attributes }}
+          >
             <{{ card_tag }}
-              class="hs-reveal hs-activity__card hs-activity__card--{{ size }}"
+              class="hs-activity__card hs-activity__card--{{ size }}"
               {% if has_link %}
                 href="{{ block.settings.link }}"
               {% endif %}

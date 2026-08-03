@@ -552,9 +552,14 @@
    Footer
    -------------------------------------------------------------------------- */
 
+.hs-footer__pad {
+  padding-top: 5rem;
+  padding-bottom: 2.5rem;
+}
+
 .hs-footer__top {
   display: grid;
-  gap: 2.5rem var(--pace-tight);
+  gap: 3rem;
 }
 
 @media (min-width: 48rem) {
@@ -565,73 +570,43 @@
 
 @media (min-width: 64rem) {
   .hs-footer__top {
-    grid-template-columns: minmax(0, 1.25fr) repeat(3, minmax(0, 1fr));
-    gap: 3rem;
+    grid-template-columns: 1.15fr repeat(3, 1fr);
+    gap: 2.5rem;
   }
-}
 
-.hs-footer__brand {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  align-items: flex-start;
-}
-
-.hs-footer__logo-img {
-  height: 1.375rem;
-  width: auto;
-}
-
-.hs-footer__address {
-  font-style: normal;
-  color: var(--on-surface-muted);
-  line-height: var(--leading-relaxed);
-}
-
-.hs-footer__contact {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  align-items: flex-start;
-}
-
-.hs-footer__contact-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  min-height: 2.25rem;
-  color: var(--on-surface);
-  text-decoration: none;
-  transition: color var(--duration-press) var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .hs-footer__contact-link:hover {
-    color: var(--blue);
+  /* The company column reads last on wide screens, as designed. */
+  .hs-footer__company {
+    order: 1;
   }
 }
 
 .hs-footer__col-heading {
-  color: var(--on-surface-faint);
-  margin-bottom: 1.125rem;
+  display: block;
 }
 
 .hs-footer__list {
   list-style: none;
-  margin: 0;
+  margin: 1.25rem 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.125rem;
+  gap: 0.75rem;
 }
 
 .hs-footer__link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  min-height: 2.25rem;
+  min-height: 2.75rem;
   color: var(--on-surface-muted);
   text-decoration: none;
   transition: color var(--duration-press) var(--ease-out);
+}
+
+@media (min-width: 64rem) {
+  .hs-footer__link {
+    display: block;
+    min-height: 0;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -640,28 +615,100 @@
   }
 }
 
+.hs-footer__address {
+  font-style: normal;
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hs-footer__address-lines {
+  color: var(--on-surface-muted);
+}
+
+.hs-footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  align-items: flex-start;
+}
+
+.hs-footer__contact-link {
+  color: var(--on-surface-muted);
+  text-decoration: none;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 4px;
+  transition: color var(--duration-press) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hs-footer__contact-link {
+    text-decoration-line: underline;
+  }
+
+  .hs-footer__contact-link:hover {
+    color: var(--on-surface);
+  }
+}
+
 .hs-footer__bottom {
-  margin-top: var(--pace-tight);
-  padding-top: 1.75rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
   border-top: 1px solid var(--rule);
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem 1.5rem;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 64rem) {
+  .hs-footer__bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.hs-footer__mark {
+  height: 1rem;
+  width: auto;
+  opacity: 0.6;
 }
 
 .hs-footer__legal {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 0.25rem 1.25rem;
+  gap: 0.5rem 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+.hs-footer__legal-link {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--on-surface-faint);
+  text-decoration: none;
+  transition: color var(--duration-press) var(--ease-out);
+}
+
+@media (min-width: 64rem) {
+  .hs-footer__legal-link {
+    display: block;
+    min-height: 0;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hs-footer__legal-link:hover {
+    color: var(--on-surface);
+  }
+}
+
 .hs-footer__fineprint {
+  max-width: 28rem;
+  font-weight: 400;
   color: var(--on-surface-faint);
 }
 
@@ -669,4 +716,7 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

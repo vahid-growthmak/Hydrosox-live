@@ -35,9 +35,11 @@ body {
   background-color: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: var(--type-body);
+  /* The document default. Text with its own role (.hs-body, .hs-small-body,
+     headings) overrides this; everything else inherits it. */
+  font-size: var(--type-base);
   font-weight: var(--weight-body);
-  line-height: var(--leading-body);
+  line-height: var(--leading-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -94,8 +96,10 @@ h6 {
   font-weight: var(--weight-heading);
 }
 
-ul[role='list'],
-ol[role='list'] {
+/* Wrapped in :where() so the reset carries no specificity — a component that
+   sets its own padding on a role="list" wins without needing to out-specify
+   the reset. */
+:where(ul[role='list'], ol[role='list']) {
   list-style: none;
   padding: 0;
 }
@@ -246,6 +250,12 @@ summary::-webkit-details-marker {
   line-height: var(--leading-relaxed);
 }
 
+/* Cancels a role's own weight where the design wants the size but not the
+   emphasis — the activity lede is caption-sized but set at normal weight. */
+.hs-weight-normal {
+  font-weight: 400;
+}
+
 /* Measure caps, so long copy stays readable at every width. */
 .hs-measure-14 {
   max-width: 14ch;
@@ -257,6 +267,10 @@ summary::-webkit-details-marker {
 
 .hs-measure-22 {
   max-width: 22ch;
+}
+
+.hs-measure-32 {
+  max-width: 32ch;
 }
 
 .hs-measure-40 {
@@ -520,11 +534,15 @@ summary::-webkit-details-marker {
   }
 }
 
-/* Guarantees a 44px touch target on small inline controls. */
-.hs-tap {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.75rem;
+/* Guarantees a 44px touch target on small inline controls. Below the large
+   breakpoint only — from 64rem up the pointer is precise and the control keeps
+   its natural height so it does not pad out the rows it sits in. */
+@media (max-width: 63.999rem) {
+  .hs-tap {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
 }
 
 /* --------------------------------------------------------------------------

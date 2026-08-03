@@ -1,8 +1,10 @@
 {%- comment -%}
-  Feature band — a compact two-column statement with an optional image.
+  Feature band — a compact single-row statement.
 
-  Used on the homepage for the wudu section, but deliberately generic: it is a
-  reusable band for any single claim that needs its own breathing room.
+  Eyebrow, heading and supporting line stacked on the left; an arrow link on
+  the right whose gap opens slightly on hover. Used on the homepage for the
+  wudu claim, but deliberately generic: any single claim that needs its own
+  quiet band.
 {%- endcomment -%}
 
 <section
@@ -12,41 +14,28 @@
   {% endif %}
   {{ section.shopify_attributes }}
 >
-  <div class="hs-shell hs-pace-tight">
-    <div class="hs-band__grid{% if section.settings.image != blank %} hs-band__grid--with-image{% endif %}">
-      {%- if section.settings.image != blank -%}
-        <div class="hs-band__media-col">
-          {% render 'hs-image',
-            image: section.settings.image,
-            alt: section.settings.image_alt,
-            aspect: '4 / 3',
-            sizes: '(min-width: 64rem) 30vw, 100vw',
-            wrapper_class: 'hs-band__media'
-          %}
-        </div>
-      {%- endif -%}
-
-      <div class="hs-band__lead">
+  <div class="hs-shell hs-band__pad">
+    <div class="hs-band__row">
+      <div class="hs-band__main">
         {%- if section.settings.eyebrow != blank -%}
           <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
         {%- endif -%}
         {%- if section.settings.heading != blank -%}
-          <h2 class="hs-h3 hs-band__heading hs-measure-22 hs-balance">{{ section.settings.heading }}</h2>
+          <h2 class="hs-h4 hs-band__heading hs-measure-34 hs-balance">{{ section.settings.heading }}</h2>
         {%- endif -%}
-      </div>
-
-      <div class="hs-band__body-col">
         {%- if section.settings.body != blank -%}
-          <div class="hs-small-body hs-band__body hs-measure-54 hs-leading-relaxed hs-pretty hs-muted">
+          <div class="hs-small-body hs-band__body hs-measure-64 hs-pretty hs-muted">
             {{ section.settings.body }}
           </div>
         {%- endif -%}
-        {%- if section.settings.link_label != blank -%}
-          <a class="hs-tap hs-small-body hs-band__link" href="{{ section.settings.link_url | default: '#' }}">
-            {{- section.settings.link_label -}}
-          </a>
-        {%- endif -%}
       </div>
+
+      {%- if section.settings.link_label != blank -%}
+        <a class="hs-tap hs-small-body hs-band__link" href="{{ section.settings.link_url | default: '#' }}">
+          {{ section.settings.link_label }}
+          {% render 'hs-icon', icon: 'arrow-right', size: 16 %}
+        </a>
+      {%- endif -%}
     </div>
   </div>
 </section>
@@ -101,21 +90,6 @@
       "type": "url",
       "id": "link_url",
       "label": "t:common.link_url"
-    },
-    {
-      "type": "header",
-      "content": "t:common.image"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "t:common.image",
-      "info": "t:sections.band.image_info"
-    },
-    {
-      "type": "text",
-      "id": "image_alt",
-      "label": "t:common.image_alt"
     }
   ],
   "presets": [

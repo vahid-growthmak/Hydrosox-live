@@ -1,12 +1,11 @@
 {%- comment -%}
   Company details.
 
-  A label/value list where each row states its own kind, so a phone number
-  renders as a tel: link and an email as a mailto:, without the merchant having
-  to build the link. Rows left on "text" stay plain.
-
-  Values default to the global brand settings, so the phone number and address
-  are maintained in one place for the whole theme.
+  A heading row with the lede settling beside it, then one ruled four-column
+  row of label/value cells — the light counterpart of the hero's spec strip.
+  Each row states its own kind, so a phone number renders as a tel: link and
+  an email as a mailto: without the merchant building the link. Values left
+  empty fall back to the global brand settings.
 {%- endcomment -%}
 
 <section
@@ -16,12 +15,22 @@
   {% endif %}
   {{ section.shopify_attributes }}
 >
-  <div class="hs-shell hs-pace-base">
-    {% render 'hs-section-head',
-      eyebrow: section.settings.eyebrow,
-      heading: section.settings.heading,
-      lede: section.settings.lede
-    %}
+  <div class="hs-shell hs-pace-loose">
+    <div class="hs-company__head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="hs-h3 hs-company__heading hs-measure-18 hs-balance">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.lede != blank -%}
+        <div class="hs-small-body hs-company__lede hs-measure-42 hs-pretty hs-muted">
+          {{ section.settings.lede }}
+        </div>
+      {%- endif -%}
+    </div>
 
     {%- if section.blocks.size > 0 -%}
       <dl class="hs-company__list">
@@ -42,16 +51,23 @@
               endif
             -%}
             {%- if value != blank -%}
-              <div class="hs-company__row" {{ block.shopify_attributes }}>
+              <div class="hs-company__cell" {{ block.shopify_attributes }}>
                 <dt class="hs-eyebrow hs-muted">{{ block.settings.label }}</dt>
-                <dd class="hs-small-body hs-company__value">
+                <dd class="hs-small-body hs-company__value hs-measure-24 hs-pretty">
                   {%- case block.settings.kind -%}
                     {%- when 'tel' -%}
-                      <a class="hs-company__link" href="tel:{{ value | replace: ' ', '' }}">{{ value }}</a>
+                      <a class="hs-tap hs-company__link hs-tnum" href="tel:{{ value | replace: ' ', '' }}">{{ value }}</a>
                     {%- when 'email' -%}
-                      <a class="hs-company__link" href="mailto:{{ value }}">{{ value }}</a>
+                      <a class="hs-tap hs-company__link" href="mailto:{{ value }}">{{ value }}</a>
                     {%- when 'address' -%}
-                      <address class="hs-company__address">{{ value | strip_newlines }}</address>
+                      <address class="hs-company__address">
+                        {%- comment -%}
+                          Runs as one flowing line. A merchant who types the
+                          address over several lines gets them comma-joined
+                          rather than mashed together.
+                        {%- endcomment -%}
+                        {{- value | newline_to_br | replace: '<br />', ', ' | replace: '<br>', ', ' | strip -}}
+                      </address>
                     {%- else -%}
                       {{ value }}
                   {%- endcase -%}

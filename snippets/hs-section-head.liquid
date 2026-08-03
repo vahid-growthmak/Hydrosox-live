@@ -10,6 +10,9 @@
   - heading_tag: {String} Element to render the heading as. Defaults to 'h2'.
   - heading_measure: {String} Measure class for the heading. Default 'hs-measure-19'.
   - lede_measure: {String} Measure class for the lede. Default 'hs-measure-46'.
+  - lede_size: {String} Type role for the lede: 'relaxed' (default), 'body',
+    'small-body' or 'caption'.
+  - lede_tone: {String} 'muted' (default) or 'faint' for the quieter grey.
   - id: {String} id for the heading, for aria-labelledby. Optional.
   - class: {String} Extra classes on the wrapper. Optional.
 
@@ -27,6 +30,24 @@
   endif
   assign heading_measure_class = heading_measure | default: 'hs-measure-19'
   assign lede_measure_class = lede_measure | default: 'hs-measure-46'
+
+  # Each section sets its own lede weight, so the heads read as a family
+  # rather than one flat size.
+  case lede_size
+    when 'body'
+      assign lede_size_class = 'hs-body'
+    when 'small-body'
+      assign lede_size_class = 'hs-small-body'
+    when 'caption'
+      assign lede_size_class = 'hs-caption hs-weight-normal'
+    else
+      assign lede_size_class = 'hs-leading-relaxed'
+  endcase
+
+  assign lede_tone_class = 'hs-muted'
+  if lede_tone == 'faint'
+    assign lede_tone_class = 'hs-faint'
+  endif
 -%}
 {%- if eyebrow != blank or heading != blank or lede != blank -%}
   <div class="hs-section-head {{ class }}">
@@ -44,7 +65,7 @@
       {%- endif -%}
     </div>
     {%- if lede != blank -%}
-      <div class="hs-section-head__lede {{ lede_measure_class }} hs-leading-relaxed hs-pretty hs-muted">
+      <div class="hs-section-head__lede {{ lede_measure_class }} {{ lede_size_class }} hs-pretty {{ lede_tone_class }}">
         {{ lede }}
       </div>
     {%- endif -%}

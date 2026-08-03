@@ -1,44 +1,41 @@
 {%- comment -%}
   Footer.
 
-  A "column" block can take its links either from a navigation menu — so the
-  merchant manages them once in Navigation — or from the "column link" blocks
-  that follow it in the editor. Whichever is filled in wins, menu first.
+  Three link columns and a company column that sits last on wide screens.
+  A "column" block takes its links either from a navigation menu — managed
+  once under Navigation — or from the "column link" blocks that follow it in
+  the editor; the menu wins when both are set. The closing row carries the
+  brand mark, the legal links and the fine print.
 {%- endcomment -%}
 
 <footer class="hs-footer hs-scheme-{{ section.settings.color_scheme }}" {{ section.shopify_attributes }}>
-  <div class="hs-shell hs-pace-tight">
+  <div class="hs-shell hs-footer__pad">
     <div class="hs-footer__top">
-      {%- comment -%} Brand and contact {%- endcomment -%}
-      <div class="hs-footer__brand">
-        <a href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
-          {% render 'hs-logo', inverse: true, class: 'hs-footer__logo-img' %}
-        </a>
-
+      {%- comment -%} Company column — pushed last on wide screens {%- endcomment -%}
+      <div class="hs-footer__company">
         {%- if section.settings.company_heading != blank -%}
-          <p class="hs-eyebrow">{{ section.settings.company_heading }}</p>
+          <h3 class="hs-eyebrow hs-footer__col-heading hs-faint">{{ section.settings.company_heading }}</h3>
         {%- endif -%}
 
-        {%- if settings.address != blank -%}
-          <address class="hs-footer__address hs-small-body">
-            {{ settings.address | newline_to_br }}
-          </address>
-        {%- endif -%}
-
-        <div class="hs-footer__contact hs-small-body">
-          {%- if settings.phone != blank -%}
-            <a class="hs-footer__contact-link" href="tel:{{ settings.phone | replace: ' ', '' }}">
-              {% render 'hs-icon', icon: 'phone', size: 15 %}
-              {{ settings.phone }}
-            </a>
+        <address class="hs-caption hs-footer__address">
+          {%- if settings.address != blank -%}
+            <p class="hs-footer__address-lines hs-leading-relaxed hs-muted">
+              {{ settings.address | newline_to_br }}
+            </p>
           {%- endif -%}
-          {%- if settings.email != blank -%}
-            <a class="hs-footer__contact-link" href="mailto:{{ settings.email }}">
-              {% render 'hs-icon', icon: 'mail', size: 15 %}
-              {{ settings.email }}
-            </a>
-          {%- endif -%}
-        </div>
+          <p class="hs-footer__contact">
+            {%- if settings.phone != blank -%}
+              <a class="hs-tap hs-tnum hs-footer__contact-link" href="tel:{{ settings.phone | replace: ' ', '' }}">
+                {{- settings.phone -}}
+              </a>
+            {%- endif -%}
+            {%- if settings.email != blank -%}
+              <a class="hs-tap hs-footer__contact-link" href="mailto:{{ settings.email }}">
+                {{- settings.email -}}
+              </a>
+            {%- endif -%}
+          </p>
+        </address>
 
         {% render 'hs-social' %}
       </div>
@@ -46,15 +43,15 @@
       {%- comment -%} Link columns {%- endcomment -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'column' -%}
-          <div {{ block.shopify_attributes }}>
+          <div class="hs-footer__col" {{ block.shopify_attributes }}>
             {%- if block.settings.heading != blank -%}
-              <h2 class="hs-eyebrow hs-footer__col-heading">{{ block.settings.heading }}</h2>
+              <h3 class="hs-eyebrow hs-footer__col-heading hs-faint">{{ block.settings.heading }}</h3>
             {%- endif -%}
-            <ul class="hs-footer__list hs-small-body" role="list">
+            <ul class="hs-footer__list" role="list">
               {%- if block.settings.menu != blank -%}
                 {%- for link in block.settings.menu.links -%}
                   <li>
-                    <a class="hs-footer__link" href="{{ link.url }}">{{ link.title }}</a>
+                    <a class="hs-caption hs-footer__link" href="{{ link.url }}">{{ link.title }}</a>
                   </li>
                 {%- endfor -%}
               {%- else -%}
@@ -63,7 +60,7 @@
                     {%- break -%}
                   {%- endunless -%}
                   <li {{ item.shopify_attributes }}>
-                    <a class="hs-footer__link" href="{{ item.settings.link | default: '#' }}">
+                    <a class="hs-caption hs-footer__link" href="{{ item.settings.link | default: '#' }}">
                       {{- item.settings.label -}}
                     </a>
                   </li>
@@ -76,7 +73,9 @@
     </div>
 
     {%- comment -%} Legal row {%- endcomment -%}
-    <div class="hs-footer__bottom hs-caption">
+    <div class="hs-footer__bottom">
+      {% render 'hs-logo', inverse: true, class: 'hs-footer__mark' %}
+
       {%- liquid
         assign has_legal = false
         for block in section.blocks
@@ -91,7 +90,7 @@
           {%- for block in section.blocks -%}
             {%- if block.type == 'legal_link' -%}
               <li {{ block.shopify_attributes }}>
-                <a class="hs-footer__link" href="{{ block.settings.link | default: '#' }}">
+                <a class="hs-caption hs-footer__legal-link" href="{{ block.settings.link | default: '#' }}">
                   {{- block.settings.label -}}
                 </a>
               </li>
@@ -101,7 +100,7 @@
       {%- endif -%}
 
       {%- if section.settings.fineprint != blank -%}
-        <p class="hs-footer__fineprint">{{ section.settings.fineprint }}</p>
+        <p class="hs-caption hs-footer__fineprint hs-faint">{{ section.settings.fineprint }}</p>
       {%- endif -%}
     </div>
   </div>

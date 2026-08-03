@@ -3,12 +3,41 @@
     "hero": {
       "type": "hero-split",
       "blocks": {
-        "s1": { "type": "spec", "settings": { "label": "Membrane", "value": "Porelle®" } },
-        "s2": { "type": "spec", "settings": { "label": "Construction", "value": "Three-layer" } },
-        "s3": { "type": "spec", "settings": { "label": "Chemistry", "value": "PFOA free" } },
-        "s4": { "type": "spec", "settings": { "label": "Origin", "value": "UK company, UK stock" } }
+        "s1": {
+          "type": "spec",
+          "settings": {
+            "label": "Membrane",
+            "value": "Porelle®"
+          }
+        },
+        "s2": {
+          "type": "spec",
+          "settings": {
+            "label": "Construction",
+            "value": "Three-layer"
+          }
+        },
+        "s3": {
+          "type": "spec",
+          "settings": {
+            "label": "Chemistry",
+            "value": "PFOA free"
+          }
+        },
+        "s4": {
+          "type": "spec",
+          "settings": {
+            "label": "Origin",
+            "value": "UK company, UK stock"
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4"],
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
       "settings": {
         "color_scheme": "ink",
         "full_height": true,
@@ -29,31 +58,125 @@
     "buy": {
       "type": "buy-widget",
       "blocks": {
-        "c1": { "type": "colour", "settings": { "value": "Black", "colour_one": "#111111" } },
+        "c1": {
+          "type": "colour",
+          "settings": {
+            "value": "Black",
+            "colour_one": "#111111"
+          }
+        },
         "c2": {
           "type": "colour",
-          "settings": { "value": "Black / Grey", "colour_one": "#111111", "colour_two": "#8b9096" }
+          "settings": {
+            "value": "Black / Grey",
+            "colour_one": "#111111",
+            "colour_two": "#8b9096"
+          }
         },
         "c3": {
           "type": "colour",
-          "settings": { "value": "Black / Navy", "colour_one": "#111111", "colour_two": "#1f3160" }
+          "settings": {
+            "value": "Black / Navy",
+            "colour_one": "#111111",
+            "colour_two": "#1f3160"
+          }
         },
-        "c4": { "type": "colour", "settings": { "value": "White", "colour_one": "#f4f6f8" } },
-        "z1": { "type": "size", "settings": { "value": "S", "sublabel": "UK 3-5" } },
-        "z2": { "type": "size", "settings": { "value": "M", "sublabel": "UK 6-8" } },
-        "z3": { "type": "size", "settings": { "value": "L", "sublabel": "UK 9-11" } },
-        "z4": { "type": "size", "settings": { "value": "XL", "sublabel": "UK 12-14" } },
-        "t1": { "type": "tier", "settings": { "label": "Single pair", "quantity": 1, "discount": 0 } },
-        "t2": { "type": "tier", "settings": { "label": "Two pairs", "quantity": 2, "discount": 3.01 } },
-        "t3": { "type": "tier", "settings": { "label": "Three pairs", "quantity": 3, "discount": 7.01 } },
-        "t4": { "type": "tier", "settings": { "label": "Four pairs", "quantity": 4, "discount": 12.01 } },
-        "t5": { "type": "tier", "settings": { "label": "Five pairs", "quantity": 5, "discount": 20.01 } },
+        "c4": {
+          "type": "colour",
+          "settings": {
+            "value": "White",
+            "colour_one": "#f4f6f8"
+          }
+        },
+        "z1": {
+          "type": "size",
+          "settings": {
+            "value": "S",
+            "sublabel": "UK 3-5"
+          }
+        },
+        "z2": {
+          "type": "size",
+          "settings": {
+            "value": "M",
+            "sublabel": "UK 6-8"
+          }
+        },
+        "z3": {
+          "type": "size",
+          "settings": {
+            "value": "L",
+            "sublabel": "UK 9-11"
+          }
+        },
+        "z4": {
+          "type": "size",
+          "settings": {
+            "value": "XL",
+            "sublabel": "UK 12-14"
+          }
+        },
+        "t1": {
+          "type": "tier",
+          "settings": {
+            "label": "Single pair",
+            "quantity": 1,
+            "discount": 0
+          }
+        },
+        "t2": {
+          "type": "tier",
+          "settings": {
+            "label": "Two pairs",
+            "quantity": 2,
+            "discount": 3.01
+          }
+        },
+        "t3": {
+          "type": "tier",
+          "settings": {
+            "label": "Three pairs",
+            "quantity": 3,
+            "discount": 7.01
+          }
+        },
+        "t4": {
+          "type": "tier",
+          "settings": {
+            "label": "Four pairs",
+            "quantity": 4,
+            "discount": 12.01
+          }
+        },
+        "t5": {
+          "type": "tier",
+          "settings": {
+            "label": "Five pairs",
+            "quantity": 5,
+            "discount": 20.01
+          }
+        },
         "r1": {
           "type": "trust",
-          "settings": { "label": "Delivery", "value": "Free UK delivery on two pairs or more" }
+          "settings": {
+            "label": "Delivery",
+            "value": "Free UK delivery on two pairs or more"
+          }
         },
-        "r2": { "type": "trust", "settings": { "label": "Dispatch", "value": "UK company, UK warehouse" } },
-        "r3": { "type": "trust", "settings": { "label": "Checkout", "value": "Guest — no account required" } },
+        "r2": {
+          "type": "trust",
+          "settings": {
+            "label": "Dispatch",
+            "value": "UK company, UK warehouse"
+          }
+        },
+        "r3": {
+          "type": "trust",
+          "settings": {
+            "label": "Checkout",
+            "value": "Guest — no account required"
+          }
+        },
         "r4": {
           "type": "trust",
           "settings": {
@@ -63,25 +186,56 @@
         },
         "l1": {
           "type": "link",
-          "settings": { "label": "Full product details", "use_product_url": true }
+          "settings": {
+            "label": "Full product details",
+            "use_product_url": true
+          }
         },
-        "l2": { "type": "link", "settings": { "label": "How it is built", "link": "/#construction" } },
-        "l3": { "type": "link", "settings": { "label": "Delivery and sizing", "link": "/#faq" } },
+        "l2": {
+          "type": "link",
+          "settings": {
+            "label": "How it is built",
+            "link": "/#construction"
+          }
+        },
+        "l3": {
+          "type": "link",
+          "settings": {
+            "label": "Delivery and sizing",
+            "link": "/#faq"
+          }
+        },
         "g1": {
           "type": "guide_row",
-          "settings": { "size": "S", "foot_length": "22.0 - 24.0 cm", "uk_shoe": "UK 3-5" }
+          "settings": {
+            "size": "S",
+            "foot_length": "22.0 - 24.0 cm",
+            "uk_shoe": "UK 3-5"
+          }
         },
         "g2": {
           "type": "guide_row",
-          "settings": { "size": "M", "foot_length": "24.5 - 26.5 cm", "uk_shoe": "UK 6-8" }
+          "settings": {
+            "size": "M",
+            "foot_length": "24.5 - 26.5 cm",
+            "uk_shoe": "UK 6-8"
+          }
         },
         "g3": {
           "type": "guide_row",
-          "settings": { "size": "L", "foot_length": "27.0 - 29.0 cm", "uk_shoe": "UK 9-11" }
+          "settings": {
+            "size": "L",
+            "foot_length": "27.0 - 29.0 cm",
+            "uk_shoe": "UK 9-11"
+          }
         },
         "g4": {
           "type": "guide_row",
-          "settings": { "size": "XL", "foot_length": "29.5 - 32.0 cm", "uk_shoe": "UK 12-14" }
+          "settings": {
+            "size": "XL",
+            "foot_length": "29.5 - 32.0 cm",
+            "uk_shoe": "UK 12-14"
+          }
         },
         "n1": {
           "type": "guide_note",
@@ -206,7 +360,14 @@
           }
         }
       },
-      "block_order": ["k1", "k2", "k3", "k4", "k5", "k6"],
+      "block_order": [
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6"
+      ],
       "settings": {
         "color_scheme": "wash",
         "anchor_id": "comparison",
@@ -216,7 +377,7 @@
         "table_caption": "HydroSox compared against a typical waterproof sock, across six verifiable criteria.",
         "col_criterion": "What matters",
         "col_ours": "HydroSox",
-        "col_theirs": "A typical waterproof sock",
+        "col_theirs": "A typical sock",
         "link_label": "Check the membrane spec",
         "link_url": "/#construction"
       }
@@ -262,7 +423,12 @@
           }
         }
       },
-      "block_order": ["m1", "m2", "m3", "m4"],
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4"
+      ],
       "settings": {
         "color_scheme": "paper",
         "anchor_id": "limits",
@@ -316,16 +482,26 @@
         },
         "fl": {
           "type": "link",
-          "settings": { "label": "The membrane it is all resting on", "link": "/#construction" }
+          "settings": {
+            "label": "The membrane it is all resting on",
+            "link": "/#construction"
+          }
         }
       },
-      "block_order": ["f1", "f2", "f3", "f4", "fl"],
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "fl"
+      ],
       "settings": {
         "color_scheme": "ink",
         "anchor_id": "in-the-wet",
         "eyebrow": "The product film",
         "heading": "The sock, in the weather it is for.",
-        "lede": "<p>This is our own film rather than an independent test, so take it for what it is — the product in the conditions it is sold for. The claim underneath it is checkable, and that is the membrane, not the footage.</p>",
+        "lede": "<p>This is our own film rather than an independent test, so take it for what it is — the product in the conditions it is sold for. <strong>The claim underneath it is checkable</strong>, and that is the membrane, not the footage.</p>",
+        "stage_background": "#0b0b0b",
         "stage_caption": "Four HydroSox colourways — black, white, black with navy and black with grey — pegged to a washing line against a blue ground, with water thrown across them.",
         "play_label": "Play the clip"
       }
@@ -360,9 +536,20 @@
             "tint": "#111111"
           }
         },
-        "yl": { "type": "link", "settings": { "label": "How it compares", "link": "/#comparison" } }
+        "yl": {
+          "type": "link",
+          "settings": {
+            "label": "How it compares",
+            "link": "/#comparison"
+          }
+        }
       },
-      "block_order": ["y1", "y2", "y3", "yl"],
+      "block_order": [
+        "y1",
+        "y2",
+        "y3",
+        "yl"
+      ],
       "settings": {
         "color_scheme": "paper",
         "anchor_id": "construction",
@@ -381,6 +568,7 @@
         "a1": {
           "type": "activity",
           "settings": {
+            "size": "featured",
             "title": "Hiking",
             "problem": "Boots that wet out four hours into a long day in the hills.",
             "meta": "Long days, wet ground",
@@ -391,6 +579,7 @@
         "a2": {
           "type": "activity",
           "settings": {
+            "size": "standard",
             "title": "Walking",
             "problem": "Wet grass at eight in the morning, in shoes that were never waterproof.",
             "meta": "Everyday miles, all year",
@@ -401,6 +590,7 @@
         "a3": {
           "type": "activity",
           "settings": {
+            "size": "standard",
             "title": "All Day in Boots",
             "problem": "Boots that keep the rain out and then seal the sweat in.",
             "meta": "Long shifts, five days a week",
@@ -411,6 +601,7 @@
         "a4": {
           "type": "activity",
           "settings": {
+            "size": "wide",
             "title": "Cycling & Commuting",
             "problem": "Overshoes that leak at the ankle, and shoes still wet at home time.",
             "meta": "No drying option at the other end",
@@ -421,6 +612,7 @@
         "a5": {
           "type": "activity",
           "settings": {
+            "size": "full",
             "title": "Running & Trail",
             "problem": "Cold, soaked feet on winter miles, and blisters in a wet race.",
             "meta": "Weight and bulk, stated honestly",
@@ -429,15 +621,20 @@
           }
         }
       },
-      "block_order": ["a1", "a2", "a3", "a4", "a5"],
+      "block_order": [
+        "a1",
+        "a2",
+        "a3",
+        "a4",
+        "a5"
+      ],
       "settings": {
         "color_scheme": "ink",
         "anchor_id": "activity",
         "eyebrow": "Shop by activity",
         "heading": "Find the version of wet feet you actually have.",
         "lede": "<p>One sock. Five different problems it solves, described the way the people with those problems describe them.</p>",
-        "footnote": "Same sock either way — the activity only changes which pair you reach for.",
-        "card_aspect": "4 / 5"
+        "footnote": "Same sock either way — the activity only changes which pair you reach for."
       }
     },
     "wudu": {
@@ -505,7 +702,15 @@
           }
         }
       },
-      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7"],
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7"
+      ],
       "settings": {
         "color_scheme": "paper",
         "anchor_id": "faq",
@@ -526,13 +731,41 @@
       "blocks": {
         "d1": {
           "type": "row",
-          "settings": { "label": "Company", "kind": "text", "value": "HydroSox, UK registered" }
+          "settings": {
+            "label": "Company",
+            "kind": "text",
+            "value": "HydroSox, UK registered"
+          }
         },
-        "d2": { "type": "row", "settings": { "label": "Registered address", "kind": "address" } },
-        "d3": { "type": "row", "settings": { "label": "Phone", "kind": "tel" } },
-        "d4": { "type": "row", "settings": { "label": "Email", "kind": "email" } }
+        "d2": {
+          "type": "row",
+          "settings": {
+            "label": "Registered address",
+            "kind": "address",
+            "value": "399-405 Oxford Street, Mayfair, London W1C 2BU"
+          }
+        },
+        "d3": {
+          "type": "row",
+          "settings": {
+            "label": "Phone",
+            "kind": "tel"
+          }
+        },
+        "d4": {
+          "type": "row",
+          "settings": {
+            "label": "Email",
+            "kind": "email"
+          }
+        }
       },
-      "block_order": ["d1", "d2", "d3", "d4"],
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
       "settings": {
         "color_scheme": "wash",
         "anchor_id": "about",
@@ -554,7 +787,7 @@
         "submit_label": "Send my code",
         "success_message": "Thanks. Your code is on its way.",
         "tag": "newsletter",
-        "note": "<p>One email to set you up, then only when there is something worth sending. Unsubscribe any time.</p>"
+        "note": "<p>One email to set you up, then only when there is something worth sending. Unsubscribe any time. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>"
       }
     }
   },

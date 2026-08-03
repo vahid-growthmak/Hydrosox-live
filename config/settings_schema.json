@@ -416,6 +416,17 @@
       },
       {
         "type": "range",
+        "id": "type_base",
+        "min": 13,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings.type.base",
+        "info": "t:settings.type.base_info",
+        "default": 16
+      },
+      {
+        "type": "range",
         "id": "type_body_min",
         "min": 13,
         "max": 20,
@@ -611,6 +622,16 @@
       },
       {
         "type": "range",
+        "id": "leading_base",
+        "min": 90,
+        "max": 190,
+        "step": 1,
+        "unit": "%",
+        "label": "t:settings.type.leading_of.base",
+        "default": 150
+      },
+      {
+        "type": "range",
         "id": "leading_body",
         "min": 90,
         "max": 190,
@@ -713,7 +734,7 @@
         "step": 1,
         "unit": "%",
         "label": "t:settings.type.leading_of.relaxed",
-        "default": 162
+        "default": 163
       }
     ]
   },

@@ -1,46 +1,46 @@
 /**
  * <hs-film> — chapter switcher for the product film.
  *
- * Swaps which chapter is on the stage and pauses whatever was playing, so
- * changing chapter never leaves audio running behind the new slide.
+ * The stage holds one stacked layer per chapter; choosing a chapter
+ * cross-fades to its layer and moves the progress rule. The play control
+ * drives whichever chapter is on the stage: play/pause when that chapter has
+ * a video, and nothing at all when it only has a poster.
  */
 class HSFilm extends HTMLElement {
   connectedCallback() {
-    this.slides = Array.from(this.querySelectorAll('[data-hs-slide]'));
+    this.layers = Array.from(this.querySelectorAll('[data-hs-slide]'));
     this.chapters = Array.from(this.querySelectorAll('[data-hs-chapter]'));
+    this.playButton = this.querySelector('[data-hs-film-play]');
+    this.active = 0;
 
     this.chapters.forEach((button) =>
       button.addEventListener('click', () => this.select(parseInt(button.dataset.hsChapter, 10)))
     );
 
-    // The play affordance only exists on chapters with no video of their own;
-    // where there is a video the native controls handle playback.
-    this.querySelectorAll('[data-hs-film-play]').forEach((button) =>
-      button.addEventListener('click', () => {
-        const slide = button.closest('[data-hs-slide]');
-        const video = slide && slide.querySelector('video');
-        if (video) {
-          button.hidden = true;
-          video.play();
-        }
-      })
-    );
+    if (this.playButton) {
+      this.playButton.addEventListener('click', () => this.togglePlayback());
+    }
+  }
+
+  activeVideo() {
+    const layer = this.layers[this.active];
+    return layer ? layer.querySelector('video') : null;
   }
 
   select(index) {
-    if (Number.isNaN(index)) return;
+    if (Number.isNaN(index) || index === this.active) return;
 
-    this.slides.forEach((slide, i) => {
+    // Whatever was playing stops before the stage changes.
+    const previous = this.activeVideo();
+    if (previous && !previous.paused) previous.pause();
+
+    this.active = index;
+
+    this.layers.forEach((layer, i) => {
       const on = i === index;
-      slide.classList.toggle('is-active', on);
-      if (on) slide.removeAttribute('aria-hidden');
-      else slide.setAttribute('aria-hidden', 'true');
-
-      // Stop playback on any slide leaving the stage.
-      if (!on) {
-        const video = slide.querySelector('video');
-        if (video && !video.paused) video.pause();
-      }
+      layer.classList.toggle('is-active', on);
+      if (on) layer.removeAttribute('aria-hidden');
+      else layer.setAttribute('aria-hidden', 'true');
     });
 
     this.chapters.forEach((button, i) => {
@@ -48,6 +48,13 @@ class HSFilm extends HTMLElement {
       button.classList.toggle('is-active', on);
       button.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
+  }
+
+  togglePlayback() {
+    const video = this.activeVideo();
+    if (!video) return;
+    if (video.paused) video.play();
+    else video.pause();
   }
 }
 

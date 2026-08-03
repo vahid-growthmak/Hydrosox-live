@@ -1,9 +1,11 @@
 {%- comment -%}
   Shop by activity.
 
-  One card per activity, each stating the problem in the words the person with
-  that problem would use. Cards are blocks, so activities can be added,
-  reordered or pointed at their own pages later without touching the layout.
+  A bento of bordered cards on a four-column grid. Each activity block chooses
+  its own footprint: featured (two columns and two rows, the image filling the
+  card), standard (a 16:9 image over the text), or a horizontal wide or full
+  row (image beside the text). Defaults reproduce the designed arrangement —
+  one featured card, two standard, one wide, one full-width.
 {%- endcomment -%}
 
 {%- liquid
@@ -18,69 +20,110 @@
   {% endif %}
   {{ section.shopify_attributes }}
 >
-  <div class="hs-shell hs-pace-base">
+  <div class="hs-shell hs-pace-loose">
     {% render 'hs-section-head',
       eyebrow: section.settings.eyebrow,
       heading: section.settings.heading,
-      lede: section.settings.lede
+      lede: section.settings.lede,
+      heading_measure: 'hs-activity__measure',
+      lede_size: 'caption',
+      lede_measure: 'hs-measure-32',
+      lede_tone: 'faint'
     %}
 
     {%- if activity_count > 0 -%}
       <ul class="hs-activity__grid hs-stagger" role="list">
         {%- for block in activities -%}
-          <li class="hs-reveal hs-activity__item" {{ block.shopify_attributes }}>
-            {%- liquid
-              assign has_link = false
-              if block.settings.link != blank
-                assign has_link = true
-              endif
-            -%}
-            {%- if has_link -%}
-              <a class="hs-activity__card hs-zoom-parent" href="{{ block.settings.link }}">
-            {%- else -%}
-              <div class="hs-activity__card">
-            {%- endif -%}
+          {%- liquid
+            assign size = block.settings.size | default: 'standard'
+            assign title_class = 'hs-h4'
+            if size == 'featured'
+              assign title_class = 'hs-h3'
+            endif
+            assign has_link = false
+            if block.settings.link != blank
+              assign has_link = true
+            endif
+            assign card_tag = 'div'
+            if has_link
+              assign card_tag = 'a'
+            endif
+          -%}
+          <li class="hs-activity__item hs-activity__item--{{ size }}" {{ block.shopify_attributes }}>
+            <{{ card_tag }}
+              class="hs-reveal hs-activity__card hs-activity__card--{{ size }}"
+              {% if has_link %}
+                href="{{ block.settings.link }}"
+              {% endif %}
+            >
+              <span class="hs-activity__media-frame">
+                {%- if block.settings.image != blank -%}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 1080 }}"
+                    srcset="
+                      {{ block.settings.image | image_url: width: 480 }} 480w,
+                      {{ block.settings.image | image_url: width: 828 }} 828w,
+                      {{ block.settings.image | image_url: width: 1080 }} 1080w,
+                      {{ block.settings.image | image_url: width: 1600 }} 1600w
+                    "
+                    sizes="(min-width: 64rem) 45vw, (min-width: 40rem) 90vw, 100vw"
+                    alt="{{ block.settings.image_alt | escape }}"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                    loading="lazy"
+                    decoding="async"
+                    class="hs-activity__img"
+                  >
+                {%- elsif block.settings.image_fallback != blank -%}
+                  {%- comment -%}
+                    Intrinsic size of the bundled activity photography. The frame
+                    is sized by CSS; these only stop the browser guessing.
+                  {%- endcomment -%}
+                  <img
+                    src="{{ block.settings.image_fallback | asset_url }}"
+                    alt="{{ block.settings.image_alt | escape }}"
+                    width="1672"
+                    height="941"
+                    loading="lazy"
+                    decoding="async"
+                    class="hs-activity__img"
+                  >
+                {%- endif -%}
+              </span>
 
-            {% render 'hs-image',
-              image: block.settings.image,
-              fallback: block.settings.image_fallback,
-              alt: block.settings.image_alt,
-              aspect: section.settings.card_aspect,
-              sizes: '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw',
-              wrapper_class: 'hs-activity__media hs-media--zoom'
-            %}
-
-            <div class="hs-activity__body">
-              {% render 'hs-index-number',
-                index: forloop.index0,
-                size: 'label',
-                class: 'hs-activity__index'
-              %}
-              {%- if block.settings.title != blank -%}
-                <h3 class="hs-h4 hs-activity__title">{{ block.settings.title }}</h3>
-              {%- endif -%}
-              {%- if block.settings.problem != blank -%}
-                <p class="hs-small-body hs-activity__problem hs-pretty hs-muted">
-                  {{ block.settings.problem }}
-                </p>
-              {%- endif -%}
-              {%- if block.settings.meta != blank -%}
-                <p class="hs-eyebrow hs-activity__meta hs-faint">{{ block.settings.meta }}</p>
-              {%- endif -%}
-            </div>
-
-            {%- if has_link -%}
-              </a>
-            {%- else -%}
-              </div>
-            {%- endif -%}
+              <span class="hs-activity__body">
+                <span class="hs-activity__head-row">
+                  <span class="hs-activity__head-main">
+                    {% render 'hs-index-number',
+                      index: forloop.index0,
+                      size: 'label',
+                      class: 'hs-activity__index hs-faint'
+                    %}
+                    {%- if block.settings.title != blank -%}
+                      <span class="{{ title_class }} hs-activity__title">{{ block.settings.title }}</span>
+                    {%- endif -%}
+                  </span>
+                  {%- if has_link -%}
+                    {% render 'hs-icon', icon: 'arrow-up-right', size: 20, class: 'hs-activity__arrow' %}
+                  {%- endif -%}
+                </span>
+                {%- if block.settings.problem != blank -%}
+                  <span class="hs-small-body hs-activity__problem hs-measure-42 hs-pretty hs-muted">
+                    {{- block.settings.problem -}}
+                  </span>
+                {%- endif -%}
+                {%- if block.settings.meta != blank -%}
+                  <span class="hs-eyebrow hs-activity__meta hs-faint">{{ block.settings.meta }}</span>
+                {%- endif -%}
+              </span>
+            </{{ card_tag }}>
           </li>
         {%- endfor -%}
       </ul>
     {%- endif -%}
 
     {%- if section.settings.footnote != blank -%}
-      <p class="hs-caption hs-activity__footnote hs-pretty hs-muted">{{ section.settings.footnote }}</p>
+      <p class="hs-small-body hs-activity__footnote hs-pretty hs-muted">{{ section.settings.footnote }}</p>
     {%- endif -%}
   </div>
 </section>
@@ -135,13 +178,6 @@
       "id": "footnote",
       "label": "t:sections.activity.footnote",
       "default": "Same sock either way — the activity only changes which pair you reach for."
-    },
-    {
-      "type": "text",
-      "id": "card_aspect",
-      "label": "t:sections.activity.card_aspect",
-      "info": "t:sections.activity.card_aspect_info",
-      "default": "4 / 5"
     }
   ],
   "blocks": [
@@ -149,6 +185,19 @@
       "type": "activity",
       "name": "t:sections.activity.block_activity",
       "settings": [
+        {
+          "type": "select",
+          "id": "size",
+          "label": "t:sections.activity.size",
+          "info": "t:sections.activity.size_info",
+          "options": [
+            { "value": "featured", "label": "t:sections.activity.size_featured" },
+            { "value": "standard", "label": "t:sections.activity.size_standard" },
+            { "value": "wide", "label": "t:sections.activity.size_wide" },
+            { "value": "full", "label": "t:sections.activity.size_full" }
+          ],
+          "default": "standard"
+        },
         {
           "type": "text",
           "id": "title",
@@ -197,6 +246,7 @@
         {
           "type": "activity",
           "settings": {
+            "size": "featured",
             "title": "Hiking",
             "problem": "Boots that wet out four hours into a long day in the hills.",
             "meta": "Long days, wet ground",
@@ -207,6 +257,7 @@
         {
           "type": "activity",
           "settings": {
+            "size": "standard",
             "title": "Walking",
             "problem": "Wet grass at eight in the morning, in shoes that were never waterproof.",
             "meta": "Everyday miles, all year",
@@ -217,6 +268,7 @@
         {
           "type": "activity",
           "settings": {
+            "size": "standard",
             "title": "All Day in Boots",
             "problem": "Boots that keep the rain out and then seal the sweat in.",
             "meta": "Long shifts, five days a week",
@@ -227,6 +279,7 @@
         {
           "type": "activity",
           "settings": {
+            "size": "wide",
             "title": "Cycling & Commuting",
             "problem": "Overshoes that leak at the ankle, and shoes still wet at home time.",
             "meta": "No drying option at the other end",
@@ -237,6 +290,7 @@
         {
           "type": "activity",
           "settings": {
+            "size": "full",
             "title": "Running & Trail",
             "problem": "Cold, soaked feet on winter miles, and blisters in a wet race.",
             "meta": "Weight and bulk, stated honestly",

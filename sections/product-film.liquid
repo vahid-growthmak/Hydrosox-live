@@ -1,17 +1,27 @@
 {%- comment -%}
   Product film.
 
-  Each chapter is a block carrying a poster image and, optionally, a video. The
-  stage shows the selected chapter's poster with a play affordance; when that
-  chapter has a video the play button loads and plays it, and when it does not
-  the poster simply stands as the still. Adding the video files later needs no
-  code change — they are a block setting.
+  A portrait stage on the left holds one layer per chapter, cross-fading as
+  the chapter changes; a small round play control sits over its corner. The
+  chapters themselves are full-width rows on the right, each with a numbered
+  heading and a progress rule that fills when active.
+
+  Each chapter is a block carrying a poster image and, optionally, a video.
+  Until a chapter has a video its poster stands as the still, so the section
+  renders exactly as designed while the films are still being produced —
+  adding them later is a block setting, not a code change.
 {%- endcomment -%}
 
 {%- liquid
   assign chapters = section.blocks | where: 'type', 'chapter'
   assign chapter_count = chapters | size
 -%}
+
+{% style %}
+  #shopify-section-{{ section.id }} .hs-film__stage {
+    background-color: {{ section.settings.stage_background | default: '#0b0b0b' }};
+  }
+{% endstyle %}
 
 <section
   class="hs-film hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
@@ -24,77 +34,109 @@
     {% render 'hs-section-head',
       eyebrow: section.settings.eyebrow,
       heading: section.settings.heading,
-      lede: section.settings.lede
+      lede: section.settings.lede,
+      heading_measure: 'hs-measure-17',
+      lede_size: 'body'
     %}
 
     {%- if chapter_count > 0 -%}
       <hs-film class="hs-film__wrap">
-        {%- comment -%} Stage {%- endcomment -%}
-        <div class="hs-film__stage">
-          {%- for block in chapters -%}
-            <div
-              class="hs-film__slide{% if forloop.first %} is-active{% endif %}"
-              data-hs-slide="{{ forloop.index0 }}"
-              {% unless forloop.first %}
-                aria-hidden="true"
-              {% endunless %}
-            >
-              {%- if block.settings.video != blank -%}
-                {{
-                  block.settings.video
-                  | video_tag:
-                    image_size: '1600x',
-                    controls: true,
-                    preload: 'metadata',
-                    class: 'hs-film__video'
-                }}
-              {%- else -%}
-                {% render 'hs-image',
-                  image: block.settings.poster,
-                  fallback: block.settings.poster_fallback,
-                  alt: block.settings.poster_alt,
-                  aspect: '16 / 9',
-                  sizes: '(min-width: 64rem) 70vw, 100vw',
-                  wrapper_class: 'hs-film__poster'
-                %}
-                {%- if section.settings.play_label != blank -%}
-                  <button class="hs-film__play" type="button" data-hs-film-play>
-                    <span class="hs-film__play-icon" aria-hidden="true">
-                      {% render 'hs-icon', icon: 'play', size: 18 %}
-                    </span>
-                    <span class="hs-caption hs-film__play-label">{{ section.settings.play_label }}</span>
-                  </button>
-                {%- endif -%}
+        <div class="hs-film__grid">
+          {%- comment -%} Portrait stage {%- endcomment -%}
+          <div class="hs-film__stage-col">
+            <div class="hs-film__stage">
+              {%- for block in chapters -%}
+                <div
+                  class="hs-film__layer{% if forloop.first %} is-active{% endif %}"
+                  data-hs-slide="{{ forloop.index0 }}"
+                  {% unless forloop.first %}
+                    aria-hidden="true"
+                  {% endunless %}
+                  {{ block.shopify_attributes }}
+                >
+                  {%- if block.settings.video != blank -%}
+                    {{
+                      block.settings.video
+                      | video_tag:
+                        image_size: '800x',
+                        muted: true,
+                        playsinline: true,
+                        preload: 'none',
+                        class: 'hs-film__media'
+                    }}
+                  {%- elsif block.settings.poster != blank -%}
+                    <img
+                      src="{{ block.settings.poster | image_url: width: 800 }}"
+                      srcset="
+                        {{ block.settings.poster | image_url: width: 480 }} 480w,
+                        {{ block.settings.poster | image_url: width: 800 }} 800w
+                      "
+                      sizes="(min-width: 64rem) 22rem, 100vw"
+                      alt="{{ block.settings.poster_alt | escape }}"
+                      width="{{ block.settings.poster.width }}"
+                      height="{{ block.settings.poster.height }}"
+                      loading="lazy"
+                      decoding="async"
+                      class="hs-film__media"
+                    >
+                  {%- elsif block.settings.poster_fallback != blank -%}
+                    {%- comment -%}
+                      Intrinsic size of the bundled portrait posters. The stage
+                      is sized by CSS; these only stop the browser guessing.
+                    {%- endcomment -%}
+                    <img
+                      src="{{ block.settings.poster_fallback | asset_url }}"
+                      alt="{{ block.settings.poster_alt | escape }}"
+                      width="576"
+                      height="1024"
+                      loading="lazy"
+                      decoding="async"
+                      class="hs-film__media"
+                    >
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+
+              {%- if section.settings.play_label != blank -%}
+                <button class="hs-tap hs-film__play" type="button" data-hs-film-play>
+                  {% render 'hs-icon', icon: 'play', size: 16, class: 'hs-film__play-icon' %}
+                  <span class="hs-visually-hidden">{{ section.settings.play_label }}</span>
+                </button>
               {%- endif -%}
             </div>
-          {%- endfor -%}
-        </div>
 
-        {%- if section.settings.stage_caption != blank -%}
-          <p class="hs-caption hs-film__caption hs-pretty hs-muted">{{ section.settings.stage_caption }}</p>
-        {%- endif -%}
+            {%- if section.settings.stage_caption != blank -%}
+              <p class="hs-visually-hidden">{{ section.settings.stage_caption }}</p>
+            {%- endif -%}
+          </div>
 
-        {%- comment -%} Chapter list {%- endcomment -%}
-        <ol class="hs-film__chapters hs-stagger">
-          {%- for block in chapters -%}
-            <li {{ block.shopify_attributes }}>
-              <button
-                class="hs-film__chapter{% if forloop.first %} is-active{% endif %}"
-                type="button"
-                data-hs-chapter="{{ forloop.index0 }}"
-                aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
-              >
-                {% render 'hs-index-number', index: forloop.index0, size: 'h4', class: 'hs-film__chapter-index' %}
-                <span class="hs-small-body hs-film__chapter-title">{{ block.settings.title }}</span>
-                {%- if block.settings.caption != blank -%}
-                  <span class="hs-caption hs-film__chapter-caption hs-pretty hs-muted">
-                    {{- block.settings.caption -}}
+          {%- comment -%} Chapter rows {%- endcomment -%}
+          <ol class="hs-film__chapters" role="list">
+            {%- for block in chapters -%}
+              <li>
+                <button
+                  class="hs-film__chapter{% if forloop.first %} is-active{% endif %}"
+                  type="button"
+                  data-hs-chapter="{{ forloop.index0 }}"
+                  aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+                >
+                  <span class="hs-film__chapter-row">
+                    {% render 'hs-index-number', index: forloop.index0, size: 'h4', class: 'hs-film__chapter-index' %}
+                    <span class="hs-film__chapter-main">
+                      <span class="hs-h4 hs-film__chapter-title hs-pretty">{{ block.settings.title }}</span>
+                      {%- if block.settings.caption != blank -%}
+                        <span class="hs-small-body hs-film__chapter-caption hs-measure-44 hs-pretty">
+                          {{- block.settings.caption -}}
+                        </span>
+                      {%- endif -%}
+                    </span>
                   </span>
-                {%- endif -%}
-              </button>
-            </li>
-          {%- endfor -%}
-        </ol>
+                  <span class="hs-film__chapter-bar" aria-hidden="true"></span>
+                </button>
+              </li>
+            {%- endfor -%}
+          </ol>
+        </div>
       </hs-film>
 
       <script src="{{ 'hs-film.js' | asset_url }}" defer></script>
@@ -163,12 +205,23 @@
       "type": "richtext",
       "id": "lede",
       "label": "t:common.lede",
-      "default": "<p>This is our own film rather than an independent test, so take it for what it is — the product in the conditions it is sold for.</p>"
+      "default": "<p>This is our own film rather than an independent test, so take it for what it is — the product in the conditions it is sold for. <strong>The claim underneath it is checkable</strong>, and that is the membrane, not the footage.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.film.stage_group"
+    },
+    {
+      "type": "color",
+      "id": "stage_background",
+      "label": "t:sections.film.stage_background",
+      "default": "#0b0b0b"
     },
     {
       "type": "textarea",
       "id": "stage_caption",
       "label": "t:sections.film.stage_caption",
+      "info": "t:sections.film.stage_caption_info",
       "default": "Four HydroSox colourways — black, white, black with navy and black with grey — pegged to a washing line against a blue ground, with water thrown across them."
     },
     {

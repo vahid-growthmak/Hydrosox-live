@@ -53,6 +53,7 @@
   assign bd_lo = settings.type_body_min | default: 16
   assign bd_hi = settings.type_body_max | default: 18
 
+  assign t_base = settings.type_base | default: 16 | divided_by: 16.0
   assign t_small = settings.type_small_body | default: 16 | divided_by: 16.0
   assign t_nav = settings.type_nav | default: 14 | divided_by: 16.0
   assign t_caption = settings.type_caption | default: 14 | divided_by: 16.0
@@ -78,6 +79,7 @@
   assign l_h3 = settings.leading_h3 | default: 116 | divided_by: 100.0
   assign l_h4 = settings.leading_h4 | default: 121 | divided_by: 100.0
   assign l_hb = settings.leading_hero_body | default: 170 | divided_by: 100.0
+  assign l_base = settings.leading_base | default: 150 | divided_by: 100.0
   assign l_bd = settings.leading_body | default: 167 | divided_by: 100.0
   assign l_small = settings.leading_small_body | default: 175 | divided_by: 100.0
   assign l_nav = settings.leading_nav | default: 143 | divided_by: 100.0
@@ -240,6 +242,7 @@
     --type-h4: {% render 'hs-fluid', min: h4_lo, max: h4_hi, vmin: vw_lo, vmax: vw_hi %};
     --type-hero-body: {% render 'hs-fluid', min: hb_lo, max: hb_hi, vmin: vw_lo, vmax: vw_hi %};
     --type-body: {% render 'hs-fluid', min: bd_lo, max: bd_hi, vmin: vw_lo, vmax: vw_hi %};
+    --type-base: {{ t_base }}rem;
     --type-small-body: {{ t_small }}rem;
     --type-nav: {{ t_nav }}rem;
     --type-caption: {{ t_caption }}rem;
@@ -263,6 +266,7 @@
     --leading-h3: {{ l_h3 }};
     --leading-h4: {{ l_h4 }};
     --leading-hero-body: {{ l_hb }};
+    --leading-base: {{ l_base }};
     --leading-body: {{ l_bd }};
     --leading-small-body: {{ l_small }};
     --leading-nav: {{ l_nav }};
@@ -299,7 +303,11 @@
     --ease-drawer: {{ e_drawer }};
   }
 
-  @media (min-width: 40rem) {
+  {%- comment -%}
+    The first gutter step lands at 23.5rem, just above the narrowest phones,
+    so everything from a 390px screen upwards gets the wider margin.
+  {%- endcomment -%}
+  @media (min-width: 23.5rem) {
     :root { --gutter: {{ g_sm }}rem; }
   }
   @media (min-width: 48rem) {

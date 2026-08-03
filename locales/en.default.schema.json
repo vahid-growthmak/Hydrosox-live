@@ -87,12 +87,15 @@
         "caption": "Caption — line height",
         "label": "Label — line height",
         "snug": "Snug (card headings)",
-        "relaxed": "Relaxed (long paragraphs)"
+        "relaxed": "Relaxed (long paragraphs)",
+        "base": "Base line height"
       },
       "font_source": "Font source",
       "font_source_info": "Inter is the typeface the approved design was built in, and it ships with this theme. Switch to a Shopify font only if you intend to depart from the design.",
       "font_source_bundled": "Inter (bundled with the theme)",
-      "font_source_shopify": "A Shopify library font"
+      "font_source_shopify": "A Shopify library font",
+      "base": "Base text size",
+      "base_info": "The document default, inherited by any text without its own role. The mockup uses 16px."
     },
     "layout": {
       "name": "Layout and rhythm",
@@ -348,18 +351,25 @@
       "poster_info": "Shown before the video plays, and on its own when there is no video.",
       "poster_fallback": "Bundled poster filename",
       "poster_fallback_info": "A file included with the theme, used only when no image is chosen above.",
-      "block_link": "Footer link"
+      "block_link": "Footer link",
+      "stage_group": "Stage",
+      "stage_background": "Stage background",
+      "stage_caption_info": "Read out by screen readers to describe what is on the stage."
     },
     "activity": {
       "name": "Shop by activity",
       "footnote": "Closing note",
-      "card_aspect": "Card image shape",
-      "card_aspect_info": "A CSS aspect ratio such as 4 / 5.",
       "block_activity": "Activity",
       "problem": "The problem",
       "problem_info": "Stated the way someone with this problem would say it.",
       "meta": "Meta line",
-      "image_fallback": "Bundled image filename"
+      "image_fallback": "Bundled image filename",
+      "size": "Card size",
+      "size_info": "Featured spans two columns and two rows with the image filling the card. Wide and full run the image beside the text.",
+      "size_featured": "Featured (2 × 2)",
+      "size_standard": "Standard",
+      "size_wide": "Wide (half row)",
+      "size_full": "Full row"
     },
     "band": {
       "name": "Feature band",

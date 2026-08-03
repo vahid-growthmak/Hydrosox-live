@@ -1,9 +1,10 @@
 {%- comment -%}
   Questions.
 
-  Native <details>/<summary> so every answer is readable, findable by the
-  browser's own find-in-page, and expandable before any JavaScript runs. The
-  component only adds the height transition and the one-open-at-a-time option.
+  Two columns: the heading, lede and help prompt sit in a sticky left column;
+  the questions run down the right as native <details>, so every answer is
+  readable, findable in-page, and expandable before any JavaScript runs. The
+  call to action closes the right column.
 {%- endcomment -%}
 
 {%- liquid
@@ -19,71 +20,75 @@
   {{ section.shopify_attributes }}
 >
   <div class="hs-shell hs-pace-base">
-    <div class="hs-section-head">
-      <div class="hs-section-head__lead">
+    <div class="hs-faq__grid">
+      {%- comment -%} Sticky lead column {%- endcomment -%}
+      <div class="hs-faq__lead">
         {%- if section.settings.eyebrow != blank -%}
           <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
         {%- endif -%}
         {%- if section.settings.heading != blank -%}
-          <h2 class="hs-h2 hs-section-head__heading hs-measure-19 hs-balance">
-            {{ section.settings.heading }}
-          </h2>
+          <h2 class="hs-h3 hs-faq__heading hs-measure-15 hs-balance">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.lede != blank -%}
+          <div class="hs-small-body hs-faq__lede hs-measure-36 hs-pretty hs-muted">
+            {{ section.settings.lede }}
+          </div>
+        {%- endif -%}
+        {%- if section.settings.help_label != blank -%}
+          <p class="hs-small-body hs-faq__help hs-measure-34 hs-pretty hs-muted">
+            {{ section.settings.help_prefix }}
+            <a class="hs-tap hs-faq__help-link" href="{{ section.settings.help_link | default: '#' }}">
+              {{- section.settings.help_label -}}
+            </a>
+          </p>
         {%- endif -%}
       </div>
-      {%- if section.settings.lede != blank or section.settings.help_label != blank -%}
-        <div class="hs-section-head__lede hs-measure-46 hs-leading-relaxed hs-pretty hs-muted">
-          {{ section.settings.lede }}
-          {%- if section.settings.help_label != blank -%}
-            <span class="hs-faq__help">
-              {{ section.settings.help_prefix }}
-              <a class="hs-link hs-link--accent hs-faq__help-link" href="{{ section.settings.help_link | default: '#' }}">
-                {{- section.settings.help_label -}}
-              </a>
-            </span>
+
+      {%- comment -%} Questions column {%- endcomment -%}
+      {%- if question_count > 0 -%}
+        <hs-accordion
+          class="hs-faq__list"
+          {% if section.settings.one_at_a_time %}
+            data-single
+          {% endif %}
+        >
+          {%- for block in questions -%}
+            <details class="hs-faq__item" {{ block.shopify_attributes }}>
+              <summary class="hs-faq__summary">
+                <span class="hs-h4 hs-faq__question hs-measure-30 hs-pretty">
+                  {{- block.settings.question -}}
+                </span>
+                <span class="hs-faq__marker" aria-hidden="true">
+                  {% render 'hs-icon', icon: 'plus', size: 20 %}
+                </span>
+              </summary>
+              <div class="hs-faq__answer-wrap">
+                <div class="hs-small-body hs-faq__answer hs-measure-62 hs-pretty hs-muted">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </details>
+          {%- endfor -%}
+
+          {%- if section.settings.cta_label != blank -%}
+            <div class="hs-faq__foot">
+              {% render 'hs-button',
+                label: section.settings.cta_label,
+                href: section.settings.cta_link,
+                style: 'primary'
+              %}
+              {%- if section.settings.cta_note != blank -%}
+                <p class="hs-caption hs-faq__foot-note hs-measure-30 hs-pretty hs-muted">
+                  {{ section.settings.cta_note }}
+                </p>
+              {%- endif -%}
+            </div>
           {%- endif -%}
-        </div>
+        </hs-accordion>
+
+        <script src="{{ 'hs-accordion.js' | asset_url }}" defer></script>
       {%- endif -%}
     </div>
-
-    {%- if question_count > 0 -%}
-      <hs-accordion
-        class="hs-faq__list"
-        {% if section.settings.one_at_a_time %}
-          data-single
-        {% endif %}
-      >
-        {%- for block in questions -%}
-          <details class="hs-faq__item" {{ block.shopify_attributes }}>
-            <summary class="hs-faq__summary">
-              <span class="hs-h4 hs-faq__question hs-pretty">{{ block.settings.question }}</span>
-              <span class="hs-faq__marker" aria-hidden="true">
-                {% render 'hs-icon', icon: 'plus', size: 18 %}
-              </span>
-            </summary>
-            <div class="hs-faq__answer-wrap">
-              <div class="hs-small-body hs-faq__answer hs-measure-54 hs-pretty hs-muted">
-                {{ block.settings.answer }}
-              </div>
-            </div>
-          </details>
-        {%- endfor -%}
-      </hs-accordion>
-
-      <script src="{{ 'hs-accordion.js' | asset_url }}" defer></script>
-    {%- endif -%}
-
-    {%- if section.settings.cta_label != blank -%}
-      <div class="hs-faq__foot">
-        {% render 'hs-button',
-          label: section.settings.cta_label,
-          href: section.settings.cta_link,
-          style: 'primary'
-        %}
-        {%- if section.settings.cta_note != blank -%}
-          <p class="hs-caption hs-faq__foot-note hs-pretty hs-muted">{{ section.settings.cta_note }}</p>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
   </div>
 </section>
 

@@ -55,7 +55,7 @@
           -%}
           <li class="hs-reveal hs-cards__item" {{ block.shopify_attributes }}>
             <{{ tag }}
-              class="hs-cards__card"
+              class="hs-cards__card hs-cards__card--{{ section.settings.card_fill | default: 'outline' }}"
               {% if has_link %}
                 href="{{ block.settings.link }}"
               {% endif %}
@@ -74,6 +74,13 @@
 
               <span class="hs-cards__body">
                 <span class="hs-cards__text-group">
+                  {%- if section.settings.numbered -%}
+                    {% render 'hs-index-number',
+                      index: forloop.index0,
+                      size: 'label',
+                      class: 'hs-cards__index hs-faint'
+                    %}
+                  {%- endif -%}
                   <span class="hs-h4 hs-cards__title">{{ block.settings.title }}</span>
                   {%- if block.settings.body != blank -%}
                     <span class="hs-small-body hs-cards__text hs-pretty hs-muted">
@@ -125,6 +132,22 @@
       "step": 1,
       "label": "t:sections.cards.columns",
       "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "numbered",
+      "label": "t:sections.cards.numbered",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "card_fill",
+      "label": "t:sections.cards.card_fill",
+      "options": [
+        { "value": "outline", "label": "t:sections.cards.fill_outline" },
+        { "value": "solid", "label": "t:sections.cards.fill_solid" }
+      ],
+      "default": "outline"
     },
     {
       "type": "checkbox",

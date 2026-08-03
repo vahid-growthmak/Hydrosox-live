@@ -7,6 +7,7 @@
   - list     ruled rows of title and body, optionally numbered
   - gallery  a two-up grid of captioned images
   - prose    a single block of rich text
+  - media    a single image beside the copy, six columns each
 
   This is the shape the design uses for almost every explanatory section, so
   most pages are built from repeats of it rather than one-off sections.
@@ -30,7 +31,7 @@
   {{ section.shopify_attributes }}
 >
   <div class="hs-shell hs-pace-base">
-    <div class="hs-cols__grid">
+    <div class="hs-cols__grid hs-cols__grid--{{ layout }}">
       {%- comment -%} Heading column {%- endcomment -%}
       <div class="hs-cols__head-col">
         <div class="hs-cols__head-sticky">
@@ -95,6 +96,18 @@
                   </li>
                 {%- endfor -%}
               </ul>
+            {%- endif -%}
+
+          {%- when 'media' -%}
+            {%- if section.settings.media_image != blank or section.settings.media_fallback != blank -%}
+              {% render 'hs-image',
+                image: section.settings.media_image,
+                fallback: section.settings.media_fallback,
+                alt: section.settings.media_alt,
+                sizes: '(min-width: 64rem) 45vw, 100vw',
+                wrapper_class: 'hs-cols__figure',
+                class: 'hs-cols__figure-img'
+              %}
             {%- endif -%}
 
           {%- when 'prose' -%}
@@ -171,7 +184,8 @@
       "options": [
         { "value": "list", "label": "t:sections.cols.layout_list" },
         { "value": "gallery", "label": "t:sections.cols.layout_gallery" },
-        { "value": "prose", "label": "t:sections.cols.layout_prose" }
+        { "value": "prose", "label": "t:sections.cols.layout_prose" },
+        { "value": "media", "label": "t:sections.cols.layout_media" }
       ],
       "default": "list"
     },
@@ -271,7 +285,19 @@
       "type": "textarea",
       "id": "footnote",
       "label": "t:sections.cols.footnote"
-    }
+    },
+    {
+      "type": "header",
+      "content": "t:sections.cols.media_header"
+    },
+    { "type": "image_picker", "id": "media_image", "label": "t:common.image" },
+    {
+      "type": "text",
+      "id": "media_fallback",
+      "label": "t:sections.cols.image_fallback",
+      "info": "t:sections.cols.image_fallback_info"
+    },
+    { "type": "text", "id": "media_alt", "label": "t:common.image_alt" }
   ],
   "blocks": [
     {

@@ -19,7 +19,15 @@
         <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
       {%- endif -%}
       {%- if section.settings.heading != blank -%}
-        <h2 class="hs-h3 hs-note__heading hs-balance">{{ section.settings.heading }}</h2>
+        {%- liquid
+          # A page that opens with this section owns the h1; one used as a band
+          # inside a longer page stays an h2.
+          assign heading_tag = section.settings.heading_tag | default: 'h2'
+          assign heading_size = section.settings.heading_size | default: 'h3'
+        -%}
+        <{{ heading_tag }} class="hs-{{ heading_size }} hs-note__heading hs-balance">
+          {{- section.settings.heading -}}
+        </{{ heading_tag }}>
       {%- endif -%}
       {%- if section.settings.body != blank -%}
         <div class="hs-body hs-note__body hs-measure-58 hs-pretty hs-muted">
@@ -31,6 +39,22 @@
           {{ section.settings.footnote }}
         </div>
       {%- endif -%}
+      {%- comment -%}
+        A pointer to the nearest thing that *is* answered, so a page that is
+        still being written still gives the reader somewhere to go.
+      {%- endcomment -%}
+      {%- if section.settings.pointer_link_label != blank -%}
+        <div class="hs-note__pointer">
+          {%- if section.settings.pointer_label != blank -%}
+            <p class="hs-eyebrow hs-muted">{{ section.settings.pointer_label }}</p>
+          {%- endif -%}
+          <a class="hs-tap hs-h4 hs-note__pointer-link" href="{{ section.settings.pointer_url | default: '#' }}">
+            {{- section.settings.pointer_link_label -}}
+            {% render 'hs-icon', icon: 'arrow-right', size: 18, class: 'hs-note__pointer-icon' %}
+          </a>
+        </div>
+      {%- endif -%}
+
       {%- if section.settings.cta_label != blank or section.settings.link_label != blank -%}
         <div class="hs-note__actions">
           {%- if section.settings.cta_label != blank -%}
@@ -47,6 +71,12 @@
               style: 'outline'
             %}
           {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.tail_note != blank -%}
+        <div class="hs-caption hs-note__tail hs-pretty hs-faint">
+          {{ section.settings.tail_note }}
         </div>
       {%- endif -%}
     </div>
@@ -98,8 +128,37 @@
     },
     { "type": "text", "id": "eyebrow", "label": "t:common.eyebrow", "default": "What it will not do" },
     { "type": "text", "id": "heading", "label": "t:common.heading", "default": "Where it stops." },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "t:sections.note.heading_tag",
+      "info": "t:sections.note.heading_tag_info",
+      "options": [
+        { "value": "h2", "label": "t:sections.note.tag_h2" },
+        { "value": "h1", "label": "t:sections.note.tag_h1" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:sections.note.heading_size",
+      "options": [
+        { "value": "h3", "label": "t:sections.note.size_h3" },
+        { "value": "h2", "label": "t:sections.note.size_h2" },
+        { "value": "h1", "label": "t:sections.note.size_h1" }
+      ],
+      "default": "h3"
+    },
     { "type": "richtext", "id": "body", "label": "t:common.body" },
     { "type": "richtext", "id": "footnote", "label": "t:sections.cols.footnote" },
+    {
+      "type": "header",
+      "content": "t:sections.note.pointer"
+    },
+    { "type": "text", "id": "pointer_label", "label": "t:sections.note.pointer_label" },
+    { "type": "text", "id": "pointer_link_label", "label": "t:sections.note.pointer_link_label" },
+    { "type": "url", "id": "pointer_url", "label": "t:sections.note.pointer_url" },
     {
       "type": "header",
       "content": "t:common.actions"
@@ -107,7 +166,8 @@
     { "type": "text", "id": "cta_label", "label": "t:common.cta_label" },
     { "type": "url", "id": "cta_url", "label": "t:common.cta_url" },
     { "type": "text", "id": "link_label", "label": "t:common.link_label" },
-    { "type": "url", "id": "link_url", "label": "t:common.link_url" }
+    { "type": "url", "id": "link_url", "label": "t:common.link_url" },
+    { "type": "richtext", "id": "tail_note", "label": "t:sections.note.tail_note" }
   ],
   "presets": [{ "name": "t:sections.note.name" }]
 }

@@ -37,7 +37,7 @@
           "type": "link",
           "settings": {
             "label": "Shop",
-            "link": "/#buy"
+            "link": "/products/hydrosox-waterproof-socks"
           }
         },
         "activity": {
@@ -91,21 +91,21 @@
           "type": "link",
           "settings": {
             "label": "Technology",
-            "link": "/#construction"
+            "link": "/pages/technology"
           }
         },
         "guides": {
           "type": "link",
           "settings": {
             "label": "Guides",
-            "link": "/#faq"
+            "link": "/blogs/guides"
           }
         },
         "about": {
           "type": "link",
           "settings": {
             "label": "About",
-            "link": "/#about"
+            "link": "/pages/about"
           }
         }
       },
@@ -128,7 +128,8 @@
         "mobile_breakpoint": "64",
         "cta_label": "Shop HydroSox",
         "cta_link": "/#buy",
-        "drawer_heading": "Menu"
+        "drawer_heading": "Menu",
+        "cta_url": "/products/hydrosox-waterproof-socks"
       }
     }
   },

@@ -1,0 +1,91 @@
+{
+  "sections": {
+    "intro": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "blue",
+        "hide_rule": false,
+        "max_width": 46,
+        "eyebrow": "Designed with wudu in mind",
+        "heading": "Built for the three conditions masah turns on.",
+        "heading_tag": "h1",
+        "heading_size": "h2",
+        "body": "<p>Waterproof. Structured to hold its shape. Shaped to stay on the foot. Those are the physical properties the practice turns on, and they are the ones we can speak to.</p>"
+      }
+    },
+    "properties": {
+      "type": "link-cards",
+      "settings": {
+        "color_scheme": "paper",
+        "columns": 3,
+        "numbered": true,
+        "card_fill": "solid",
+        "hide_rule": false,
+        "eyebrow": "What it is built for",
+        "heading": "The three properties the conditions rest on."
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "title": "Waterproof",
+            "body": "A licensed Porelle® membrane sealed inside a three-layer knit. The same membrane and the same structure as every other pair we sell."
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "title": "Holds its shape",
+            "body": "Structured so it stands upright unsupported rather than collapsing when it is not being worn."
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "title": "Stays on the foot",
+            "body": "Shaped to stay put through a normal day of walking, without being tied or fastened to the leg."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ]
+    },
+    "certification": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "media",
+        "hide_rule": false,
+        "eyebrow": "On certification",
+        "heading": "Not something a brand can award itself.",
+        "prose": "",
+        "media_fallback": "wudu-design-sheet.webp",
+        "media_alt": "HydroSox wudu design sheet: structured construction that holds its shape, shaped to stay on the foot",
+        "head_note": "<p>Certification is not something a brand can award itself. The day a certifying institution names this product, it will be stated here with the name of the body that issued it and nothing more.</p>",
+        "link_label": "info@hydrosox.com",
+        "link_url": "mailto:info@hydrosox.com"
+      }
+    },
+    "close": {
+      "type": "closing-cta",
+      "settings": {
+        "color_scheme": "paper",
+        "show_rule": false,
+        "heading": "The same sock, whichever reason brought you here.",
+        "cta_label": "Buy a pair",
+        "cta_url": "/products/hydrosox-waterproof-socks",
+        "alt_label": "How it is built",
+        "alt_url": "/#construction"
+      }
+    }
+  },
+  "order": [
+    "intro",
+    "properties",
+    "certification",
+    "close"
+  ]
+}

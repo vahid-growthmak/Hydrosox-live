@@ -496,17 +496,36 @@
       "link2_url": "Second link",
       "row_density": "Row spacing",
       "row_density_standard": "Standard",
-      "row_density_compact": "Compact"
+      "row_density_compact": "Compact",
+      "layout_media": "Copy beside an image",
+      "media_header": "Image (copy beside an image)"
     },
     "note": {
       "name": "Centre note",
-      "max_width": "Maximum width"
+      "max_width": "Maximum width",
+      "heading_tag": "Heading level",
+      "heading_tag_info": "Use Heading 1 when this section opens the page.",
+      "tag_h1": "Heading 1",
+      "tag_h2": "Heading 2",
+      "heading_size": "Heading size",
+      "size_h1": "Extra large",
+      "size_h2": "Large",
+      "size_h3": "Medium",
+      "pointer": "Pointer",
+      "pointer_label": "Pointer label",
+      "pointer_link_label": "Pointer link text",
+      "pointer_url": "Pointer link",
+      "tail_note": "Closing note"
     },
     "cards": {
       "name": "Link cards",
       "columns": "Columns on large screens",
       "block_card": "Card",
-      "meta": "Meta line"
+      "meta": "Meta line",
+      "numbered": "Number the cards",
+      "card_fill": "Card style",
+      "fill_outline": "Outlined",
+      "fill_solid": "Filled"
     },
     "close": {
       "name": "Closing call to action",

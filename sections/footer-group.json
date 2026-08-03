@@ -7,123 +7,210 @@
       "blocks": {
         "col_shop": {
           "type": "column",
-          "settings": { "heading": "Shop" }
+          "settings": {
+            "heading": "Shop"
+          }
         },
         "shop_1": {
           "type": "column_link",
-          "settings": { "label": "Waterproof Socks", "link": "/#buy" }
+          "settings": {
+            "label": "Waterproof Socks",
+            "link": "/products/hydrosox-waterproof-socks"
+          }
         },
         "shop_2": {
           "type": "column_link",
-          "settings": { "label": "Hiking", "link": "/#activity" }
+          "settings": {
+            "label": "Hiking",
+            "link": "/pages/hiking"
+          }
         },
         "shop_3": {
           "type": "column_link",
-          "settings": { "label": "Walking", "link": "/#activity" }
+          "settings": {
+            "label": "Walking",
+            "link": "/pages/walking"
+          }
         },
         "shop_4": {
           "type": "column_link",
-          "settings": { "label": "All Day in Boots", "link": "/#activity" }
+          "settings": {
+            "label": "All Day in Boots",
+            "link": "/pages/all-day-in-boots"
+          }
         },
         "shop_5": {
           "type": "column_link",
-          "settings": { "label": "Cycling & Commuting", "link": "/#activity" }
+          "settings": {
+            "label": "Cycling & Commuting",
+            "link": "/pages/cycling-and-commuting"
+          }
         },
         "shop_6": {
           "type": "column_link",
-          "settings": { "label": "Running & Trail", "link": "/#activity" }
+          "settings": {
+            "label": "Running & Trail",
+            "link": "/pages/running-and-trail"
+          }
         },
         "shop_7": {
           "type": "column_link",
-          "settings": { "label": "Wudu Socks", "link": "/#wudu" }
+          "settings": {
+            "label": "Wudu Socks",
+            "link": "/pages/wudu-socks"
+          }
         },
         "shop_8": {
           "type": "column_link",
-          "settings": { "label": "Size Guide", "link": "/#buy" }
+          "settings": {
+            "label": "Size Guide",
+            "link": "/pages/size-guide"
+          }
         },
         "col_explore": {
           "type": "column",
-          "settings": { "heading": "Explore" }
+          "settings": {
+            "heading": "Explore"
+          }
         },
         "exp_1": {
           "type": "column_link",
-          "settings": { "label": "The Technology", "link": "/#construction" }
+          "settings": {
+            "label": "The Technology",
+            "link": "/pages/technology"
+          }
         },
         "exp_2": {
           "type": "column_link",
-          "settings": { "label": "Guides", "link": "/#faq" }
+          "settings": {
+            "label": "Guides",
+            "link": "/blogs/guides"
+          }
         },
         "exp_3": {
           "type": "column_link",
-          "settings": { "label": "How to Make Masah", "link": "/#wudu" }
+          "settings": {
+            "label": "How to Make Masah",
+            "link": "/pages/how-to-make-masah"
+          }
         },
         "exp_4": {
           "type": "column_link",
-          "settings": { "label": "Reviews", "link": "/#faq" }
+          "settings": {
+            "label": "Reviews",
+            "link": "/pages/reviews"
+          }
         },
         "exp_5": {
           "type": "column_link",
-          "settings": { "label": "About HydroSox", "link": "/#about" }
+          "settings": {
+            "label": "About HydroSox",
+            "link": "/pages/about"
+          }
         },
         "exp_6": {
           "type": "column_link",
-          "settings": { "label": "Our Partners", "link": "/#about" }
+          "settings": {
+            "label": "Our Partners",
+            "link": "/pages/our-partners"
+          }
         },
         "col_help": {
           "type": "column",
-          "settings": { "heading": "Help & Trade" }
+          "settings": {
+            "heading": "Help & Trade"
+          }
         },
         "help_1": {
           "type": "column_link",
-          "settings": { "label": "Shipping & Delivery", "link": "/policies/shipping-policy" }
+          "settings": {
+            "label": "Shipping & Delivery",
+            "link": "/pages/shipping-and-delivery"
+          }
         },
         "help_2": {
           "type": "column_link",
-          "settings": { "label": "Returns & Refunds", "link": "/policies/refund-policy" }
+          "settings": {
+            "label": "Returns & Refunds",
+            "link": "/pages/returns-and-refunds"
+          }
         },
         "help_3": {
           "type": "column_link",
-          "settings": { "label": "Warranty", "link": "/#faq" }
+          "settings": {
+            "label": "Warranty",
+            "link": "/pages/warranty"
+          }
         },
         "help_4": {
           "type": "column_link",
-          "settings": { "label": "Care & Washing", "link": "/#faq" }
+          "settings": {
+            "label": "Care & Washing",
+            "link": "/pages/care-and-washing"
+          }
         },
         "help_5": {
           "type": "column_link",
-          "settings": { "label": "Track Order", "link": "/account" }
+          "settings": {
+            "label": "Track Order",
+            "link": "/pages/track-order"
+          }
         },
         "help_6": {
           "type": "column_link",
-          "settings": { "label": "FAQ", "link": "/#faq" }
+          "settings": {
+            "label": "FAQ",
+            "link": "/pages/faq"
+          }
         },
         "help_7": {
           "type": "column_link",
-          "settings": { "label": "Contact Us", "link": "/#about" }
+          "settings": {
+            "label": "Contact Us",
+            "link": "/pages/contact"
+          }
         },
         "help_8": {
           "type": "column_link",
-          "settings": { "label": "Partner With Us", "link": "/#about" }
+          "settings": {
+            "label": "Partner With Us",
+            "link": "/pages/partner-with-us"
+          }
         },
         "help_9": {
           "type": "column_link",
-          "settings": { "label": "Press", "link": "/#about" }
+          "settings": {
+            "label": "Press",
+            "link": "/pages/press"
+          }
         },
         "legal_1": {
           "type": "legal_link",
-          "settings": { "label": "Privacy Policy", "link": "/policies/privacy-policy" }
+          "settings": {
+            "label": "Privacy Policy",
+            "link": "/policies/privacy-policy"
+          }
         },
         "legal_2": {
           "type": "legal_link",
-          "settings": { "label": "Terms of Service", "link": "/policies/terms-of-service" }
+          "settings": {
+            "label": "Terms of Service",
+            "link": "/policies/terms-of-service"
+          }
         },
         "legal_3": {
           "type": "legal_link",
-          "settings": { "label": "Refund Policy", "link": "/policies/refund-policy" }
+          "settings": {
+            "label": "Refund Policy",
+            "link": "/policies/refund-policy"
+          }
         },
         "legal_4": {
           "type": "legal_link",
-          "settings": { "label": "Shipping Policy", "link": "/policies/shipping-policy" }
+          "settings": {
+            "label": "Shipping Policy",
+            "link": "/policies/shipping-policy"
+          }
         }
       },
       "block_order": [
@@ -178,5 +265,8 @@
       }
     }
   },
-  "order": ["footer", "buybar"]
+  "order": [
+    "footer",
+    "buybar"
+  ]
 }

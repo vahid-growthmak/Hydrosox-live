@@ -950,3 +950,90 @@
     padding-block: 1.5rem;
   }
 }
+
+.hs-note__pointer {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  background-color: var(--well-deep);
+}
+
+.hs-note__pointer-link {
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  color: var(--on-surface);
+  text-decoration: none;
+  transition: color var(--duration-press) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hs-note__pointer-link:hover {
+    color: var(--blue);
+  }
+}
+
+.hs-note__pointer-icon {
+  flex-shrink: 0;
+  transition: translate var(--duration-drawer) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hs-note__pointer-link:hover .hs-note__pointer-icon {
+    translate: 0.1875rem 0;
+  }
+}
+
+.hs-note__tail {
+  margin-top: 2rem;
+}
+
+.hs-note__tail > :first-child {
+  margin-top: 0;
+}
+
+.hs-cards__index {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+/* A filled card drops its outline and sits on the well instead — used where a
+   set of cards is stating properties rather than offering links. */
+.hs-cards__card--solid {
+  border-color: transparent;
+  background-color: var(--well);
+}
+
+.hs-cards__card--solid .hs-cards__body {
+  padding: 2rem;
+}
+
+/* ---- Media variant: copy beside a single image, six columns each ---- */
+
+@media (min-width: 64rem) {
+  .hs-cols__grid--media {
+    align-items: center;
+  }
+
+  .hs-cols__grid--media .hs-cols__head-col,
+  .hs-cols__grid--media .hs-cols__body-col {
+    grid-column: span 6;
+  }
+
+  /* Nothing to scroll past, so the heading does not need to hold. */
+  .hs-cols__grid--media .hs-cols__head-sticky {
+    position: static;
+  }
+}
+
+.hs-cols__figure {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--well-deep);
+}
+
+.hs-cols__figure-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}

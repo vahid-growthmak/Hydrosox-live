@@ -32,8 +32,11 @@
     return;
   }
 
+  let reported = false;
+
   const observer = new IntersectionObserver(
     (entries) => {
+      reported = true;
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
         entry.target.classList.add('is-revealed');
@@ -51,12 +54,14 @@
   };
 
   /*
-    Safety net. Content must never depend on an animation firing: if the
-    observer has not reported anything in a few seconds — a broken or throttled
-    implementation, a background tab that never composites — everything is shown
-    regardless. Losing the entrance animation is fine; losing the page is not.
+    Safety net for an observer that never reports at all — a broken or heavily
+    throttled implementation. Content must not depend on an animation firing, so
+    in that case everything is shown. It only trips when nothing has been
+    reported by then, which leaves a working observer free to keep animating
+    content the reader has not reached yet.
   */
   window.setTimeout(() => {
+    if (reported) return;
     document.querySelectorAll(SELECTOR).forEach((el) => el.classList.add('is-revealed'));
   }, 3000);
 

@@ -684,35 +684,66 @@ summary::-webkit-details-marker {
   }
 }
 
-/* Staggered children inside a revealing group. */
+/*
+  Staggered children inside a revealing group.
+
+  Two different mechanisms, because the two reveal paths measure progress
+  differently. On the scroll-driven path the offset has to come from the range
+  each child animates over: animation-delay is a time offset, which a view
+  timeline has no notion of, and setting it stops the timeline resolving at all
+  — the symptom being elements that sit at their end state and never animate.
+  The observer fallback is time-based, so there transition-delay is correct.
+*/
 .hs-stagger > * {
   --hs-stagger-step: 70ms;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .hs-stagger > :nth-child(2) {
-    animation-delay: calc(var(--hs-stagger-step) * 1);
     transition-delay: calc(var(--hs-stagger-step) * 1);
   }
 
   .hs-stagger > :nth-child(3) {
-    animation-delay: calc(var(--hs-stagger-step) * 2);
     transition-delay: calc(var(--hs-stagger-step) * 2);
   }
 
   .hs-stagger > :nth-child(4) {
-    animation-delay: calc(var(--hs-stagger-step) * 3);
     transition-delay: calc(var(--hs-stagger-step) * 3);
   }
 
   .hs-stagger > :nth-child(5) {
-    animation-delay: calc(var(--hs-stagger-step) * 4);
     transition-delay: calc(var(--hs-stagger-step) * 4);
   }
 
   .hs-stagger > :nth-child(6) {
-    animation-delay: calc(var(--hs-stagger-step) * 5);
     transition-delay: calc(var(--hs-stagger-step) * 5);
+  }
+
+  /* Each child enters over a window offset 7% further down its own entry. */
+  @supports (animation-timeline: view()) {
+    .hs-stagger > :nth-child(1) {
+      animation-range: entry 5% entry 55%;
+    }
+
+    .hs-stagger > :nth-child(2) {
+      animation-range: entry 12% entry 62%;
+    }
+
+    .hs-stagger > :nth-child(3) {
+      animation-range: entry 19% entry 69%;
+    }
+
+    .hs-stagger > :nth-child(4) {
+      animation-range: entry 26% entry 76%;
+    }
+
+    .hs-stagger > :nth-child(5) {
+      animation-range: entry 33% entry 83%;
+    }
+
+    .hs-stagger > :nth-child(6) {
+      animation-range: entry 40% entry 90%;
+    }
   }
 }
 

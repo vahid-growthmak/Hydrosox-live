@@ -21,7 +21,10 @@
           }
         }
       },
-      "block_order": ["delivery", "shop"],
+      "block_order": [
+        "delivery",
+        "shop"
+      ],
       "settings": {
         "color_scheme": "ink",
         "divider": "/"
@@ -49,7 +52,7 @@
           "settings": {
             "label": "Hiking",
             "description": "Boots that wet out four hours into a long day in the hills.",
-            "link": "/#activity"
+            "link": "/pages/hiking"
           }
         },
         "act_walking": {
@@ -57,7 +60,7 @@
           "settings": {
             "label": "Walking",
             "description": "Wet grass at eight in the morning, in shoes that were never waterproof.",
-            "link": "/#activity"
+            "link": "/pages/walking"
           }
         },
         "act_boots": {
@@ -65,7 +68,7 @@
           "settings": {
             "label": "All Day in Boots",
             "description": "Boots that keep the rain out and then seal the sweat in.",
-            "link": "/#activity"
+            "link": "/pages/all-day-in-boots"
           }
         },
         "act_cycling": {
@@ -73,7 +76,7 @@
           "settings": {
             "label": "Cycling & Commuting",
             "description": "Overshoes that leak at the ankle, and shoes still wet at home time.",
-            "link": "/#activity"
+            "link": "/pages/cycling-and-commuting"
           }
         },
         "act_running": {
@@ -81,7 +84,7 @@
           "settings": {
             "label": "Running & Trail",
             "description": "Cold, soaked feet on winter miles, and blisters in a wet race.",
-            "link": "/#activity"
+            "link": "/pages/running-and-trail"
           }
         },
         "technology": {
@@ -129,5 +132,8 @@
       }
     }
   },
-  "order": ["announcement", "header"]
+  "order": [
+    "announcement",
+    "header"
+  ]
 }

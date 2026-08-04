@@ -232,7 +232,11 @@
       "block_link": "Navigation link",
       "block_dropdown": "Dropdown",
       "block_dropdown_info": "Every \"dropdown item\" placed directly below this block belongs to it.",
-      "block_dropdown_item": "Dropdown item"
+      "block_dropdown_item": "Dropdown item",
+      "item_focal": "Focal point",
+      "item_focal_info": "Which part of the picture to keep as the card crops, e.g. center, or 66% 50% to sit on the sock.",
+      "item_zoom": "Picture zoom",
+      "item_zoom_info": "Magnifies the picture around the focal point, so the sock fills the card rather than the whole scene."
     },
     "footer": {
       "name": "Footer",

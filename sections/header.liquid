@@ -83,22 +83,67 @@
                   {{ block.settings.label }}
                   {% render 'hs-icon', icon: 'chevron-down', size: 14, class: 'hs-header__chevron' %}
                 </a>
+                {%- liquid
+                  # Does any item in this dropdown carry a picture? If so the
+                  # panel is laid out as picture cards; if not it stays the plain
+                  # text list, so a merchant who adds a dropdown and no images
+                  # still gets something sensible.
+                  assign panel_has_media = false
+                  for item in section.blocks offset: forloop.index
+                    unless item.type == 'dropdown_item'
+                      break
+                    endunless
+                    if item.settings.image != blank or item.settings.image_fallback != blank
+                      assign panel_has_media = true
+                      break
+                    endif
+                  endfor
+                -%}
                 <div class="hs-header__panel">
-                  <ul class="hs-header__panel-list" role="list">
+                  <ul
+                    class="hs-header__panel-list{% if panel_has_media %} hs-header__panel-list--media{% endif %}"
+                    role="list"
+                  >
                     {%- for item in section.blocks offset: forloop.index -%}
                       {%- unless item.type == 'dropdown_item' -%}
                         {%- break -%}
                       {%- endunless -%}
                       <li {{ item.shopify_attributes }}>
-                        <a class="hs-header__panel-link" href="{{ item.settings.link | default: '#' }}">
-                          <span class="hs-small-body hs-header__panel-title">
-                            {{- item.settings.label -}}
-                          </span>
-                          {%- if item.settings.description != blank -%}
-                            <span class="hs-caption hs-header__panel-desc hs-pretty">
-                              {{- item.settings.description -}}
-                            </span>
+                        <a
+                          class="hs-header__panel-link"
+                          href="{{ item.settings.link | default: '#' }}"
+                          {%- if panel_has_media -%}
+                            {%- assign zoom = item.settings.image_zoom | default: 100 | divided_by: 100.0 -%}
+                            style="--hs-panel-zoom: {{ zoom }}; --hs-panel-focus: {{ item.settings.focal_point | default: 'center' }};"
                           {%- endif -%}
+                        >
+                          {%- if panel_has_media -%}
+                            {% render 'hs-image',
+                              image: item.settings.image,
+                              fallback: item.settings.image_fallback,
+                              alt: item.settings.image_alt,
+                              aspect: '4 / 3',
+                              sizes: '15rem',
+                              position: item.settings.focal_point,
+                              wrapper_class: 'hs-header__panel-media',
+                              class: 'hs-header__panel-img'
+                            %}
+                          {%- endif -%}
+                          <span class="hs-header__panel-text">
+                            <span class="hs-small-body hs-header__panel-title">
+                              {{- item.settings.label -}}
+                            </span>
+                            {%- comment -%}
+                              The supporting line belongs to the plain text list. On a
+                              picture card the name alone is the label — the sentence
+                              covered the sock, which is the thing worth showing.
+                            {%- endcomment -%}
+                            {%- if item.settings.description != blank and panel_has_media == false -%}
+                              <span class="hs-caption hs-header__panel-desc hs-pretty">
+                                {{- item.settings.description -}}
+                              </span>
+                            {%- endif -%}
+                          </span>
                         </a>
                       </li>
                     {%- endfor -%}
@@ -370,6 +415,40 @@
           "type": "url",
           "id": "link",
           "label": "t:common.link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:common.image"
+        },
+        {
+          "type": "text",
+          "id": "image_fallback",
+          "label": "t:sections.cols.image_fallback",
+          "info": "t:sections.cols.image_fallback_info"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "t:common.image_alt"
+        },
+        {
+          "type": "text",
+          "id": "focal_point",
+          "label": "t:sections.header.item_focal",
+          "info": "t:sections.header.item_focal_info",
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "image_zoom",
+          "label": "t:sections.header.item_zoom",
+          "info": "t:sections.header.item_zoom_info",
+          "min": 100,
+          "max": 260,
+          "step": 10,
+          "unit": "%",
+          "default": 100
         }
       ]
     }

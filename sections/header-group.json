@@ -52,7 +52,11 @@
           "settings": {
             "label": "Hiking & Walking",
             "description": "Boots that wet out four hours into a long day in the hills.",
-            "link": "/pages/hiking-and-walking"
+            "link": "/pages/hiking-and-walking",
+            "image_fallback": "activity-hiking.webp",
+            "image_alt": "Hiking on a wet hillside in HydroSox waterproof socks",
+            "focal_point": "66% 52%",
+            "image_zoom": 210
           }
         },
         "act_boots": {
@@ -60,7 +64,11 @@
           "settings": {
             "label": "All Day in Boots",
             "description": "Boots that keep the rain out and then seal the sweat in.",
-            "link": "/pages/all-day-in-boots"
+            "link": "/pages/all-day-in-boots",
+            "image_fallback": "activity-all-day-in-boots.webp",
+            "image_alt": "A long shift in work boots wearing HydroSox waterproof socks",
+            "focal_point": "63% 45%",
+            "image_zoom": 150
           }
         },
         "act_cycling": {
@@ -68,7 +76,11 @@
           "settings": {
             "label": "Cycling & Commuting",
             "description": "Overshoes that leak at the ankle, and shoes still wet at home time.",
-            "link": "/pages/cycling-and-commuting"
+            "link": "/pages/cycling-and-commuting",
+            "image_fallback": "activity-cycling-and-commuting.webp",
+            "image_alt": "Commuting by bike in the rain in HydroSox waterproof socks",
+            "focal_point": "52% 66%",
+            "image_zoom": 200
           }
         },
         "act_running": {
@@ -76,7 +88,11 @@
           "settings": {
             "label": "Running & Trail",
             "description": "Cold, soaked feet on winter miles, and blisters in a wet race.",
-            "link": "/pages/running-and-trail"
+            "link": "/pages/running-and-trail",
+            "image_fallback": "activity-running-and-trail.webp",
+            "image_alt": "Running a wet winter trail in HydroSox waterproof socks",
+            "focal_point": "45% 56%",
+            "image_zoom": 180
           }
         },
         "technology": {

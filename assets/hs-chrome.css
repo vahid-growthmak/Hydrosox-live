@@ -243,6 +243,132 @@
   color: var(--grey);
 }
 
+/* ---------------------------------------------------------------------------
+   Picture cards in a dropdown panel.
+
+   Used when the dropdown's items carry an image. Two columns rather than one
+   per activity: four cards in a row would put the panel's right edge past the
+   viewport on a 1024–1280 screen, and the supporting line needs the width to
+   stay readable. The plain text list above is still the fallback whenever no
+   item has a picture.
+--------------------------------------------------------------------------- */
+
+.hs-header__panel-list--media {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  width: 32rem;
+}
+
+.hs-header__panel-list--media .hs-header__panel-link {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  /* The picture is taken out of flow, so it lends the card no height at all and
+     the text alone would size it. A floor rather than an aspect-ratio, so a
+     longer supporting line grows the card instead of being clipped. */
+  min-height: 9.5rem;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hs-header__panel-media {
+  position: absolute;
+  inset: 0;
+  /* The wrapper carries an aspect-ratio for the reserved box; once it is the
+     card's backdrop the card's own height wins. */
+  aspect-ratio: auto !important;
+  z-index: 0;
+}
+
+.hs-header__panel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Magnified about the focal point, so the sock fills the card instead of the
+     hillside behind it. Both values come from the block's own settings. */
+  scale: var(--hs-panel-zoom, 1);
+  transform-origin: var(--hs-panel-focus, center);
+  transition: scale var(--duration-drawer) var(--ease-out);
+}
+
+/* Graded down so the photograph reads as a dark backdrop and the sock is the
+   thing that stands out, rather than the scenery competing with the name. Never
+   fully transparent at the top — a bright sky behind white text is unreadable. */
+.hs-header__panel-list--media .hs-header__panel-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.88) 0%,
+    rgb(0 0 0 / 0.6) 34%,
+    rgb(0 0 0 / 0.42) 68%,
+    rgb(0 0 0 / 0.38) 100%
+  );
+}
+
+.hs-header__panel-text {
+  position: relative;
+  z-index: 2;
+  display: block;
+  padding: 0.875rem;
+}
+
+.hs-header__panel-list--media .hs-header__panel-title,
+.hs-header__panel-list--media .hs-header__panel-desc {
+  color: var(--paper);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* The row hover tint belongs to the text list, not to a picture card. */
+  .hs-header__panel-list--media .hs-header__panel-link:hover {
+    background-color: transparent;
+  }
+
+  .hs-header__panel-list--media .hs-header__panel-link:hover .hs-header__panel-img {
+    /* Relative to the card's own zoom, not a flat 1.04, or hovering would snap a
+       magnified picture back out. */
+    scale: calc(var(--hs-panel-zoom, 1) * 1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hs-header__panel-img {
+    transition: none;
+  }
+
+  .hs-header__panel-list--media .hs-header__panel-link:hover .hs-header__panel-img {
+    scale: var(--hs-panel-zoom, 1);
+  }
+}
+
+/* A narrow desktop cannot hold a 32rem panel beside the trigger. */
+@media (min-width: 64rem) and (max-width: 75rem) {
+  .hs-header__panel-list--media {
+    grid-template-columns: minmax(0, 1fr);
+    width: 19rem;
+  }
+
+  /* Stacked, four cards at the two-column height ran off the bottom of a short
+     laptop screen and the last one could not be reached. The name is the whole
+     card now, so a shorter one still shows the sock. */
+  .hs-header__panel-list--media .hs-header__panel-link {
+    min-height: 5.5rem;
+  }
+}
+
+/* Last resort, at any width: never let the panel grow past the viewport with an
+   item stranded below the fold. */
+.hs-header__panel-list--media {
+  max-height: calc(100svh - 9rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
 .hs-header__actions {
   display: flex;
   align-items: center;

@@ -1,3 +1,14 @@
+/* Header section group.
+   Re-stamped 2026-08-04. The dropdown picture settings (image_fallback,
+   image_alt, focal_point, image_zoom) were added to sections/header.liquid and
+   used here in the same commit. Shopify validated this file against the schema
+   it held at that moment, did not recognise them, and silently dropped all four
+   while still reporting the file as updated — so the mega menu fell back to its
+   plain text list on the live store. The schema is deployed now, so this stamp
+   exists only to put the file back in a diff: Shopify's GitHub sync applies the
+   newest commit's changes and never revisits a file that has not changed.
+
+   Lesson: land a section's schema first, then the values that use it. */
 {
   "name": "t:section_groups.header",
   "type": "header",

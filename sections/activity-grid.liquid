@@ -4,8 +4,9 @@
   A bento of bordered cards on a four-column grid. Each activity block chooses
   its own footprint: featured (two columns and two rows, the image filling the
   card), standard (a 16:9 image over the text), or a horizontal wide or full
-  row (image beside the text). Defaults reproduce the designed arrangement —
-  one featured card, two standard, one wide, one full-width.
+  row (image beside the text). The sizes tile the four-column grid without
+  gaps: a featured card holds columns 1-2 across two rows, so columns 3-4
+  need filling on both — two wide cards — before a full-width row closes it.
 {%- endcomment -%}
 
 {%- liquid
@@ -188,7 +189,7 @@
       "type": "richtext",
       "id": "lede",
       "label": "t:common.lede",
-      "default": "<p>One sock. Five different problems it solves, described the way the people with those problems describe them.</p>"
+      "default": "<p>One sock. Four different problems it solves, described the way the people with those problems describe them.</p>"
     },
     {
       "type": "textarea",
@@ -276,30 +277,18 @@
           "type": "activity",
           "settings": {
             "size": "featured",
-            "title": "Hiking",
-            "problem": "Boots that wet out four hours into a long day in the hills.",
+            "title": "Hiking & Walking",
+            "problem": "Boots that wet out four hours into a long day in the hills, and wet grass at eight in the morning.",
             "meta": "Long days, wet ground",
             "image_fallback": "activity-hiking.webp",
             "image_alt": "A walker stopped on a rocky mountain path in white HydroSox.",
-            "link": "/pages/hiking"
+            "link": "/pages/hiking-and-walking"
           }
         },
         {
           "type": "activity",
           "settings": {
-            "size": "standard",
-            "title": "Walking",
-            "problem": "Wet grass at eight in the morning, in shoes that were never waterproof.",
-            "meta": "Everyday miles, all year",
-            "image_fallback": "activity-walking.webp",
-            "image_alt": "A walker mid-stride on a tree-lined park path in white HydroSox.",
-            "link": "/pages/walking"
-          }
-        },
-        {
-          "type": "activity",
-          "settings": {
-            "size": "standard",
+            "size": "wide",
             "title": "All Day in Boots",
             "problem": "Boots that keep the rain out and then seal the sweat in.",
             "meta": "Long shifts, five days a week",

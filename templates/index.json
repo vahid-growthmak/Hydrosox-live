@@ -7,7 +7,7 @@
           "type": "spec",
           "settings": {
             "label": "Membrane",
-            "value": "Porelle\u00ae"
+            "value": "Porelle®"
           }
         },
         "s2": {
@@ -42,12 +42,12 @@
         "color_scheme": "ink",
         "full_height": true,
         "heading": "Wet feet are\na solved problem.",
-        "body": "<p>A Porelle\u00ae waterproof-breathable membrane, in a three-layer knit. Hiking, running, cycling, commuting and work \u2014 the day carries on when the weather turns.</p>",
+        "body": "<p>A Porelle® waterproof-breathable membrane, in a three-layer knit. Hiking, running, cycling, commuting and work — the day carries on when the weather turns.</p>",
         "cta_label": "Buy a pair",
         "cta_link": "/#buy",
         "link_label": "See how it is built",
         "link_url": "/#construction",
-        "image_alt": "Four HydroSox colourways shown together \u2014 black, white, black with navy and black with grey.",
+        "image_alt": "Four HydroSox colourways shown together — black, white, black with navy and black with grey.",
         "image_aspect": "9 / 8",
         "image_position": "50% 41%",
         "line_stagger": 90,
@@ -174,14 +174,14 @@
           "type": "trust",
           "settings": {
             "label": "Checkout",
-            "value": "Guest \u2014 no account required"
+            "value": "Guest — no account required"
           }
         },
         "r4": {
           "type": "trust",
           "settings": {
             "label": "Payment",
-            "value": "Visa \u00b7 Mastercard \u00b7 American Express \u00b7 Apple Pay \u00b7 Google Pay \u00b7 Shop Pay"
+            "value": "Visa · Mastercard · American Express · Apple Pay · Google Pay · Shop Pay"
           }
         },
         "l1": {
@@ -248,7 +248,7 @@
           "type": "guide_note",
           "settings": {
             "label": "Between two sizes",
-            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit — a size down grips the toes and shortens the life of the membrane."
           }
         }
       },
@@ -297,7 +297,7 @@
         "per_unit_label": "per pair",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
-        "guide_intro": "Measure the foot rather than relying on shoe size \u2014 sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
         "guide_col_size": "Size",
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
@@ -312,9 +312,9 @@
           "type": "criterion",
           "settings": {
             "label": "Waterproof layer",
-            "ours_value": "Porelle\u00ae, named and licensed",
+            "ours_value": "Porelle®, named and licensed",
             "ours_note": "A membrane you can look up is a membrane someone else has to stand behind.",
-            "theirs_value": "An unnamed \u201cwaterproof\u201d laminate"
+            "theirs_value": "An unnamed “waterproof” laminate"
           }
         },
         "k2": {
@@ -337,9 +337,9 @@
           "type": "criterion",
           "settings": {
             "label": "Price per pair",
-            "ours_value": "\u00a320.00",
-            "ours_note": "Cheaper waterproof socks exist, including entry models from the category leader at \u00a315\u2013\u00a320. Those are the ones that do not name a membrane.",
-            "theirs_value": "\u00a335\u2013\u00a355 for mid-range and premium"
+            "ours_value": "£20.00",
+            "ours_note": "Cheaper waterproof socks exist, including entry models from the category leader at £15–£20. Those are the ones that do not name a membrane.",
+            "theirs_value": "£35–£55 for mid-range and premium"
           }
         },
         "k5": {
@@ -373,7 +373,7 @@
         "anchor_id": "comparison",
         "eyebrow": "The difference",
         "heading": "Everything here is checkable.",
-        "lede": "<p>We are new, and you have no reason to take our word for anything. So this compares the things you can verify yourself in about four minutes \u2014 not the things we would like you to feel.</p>",
+        "lede": "<p>We are new, and you have no reason to take our word for anything. So this compares the things you can verify yourself in about four minutes — not the things we would like you to feel.</p>",
         "table_caption": "HydroSox compared against a typical waterproof sock, across six verifiable criteria.",
         "col_criterion": "What matters",
         "col_ours": "HydroSox",
@@ -475,7 +475,7 @@
           "type": "chapter",
           "settings": {
             "title": "Wet road, then mud",
-            "caption": "The unglamorous half \u2014 churned ground and a soaked verge.",
+            "caption": "The unglamorous half — churned ground and a soaked verge.",
             "poster_fallback": "wet-road-and-mud.webp",
             "poster_alt": "Churned muddy ground beside a soaked grass verge."
           }
@@ -500,9 +500,9 @@
         "anchor_id": "in-the-wet",
         "eyebrow": "The product film",
         "heading": "The sock, in the weather it is for.",
-        "lede": "<p>This is our own film rather than an independent test, so take it for what it is \u2014 the product in the conditions it is sold for. <strong>The claim underneath it is checkable</strong>, and that is the membrane, not the footage.</p>",
+        "lede": "<p>This is our own film rather than an independent test, so take it for what it is — the product in the conditions it is sold for. <strong>The claim underneath it is checkable</strong>, and that is the membrane, not the footage.</p>",
         "stage_background": "#0b0b0b",
-        "stage_caption": "Four HydroSox colourways \u2014 black, white, black with navy and black with grey \u2014 pegged to a washing line against a blue ground, with water thrown across them.",
+        "stage_caption": "Four HydroSox colourways — black, white, black with navy and black with grey — pegged to a washing line against a blue ground, with water thrown across them.",
         "play_label": "Play the clip"
       }
     },
@@ -521,9 +521,9 @@
         "y2": {
           "type": "layer",
           "settings": {
-            "heading": "Porelle\u00ae membrane",
+            "heading": "Porelle® membrane",
             "role": "The waterproof barrier",
-            "body": "<p>A licensed third-party waterproof-breathable membrane \u2014 not a name we invented. Water cannot get in; vapour from the foot can get out. PFOA free.</p>",
+            "body": "<p>A licensed third-party waterproof-breathable membrane — not a name we invented. Water cannot get in; vapour from the foot can get out. PFOA free.</p>",
             "tint": "#0093ff"
           }
         },
@@ -555,7 +555,7 @@
         "anchor_id": "construction",
         "eyebrow": "Construction",
         "heading": "Three layers, and what each one is for.",
-        "lede": "<p>\u201cWaterproof\u201d is a claim anybody can print on a label. This is the mechanism underneath it, so you can judge it rather than take our word.</p>",
+        "lede": "<p>“Waterproof” is a claim anybody can print on a label. This is the mechanism underneath it, so you can judge it rather than take our word.</p>",
         "scroll_hint": "Scroll to take it apart.",
         "track_height": 320,
         "frame_count": 100,
@@ -585,7 +585,7 @@
         "a3": {
           "type": "activity",
           "settings": {
-            "size": "standard",
+            "size": "wide",
             "title": "All Day in Boots",
             "problem": "Boots that keep the rain out and then seal the sweat in.",
             "meta": "Long shifts, five days a week",
@@ -630,8 +630,8 @@
         "anchor_id": "activity",
         "eyebrow": "Shop by activity",
         "heading": "Find the version of wet feet you actually have.",
-        "lede": "<p>One sock. Five different problems it solves, described the way the people with those problems describe them.</p>",
-        "footnote": "Same sock either way \u2014 the activity only changes which pair you reach for."
+        "lede": "<p>One sock. Four different problems it solves, described the way the people with those problems describe them.</p>",
+        "footnote": "Same sock either way — the activity only changes which pair you reach for."
       }
     },
     "wudu": {
@@ -641,7 +641,7 @@
         "anchor_id": "wudu",
         "eyebrow": "Designed with wudu in mind",
         "heading": "Built for the three conditions masah turns on.",
-        "body": "<p>Waterproof, structured to hold its shape, shaped to stay on the foot \u2014 the three physical properties the masah conditions rest on. No certificate has been issued yet, and we say so plainly on the page.</p>",
+        "body": "<p>Waterproof, structured to hold its shape, shaped to stay on the foot — the three physical properties the masah conditions rest on. No certificate has been issued yet, and we say so plainly on the page.</p>",
         "link_label": "How it is built for masah",
         "link_url": "/#construction"
       }
@@ -653,7 +653,7 @@
           "type": "question",
           "settings": {
             "question": "Are these actually waterproof, or just water resistant?",
-            "answer": "<p>Waterproof. The middle layer is a Porelle\u00ae membrane \u2014 a licensed third-party laminate, not a name we invented \u2014 sealed inside a three-layer knit. Water that goes in over the top of the cuff is inside the sock, and no waterproof sock behaves otherwise.</p>"
+            "answer": "<p>Waterproof. The middle layer is a Porelle® membrane — a licensed third-party laminate, not a name we invented — sealed inside a three-layer knit. Water that goes in over the top of the cuff is inside the sock, and no waterproof sock behaves otherwise.</p>"
           }
         },
         "q2": {
@@ -674,7 +674,7 @@
           "type": "question",
           "settings": {
             "question": "What size should I order?",
-            "answer": "<p>Four bands: S covers UK 3-5, M covers UK 6-8, L covers UK 9-11, XL covers UK 12-14. The size guide opens over the buy widget without leaving the page, and it is measurement-led \u2014 shoe sizing is not consistent between brands.</p>"
+            "answer": "<p>Four bands: S covers UK 3-5, M covers UK 6-8, L covers UK 9-11, XL covers UK 12-14. The size guide opens over the buy widget without leaving the page, and it is measurement-led — shoe sizing is not consistent between brands.</p>"
           }
         },
         "q5": {
@@ -688,7 +688,7 @@
           "type": "question",
           "settings": {
             "question": "Why are there no reviews on this site?",
-            "answer": "<p>Because there are none yet. HydroSox is new, and a rating with nothing behind it is worth nothing. When there is real review volume it will be published here \u2014 including the reviews that do not flatter us.</p>"
+            "answer": "<p>Because there are none yet. HydroSox is new, and a rating with nothing behind it is worth nothing. When there is real review volume it will be published here — including the reviews that do not flatter us.</p>"
           }
         },
         "q7": {
@@ -768,7 +768,7 @@
         "anchor_id": "about",
         "eyebrow": "The company",
         "heading": "Who you are buying from, in full.",
-        "lede": "<p>If something goes wrong you should know exactly who you are dealing with. So: the company, the address, and two ways to reach a person \u2014 published here rather than buried in a policy page.</p>",
+        "lede": "<p>If something goes wrong you should know exactly who you are dealing with. So: the company, the address, and two ways to reach a person — published here rather than buried in a policy page.</p>",
         "link_label": "Read the questions first",
         "link_url": "/#faq"
       }
@@ -777,7 +777,7 @@
       "type": "newsletter-offer",
       "settings": {
         "color_scheme": "wash",
-        "eyebrow": "\u00a35 off your first pair",
+        "eyebrow": "£5 off your first pair",
         "heading": "Get the code before the weather turns.",
         "body": "<p>Applies to a single pair. The two-pair saving is already built into the price.</p>",
         "field_label": "Email address",

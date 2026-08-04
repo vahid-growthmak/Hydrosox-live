@@ -641,6 +641,184 @@ def build_article():
     print("  blog: generic fallback index")
 
 
+def guide_rows_from_home():
+    """The size bands, read out of the homepage buy widget.
+
+    Sitemap 13.2 wants the overlay and this page to agree. Reading the blocks
+    rather than restating them means they cannot drift apart.
+    """
+    home = load("index")
+    buy = home["sections"]["buy"]
+    rows, notes = [], []
+    for key in buy.get("block_order", []):
+        b = buy["blocks"][key]
+        if b["type"] == "guide_row":
+            st = b["settings"]
+            rows.append((st.get("size", ""), st.get("foot_length", ""), st.get("uk_shoe", "")))
+        elif b["type"] == "guide_note":
+            notes.append((b["settings"].get("label", ""), b["settings"].get("body", "")))
+    return rows, notes
+
+
+def limits_from_home():
+    """The honest-limits rows, read out of the homepage."""
+    home = load("index")
+    lim = home["sections"]["limits"]
+    out = []
+    for key in lim.get("block_order", []):
+        st = lim["blocks"][key]["settings"]
+        out.append((st.get("heading", ""), st.get("body", "")))
+    return out
+
+
+def layers_from_home():
+    """The three construction layers, read out of the homepage."""
+    home = load("index")
+    con = home["sections"]["construction"]
+    out = []
+    for key in con.get("block_order", []):
+        b = con["blocks"][key]
+        if b["type"] != "layer":
+            continue
+        st = b["settings"]
+        out.append((st.get("heading", ""), st.get("role", ""), st.get("body", "")))
+    return out
+
+
+def items(pairs, numbered=False, **settings):
+    """A content-columns section from (title, body) pairs."""
+    blocks, order = {}, []
+    for i, (title, body) in enumerate(pairs, 1):
+        key = f"i{i}"
+        blocks[key] = {"type": "item", "settings": {"title": title, "body": body}}
+        order.append(key)
+    base = {"color_scheme": "paper", "layout": "list", "numbered": numbered}
+    base.update(settings)
+    return {"type": "content-columns", "settings": base, "blocks": blocks, "block_order": order}
+
+
+def build_support_pages():
+    """Size guide, care, FAQ and technology — sitemap pages 13, 14, 18 and 10.
+
+    Each carried a single placeholder note while the sitemap asks for four to
+    seven sections. The content for all four already exists elsewhere in the
+    theme, so these are composed from it rather than written: the size bands
+    come out of the buy widget, the limits and the layers out of the homepage.
+    Nothing here is invented, and where the sitemap forbids a figure the
+    section states the mechanism instead.
+    """
+    rows, notes = guide_rows_from_home()
+
+    # 13. Size guide
+    table = [
+        (size, f"<p>Foot length {length}. Fits {shoe}.</p>")
+        for size, length, shoe in rows
+    ]
+    save("size-guide", {
+        "sections": {
+            "intro": {"type": "centre-note", "settings": {
+                "color_scheme": "paper", "heading_tag": "h1", "heading_size": "h2",
+                "eyebrow": "Size guide", "heading": "Measure the foot, not the shoe.",
+                "body": "<p>Shoe sizing is not consistent between brands, and the foot length is what actually has to fit. Four bands cover UK 3 to UK 14.</p>"}},
+            "chart": items(table, heading="The four bands",
+                           head_note="<p>The same measurements appear in the size guide that opens over the buy widget. They are read from one place, so the two cannot disagree.</p>",
+                           row_density="tight"),
+            "howto": items(notes, heading="Measuring and choosing"),
+            "buy": buy_widget_from_home(),
+        },
+        "order": ["intro", "chart", "howto", "buy"],
+    })
+    print(f"  page.size-guide: intro + {len(table)} bands + {len(notes)} notes + buy widget")
+
+    # 14. Care and washing
+    limits = limits_from_home()
+    wash = [
+        ("Wash cool", "<p>A laminate fails from heat long before it fails from age. Cool wash, gentle cycle.</p>"),
+        ("Turn them inside out", "<p>It puts the knit face, not the lining, against the drum.</p>"),
+        ("No fabric softener", "<p>Softener coats the pores the membrane breathes through. Once they are clogged the sock still keeps water out, but it stops moving vapour.</p>"),
+        ("No bleach", "<p>It attacks the laminate, not just the colour.</p>"),
+        ("Air dry", "<p>Away from a radiator. A membrane does not need heat to dry, and heat is the thing most likely to end it.</p>"),
+        ("Never tumble dry or iron", "<p>Both are heat, applied directly.</p>"),
+    ]
+    damage = [(h, b) for h, b in limits if "indestructible" in h.lower() or "breathable" in h.lower()]
+    save("care-and-washing", {
+        "sections": {
+            "intro": {"type": "centre-note", "settings": {
+                "color_scheme": "paper", "heading_tag": "h1", "heading_size": "h2",
+                "eyebrow": "Care and washing", "heading": "What shortens the life of a membrane.",
+                "body": "<p>These are washable and meant to be washed. Almost everything that ends a waterproof sock early is heat, softener or abrasion — not wear.</p>"}},
+            "wash": items(wash, numbered=True, heading="Washing instructions"),
+            "damage": items(damage or limits[:2], color_scheme="wash", heading="What damages the membrane"),
+            "life": {"type": "centre-note", "settings": {
+                "color_scheme": "paper", "heading_size": "h3", "eyebrow": "Expected lifespan",
+                "heading": "We do not publish a figure for this.",
+                "body": "<p>We have no wear-test data yet, and a number with nothing behind it is worth nothing. What we can tell you is the mechanism: a membrane ends through abrasion, heat and clogged pores. Wash it cool, keep softener away from it and keep your toenails short, and you are addressing all three.</p>",
+                "footnote": "When there is real wear-test data it will be published here, including the results that do not flatter us."}},
+            "buy": buy_widget_from_home(),
+        },
+        "order": ["intro", "wash", "damage", "life", "buy"],
+    })
+    print(f"  page.care-and-washing: intro + {len(wash)} steps + damage + lifespan + buy widget")
+
+    # 18. FAQ
+    faq = faq_from_home(limit=99)
+    save("faq", {
+        "sections": {
+            "intro": {"type": "centre-note", "settings": {
+                "color_scheme": "paper", "heading_tag": "h1", "heading_size": "h2",
+                "eyebrow": "Questions", "heading": "The things people ask before they buy.",
+                "body": "<p>Answered with the same facts as the rest of the site. If an answer here contradicts a product page, the product page is the one that is wrong.</p>"}},
+            "questions": faq,
+            "still": {"type": "centre-note", "settings": {
+                "color_scheme": "wash", "heading_size": "h3",
+                "eyebrow": "Still have a question", "heading": "Ask a person.",
+                "body": "<p>The phone number and email are published on every page of this site, not held behind a contact form.</p>",
+                "cta_label": "Contact us", "cta_url": "/pages/contact"}},
+            "buy": buy_widget_from_home(),
+        },
+        "order": ["intro", "questions", "still", "buy"],
+    })
+    print(f"  page.faq: intro + {len(faq.get('block_order', []))} questions + contact + buy widget")
+
+    # 10. Technology
+    layers = layers_from_home()
+    layer_items = [(h, f"<p>{r}.</p>" + b if r else b) for h, r, b in layers]
+    wont = [(h, b) for h, b in limits]
+    save("technology", {
+        "sections": {
+            "crumb": breadcrumb("technology", "The technology"),
+            "intro": {"type": "centre-note", "settings": {
+                "color_scheme": "paper", "heading_tag": "h1", "heading_size": "h2",
+                "eyebrow": "The technology", "heading": "The mechanism, not the claim.",
+                "body": "<p>“Waterproof” is a word anybody can print on a label. This is what is underneath ours, so you can judge it rather than take our word.</p>"}},
+            "membrane": {"type": "content-columns", "settings": {
+                "color_scheme": "paper", "layout": "prose", "eyebrow": "The membrane",
+                "heading": "Porelle® is not a name we invented.",
+                "prose": "<p>The waterproof layer is Porelle®, a licensed third-party waterproof-breathable membrane. That distinction matters more than it sounds: a membrane you can look up is a membrane someone else has to stand behind. Water cannot get through it; vapour from the foot can. It is PFOA free.</p><p>Brands that do not name their membrane are asking you to trust an unnamed laminate. We would rather you checked ours.</p>"}},
+            "layers": items(layer_items, numbered=True, color_scheme="wash",
+                            heading="Three layers, and what each one is for"),
+            "testing": {"type": "centre-note", "settings": {
+                "color_scheme": "paper", "heading_size": "h3",
+                "eyebrow": "How this is tested", "heading": "We publish no test figures yet.",
+                "body": "<p>Independent test data is the only kind worth printing, and we do not have it yet. Rather than quote a hydrostatic head or a breathability rating we cannot evidence, we name the membrane and let you look it up.</p>",
+                "footnote": "When independent figures exist they will be published here with the name of whoever produced them."}},
+            "wont": items(wont, color_scheme="blue", heading="What it will not do",
+                          head_note="<p>Every brand tells you what their socks do. This is the other half.</p>"),
+            "activities": {"type": "link-cards", "settings": {
+                "color_scheme": "paper", "columns": "4", "numbered": False,
+                "eyebrow": "Built for", "heading": "Where this matters."},
+                "blocks": {
+                    f"c{i}": {"type": "card", "settings": {
+                        "title": ACTIVITY_TITLES[a], "link": f"/pages/{a}"}}
+                    for i, a in enumerate(ACTIVITIES, 1)},
+                "block_order": [f"c{i}" for i in range(1, len(ACTIVITIES) + 1)]},
+            "buy": buy_widget_from_home(),
+        },
+        "order": ["crumb", "intro", "membrane", "layers", "testing", "wont", "activities", "buy"],
+    })
+    print(f"  page.technology: intro + membrane + {len(layer_items)} layers + testing + limits + activities + buy")
+
+
 def build_404():
     save(
         "404",
@@ -714,6 +892,9 @@ def main():
 
     print("guide article")
     build_article()
+
+    print("support and content pages")
+    build_support_pages()
 
     print("404")
     build_404()

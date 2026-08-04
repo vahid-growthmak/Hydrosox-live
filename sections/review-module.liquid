@@ -12,12 +12,15 @@
   typed-in score, which is what earns a structured-data penalty.
 
   A review app (Judge.me and the rest) drops its own markup into the embed
-  block. When an embed is present the hand-entered path steps aside.
+  block. When an embed is present the hand-entered path steps aside. That block
+  is called "embed" rather than "app_embed" because Shopify reads a type
+  beginning with "app" as one of its own app blocks and then rejects the
+  settings and limit on it.
 {%- endcomment -%}
 
 {%- liquid
   assign reviews = section.blocks | where: 'type', 'review'
-  assign embeds = section.blocks | where: 'type', 'app_embed'
+  assign embeds = section.blocks | where: 'type', 'embed'
 
   assign total = 0
   for block in reviews
@@ -349,7 +352,7 @@
       ]
     },
     {
-      "type": "app_embed",
+      "type": "embed",
       "name": "t:sections.reviews.block_embed",
       "limit": 1,
       "settings": [

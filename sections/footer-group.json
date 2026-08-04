@@ -1,3 +1,8 @@
+/* Footer section group.
+   Re-uploaded 2026-08-04: Shopify's GitHub sync applies the newest
+   commit's diff, so a file it once refused is never retried until it
+   changes again. This line puts it back in a diff.
+*/
 {
   "name": "t:section_groups.footer",
   "type": "footer",

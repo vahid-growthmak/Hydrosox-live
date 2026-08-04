@@ -1,33 +1,123 @@
-{%- comment -%} Not found. {%- endcomment -%}
+{%- comment -%}
+  Not found.
+
+  A 404 is a navigation failure, so this page's job is to get the visitor moving
+  again: an explanation, a search field and named routes out. The routes are
+  blocks so they can follow the site rather than being fixed here.
+
+  The heading is printed as-is. It used to be piped through the `t` filter after
+  a `default`, which meant the merchant's own text was looked up as a
+  translation key and rendered as "Translation missing".
+{%- endcomment -%}
+
 <section class="hs-scheme-{{ section.settings.color_scheme }}">
-  <div class="hs-shell hs-pace-loose hs-notfound">
-    <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+  <div class="hs-shell hs-pace-{{ section.settings.pace }} hs-notfound">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+
     <h1 class="hs-h1 hs-measure-19 hs-balance hs-page__title">
-      {{ section.settings.heading | default: 'general.404.title' | t }}
+      {%- if section.settings.heading != blank -%}
+        {{ section.settings.heading }}
+      {%- else -%}
+        {{ 'general.404.title' | t }}
+      {%- endif -%}
     </h1>
+
     {%- if section.settings.body != blank -%}
       <div class="hs-body hs-measure-46 hs-pretty hs-muted hs-notfound__body">{{ section.settings.body }}</div>
     {%- endif -%}
-    <div class="hs-notfound__actions">
-      {% render 'hs-button', label: section.settings.cta_label, href: routes.root_url, style: 'primary' %}
-    </div>
+
+    {%- comment -%}
+      Search before the link list: someone who knows what they wanted will type
+      it faster than they will read four options.
+    {%- endcomment -%}
+    {%- if section.settings.show_search -%}
+      <form class="hs-search__form hs-notfound__search" action="{{ routes.search_url }}" method="get" role="search">
+        <input type="hidden" name="options[prefix]" value="last">
+        <input type="hidden" name="type" value="product,page,article">
+        <label class="hs-visually-hidden" for="hs-404-search">{{ 'general.search.placeholder' | t }}</label>
+        <input
+          class="hs-field hs-search__input"
+          id="hs-404-search"
+          type="search"
+          name="q"
+          placeholder="{{ 'general.search.placeholder' | t | escape }}"
+        >
+        {% render 'hs-button', label: 'general.search.submit' | t, style: 'primary', type: 'submit' %}
+      </form>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="hs-search__routes hs-notfound__routes" role="list">
+        {%- for block in section.blocks -%}
+          <li {{ block.shopify_attributes }}>
+            <a class="hs-search__route" href="{{ block.settings.link | default: routes.root_url }}">
+              <span class="hs-small-body hs-search__route-label">{{ block.settings.label }}</span>
+              {%- if block.settings.note != blank -%}
+                <span class="hs-caption hs-muted">{{ block.settings.note }}</span>
+              {%- endif -%}
+              {% render 'hs-icon', icon: 'arrow-right', size: 15 %}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
   </div>
 </section>
+
 {% schema %}
 {
   "name": "t:sections.notfound.name",
   "settings": [
-    { "type": "select", "id": "color_scheme", "label": "t:common.color_scheme",
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
       "options": [
         { "value": "paper", "label": "t:common.scheme_paper" },
         { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "blue", "label": "t:common.scheme_blue" },
         { "value": "ink", "label": "t:common.scheme_ink" }
-      ], "default": "paper" },
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "select",
+      "id": "pace",
+      "label": "t:sections.reviews.pace",
+      "options": [
+        { "value": "tight", "label": "t:sections.reviews.pace_tight" },
+        { "value": "base", "label": "t:sections.reviews.pace_base" },
+        { "value": "loose", "label": "t:sections.reviews.pace_loose" }
+      ],
+      "default": "loose"
+    },
     { "type": "text", "id": "eyebrow", "label": "t:common.eyebrow", "default": "404" },
     { "type": "text", "id": "heading", "label": "t:common.heading", "default": "That page does not exist." },
-    { "type": "richtext", "id": "body", "label": "t:common.body",
-      "default": "<p>The link may be out of date, or the page may have moved.</p>" },
-    { "type": "text", "id": "cta_label", "label": "t:common.button_label", "default": "Go to the homepage" }
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "t:common.body",
+      "default": "<p>The link may be out of date, or the page may have moved. Search for what you were after, or pick up one of the routes below.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "t:sections.notfound.show_search",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "route",
+      "name": "t:sections.search.block_route",
+      "settings": [
+        { "type": "text", "id": "label", "label": "t:common.label" },
+        { "type": "text", "id": "note", "label": "t:common.description" },
+        { "type": "url", "id": "link", "label": "t:common.link" }
+      ]
+    }
   ]
 }
 {% endschema %}

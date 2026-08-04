@@ -1,0 +1,77 @@
+{%- comment -%}
+  Search overlay.
+
+  Rendered by the header so the search icon has something to open. The form is
+  a real GET form pointed at /search, so pressing Enter works whether or not
+  the predictive script ever loads — the suggestions are an enhancement on top
+  of a working search, not the search itself.
+{%- endcomment -%}
+
+<hs-search class="hs-psearch" id="hs-search-overlay" hidden>
+  <div class="hs-psearch__scrim" data-hs-search-close></div>
+
+  <div
+    class="hs-psearch__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="{{ 'general.search.heading' | t }}"
+  >
+    <form class="hs-psearch__form" action="{{ routes.search_url }}" method="get" role="search">
+      {%- comment -%}
+        Restricting the types here as well as in the fetch means the full
+        results page shows the same three resource types as the suggestions.
+      {%- endcomment -%}
+      <input type="hidden" name="options[prefix]" value="last">
+      <input type="hidden" name="type" value="product,page,article">
+
+      <label class="hs-visually-hidden" for="hs-psearch-input">
+        {{ 'general.search.placeholder' | t }}
+      </label>
+      {% render 'hs-icon', icon: 'search', size: 20, class: 'hs-psearch__icon' %}
+      <input
+        class="hs-psearch__input"
+        id="hs-psearch-input"
+        type="search"
+        name="q"
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+        placeholder="{{ 'general.search.placeholder' | t | escape }}"
+        aria-controls="hs-psearch-results"
+        aria-expanded="false"
+        data-hs-search-input
+      >
+      <button
+        class="hs-psearch__clear"
+        type="button"
+        aria-label="{{ 'general.search.reset' | t }}"
+        data-hs-search-clear
+        hidden
+      >
+        {% render 'hs-icon', icon: 'close', size: 18 %}
+      </button>
+      <button
+        class="hs-header__icon-btn hs-psearch__close"
+        type="button"
+        aria-label="{{ 'general.accessibility.close' | t }}"
+        data-hs-search-close
+      >
+        {% render 'hs-icon', icon: 'close', size: 24 %}
+      </button>
+    </form>
+
+    {%- comment -%}
+      Filled by the predictive endpoint. Announced politely so a screen reader
+      hears that suggestions arrived without losing the caret.
+    {%- endcomment -%}
+    <div
+      class="hs-psearch__body"
+      id="hs-psearch-results"
+      role="region"
+      aria-live="polite"
+      data-hs-search-body
+    ></div>
+  </div>
+</hs-search>
+
+<script src="{{ 'hs-search.js' | asset_url }}" defer></script>

@@ -5,12 +5,12 @@
       "settings": {
         "color_scheme": "ink",
         "min_height": 36,
-        "index_label": "03",
-        "eyebrow": "Shop by activity",
-        "heading": "By hour ten it is not the rain.",
-        "lede": "<p>A good boot already keeps water out. What it also does, across a twelve-hour shift, is keep everything your foot produces on the inside of it.</p>",
-        "image_fallback": "activity-all-day-in-boots.webp",
-        "image_alt": "All Day in Boots in HydroSox waterproof socks",
+        "index_label": "01",
+        "eyebrow": "Hiking and walking",
+        "heading": "Four hours in, the boot gives up.",
+        "lede": "<p>Every waterproof boot wets out eventually \u2014 the outer soaks, the membrane stops breathing, and there is nowhere on a hill to dry anything. This is the layer that is still working when that happens.</p>",
+        "image_fallback": "activity-hiking.webp",
+        "image_alt": "Hiking in HydroSox waterproof socks",
         "focal_point": "center",
         "scrim_vertical": 70,
         "scrim_horizontal": 55,
@@ -71,36 +71,60 @@
         "numbered": false,
         "row_density": "compact",
         "eyebrow": "The problem",
-        "heading": "The problem changes shape after lunch.",
-        "lede": "<p>For the first few hours a waterproof boot is doing its job well. The longer it stays on, the more of what it is sealing in comes from the foot rather than from the weather.</p>"
+        "heading": "The boot is not the last line \u2014 and most wet feet are not earned on a mountain.",
+        "lede": "<p>Hill days are long, the ground holds water, and a boot takes it from every direction at once. None of that is a fault in the boot. It is what happens to any waterproof shell worn for eight hours in weather.</p>"
       },
       "blocks": {
         "p1": {
           "type": "item",
           "settings": {
-            "title": "Sweat has nowhere to go",
-            "body": "<p>A sealed boot with a soaked lining is wet whether or not it has rained. The dampness at the end of a shift usually is not weather.</p>"
+            "title": "Wetting out is normal",
+            "body": "<p>The outer soaks, the membrane stops moving vapour, and what felt waterproof at nine o'clock is heavy and cold by one. Reproofing delays it. It does not prevent it.</p>"
           }
         },
         "p2": {
           "type": "item",
           "settings": {
-            "title": "Wet skin is what blisters",
-            "body": "<p>Softened skin and a seam in the same place for ten hours is the mechanism. Dry skin takes far more rubbing before it gives.</p>"
+            "title": "The ground is wetter than the forecast",
+            "body": "<p>Bog, tussock, a stream that has come up overnight. Most of what soaks a hill walker arrives below the ankle rather than from the sky.</p>"
           }
         },
         "p3": {
           "type": "item",
           "settings": {
-            "title": "The boots go back on tomorrow",
-            "body": "<p>Work boots rarely get a full day to dry. Monday's damp lining is still there on Tuesday morning.</p>"
+            "title": "Nothing dries on the hill",
+            "body": "<p>There is no radiator at the halfway point. Wet at eleven means wet until the car park.</p>"
+          }
+        },
+        "w-p1": {
+          "type": "item",
+          "settings": {
+            "title": "Grass holds more water than rain does",
+            "body": "<p>Twenty minutes across a wet field in mesh trainers soaks a foot more thoroughly than an hour of walking in drizzle.</p>"
+          }
+        },
+        "w-p2": {
+          "type": "item",
+          "settings": {
+            "title": "Trainers are built to breathe, not to seal",
+            "body": "<p>The mesh that stops your feet cooking in July is an open door in November. It is doing exactly what it was designed to do.</p>"
+          }
+        },
+        "w-p3": {
+          "type": "item",
+          "settings": {
+            "title": "It is the same pair every day",
+            "body": "<p>A hill walker's boots get a day off to dry out. The shoes you wear every morning do not.</p>"
           }
         }
       },
       "block_order": [
         "p1",
         "p2",
-        "p3"
+        "p3",
+        "w-p1",
+        "w-p2",
+        "w-p3"
       ]
     },
     "answers": {
@@ -110,8 +134,8 @@
         "layout": "list",
         "numbered": true,
         "eyebrow": "What answers it",
-        "heading": "Built to move vapour, not only to block water.",
-        "head_note": "<p>The membrane works in both directions. On a long shift, the outward direction is the one that decides how the day ends.</p>",
+        "heading": "What is doing the work.",
+        "head_note": "<p>The same sock we sell for everything else \u2014 there is no separate, lesser build for one activity. What changes is why each part of it matters here.</p>",
         "link_label": "The three layers, in section",
         "link_url": "/#construction"
       },
@@ -119,29 +143,53 @@
         "a1": {
           "type": "item",
           "settings": {
-            "title": "Breathable, not just waterproof",
-            "body": "<p>Porelle\u00ae is a waterproof-breathable laminate. Vapour from the foot moves out through it while liquid water cannot come in.</p>"
+            "title": "The membrane is inside the sock",
+            "body": "<p>A licensed Porelle\u00ae waterproof-breathable laminate, sealed between two knitted layers. Water that gets past the boot stops at the sock instead of at your skin.</p>"
           }
         },
         "a2": {
           "type": "item",
           "settings": {
-            "title": "The knit next to the skin",
-            "body": "<p>The inner layer is a soft knit that moves sweat off the foot and keeps the membrane itself off your skin.</p>"
+            "title": "Vapour still has somewhere to go",
+            "body": "<p>The membrane is breathable in the outward direction, so sweat from a climb moves out rather than collecting against the foot.</p>"
           }
         },
         "a3": {
           "type": "item",
           "settings": {
-            "title": "PFOA free, and stated",
-            "body": "<p>The chemistry is published rather than left unmentioned \u2014 which is worth something for a layer worn against skin ten hours a day.</p>"
+            "title": "Crew height, above the collar",
+            "body": "<p>The cuff sits above the top of a low or mid boot, so the opening in the sock is not level with the opening in the boot.</p>"
+          }
+        },
+        "w-a1": {
+          "type": "item",
+          "settings": {
+            "title": "It works in the shoes you have",
+            "body": "<p>There is nothing to buy twice. The same pair goes under trainers on Monday and under boots on Saturday.</p>"
+          }
+        },
+        "w-a2": {
+          "type": "item",
+          "settings": {
+            "title": "Porelle\u00ae, named on the label",
+            "body": "<p>A licensed third-party membrane rather than an unnamed laminate \u2014 the one specification in this category you can look up without taking our word for it.</p>"
+          }
+        },
+        "w-a3": {
+          "type": "item",
+          "settings": {
+            "title": "Crew height, unisex sizing",
+            "body": "<p>One height, sized in bands rather than by gender, so a household can share a size between them.</p>"
           }
         }
       },
       "block_order": [
         "a1",
         "a2",
-        "a3"
+        "a3",
+        "w-a1",
+        "w-a2",
+        "w-a3"
       ]
     },
     "inuse": {
@@ -158,25 +206,33 @@
         "g1": {
           "type": "image",
           "settings": {
-            "caption": "Frame to come"
+            "caption": "Stopped above the valley, boots on rock",
+            "image_fallback": "activity-hiking-01.webp",
+            "image_alt": "Stopped above the valley, boots on rock"
           }
         },
         "g2": {
           "type": "image",
           "settings": {
-            "caption": "Frame to come"
+            "caption": "Mossy trail, mid-step",
+            "image_fallback": "activity-hiking-02.webp",
+            "image_alt": "Mossy trail, mid-step"
           }
         },
         "g3": {
           "type": "image",
           "settings": {
-            "caption": "Frame to come"
+            "caption": "Broken rock, last of the light",
+            "image_fallback": "activity-hiking-03.webp",
+            "image_alt": "Broken rock, last of the light"
           }
         },
         "g4": {
           "type": "image",
           "settings": {
-            "caption": "Frame to come"
+            "caption": "Boots off at the top",
+            "image_fallback": "activity-hiking-04.webp",
+            "image_alt": "Boots off at the top"
           }
         }
       },
@@ -194,7 +250,7 @@
         "layout": "list",
         "numbered": false,
         "eyebrow": "In practice",
-        "heading": "For a working week.",
+        "heading": "Worth knowing before a long day.",
         "link_label": "Size guide",
         "link_url": "/pages/size-guide",
         "link2_label": "Care & washing",
@@ -204,29 +260,53 @@
         "w1": {
           "type": "item",
           "settings": {
-            "title": "Rotate them",
-            "body": "<p>Two or three pairs across a week means each one dries properly between wears, which is also how you get the most life out of a membrane.</p>"
+            "title": "Wear them like a sock, not a liner",
+            "body": "<p>They go next to the skin with nothing underneath. Adding a liner sock fills the space the boot was fitted for.</p>"
           }
         },
         "w2": {
           "type": "item",
           "settings": {
-            "title": "Check the boot fit once",
-            "body": "<p>They sit a little thicker than a cotton work sock. Worth one shift's attention if your boots are already tight over the instep.</p>"
+            "title": "Adjust the lacing, not the sock",
+            "body": "<p>Three bonded layers sit slightly thicker than a technical merino sock. If a boot is already snug, the lacing is where you find the room.</p>"
           }
         },
         "w3": {
           "type": "item",
           "settings": {
-            "title": "No conditioner, no tumble dryer",
-            "body": "<p>Fabric conditioner blocks a membrane and dryer heat degrades one. A cool wash and air-drying is the whole routine.</p>"
+            "title": "They wash normally",
+            "body": "<p>A cool machine wash. No fabric conditioner and no tumble dryer \u2014 one coats a membrane and the other degrades it.</p>"
+          }
+        },
+        "w-w1": {
+          "type": "item",
+          "settings": {
+            "title": "They are not a winter-only sock",
+            "body": "<p>Because the membrane breathes, they are wearable when it is not raining. Plenty of people wear them as their normal sock and stop checking the forecast.</p>"
+          }
+        },
+        "w-w2": {
+          "type": "item",
+          "settings": {
+            "title": "Two pairs is the honest number",
+            "body": "<p>One on, one in the wash. Anything beyond that is preference, not requirement.</p>"
+          }
+        },
+        "w-w3": {
+          "type": "item",
+          "settings": {
+            "title": "Cool wash, no conditioner, no dryer",
+            "body": "<p>The same care as any technical layer. Fabric conditioner coats a membrane and heat is what finishes one off.</p>"
           }
         }
       },
       "block_order": [
         "w1",
         "w2",
-        "w3"
+        "w3",
+        "w-w1",
+        "w-w2",
+        "w-w3"
       ]
     },
     "limits": {
@@ -235,8 +315,8 @@
         "color_scheme": "blue",
         "max_width": 46,
         "eyebrow": "What it will not do",
-        "heading": "Stated plainly.",
-        "body": "<p>Breathable does not mean dry inside. Work hard enough, in a sealed boot, and you will produce sweat faster than any membrane can move it. This slows that down. It does not repeal it.</p>",
+        "heading": "Where it stops.",
+        "body": "<p>Go in deeper than the cuff and water comes over the top, and no waterproof sock behaves otherwise. On a crossing that is above the ankle this buys you nothing \u2014 that is a gaiter and a boot problem, not a sock one.</p>",
         "footnote": "<p>Every limit we know about is published, not only this one. <a href=\"/#limits\">Read the rest</a>.</p>"
       }
     },
@@ -249,6 +329,14 @@
         "heading": "Same sock, different day."
       },
       "blocks": {
+        "s2": {
+          "type": "card",
+          "settings": {
+            "title": "All Day in Boots",
+            "body": "Boots that keep the rain out and then seal the sweat in.",
+            "link": "/pages/all-day-in-boots"
+          }
+        },
         "s3": {
           "type": "card",
           "settings": {
@@ -256,18 +344,11 @@
             "body": "Overshoes that leak at the ankle, and shoes still wet at home time.",
             "link": "/pages/cycling-and-commuting"
           }
-        },
-        "sib-hiking-and-walking": {
-          "type": "card",
-          "settings": {
-            "title": "Hiking and walking",
-            "link": "/pages/hiking-and-walking"
-          }
         }
       },
       "block_order": [
-        "s3",
-        "sib-hiking-and-walking"
+        "s2",
+        "s3"
       ]
     },
     "close": {
@@ -275,7 +356,7 @@
       "settings": {
         "color_scheme": "paper",
         "show_rule": false,
-        "heading": "One sock. Long shifts, five days a week.",
+        "heading": "One sock. Long days, wet ground.",
         "cta_label": "Buy a pair",
         "cta_url": "/products/hydrosox-waterproof-socks",
         "alt_label": "How it compares",
@@ -287,7 +368,7 @@
       "settings": {
         "color_scheme": "paper",
         "home_label": "Home",
-        "current_label": "All day in boots",
+        "current_label": "Hiking and walking",
         "parent_label": "Shop by activity",
         "parent_url": "/#activity"
       }
@@ -627,7 +708,7 @@
       "type": "related-guides",
       "settings": {
         "blog": "guides",
-        "tag": "all",
+        "tag": "hiking",
         "count": 2,
         "color_scheme": "paper",
         "pace": "base",

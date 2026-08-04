@@ -6,9 +6,18 @@
  */
 class HSNav extends HTMLElement {
   connectedCallback() {
-    this.drawer = this.querySelector('.hs-drawer');
-    this.panel = this.querySelector('.hs-drawer__panel');
     this.openButton = this.querySelector('[data-hs-nav-open]');
+
+    /*
+      The drawer is a sibling rather than a child: the header carries a
+      backdrop-filter, which makes it the containing block for any fixed
+      descendant. It is found through the burger's aria-controls, falling back
+      to a search inside the component for anyone who nests it.
+    */
+    const drawerId = this.openButton && this.openButton.getAttribute('aria-controls');
+    this.drawer =
+      (drawerId && document.getElementById(drawerId)) || this.querySelector('.hs-drawer');
+    this.panel = this.drawer && this.drawer.querySelector('.hs-drawer__panel');
 
     this.onKeydown = this.onKeydown.bind(this);
     this.onFocusIn = this.onFocusIn.bind(this);
@@ -16,15 +25,18 @@ class HSNav extends HTMLElement {
     this.querySelectorAll('[data-hs-nav-open]').forEach((el) =>
       el.addEventListener('click', () => this.open())
     );
-    this.querySelectorAll('[data-hs-nav-close]').forEach((el) =>
-      el.addEventListener('click', () => this.close())
-    );
+    const closers = this.drawer
+      ? this.drawer.querySelectorAll('[data-hs-nav-close]')
+      : this.querySelectorAll('[data-hs-nav-close]');
+    closers.forEach((el) => el.addEventListener('click', () => this.close()));
 
     // Any link inside the drawer closes it, including same-page anchors that
     // would otherwise leave the drawer covering the target.
-    this.querySelectorAll('.hs-drawer a').forEach((link) =>
-      link.addEventListener('click', () => this.close())
-    );
+    if (this.drawer) {
+      this.drawer
+        .querySelectorAll('a')
+        .forEach((link) => link.addEventListener('click', () => this.close()));
+    }
 
     this.setupDropdowns();
   }
@@ -45,8 +57,16 @@ class HSNav extends HTMLElement {
     if (!this.drawer || this.isOpen) return;
 
     this.drawer.removeAttribute('hidden');
-    // Force a frame so the transition runs from the closed state.
-    requestAnimationFrame(() => this.drawer.classList.add('is-open'));
+
+    /*
+      Flush layout so the transition has a closed state to run from, then open
+      synchronously. This used to wait a frame, which meant the drawer never
+      opened anywhere requestAnimationFrame is throttled or never fires — a
+      background tab, some in-app webviews. Whether the panel slides is
+      cosmetic; whether the menu opens is not.
+    */
+    void this.drawer.offsetWidth;
+    this.drawer.classList.add('is-open');
 
     if (this.openButton) this.openButton.setAttribute('aria-expanded', 'true');
     this.lockScroll();
@@ -131,10 +151,18 @@ class HSNav extends HTMLElement {
 
   lockScroll() {
     this.scrollY = window.scrollY;
-    const bar = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = 'hidden';
-    // Compensate for the scrollbar so the page does not shift sideways.
-    if (bar > 0) document.body.style.paddingRight = `${bar}px`;
+
+    /*
+      Compensate for a classic scrollbar so the page does not shift sideways as
+      it locks. The width has to be sanity-checked rather than trusted: inside
+      a device-emulation frame, or on a zoomed mobile viewport, innerWidth and
+      clientWidth describe different things and the difference can come out in
+      the hundreds — which would pad the body far enough to crush the layout
+      into a strip. No real scrollbar is wider than about 24px.
+    */
+    const bar = window.innerWidth - document.documentElement.clientWidth;
+    if (bar > 0 && bar <= 24) document.body.style.paddingRight = `${bar}px`;
   }
 
   unlockScroll() {

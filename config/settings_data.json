@@ -76,16 +76,16 @@
     "gutter_md": 32,
     "gutter_lg": 40,
     "gutter_xl": 64,
-    "pace_tight_min": 56,
+    "pace_tight_min": 40,
     "pace_tight_vw": 5,
     "pace_tight_max": 80,
-    "pace_base_min": 80,
+    "pace_base_min": 56,
     "pace_base_vw": 8,
     "pace_base_max": 112,
-    "pace_loose_min": 112,
+    "pace_loose_min": 72,
     "pace_loose_vw": 11,
     "pace_loose_max": 160,
-    "pace_vast_min": 144,
+    "pace_vast_min": 96,
     "pace_vast_vw": 15,
     "pace_vast_max": 224,
     "radius_md": 6,
@@ -103,6 +103,7 @@
     "ease_drawer": "cubic-bezier(0.32, 0.72, 0, 1)",
     "cart_type": "drawer",
     "cart_show_note": false,
-    "font_source": "bundled"
+    "font_source": "bundled",
+    "noindex_collections": "all,waterproof-socks"
   }
 }

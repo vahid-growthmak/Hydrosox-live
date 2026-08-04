@@ -23,6 +23,37 @@
       <meta name="description" content="{{ page_description | escape }}">
     {%- endif -%}
 
+    {%- comment -%}
+      Pages that exist for shoppers but should not compete in search: paginated
+      pages beyond the first, tag indexes, search results, the cart and account.
+      All of them are near-duplicates of a page that is indexed, or hold nothing
+      worth ranking, so leaving them open splits the ranking signal.
+
+      Collections are held back by handle from a theme setting. Note that
+      `collection.tags` in Liquid lists the tags of the products inside the
+      collection, not tags on the collection itself, so it cannot be used to
+      mark one — a product tagged "seo-noindex" would have de-indexed the whole
+      collection.
+    {%- endcomment -%}
+    {%- liquid
+      assign noindex = false
+      if current_page != 1 or current_tags or request.path contains '/search'
+        assign noindex = true
+      endif
+      if request.path contains '/cart' or request.path contains '/account'
+        assign noindex = true
+      endif
+      if collection.handle != blank
+        assign held = settings.noindex_collections | default: '' | replace: ' ', '' | split: ','
+        if held contains collection.handle
+          assign noindex = true
+        endif
+      endif
+    -%}
+    {%- if noindex -%}
+      <meta name="robots" content="noindex, follow">
+    {%- endif -%}
+
     {% render 'hs-meta-social' %}
 
     {{ 'hs-base.css' | asset_url | stylesheet_tag }}
@@ -47,6 +78,16 @@
     </main>
 
     {% sections 'footer-group' %}
+
+    {%- comment -%}
+      The cart drawer lives in the layout, not in a page template, because it
+      has to exist wherever an add-to-cart button does. On the cart page itself
+      it is redundant, and the merchant may have chosen the page anyway, so
+      neither case renders it.
+    {%- endcomment -%}
+    {%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
+      {% section 'cart-drawer' %}
+    {%- endif -%}
 
     <script src="{{ 'hs-reveal.js' | asset_url }}" defer></script>
   </body>

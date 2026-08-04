@@ -1,8 +1,15 @@
 {
   "sections": {
     "main": {
-      "type": "main-collection"
+      "type": "main-collection",
+      "settings": {
+        "color_scheme": "paper",
+        "per_page": 12,
+        "supporting": "<p>One sock, made properly, in four colourways and four sizes. If you are choosing between activities rather than products, the activity pages explain which conditions each one is written for.</p>"
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

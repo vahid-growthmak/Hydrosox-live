@@ -1,0 +1,366 @@
+{%- comment -%}
+  Review module.
+
+  The sitemap is explicit that this block is omitted rather than fabricated if
+  real review volume is not there at launch, so that rule is enforced here
+  instead of being left to whoever configures the page: with no review blocks
+  and no app embed, the section renders nothing at all.
+
+  The aggregate figures are computed from the reviews actually present, so the
+  headline number cannot drift from the reviews under it, and the
+  AggregateRating schema is emitted from those same reviews — never from a
+  typed-in score, which is what earns a structured-data penalty.
+
+  A review app (Judge.me and the rest) drops its own markup into the embed
+  block. When an embed is present the hand-entered path steps aside.
+{%- endcomment -%}
+
+{%- liquid
+  assign reviews = section.blocks | where: 'type', 'review'
+  assign embeds = section.blocks | where: 'type', 'app_embed'
+
+  assign total = 0
+  for block in reviews
+    assign rating = block.settings.rating | plus: 0
+    assign total = total | plus: rating
+  endfor
+
+  assign count = reviews.size
+  assign average = 0
+  if count > 0
+    assign average = total | times: 1.0 | divided_by: count | round: 1
+  endif
+
+  assign has_embed = false
+  if embeds.size > 0
+    assign has_embed = true
+  endif
+
+  comment
+    The omission rule. Nothing to show means nothing is shown.
+  endcomment
+  assign render_section = false
+  if count > 0 or has_embed
+    assign render_section = true
+  endif
+-%}
+
+{%- if render_section -%}
+  <section
+    class="hs-scheme-{{ section.settings.color_scheme }} hs-reviews hs-reviews--{{ section.settings.layout }}"
+    {% if section.settings.anchor_id != blank %}id="{{ section.settings.anchor_id }}"{% endif %}
+    {{ section.shopify_attributes }}
+  >
+    <div class="hs-shell hs-pace-{{ section.settings.pace }}">
+      {%- if section.settings.eyebrow != blank or section.settings.heading != blank -%}
+        <header class="hs-reviews__head">
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="hs-h3 hs-measure-19 hs-balance hs-reviews__heading">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.lede != blank -%}
+            <div class="hs-small-body hs-measure-46 hs-pretty hs-muted hs-reviews__lede">
+              {{ section.settings.lede }}
+            </div>
+          {%- endif -%}
+        </header>
+      {%- endif -%}
+
+      {%- if has_embed -%}
+        {%- comment -%} The app owns the rendering from here. {%- endcomment -%}
+        {%- for block in embeds -%}
+          <div class="hs-reviews__embed" {{ block.shopify_attributes }}>
+            {{ block.settings.embed }}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- comment -%} Aggregate, computed from the reviews below it. {%- endcomment -%}
+        {%- if section.settings.show_aggregate -%}
+          <div class="hs-reviews__aggregate">
+            <p class="hs-reviews__score">
+              <span class="hs-h1 hs-tnum hs-reviews__score-value">{{ average }}</span>
+              <span class="hs-caption hs-muted hs-reviews__score-of">
+                {{- 'reviews.out_of' | t: max: section.settings.rating_max -}}
+              </span>
+            </p>
+            {% render 'hs-stars', rating: average, max: section.settings.rating_max %}
+            <p class="hs-caption hs-muted hs-reviews__count">
+              {{- 'reviews.count' | t: count: count -}}
+            </p>
+            {%- if section.settings.aggregate_link_label != blank and section.settings.aggregate_link_url != blank -%}
+              <a class="hs-link hs-caption hs-reviews__all" href="{{ section.settings.aggregate_link_url }}">
+                {{- section.settings.aggregate_link_label -}}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <hs-reviews class="hs-reviews__body">
+          {%- if section.settings.show_filters and section.settings.layout == 'feed' -%}
+            {%- comment -%}
+              Filter values are taken from the reviews present, so a filter can
+              never point at an empty set.
+            {%- endcomment -%}
+            {%- assign tag_bag = '' -%}
+            {%- for block in reviews -%}
+              {%- if block.settings.tag != blank -%}
+                {%- assign tag_bag = tag_bag | append: block.settings.tag | append: '~~' -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- assign tags = tag_bag | split: '~~' | uniq | sort -%}
+
+            <div class="hs-reviews__filters" role="group" aria-label="{{ section.settings.filter_label | escape }}">
+              <button class="hs-chip hs-caption is-active" type="button" data-hs-review-filter="all">
+                {{- 'reviews.filter_all' | t -}}
+              </button>
+              {%- for rating in (1..section.settings.rating_max) -%}
+                {%- assign r = section.settings.rating_max | minus: forloop.index0 -%}
+                {%- assign matches = reviews | where: 'settings.rating', r -%}
+                {%- if matches.size > 0 -%}
+                  <button class="hs-chip hs-caption" type="button" data-hs-review-filter="rating:{{ r }}">
+                    {{- 'reviews.filter_rating' | t: rating: r, count: matches.size -}}
+                  </button>
+                {%- endif -%}
+              {%- endfor -%}
+              {%- for tag in tags -%}
+                <button class="hs-chip hs-caption" type="button" data-hs-review-filter="tag:{{ tag | handleize }}">
+                  {{- tag -}}
+                </button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          <ul class="hs-reviews__list" role="list" data-hs-review-list>
+            {%- for block in reviews -%}
+              <li
+                class="hs-reviews__item"
+                data-rating="{{ block.settings.rating }}"
+                data-tag="{{ block.settings.tag | handleize }}"
+                {{ block.shopify_attributes }}
+              >
+                <article class="hs-reviews__card">
+                  {% render 'hs-stars', rating: block.settings.rating, max: section.settings.rating_max %}
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="hs-h4 hs-reviews__item-title">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.body != blank -%}
+                    <div class="hs-small-body hs-pretty hs-measure-46 hs-reviews__item-body">
+                      {{ block.settings.body }}
+                    </div>
+                  {%- endif -%}
+                  <footer class="hs-reviews__meta">
+                    {%- if block.settings.author != blank -%}
+                      <span class="hs-caption hs-reviews__author">{{ block.settings.author }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.verified -%}
+                      <span class="hs-caption hs-reviews__verified">
+                        {% render 'hs-icon', icon: 'check', size: 13 %}
+                        {{ 'reviews.verified' | t }}
+                      </span>
+                    {%- endif -%}
+                    {%- if block.settings.date != blank -%}
+                      <span class="hs-caption hs-faint hs-reviews__date">{{ block.settings.date }}</span>
+                    {%- endif -%}
+                  </footer>
+                </article>
+              </li>
+            {%- endfor -%}
+          </ul>
+
+          <p class="hs-small-body hs-muted hs-reviews__empty" data-hs-review-empty hidden>
+            {{- 'reviews.filter_empty' | t -}}
+          </p>
+        </hs-reviews>
+
+        {%- comment -%}
+          Schema only where there are real reviews to justify it, and only when
+          the merchant has asked for it — one page should own the aggregate.
+        {%- endcomment -%}
+        {%- if section.settings.emit_schema and count > 0 -%}
+          <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "Product",
+              "name": {{ shop.name | append: ' ' | append: section.settings.schema_product_name | json }},
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": {{ average }},
+                "bestRating": {{ section.settings.rating_max }},
+                "reviewCount": {{ count }}
+              }
+            }
+          </script>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </section>
+
+  {%- if section.settings.show_filters and section.settings.layout == 'feed' -%}
+    <script src="{{ 'hs-reviews.js' | asset_url }}" defer></script>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.reviews.name",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.reviews.info"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:sections.reviews.layout",
+      "options": [
+        { "value": "strip", "label": "t:sections.reviews.layout_strip" },
+        { "value": "feed", "label": "t:sections.reviews.layout_feed" }
+      ],
+      "default": "strip"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "blue", "label": "t:common.scheme_blue" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "wash"
+    },
+    {
+      "type": "select",
+      "id": "pace",
+      "label": "t:sections.reviews.pace",
+      "options": [
+        { "value": "tight", "label": "t:sections.reviews.pace_tight" },
+        { "value": "base", "label": "t:sections.reviews.pace_base" },
+        { "value": "loose", "label": "t:sections.reviews.pace_loose" }
+      ],
+      "default": "base"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    { "type": "text", "id": "eyebrow", "label": "t:common.eyebrow" },
+    { "type": "text", "id": "heading", "label": "t:common.heading" },
+    { "type": "richtext", "id": "lede", "label": "t:common.lede" },
+    {
+      "type": "header",
+      "content": "t:sections.reviews.aggregate_group"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_aggregate",
+      "label": "t:sections.reviews.show_aggregate",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "rating_max",
+      "min": 5,
+      "max": 10,
+      "step": 5,
+      "label": "t:sections.reviews.rating_max",
+      "default": 5
+    },
+    { "type": "text", "id": "aggregate_link_label", "label": "t:sections.reviews.aggregate_link_label" },
+    { "type": "url", "id": "aggregate_link_url", "label": "t:sections.reviews.aggregate_link_url" },
+    {
+      "type": "header",
+      "content": "t:sections.reviews.filters_group"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters",
+      "label": "t:sections.reviews.show_filters",
+      "info": "t:sections.reviews.show_filters_info",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "filter_label",
+      "label": "t:sections.reviews.filter_label",
+      "default": "Filter reviews"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.reviews.schema_group"
+    },
+    {
+      "type": "checkbox",
+      "id": "emit_schema",
+      "label": "t:sections.reviews.emit_schema",
+      "info": "t:sections.reviews.emit_schema_info",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "schema_product_name",
+      "label": "t:sections.reviews.schema_product_name",
+      "default": "Waterproof Socks"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "t:sections.reviews.block_review",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.reviews.block_review_info"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "t:sections.reviews.rating",
+          "default": 5
+        },
+        { "type": "text", "id": "title", "label": "t:common.title" },
+        { "type": "richtext", "id": "body", "label": "t:common.body" },
+        { "type": "text", "id": "author", "label": "t:sections.reviews.author" },
+        { "type": "text", "id": "date", "label": "t:sections.reviews.date" },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "t:sections.reviews.tag",
+          "info": "t:sections.reviews.tag_info"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "t:sections.reviews.verified",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "app_embed",
+      "name": "t:sections.reviews.block_embed",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.reviews.block_embed_info"
+        },
+        { "type": "liquid", "id": "embed", "label": "t:sections.reviews.embed" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "t:sections.reviews.name" }]
+}
+{% endschema %}

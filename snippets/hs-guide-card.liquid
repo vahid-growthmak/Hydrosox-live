@@ -1,0 +1,42 @@
+{%- comment -%}
+  Guide card.
+
+  One implementation for the guides hub, the tag index and every "related
+  guides" strip, so an article looks the same wherever it is surfaced.
+
+  Accepts:
+    article (object)   required
+    eager   (boolean)  load the image eagerly, for a card above the fold
+{%- endcomment -%}
+
+<a class="hs-card hs-guide-card hs-zoom-parent" href="{{ article.url }}">
+  {%- if article.image -%}
+    {% render 'hs-image',
+      image: article.image,
+      alt: article.image.alt | default: article.title,
+      aspect: '3 / 2',
+      eager: eager,
+      sizes: '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw',
+      wrapper_class: 'hs-card__media hs-media--zoom'
+    %}
+  {%- endif -%}
+  <div class="hs-card__body">
+    <p class="hs-eyebrow hs-guide-card__meta">
+      {%- if article.tags.size > 0 -%}
+        {{ article.tags.first }}
+      {%- else -%}
+        {{ article.published_at | date: format: 'date' }}
+      {%- endif -%}
+    </p>
+    <h3 class="hs-h4 hs-card__title hs-balance">{{ article.title }}</h3>
+    {%- if article.excerpt_or_content != blank -%}
+      <p class="hs-small-body hs-muted hs-pretty hs-guide-card__excerpt">
+        {{- article.excerpt_or_content | strip_html | truncate: 120 -}}
+      </p>
+    {%- endif -%}
+    <span class="hs-caption hs-guide-card__cue" aria-hidden="true">
+      {{ 'blogs.article.read' | t }}
+      {% render 'hs-icon', icon: 'arrow-right', size: 14 %}
+    </span>
+  </div>
+</a>

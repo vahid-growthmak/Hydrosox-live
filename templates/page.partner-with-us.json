@@ -11,7 +11,7 @@
         "heading_tag": "h1",
         "heading_size": "h2",
         "body": "<p>Stockist and trade enquiries. One qualifying form, no public trade pricing.</p>",
-        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder — when it ships it will carry real detail, not filler.</p>",
+        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder \u2014 when it ships it will carry real detail, not filler.</p>",
         "pointer_label": "",
         "pointer_link_label": "",
         "pointer_url": "",
@@ -21,9 +21,134 @@
         "link_url": "/",
         "tail_note": "<p>Or read the questions we have answered so far.</p>"
       }
+    },
+    "form": {
+      "type": "enquiry-form",
+      "settings": {
+        "color_scheme": "paper",
+        "pace": "base",
+        "anchor_id": "enquiry",
+        "eyebrow": "Get in touch",
+        "heading": "Tell us about your business.",
+        "lede": "<p>We are selective rather than exclusive. The more of this you fill in, the faster we can tell you whether we are a fit.</p>",
+        "submit_label": "Send enquiry",
+        "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>"
+      },
+      "blocks": {
+        "c1": {
+          "type": "choice",
+          "settings": {
+            "label": "Retail stockist"
+          }
+        },
+        "c2": {
+          "type": "choice",
+          "settings": {
+            "label": "Online reseller"
+          }
+        },
+        "c3": {
+          "type": "choice",
+          "settings": {
+            "label": "Workwear or trade supply"
+          }
+        },
+        "c4": {
+          "type": "choice",
+          "settings": {
+            "label": "Islamic retail"
+          }
+        },
+        "c5": {
+          "type": "choice",
+          "settings": {
+            "label": "Distributor"
+          }
+        },
+        "f1": {
+          "type": "field",
+          "settings": {
+            "label": "Company name",
+            "multiline": false,
+            "rows": 5,
+            "input_type": "text",
+            "help": "",
+            "required": true
+          }
+        },
+        "f2": {
+          "type": "field",
+          "settings": {
+            "label": "Website",
+            "multiline": false,
+            "rows": 5,
+            "input_type": "url",
+            "help": "",
+            "required": false
+          }
+        },
+        "f3": {
+          "type": "field",
+          "settings": {
+            "label": "Telephone",
+            "multiline": false,
+            "rows": 5,
+            "input_type": "tel",
+            "help": "",
+            "required": false
+          }
+        },
+        "f4": {
+          "type": "field",
+          "settings": {
+            "label": "Where you sell",
+            "multiline": true,
+            "rows": 5,
+            "input_type": "text",
+            "help": "Stores, marketplaces, or the regions you cover.",
+            "required": true
+          }
+        },
+        "f5": {
+          "type": "field",
+          "settings": {
+            "label": "Indicative first order",
+            "multiline": false,
+            "rows": 5,
+            "input_type": "number",
+            "help": "In pairs. An estimate is fine.",
+            "required": false
+          }
+        },
+        "f6": {
+          "type": "field",
+          "settings": {
+            "label": "Anything else",
+            "multiline": true,
+            "rows": 5,
+            "input_type": "text",
+            "help": "",
+            "required": false
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6"
+      ]
     }
   },
   "order": [
+    "form",
     "intro"
   ]
 }

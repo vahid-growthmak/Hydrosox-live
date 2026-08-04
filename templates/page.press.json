@@ -11,7 +11,7 @@
         "heading_tag": "h1",
         "heading_size": "h2",
         "body": "<p>Verifiable brand facts and downloadable assets for anyone writing about HydroSox.</p>",
-        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder — when it ships it will carry real detail, not filler.</p>",
+        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder \u2014 when it ships it will carry real detail, not filler.</p>",
         "pointer_label": "",
         "pointer_link_label": "",
         "pointer_url": "",
@@ -21,9 +21,112 @@
         "link_url": "/",
         "tail_note": "<p>Or read the questions we have answered so far.</p>"
       }
+    },
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "paper",
+        "home_label": "Home",
+        "current_label": null
+      }
+    },
+    "form": {
+      "type": "enquiry-form",
+      "settings": {
+        "color_scheme": "paper",
+        "pace": "base",
+        "anchor_id": "enquiry",
+        "eyebrow": "Get in touch",
+        "heading": "Press enquiries.",
+        "lede": "<p>We can supply product for review, photography, and figures we are able to stand behind. We do not supply claims we cannot evidence.</p>",
+        "submit_label": "Send enquiry",
+        "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>"
+      },
+      "blocks": {
+        "c1": {
+          "type": "choice",
+          "settings": {
+            "label": "Product for review"
+          }
+        },
+        "c2": {
+          "type": "choice",
+          "settings": {
+            "label": "Interview or comment"
+          }
+        },
+        "c3": {
+          "type": "choice",
+          "settings": {
+            "label": "Imagery and assets"
+          }
+        },
+        "c4": {
+          "type": "choice",
+          "settings": {
+            "label": "Fact check"
+          }
+        },
+        "f1": {
+          "type": "field",
+          "settings": {
+            "label": "Publication",
+            "multiline": false,
+            "rows": 5,
+            "input_type": "text",
+            "help": "",
+            "required": true
+          }
+        },
+        "f2": {
+          "type": "field",
+          "settings": {
+            "label": "Website",
+            "multiline": false,
+            "rows": 5,
+            "input_type": "url",
+            "help": "",
+            "required": false
+          }
+        },
+        "f3": {
+          "type": "field",
+          "settings": {
+            "label": "Deadline",
+            "multiline": false,
+            "rows": 5,
+            "input_type": "text",
+            "help": "So we know what is realistic.",
+            "required": false
+          }
+        },
+        "f4": {
+          "type": "field",
+          "settings": {
+            "label": "What you need",
+            "multiline": true,
+            "rows": 5,
+            "input_type": "text",
+            "help": "",
+            "required": true
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ]
     }
   },
   "order": [
+    "breadcrumb",
+    "form",
     "intro"
   ]
 }

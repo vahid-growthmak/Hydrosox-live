@@ -22,6 +22,16 @@
         <p class="hs-body hs-muted">{{ 'collections.general.no_products' | t }}</p>
       {%- endif -%}
     {%- endpaginate -%}
+
+    {%- comment -%}
+      Supporting copy under the grid rather than above it, so a shopper reaches
+      the products first and the reading is there for whoever wants it.
+    {%- endcomment -%}
+    {%- if section.settings.supporting != blank -%}
+      <div class="hs-body hs-rte hs-measure-54 hs-pretty hs-collection__supporting">
+        {{ section.settings.supporting }}
+      </div>
+    {%- endif -%}
   </div>
 </section>
 {% schema %}
@@ -35,7 +45,9 @@
         { "value": "ink", "label": "t:common.scheme_ink" }
       ], "default": "paper" },
     { "type": "range", "id": "per_page", "min": 6, "max": 48, "step": 3,
-      "label": "t:sections.collection.per_page", "default": 12 }
+      "label": "t:sections.collection.per_page", "default": 12 },
+    { "type": "header", "content": "t:sections.collection.supporting_group" },
+    { "type": "richtext", "id": "supporting", "label": "t:sections.collection.supporting" }
   ]
 }
 {% endschema %}

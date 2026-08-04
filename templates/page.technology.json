@@ -10,8 +10,8 @@
         "heading": "The Technology",
         "heading_tag": "h1",
         "heading_size": "h2",
-        "body": "<p>The Porelle® membrane and the three-layer construction at length, with what waterproof and breathable actually mean in testing terms.</p>",
-        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder — when it ships it will carry real detail, not filler.</p>",
+        "body": "<p>The Porelle\u00ae membrane and the three-layer construction at length, with what waterproof and breathable actually mean in testing terms.</p>",
+        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder \u2014 when it ships it will carry real detail, not filler.</p>",
         "pointer_label": "Answered today at",
         "pointer_link_label": "The construction sequence",
         "pointer_url": "/#construction",
@@ -21,9 +21,18 @@
         "link_url": "/",
         "tail_note": "<p>Or read the questions we have answered so far.</p>"
       }
+    },
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "paper",
+        "home_label": "Home",
+        "current_label": null
+      }
     }
   },
   "order": [
+    "breadcrumb",
     "intro"
   ]
 }

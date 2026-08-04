@@ -43,10 +43,20 @@
       {%- comment -%} Link columns {%- endcomment -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'column' -%}
-          <div class="hs-footer__col" {{ block.shopify_attributes }}>
-            {%- if block.settings.heading != blank -%}
-              <h3 class="hs-eyebrow hs-footer__col-heading hs-faint">{{ block.settings.heading }}</h3>
-            {%- endif -%}
+          {%- comment -%}
+            A <details> so four columns of links do not make a very long
+            scroll on a handset. It ships open: a closed <details> hides its
+            content no matter what the CSS says, so folding is done by
+            hs-footer.js and only below the breakpoint. Without the script the
+            footer is simply long rather than unreadable.
+          {%- endcomment -%}
+          <details class="hs-footer__col" open {{ block.shopify_attributes }}>
+            <summary class="hs-footer__col-summary">
+              {%- if block.settings.heading != blank -%}
+                <h3 class="hs-eyebrow hs-footer__col-heading hs-faint">{{ block.settings.heading }}</h3>
+              {%- endif -%}
+              {% render 'hs-icon', icon: 'chevron-down', size: 18, class: 'hs-footer__col-chevron' %}
+            </summary>
             <ul class="hs-footer__list" role="list">
               {%- if block.settings.menu != blank -%}
                 {%- for link in block.settings.menu.links -%}
@@ -67,7 +77,7 @@
                 {%- endfor -%}
               {%- endif -%}
             </ul>
-          </div>
+          </details>
         {%- endif -%}
       {%- endfor -%}
     </div>
@@ -105,6 +115,8 @@
     </div>
   </div>
 </footer>
+
+<script src="{{ 'hs-footer.js' | asset_url }}" defer></script>
 
 {% schema %}
 {

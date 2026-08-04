@@ -72,7 +72,16 @@
             </p>
           {%- elsif form.posted_successfully? -%}
             <p class="hs-form-success hs-signup__message" role="status">
-              {{ section.settings.success_message | default: 'general.newsletter.success' | t }}
+              {%- comment -%}
+                Printed, not translated. `default` resolves before `t`, so a
+                filled-in success message was being looked up as a translation
+                key — every successful signup showed "Translation missing".
+              {%- endcomment -%}
+              {%- if section.settings.success_message != blank -%}
+                {{ section.settings.success_message }}
+              {%- else -%}
+                {{ 'general.newsletter.success' | t }}
+              {%- endif -%}
             </p>
           {%- endif -%}
 

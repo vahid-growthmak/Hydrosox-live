@@ -11,7 +11,7 @@
         "heading_tag": "h1",
         "heading_size": "h2",
         "body": "<p>Where your order is, without needing to email anyone.</p>",
-        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder — when it ships it will carry real detail, not filler.</p>",
+        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder \u2014 when it ships it will carry real detail, not filler.</p>",
         "pointer_label": "",
         "pointer_link_label": "",
         "pointer_url": "",
@@ -21,9 +21,20 @@
         "link_url": "/",
         "tail_note": "<p>Or read the questions we have answered so far.</p>"
       }
+    },
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "paper",
+        "home_label": "Home",
+        "current_label": null,
+        "parent_label": "Help",
+        "parent_url": "/pages/faq"
+      }
     }
   },
   "order": [
+    "breadcrumb",
     "intro"
   ]
 }

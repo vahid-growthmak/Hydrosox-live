@@ -1,0 +1,337 @@
+{%- comment -%}
+  Cart drawer.
+
+  Rendered once in the layout so it exists on every page, and re-rendered
+  server-side by the Section Rendering API after every change. That means the
+  drawer's totals, its progress bar and its quantity-break prompt are all
+  computed by Liquid from the real cart — the script never does money
+  arithmetic, so the drawer cannot disagree with the checkout.
+
+  With JavaScript unavailable the bag icon is a plain link to /cart and every
+  control in here is a real form, so the cart still works.
+{%- endcomment -%}
+
+{%- liquid
+  comment
+    Next quantity break. Tiers are ordered by quantity, and the first one the
+    cart has not yet reached is the one worth naming — naming them all turns an
+    incentive into a price list.
+  endcomment
+  assign tiers = section.blocks | where: 'type', 'tier' | sort: 'settings.quantity'
+  assign next_tier = null
+  if settings.cart_show_tier_prompt
+    for block in tiers
+      assign q = block.settings.quantity | plus: 0
+      if cart.item_count < q
+        assign next_tier = block
+        break
+      endif
+    endfor
+  endif
+-%}
+
+<hs-cart-drawer
+  class="hs-cartd"
+  id="hs-cart-drawer"
+  data-cart-count="{{ cart.item_count }}"
+  data-cart-type="{{ settings.cart_type }}"
+  data-added-label="{{ 'cart.general.added' | t | escape }}"
+  data-updated-label="{{ 'cart.general.updated' | t | escape }}"
+  {{ section.shopify_attributes }}
+  hidden
+>
+  <div class="hs-cartd__scrim" data-hs-cart-close></div>
+
+  <div
+    class="hs-cartd__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="{{ 'cart.general.title' | t }}"
+  >
+    <header class="hs-cartd__head">
+      <p class="hs-eyebrow">
+        {{- 'cart.general.title' | t -}}
+        {%- if cart.item_count > 0 -%}
+          <span class="hs-faint"> ({{ cart.item_count }})</span>
+        {%- endif -%}
+      </p>
+      <button
+        class="hs-header__icon-btn"
+        type="button"
+        aria-label="{{ 'general.accessibility.close' | t }}"
+        data-hs-cart-close
+      >
+        {% render 'hs-icon', icon: 'close', size: 24 %}
+      </button>
+    </header>
+
+    {%- if cart.item_count > 0 -%}
+      {% render 'hs-cart-progress' %}
+
+      <form action="{{ routes.cart_url }}" method="post" class="hs-cartd__form" data-hs-cart-form>
+        <ul class="hs-cartd__list" role="list">
+          {%- for item in cart.items -%}
+            <li class="hs-cartd__item" data-hs-cart-line="{{ forloop.index }}">
+              <a class="hs-cartd__media" href="{{ item.url }}" tabindex="-1" aria-hidden="true">
+                {% render 'hs-image',
+                  image: item.image,
+                  alt: item.product.title,
+                  aspect: '1 / 1',
+                  sizes: '88px',
+                  wrapper_class: 'hs-cartd__thumb'
+                %}
+              </a>
+
+              <div class="hs-cartd__body">
+                <a class="hs-small-body hs-cartd__title" href="{{ item.url }}">{{ item.product.title }}</a>
+
+                {%- unless item.product.has_only_default_variant -%}
+                  <p class="hs-caption hs-muted hs-cartd__variant">{{ item.variant.title }}</p>
+                {%- endunless -%}
+
+                {%- if item.selling_plan_allocation -%}
+                  <p class="hs-caption hs-muted">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                {%- endif -%}
+
+                {%- comment -%}
+                  Discounts Shopify has actually applied, named individually so
+                  a customer can see which offer did what.
+                {%- endcomment -%}
+                {%- for allocation in item.line_level_discount_allocations -%}
+                  <p class="hs-caption hs-cartd__discount">
+                    {{ allocation.discount_application.title }}
+                    (&minus;{{ allocation.amount | money }})
+                  </p>
+                {%- endfor -%}
+
+                <div class="hs-cartd__controls">
+                  <div class="hs-stepper" data-hs-cart-stepper>
+                    <button
+                      class="hs-stepper__btn"
+                      type="button"
+                      data-hs-cart-step="-1"
+                      aria-label="{{ 'cart.general.decrease' | t: title: item.product.title }}"
+                    >
+                      {% render 'hs-icon', icon: 'minus', size: 15 %}
+                    </button>
+                    <label class="hs-visually-hidden" for="hs-cartd-qty-{{ forloop.index }}">
+                      {{ 'products.product.quantity' | t }}
+                    </label>
+                    <input
+                      class="hs-stepper__input hs-tnum"
+                      id="hs-cartd-qty-{{ forloop.index }}"
+                      type="number"
+                      name="updates[]"
+                      value="{{ item.quantity }}"
+                      min="0"
+                      inputmode="numeric"
+                      data-hs-cart-qty
+                      data-line="{{ forloop.index }}"
+                    >
+                    <button
+                      class="hs-stepper__btn"
+                      type="button"
+                      data-hs-cart-step="1"
+                      aria-label="{{ 'cart.general.increase' | t: title: item.product.title }}"
+                    >
+                      {% render 'hs-icon', icon: 'plus', size: 15 %}
+                    </button>
+                  </div>
+
+                  <a
+                    class="hs-tap hs-caption hs-cartd__remove"
+                    href="{{ item.url_to_remove }}"
+                    data-hs-cart-remove
+                    data-line="{{ forloop.index }}"
+                  >
+                    {{- 'cart.general.remove' | t -}}
+                  </a>
+                </div>
+              </div>
+
+              <p class="hs-small-body hs-tnum hs-cartd__price">
+                {%- if item.original_line_price > item.final_line_price -%}
+                  <s class="hs-faint hs-cartd__was">{{ item.original_line_price | money }}</s>
+                {%- endif -%}
+                {{ item.final_line_price | money }}
+              </p>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        {%- comment -%}
+          No-JS fallback: the stepper inputs above are real `updates[]` fields,
+          so this submits the whole cart. The script hides it.
+        {%- endcomment -%}
+        <noscript>
+          <button class="hs-btn hs-btn--ghost hs-cartd__update" type="submit" name="update">
+            {{ 'cart.general.update' | t }}
+          </button>
+        </noscript>
+      </form>
+
+      <footer class="hs-cartd__foot">
+        {%- if next_tier -%}
+          {%- liquid
+            assign short = next_tier.settings.quantity | minus: cart.item_count
+            comment
+              The tier discount is an absolute amount in the shop currency, the
+              same as on the buy widget — not a percentage. Stating it as a
+              percentage here would misdescribe the offer.
+            endcomment
+            assign tier_saving = next_tier.settings.discount | times: 100 | round
+          -%}
+          {%- if tier_saving > 0 -%}
+            <p class="hs-caption hs-cartd__tier">
+              {{ 'cart.tier.prompt' | t: count: short, amount: tier_saving | money }}
+            </p>
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- for discount in cart.cart_level_discount_applications -%}
+          <p class="hs-caption hs-cartd__discount">
+            {{ discount.title }} (&minus;{{ discount.total_allocated_amount | money }})
+          </p>
+        {%- endfor -%}
+
+        {%- if settings.cart_show_note -%}
+          <details class="hs-cartd__note">
+            <summary class="hs-caption hs-cartd__note-summary">{{ 'cart.general.note' | t }}</summary>
+            <label class="hs-visually-hidden" for="hs-cartd-note">{{ 'cart.general.note' | t }}</label>
+            <textarea
+              class="hs-field hs-cartd__note-field"
+              id="hs-cartd-note"
+              name="note"
+              rows="3"
+              data-hs-cart-note
+            >{{ cart.note }}</textarea>
+          </details>
+        {%- endif -%}
+
+        <p class="hs-h4 hs-tnum hs-cartd__subtotal">
+          <span>{{ 'cart.general.subtotal' | t }}</span>
+          <span>{{ cart.total_price | money }}</span>
+        </p>
+
+        <p class="hs-caption hs-muted hs-cartd__taxes">{{ 'cart.general.taxes_and_shipping' | t }}</p>
+
+        {%- if settings.delivery_estimate != blank -%}
+          <p class="hs-caption hs-cartd__eta">
+            {% render 'hs-icon', icon: 'check', size: 14 %}
+            {{ settings.delivery_estimate }}
+          </p>
+        {%- endif -%}
+
+        {%- comment -%}
+          Outside the updates form on purpose: a checkout button inside it would
+          submit an update alongside the checkout on some browsers.
+        {%- endcomment -%}
+        <form action="{{ routes.cart_url }}" method="post" novalidate>
+          <button class="hs-btn hs-btn--primary hs-btn--full hs-cartd__checkout" type="submit" name="checkout">
+            {{ 'cart.general.checkout' | t }}
+          </button>
+        </form>
+
+        <a class="hs-link hs-caption hs-cartd__viewcart" href="{{ routes.cart_url }}">
+          {{- 'cart.general.view' | t -}}
+        </a>
+      </footer>
+    {%- else -%}
+      <div class="hs-cartd__empty">
+        <p class="hs-body hs-muted">{{ 'cart.general.empty' | t }}</p>
+        {%- if section.settings.empty_cta_label != blank -%}
+          {% render 'hs-button',
+            label: section.settings.empty_cta_label,
+            href: section.settings.empty_cta_url | default: routes.all_products_collection_url,
+            style: 'primary',
+            full: true
+          %}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Announced to screen readers after an AJAX change. {%- endcomment -%}
+    <p class="hs-visually-hidden" role="status" aria-live="polite" data-hs-cart-status></p>
+  </div>
+</hs-cart-drawer>
+
+<script src="{{ 'hs-cart.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "t:sections.cart_drawer.name",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.cart_drawer.info"
+    },
+    {
+      "type": "text",
+      "id": "empty_cta_label",
+      "label": "t:sections.cart_drawer.empty_cta_label",
+      "default": "Shop HydroSox"
+    },
+    {
+      "type": "url",
+      "id": "empty_cta_url",
+      "label": "t:sections.cart_drawer.empty_cta_url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "t:sections.cart_drawer.block_tier",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.cart_drawer.block_tier_info"
+        },
+        {
+          "type": "number",
+          "id": "quantity",
+          "label": "t:sections.cart_drawer.tier_quantity",
+          "default": 2
+        },
+        {
+          "type": "number",
+          "id": "discount",
+          "label": "t:sections.cart_drawer.tier_discount",
+          "default": 10
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "tier",
+        "settings": {
+          "quantity": 2,
+          "discount": 3.01
+        }
+      },
+      {
+        "type": "tier",
+        "settings": {
+          "quantity": 3,
+          "discount": 7.01
+        }
+      },
+      {
+        "type": "tier",
+        "settings": {
+          "quantity": 4,
+          "discount": 12.01
+        }
+      },
+      {
+        "type": "tier",
+        "settings": {
+          "quantity": 5,
+          "discount": 20.01
+        }
+      }
+    ]
+  }
+}
+{% endschema %}

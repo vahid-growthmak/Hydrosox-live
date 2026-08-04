@@ -1,55 +1,203 @@
-{%- comment -%} Search results. {%- endcomment -%}
+{%- comment -%}
+  Search results.
+
+  Grouped by resource type rather than shown as one flat list, because a page
+  and a product answer different questions and a mixed list makes the reader do
+  the sorting. Shopify returns them interleaved by relevance, so the grouping is
+  done here by filtering the same result set three times.
+
+  The zero-results state is treated as a real page, not an error message: it is
+  where a visitor decides whether to leave, so it carries routes out.
+{%- endcomment -%}
+
+{%- liquid
+  assign has_terms = false
+  if search.terms != blank
+    assign has_terms = true
+  endif
+-%}
+
 <section class="hs-scheme-{{ section.settings.color_scheme }}">
-  <div class="hs-shell hs-pace-base">
+  <div class="hs-shell hs-pace-{{ section.settings.pace }}">
     <header class="hs-page__head">
-      <h1 class="hs-h2 hs-balance hs-page__title">{{ 'general.search.heading' | t }}</h1>
+      <h1 class="hs-h2 hs-balance hs-page__title">
+        {%- if has_terms -%}
+          {{ 'general.search.results_for' | t: terms: search.terms }}
+        {%- else -%}
+          {{ 'general.search.heading' | t }}
+        {%- endif -%}
+      </h1>
     </header>
 
     <form class="hs-search__form" action="{{ routes.search_url }}" method="get" role="search">
+      {%- comment -%}
+        Restricted to the three resource types the grouping below renders, so a
+        result can never arrive that has nowhere to go.
+      {%- endcomment -%}
+      <input type="hidden" name="options[prefix]" value="last">
+      <input type="hidden" name="type" value="product,page,article">
       <label class="hs-visually-hidden" for="hs-search-input">{{ 'general.search.placeholder' | t }}</label>
-      <input class="hs-field hs-search__input" id="hs-search-input" type="search" name="q"
-        value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}">
+      <input
+        class="hs-field hs-search__input"
+        id="hs-search-input"
+        type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'general.search.placeholder' | t | escape }}"
+      >
       {% render 'hs-button', label: 'general.search.submit' | t, style: 'primary', type: 'submit' %}
     </form>
 
     {%- if search.performed -%}
-      <p class="hs-caption hs-muted hs-search__count">
-        {{ 'general.search.results_count' | t: count: search.results_count }}
-      </p>
       {%- if search.results_count > 0 -%}
+        <p class="hs-caption hs-muted hs-search__count">
+          {{- 'general.search.results_count' | t: count: search.results_count -}}
+        </p>
+
         {%- paginate search.results by section.settings.per_page -%}
-          <ul class="hs-search__results" role="list">
-            {%- for item in search.results -%}
-              <li class="hs-search__result">
-                <a class="hs-search__result-link" href="{{ item.url }}">
-                  <span class="hs-h4">{{ item.title }}</span>
-                  {%- if item.object_type == 'product' and item.price -%}
-                    <span class="hs-small-body hs-tnum hs-muted">{{ item.price | money }}</span>
-                  {%- endif -%}
-                </a>
-              </li>
-            {%- endfor -%}
-          </ul>
+          {%- liquid
+            assign products = search.results | where: 'object_type', 'product'
+            assign pages = search.results | where: 'object_type', 'page'
+            assign articles = search.results | where: 'object_type', 'article'
+          -%}
+
+          {%- if products.size > 0 -%}
+            <section class="hs-search__group">
+              <h2 class="hs-eyebrow hs-search__group-title">{{ 'general.search.products' | t }}</h2>
+              <ul class="hs-grid hs-stagger" role="list">
+                {%- for item in products -%}
+                  <li class="hs-reveal">
+                    {% render 'hs-product-card', card_product: item, eager: forloop.first %}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </section>
+          {%- endif -%}
+
+          {%- if articles.size > 0 -%}
+            <section class="hs-search__group">
+              <h2 class="hs-eyebrow hs-search__group-title">{{ 'general.search.articles' | t }}</h2>
+              <ul class="hs-guides__grid hs-stagger" role="list">
+                {%- for item in articles -%}
+                  <li class="hs-reveal">
+                    {% render 'hs-guide-card', article: item %}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </section>
+          {%- endif -%}
+
+          {%- if pages.size > 0 -%}
+            <section class="hs-search__group">
+              <h2 class="hs-eyebrow hs-search__group-title">{{ 'general.search.pages' | t }}</h2>
+              <ul class="hs-search__pages" role="list">
+                {%- for item in pages -%}
+                  <li class="hs-search__page">
+                    <a class="hs-search__page-link" href="{{ item.url }}">
+                      <span class="hs-h4">{{ item.title }}</span>
+                      {%- if item.content != blank -%}
+                        <span class="hs-small-body hs-muted hs-pretty hs-measure-54">
+                          {{- item.content | strip_html | truncate: 150 -}}
+                        </span>
+                      {%- endif -%}
+                      {% render 'hs-icon', icon: 'arrow-right', size: 16, class: 'hs-search__page-cue' %}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </section>
+          {%- endif -%}
+
           {% render 'hs-pagination', paginate: paginate %}
         {%- endpaginate -%}
       {%- else -%}
-        <p class="hs-body hs-muted">{{ 'general.search.no_results' | t: terms: search.terms }}</p>
+        {%- comment -%}
+          Nothing found. The routes are blocks so the merchant decides where a
+          dead end leads, rather than it being fixed in this file.
+        {%- endcomment -%}
+        <div class="hs-search__empty">
+          <p class="hs-body">{{ 'general.search.no_results' | t: terms: search.terms }}</p>
+          {%- if section.settings.empty_help != blank -%}
+            <div class="hs-small-body hs-muted hs-measure-46 hs-pretty">{{ section.settings.empty_help }}</div>
+          {%- endif -%}
+          {%- if section.blocks.size > 0 -%}
+            <ul class="hs-search__routes" role="list">
+              {%- for block in section.blocks -%}
+                <li {{ block.shopify_attributes }}>
+                  <a class="hs-search__route" href="{{ block.settings.link | default: routes.root_url }}">
+                    <span class="hs-small-body hs-search__route-label">{{ block.settings.label }}</span>
+                    {%- if block.settings.note != blank -%}
+                      <span class="hs-caption hs-muted">{{ block.settings.note }}</span>
+                    {%- endif -%}
+                    {% render 'hs-icon', icon: 'arrow-right', size: 15 %}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </div>
       {%- endif -%}
     {%- endif -%}
   </div>
 </section>
+
 {% schema %}
 {
   "name": "t:sections.search.name",
   "settings": [
-    { "type": "select", "id": "color_scheme", "label": "t:common.color_scheme",
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
       "options": [
         { "value": "paper", "label": "t:common.scheme_paper" },
         { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "blue", "label": "t:common.scheme_blue" },
         { "value": "ink", "label": "t:common.scheme_ink" }
-      ], "default": "paper" },
-    { "type": "range", "id": "per_page", "min": 6, "max": 48, "step": 6,
-      "label": "t:sections.collection.per_page", "default": 24 }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "select",
+      "id": "pace",
+      "label": "t:sections.reviews.pace",
+      "options": [
+        { "value": "tight", "label": "t:sections.reviews.pace_tight" },
+        { "value": "base", "label": "t:sections.reviews.pace_base" },
+        { "value": "loose", "label": "t:sections.reviews.pace_loose" }
+      ],
+      "default": "base"
+    },
+    {
+      "type": "range",
+      "id": "per_page",
+      "min": 6,
+      "max": 48,
+      "step": 6,
+      "label": "t:sections.collection.per_page",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "t:sections.search.empty_group"
+    },
+    {
+      "type": "richtext",
+      "id": "empty_help",
+      "label": "t:sections.search.empty_help",
+      "default": "<p>Try a shorter phrase, or pick up one of the routes below.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "route",
+      "name": "t:sections.search.block_route",
+      "settings": [
+        { "type": "text", "id": "label", "label": "t:common.label" },
+        { "type": "text", "id": "note", "label": "t:common.description" },
+        { "type": "url", "id": "link", "label": "t:common.link" }
+      ]
+    }
   ]
 }
 {% endschema %}

@@ -394,6 +394,21 @@ summary::-webkit-details-marker {
   --well-deep: var(--ink-80);
 }
 
+/*
+  Where two sections happen to carry the same scheme, the change of background
+  cannot signal the boundary, so a hairline does it instead. Only on handsets:
+  the tighter mobile rhythm leaves less blank space to read the break from, and
+  the wide layout is measured against the mockup, which has no such rule.
+*/
+@media (max-width: 47.9375rem) {
+  .shopify-section:has(> .hs-scheme-paper) + .shopify-section > .hs-scheme-paper,
+  .shopify-section:has(> .hs-scheme-wash) + .shopify-section > .hs-scheme-wash,
+  .shopify-section:has(> .hs-scheme-blue) + .shopify-section > .hs-scheme-blue,
+  .shopify-section:has(> .hs-scheme-ink) + .shopify-section > .hs-scheme-ink {
+    border-top: 1px solid var(--rule);
+  }
+}
+
 .hs-muted {
   color: var(--on-surface-muted);
 }

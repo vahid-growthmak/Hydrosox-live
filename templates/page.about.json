@@ -11,7 +11,7 @@
         "heading_tag": "h1",
         "heading_size": "h2",
         "body": "<p>Who is behind this, how the product was developed, and where we are based.</p>",
-        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder — when it ships it will carry real detail, not filler.</p>",
+        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder \u2014 when it ships it will carry real detail, not filler.</p>",
         "pointer_label": "Answered today at",
         "pointer_link_label": "About on the homepage",
         "pointer_url": "/#about",
@@ -21,9 +21,22 @@
         "link_url": "/",
         "tail_note": "<p>Or read the questions we have answered so far.</p>"
       }
+    },
+    "reviews": {
+      "type": "review-module",
+      "settings": {
+        "layout": "strip",
+        "color_scheme": "wash",
+        "pace": "tight",
+        "show_aggregate": true,
+        "eyebrow": "Reviews",
+        "aggregate_link_label": "Read every review",
+        "aggregate_link_url": "/pages/reviews"
+      }
     }
   },
   "order": [
+    "reviews",
     "intro"
   ]
 }

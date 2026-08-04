@@ -1,0 +1,330 @@
+{%- comment -%}
+  Enquiry form.
+
+  One section for the contact form, the trade qualifying form and the press
+  enquiry form, because all three are the same thing: Shopify's contact form
+  with a different set of fields. The fields are blocks, so a new question is
+  added in the editor rather than in this file.
+
+  Everything routes through {% form 'contact' %}, which means Shopify's own
+  spam handling and delivery — no third-party endpoint, and no customer data
+  posted anywhere the merchant does not already control.
+{%- endcomment -%}
+
+{%- liquid
+  assign fields = section.blocks | where: 'type', 'field'
+  assign choices = section.blocks | where: 'type', 'choice'
+-%}
+
+<section
+  class="hs-scheme-{{ section.settings.color_scheme }} hs-enquiry"
+  {% if section.settings.anchor_id != blank %}id="{{ section.settings.anchor_id }}"{% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-{{ section.settings.pace }}">
+    <div class="hs-enquiry__grid">
+      <header class="hs-enquiry__head">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="hs-h3 hs-measure-18 hs-balance hs-enquiry__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.lede != blank -%}
+          <div class="hs-small-body hs-measure-46 hs-pretty hs-muted hs-enquiry__lede">
+            {{ section.settings.lede }}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%}
+          A direct route out, for anyone who would rather not fill a form in.
+        {%- endcomment -%}
+        {%- if settings.email != blank or settings.phone != blank -%}
+          <ul class="hs-enquiry__direct" role="list">
+            {%- if settings.email != blank -%}
+              <li>
+                <a class="hs-enquiry__direct-link hs-small-body" href="mailto:{{ settings.email }}">
+                  {% render 'hs-icon', icon: 'mail', size: 16 %}
+                  {{ settings.email }}
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.phone != blank -%}
+              <li>
+                <a
+                  class="hs-enquiry__direct-link hs-small-body"
+                  href="tel:{{ settings.phone | replace: ' ', '' }}"
+                >
+                  {% render 'hs-icon', icon: 'phone', size: 16 %}
+                  {{ settings.phone }}
+                </a>
+              </li>
+            {%- endif -%}
+          </ul>
+        {%- endif -%}
+      </header>
+
+      <div class="hs-enquiry__body">
+        {%- form 'contact', class: 'hs-form', id: section.id -%}
+          {%- comment -%}
+            Success and failure are both rendered above the fields, where a
+            reader is already looking, rather than at the foot of a long form.
+          {%- endcomment -%}
+          {%- if form.posted_successfully? -%}
+            <p class="hs-form-success hs-small-body" role="status">
+              {% render 'hs-icon', icon: 'check', size: 16 %}
+              {%- comment -%}
+                Printed, not translated — `default` then `t` would look the
+                merchant's own sentence up as a translation key.
+              {%- endcomment -%}
+              {%- if section.settings.success_message != blank -%}
+                {{ section.settings.success_message }}
+              {%- else -%}
+                {{ 'general.form.sent' | t }}
+              {%- endif -%}
+            </p>
+          {%- elsif form.errors -%}
+            <div class="hs-form-error hs-small-body" role="alert">
+              <p>{{ 'general.form.error_heading' | t }}</p>
+              <ul role="list">
+                {%- for field in form.errors -%}
+                  <li>
+                    {%- if field == 'form' -%}
+                      {{ form.errors.messages[field] }}
+                    {%- else -%}
+                      {{ form.errors.translated_fields[field] }} {{ form.errors.messages[field] }}
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%}
+            Name and email are not blocks: Shopify needs these exact field names
+            to attribute the message, so they cannot be left to configuration.
+          {%- endcomment -%}
+          <div class="hs-form__row">
+            <div class="hs-form__field">
+              <label class="hs-caption hs-form__label" for="hs-contact-name-{{ section.id }}">
+                {{ section.settings.name_label }}
+              </label>
+              <input
+                class="hs-field"
+                id="hs-contact-name-{{ section.id }}"
+                type="text"
+                name="contact[name]"
+                autocomplete="name"
+                value="{{ form.name }}"
+                required
+              >
+            </div>
+
+            <div class="hs-form__field">
+              <label class="hs-caption hs-form__label" for="hs-contact-email-{{ section.id }}">
+                {{ section.settings.email_label }}
+              </label>
+              <input
+                class="hs-field"
+                id="hs-contact-email-{{ section.id }}"
+                type="email"
+                name="contact[email]"
+                autocomplete="email"
+                spellcheck="false"
+                value="{{ form.email }}"
+                required
+              >
+            </div>
+          </div>
+
+          {%- comment -%}
+            A single-select routing question — "what is this about" — so an
+            enquiry lands with the right person without a second email.
+          {%- endcomment -%}
+          {%- if choices.size > 0 -%}
+            <div class="hs-form__field">
+              <label class="hs-caption hs-form__label" for="hs-contact-topic-{{ section.id }}">
+                {{ section.settings.topic_label }}
+              </label>
+              <select
+                class="hs-field hs-form__select"
+                id="hs-contact-topic-{{ section.id }}"
+                name="contact[{{ section.settings.topic_label | handleize }}]"
+              >
+                {%- for block in choices -%}
+                  <option value="{{ block.settings.label | escape }}" {{ block.shopify_attributes }}>
+                    {{- block.settings.label -}}
+                  </option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%}
+            Configurable fields. The field name is derived from the label so the
+            merchant sees a readable key in the email they receive rather than
+            "contact[field-3]".
+          {%- endcomment -%}
+          {%- for block in fields -%}
+            {%- assign key = block.settings.label | handleize -%}
+            <div class="hs-form__field" {{ block.shopify_attributes }}>
+              <label class="hs-caption hs-form__label" for="hs-contact-{{ key }}-{{ section.id }}">
+                {{ block.settings.label }}
+                {%- unless block.settings.required -%}
+                  <span class="hs-faint">{{ 'general.form.optional' | t }}</span>
+                {%- endunless -%}
+              </label>
+              {%- if block.settings.multiline -%}
+                <textarea
+                  class="hs-field"
+                  id="hs-contact-{{ key }}-{{ section.id }}"
+                  name="contact[{{ key }}]"
+                  rows="{{ block.settings.rows }}"
+                  {% if block.settings.required %}required{% endif %}
+                ></textarea>
+              {%- else -%}
+                <input
+                  class="hs-field"
+                  id="hs-contact-{{ key }}-{{ section.id }}"
+                  type="{{ block.settings.input_type }}"
+                  name="contact[{{ key }}]"
+                  {% if block.settings.input_type == 'tel' %}autocomplete="tel"{% endif %}
+                  {% if block.settings.required %}required{% endif %}
+                >
+              {%- endif -%}
+              {%- if block.settings.help != blank -%}
+                <p class="hs-caption hs-muted hs-form__help">{{ block.settings.help }}</p>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+
+          {%- if section.settings.consent_note != blank -%}
+            <div class="hs-caption hs-muted hs-form__consent">{{ section.settings.consent_note }}</div>
+          {%- endif -%}
+
+          <div class="hs-form__actions">
+            {% render 'hs-button',
+              label: section.settings.submit_label,
+              style: 'primary',
+              type: 'submit'
+            %}
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.enquiry.name",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.enquiry.info"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "blue", "label": "t:common.scheme_blue" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "select",
+      "id": "pace",
+      "label": "t:sections.reviews.pace",
+      "options": [
+        { "value": "tight", "label": "t:sections.reviews.pace_tight" },
+        { "value": "base", "label": "t:sections.reviews.pace_base" },
+        { "value": "loose", "label": "t:sections.reviews.pace_loose" }
+      ],
+      "default": "base"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    { "type": "header", "content": "t:common.content" },
+    { "type": "text", "id": "eyebrow", "label": "t:common.eyebrow" },
+    { "type": "text", "id": "heading", "label": "t:common.heading", "default": "Send us a message." },
+    { "type": "richtext", "id": "lede", "label": "t:common.lede" },
+    { "type": "header", "content": "t:sections.enquiry.labels_group" },
+    { "type": "text", "id": "name_label", "label": "t:sections.enquiry.name_label", "default": "Your name" },
+    { "type": "text", "id": "email_label", "label": "t:sections.enquiry.email_label", "default": "Email address" },
+    { "type": "text", "id": "topic_label", "label": "t:sections.enquiry.topic_label", "default": "What is this about" },
+    { "type": "text", "id": "submit_label", "label": "t:common.button_label", "default": "Send message" },
+    { "type": "header", "content": "t:sections.enquiry.after_group" },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "t:sections.enquiry.success_message",
+      "default": "Thank you — we have your message and will reply by email."
+    },
+    {
+      "type": "richtext",
+      "id": "consent_note",
+      "label": "t:sections.enquiry.consent_note",
+      "info": "t:sections.enquiry.consent_note_info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "field",
+      "name": "t:sections.enquiry.block_field",
+      "settings": [
+        { "type": "text", "id": "label", "label": "t:common.label", "default": "Message" },
+        {
+          "type": "checkbox",
+          "id": "multiline",
+          "label": "t:sections.enquiry.multiline",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "rows",
+          "min": 2,
+          "max": 10,
+          "step": 1,
+          "label": "t:sections.enquiry.rows",
+          "default": 5
+        },
+        {
+          "type": "select",
+          "id": "input_type",
+          "label": "t:sections.enquiry.input_type",
+          "info": "t:sections.enquiry.input_type_info",
+          "options": [
+            { "value": "text", "label": "t:sections.enquiry.type_text" },
+            { "value": "tel", "label": "t:sections.enquiry.type_tel" },
+            { "value": "url", "label": "t:sections.enquiry.type_url" },
+            { "value": "number", "label": "t:sections.enquiry.type_number" }
+          ],
+          "default": "text"
+        },
+        { "type": "text", "id": "help", "label": "t:sections.enquiry.help" },
+        { "type": "checkbox", "id": "required", "label": "t:sections.enquiry.required", "default": false }
+      ]
+    },
+    {
+      "type": "choice",
+      "name": "t:sections.enquiry.block_choice",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.enquiry.block_choice_info"
+        },
+        { "type": "text", "id": "label", "label": "t:common.label" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "t:sections.enquiry.name" }]
+}
+{% endschema %}

@@ -1,8 +1,60 @@
 {
   "sections": {
     "main": {
-      "type": "main-search"
+      "type": "main-search",
+      "blocks": {
+        "r1": {
+          "type": "route",
+          "settings": {
+            "label": "Shop HydroSox",
+            "note": "The one product, four colourways",
+            "link": "/products/hydrosox-waterproof-socks"
+          }
+        },
+        "r2": {
+          "type": "route",
+          "settings": {
+            "label": "Shop by activity",
+            "note": "Hiking, boots, cycling, running",
+            "link": "/pages/hiking-and-walking"
+          }
+        },
+        "r3": {
+          "type": "route",
+          "settings": {
+            "label": "How they are built",
+            "note": "The membrane and the three layers",
+            "link": "/pages/technology"
+          }
+        },
+        "r4": {
+          "type": "route",
+          "settings": {
+            "label": "Common questions",
+            "note": "Sizing, care, delivery, returns",
+            "link": "/pages/faq"
+          }
+        },
+        "r5": {
+          "type": "route",
+          "settings": {
+            "label": "Talk to us",
+            "note": "If the answer is not on the site",
+            "link": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "settings": {}
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

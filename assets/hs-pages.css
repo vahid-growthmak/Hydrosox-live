@@ -1037,3 +1037,572 @@
   width: 100%;
   height: auto;
 }
+
+/* --------------------------------------------------------------------------
+   Breadcrumb
+   -------------------------------------------------------------------------- */
+
+.hs-breadcrumb {
+  padding-block: 0.875rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hs-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem 0.5rem;
+}
+
+.hs-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.hs-breadcrumb__link {
+  color: var(--on-surface-muted);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .hs-breadcrumb__link:hover {
+    color: var(--on-surface);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+}
+
+.hs-breadcrumb__sep {
+  color: var(--on-surface-faint);
+  flex: none;
+}
+
+/*
+  The leaf is the page you are on, so it is not a link. It truncates rather
+  than wraps: a long product title should not push the trail onto three lines.
+*/
+.hs-breadcrumb__current {
+  color: var(--on-surface);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 22ch;
+}
+
+@media (min-width: 48rem) {
+  .hs-breadcrumb__current {
+    max-width: 48ch;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Stars
+   -------------------------------------------------------------------------- */
+
+/*
+  Two identical rows of glyphs, one clipped over the other, so a fractional
+  score shows as a part-filled star instead of rounding to a whole one.
+*/
+.hs-stars {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  white-space: nowrap;
+}
+
+.hs-stars__track,
+.hs-stars__fill {
+  display: block;
+  white-space: nowrap;
+}
+
+.hs-stars__fill {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  overflow: hidden;
+}
+
+.hs-stars__glyph {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+.hs-stars__track {
+  color: var(--rule-strong);
+}
+
+.hs-stars__fill {
+  color: var(--blue-deep);
+}
+
+.hs-scheme-ink .hs-stars__fill {
+  color: var(--blue);
+}
+
+/* --------------------------------------------------------------------------
+   Reviews
+   -------------------------------------------------------------------------- */
+
+.hs-reviews__heading {
+  margin-top: 0.75rem;
+}
+
+.hs-reviews__lede {
+  margin-top: 1rem;
+}
+
+.hs-reviews__head + .hs-reviews__aggregate,
+.hs-reviews__head + .hs-reviews__body,
+.hs-reviews__head + .hs-reviews__embed {
+  margin-top: 2rem;
+}
+
+.hs-reviews__aggregate {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem 1.5rem;
+  padding-block: 1.25rem;
+  border-block: 1px solid var(--rule-strong);
+}
+
+.hs-reviews__score {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.hs-reviews__all {
+  margin-inline-start: auto;
+}
+
+.hs-reviews__aggregate + .hs-reviews__body {
+  margin-top: 2rem;
+}
+
+.hs-reviews__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+/*
+  A chip is a filter control, so it carries a real hit area rather than only
+  the size of its label.
+*/
+.hs-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding-inline: 0.875rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: none;
+  color: var(--on-surface-muted);
+  cursor: pointer;
+  transition: color var(--duration-press) var(--ease-out),
+    border-color var(--duration-press) var(--ease-out),
+    background-color var(--duration-press) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .hs-chip:hover {
+    color: var(--on-surface);
+    border-color: var(--on-surface);
+  }
+}
+
+.hs-chip.is-active {
+  background-color: var(--on-surface);
+  border-color: var(--on-surface);
+  color: var(--surface);
+}
+
+.hs-reviews__list {
+  display: grid;
+  gap: 1px;
+  background-color: var(--rule);
+}
+
+@media (min-width: 48rem) {
+  .hs-reviews--feed .hs-reviews__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .hs-reviews--feed .hs-reviews__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/*
+  The 1px grid gap draws the rules, so each card paints its own background over
+  it. One implementation covers one, two and three columns.
+*/
+.hs-reviews__item {
+  background-color: var(--surface);
+}
+
+.hs-reviews__card {
+  padding: 1.5rem 0;
+}
+
+@media (min-width: 48rem) {
+  .hs-reviews--feed .hs-reviews__card {
+    padding: 1.75rem;
+  }
+}
+
+.hs-reviews__item-title {
+  margin-top: 0.875rem;
+}
+
+.hs-reviews__item-body {
+  margin-top: 0.625rem;
+}
+
+.hs-reviews__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem 0.875rem;
+  margin-top: 1rem;
+}
+
+.hs-reviews__verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--blue-deep);
+}
+
+.hs-scheme-ink .hs-reviews__verified {
+  color: var(--blue);
+}
+
+.hs-reviews__author {
+  color: var(--on-surface);
+}
+
+.hs-reviews__empty {
+  margin-top: 1.5rem;
+}
+
+/* The strip is a single quiet row, not a feed. */
+.hs-reviews--strip .hs-reviews__list {
+  gap: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   Search results page
+   -------------------------------------------------------------------------- */
+
+.hs-search__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.hs-search__input {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+.hs-search__count {
+  margin-top: 1.25rem;
+}
+
+.hs-search__group + .hs-search__group {
+  margin-top: 3rem;
+}
+
+.hs-search__group-title {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule-strong);
+  color: var(--on-surface-muted);
+}
+
+.hs-search__group > ul {
+  margin-top: 1.75rem;
+}
+
+.hs-search__pages {
+  display: grid;
+}
+
+.hs-search__page {
+  border-bottom: 1px solid var(--rule);
+}
+
+.hs-search__page-link {
+  display: grid;
+  gap: 0.375rem;
+  padding: 1.25rem 0;
+  text-decoration: none;
+  color: var(--on-surface);
+}
+
+@media (hover: hover) {
+  .hs-search__page-link:hover .hs-search__page-cue {
+    transform: translateX(0.25rem);
+  }
+}
+
+.hs-search__page-cue {
+  transition: transform var(--duration-press) var(--ease-out);
+}
+
+/* ----------------------------------------------------------- no results */
+
+.hs-search__empty {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.hs-search__routes {
+  display: grid;
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--rule-strong);
+}
+
+.hs-search__route {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--on-surface);
+}
+
+.hs-search__route-label {
+  flex: none;
+}
+
+.hs-search__route > :last-child {
+  margin-inline-start: auto;
+  transition: transform var(--duration-press) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .hs-search__route:hover > :last-child {
+    transform: translateX(0.25rem);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Guides
+   -------------------------------------------------------------------------- */
+
+.hs-guides__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+}
+
+.hs-guides__heading {
+  margin-top: 0.5rem;
+  flex: 1 1 18rem;
+}
+
+.hs-guides__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.hs-guides__grid {
+  display: grid;
+  gap: 1.75rem;
+  margin-top: 2.25rem;
+}
+
+@media (min-width: 48rem) {
+  .hs-guides__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .hs-guides__grid {
+    gap: 2rem;
+  }
+}
+
+.hs-guide-card__excerpt {
+  margin-top: 0.5rem;
+}
+
+.hs-guide-card__cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.875rem;
+  color: var(--eyebrow);
+}
+
+/* --------------------------------------------------------------------------
+   Blog
+   -------------------------------------------------------------------------- */
+
+.hs-blog__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+}
+
+.hs-blog__tags + * {
+  margin-top: 2.25rem;
+}
+
+.hs-blog__empty {
+  margin-top: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   Enquiry form
+   -------------------------------------------------------------------------- */
+
+.hs-enquiry__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 64rem) {
+  .hs-enquiry__grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 4rem;
+  }
+}
+
+.hs-enquiry__heading {
+  margin-top: 0.75rem;
+}
+
+.hs-enquiry__lede {
+  margin-top: 1rem;
+}
+
+.hs-enquiry__direct {
+  display: grid;
+  gap: 0.625rem;
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule-strong);
+}
+
+.hs-enquiry__direct-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--on-surface);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .hs-enquiry__direct-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+}
+
+.hs-form {
+  display: grid;
+  gap: 1.125rem;
+}
+
+.hs-form__row {
+  display: grid;
+  gap: 1.125rem;
+}
+
+@media (min-width: 40rem) {
+  .hs-form__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.hs-form__field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.hs-form__label {
+  display: flex;
+  gap: 0.375rem;
+  color: var(--on-surface);
+}
+
+.hs-form__select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 1.125rem) 55%, calc(100% - 0.75rem) 55%;
+  background-size: 0.375rem 0.375rem, 0.375rem 0.375rem;
+  background-repeat: no-repeat;
+  padding-inline-end: 2.5rem;
+}
+
+.hs-form__help {
+  margin-top: -0.125rem;
+}
+
+.hs-form__consent {
+  padding-top: 0.25rem;
+}
+
+.hs-form__actions {
+  margin-top: 0.375rem;
+  justify-self: start;
+}
+
+/*
+  Both states sit above the fields, where the reader already is. Each carries a
+  left rule so it reads as a notice rather than as another paragraph.
+*/
+.hs-form-success,
+.hs-form-error {
+  display: grid;
+  gap: 0.375rem;
+  padding: 0.875rem 1rem;
+  border-inline-start: 2px solid currentColor;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.hs-form-success {
+  color: var(--success);
+  background-color: color-mix(in srgb, var(--success) 8%, transparent);
+}
+
+.hs-form-error {
+  color: var(--error);
+  background-color: color-mix(in srgb, var(--error) 8%, transparent);
+}
+
+.hs-form-success {
+  align-items: center;
+  grid-auto-flow: column;
+  justify-content: start;
+}
+
+/* --------------------------------------------------------------------------
+   Collection supporting content
+   -------------------------------------------------------------------------- */
+
+.hs-collection__supporting {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule-strong);
+}

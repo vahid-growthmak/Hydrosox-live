@@ -103,16 +103,16 @@
   assign g_xl = settings.gutter_xl | default: 64 | divided_by: 16.0
 
   # ---------- Rhythm ----------
-  assign pt_lo = settings.pace_tight_min | default: 56 | divided_by: 16.0
+  assign pt_lo = settings.pace_tight_min | default: 40 | divided_by: 16.0
   assign pt_vw = settings.pace_tight_vw | default: 5
   assign pt_hi = settings.pace_tight_max | default: 80 | divided_by: 16.0
-  assign pb_lo = settings.pace_base_min | default: 80 | divided_by: 16.0
+  assign pb_lo = settings.pace_base_min | default: 56 | divided_by: 16.0
   assign pb_vw = settings.pace_base_vw | default: 8
   assign pb_hi = settings.pace_base_max | default: 112 | divided_by: 16.0
-  assign pl_lo = settings.pace_loose_min | default: 112 | divided_by: 16.0
+  assign pl_lo = settings.pace_loose_min | default: 72 | divided_by: 16.0
   assign pl_vw = settings.pace_loose_vw | default: 11
   assign pl_hi = settings.pace_loose_max | default: 160 | divided_by: 16.0
-  assign pv_lo = settings.pace_vast_min | default: 144 | divided_by: 16.0
+  assign pv_lo = settings.pace_vast_min | default: 96 | divided_by: 16.0
   assign pv_vw = settings.pace_vast_vw | default: 15
   assign pv_hi = settings.pace_vast_max | default: 224 | divided_by: 16.0
 

@@ -126,7 +126,10 @@
       "pace_loose_max": "Loose — maximum",
       "pace_vast_min": "Vast — minimum",
       "pace_vast_vw": "Vast — scale rate",
-      "pace_vast_max": "Vast — maximum"
+      "pace_vast_max": "Vast — maximum",
+      "seo_group": "Search visibility",
+      "noindex_collections": "Collections held out of search",
+      "noindex_collections_info": "Comma-separated handles. A one-product collection reads as a dead store and competes with the product page for the same query, so both collections are held back until the range grows. Clear this to let them be indexed."
     },
     "corners": {
       "name": "Corners",
@@ -153,7 +156,15 @@
       "type": "Cart behaviour",
       "type_drawer": "Open a drawer",
       "type_page": "Go to the cart page",
-      "show_note": "Let customers add an order note"
+      "show_note": "Let customers add an order note",
+      "delivery_group": "Delivery",
+      "threshold": "Free delivery threshold",
+      "threshold_info": "In your store currency, excluding tax. Set it to 0 to hide the progress bar everywhere. Keep it level with the quantity break it is meant to reward.",
+      "show_progress": "Show progress towards free delivery",
+      "delivery_estimate": "Delivery estimate",
+      "delivery_estimate_info": "Shown in the cart, for example \"Ordered today, with you Thursday\". Leave empty to show nothing rather than a promise you cannot keep.",
+      "upsell_group": "Quantity break",
+      "show_tier_prompt": "Prompt the next quantity break in the cart"
     },
     "social": {
       "name": "Social accounts",
@@ -426,14 +437,20 @@
       "name": "Page content"
     },
     "notfound": {
-      "name": "Page not found"
+      "name": "Page not found",
+      "show_search": "Show a search field"
     },
     "search": {
-      "name": "Search results"
+      "name": "Search results",
+      "empty_group": "No results",
+      "empty_help": "Helper text",
+      "block_route": "Recovery route"
     },
     "collection": {
       "name": "Collection grid",
-      "per_page": "Items per page"
+      "per_page": "Items per page",
+      "supporting_group": "Supporting content",
+      "supporting": "Text below the grid"
     },
     "list_collections": {
       "name": "All collections"
@@ -446,7 +463,16 @@
       "name": "Cart"
     },
     "blog": {
-      "name": "Blog posts"
+      "name": "Blog posts",
+      "intro_group": "Hub intro",
+      "heading_info": "Leave empty to use the blog's own title.",
+      "empty_note": "Text shown while the blog is empty",
+      "empty_note_info": "Shown instead of an empty grid before the first guide is published.",
+      "tags_group": "Categories",
+      "show_tags": "Show category tags",
+      "show_tags_info": "Built from the tags your articles actually carry, so a category can never lead to an empty page.",
+      "all_label": "\"All\" chip label",
+      "tags_label": "Accessible label"
     },
     "article": {
       "name": "Article",
@@ -532,6 +558,104 @@
       "show_rule": "Show a rule below this section",
       "alt_label": "Secondary button label",
       "alt_url": "Secondary button link"
+    },
+    "breadcrumb": {
+      "name": "Breadcrumb",
+      "info": "The trail is worked out from the page being viewed. Only fill the fields below in to add a middle step or to override the last one.",
+      "home_label": "Home label",
+      "parent_group": "Middle step",
+      "parent_label": "Label",
+      "parent_label_info": "Optional. Use it to place the page under a section, for example \"Shop by activity\".",
+      "parent_url": "Link",
+      "current_group": "Current page",
+      "current_label": "Label override",
+      "current_label_info": "Leave empty to use the page, product or article title.",
+      "aria_label": "Accessible label"
+    },
+    "reviews": {
+      "name": "Review module",
+      "info": "With no reviews and no app embed added, this section renders nothing at all. That is deliberate: an empty or invented review block does more harm than no review block.",
+      "layout": "Layout",
+      "layout_strip": "Proof strip",
+      "layout_feed": "Full feed",
+      "pace": "Vertical rhythm",
+      "pace_tight": "Tight",
+      "pace_base": "Base",
+      "pace_loose": "Loose",
+      "aggregate_group": "Aggregate",
+      "show_aggregate": "Show the aggregate score",
+      "rating_max": "Top of the scale",
+      "aggregate_link_label": "Link label",
+      "aggregate_link_url": "Link",
+      "filters_group": "Filters",
+      "show_filters": "Show filters",
+      "show_filters_info": "Full feed only. Filter options are built from the reviews present, so a filter can never lead to an empty list.",
+      "filter_label": "Accessible label",
+      "schema_group": "Structured data",
+      "emit_schema": "Emit AggregateRating schema",
+      "emit_schema_info": "Turn this on for one page only. The figures are computed from the reviews below, never typed in.",
+      "schema_product_name": "Product name in schema",
+      "block_review": "Review",
+      "block_review_info": "Enter real reviews only. These figures feed the aggregate score and, if enabled, the structured data Google reads.",
+      "rating": "Rating",
+      "author": "Reviewer name",
+      "date": "Date",
+      "tag": "Filter tag",
+      "tag_info": "Optional. Groups the review under a filter chip, for example \"Hiking\".",
+      "verified": "Verified purchase",
+      "block_embed": "App embed",
+      "block_embed_info": "Paste a review app's Liquid or block here (Judge.me and the like). When an embed is present the app owns the display and the reviews above are not shown.",
+      "embed": "Embed code"
+    },
+    "cart_drawer": {
+      "name": "Cart drawer",
+      "info": "Rendered on every page except the cart page itself, and only while Cart behaviour is set to \"Open a drawer\". Its totals, delivery progress and quantity prompt are all computed on the server, so they cannot drift away from the checkout.",
+      "empty_cta_label": "Empty cart button label",
+      "empty_cta_url": "Empty cart button link",
+      "block_tier": "Quantity break",
+      "block_tier_info": "Keep these level with the quantity tiers on the buy widget, including the saving, which is an absolute amount in your shop currency rather than a percentage. Only the next tier the shopper has not yet reached is ever shown.",
+      "tier_quantity": "Quantity",
+      "tier_discount": "Saving (amount off, not a percentage)"
+    },
+    "psearch": {
+      "name": "Predictive search results",
+      "info": "Rendered as a fragment by the search overlay. It has no place in a page's section list; the routes below are shown when a search returns nothing.",
+      "block_route": "Recovery route"
+    },
+    "guides": {
+      "name": "Related guides",
+      "info": "Named articles are used first. Any remaining slots are filled from the tag below, so the section keeps working as new guides are published without anyone editing this page.",
+      "blog": "Blog",
+      "tag": "Fallback tag",
+      "tag_info": "Optional. Restricts the automatic fill to articles carrying this tag.",
+      "count": "Articles to show",
+      "block_article": "Editorial pick",
+      "article": "Article"
+    },
+    "enquiry": {
+      "name": "Enquiry form",
+      "info": "Posts through Shopify's own contact form, so messages arrive at your store email and Shopify handles the spam filtering. Name and email are always present; everything else is a block.",
+      "labels_group": "Labels",
+      "name_label": "Name field label",
+      "email_label": "Email field label",
+      "topic_label": "Routing question label",
+      "after_group": "After sending",
+      "success_message": "Success message",
+      "consent_note": "Data note",
+      "consent_note_info": "Shown above the send button. Say what you will do with the details — this is where a privacy link belongs.",
+      "block_field": "Field",
+      "multiline": "Multi-line",
+      "rows": "Rows (multi-line only)",
+      "input_type": "Input type",
+      "input_type_info": "Single-line only. Picking the right type gives phones the right keyboard.",
+      "type_text": "Text",
+      "type_tel": "Telephone",
+      "type_url": "Web address",
+      "type_number": "Number",
+      "help": "Helper text",
+      "required": "Required",
+      "block_choice": "Routing option",
+      "block_choice_info": "Add two or more to show a dropdown asking what the enquiry is about. With fewer than two, no dropdown appears."
     }
   }
 }

@@ -1,0 +1,188 @@
+{%- comment -%}
+  Related guides.
+
+  The sitemap asks for an editorial pick with a tag fallback, so both paths are
+  here in that order: named articles win, and where fewer than the target
+  number are named the remainder is filled from a tag on the chosen blog. That
+  way a page still shows guides the day after a new article is published,
+  without anyone editing the page.
+
+  Renders nothing when the blog has no articles yet, rather than an empty grid.
+{%- endcomment -%}
+
+{%- liquid
+  assign target = section.settings.count | plus: 0
+  assign blog = blogs[section.settings.blog]
+
+  comment
+    Editorial picks first, in the order the merchant placed them.
+  endcomment
+  assign picks = section.blocks | where: 'type', 'article'
+  assign chosen = ''
+  for block in picks
+    if block.settings.article != blank
+      assign chosen = chosen | append: block.settings.article.id | append: ','
+    endif
+  endfor
+
+  comment
+    Fill the remainder from the tag, skipping anything already picked so the
+    fallback cannot duplicate an editorial choice.
+  endcomment
+  assign fill_ids = ''
+  assign chosen_count = chosen | split: ',' | size
+  if chosen_count < target and blog != blank
+    assign wanted = target | minus: chosen_count
+    assign taken = 0
+    for article in blog.articles
+      if taken >= wanted
+        break
+      endif
+      assign needle = article.id | append: ','
+      unless chosen contains needle
+        if section.settings.tag == blank or article.tags contains section.settings.tag
+          assign fill_ids = fill_ids | append: article.id | append: ','
+          assign taken = taken | plus: 1
+        endif
+      endunless
+    endfor
+  endif
+
+  assign total = chosen | append: fill_ids | split: ',' | size
+-%}
+
+{%- if total > 0 -%}
+  <section
+    class="hs-scheme-{{ section.settings.color_scheme }} hs-guides"
+    {% if section.settings.anchor_id != blank %}id="{{ section.settings.anchor_id }}"{% endif %}
+    {{ section.shopify_attributes }}
+  >
+    <div class="hs-shell hs-pace-{{ section.settings.pace }}">
+      <header class="hs-guides__head">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="hs-h3 hs-measure-19 hs-balance hs-guides__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.link_label != blank -%}
+          <a
+            class="hs-link hs-small-body hs-guides__all"
+            href="{{ section.settings.link_url | default: blog.url }}"
+          >
+            {{- section.settings.link_label -}}
+            {% render 'hs-icon', icon: 'arrow-right', size: 15 %}
+          </a>
+        {%- endif -%}
+      </header>
+
+      <ul class="hs-guides__grid hs-stagger" role="list">
+        {%- comment -%} Editorial picks. {%- endcomment -%}
+        {%- for block in picks -%}
+          {%- if block.settings.article != blank -%}
+            {%- assign article = block.settings.article -%}
+            <li class="hs-reveal" {{ block.shopify_attributes }}>
+              {% render 'hs-guide-card', article: article, eager: forloop.first %}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- comment -%} Tag fallback for the remainder. {%- endcomment -%}
+        {%- assign fill_list = fill_ids | split: ',' -%}
+        {%- if fill_list.size > 0 and blog != blank -%}
+          {%- for article in blog.articles -%}
+            {%- assign needle = article.id | append: '' -%}
+            {%- if fill_list contains needle -%}
+              <li class="hs-reveal">
+                {% render 'hs-guide-card', article: article %}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.guides.name",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.guides.info"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "t:sections.guides.blog"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "t:sections.guides.tag",
+      "info": "t:sections.guides.tag_info"
+    },
+    {
+      "type": "range",
+      "id": "count",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "t:sections.guides.count",
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "blue", "label": "t:common.scheme_blue" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "select",
+      "id": "pace",
+      "label": "t:sections.reviews.pace",
+      "options": [
+        { "value": "tight", "label": "t:sections.reviews.pace_tight" },
+        { "value": "base", "label": "t:sections.reviews.pace_base" },
+        { "value": "loose", "label": "t:sections.reviews.pace_loose" }
+      ],
+      "default": "base"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    { "type": "text", "id": "eyebrow", "label": "t:common.eyebrow", "default": "Guides" },
+    { "type": "text", "id": "heading", "label": "t:common.heading", "default": "Worth reading first." },
+    { "type": "text", "id": "link_label", "label": "t:common.link_label", "default": "All guides" },
+    { "type": "url", "id": "link_url", "label": "t:common.link_url" }
+  ],
+  "blocks": [
+    {
+      "type": "article",
+      "name": "t:sections.guides.block_article",
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "t:sections.guides.article"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "t:sections.guides.name" }]
+}
+{% endschema %}

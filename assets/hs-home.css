@@ -2054,16 +2054,31 @@
    Company details
    -------------------------------------------------------------------------- */
 
+/*
+  Stacked on a handset, the head's row gap and the heading's lead-in are the
+  two largest pieces of dead space in this section, so both are smaller until
+  the two columns actually sit side by side.
+*/
 .hs-company__head {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 1.5rem 4rem;
+  gap: 1rem 4rem;
 }
 
 .hs-company__heading {
-  margin-top: 1.25rem;
+  margin-top: 0.75rem;
+}
+
+@media (min-width: 40rem) {
+  .hs-company__head {
+    gap: 1.5rem 4rem;
+  }
+
+  .hs-company__heading {
+    margin-top: 1.25rem;
+  }
 }
 
 .hs-company__lede > :first-child {
@@ -2071,9 +2086,15 @@
 }
 
 .hs-company__list {
-  margin-top: 3rem;
+  margin-top: 1.75rem;
   display: grid;
   border-top: 1px solid var(--rule-strong);
+}
+
+@media (min-width: 40rem) {
+  .hs-company__list {
+    margin-top: 3rem;
+  }
 }
 
 @media (min-width: 40rem) {
@@ -2088,9 +2109,16 @@
   }
 }
 
+/* Stacked on phones, so the column gutter would only be dead space. */
 .hs-company__cell {
-  padding: 1.5rem 2rem 1.5rem 0;
+  padding: 1.125rem 0;
   border-color: var(--rule-strong);
+}
+
+@media (min-width: 40rem) {
+  .hs-company__cell {
+    padding: 1.5rem 2rem 1.5rem 0;
+  }
 }
 
 .hs-company__cell:not(:first-child) {
@@ -2152,10 +2180,22 @@
   }
 }
 
+/*
+  The margin and the padding both sat above the same rule, which read as one
+  very deep gap rather than two deliberate ones. On a handset the margin does
+  the separating and the padding only lifts the link clear of the rule.
+*/
 .hs-company__foot {
-  margin-top: 2.75rem;
-  padding-top: 2.25rem;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--rule-strong);
+}
+
+@media (min-width: 40rem) {
+  .hs-company__foot {
+    margin-top: 2.75rem;
+    padding-top: 2.25rem;
+  }
 }
 
 /* --------------------------------------------------------------------------

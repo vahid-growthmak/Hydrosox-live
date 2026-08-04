@@ -1,29 +1,272 @@
 {
   "sections": {
-    "intro": {
-      "type": "centre-note",
+    "main": {
+      "type": "main-blog",
       "settings": {
         "color_scheme": "paper",
-        "hide_rule": true,
-        "max_width": 46,
-        "eyebrow": "Being written",
-        "heading": "Guides",
-        "heading_tag": "h1",
-        "heading_size": "h2",
-        "body": "<p>Kit choices, conditions and honest gear comparisons — including the ones that do not flatter us.</p>",
-        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder — when it ships it will carry real detail, not filler.</p>",
-        "pointer_label": "",
-        "pointer_link_label": "",
-        "pointer_url": "",
-        "cta_label": "Buy a pair",
-        "cta_url": "/products/hydrosox-waterproof-socks",
-        "link_label": "Back to the homepage",
-        "link_url": "/",
-        "tail_note": "<p>Or read the questions we have answered so far.</p>"
+        "pace": "base",
+        "per_page": 9,
+        "eyebrow": "Guides",
+        "heading": "Written for people who get wet.",
+        "lede": "<p>Straight answers about waterproofing, sizing, care and masah. No filler, and nothing that contradicts what the product pages say.</p>",
+        "empty_note": "The first guides are being written. Nothing has been published here as a placeholder.",
+        "show_tags": true,
+        "all_label": "Everything"
+      }
+    },
+    "buy": {
+      "type": "buy-widget",
+      "blocks": {
+        "c1": {
+          "type": "colour",
+          "settings": {
+            "value": "Black",
+            "colour_one": "#111111"
+          }
+        },
+        "c2": {
+          "type": "colour",
+          "settings": {
+            "value": "Black / Grey",
+            "colour_one": "#111111",
+            "colour_two": "#8b9096"
+          }
+        },
+        "c3": {
+          "type": "colour",
+          "settings": {
+            "value": "Black / Navy",
+            "colour_one": "#111111",
+            "colour_two": "#1f3160"
+          }
+        },
+        "c4": {
+          "type": "colour",
+          "settings": {
+            "value": "White",
+            "colour_one": "#f4f6f8"
+          }
+        },
+        "z1": {
+          "type": "size",
+          "settings": {
+            "value": "S",
+            "sublabel": "UK 3-5"
+          }
+        },
+        "z2": {
+          "type": "size",
+          "settings": {
+            "value": "M",
+            "sublabel": "UK 6-8"
+          }
+        },
+        "z3": {
+          "type": "size",
+          "settings": {
+            "value": "L",
+            "sublabel": "UK 9-11"
+          }
+        },
+        "z4": {
+          "type": "size",
+          "settings": {
+            "value": "XL",
+            "sublabel": "UK 12-14"
+          }
+        },
+        "t1": {
+          "type": "tier",
+          "settings": {
+            "label": "Single pair",
+            "quantity": 1,
+            "discount": 0
+          }
+        },
+        "t2": {
+          "type": "tier",
+          "settings": {
+            "label": "Two pairs",
+            "quantity": 2,
+            "discount": 3.01
+          }
+        },
+        "t3": {
+          "type": "tier",
+          "settings": {
+            "label": "Three pairs",
+            "quantity": 3,
+            "discount": 7.01
+          }
+        },
+        "t4": {
+          "type": "tier",
+          "settings": {
+            "label": "Four pairs",
+            "quantity": 4,
+            "discount": 12.01
+          }
+        },
+        "t5": {
+          "type": "tier",
+          "settings": {
+            "label": "Five pairs",
+            "quantity": 5,
+            "discount": 20.01
+          }
+        },
+        "r1": {
+          "type": "trust",
+          "settings": {
+            "label": "Delivery",
+            "value": "Free UK delivery on two pairs or more"
+          }
+        },
+        "r2": {
+          "type": "trust",
+          "settings": {
+            "label": "Dispatch",
+            "value": "UK company, UK warehouse"
+          }
+        },
+        "r3": {
+          "type": "trust",
+          "settings": {
+            "label": "Checkout",
+            "value": "Guest \u2014 no account required"
+          }
+        },
+        "r4": {
+          "type": "trust",
+          "settings": {
+            "label": "Payment",
+            "value": "Visa \u00b7 Mastercard \u00b7 American Express \u00b7 Apple Pay \u00b7 Google Pay \u00b7 Shop Pay"
+          }
+        },
+        "l1": {
+          "type": "link",
+          "settings": {
+            "label": "Full product details",
+            "use_product_url": true
+          }
+        },
+        "l2": {
+          "type": "link",
+          "settings": {
+            "label": "How it is built",
+            "link": "/#construction"
+          }
+        },
+        "l3": {
+          "type": "link",
+          "settings": {
+            "label": "Delivery and sizing",
+            "link": "/#faq"
+          }
+        },
+        "g1": {
+          "type": "guide_row",
+          "settings": {
+            "size": "S",
+            "foot_length": "22.0 - 24.0 cm",
+            "uk_shoe": "UK 3-5"
+          }
+        },
+        "g2": {
+          "type": "guide_row",
+          "settings": {
+            "size": "M",
+            "foot_length": "24.5 - 26.5 cm",
+            "uk_shoe": "UK 6-8"
+          }
+        },
+        "g3": {
+          "type": "guide_row",
+          "settings": {
+            "size": "L",
+            "foot_length": "27.0 - 29.0 cm",
+            "uk_shoe": "UK 9-11"
+          }
+        },
+        "g4": {
+          "type": "guide_row",
+          "settings": {
+            "size": "XL",
+            "foot_length": "29.5 - 32.0 cm",
+            "uk_shoe": "UK 12-14"
+          }
+        },
+        "n1": {
+          "type": "guide_note",
+          "settings": {
+            "label": "How to measure",
+            "body": "Stand on a sheet of paper with your heel to a wall, mark the tip of your longest toe, and measure heel to mark."
+          }
+        },
+        "n2": {
+          "type": "guide_note",
+          "settings": {
+            "label": "Between two sizes",
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "z1",
+        "z2",
+        "z3",
+        "z4",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "l1",
+        "l2",
+        "l3",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "n1",
+        "n2"
+      ],
+      "settings": {
+        "product": "hydrosox-waterproof-socks",
+        "color_scheme": "paper",
+        "anchor_id": "buy",
+        "eyebrow": "Order",
+        "heading": "Two decisions and a quantity.",
+        "lede": "<p>One product, one page, one price that does not change depending on how you found us.</p>",
+        "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
+        "colour_option_name": "Colour",
+        "size_option_name": "Size",
+        "quantity_label": "Quantity",
+        "default_quantity": 2,
+        "add_label": "Add to cart",
+        "save_label": "Save",
+        "per_unit_label": "per pair",
+        "guide_label": "Size guide",
+        "guide_heading": "Size guide",
+        "guide_intro": "Measure the foot rather than relying on shoe size \u2014 sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_col_size": "Size",
+        "guide_col_length": "Foot length",
+        "guide_col_shoe": "UK shoe",
+        "guide_link_label": "The full sizing and fit guide",
+        "guide_close_label": "Close"
       }
     }
   },
   "order": [
-    "intro"
+    "main",
+    "buy"
   ]
 }

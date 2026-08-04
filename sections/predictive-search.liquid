@@ -1,0 +1,144 @@
+{%- comment -%}
+  Predictive search results.
+
+  Requested by the script as ?section_id=predictive-search, so Shopify renders
+  this file and hands back the markup. Nothing is assembled client-side, which
+  keeps prices, titles and URLs in Liquid's hands.
+
+  Only ever rendered as a fragment — it is not part of any template's section
+  list, so it needs no wrapper and no schema settings beyond the limits.
+{%- endcomment -%}
+
+{%- liquid
+  assign products = predictive_search.resources.products
+  assign pages = predictive_search.resources.pages
+  assign articles = predictive_search.resources.articles
+  assign queries = predictive_search.resources.queries
+
+  assign found = products.size | plus: pages.size | plus: articles.size | plus: queries.size
+-%}
+
+<div class="hs-psearch__results" data-hs-psearch-results>
+  {%- if predictive_search.performed -%}
+    {%- if found > 0 -%}
+      {%- if products.size > 0 -%}
+        <section class="hs-psearch__group">
+          <h2 class="hs-eyebrow hs-psearch__group-title">{{ 'general.search.products' | t }}</h2>
+          <ul class="hs-psearch__list" role="list">
+            {%- for product in products -%}
+              <li>
+                <a class="hs-psearch__hit" href="{{ product.url }}">
+                  {% render 'hs-image',
+                    image: product.featured_image,
+                    alt: product.title,
+                    aspect: '1 / 1',
+                    sizes: '48px',
+                    wrapper_class: 'hs-psearch__thumb'
+                  %}
+                  <span class="hs-psearch__hit-body">
+                    <span class="hs-small-body hs-psearch__hit-title">{{ product.title }}</span>
+                    <span class="hs-caption hs-muted hs-tnum">
+                      {%- if product.price_varies -%}
+                        {{ 'products.product.from_price' | t: price: product.price_min | money }}
+                      {%- else -%}
+                        {{ product.price | money }}
+                      {%- endif -%}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </section>
+      {%- endif -%}
+
+      {%- if pages.size > 0 -%}
+        <section class="hs-psearch__group">
+          <h2 class="hs-eyebrow hs-psearch__group-title">{{ 'general.search.pages' | t }}</h2>
+          <ul class="hs-psearch__list" role="list">
+            {%- for page in pages -%}
+              <li>
+                <a class="hs-psearch__hit hs-psearch__hit--text" href="{{ page.url }}">
+                  <span class="hs-small-body hs-psearch__hit-title">{{ page.title }}</span>
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </section>
+      {%- endif -%}
+
+      {%- if articles.size > 0 -%}
+        <section class="hs-psearch__group">
+          <h2 class="hs-eyebrow hs-psearch__group-title">{{ 'general.search.articles' | t }}</h2>
+          <ul class="hs-psearch__list" role="list">
+            {%- for article in articles -%}
+              <li>
+                <a class="hs-psearch__hit hs-psearch__hit--text" href="{{ article.url }}">
+                  <span class="hs-small-body hs-psearch__hit-title">{{ article.title }}</span>
+                  {%- if article.tags.size > 0 -%}
+                    <span class="hs-caption hs-muted">{{ article.tags.first }}</span>
+                  {%- endif -%}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </section>
+      {%- endif -%}
+
+      <a class="hs-psearch__all hs-small-body" href="{{ routes.search_url }}?q={{ predictive_search.terms | url_encode }}">
+        {{ 'general.search.see_all' | t: terms: predictive_search.terms }}
+        {% render 'hs-icon', icon: 'arrow-right', size: 15 %}
+      </a>
+    {%- else -%}
+      {%- comment -%}
+        A dead end is where a visitor leaves, so it carries routes out rather
+        than an apology. The routes themselves are the section's settings so the
+        merchant can change where a failed search points.
+      {%- endcomment -%}
+      <div class="hs-psearch__empty">
+        <p class="hs-small-body">{{ 'general.search.no_results' | t: terms: predictive_search.terms }}</p>
+        {%- if section.blocks.size > 0 -%}
+          <ul class="hs-psearch__routes" role="list">
+            {%- for block in section.blocks -%}
+              <li>
+                <a class="hs-link hs-caption" href="{{ block.settings.link | default: routes.root_url }}">
+                  {{- block.settings.label -}}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.psearch.name",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.psearch.info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "route",
+      "name": "t:sections.psearch.block_route",
+      "settings": [
+        { "type": "text", "id": "label", "label": "t:common.label" },
+        { "type": "url", "id": "link", "label": "t:common.link" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "route", "settings": { "label": "Shop HydroSox", "link": "/products/hydrosox-waterproof-socks" } },
+      { "type": "route", "settings": { "label": "How they are built", "link": "/pages/technology" } },
+      { "type": "route", "settings": { "label": "Common questions", "link": "/pages/faq" } },
+      { "type": "route", "settings": { "label": "Talk to us", "link": "/pages/contact" } }
+    ]
+  }
+}
+{% endschema %}

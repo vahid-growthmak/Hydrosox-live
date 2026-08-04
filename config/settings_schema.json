@@ -873,7 +873,7 @@
         "step": 2,
         "unit": "px",
         "label": "t:settings.layout.pace_tight_min",
-        "default": 56
+        "default": 40
       },
       {
         "type": "range",
@@ -903,7 +903,7 @@
         "step": 2,
         "unit": "px",
         "label": "t:settings.layout.pace_base_min",
-        "default": 80
+        "default": 56
       },
       {
         "type": "range",
@@ -933,7 +933,7 @@
         "step": 2,
         "unit": "px",
         "label": "t:settings.layout.pace_loose_min",
-        "default": 112
+        "default": 72
       },
       {
         "type": "range",
@@ -963,7 +963,7 @@
         "step": 4,
         "unit": "px",
         "label": "t:settings.layout.pace_vast_min",
-        "default": 144
+        "default": 96
       },
       {
         "type": "range",
@@ -984,6 +984,17 @@
         "unit": "px",
         "label": "t:settings.layout.pace_vast_max",
         "default": 224
+      },
+      {
+        "type": "header",
+        "content": "t:settings.layout.seo_group"
+      },
+      {
+        "type": "text",
+        "id": "noindex_collections",
+        "label": "t:settings.layout.noindex_collections",
+        "info": "t:settings.layout.noindex_collections_info",
+        "default": "all,waterproof-socks"
       }
     ]
   },
@@ -1132,6 +1143,39 @@
         "id": "cart_show_note",
         "label": "t:settings.cart.show_note",
         "default": false
+      },
+      {
+        "type": "header",
+        "content": "t:settings.cart.delivery_group"
+      },
+      {
+        "type": "number",
+        "id": "free_delivery_threshold",
+        "label": "t:settings.cart.threshold",
+        "info": "t:settings.cart.threshold_info",
+        "default": 40
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_progress",
+        "label": "t:settings.cart.show_progress",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "delivery_estimate",
+        "label": "t:settings.cart.delivery_estimate",
+        "info": "t:settings.cart.delivery_estimate_info"
+      },
+      {
+        "type": "header",
+        "content": "t:settings.cart.upsell_group"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_tier_prompt",
+        "label": "t:settings.cart.show_tier_prompt",
+        "default": true
       }
     ]
   },

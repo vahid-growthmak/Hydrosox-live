@@ -5,6 +5,8 @@
       <h1 class="hs-h2 hs-balance hs-page__title">{{ 'cart.general.title' | t }}</h1>
     </header>
 
+    {% render 'hs-cart-progress' %}
+
     {%- if cart.item_count > 0 -%}
       {%- form 'cart', cart, class: 'hs-cart__form' -%}
         <ul class="hs-cart__list" role="list">
@@ -56,6 +58,19 @@
             <span>{{ cart.total_price | money }}</span>
           </p>
           <p class="hs-caption hs-muted">{{ 'cart.general.taxes_and_shipping' | t }}</p>
+          {%- if settings.delivery_estimate != blank -%}
+            <p class="hs-caption hs-cartd__eta">
+              {% render 'hs-icon', icon: 'check', size: 14 %}
+              {{ settings.delivery_estimate }}
+            </p>
+          {%- endif -%}
+          {%- comment -%}
+            Both buttons submit the same form. Update is first in the source so
+            it is the fallback for an Enter press in a quantity field, which
+            would otherwise send someone to the checkout by accident.
+          {%- endcomment -%}
+          {% render 'hs-button', label: 'cart.general.update' | t, style: 'ghost',
+             type: 'submit', name: 'update', full: true %}
           {% render 'hs-button', label: 'cart.general.checkout' | t, style: 'primary',
              type: 'submit', name: 'checkout', full: true %}
         </div>

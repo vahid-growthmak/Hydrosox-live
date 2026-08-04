@@ -31,7 +31,12 @@
         "other": "{{ count }} results"
       },
       "no_results": "No results for “{{ terms }}”.",
-      "reset": "Clear search"
+      "reset": "Clear search",
+      "results_for": "Results for “{{ terms }}”",
+      "products": "Products",
+      "pages": "Pages",
+      "articles": "Guides",
+      "see_all": "See all results for “{{ terms }}”"
     },
     "newsletter": {
       "email": "Email address",
@@ -41,8 +46,10 @@
     },
     "form": {
       "required": "Required",
-      "error_heading": "Please adjust the following:",
-      "invalid_email": "Enter a valid email address"
+      "error_heading": "Please check the following:",
+      "invalid_email": "Enter a valid email address",
+      "sent": "Thank you — we have your message and will reply by email.",
+      "optional": "(optional)"
     },
     "share": {
       "label": "Share",
@@ -75,7 +82,8 @@
       "choose_size": "Size",
       "added": "Added to cart",
       "low_stock": "Low stock",
-      "in_stock": "In stock"
+      "in_stock": "In stock",
+      "from_price": "From {{ price }}"
     }
   },
   "cart": {
@@ -92,7 +100,24 @@
         "one": "{{ count }} item",
         "other": "{{ count }} items"
       },
-      "savings": "You save {{ amount }}"
+      "savings": "You save {{ amount }}",
+      "update": "Update cart",
+      "view": "View full cart",
+      "added": "added to your cart",
+      "updated": "Cart updated",
+      "increase": "Increase quantity of {{ title }}",
+      "decrease": "Decrease quantity of {{ title }}"
+    },
+    "delivery": {
+      "remaining_html": "{{ amount }} away from free delivery",
+      "qualified": "Free delivery unlocked",
+      "progress_label": "Progress towards free delivery"
+    },
+    "tier": {
+      "prompt": {
+        "one": "Add 1 more pair and save {{ amount }}",
+        "other": "Add {{ count }} more pairs and save {{ amount }}"
+      }
     }
   },
   "customer": {
@@ -171,7 +196,15 @@
         "one": "{{ count }} comment",
         "other": "{{ count }} comments"
       },
-      "moderated": "Comments are reviewed before they appear."
+      "moderated": "Comments are reviewed before they appear.",
+      "read": "Read"
+    },
+    "general": {
+      "empty": "No guides have been published yet."
+    },
+    "tagged": {
+      "title": "{{ tag }}",
+      "empty": "No guides are tagged “{{ tag }}” yet."
     }
   },
   "collections": {
@@ -196,5 +229,17 @@
       "expires": "Expires {{ date }}",
       "add_to_apple_wallet": "Add to Apple Wallet"
     }
+  },
+  "reviews": {
+    "out_of": "out of {{ max }}",
+    "count": {
+      "one": "{{ count }} review",
+      "other": "{{ count }} reviews"
+    },
+    "stars_label": "Rated {{ rating }} out of {{ max }}",
+    "verified": "Verified purchase",
+    "filter_all": "All",
+    "filter_rating": "{{ rating }} star ({{ count }})",
+    "filter_empty": "No reviews match that filter."
   }
 }

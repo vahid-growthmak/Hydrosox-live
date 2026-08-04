@@ -1,0 +1,169 @@
+{%- comment -%}
+  Breadcrumb.
+
+  The trail is derived from the object being viewed rather than typed in, so a
+  page cannot end up claiming a position it does not hold. The middle rung is
+  the one thing a derived trail cannot know — a product does not record which
+  activity page sent the visitor — so that single step is a setting.
+
+  Emits BreadcrumbList JSON-LD from the same array that draws the markup, so
+  the two can never disagree.
+{%- endcomment -%}
+
+{%- liquid
+  assign home_label = section.settings.home_label | default: 'Home'
+
+  comment
+    Build the trail as two parallel arrays. Liquid has no array-of-hash
+    literal, so labels and urls are kept in step by index.
+  endcomment
+  assign labels = home_label
+  assign urls = routes.root_url
+
+  if section.settings.parent_label != blank
+    assign labels = labels | append: '~~' | append: section.settings.parent_label
+    assign parent_url = section.settings.parent_url | default: routes.root_url
+    assign urls = urls | append: '~~' | append: parent_url
+  endif
+
+  comment
+    The leaf. An explicit label wins; otherwise take the title of whatever
+    Shopify is rendering.
+  endcomment
+  assign leaf = section.settings.current_label
+  if leaf == blank
+    case template.name
+      when 'product'
+        assign leaf = product.title
+      when 'collection'
+        assign leaf = collection.title
+      when 'page'
+        assign leaf = page.title
+      when 'article'
+        assign leaf = article.title
+      when 'blog'
+        assign leaf = blog.title
+      when 'search'
+        assign leaf = 'general.search.heading' | t
+      when 'cart'
+        assign leaf = 'cart.general.title' | t
+    endcase
+  endif
+
+  if leaf != blank
+    assign labels = labels | append: '~~' | append: leaf
+    assign urls = urls | append: '~~' | append: request.path
+  endif
+
+  assign label_list = labels | split: '~~'
+  assign url_list = urls | split: '~~'
+-%}
+
+{%- if label_list.size > 1 -%}
+  <nav
+    class="hs-breadcrumb hs-scheme-{{ section.settings.color_scheme }}"
+    aria-label="{{ section.settings.aria_label | escape }}"
+    {{ section.shopify_attributes }}
+  >
+    <div class="hs-shell">
+      <ol class="hs-breadcrumb__list" role="list">
+        {%- for label in label_list -%}
+          {%- assign is_last = false -%}
+          {%- if forloop.last -%}
+            {%- assign is_last = true -%}
+          {%- endif -%}
+          <li class="hs-breadcrumb__item">
+            {%- if is_last -%}
+              <span class="hs-caption hs-breadcrumb__current" aria-current="page">{{ label }}</span>
+            {%- else -%}
+              <a class="hs-caption hs-breadcrumb__link" href="{{ url_list[forloop.index0] }}">{{ label }}</a>
+              {% render 'hs-icon', icon: 'chevron-right', size: 12, class: 'hs-breadcrumb__sep' %}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ol>
+    </div>
+  </nav>
+
+  {%- comment -%}
+    Absolute URLs, because a BreadcrumbList item id must be resolvable.
+  {%- endcomment -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {%- for label in label_list -%}
+          {
+            "@type": "ListItem",
+            "position": {{ forloop.index }},
+            "name": {{ label | json }},
+            "item": {{ shop.url | append: url_list[forloop.index0] | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.breadcrumb.name",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.breadcrumb.info"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "blue", "label": "t:common.scheme_blue" },
+        { "value": "ink", "label": "t:common.scheme_ink" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "text",
+      "id": "home_label",
+      "label": "t:sections.breadcrumb.home_label",
+      "default": "Home"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.breadcrumb.parent_group"
+    },
+    {
+      "type": "text",
+      "id": "parent_label",
+      "label": "t:sections.breadcrumb.parent_label",
+      "info": "t:sections.breadcrumb.parent_label_info"
+    },
+    {
+      "type": "url",
+      "id": "parent_url",
+      "label": "t:sections.breadcrumb.parent_url"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.breadcrumb.current_group"
+    },
+    {
+      "type": "text",
+      "id": "current_label",
+      "label": "t:sections.breadcrumb.current_label",
+      "info": "t:sections.breadcrumb.current_label_info"
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "t:sections.breadcrumb.aria_label",
+      "default": "Breadcrumb"
+    }
+  ],
+  "presets": [{ "name": "t:sections.breadcrumb.name" }]
+}
+{% endschema %}

@@ -5,6 +5,34 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "legal_1": {
+          "type": "legal_link",
+          "settings": {
+            "label": "Privacy Policy",
+            "link": "/policies/privacy-policy"
+          }
+        },
+        "legal_2": {
+          "type": "legal_link",
+          "settings": {
+            "label": "Terms of Service",
+            "link": "/policies/terms-of-service"
+          }
+        },
+        "legal_3": {
+          "type": "legal_link",
+          "settings": {
+            "label": "Refund Policy",
+            "link": "/policies/refund-policy"
+          }
+        },
+        "legal_4": {
+          "type": "legal_link",
+          "settings": {
+            "label": "Shipping Policy",
+            "link": "/policies/shipping-policy"
+          }
+        },
         "col_shop": {
           "type": "column",
           "settings": {
@@ -21,46 +49,39 @@
         "shop_2": {
           "type": "column_link",
           "settings": {
-            "label": "Hiking",
-            "link": "/pages/hiking"
+            "label": "Hiking & Walking",
+            "link": "/pages/hiking-and-walking"
           }
         },
         "shop_3": {
-          "type": "column_link",
-          "settings": {
-            "label": "Walking",
-            "link": "/pages/walking"
-          }
-        },
-        "shop_4": {
           "type": "column_link",
           "settings": {
             "label": "All Day in Boots",
             "link": "/pages/all-day-in-boots"
           }
         },
-        "shop_5": {
+        "shop_4": {
           "type": "column_link",
           "settings": {
             "label": "Cycling & Commuting",
             "link": "/pages/cycling-and-commuting"
           }
         },
-        "shop_6": {
+        "shop_5": {
           "type": "column_link",
           "settings": {
             "label": "Running & Trail",
             "link": "/pages/running-and-trail"
           }
         },
-        "shop_7": {
+        "shop_6": {
           "type": "column_link",
           "settings": {
             "label": "Wudu Socks",
             "link": "/pages/wudu-socks"
           }
         },
-        "shop_8": {
+        "shop_7": {
           "type": "column_link",
           "settings": {
             "label": "Size Guide",
@@ -73,46 +94,39 @@
             "heading": "Explore"
           }
         },
-        "exp_1": {
+        "explore_1": {
           "type": "column_link",
           "settings": {
             "label": "The Technology",
             "link": "/pages/technology"
           }
         },
-        "exp_2": {
+        "explore_2": {
           "type": "column_link",
           "settings": {
             "label": "Guides",
             "link": "/blogs/guides"
           }
         },
-        "exp_3": {
+        "explore_3": {
           "type": "column_link",
           "settings": {
             "label": "How to Make Masah",
             "link": "/pages/how-to-make-masah"
           }
         },
-        "exp_4": {
+        "explore_4": {
           "type": "column_link",
           "settings": {
             "label": "Reviews",
             "link": "/pages/reviews"
           }
         },
-        "exp_5": {
+        "explore_5": {
           "type": "column_link",
           "settings": {
-            "label": "About HydroSox",
-            "link": "/pages/about"
-          }
-        },
-        "exp_6": {
-          "type": "column_link",
-          "settings": {
-            "label": "Our Partners",
-            "link": "/pages/our-partners"
+            "label": "Care & Washing",
+            "link": "/pages/care-and-washing"
           }
         },
         "col_help": {
@@ -145,71 +159,56 @@
         "help_4": {
           "type": "column_link",
           "settings": {
-            "label": "Care & Washing",
-            "link": "/pages/care-and-washing"
-          }
-        },
-        "help_5": {
-          "type": "column_link",
-          "settings": {
             "label": "Track Order",
             "link": "/pages/track-order"
           }
         },
-        "help_6": {
+        "help_5": {
           "type": "column_link",
           "settings": {
             "label": "FAQ",
             "link": "/pages/faq"
           }
         },
-        "help_7": {
-          "type": "column_link",
-          "settings": {
-            "label": "Contact Us",
-            "link": "/pages/contact"
-          }
-        },
-        "help_8": {
+        "help_6": {
           "type": "column_link",
           "settings": {
             "label": "Partner With Us",
             "link": "/pages/partner-with-us"
           }
         },
-        "help_9": {
+        "col_company": {
+          "type": "column",
+          "settings": {
+            "heading": "Company"
+          }
+        },
+        "company_1": {
+          "type": "column_link",
+          "settings": {
+            "label": "About HydroSox",
+            "link": "/pages/about"
+          }
+        },
+        "company_2": {
+          "type": "column_link",
+          "settings": {
+            "label": "Our Partners",
+            "link": "/pages/our-partners"
+          }
+        },
+        "company_3": {
           "type": "column_link",
           "settings": {
             "label": "Press",
             "link": "/pages/press"
           }
         },
-        "legal_1": {
-          "type": "legal_link",
+        "company_4": {
+          "type": "column_link",
           "settings": {
-            "label": "Privacy Policy",
-            "link": "/policies/privacy-policy"
-          }
-        },
-        "legal_2": {
-          "type": "legal_link",
-          "settings": {
-            "label": "Terms of Service",
-            "link": "/policies/terms-of-service"
-          }
-        },
-        "legal_3": {
-          "type": "legal_link",
-          "settings": {
-            "label": "Refund Policy",
-            "link": "/policies/refund-policy"
-          }
-        },
-        "legal_4": {
-          "type": "legal_link",
-          "settings": {
-            "label": "Shipping Policy",
-            "link": "/policies/shipping-policy"
+            "label": "Contact Us",
+            "link": "/pages/contact"
           }
         }
       },
@@ -222,14 +221,12 @@
         "shop_5",
         "shop_6",
         "shop_7",
-        "shop_8",
         "col_explore",
-        "exp_1",
-        "exp_2",
-        "exp_3",
-        "exp_4",
-        "exp_5",
-        "exp_6",
+        "explore_1",
+        "explore_2",
+        "explore_3",
+        "explore_4",
+        "explore_5",
         "col_help",
         "help_1",
         "help_2",
@@ -237,9 +234,11 @@
         "help_4",
         "help_5",
         "help_6",
-        "help_7",
-        "help_8",
-        "help_9",
+        "col_company",
+        "company_1",
+        "company_2",
+        "company_3",
+        "company_4",
         "legal_1",
         "legal_2",
         "legal_3",

@@ -1,0 +1,55 @@
+{%- comment -%}
+  Progress towards free delivery.
+
+  Shared by the cart drawer and the cart page so the threshold, the wording and
+  the maths exist once. All of it is computed in Liquid from the real cart —
+  nothing here is passed in from a script.
+
+  Renders nothing when no threshold is set, which is how a merchant turns the
+  promise off: an unset threshold should not become "£0.00 away".
+{%- endcomment -%}
+
+{%- liquid
+  assign threshold = settings.free_delivery_threshold | plus: 0 | times: 100
+  assign show = false
+  if settings.cart_show_progress and threshold > 0 and cart.item_count > 0
+    assign show = true
+  endif
+
+  assign remaining = threshold | minus: cart.total_price
+  assign qualified = false
+  if remaining <= 0
+    assign qualified = true
+  endif
+
+  assign pct = cart.total_price | times: 100 | divided_by: threshold
+  if pct > 100
+    assign pct = 100
+  endif
+-%}
+
+{%- if show -%}
+  <div class="hs-cartd__progress">
+    <p class="hs-caption hs-cartd__progress-label">
+      {%- if qualified -%}
+        {% render 'hs-icon', icon: 'check', size: 14 %}
+        {{ 'cart.delivery.qualified' | t }}
+      {%- else -%}
+        {{ 'cart.delivery.remaining_html' | t: amount: remaining | money }}
+      {%- endif -%}
+    </p>
+    {%- comment -%}
+      A progressbar, so the value is the accessible value rather than decoration.
+    {%- endcomment -%}
+    <div
+      class="hs-cartd__bar{% if qualified %} is-qualified{% endif %}"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="{{ pct }}"
+      aria-label="{{ 'cart.delivery.progress_label' | t }}"
+    >
+      <span class="hs-cartd__bar-fill" style="width: {{ pct }}%"></span>
+    </div>
+  </div>
+{%- endif -%}

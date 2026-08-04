@@ -112,28 +112,43 @@
 
     {%- comment -%} Actions {%- endcomment -%}
     <div class="hs-header__actions">
+      {%- comment -%}
+        A real link to /search, upgraded to open the overlay by hs-search.js.
+        With the script absent it navigates to the results page.
+      {%- endcomment -%}
       {%- if section.settings.show_search -%}
         <a
           class="hs-header__icon-btn"
           href="{{ routes.search_url }}"
           aria-label="{{ 'general.accessibility.search' | t }}"
+          data-hs-search-open
         >
           {% render 'hs-icon', icon: 'search', size: 20, class: 'hs-header__icon' %}
         </a>
       {%- endif -%}
 
+      {%- comment -%}
+        Still a real link to /cart. The cart script upgrades it to open the
+        drawer; with the script absent it navigates, which is why the badge is
+        rendered by Liquid and only relabelled by the script.
+      {%- endcomment -%}
       <a
         class="hs-header__icon-btn"
         href="{{ routes.cart_url }}"
         aria-label="{{ 'general.accessibility.cart' | t }}"
       >
         {% render 'hs-icon', icon: 'bag', size: 20, class: 'hs-header__icon' %}
-        {%- if cart.item_count > 0 -%}
-          <span class="hs-header__cart-count" aria-hidden="true">{{ cart.item_count }}</span>
-          <span class="hs-visually-hidden">
-            {{- 'cart.general.item_count' | t: count: cart.item_count -}}
-          </span>
-        {%- endif -%}
+        <span
+          class="hs-header__cart-count"
+          aria-hidden="true"
+          data-hs-cart-count
+          {% if cart.item_count == 0 %}hidden{% endif %}
+        >
+          {{- cart.item_count -}}
+        </span>
+        <span class="hs-visually-hidden" data-hs-cart-count-label>
+          {{- 'cart.general.item_count' | t: count: cart.item_count -}}
+        </span>
       </a>
 
       {%- if section.settings.cta_label != blank -%}
@@ -155,69 +170,79 @@
     </div>
   </div>
 
-  {%- comment -%} Mobile drawer {%- endcomment -%}
-  <div class="hs-drawer" id="hs-drawer" hidden>
-    <div class="hs-drawer__scrim" data-hs-nav-close></div>
-    <div class="hs-drawer__panel" role="dialog" aria-modal="true" aria-label="{{ section.settings.nav_label | escape }}">
-      <div class="hs-drawer__head">
-        <span class="hs-eyebrow">{{ section.settings.drawer_heading }}</span>
-        <button
-          class="hs-header__icon-btn"
-          type="button"
-          aria-label="{{ 'general.accessibility.close' | t }}"
-          data-hs-nav-close
-        >
-          {% render 'hs-icon', icon: 'close', size: 24, class: 'hs-header__icon' %}
-        </button>
-      </div>
+</hs-nav>
 
-      <nav class="hs-drawer__nav" aria-label="{{ section.settings.nav_label | escape }}">
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when 'link' -%}
-              <a class="hs-drawer__link hs-h4" href="{{ block.settings.link | default: '#' }}">
-                {{- block.settings.label -}}
-              </a>
+{%- comment -%}
+  The drawer sits outside <hs-nav> on purpose. The header carries a
+  backdrop-filter, and a filtered element becomes the containing block for any
+  position: fixed descendant — which would trap the drawer inside the 64px
+  header bar and push the panel off the side of the document.
+{%- endcomment -%}
+{%- if section.settings.show_search -%}
+  {% render 'hs-search-overlay' %}
+{%- endif -%}
 
-            {%- when 'dropdown' -%}
-              <a class="hs-drawer__link hs-h4" href="{{ block.settings.link | default: '#' }}">
-                {{- block.settings.label -}}
-              </a>
-              <ul class="hs-drawer__sublist" role="list">
-                {%- for item in section.blocks offset: forloop.index -%}
-                  {%- unless item.type == 'dropdown_item' -%}
-                    {%- break -%}
-                  {%- endunless -%}
-                  <li>
-                    <a class="hs-drawer__sublink hs-small-body" href="{{ item.settings.link | default: '#' }}">
-                      {{- item.settings.label -}}
-                    </a>
-                  </li>
-                {%- endfor -%}
-              </ul>
-          {%- endcase -%}
-        {%- endfor -%}
-      </nav>
+<div class="hs-drawer" id="hs-drawer" hidden>
+  <div class="hs-drawer__scrim" data-hs-nav-close></div>
+  <div class="hs-drawer__panel" role="dialog" aria-modal="true" aria-label="{{ section.settings.nav_label | escape }}">
+    <div class="hs-drawer__head">
+      <span class="hs-eyebrow">{{ section.settings.drawer_heading }}</span>
+      <button
+        class="hs-header__icon-btn"
+        type="button"
+        aria-label="{{ 'general.accessibility.close' | t }}"
+        data-hs-nav-close
+      >
+        {% render 'hs-icon', icon: 'close', size: 24, class: 'hs-header__icon' %}
+      </button>
+    </div>
 
-      <div class="hs-drawer__foot">
-        {%- if section.settings.cta_label != blank -%}
-          {% render 'hs-button',
-            label: section.settings.cta_label,
-            href: section.settings.cta_link,
-            style: 'primary',
-            full: true
-          %}
-        {%- endif -%}
-        {%- if settings.phone != blank -%}
-          <a class="hs-drawer__phone hs-small-body" href="tel:{{ settings.phone | replace: ' ', '' }}">
-            {% render 'hs-icon', icon: 'phone', size: 16 %}
-            {{ settings.phone }}
-          </a>
-        {%- endif -%}
-      </div>
+    <nav class="hs-drawer__nav" aria-label="{{ section.settings.nav_label | escape }}">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'link' -%}
+            <a class="hs-drawer__link hs-h4" href="{{ block.settings.link | default: '#' }}">
+              {{- block.settings.label -}}
+            </a>
+
+          {%- when 'dropdown' -%}
+            <a class="hs-drawer__link hs-h4" href="{{ block.settings.link | default: '#' }}">
+              {{- block.settings.label -}}
+            </a>
+            <ul class="hs-drawer__sublist" role="list">
+              {%- for item in section.blocks offset: forloop.index -%}
+                {%- unless item.type == 'dropdown_item' -%}
+                  {%- break -%}
+                {%- endunless -%}
+                <li>
+                  <a class="hs-drawer__sublink hs-small-body" href="{{ item.settings.link | default: '#' }}">
+                    {{- item.settings.label -}}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+        {%- endcase -%}
+      {%- endfor -%}
+    </nav>
+
+    <div class="hs-drawer__foot">
+      {%- if section.settings.cta_label != blank -%}
+        {% render 'hs-button',
+          label: section.settings.cta_label,
+          href: section.settings.cta_link,
+          style: 'primary',
+          full: true
+        %}
+      {%- endif -%}
+      {%- if settings.phone != blank -%}
+        <a class="hs-drawer__phone hs-small-body" href="tel:{{ settings.phone | replace: ' ', '' }}">
+          {% render 'hs-icon', icon: 'phone', size: 16 %}
+          {{ settings.phone }}
+        </a>
+      {%- endif -%}
     </div>
   </div>
-</hs-nav>
+</div>
 
 <script src="{{ 'hs-nav.js' | asset_url }}" defer></script>
 

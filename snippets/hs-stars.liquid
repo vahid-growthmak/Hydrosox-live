@@ -1,0 +1,37 @@
+{%- comment -%}
+  Star rating.
+
+  Drawn as one clipped bar rather than N glyphs, so a 4.3 reads as 4.3 instead
+  of rounding to a whole star. The accessible name carries the number itself —
+  a screen reader should not have to count stars.
+
+  Accepts:
+    rating (number)  the score
+    max    (number)  the top of the scale, default 5
+{%- endcomment -%}
+
+{%- liquid
+  assign max = max | default: 5 | plus: 0
+  assign value = rating | default: 0 | plus: 0
+  if value > max
+    assign value = max
+  endif
+  assign pct = value | times: 100.0 | divided_by: max
+-%}
+
+<span class="hs-stars" role="img" aria-label="{{ 'reviews.stars_label' | t: rating: value, max: max }}">
+  <span class="hs-stars__track" aria-hidden="true">
+    {%- for i in (1..max) -%}
+      <svg class="hs-stars__glyph" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+        <path d="M10 1.6l2.6 5.3 5.8.85-4.2 4.1 1 5.75L10 14.9l-5.2 2.7 1-5.75L1.6 7.75l5.8-.85z" />
+      </svg>
+    {%- endfor -%}
+  </span>
+  <span class="hs-stars__fill" style="width: {{ pct }}%" aria-hidden="true">
+    {%- for i in (1..max) -%}
+      <svg class="hs-stars__glyph" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+        <path d="M10 1.6l2.6 5.3 5.8.85-4.2 4.1 1 5.75L10 14.9l-5.2 2.7 1-5.75L1.6 7.75l5.8-.85z" />
+      </svg>
+    {%- endfor -%}
+  </span>
+</span>

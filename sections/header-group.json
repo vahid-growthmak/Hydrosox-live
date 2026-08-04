@@ -9,7 +9,7 @@
           "type": "message",
           "settings": {
             "text": "Free UK delivery on two pairs or more",
-            "link": "/#faq"
+            "link": "/pages/shipping-and-delivery"
           }
         },
         "shop": {
@@ -50,17 +50,9 @@
         "act_hiking": {
           "type": "dropdown_item",
           "settings": {
-            "label": "Hiking",
+            "label": "Hiking & Walking",
             "description": "Boots that wet out four hours into a long day in the hills.",
-            "link": "/pages/hiking"
-          }
-        },
-        "act_walking": {
-          "type": "dropdown_item",
-          "settings": {
-            "label": "Walking",
-            "description": "Wet grass at eight in the morning, in shoes that were never waterproof.",
-            "link": "/pages/walking"
+            "link": "/pages/hiking-and-walking"
           }
         },
         "act_boots": {
@@ -113,7 +105,6 @@
         "shop",
         "activity",
         "act_hiking",
-        "act_walking",
         "act_boots",
         "act_cycling",
         "act_running",

@@ -11,7 +11,7 @@
         "heading_tag": "h1",
         "heading_size": "h2",
         "body": "<p>A form for anything not covered elsewhere. The email and phone in the footer work today.</p>",
-        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder — when it ships it will carry real detail, not filler.</p>",
+        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder \u2014 when it ships it will carry real detail, not filler.</p>",
         "pointer_label": "",
         "pointer_link_label": "",
         "pointer_url": "",
@@ -21,9 +21,93 @@
         "link_url": "/",
         "tail_note": "<p>Or read the questions we have answered so far.</p>"
       }
+    },
+    "form": {
+      "type": "enquiry-form",
+      "settings": {
+        "color_scheme": "paper",
+        "pace": "base",
+        "anchor_id": "enquiry",
+        "eyebrow": "Get in touch",
+        "heading": "Send us a message.",
+        "lede": "<p>We answer every message ourselves. If the answer is already written down, the routes below are faster than waiting for us.</p>",
+        "submit_label": "Send message",
+        "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>"
+      },
+      "blocks": {
+        "c1": {
+          "type": "choice",
+          "settings": {
+            "label": "An order I have placed"
+          }
+        },
+        "c2": {
+          "type": "choice",
+          "settings": {
+            "label": "Sizing or fit"
+          }
+        },
+        "c3": {
+          "type": "choice",
+          "settings": {
+            "label": "Wudu and masah"
+          }
+        },
+        "c4": {
+          "type": "choice",
+          "settings": {
+            "label": "Trade or wholesale"
+          }
+        },
+        "c5": {
+          "type": "choice",
+          "settings": {
+            "label": "Press"
+          }
+        },
+        "c6": {
+          "type": "choice",
+          "settings": {
+            "label": "Something else"
+          }
+        },
+        "f1": {
+          "type": "field",
+          "settings": {
+            "label": "Order number",
+            "multiline": false,
+            "rows": 5,
+            "input_type": "text",
+            "help": "If your message is about an order, this saves us asking.",
+            "required": false
+          }
+        },
+        "f2": {
+          "type": "field",
+          "settings": {
+            "label": "Message",
+            "multiline": true,
+            "rows": 5,
+            "input_type": "text",
+            "help": "",
+            "required": true
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "f1",
+        "f2"
+      ]
     }
   },
   "order": [
+    "form",
     "intro"
   ]
 }

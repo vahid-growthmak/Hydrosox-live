@@ -476,7 +476,20 @@
     },
     "article": {
       "name": "Article",
-      "show_author": "Show author"
+      "show_author": "Show author",
+      "header_group": "Header",
+      "kicker_divider": "Divider between date and author",
+      "image_aspect": "Hero image shape",
+      "back_label": "Back link label",
+      "route_group": "Activity routing",
+      "route_info": "The sitemap requires every guide to route to exactly one activity page. Add one block per activity tag below; the article renders whichever tag it carries. Set once here, then tag each article in the blog editor.",
+      "route_eyebrow": "Eyebrow",
+      "route_missing_note": "Notice shown in the editor when an article has no activity tag",
+      "block_activity_link": "Activity tag route",
+      "block_activity_link_info": "Maps one article tag to its activity page. The first block whose tag the article carries is the one that renders.",
+      "route_tag": "Article tag",
+      "route_tag_info": "Must match a tag on the article exactly, for example hiking.",
+      "route_note": "Supporting line"
     },
     "phero": {
       "name": "Page hero",

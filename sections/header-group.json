@@ -118,9 +118,8 @@
         "show_search": true,
         "mobile_breakpoint": "64",
         "cta_label": "Shop HydroSox",
-        "cta_link": "/#buy",
-        "drawer_heading": "Menu",
-        "cta_url": "/products/hydrosox-waterproof-socks"
+        "cta_link": "/products/hydrosox-waterproof-socks",
+        "drawer_heading": "Menu"
       }
     }
   },

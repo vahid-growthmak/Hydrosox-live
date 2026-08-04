@@ -75,11 +75,60 @@ ACTIVITY_TITLES = {
 # Pages the sitemap puts a review module on.
 REVIEW_PAGES = ACTIVITIES + ["wudu-socks", "about"]
 
+# Sitemap 15.3: "Six tags matching the activity taxonomy plus care and wudu."
+# Sitemap 16.6 makes the routing mandatory — every guide must reach exactly one
+# activity page — so the tag taxonomy and the routing table are the same thing.
+# (tag, destination handle, link label, supporting line)
+ARTICLE_ROUTES = [
+    (
+        "hiking",
+        "hiking-and-walking",
+        "Hiking and walking",
+        "Long days on wet ground, and the shoes that were never waterproof.",
+    ),
+    (
+        "walking",
+        "hiking-and-walking",
+        "Hiking and walking",
+        "Long days on wet ground, and the shoes that were never waterproof.",
+    ),
+    (
+        "boots",
+        "all-day-in-boots",
+        "All day in boots",
+        "Long shifts in footwear that keeps the rain out and then seals the sweat in.",
+    ),
+    (
+        "cycling",
+        "cycling-and-commuting",
+        "Cycling and commuting",
+        "Overshoes that leak at the ankle, with no drying option at the other end.",
+    ),
+    (
+        "running",
+        "running-and-trail",
+        "Running and trail",
+        "Cold, soaked feet on winter miles, and blisters in a wet race.",
+    ),
+    (
+        "wudu",
+        "wudu-socks",
+        "Wudu socks",
+        "The three physical conditions masah turns on, stated plainly.",
+    ),
+    (
+        "care",
+        "care-and-washing",
+        "Care and washing",
+        "What shortens the life of a membrane, and what does not.",
+    ),
+]
+
 
 # Page templates are page.<handle>.json; blog, collection, product and 404 are
 # addressed by their own file name. Resolving that here keeps every call site
 # free of the prefix.
-BARE = {"index", "product", "collection", "404", "blog.guides", "search", "cart", "article"}
+BARE = {"index", "product", "collection", "404", "blog", "blog.guides", "search", "cart", "article"}
 
 
 def path_for(name):
@@ -494,6 +543,104 @@ def build_blog_and_collection():
     print("  collection: + supporting content")
 
 
+def build_article():
+    """Compose the guide article template — sitemap page 16, sections 16.2-16.8.
+
+    16.6 is mandatory: "an article cannot publish without this link and one PDP
+    link". The activity link is resolved from the article's own tags by
+    main-article, so the routing table lives here once rather than being
+    retyped per article; the PDP link is the inline buy widget at 16.5.
+
+    16.5 asks for the buy widget "after the first substantive section". A JSON
+    template can only place sections around the body, not inside it, so it sits
+    directly after the body — the nearest structural equivalent.
+    """
+    save(
+        "article",
+        {
+            "sections": {
+                "breadcrumb": {
+                    "type": "breadcrumb",
+                    "settings": {
+                        "color_scheme": "paper",
+                        "home_label": "Home",
+                        "parent_label": "Guides",
+                        "parent_url": "/blogs/guides",
+                    },
+                },
+                "main": {
+                    "type": "main-article",
+                    "blocks": {
+                        f"route_{handle.replace('-', '_')}": {
+                            "type": "activity_link",
+                            "settings": {
+                                "tag": tag,
+                                "label": label,
+                                "url": f"/pages/{handle}",
+                                "note": note,
+                            },
+                        }
+                        for tag, handle, label, note in ARTICLE_ROUTES
+                    },
+                    "block_order": [
+                        f"route_{handle.replace('-', '_')}"
+                        for _, handle, _, _ in ARTICLE_ROUTES
+                    ],
+                    "settings": {
+                        "color_scheme": "paper",
+                        "show_author": False,
+                        "kicker_divider": "·",
+                        "image_aspect": "16 / 9",
+                        "back_label": "All guides",
+                        "route_eyebrow": "Made for this",
+                    },
+                },
+                "buy": buy_widget_from_home(),
+                "related": related_guides(""),
+                "signup": {
+                    "type": "newsletter-offer",
+                    "settings": {
+                        "color_scheme": "wash",
+                        "eyebrow": "£5 off your first pair",
+                        "heading": "Get the code before the weather turns.",
+                        "body": "<p>Applies to a single pair. The two-pair saving is already built into the price.</p>",
+                        "field_label": "Email address",
+                        "submit_label": "Send my code",
+                        "success_message": "Thanks. Your code is on its way.",
+                        "tag": "newsletter",
+                        "note": '<p>One email to set you up, then only when there is something worth sending. Unsubscribe any time. See our <a href="/policies/privacy-policy">privacy policy</a>.</p>',
+                    },
+                },
+            },
+            "order": ["breadcrumb", "main", "buy", "related", "signup"],
+        },
+    )
+    print(f"  article: breadcrumb + body + buy widget + related + capture")
+    print(f"           {len(ARTICLE_ROUTES)} activity tag routes")
+
+    # The generic blog. /blogs/guides has its own composed template; this is
+    # what any other blog falls back to, so it should not be a bare stub.
+    save(
+        "blog",
+        {
+            "sections": {
+                "main": {
+                    "type": "main-blog",
+                    "settings": {
+                        "color_scheme": "paper",
+                        "pace": "base",
+                        "per_page": 9,
+                        "show_tags": False,
+                        "empty_note": "Nothing has been published here yet.",
+                    },
+                }
+            },
+            "order": ["main"],
+        },
+    )
+    print("  blog: generic fallback index")
+
+
 def build_404():
     save(
         "404",
@@ -564,6 +711,9 @@ def main():
 
     print("blog and collection")
     build_blog_and_collection()
+
+    print("guide article")
+    build_article()
 
     print("404")
     build_404()

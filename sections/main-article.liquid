@@ -1,36 +1,211 @@
-{%- comment -%} Article. {%- endcomment -%}
-<section class="hs-scheme-{{ section.settings.color_scheme }}">
+{%- comment -%}
+  Guide article.
+
+  Carries the sitemap's article header, body and the mandatory activity link.
+  The breadcrumb, inline buy widget, related guides and email capture around it
+  are separate sections in templates/article.json.
+
+  The sitemap makes one rule structural rather than editorial: every article
+  must route to exactly one activity page, so no article is a dead end. The
+  article's own tags decide which — a block maps each tag to its page, so the
+  routing is set per article in the blog editor rather than per template. If an
+  article carries no matching tag the band is omitted on the storefront and a
+  notice appears in the theme editor instead, which is where a guardrail is
+  actually useful.
+{%- endcomment -%}
+
+{%- liquid
+  # Resolve the article's activity from its tags. The first match wins, so an
+  # article tagged for two activities still routes to exactly one.
+  assign activity_label = ''
+  assign activity_url = ''
+  assign activity_note = ''
+  for block in section.blocks
+    if block.type != 'activity_link' or block.settings.tag == blank
+      continue
+    endif
+    if article.tags contains block.settings.tag
+      assign activity_label = block.settings.label
+      assign activity_url = block.settings.url
+      assign activity_note = block.settings.note
+      break
+    endif
+  endfor
+-%}
+
+<section class="hs-scheme-{{ section.settings.color_scheme }}" {{ section.shopify_attributes }}>
   <div class="hs-shell hs-pace-base">
     <article class="hs-article">
+      {%- comment -%} Article header {%- endcomment -%}
       <header class="hs-article__head">
-        <p class="hs-eyebrow">{{ article.published_at | date: format: 'date' }}</p>
-        <h1 class="hs-h1 hs-measure-19 hs-balance hs-page__title">{{ article.title }}</h1>
-        {%- if section.settings.show_author and article.author != blank -%}
-          <p class="hs-caption hs-muted">{{ 'blogs.article.by' | t: author: article.author }}</p>
+        <p class="hs-eyebrow hs-article__kicker">
+          <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+            {{- article.published_at | date: format: 'date' -}}
+          </time>
+          {%- if section.settings.show_author and article.author != blank -%}
+            <span class="hs-article__kicker-sep" aria-hidden="true">
+              {{- section.settings.kicker_divider -}}
+            </span>
+            <span>{{ 'blogs.article.by' | t: author: article.author }}</span>
+          {%- endif -%}
+        </p>
+
+        <h1 class="hs-h1 hs-article__title hs-measure-19 hs-balance">{{ article.title }}</h1>
+
+        {%- if article.excerpt != blank -%}
+          <div class="hs-hero-body hs-article__standfirst hs-measure-46 hs-pretty hs-muted">
+            {{ article.excerpt }}
+          </div>
         {%- endif -%}
       </header>
+
       {%- if article.image -%}
-        {% render 'hs-image', image: article.image, alt: article.title, aspect: '16 / 9',
-           eager: true, sizes: '100vw', wrapper_class: 'hs-article__hero' %}
+        {% render 'hs-image',
+          image: article.image,
+          alt: article.image.alt | default: article.title,
+          aspect: section.settings.image_aspect,
+          eager: true,
+          sizes: '(min-width: 80rem) 72rem, 100vw',
+          wrapper_class: 'hs-article__hero'
+        %}
       {%- endif -%}
-      <div class="hs-body hs-rte hs-measure-54 hs-pretty hs-article__body">{{ article.content }}</div>
-      <p class="hs-article__back">
-        <a class="hs-link" href="{{ blog.url }}">{{ 'blogs.article.back' | t }}</a>
-      </p>
+
+      {%- comment -%} Article body {%- endcomment -%}
+      <div class="hs-body hs-rte hs-article__body hs-measure-62 hs-pretty">
+        {{ article.content }}
+      </div>
+
+      {%- comment -%} Mandatory activity link {%- endcomment -%}
+      {%- if activity_label != blank and activity_url != blank -%}
+        <aside class="hs-article__route">
+          {%- if section.settings.route_eyebrow != blank -%}
+            <p class="hs-eyebrow">{{ section.settings.route_eyebrow }}</p>
+          {%- endif -%}
+          <a class="hs-h4 hs-article__route-link" href="{{ activity_url }}">
+            {{ activity_label }}
+            {% render 'hs-icon', icon: 'arrow-right', size: 18 %}
+          </a>
+          {%- if activity_note != blank -%}
+            <p class="hs-small-body hs-article__route-note hs-measure-54 hs-pretty hs-muted">
+              {{ activity_note }}
+            </p>
+          {%- endif -%}
+        </aside>
+      {%- elsif request.design_mode -%}
+        {%- comment -%}
+          Editor only. The storefront shows nothing rather than an empty band.
+        {%- endcomment -%}
+        <aside class="hs-article__route hs-article__route--unset">
+          <p class="hs-small-body">{{ section.settings.route_missing_note }}</p>
+        </aside>
+      {%- endif -%}
+
+      {%- if section.settings.back_label != blank -%}
+        <p class="hs-article__back">
+          <a class="hs-link" href="{{ blog.url }}">{{ section.settings.back_label }}</a>
+        </p>
+      {%- endif -%}
     </article>
   </div>
 </section>
+
 {% schema %}
 {
   "name": "t:sections.article.name",
   "settings": [
-    { "type": "select", "id": "color_scheme", "label": "t:common.color_scheme",
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
       "options": [
         { "value": "paper", "label": "t:common.scheme_paper" },
         { "value": "wash", "label": "t:common.scheme_wash" },
         { "value": "ink", "label": "t:common.scheme_ink" }
-      ], "default": "paper" },
-    { "type": "checkbox", "id": "show_author", "label": "t:sections.article.show_author", "default": false }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.article.header_group"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "t:sections.article.show_author",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "kicker_divider",
+      "label": "t:sections.article.kicker_divider",
+      "default": "·"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect",
+      "label": "t:sections.article.image_aspect",
+      "info": "t:sections.hero.image_aspect_info",
+      "default": "16 / 9"
+    },
+    {
+      "type": "text",
+      "id": "back_label",
+      "label": "t:sections.article.back_label",
+      "default": "All guides"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.article.route_group"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.article.route_info"
+    },
+    {
+      "type": "text",
+      "id": "route_eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "Made for this"
+    },
+    {
+      "type": "textarea",
+      "id": "route_missing_note",
+      "label": "t:sections.article.route_missing_note",
+      "default": "This article carries no activity tag, so it routes nowhere. Tag it with one of the activity tags set up on this section before publishing."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "activity_link",
+      "name": "t:sections.article.block_activity_link",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.article.block_activity_link_info"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "t:sections.article.route_tag",
+          "info": "t:sections.article.route_tag_info"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:common.label"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "t:common.link"
+        },
+        {
+          "type": "textarea",
+          "id": "note",
+          "label": "t:sections.article.route_note"
+        }
+      ]
+    }
   ]
 }
 {% endschema %}

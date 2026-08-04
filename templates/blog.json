@@ -1,8 +1,20 @@
+/* Composed by scripts/build-sitemap-templates.py from the sitemap.
+   Re-run that script rather than hand-editing this file; section
+   content itself is editable in the Shopify theme editor. */
 {
   "sections": {
     "main": {
-      "type": "main-blog"
+      "type": "main-blog",
+      "settings": {
+        "color_scheme": "paper",
+        "pace": "base",
+        "per_page": 9,
+        "show_tags": false,
+        "empty_note": "Nothing has been published here yet."
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

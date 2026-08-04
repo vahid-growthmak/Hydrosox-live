@@ -27,21 +27,31 @@
 
   comment
     Fill the remainder from the tag, skipping anything already picked so the
-    fallback cannot duplicate an editorial choice.
+    fallback cannot duplicate an editorial choice — and skipping the article
+    being read, so this never recommends the page it sits on.
+
+    The loop variable is deliberately not called `article`: a Liquid for-loop
+    variable outlives its loop, so iterating `article` would overwrite the
+    article the page is rendering.
   endcomment
+  assign skip = chosen
+  if article != blank and article.id
+    assign skip = skip | append: article.id | append: ','
+  endif
+
   assign fill_ids = ''
   assign chosen_count = chosen | split: ',' | size
   if chosen_count < target and blog != blank
     assign wanted = target | minus: chosen_count
     assign taken = 0
-    for article in blog.articles
+    for candidate in blog.articles
       if taken >= wanted
         break
       endif
-      assign needle = article.id | append: ','
-      unless chosen contains needle
-        if section.settings.tag == blank or article.tags contains section.settings.tag
-          assign fill_ids = fill_ids | append: article.id | append: ','
+      assign needle = candidate.id | append: ','
+      unless skip contains needle
+        if section.settings.tag == blank or candidate.tags contains section.settings.tag
+          assign fill_ids = fill_ids | append: candidate.id | append: ','
           assign taken = taken | plus: 1
         endif
       endunless
@@ -80,9 +90,8 @@
         {%- comment -%} Editorial picks. {%- endcomment -%}
         {%- for block in picks -%}
           {%- if block.settings.article != blank -%}
-            {%- assign article = block.settings.article -%}
             <li class="hs-reveal" {{ block.shopify_attributes }}>
-              {% render 'hs-guide-card', article: article, eager: forloop.first %}
+              {% render 'hs-guide-card', article: block.settings.article, eager: forloop.first %}
             </li>
           {%- endif -%}
         {%- endfor -%}
@@ -90,11 +99,11 @@
         {%- comment -%} Tag fallback for the remainder. {%- endcomment -%}
         {%- assign fill_list = fill_ids | split: ',' -%}
         {%- if fill_list.size > 0 and blog != blank -%}
-          {%- for article in blog.articles -%}
-            {%- assign needle = article.id | append: '' -%}
+          {%- for candidate in blog.articles -%}
+            {%- assign needle = candidate.id | append: '' -%}
             {%- if fill_list contains needle -%}
               <li class="hs-reveal">
-                {% render 'hs-guide-card', article: article %}
+                {% render 'hs-guide-card', article: candidate %}
               </li>
             {%- endif -%}
           {%- endfor -%}

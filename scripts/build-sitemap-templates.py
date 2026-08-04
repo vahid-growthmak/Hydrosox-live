@@ -88,11 +88,27 @@ def path_for(name):
 
 def load(name):
     p = path_for(name)
-    return json.loads(p.read_text()) if p.exists() else None
+    if not p.exists():
+        return None
+    return json.loads(re.sub(r"^\s*/\*[\s\S]*?\*/\s*", "", p.read_text()))
+
+
+# Shopify's JSON templates accept a leading block comment, so composed files say
+# so. It tells the next reader that edits belong in this script or in the theme
+# editor, not in the JSON.
+HEADER = (
+    "/* Composed by scripts/build-sitemap-templates.py from the sitemap.\n"
+    "   Re-run that script rather than hand-editing this file; section\n"
+    "   content itself is editable in the Shopify theme editor. */\n"
+)
 
 
 def save(name, data):
-    path_for(name).write_text(json.dumps(data, indent=2) + "\n")
+    path_for(name).write_text(HEADER + json.dumps(data, indent=2) + "\n")
+
+
+def strip_header(text):
+    return re.sub(r"^\s*/\*[\s\S]*?\*/\s*", "", text)
 
 
 def buy_widget_from_home():

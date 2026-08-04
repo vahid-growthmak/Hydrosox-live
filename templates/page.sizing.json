@@ -1,0 +1,350 @@
+/* Size guide. Written to a fresh path because Shopify's GitHub sync
+   permanently refused templates/page.size-guide.json — a path it has
+   rejected once is never retried. The page URL is unchanged. */
+{
+  "sections": {
+    "intro": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "paper",
+        "heading_tag": "h1",
+        "heading_size": "h2",
+        "eyebrow": "Size guide",
+        "heading": "Measure the foot, not the shoe.",
+        "body": "<p>Shoe sizing is not consistent between brands, and the foot length is what actually has to fit. Four bands cover UK 3 to UK 14.</p>"
+      }
+    },
+    "chart": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "heading": "The four bands",
+        "head_note": "<p>The same measurements appear in the size guide that opens over the buy widget. They are read from one place, so the two cannot disagree.</p>",
+        "row_density": "compact"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "S",
+            "body": "<p>Foot length 22.0 - 24.0 cm. Fits UK 3-5.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "M",
+            "body": "<p>Foot length 24.5 - 26.5 cm. Fits UK 6-8.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "L",
+            "body": "<p>Foot length 27.0 - 29.0 cm. Fits UK 9-11.</p>"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "XL",
+            "body": "<p>Foot length 29.5 - 32.0 cm. Fits UK 12-14.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ]
+    },
+    "howto": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "heading": "Measuring and choosing"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "How to measure",
+            "body": "Stand on a sheet of paper with your heel to a wall, mark the tip of your longest toe, and measure heel to mark."
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Between two sizes",
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2"
+      ]
+    },
+    "buy": {
+      "type": "buy-widget",
+      "blocks": {
+        "c1": {
+          "type": "colour",
+          "settings": {
+            "value": "Black",
+            "colour_one": "#111111"
+          }
+        },
+        "c2": {
+          "type": "colour",
+          "settings": {
+            "value": "Black / Grey",
+            "colour_one": "#111111",
+            "colour_two": "#8b9096"
+          }
+        },
+        "c3": {
+          "type": "colour",
+          "settings": {
+            "value": "Black / Navy",
+            "colour_one": "#111111",
+            "colour_two": "#1f3160"
+          }
+        },
+        "c4": {
+          "type": "colour",
+          "settings": {
+            "value": "White",
+            "colour_one": "#f4f6f8"
+          }
+        },
+        "z1": {
+          "type": "size",
+          "settings": {
+            "value": "S",
+            "sublabel": "UK 3-5"
+          }
+        },
+        "z2": {
+          "type": "size",
+          "settings": {
+            "value": "M",
+            "sublabel": "UK 6-8"
+          }
+        },
+        "z3": {
+          "type": "size",
+          "settings": {
+            "value": "L",
+            "sublabel": "UK 9-11"
+          }
+        },
+        "z4": {
+          "type": "size",
+          "settings": {
+            "value": "XL",
+            "sublabel": "UK 12-14"
+          }
+        },
+        "t1": {
+          "type": "tier",
+          "settings": {
+            "label": "Single pair",
+            "quantity": 1,
+            "discount": 0
+          }
+        },
+        "t2": {
+          "type": "tier",
+          "settings": {
+            "label": "Two pairs",
+            "quantity": 2,
+            "discount": 3.01
+          }
+        },
+        "t3": {
+          "type": "tier",
+          "settings": {
+            "label": "Three pairs",
+            "quantity": 3,
+            "discount": 7.01
+          }
+        },
+        "t4": {
+          "type": "tier",
+          "settings": {
+            "label": "Four pairs",
+            "quantity": 4,
+            "discount": 12.01
+          }
+        },
+        "t5": {
+          "type": "tier",
+          "settings": {
+            "label": "Five pairs",
+            "quantity": 5,
+            "discount": 20.01
+          }
+        },
+        "r1": {
+          "type": "trust",
+          "settings": {
+            "label": "Delivery",
+            "value": "Free UK delivery on two pairs or more"
+          }
+        },
+        "r2": {
+          "type": "trust",
+          "settings": {
+            "label": "Dispatch",
+            "value": "UK company, UK warehouse"
+          }
+        },
+        "r3": {
+          "type": "trust",
+          "settings": {
+            "label": "Checkout",
+            "value": "Guest \u2014 no account required"
+          }
+        },
+        "r4": {
+          "type": "trust",
+          "settings": {
+            "label": "Payment",
+            "value": "Visa \u00b7 Mastercard \u00b7 American Express \u00b7 Apple Pay \u00b7 Google Pay \u00b7 Shop Pay"
+          }
+        },
+        "l1": {
+          "type": "link",
+          "settings": {
+            "label": "Full product details",
+            "use_product_url": true
+          }
+        },
+        "l2": {
+          "type": "link",
+          "settings": {
+            "label": "How it is built",
+            "link": "/#construction"
+          }
+        },
+        "l3": {
+          "type": "link",
+          "settings": {
+            "label": "Delivery and sizing",
+            "link": "/#faq"
+          }
+        },
+        "g1": {
+          "type": "guide_row",
+          "settings": {
+            "size": "S",
+            "foot_length": "22.0 - 24.0 cm",
+            "uk_shoe": "UK 3-5"
+          }
+        },
+        "g2": {
+          "type": "guide_row",
+          "settings": {
+            "size": "M",
+            "foot_length": "24.5 - 26.5 cm",
+            "uk_shoe": "UK 6-8"
+          }
+        },
+        "g3": {
+          "type": "guide_row",
+          "settings": {
+            "size": "L",
+            "foot_length": "27.0 - 29.0 cm",
+            "uk_shoe": "UK 9-11"
+          }
+        },
+        "g4": {
+          "type": "guide_row",
+          "settings": {
+            "size": "XL",
+            "foot_length": "29.5 - 32.0 cm",
+            "uk_shoe": "UK 12-14"
+          }
+        },
+        "n1": {
+          "type": "guide_note",
+          "settings": {
+            "label": "How to measure",
+            "body": "Stand on a sheet of paper with your heel to a wall, mark the tip of your longest toe, and measure heel to mark."
+          }
+        },
+        "n2": {
+          "type": "guide_note",
+          "settings": {
+            "label": "Between two sizes",
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "z1",
+        "z2",
+        "z3",
+        "z4",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "l1",
+        "l2",
+        "l3",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "n1",
+        "n2"
+      ],
+      "settings": {
+        "product": "hydrosox-waterproof-socks",
+        "color_scheme": "paper",
+        "anchor_id": "buy",
+        "eyebrow": "Order",
+        "heading": "Two decisions and a quantity.",
+        "lede": "<p>One product, one page, one price that does not change depending on how you found us.</p>",
+        "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
+        "colour_option_name": "Colour",
+        "size_option_name": "Size",
+        "quantity_label": "Quantity",
+        "default_quantity": 2,
+        "add_label": "Add to cart",
+        "save_label": "Save",
+        "per_unit_label": "per pair",
+        "guide_label": "Size guide",
+        "guide_heading": "Size guide",
+        "guide_intro": "Measure the foot rather than relying on shoe size \u2014 sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_col_size": "Size",
+        "guide_col_length": "Foot length",
+        "guide_col_shoe": "UK shoe",
+        "guide_link_label": "The full sizing and fit guide",
+        "guide_close_label": "Close"
+      }
+    }
+  },
+  "order": [
+    "intro",
+    "chart",
+    "howto",
+    "buy"
+  ]
+}

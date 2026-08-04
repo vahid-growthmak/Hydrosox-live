@@ -243,7 +243,17 @@
       "column_menu_info": "Pick a menu to manage these links in Navigation. Leave empty to use the \"column link\" blocks below instead.",
       "block_column_link": "Column link",
       "block_column_link_info": "Belongs to the link column above it. Only used when that column has no menu selected.",
-      "block_legal": "Legal link"
+      "block_legal": "Legal link",
+      "block_legal_info": "Track a Shopify policy and the link looks after itself: it points at the real policy page, and stays hidden while that policy has no text, rather than linking to a page that 404s.",
+      "legal_policy": "Links to",
+      "policy_privacy": "Privacy policy",
+      "policy_terms": "Terms of service",
+      "policy_refund": "Refund policy",
+      "policy_shipping": "Shipping policy",
+      "policy_subscription": "Subscription policy",
+      "policy_custom": "A URL I type below",
+      "legal_label_info": "Leave empty to use the policy’s own title.",
+      "legal_link_info": "Only used when \"A URL I type below\" is selected."
     },
     "buybar": {
       "name": "Sticky buy bar",

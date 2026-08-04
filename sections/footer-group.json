@@ -9,28 +9,28 @@
           "type": "legal_link",
           "settings": {
             "label": "Privacy Policy",
-            "link": "/policies/privacy-policy"
+            "policy": "privacy"
           }
         },
         "legal_2": {
           "type": "legal_link",
           "settings": {
             "label": "Terms of Service",
-            "link": "/policies/terms-of-service"
+            "policy": "terms"
           }
         },
         "legal_3": {
           "type": "legal_link",
           "settings": {
             "label": "Refund Policy",
-            "link": "/policies/refund-policy"
+            "policy": "refund"
           }
         },
         "legal_4": {
           "type": "legal_link",
           "settings": {
             "label": "Shipping Policy",
-            "link": "/policies/shipping-policy"
+            "policy": "shipping"
           }
         },
         "col_shop": {

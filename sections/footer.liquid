@@ -99,11 +99,51 @@
         <ul class="hs-footer__legal" role="list">
           {%- for block in section.blocks -%}
             {%- if block.type == 'legal_link' -%}
-              <li {{ block.shopify_attributes }}>
-                <a class="hs-caption hs-footer__legal-link" href="{{ block.settings.link | default: '#' }}">
-                  {{- block.settings.label -}}
-                </a>
-              </li>
+              {%- liquid
+                # A legal link can track a real Shopify policy instead of a
+                # typed URL. An unwritten policy 404s, so when one has no body
+                # the link is omitted rather than published — and it reappears
+                # on its own the moment the policy is written.
+                assign policy = nil
+                case block.settings.policy
+                  when 'privacy'
+                    assign policy = shop.privacy_policy
+                  when 'terms'
+                    assign policy = shop.terms_of_service
+                  when 'refund'
+                    assign policy = shop.refund_policy
+                  when 'shipping'
+                    assign policy = shop.shipping_policy
+                  when 'subscription'
+                    assign policy = shop.subscription_policy
+                endcase
+
+                assign legal_url = block.settings.link
+                assign legal_label = block.settings.label
+                assign render_legal = true
+
+                if block.settings.policy != 'custom'
+                  if policy != blank and policy.body != blank
+                    assign legal_url = policy.url
+                    if legal_label == blank
+                      assign legal_label = policy.title
+                    endif
+                  else
+                    assign render_legal = false
+                  endif
+                endif
+
+                if legal_url == blank or legal_label == blank
+                  assign render_legal = false
+                endif
+              -%}
+              {%- if render_legal -%}
+                <li {{ block.shopify_attributes }}>
+                  <a class="hs-caption hs-footer__legal-link" href="{{ legal_url }}">
+                    {{- legal_label -}}
+                  </a>
+                </li>
+              {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
         </ul>
@@ -191,14 +231,34 @@
       "name": "t:sections.footer.block_legal",
       "settings": [
         {
+          "type": "paragraph",
+          "content": "t:sections.footer.block_legal_info"
+        },
+        {
+          "type": "select",
+          "id": "policy",
+          "label": "t:sections.footer.legal_policy",
+          "options": [
+            { "value": "privacy", "label": "t:sections.footer.policy_privacy" },
+            { "value": "terms", "label": "t:sections.footer.policy_terms" },
+            { "value": "refund", "label": "t:sections.footer.policy_refund" },
+            { "value": "shipping", "label": "t:sections.footer.policy_shipping" },
+            { "value": "subscription", "label": "t:sections.footer.policy_subscription" },
+            { "value": "custom", "label": "t:sections.footer.policy_custom" }
+          ],
+          "default": "custom"
+        },
+        {
           "type": "text",
           "id": "label",
-          "label": "t:common.label"
+          "label": "t:common.label",
+          "info": "t:sections.footer.legal_label_info"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "t:common.link"
+          "label": "t:common.link",
+          "info": "t:sections.footer.legal_link_info"
         }
       ]
     }

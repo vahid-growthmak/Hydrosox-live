@@ -152,8 +152,23 @@ HEADER = (
 )
 
 
+def scrub(node):
+    """Drop null settings anywhere in a template.
+
+    Shopify refuses a template that carries a null setting value and keeps the
+    previously deployed version live, so the page silently stays stale and it
+    reads as a slow sync. An omitted setting falls back to the schema default,
+    which is what a null was trying to express anyway.
+    """
+    if isinstance(node, dict):
+        return {k: scrub(v) for k, v in node.items() if v is not None}
+    if isinstance(node, list):
+        return [scrub(v) for v in node]
+    return node
+
+
 def save(name, data):
-    path_for(name).write_text(HEADER + json.dumps(data, indent=2) + "\n")
+    path_for(name).write_text(HEADER + json.dumps(scrub(data), indent=2) + "\n")
 
 
 def strip_header(text):
@@ -185,8 +200,17 @@ def faq_from_home(limit=6):
 
 
 def breadcrumb(handle, title):
+    """The trail for one page.
+
+    `current_label` is only an override — the section derives the leaf from the
+    object being viewed. Emitting it as null rather than omitting it makes
+    Shopify reject the entire template on upload, so an absent title is left
+    out. See scrub() for the general guard.
+    """
     parent = BREADCRUMBS.get(handle)
-    s = {"color_scheme": "paper", "home_label": "Home", "current_label": title}
+    s = {"color_scheme": "paper", "home_label": "Home"}
+    if title:
+        s["current_label"] = title
     if parent:
         s["parent_label"], s["parent_url"] = parent
     return {"type": "breadcrumb", "settings": s}
@@ -819,6 +843,32 @@ def build_support_pages():
     print(f"  page.technology: intro + membrane + {len(layer_items)} layers + testing + limits + activities + buy")
 
 
+def scrub_all_templates():
+    """Strip null settings from every template, including ones nothing rebuilt.
+
+    add_breadcrumbs_and_reviews is idempotent — it skips a page that already has
+    a breadcrumb — so a template written before scrub() existed kept its null
+    and was refused on every upload since. Rewriting only the files that
+    actually change keeps this pass quiet once they are clean.
+    """
+    fixed = []
+    for path in sorted(TPL.glob("*.json")):
+        raw = path.read_text()
+        try:
+            data = json.loads(strip_header(raw))
+        except json.JSONDecodeError:
+            continue
+        cleaned = scrub(data)
+        if cleaned != data:
+            path.write_text(HEADER + json.dumps(cleaned, indent=2) + "\n")
+            fixed.append(path.name)
+    if fixed:
+        for name in fixed:
+            print(f"  {name}: null settings removed")
+    else:
+        print("  no null settings anywhere")
+
+
 def build_404():
     save(
         "404",
@@ -901,6 +951,10 @@ def main():
 
     print("product page")
     add_product_page_extras()
+
+    # Last, so it also catches anything the builders above emitted.
+    print("null scrub")
+    scrub_all_templates()
 
     # Every internal link in every template must point somewhere real.
     handles = {p.stem.replace("page.", "") for p in TPL.glob("page.*.json")}

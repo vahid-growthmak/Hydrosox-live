@@ -30,7 +30,6 @@
       "settings": {
         "color_scheme": "paper",
         "home_label": "Home",
-        "current_label": null,
         "parent_label": "Help",
         "parent_url": "/pages/faq"
       }

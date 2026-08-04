@@ -75,6 +75,10 @@ def _defs(schema, block_type=None):
 def check_values(where, definitions, values, out):
     """A value Shopify cannot accept for its declared setting type."""
     for sid, val in (values or {}).items():
+        if val is None:
+            # Shopify refuses the whole template and keeps the old one live.
+            out.append((where, sid, "is null; omit the setting instead"))
+            continue
         spec = definitions.get(sid)
         if spec is None:
             out.append((where, sid, "not declared in the section schema"))

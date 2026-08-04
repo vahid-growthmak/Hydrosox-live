@@ -29,8 +29,7 @@
       "type": "breadcrumb",
       "settings": {
         "color_scheme": "paper",
-        "home_label": "Home",
-        "current_label": null
+        "home_label": "Home"
       }
     },
     "feed": {

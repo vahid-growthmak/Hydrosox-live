@@ -77,7 +77,7 @@
         "eyebrow": "How this is tested",
         "heading": "We publish no test figures yet.",
         "body": "<p>Independent test data is the only kind worth printing, and we do not have it yet. Rather than quote a hydrostatic head or a breathability rating we cannot evidence, we name the membrane and let you look it up.</p>",
-        "footnote": "When independent figures exist they will be published here with the name of whoever produced them."
+        "footnote": "<p>When independent figures exist they will be published here with the name of whoever produced them.</p>"
       }
     },
     "wont": {

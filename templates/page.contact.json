@@ -219,7 +219,7 @@
   "order": [
     "intro",
     "details",
-    "form",
-    "routes"
+    "routes",
+    "form"
   ]
 }

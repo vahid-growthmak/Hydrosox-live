@@ -91,6 +91,13 @@ def check_values(where, definitions, values, out):
         elif kind == "checkbox":
             if not isinstance(val, bool):
                 out.append((where, sid, f"{val!r} must be true or false"))
+        elif kind == "richtext":
+            # Shopify refuses a template whose richtext is not inside a
+            # block-level tag, and keeps the old version of the page live.
+            if isinstance(val, str) and val.strip() and not val.lstrip().startswith(
+                ("<p", "<ul", "<ol", "<h", "<blockquote", "<div", "<br")
+            ):
+                out.append((where, sid, "richtext must be wrapped in a block tag such as <p>"))
         elif kind == "range":
             if isinstance(val, bool) or not isinstance(val, (int, float)):
                 out.append((where, sid, f"{val!r} must be a number, not a string"))

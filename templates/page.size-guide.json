@@ -74,14 +74,14 @@
           "type": "item",
           "settings": {
             "title": "How to measure",
-            "body": "Stand on a sheet of paper with your heel to a wall, mark the tip of your longest toe, and measure heel to mark."
+            "body": "<p>Stand on a sheet of paper with your heel to a wall, mark the tip of your longest toe, and measure heel to mark.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Between two sizes",
-            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
+            "body": "<p>Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane.</p>"
           }
         }
       },

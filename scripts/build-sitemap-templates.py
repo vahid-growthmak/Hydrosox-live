@@ -709,12 +709,28 @@ def layers_from_home():
     return out
 
 
+def rich(text):
+    """Wrap plain text for a richtext setting.
+
+    Shopify refuses a template whose richtext value is not inside a block-level
+    tag, and keeps the previously deployed version live — so the page silently
+    stays stale. Values read out of a textarea setting arrive as bare text, and
+    this is where they get their <p>.
+    """
+    if not text:
+        return text
+    stripped = text.strip()
+    if stripped.startswith(("<p", "<ul", "<ol", "<h", "<blockquote", "<div")):
+        return stripped
+    return f"<p>{stripped}</p>"
+
+
 def items(pairs, numbered=False, **settings):
     """A content-columns section from (title, body) pairs."""
     blocks, order = {}, []
     for i, (title, body) in enumerate(pairs, 1):
         key = f"i{i}"
-        blocks[key] = {"type": "item", "settings": {"title": title, "body": body}}
+        blocks[key] = {"type": "item", "settings": {"title": title, "body": rich(body)}}
         order.append(key)
     base = {"color_scheme": "paper", "layout": "list", "numbered": numbered}
     base.update(settings)
@@ -777,7 +793,7 @@ def build_support_pages():
                 "color_scheme": "paper", "heading_size": "h3", "eyebrow": "Expected lifespan",
                 "heading": "We do not publish a figure for this.",
                 "body": "<p>We have no wear-test data yet, and a number with nothing behind it is worth nothing. What we can tell you is the mechanism: a membrane ends through abrasion, heat and clogged pores. Wash it cool, keep softener away from it and keep your toenails short, and you are addressing all three.</p>",
-                "footnote": "When there is real wear-test data it will be published here, including the results that do not flatter us."}},
+                "footnote": rich("When there is real wear-test data it will be published here, including the results that do not flatter us.")}},
             "buy": buy_widget_from_home(),
         },
         "order": ["intro", "wash", "damage", "life", "buy"],
@@ -825,7 +841,7 @@ def build_support_pages():
                 "color_scheme": "paper", "heading_size": "h3",
                 "eyebrow": "How this is tested", "heading": "We publish no test figures yet.",
                 "body": "<p>Independent test data is the only kind worth printing, and we do not have it yet. Rather than quote a hydrostatic head or a breathability rating we cannot evidence, we name the membrane and let you look it up.</p>",
-                "footnote": "When independent figures exist they will be published here with the name of whoever produced them."}},
+                "footnote": rich("When independent figures exist they will be published here with the name of whoever produced them.")}},
             "wont": items(wont, color_scheme="blue", heading="What it will not do",
                           head_note="<p>Every brand tells you what their socks do. This is the other half.</p>"),
             "activities": {"type": "link-cards", "settings": {

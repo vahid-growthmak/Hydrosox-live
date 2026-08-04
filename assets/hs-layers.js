@@ -72,10 +72,42 @@ class HSLayers extends HTMLElement {
     // megabytes of frames should not be on the critical path for a visitor who
     // never scrolls this far. measure() opens it, so this rides on the scroll
     // handler that is running anyway rather than a second observer.
+    //
+    // On a phone, or a connection that has told us to go easy, only every nth
+    // frame is fetched. paintFrame already falls back to the nearest decoded
+    // neighbour, so a sparse sequence scrubs smoothly at a fraction of the
+    // weight — the full set is ~2.4MB, a stride of 3 is ~830KB.
+    const stride = this.frameStride();
     this.queue = [];
-    for (let i = 1; i < this.frames.length; i += 1) this.queue.push(i);
+    for (let i = stride; i < this.frames.length; i += stride) this.queue.push(i);
+
+    // The last frame is always fetched, so the end of the scrub is exact
+    // rather than however far the stride happened to reach.
+    const last = this.frames.length - 1;
+    if (last > 0 && !this.queue.includes(last)) this.queue.push(last);
+
     this.inFlight = 0;
     this.queueOpen = false;
+  }
+
+  /** How many frames to skip, given the device and the connection. */
+  frameStride() {
+    const net = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const effective = net && net.effectiveType;
+
+    // An explicit data-saver request, or a genuinely slow connection.
+    if ((net && net.saveData) || effective === 'slow-2g' || effective === '2g') return 6;
+
+    // Phones: the stage is a few hundred pixels wide, so the difference between
+    // every frame and every third is not visible, and the saving is large.
+    if (window.matchMedia('(max-width: 47.99rem)').matches) return 3;
+
+    if (effective === '3g') return 3;
+
+    // Tablets sit in between.
+    if (window.matchMedia('(max-width: 63.99rem)').matches) return 2;
+
+    return 1;
   }
 
   /** Opens the preload queue once the section is one screen away. */

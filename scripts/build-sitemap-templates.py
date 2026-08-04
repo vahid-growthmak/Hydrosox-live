@@ -405,9 +405,49 @@ def add_breadcrumbs_and_reviews():
 
 
 def build_reviews_page():
-    """Sitemap 12: aggregate rating, full feed, filters, buy widget."""
+    """Sitemap 12. The review module renders nothing while it holds no reviews,
+    which is 12.3's omission rule enforced in code — so with the placeholder
+    intro that was all this page had, and it read as unfinished.
+
+    A reviews page with no reviews still has a job: say there are none, say why,
+    and state the standard the feed will be held to when it fills. That is
+    checkable now, where a fabricated rating would not be. The module and its
+    filters stay in place and appear the moment real reviews are entered.
+    """
     data = load("reviews") or {"sections": {}, "order": []}
+
     data["sections"]["breadcrumb"] = breadcrumb("reviews", None)
+
+    data["sections"]["intro"] = note(
+        heading_tag="h1", heading_size="h2", hide_rule=True,
+        eyebrow="Reviews",
+        heading="There are none yet, and we are not going to invent any.",
+        body="<p>HydroSox is new. A rating with nothing behind it is worth nothing, and a feed of five-star reviews with no negatives in it reads as filtered to exactly the person who is reading carefully.</p>")
+
+    data["sections"]["standard"] = items([
+        ("Verified buyers only",
+         "<p>A review has to come from an order. No unverified submissions, and no reviews written by us.</p>"),
+        ("Negative reviews stay up",
+         "<p>Published alongside the rest, unedited. If the socks disappoint someone, that belongs here.</p>"),
+        ("Filterable by activity and rating",
+         "<p>A commuter's experience is more useful to another commuter than an overall average is. The filters go live with the feed.</p>"),
+        ("The aggregate is the real one",
+         "<p>Whatever the average turns out to be is what gets printed, including the rating and the total volume in one line.</p>"),
+    ], numbered=True, heading="The standard this feed will be held to",
+        head_note="<p>Set out now, while it costs us nothing to promise, so it can be held against us later.</p>")
+
+    data["sections"]["meanwhile"] = items([
+        ("The membrane is named",
+         "<p>Porelle®, licensed from a third party. You can look it up, which is more than an unnamed laminate offers.</p>"),
+        ("The limits are published",
+         "<p>What the socks will not do is on the homepage. No competitor in this category publishes that.</p>"),
+        ("The company is named",
+         "<p>UK registered, with the address and phone number on every page rather than behind a contact form.</p>"),
+    ], color_scheme="wash", heading="What you can check instead",
+        head_note="<p>Reviews are one kind of evidence. Until there are some, here is the kind that does not depend on volume.</p>")
+
+    # 12.3-12.5. Renders nothing until real reviews exist, then brings the
+    # aggregate, the feed and the filters with it. This page owns the schema.
     data["sections"]["feed"] = {
         "type": "review-module",
         "settings": {
@@ -416,19 +456,17 @@ def build_reviews_page():
             "pace": "base",
             "show_aggregate": True,
             "show_filters": True,
-            # 12.3 is the site's aggregate, so this is the one page that owns
-            # the AggregateRating schema.
             "emit_schema": True,
             "eyebrow": "Reviews",
             "heading": "What people say after a wet day.",
         },
     }
+
     data["sections"]["buy"] = buy_widget_from_home()
-    order = [k for k in data["order"] if k not in ("breadcrumb", "feed", "buy", "reviews")]
-    data["sections"].pop("reviews", None)
-    data["order"] = ["breadcrumb"] + order + ["feed", "buy"]
+
+    data["order"] = ["breadcrumb", "intro", "standard", "meanwhile", "feed", "buy"]
     save("reviews", data)
-    print(f"  page.reviews: {len(data['order'])} sections (feed + filters + buy)")
+    print("  page.reviews: intro + standard + what to check instead + feed + buy widget")
 
 
 def build_forms():

@@ -1,8 +1,6 @@
 /* Composed by scripts/build-sitemap-templates.py from the sitemap.
    Re-run that script rather than hand-editing this file; section
-   content itself is editable in the Shopify theme editor.    Re-stamped: valid, but unchanged since Shopify last refused it, and
-   the sync only reconsiders a file that appears in a new diff.
-*/
+   content itself is editable in the Shopify theme editor. */
 {
   "sections": {
     "breadcrumb": {

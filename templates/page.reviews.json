@@ -7,22 +7,12 @@
       "type": "centre-note",
       "settings": {
         "color_scheme": "paper",
-        "hide_rule": true,
-        "max_width": 46,
-        "eyebrow": "Being written",
-        "heading": "Reviews",
         "heading_tag": "h1",
         "heading_size": "h2",
-        "body": "<p>Verified third-party reviews, including the negative ones. There are none yet \u2014 the homepage says so plainly and explains why.</p>",
-        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder \u2014 when it ships it will carry real detail, not filler.</p>",
-        "pointer_label": "Answered today at",
-        "pointer_link_label": "Why there are no reviews yet",
-        "pointer_url": "#faq",
-        "cta_label": "Buy a pair",
-        "cta_url": "/products/hydrosox-waterproof-socks",
-        "link_label": "Back to the homepage",
-        "link_url": "/",
-        "tail_note": "<p>Or read the questions we have answered so far.</p>"
+        "hide_rule": true,
+        "eyebrow": "Reviews",
+        "heading": "There are none yet, and we are not going to invent any.",
+        "body": "<p>HydroSox is new. A rating with nothing behind it is worth nothing, and a feed of five-star reviews with no negatives in it reads as filtered to exactly the person who is reading carefully.</p>"
       }
     },
     "breadcrumb": {
@@ -294,11 +284,97 @@
         "guide_link_label": "The full sizing and fit guide",
         "guide_close_label": "Close"
       }
+    },
+    "standard": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": true,
+        "heading": "The standard this feed will be held to",
+        "head_note": "<p>Set out now, while it costs us nothing to promise, so it can be held against us later.</p>"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Verified buyers only",
+            "body": "<p>A review has to come from an order. No unverified submissions, and no reviews written by us.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Negative reviews stay up",
+            "body": "<p>Published alongside the rest, unedited. If the socks disappoint someone, that belongs here.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Filterable by activity and rating",
+            "body": "<p>A commuter's experience is more useful to another commuter than an overall average is. The filters go live with the feed.</p>"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "The aggregate is the real one",
+            "body": "<p>Whatever the average turns out to be is what gets printed, including the rating and the total volume in one line.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ]
+    },
+    "meanwhile": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "list",
+        "numbered": false,
+        "heading": "What you can check instead",
+        "head_note": "<p>Reviews are one kind of evidence. Until there are some, here is the kind that does not depend on volume.</p>"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "The membrane is named",
+            "body": "<p>Porelle\u00ae, licensed from a third party. You can look it up, which is more than an unnamed laminate offers.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "The limits are published",
+            "body": "<p>What the socks will not do is on the homepage. No competitor in this category publishes that.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "The company is named",
+            "body": "<p>UK registered, with the address and phone number on every page rather than behind a contact form.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
     }
   },
   "order": [
     "breadcrumb",
     "intro",
+    "standard",
+    "meanwhile",
     "feed",
     "buy"
   ]

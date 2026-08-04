@@ -1962,7 +1962,14 @@
 }
 
 .hs-faq__help-link {
+  /*
+    This link sits mid-sentence, so it cannot be given a 44px box without
+    opening a gap in the paragraph — .hs-tap's min-height is dropped for that
+    reason. Padding restores the touch area by growing the hit box outward
+    instead, which costs no layout because the element is inline.
+  */
   min-height: 0;
+  padding-block: 0.5rem;
   font-weight: var(--weight-medium);
   color: var(--on-surface);
   text-decoration: underline;
@@ -2324,6 +2331,13 @@
   text-decoration-color: var(--hairline-strong);
   text-underline-offset: 4px;
   transition: color var(--duration-press) var(--ease-out);
+  /*
+    Grows the tap area on a phone. Padding rather than min-height because this
+    link sits mid-sentence: a min-height would deepen the line box and open a gap
+    in the paragraph. Vertical padding on an inline element extends the hit area
+    without touching layout.
+  */
+  padding-block: 0.5rem;
 }
 
 @media (hover: hover) and (pointer: fine) {

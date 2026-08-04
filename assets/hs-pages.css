@@ -386,6 +386,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  min-height: 2.75rem;
   margin-top: 0.75rem;
   color: var(--on-surface);
   text-decoration: none;
@@ -1115,7 +1116,11 @@
    -------------------------------------------------------------------------- */
 
 .hs-breadcrumb {
-  padding-block: 0.875rem;
+  /*
+    The bar's own padding is reduced by exactly what the links now carry, so
+    the touch targets grow to 44px without the bar getting any taller.
+  */
+  padding-block: 0.25rem;
   border-bottom: 1px solid var(--rule);
 }
 
@@ -1134,8 +1139,19 @@
 }
 
 .hs-breadcrumb__link {
+  /* 22px of text plus 11px either side clears the 44px touch minimum. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
   color: var(--on-surface-muted);
   text-decoration: none;
+}
+
+/* The current page is not a link, so it only needs to sit on the same line. */
+.hs-breadcrumb__current {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
 }
 
 @media (hover: hover) {
@@ -1271,7 +1287,7 @@
 .hs-chip {
   display: inline-flex;
   align-items: center;
-  min-height: 2.25rem;
+  min-height: 2.75rem;
   padding-inline: 0.875rem;
   border: 1px solid var(--rule-strong);
   border-radius: 999px;
@@ -1579,6 +1595,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  /* A phone number and an email address, so worth a full touch target. */
+  min-height: 2.75rem;
   color: var(--on-surface);
   text-decoration: none;
 }

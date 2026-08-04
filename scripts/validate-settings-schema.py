@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 """
-Validates Shopify range settings against constraints that `theme check` does
-not enforce. A single violation makes Shopify reject the whole settings file
-and replace it with [], silently dropping every design token.
+Validates what Shopify enforces on upload but `theme check` does not.
 
-Run before every push:  python3 .claude-validate-schema.py
+Two independent failure modes, both silent:
+
+  * An invalid range in settings_schema.json makes Shopify reject the whole
+    file and replace it with [], dropping every design token at once.
+  * A template setting whose value is not valid for its section schema — a
+    select value that is not one of the declared options, a range given a
+    string — makes Shopify reject that template. The old one stays live, so
+    it reads as a slow sync rather than a rejection.
+
+Run before every push:  python3 scripts/validate-settings-schema.py
 """
 import json, glob, re, os, sys
 
@@ -34,6 +41,84 @@ def audit(settings, origin, out):
         u = s.get('unit')
         if u is not None and (len(u) > 3 or not u.isascii()):
             out.append((origin, sid, f'unit {u!r} must be ascii and at most 3 characters'))
+
+
+# ---------------------------------------------------------- template values
+
+def _strip(text):
+    return re.sub(r"^\s*/\*[\s\S]*?\*/\s*", "", text)
+
+
+def _section_schemas():
+    out = {}
+    for path in glob.glob("sections/*.liquid"):
+        m = re.search(r"\{%\s*schema\s*%\}(.*?)\{%\s*endschema\s*%\}",
+                      open(path, encoding="utf-8").read(), re.S)
+        if not m:
+            continue
+        try:
+            out[os.path.basename(path)[:-7]] = json.loads(m.group(1))
+        except json.JSONDecodeError as exc:
+            raise SystemExit(f"{path}: schema is not valid JSON: {exc}")
+    return out
+
+
+def _defs(schema, block_type=None):
+    if block_type is None:
+        return {s["id"]: s for s in schema.get("settings", []) if s.get("id")}
+    for block in schema.get("blocks") or []:
+        if block["type"] == block_type:
+            return {s["id"]: s for s in block.get("settings", []) if s.get("id")}
+    return {}
+
+
+def check_values(where, definitions, values, out):
+    """A value Shopify cannot accept for its declared setting type."""
+    for sid, val in (values or {}).items():
+        spec = definitions.get(sid)
+        if spec is None:
+            out.append((where, sid, "not declared in the section schema"))
+            continue
+        kind = spec.get("type")
+        if kind == "select":
+            options = [o["value"] for o in spec.get("options", [])]
+            if str(val) not in options:
+                out.append((where, sid, f"{val!r} is not one of {options}"))
+        elif kind == "checkbox":
+            if not isinstance(val, bool):
+                out.append((where, sid, f"{val!r} must be true or false"))
+        elif kind == "range":
+            if isinstance(val, bool) or not isinstance(val, (int, float)):
+                out.append((where, sid, f"{val!r} must be a number, not a string"))
+            else:
+                mn, mx, step = spec["min"], spec["max"], spec.get("step", 1)
+                if val < mn or val > mx:
+                    out.append((where, sid, f"{val} is outside [{mn}, {mx}]"))
+                elif abs(((val - mn) / step) - round((val - mn) / step)) > 1e-9:
+                    out.append((where, sid, f"{val} is not on a step of {step}"))
+
+
+def audit_templates(out):
+    schemas = _section_schemas()
+    files = sorted(glob.glob("templates/**/*.json", recursive=True))
+    files += sorted(glob.glob("sections/*-group.json"))
+    for path in files:
+        try:
+            data = json.loads(_strip(open(path, encoding="utf-8").read()))
+        except json.JSONDecodeError as exc:
+            out.append((os.path.basename(path), "-", f"not valid JSON: {exc}")); continue
+        name = os.path.basename(path)
+        for key, section in (data.get("sections") or {}).items():
+            schema = schemas.get(section.get("type"))
+            if schema is None:
+                out.append((name, key, f"unknown section '{section.get('type')}'")); continue
+            check_values(f"{name} [{key}]", _defs(schema), section.get("settings"), out)
+            for bkey, block in (section.get("blocks") or {}).items():
+                btype = block.get("type")
+                if not _defs(schema, btype):
+                    out.append((name, f"{key}/{bkey}", f"block '{btype}' not declared")); continue
+                check_values(f"{name} [{key}/{bkey}]", _defs(schema, btype), block.get("settings"), out)
+
 
 bad = []
 for g in json.load(open('config/settings_schema.json')):
@@ -84,9 +169,11 @@ for k, v in data.items():
         elif abs(((v - mn) / st) - round((v - mn) / st)) > 1e-9:
             bad.append(('settings_data.json', k, f'value {v} is not on a step boundary (step={st})'))
 
+audit_templates(bad)
+
 if bad:
     print(f"{len(bad)} schema problem(s):\n")
     for origin, sid, why in bad:
         print(f"  {origin:52s} {sid:24s} {why}")
     sys.exit(1)
-print("settings schema is valid for Shopify")
+print("settings schema and every template value are valid for Shopify")

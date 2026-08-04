@@ -722,7 +722,7 @@ def build_support_pages():
                 "body": "<p>Shoe sizing is not consistent between brands, and the foot length is what actually has to fit. Four bands cover UK 3 to UK 14.</p>"}},
             "chart": items(table, heading="The four bands",
                            head_note="<p>The same measurements appear in the size guide that opens over the buy widget. They are read from one place, so the two cannot disagree.</p>",
-                           row_density="tight"),
+                           row_density="compact"),
             "howto": items(notes, heading="Measuring and choosing"),
             "buy": buy_widget_from_home(),
         },
@@ -805,7 +805,7 @@ def build_support_pages():
             "wont": items(wont, color_scheme="blue", heading="What it will not do",
                           head_note="<p>Every brand tells you what their socks do. This is the other half.</p>"),
             "activities": {"type": "link-cards", "settings": {
-                "color_scheme": "paper", "columns": "4", "numbered": False,
+                "color_scheme": "paper", "columns": len(ACTIVITIES), "numbered": False,
                 "eyebrow": "Built for", "heading": "Where this matters."},
                 "blocks": {
                     f"c{i}": {"type": "card", "settings": {

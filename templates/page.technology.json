@@ -130,7 +130,7 @@
       "type": "link-cards",
       "settings": {
         "color_scheme": "paper",
-        "columns": "4",
+        "columns": 4,
         "numbered": false,
         "eyebrow": "Built for",
         "heading": "Where this matters."

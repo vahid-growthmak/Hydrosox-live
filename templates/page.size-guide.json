@@ -22,7 +22,7 @@
         "numbered": false,
         "heading": "The four bands",
         "head_note": "<p>The same measurements appear in the size guide that opens over the buy widget. They are read from one place, so the two cannot disagree.</p>",
-        "row_density": "tight"
+        "row_density": "compact"
       },
       "blocks": {
         "i1": {

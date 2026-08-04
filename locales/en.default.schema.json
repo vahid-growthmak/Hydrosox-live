@@ -605,7 +605,9 @@
       "verified": "Verified purchase",
       "block_embed": "App embed",
       "block_embed_info": "Paste a review app's Liquid or block here (Judge.me and the like). When an embed is present the app owns the display and the reviews above are not shown.",
-      "embed": "Embed code"
+      "embed": "Embed code",
+      "rating_max_5": "Out of 5",
+      "rating_max_10": "Out of 10"
     },
     "cart_drawer": {
       "name": "Cart drawer",

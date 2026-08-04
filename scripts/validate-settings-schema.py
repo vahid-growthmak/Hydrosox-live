@@ -19,6 +19,12 @@ def audit(settings, origin, out):
         steps = (mx - mn) / st
         if steps > 101:
             out.append((origin, sid, f'{steps:.0f} steps, max is 101 (min={mn} max={mx} step={st})'))
+        # Shopify: "Range settings must have at least 3 steps." A two-value
+        # range is rejected outright, and a rejected section takes every
+        # template that references it down with it. Use a select instead.
+        if steps < 2:
+            out.append((origin, sid, f'{steps + 1:.0f} values, needs at least 3 — use a select '
+                                     f'(min={mn} max={mx} step={st})'))
         d = s.get('default')
         if d is not None:
             if d < mn or d > mx:
@@ -43,8 +49,22 @@ for f in sorted(glob.glob('sections/*.liquid')):
     except json.JSONDecodeError as e:
         bad.append((os.path.basename(f), '-', f'schema is not valid JSON: {e}')); continue
     audit(sc.get('settings', []), os.path.basename(f), bad)
+    name = os.path.basename(f)
+
+    # A section may declare presets or a default, never both.
+    if 'presets' in sc and 'default' in sc:
+        bad.append((name, '-', "has both 'presets' and 'default'"))
+
     for b in sc.get('blocks', []):
-        audit(b.get('settings', []), f"{os.path.basename(f)} > block:{b['type']}", bad)
+        bt = b.get('type', '?')
+        # Shopify reads a block type beginning with "app" as one of its own app
+        # blocks, which may carry neither settings nor a limit, and rejects the
+        # section: "Invalid block 'app_embed': 'limit' is not a valid attribute".
+        if bt.startswith('app') or bt.startswith('@'):
+            bad.append((name, bt, "block type collides with Shopify's app blocks — rename it"))
+        if b.get('settings') and not b.get('name'):
+            bad.append((name, bt, 'block has settings but no name'))
+        audit(b.get('settings', []), f"{name} > block:{bt}", bad)
 
 # Defaults in settings_data.json must satisfy the schema too.
 valid = {}

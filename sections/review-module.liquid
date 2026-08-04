@@ -19,6 +19,12 @@
 {%- endcomment -%}
 
 {%- liquid
+  comment
+    rating_max is a select, so it arrives as a string. It is coerced once here
+    because a string breaks the (1..max) loop that draws the filter chips.
+  endcomment
+  assign rating_max = section.settings.rating_max | plus: 0
+
   assign reviews = section.blocks | where: 'type', 'review'
   assign embeds = section.blocks | where: 'type', 'embed'
 
@@ -85,10 +91,10 @@
             <p class="hs-reviews__score">
               <span class="hs-h1 hs-tnum hs-reviews__score-value">{{ average }}</span>
               <span class="hs-caption hs-muted hs-reviews__score-of">
-                {{- 'reviews.out_of' | t: max: section.settings.rating_max -}}
+                {{- 'reviews.out_of' | t: max: rating_max -}}
               </span>
             </p>
-            {% render 'hs-stars', rating: average, max: section.settings.rating_max %}
+            {% render 'hs-stars', rating: average, max: rating_max %}
             <p class="hs-caption hs-muted hs-reviews__count">
               {{- 'reviews.count' | t: count: count -}}
             </p>
@@ -118,8 +124,8 @@
               <button class="hs-chip hs-caption is-active" type="button" data-hs-review-filter="all">
                 {{- 'reviews.filter_all' | t -}}
               </button>
-              {%- for rating in (1..section.settings.rating_max) -%}
-                {%- assign r = section.settings.rating_max | minus: forloop.index0 -%}
+              {%- for rating in (1..rating_max) -%}
+                {%- assign r = rating_max | minus: forloop.index0 -%}
                 {%- assign matches = reviews | where: 'settings.rating', r -%}
                 {%- if matches.size > 0 -%}
                   <button class="hs-chip hs-caption" type="button" data-hs-review-filter="rating:{{ r }}">
@@ -144,7 +150,7 @@
                 {{ block.shopify_attributes }}
               >
                 <article class="hs-reviews__card">
-                  {% render 'hs-stars', rating: block.settings.rating, max: section.settings.rating_max %}
+                  {% render 'hs-stars', rating: block.settings.rating, max: rating_max %}
                   {%- if block.settings.title != blank -%}
                     <h3 class="hs-h4 hs-reviews__item-title">{{ block.settings.title }}</h3>
                   {%- endif -%}
@@ -190,7 +196,7 @@
               "aggregateRating": {
                 "@type": "AggregateRating",
                 "ratingValue": {{ average }},
-                "bestRating": {{ section.settings.rating_max }},
+                "bestRating": {{ rating_max }},
                 "reviewCount": {{ count }}
               }
             }
@@ -270,13 +276,14 @@
       "default": true
     },
     {
-      "type": "range",
+      "type": "select",
       "id": "rating_max",
-      "min": 5,
-      "max": 10,
-      "step": 5,
       "label": "t:sections.reviews.rating_max",
-      "default": 5
+      "options": [
+        { "value": "5", "label": "t:sections.reviews.rating_max_5" },
+        { "value": "10", "label": "t:sections.reviews.rating_max_10" }
+      ],
+      "default": "5"
     },
     { "type": "text", "id": "aggregate_link_label", "label": "t:sections.reviews.aggregate_link_label" },
     { "type": "url", "id": "aggregate_link_url", "label": "t:sections.reviews.aggregate_link_url" },

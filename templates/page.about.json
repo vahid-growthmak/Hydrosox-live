@@ -7,39 +7,161 @@
       "type": "centre-note",
       "settings": {
         "color_scheme": "paper",
-        "hide_rule": true,
-        "max_width": 46,
-        "eyebrow": "Being written",
-        "heading": "About HydroSox",
         "heading_tag": "h1",
         "heading_size": "h2",
-        "body": "<p>Who is behind this, how the product was developed, and where we are based.</p>",
-        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder \u2014 when it ships it will carry real detail, not filler.</p>",
-        "pointer_label": "Answered today at",
-        "pointer_link_label": "About on the homepage",
-        "pointer_url": "/#about",
-        "cta_label": "Buy a pair",
-        "cta_url": "/products/hydrosox-waterproof-socks",
-        "link_label": "Back to the homepage",
-        "link_url": "/",
-        "tail_note": "<p>Or read the questions we have answered so far.</p>"
+        "hide_rule": true,
+        "eyebrow": "About HydroSox",
+        "heading": "A UK company selling one product properly.",
+        "body": "<p>One sock, one page, one price. The interesting part of this business is the membrane and the honesty, not the origin story.</p>"
       }
+    },
+    "what": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "heading": "What there is to say"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "What we sell",
+            "body": "<p>A waterproof sock with a licensed Porelle\u00ae membrane sealed inside a three-layer knit, in four colourways and four sizes, at one price that does not change depending on how you arrived.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "How we talk about it",
+            "body": "<p>Every claim on this site is either checkable or absent. We publish what the product will not do on the homepage, which is the half most brands leave out.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Where we are",
+            "body": "<p>A UK registered company with a UK warehouse. The address and phone number are on every page.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "gap": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "blue",
+        "layout": "list",
+        "numbered": false,
+        "heading": "What is missing, and why we are saying so"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Who is behind it",
+            "body": "<p>No founder or team is named on this site yet. That is a real gap, not a stylistic choice, and it will be filled with named people rather than a stock photograph and a mission statement.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "How the product was developed",
+            "body": "<p>Not written yet. When it is, it will not carry invented timelines or test counts.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2"
+      ]
+    },
+    "company": {
+      "type": "company-details",
+      "settings": {
+        "color_scheme": "wash",
+        "eyebrow": "The company",
+        "heading": "Who you are buying from, in full.",
+        "lede": "<p>If something goes wrong you should know exactly who you are dealing with.</p>",
+        "link_label": "",
+        "link_url": ""
+      },
+      "blocks": {
+        "d1": {
+          "type": "row",
+          "settings": {
+            "label": "Company",
+            "kind": "text",
+            "value": "HydroSox, UK registered"
+          }
+        },
+        "d2": {
+          "type": "row",
+          "settings": {
+            "label": "Registered address",
+            "kind": "address"
+          }
+        },
+        "d3": {
+          "type": "row",
+          "settings": {
+            "label": "Phone",
+            "kind": "tel"
+          }
+        },
+        "d4": {
+          "type": "row",
+          "settings": {
+            "label": "Email",
+            "kind": "email"
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ]
     },
     "reviews": {
       "type": "review-module",
       "settings": {
         "layout": "strip",
-        "color_scheme": "wash",
+        "color_scheme": "paper",
         "pace": "tight",
         "show_aggregate": true,
         "eyebrow": "Reviews",
         "aggregate_link_label": "Read every review",
         "aggregate_link_url": "/pages/reviews"
       }
+    },
+    "close": {
+      "type": "closing-cta",
+      "settings": {
+        "color_scheme": "ink",
+        "show_rule": false,
+        "eyebrow": "The product",
+        "heading": "Two decisions and a quantity.",
+        "body": "<p>No account needed.</p>",
+        "cta_label": "Buy a pair",
+        "cta_url": "/products/hydrosox-waterproof-socks",
+        "alt_label": "How it is built",
+        "alt_url": "/pages/technology"
+      }
     }
   },
   "order": [
+    "intro",
+    "what",
+    "gap",
+    "company",
     "reviews",
-    "intro"
+    "close"
   ]
 }

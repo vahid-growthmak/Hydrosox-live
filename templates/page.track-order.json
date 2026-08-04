@@ -3,40 +3,133 @@
    content itself is editable in the Shopify theme editor. */
 {
   "sections": {
-    "intro": {
-      "type": "centre-note",
-      "settings": {
-        "color_scheme": "paper",
-        "hide_rule": true,
-        "max_width": 46,
-        "eyebrow": "Being written",
-        "heading": "Track Order",
-        "heading_tag": "h1",
-        "heading_size": "h2",
-        "body": "<p>Where your order is, without needing to email anyone.</p>",
-        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder \u2014 when it ships it will carry real detail, not filler.</p>",
-        "pointer_label": "",
-        "pointer_link_label": "",
-        "pointer_url": "",
-        "cta_label": "Buy a pair",
-        "cta_url": "/products/hydrosox-waterproof-socks",
-        "link_label": "Back to the homepage",
-        "link_url": "/",
-        "tail_note": "<p>Or read the questions we have answered so far.</p>"
-      }
-    },
-    "breadcrumb": {
+    "crumb": {
       "type": "breadcrumb",
       "settings": {
         "color_scheme": "paper",
         "home_label": "Home",
+        "current_label": "Track order",
         "parent_label": "Help",
         "parent_url": "/pages/faq"
+      }
+    },
+    "intro": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "paper",
+        "heading_tag": "h1",
+        "heading_size": "h2",
+        "hide_rule": true,
+        "eyebrow": "Track order",
+        "heading": "Ask us and we will look.",
+        "body": "<p>There is no tracking widget on this page yet, because tracking is still being confirmed with the carrier. In the meantime a person will check for you.</p>"
+      }
+    },
+    "how": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": true,
+        "heading": "Three ways to find out"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Email us the order number",
+            "body": "<p>It is in your confirmation email, and it starts with a hash. We will tell you where the parcel actually is.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Or phone during the day",
+            "body": "<p>Quicker if your parcel is due today.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Order history, if you made an account",
+            "body": "<p>Guest checkout is the default here, so most orders will not have one. Nothing is hidden behind an account.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "contact": {
+      "type": "company-details",
+      "settings": {
+        "color_scheme": "wash",
+        "eyebrow": "Checking an order",
+        "heading": "Reach us directly.",
+        "lede": "<p>Have the order number to hand and this takes one message.</p>",
+        "link_label": "",
+        "link_url": ""
+      },
+      "blocks": {
+        "d1": {
+          "type": "row",
+          "settings": {
+            "label": "Company",
+            "kind": "text",
+            "value": "HydroSox, UK registered"
+          }
+        },
+        "d2": {
+          "type": "row",
+          "settings": {
+            "label": "Registered address",
+            "kind": "address"
+          }
+        },
+        "d3": {
+          "type": "row",
+          "settings": {
+            "label": "Phone",
+            "kind": "tel"
+          }
+        },
+        "d4": {
+          "type": "row",
+          "settings": {
+            "label": "Email",
+            "kind": "email"
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ]
+    },
+    "next": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "wash",
+        "heading_size": "h3",
+        "eyebrow": "While you are here",
+        "heading": "Delivery, in plain numbers.",
+        "body": "<p>What is settled and what is not, on the shipping page.</p>",
+        "cta_label": "Shipping and delivery",
+        "cta_url": "/pages/shipping-and-delivery",
+        "link_label": "Returns and refunds",
+        "link_url": "/pages/returns-and-refunds"
       }
     }
   },
   "order": [
-    "breadcrumb",
-    "intro"
+    "crumb",
+    "intro",
+    "how",
+    "contact",
+    "next"
   ]
 }

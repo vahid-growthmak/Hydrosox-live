@@ -7,22 +7,12 @@
       "type": "centre-note",
       "settings": {
         "color_scheme": "paper",
-        "hide_rule": true,
-        "max_width": 46,
-        "eyebrow": "Being written",
-        "heading": "Contact",
         "heading_tag": "h1",
         "heading_size": "h2",
-        "body": "<p>A form for anything not covered elsewhere. The email and phone in the footer work today.</p>",
-        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder \u2014 when it ships it will carry real detail, not filler.</p>",
-        "pointer_label": "",
-        "pointer_link_label": "",
-        "pointer_url": "",
-        "cta_label": "Buy a pair",
-        "cta_url": "/products/hydrosox-waterproof-socks",
-        "link_label": "Back to the homepage",
-        "link_url": "/",
-        "tail_note": "<p>Or read the questions we have answered so far.</p>"
+        "hide_rule": true,
+        "eyebrow": "Contact",
+        "heading": "A phone number, an email, and a person.",
+        "body": "<p>Both are published on every page of this site rather than held behind a form. The form below is for when writing it out is easier.</p>"
       }
     },
     "form": {
@@ -107,10 +97,129 @@
         "f1",
         "f2"
       ]
+    },
+    "details": {
+      "type": "company-details",
+      "settings": {
+        "color_scheme": "wash",
+        "eyebrow": "Direct",
+        "heading": "Reach us without the form.",
+        "lede": "<p>Phone during the day, or email any time. Registered address below, for anything that has to be posted.</p>",
+        "link_label": "",
+        "link_url": ""
+      },
+      "blocks": {
+        "d1": {
+          "type": "row",
+          "settings": {
+            "label": "Company",
+            "kind": "text",
+            "value": "HydroSox, UK registered"
+          }
+        },
+        "d2": {
+          "type": "row",
+          "settings": {
+            "label": "Registered address",
+            "kind": "address"
+          }
+        },
+        "d3": {
+          "type": "row",
+          "settings": {
+            "label": "Phone",
+            "kind": "tel"
+          }
+        },
+        "d4": {
+          "type": "row",
+          "settings": {
+            "label": "Email",
+            "kind": "email"
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ]
+    },
+    "routes": {
+      "type": "link-cards",
+      "settings": {
+        "color_scheme": "wash",
+        "columns": 3,
+        "numbered": false,
+        "eyebrow": "Faster than waiting",
+        "heading": "Most answers are already written down.",
+        "lede": "<p>If one of these covers it you do not need to wait for a reply.</p>"
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "title": "Size guide",
+            "body": "<p>Measurement-led, four bands, and what to do if you fall between two.</p>",
+            "link": "/pages/size-guide"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "title": "Shipping and delivery",
+            "body": "<p>What is settled and what is still being confirmed.</p>",
+            "link": "/pages/shipping-and-delivery"
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "title": "Returns and refunds",
+            "body": "<p>Fourteen days, no reason needed.</p>",
+            "link": "/pages/returns-and-refunds"
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "title": "Care and washing",
+            "body": "<p>What shortens the life of a membrane.</p>",
+            "link": "/pages/care-and-washing"
+          }
+        },
+        "c5": {
+          "type": "card",
+          "settings": {
+            "title": "Track an order",
+            "body": "<p>Ask us and we will look.</p>",
+            "link": "/pages/track-order"
+          }
+        },
+        "c6": {
+          "type": "card",
+          "settings": {
+            "title": "Questions",
+            "body": "<p>The things people ask before they buy.</p>",
+            "link": "/pages/faq"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ]
     }
   },
   "order": [
+    "intro",
+    "details",
     "form",
-    "intro"
+    "routes"
   ]
 }

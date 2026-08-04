@@ -3,92 +3,415 @@
    content itself is editable in the Shopify theme editor. */
 {
   "sections": {
-    "intro": {
-      "type": "centre-note",
-      "settings": {
-        "color_scheme": "blue",
-        "hide_rule": false,
-        "max_width": 46,
-        "eyebrow": "Designed with wudu in mind",
-        "heading": "Built for the three conditions masah turns on.",
-        "heading_tag": "h1",
-        "heading_size": "h2",
-        "body": "<p>Waterproof. Structured to hold its shape. Shaped to stay on the foot. Those are the physical properties the practice turns on, and they are the ones we can speak to.</p>"
-      }
-    },
-    "properties": {
-      "type": "link-cards",
+    "crumb": {
+      "type": "breadcrumb",
       "settings": {
         "color_scheme": "paper",
-        "columns": 3,
-        "numbered": true,
-        "card_fill": "solid",
-        "hide_rule": false,
-        "eyebrow": "What it is built for",
-        "heading": "The three properties the conditions rest on."
+        "home_label": "Home",
+        "current_label": "Wudu socks"
+      }
+    },
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "color_scheme": "ink",
+        "min_height": 40,
+        "eyebrow": "Designed with wudu in mind",
+        "heading": "Built for the three conditions masah turns on.",
+        "lede": "<p>Waterproof, structured to hold its shape, shaped to stay on the foot. Those are physical properties we can state plainly. What they mean for you is yours to judge.</p>",
+        "image_fallback": "hydrosox-colourways.jpg",
+        "image_alt": "Four HydroSox colourways shown together.",
+        "focal_point": "50% 45%",
+        "scrim_vertical": 55,
+        "scrim_horizontal": 35,
+        "cta_label": "Buy a pair",
+        "cta_url": "/products/hydrosox-waterproof-socks",
+        "link_label": "How it is built",
+        "link_url": "/pages/technology"
+      }
+    },
+    "certificate": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "blue",
+        "layout": "list",
+        "numbered": false,
+        "heading": "On certification",
+        "head_note": "<p>The most important thing on this page, so it comes first.</p>"
       },
       "blocks": {
-        "c1": {
-          "type": "card",
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "No certificate has been issued",
+            "body": "<p>Not by us, not by anyone else, not yet. A brand cannot award itself one, and we are not going to imply approval we do not have by leaving the question unanswered.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "What we can state instead",
+            "body": "<p>The physical facts: what the membrane is, how the sock is constructed, and how it behaves. Those are checkable. The ruling is not ours to make.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2"
+      ]
+    },
+    "conditions": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": true,
+        "heading": "The three properties, one at a time"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
           "settings": {
             "title": "Waterproof",
-            "body": "A licensed Porelle\u00ae membrane sealed inside a three-layer knit. The same membrane and the same structure as every other pair we sell."
+            "body": "<p>A licensed Porelle\u00ae membrane sealed between two knitted layers. Water does not pass through it. This is the same membrane in every HydroSox pair, not a separate wudu version.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Holds its shape",
+            "body": "<p>Structured so it stays a covering over the foot rather than collapsing flat against it when worn.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Stays on the foot",
+            "body": "<p>A close, shaped fit that stays in place through normal wear, rather than working loose over a day.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "credentials": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "list",
+        "numbered": false,
+        "heading": "Why this pair rather than another",
+        "head_note": "<p>The differentiator is the named membrane. Everything else in this category tends to be asserted rather than evidenced.</p>"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "The membrane is named and licensed",
+            "body": "<p>Porelle\u00ae is a third-party laminate. You can look it up, and someone other than us stands behind it. Compare that with an unnamed waterproof layer.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Three layers, each specified",
+            "body": "<p>Lining, membrane, wear face. The construction page sets out what each one is for.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "PFOA free, stated",
+            "body": "<p>Printed because it is true, not because it tests well.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "travel": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "heading": "Hajj, Umrah and travel"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Long days away from home",
+            "body": "<p>Pilgrimage travel means long days, shared ablution facilities and little chance to dry anything properly. A pair that keeps water out and can be washed cool and air-dried overnight is doing useful work.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Multiples, not singles",
+            "body": "<p>Most people buying for travel buy more than one pair. The quantity ladder on this page prices that in rather than treating it as a bulk request.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2"
+      ]
+    },
+    "buy": {
+      "type": "buy-widget",
+      "blocks": {
+        "c1": {
+          "type": "colour",
+          "settings": {
+            "value": "Black",
+            "colour_one": "#111111"
           }
         },
         "c2": {
-          "type": "card",
+          "type": "colour",
           "settings": {
-            "title": "Holds its shape",
-            "body": "Structured so it stands upright unsupported rather than collapsing when it is not being worn."
+            "value": "Black / Grey",
+            "colour_one": "#111111",
+            "colour_two": "#8b9096"
           }
         },
         "c3": {
-          "type": "card",
+          "type": "colour",
           "settings": {
-            "title": "Stays on the foot",
-            "body": "Shaped to stay put through a normal day of walking, without being tied or fastened to the leg."
+            "value": "Black / Navy",
+            "colour_one": "#111111",
+            "colour_two": "#1f3160"
+          }
+        },
+        "c4": {
+          "type": "colour",
+          "settings": {
+            "value": "White",
+            "colour_one": "#f4f6f8"
+          }
+        },
+        "z1": {
+          "type": "size",
+          "settings": {
+            "value": "S",
+            "sublabel": "UK 3-5"
+          }
+        },
+        "z2": {
+          "type": "size",
+          "settings": {
+            "value": "M",
+            "sublabel": "UK 6-8"
+          }
+        },
+        "z3": {
+          "type": "size",
+          "settings": {
+            "value": "L",
+            "sublabel": "UK 9-11"
+          }
+        },
+        "z4": {
+          "type": "size",
+          "settings": {
+            "value": "XL",
+            "sublabel": "UK 12-14"
+          }
+        },
+        "t1": {
+          "type": "tier",
+          "settings": {
+            "label": "Single pair",
+            "quantity": 1,
+            "discount": 0
+          }
+        },
+        "t2": {
+          "type": "tier",
+          "settings": {
+            "label": "Two pairs",
+            "quantity": 2,
+            "discount": 3.01
+          }
+        },
+        "t3": {
+          "type": "tier",
+          "settings": {
+            "label": "Three pairs",
+            "quantity": 3,
+            "discount": 7.01
+          }
+        },
+        "t4": {
+          "type": "tier",
+          "settings": {
+            "label": "Four pairs",
+            "quantity": 4,
+            "discount": 12.01
+          }
+        },
+        "t5": {
+          "type": "tier",
+          "settings": {
+            "label": "Five pairs",
+            "quantity": 5,
+            "discount": 20.01
+          }
+        },
+        "r1": {
+          "type": "trust",
+          "settings": {
+            "label": "Delivery",
+            "value": "Free UK delivery on two pairs or more"
+          }
+        },
+        "r2": {
+          "type": "trust",
+          "settings": {
+            "label": "Dispatch",
+            "value": "UK company, UK warehouse"
+          }
+        },
+        "r3": {
+          "type": "trust",
+          "settings": {
+            "label": "Checkout",
+            "value": "Guest \u2014 no account required"
+          }
+        },
+        "r4": {
+          "type": "trust",
+          "settings": {
+            "label": "Payment",
+            "value": "Visa \u00b7 Mastercard \u00b7 American Express \u00b7 Apple Pay \u00b7 Google Pay \u00b7 Shop Pay"
+          }
+        },
+        "l1": {
+          "type": "link",
+          "settings": {
+            "label": "Full product details",
+            "use_product_url": true
+          }
+        },
+        "l2": {
+          "type": "link",
+          "settings": {
+            "label": "How it is built",
+            "link": "/#construction"
+          }
+        },
+        "l3": {
+          "type": "link",
+          "settings": {
+            "label": "Delivery and sizing",
+            "link": "/#faq"
+          }
+        },
+        "g1": {
+          "type": "guide_row",
+          "settings": {
+            "size": "S",
+            "foot_length": "22.0 - 24.0 cm",
+            "uk_shoe": "UK 3-5"
+          }
+        },
+        "g2": {
+          "type": "guide_row",
+          "settings": {
+            "size": "M",
+            "foot_length": "24.5 - 26.5 cm",
+            "uk_shoe": "UK 6-8"
+          }
+        },
+        "g3": {
+          "type": "guide_row",
+          "settings": {
+            "size": "L",
+            "foot_length": "27.0 - 29.0 cm",
+            "uk_shoe": "UK 9-11"
+          }
+        },
+        "g4": {
+          "type": "guide_row",
+          "settings": {
+            "size": "XL",
+            "foot_length": "29.5 - 32.0 cm",
+            "uk_shoe": "UK 12-14"
+          }
+        },
+        "n1": {
+          "type": "guide_note",
+          "settings": {
+            "label": "How to measure",
+            "body": "Stand on a sheet of paper with your heel to a wall, mark the tip of your longest toe, and measure heel to mark."
+          }
+        },
+        "n2": {
+          "type": "guide_note",
+          "settings": {
+            "label": "Between two sizes",
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
           }
         }
       },
       "block_order": [
         "c1",
         "c2",
-        "c3"
-      ]
-    },
-    "certification": {
-      "type": "content-columns",
+        "c3",
+        "c4",
+        "z1",
+        "z2",
+        "z3",
+        "z4",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "l1",
+        "l2",
+        "l3",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "n1",
+        "n2"
+      ],
       "settings": {
+        "product": "hydrosox-waterproof-socks",
         "color_scheme": "paper",
-        "layout": "media",
-        "hide_rule": false,
-        "eyebrow": "On certification",
-        "heading": "Not something a brand can award itself.",
-        "prose": "",
-        "media_fallback": "wudu-design-sheet.webp",
-        "media_alt": "HydroSox wudu design sheet: structured construction that holds its shape, shaped to stay on the foot",
-        "head_note": "<p>Certification is not something a brand can award itself. The day a certifying institution names this product, it will be stated here with the name of the body that issued it and nothing more.</p>",
-        "link_label": "info@hydrosox.com",
-        "link_url": "mailto:info@hydrosox.com"
-      }
-    },
-    "close": {
-      "type": "closing-cta",
-      "settings": {
-        "color_scheme": "paper",
-        "show_rule": false,
-        "heading": "The same sock, whichever reason brought you here.",
-        "cta_label": "Buy a pair",
-        "cta_url": "/products/hydrosox-waterproof-socks",
-        "alt_label": "How it is built",
-        "alt_url": "/#construction"
-      }
-    },
-    "breadcrumb": {
-      "type": "breadcrumb",
-      "settings": {
-        "color_scheme": "paper",
-        "home_label": "Home"
+        "anchor_id": "buy",
+        "eyebrow": "Order",
+        "heading": "Two decisions and a quantity.",
+        "lede": "<p>One product, one page, one price that does not change depending on how you found us.</p>",
+        "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
+        "colour_option_name": "Colour",
+        "size_option_name": "Size",
+        "quantity_label": "Quantity",
+        "default_quantity": 2,
+        "add_label": "Add to cart",
+        "save_label": "Save",
+        "per_unit_label": "per pair",
+        "guide_label": "Size guide",
+        "guide_heading": "Size guide",
+        "guide_intro": "Measure the foot rather than relying on shoe size \u2014 sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_col_size": "Size",
+        "guide_col_length": "Foot length",
+        "guide_col_shoe": "UK shoe",
+        "guide_link_label": "The full sizing and fit guide",
+        "guide_close_label": "Close"
       }
     },
     "reviews": {
@@ -102,14 +425,134 @@
         "aggregate_link_label": "Read every review",
         "aggregate_link_url": "/pages/reviews"
       }
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Are these actually waterproof, or just water resistant?",
+            "answer": "<p>Waterproof. The middle layer is a Porelle\u00ae membrane \u2014 a licensed third-party laminate, not a name we invented \u2014 sealed inside a three-layer knit. Water that goes in over the top of the cuff is inside the sock, and no waterproof sock behaves otherwise.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Will my feet still sweat?",
+            "answer": "<p>If you work hard enough, yes. The membrane moves vapour out, which delays the point at which the foot is wet from the inside. It does not repeal it. Breathable and dry are not the same word.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Do they replace waterproof boots?",
+            "answer": "<p>No. They are one component of a system. If your footwear is wrong for the ground you are on, a sock will not fix it.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "What size should I order?",
+            "answer": "<p>Four bands: S covers UK 3-5, M covers UK 6-8, L covers UK 9-11, XL covers UK 12-14. The size guide opens over the buy widget without leaving the page, and it is measurement-led \u2014 shoe sizing is not consistent between brands.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "faq",
+        "one_at_a_time": false,
+        "eyebrow": "Questions",
+        "heading": "The things people ask before they buy.",
+        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/#about",
+        "cta_label": "Buy a pair",
+        "cta_link": "/#buy",
+        "cta_note": "Two decisions and a quantity. No account needed."
+      }
+    },
+    "scholarly": {
+      "type": "company-details",
+      "settings": {
+        "color_scheme": "wash",
+        "eyebrow": "Scholarly questions",
+        "heading": "Ask about the construction, and we will answer factually.",
+        "lede": "<p>If you need a specific detail about how the sock is made in order to reach your own judgement, ask. We will tell you what it is made of and how it behaves. We will not offer a ruling on your behalf.</p>",
+        "link_label": "",
+        "link_url": ""
+      },
+      "blocks": {
+        "d1": {
+          "type": "row",
+          "settings": {
+            "label": "Company",
+            "kind": "text",
+            "value": "HydroSox, UK registered"
+          }
+        },
+        "d2": {
+          "type": "row",
+          "settings": {
+            "label": "Registered address",
+            "kind": "address"
+          }
+        },
+        "d3": {
+          "type": "row",
+          "settings": {
+            "label": "Phone",
+            "kind": "tel"
+          }
+        },
+        "d4": {
+          "type": "row",
+          "settings": {
+            "label": "Email",
+            "kind": "email"
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ]
+    },
+    "close": {
+      "type": "closing-cta",
+      "settings": {
+        "color_scheme": "ink",
+        "show_rule": false,
+        "eyebrow": "Whichever reason brought you here",
+        "heading": "The same sock, at the same price.",
+        "body": "<p>One product, one page, one price that does not change depending on how you found us.</p>",
+        "cta_label": "Buy a pair",
+        "cta_url": "/products/hydrosox-waterproof-socks",
+        "alt_label": "How to make masah",
+        "alt_url": "/pages/how-to-make-masah"
+      }
     }
   },
   "order": [
-    "breadcrumb",
-    "intro",
-    "properties",
-    "certification",
+    "crumb",
+    "hero",
+    "certificate",
+    "conditions",
+    "credentials",
+    "travel",
+    "buy",
     "reviews",
+    "faq",
+    "scholarly",
     "close"
   ]
 }

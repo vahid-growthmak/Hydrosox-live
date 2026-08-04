@@ -843,6 +843,460 @@ def build_support_pages():
     print(f"  page.technology: intro + membrane + {len(layer_items)} layers + testing + limits + activities + buy")
 
 
+# ------------------------------------------------------- support and content
+
+def note(**s):
+    base = {"color_scheme": "paper"}
+    base.update(s)
+    return {"type": "centre-note", "settings": base}
+
+
+def cards(entries, **s):
+    """link-cards from (title, body, link) triples."""
+    blocks, order = {}, []
+    for i, e in enumerate(entries, 1):
+        title, body, link = (e + (None,))[:3] if len(e) < 3 else e
+        st = {"title": title, "body": body}
+        if link:
+            st["link"] = link
+        blocks[f"c{i}"] = {"type": "card", "settings": st}
+        order.append(f"c{i}")
+    base = {"color_scheme": "paper", "columns": 3, "numbered": False}
+    base.update(s)
+    return {"type": "link-cards", "settings": base, "blocks": blocks, "block_order": order}
+
+
+def closing(**s):
+    base = {"color_scheme": "ink", "show_rule": False}
+    base.update(s)
+    return {"type": "closing-cta", "settings": base}
+
+
+def company_rows(**s):
+    base = {
+        "color_scheme": "wash",
+        "eyebrow": "Reach a person",
+        "heading": "Who you are dealing with.",
+        "lede": "<p>Published here rather than buried in a policy page. The phone number and email are answered by people, not a form queue.</p>",
+        "link_label": "",
+        "link_url": "",
+    }
+    base.update(s)
+    return {
+        "type": "company-details",
+        "settings": base,
+        "blocks": {
+            "d1": {"type": "row", "settings": {"label": "Company", "kind": "text", "value": "HydroSox, UK registered"}},
+            "d2": {"type": "row", "settings": {"label": "Registered address", "kind": "address"}},
+            "d3": {"type": "row", "settings": {"label": "Phone", "kind": "tel"}},
+            "d4": {"type": "row", "settings": {"label": "Email", "kind": "email"}},
+        },
+        "block_order": ["d1", "d2", "d3", "d4"],
+    }
+
+
+# What is settled, and what is honestly not, on the delivery side. Stated once
+# here because four pages need to agree with each other and with the policy.
+DELIVERY_SETTLED = [
+    ("Free on two pairs or more",
+     "<p>The threshold sits at the two-pair price, so the saving and the free delivery arrive together.</p>"),
+    ("On a single pair, delivery is charged",
+     "<p>The exact amount is shown at checkout before you pay. You are never charged a delivery cost you have not seen.</p>"),
+    ("Dispatched from the United Kingdom",
+     "<p>UK company, UK stock. Nothing is drop-shipped from elsewhere.</p>"),
+    ("No delivery speed is promised",
+     "<p>Deliberately. We will not print a next-day promise that confirmed stock cannot support, so no speed appears anywhere on this site until it can.</p>"),
+]
+
+DELIVERY_OPEN = [
+    ("Dispatch cut-off", "<p>Being confirmed against stock.</p>"),
+    ("Carrier and transit time", "<p>Being confirmed.</p>"),
+    ("Tracking", "<p>Whether a tracking link is sent is being confirmed.</p>"),
+    ("Outside the UK", "<p>Destinations and whether duties are collected at checkout are being confirmed.</p>"),
+]
+
+
+def build_content_pages():
+    """The pages the sitemap describes but that were still single placeholders.
+
+    Everything here is built from facts the site already states or from UK
+    statute. Where the sitemap forbids invention — a founder's name, a warranty
+    term, a delivery date, masah guidance — the page says plainly that it is not
+    settled yet and points at what is. That is the honest version of a
+    placeholder: real structure, real detail where it exists, and no filler.
+    """
+
+    # 24. Shipping and delivery
+    save("shipping-and-delivery", {
+        "sections": {
+            "crumb": breadcrumb("shipping-and-delivery", "Shipping and delivery"),
+            "intro": note(heading_tag="h1", heading_size="h2", hide_rule=True,
+                eyebrow="Shipping and delivery",
+                heading="What is settled, and what is not.",
+                body="<p>Everything below is either already true at checkout or openly unfinished. Nothing in between.</p>"),
+            "settled": items(DELIVERY_SETTLED, heading="Settled today"),
+            "open": items(DELIVERY_OPEN, color_scheme="blue", heading="Still being confirmed",
+                head_note="<p>These are the questions people ask most, and we would rather say we do not know yet than guess.</p>"),
+            "policy": note(color_scheme="wash", heading_size="h3",
+                eyebrow="The formal version",
+                heading="The shipping policy is the binding text.",
+                body="<p>This page explains it. The policy states it.</p>",
+                cta_label="Read the shipping policy", cta_url="/policies/shipping-policy",
+                link_label="Returns and refunds", link_url="/pages/returns-and-refunds"),
+            "buy": buy_widget_from_home(),
+        },
+        "order": ["crumb", "intro", "settled", "open", "policy", "buy"],
+    })
+    print("  page.shipping-and-delivery: 4 sections + buy widget")
+
+    # 25. Returns and refunds
+    save("returns-and-refunds", {
+        "sections": {
+            "crumb": breadcrumb("returns-and-refunds", "Returns and refunds"),
+            "intro": note(heading_tag="h1", heading_size="h2", hide_rule=True,
+                eyebrow="Returns and refunds",
+                heading="Fourteen days, no reason needed.",
+                body="<p>Your statutory rights are the floor here, not the ceiling. Nothing on this page reduces them.</p>"),
+            "how": items([
+                ("Tell us within 14 days",
+                 "<p>Fourteen days from the day the parcel arrives. Email or phone us — a clear statement that you are cancelling is enough, there is no form to find.</p>"),
+                ("Send them back within 14 more",
+                 "<p>Unworn, in the original packaging, with any seal intact. You may inspect them as you would in a shop.</p>"),
+                ("Refunded within 14 days of arrival",
+                 "<p>The price plus the standard outbound delivery charge if you paid one, back to the card you used.</p>"),
+            ], numbered=True, heading="Changing your mind"),
+            "faulty": items([
+                ("Within 30 days, reject and get a full refund",
+                 "<p>Under the Consumer Rights Act 2015 goods must be of satisfactory quality, fit for purpose and as described.</p>"),
+                ("After 30 days, repair or replacement",
+                 "<p>And a refund or price reduction if that does not resolve it. We do not charge for returning faulty goods.</p>"),
+            ], color_scheme="wash", heading="If something is actually wrong with them"),
+            "not": items([
+                ("Normal wear is not a fault",
+                 "<p>A membrane ends through abrasion, heat and clogged pores. That is wear, not a defect.</p>"),
+                ("Washing against the care instructions",
+                 "<p>Fabric softener, bleach, a hot wash or a tumble dryer will end a membrane early. The care page explains why.</p>"),
+            ], color_scheme="blue", heading="What is not covered"),
+            "policy": note(color_scheme="wash", heading_size="h3",
+                eyebrow="The formal version",
+                heading="The refund policy is the binding text.",
+                body="<p>Who pays return postage and the return address are stated there.</p>",
+                cta_label="Read the refund policy", cta_url="/policies/refund-policy",
+                link_label="Care and washing", link_url="/pages/care-and-washing"),
+            "buy": buy_widget_from_home(),
+        },
+        "order": ["crumb", "intro", "how", "faulty", "not", "policy", "buy"],
+    })
+    print("  page.returns-and-refunds: 5 sections + buy widget")
+
+    # 26. Warranty
+    save("warranty", {
+        "sections": {
+            "crumb": breadcrumb("warranty", "Warranty"),
+            "intro": note(heading_tag="h1", heading_size="h2", hide_rule=True,
+                eyebrow="Warranty",
+                heading="We have not set warranty terms yet.",
+                body="<p>Saying so is more useful than a vague promise. Your statutory rights already cover a great deal, and they apply whether or not a brand offers anything on top.</p>",
+                footnote="<p>When terms are set they will be published here in full, including what they exclude.</p>"),
+            "rights": items([
+                ("Satisfactory quality, fit for purpose, as described",
+                 "<p>The Consumer Rights Act 2015 requires all three. A sock that is not waterproof is not as described, and that is a fault however long you have had it.</p>"),
+                ("Thirty days to reject outright",
+                 "<p>A full refund, no repair attempt required.</p>"),
+                ("Six months where the fault is presumed ours",
+                 "<p>Within six months of delivery a fault is assumed to have been there from the start unless we can show otherwise.</p>"),
+            ], numbered=True, heading="What you already have"),
+            "fault": items([
+                ("A fault", "<p>Delamination, a seam that lets water through, a membrane that leaks in the first weeks of normal use.</p>"),
+                ("Wear", "<p>Thinning at the heel or toe over months of use, abrasion inside a boot, damage from toenails or the wrong wash cycle.</p>"),
+            ], color_scheme="wash", heading="Fault or wear",
+                head_note="<p>The honest line between the two, so you know which conversation you are having.</p>"),
+            "contact": company_rows(eyebrow="Something wrong?",
+                heading="Tell a person, not a form.",
+                lede="<p>Describe what happened and when. We would rather hear it than not.</p>"),
+            "buy": buy_widget_from_home(),
+        },
+        "order": ["crumb", "intro", "rights", "fault", "contact", "buy"],
+    })
+    print("  page.warranty: 4 sections + contact + buy widget")
+
+    # 27. Track order
+    save("track-order", {
+        "sections": {
+            "crumb": breadcrumb("track-order", "Track order"),
+            "intro": note(heading_tag="h1", heading_size="h2", hide_rule=True,
+                eyebrow="Track order",
+                heading="Ask us and we will look.",
+                body="<p>There is no tracking widget on this page yet, because tracking is still being confirmed with the carrier. In the meantime a person will check for you.</p>"),
+            "how": items([
+                ("Email us the order number",
+                 "<p>It is in your confirmation email, and it starts with a hash. We will tell you where the parcel actually is.</p>"),
+                ("Or phone during the day",
+                 "<p>Quicker if your parcel is due today.</p>"),
+                ("Order history, if you made an account",
+                 "<p>Guest checkout is the default here, so most orders will not have one. Nothing is hidden behind an account.</p>"),
+            ], numbered=True, heading="Three ways to find out"),
+            "contact": company_rows(eyebrow="Checking an order",
+                heading="Reach us directly.",
+                lede="<p>Have the order number to hand and this takes one message.</p>"),
+            "next": note(color_scheme="wash", heading_size="h3",
+                eyebrow="While you are here",
+                heading="Delivery, in plain numbers.",
+                body="<p>What is settled and what is not, on the shipping page.</p>",
+                cta_label="Shipping and delivery", cta_url="/pages/shipping-and-delivery",
+                link_label="Returns and refunds", link_url="/pages/returns-and-refunds"),
+        },
+        "order": ["crumb", "intro", "how", "contact", "next"],
+    })
+    print("  page.track-order: 3 sections + contact")
+
+    # 11. How to make masah
+    save("how-to-make-masah", {
+        "sections": {
+            "crumb": breadcrumb("how-to-make-masah", "How to make masah"),
+            "intro": note(heading_tag="h1", heading_size="h2", hide_rule=True,
+                eyebrow="How to make masah",
+                heading="Guidance we will not write ourselves.",
+                body="<p>Step-by-step guidance on masah has to be written or reviewed by someone who understands the practice. We are a sock company. Publishing our own version of it would be presumptuous, and getting it subtly wrong would be worse.</p>",
+                footnote="<p>This page will carry reviewed guidance, credited to whoever reviewed it. Until then, what we can speak to is the sock.</p>"),
+            "conditions": items([
+                ("Waterproof", "<p>A Porelle® membrane sealed inside a three-layer knit. Water does not pass through it.</p>"),
+                ("Holds its shape", "<p>Structured so it stays as a covering rather than collapsing against the foot.</p>"),
+                ("Stays on the foot", "<p>Shaped and close-fitting, so it remains in place in normal use.</p>"),
+            ], numbered=True, heading="The three physical properties",
+                head_note="<p>These are the properties the masah conditions rest on, and they are ours to state because they are facts about the product rather than rulings.</p>"),
+            "scholarly": company_rows(eyebrow="Scholarly questions",
+                heading="Ask, and we will say what we know.",
+                lede="<p>If you need to know something specific about the construction in order to reach your own judgement, ask and we will answer factually. We will not offer a ruling.</p>"),
+            "wudu": note(color_scheme="wash", heading_size="h3",
+                eyebrow="The product",
+                heading="What is built for this, and what is not certified.",
+                body="<p>No certificate has been issued, and the wudu page says so on its face.</p>",
+                cta_label="Wudu socks", cta_url="/pages/wudu-socks",
+                link_label="How it is built", link_url="/pages/technology"),
+            "buy": buy_widget_from_home(),
+        },
+        "order": ["crumb", "intro", "conditions", "scholarly", "wudu", "buy"],
+    })
+    print("  page.how-to-make-masah: 4 sections + buy widget")
+
+    # 20. Our partners
+    save("our-partners", {
+        "sections": {
+            "crumb": breadcrumb("our-partners", "Our partners"),
+            "intro": note(heading_tag="h1", heading_size="h2", hide_rule=True,
+                eyebrow="Our partners",
+                heading="Two, and only what we can evidence.",
+                body="<p>A partnership is easy to assert on a website and harder to demonstrate. Both are named below; the detail of each arrangement is published once there is something concrete to point at.</p>"),
+            "who": items([
+                ("The Fair Group",
+                 "<p>Named as a partner. The nature and scope of the arrangement is published here once it can be evidenced rather than asserted.</p>"),
+                ("Humanity Welfare Trust",
+                 "<p>Named as a partner. Same standard: what the relationship actually involves, published when it can be shown.</p>"),
+            ], heading="Who we work with"),
+            "why": note(color_scheme="wash", heading_size="h3",
+                eyebrow="Why so little here",
+                heading="Because the alternative is a logo wall.",
+                body="<p>Unevidenced partner claims are one of the easiest things to put on a store and one of the least useful to read. This page stays short until it can be specific.</p>"),
+            "close": closing(eyebrow="Working with us",
+                heading="Trade and press enquiries reach a person.",
+                body="<p>No public trade pricing, and no form queue.</p>",
+                cta_label="Partner with us", cta_url="/pages/partner-with-us",
+                alt_label="Press", alt_url="/pages/press"),
+        },
+        "order": ["crumb", "intro", "who", "why", "close"],
+    })
+    print("  page.our-partners: 3 sections + closing")
+
+    # 19. About
+    save("about", {
+        "sections": {
+            "intro": note(heading_tag="h1", heading_size="h2", hide_rule=True,
+                eyebrow="About HydroSox",
+                heading="A UK company selling one product properly.",
+                body="<p>One sock, one page, one price. The interesting part of this business is the membrane and the honesty, not the origin story.</p>"),
+            "what": items([
+                ("What we sell",
+                 "<p>A waterproof sock with a licensed Porelle® membrane sealed inside a three-layer knit, in four colourways and four sizes, at one price that does not change depending on how you arrived.</p>"),
+                ("How we talk about it",
+                 "<p>Every claim on this site is either checkable or absent. We publish what the product will not do on the homepage, which is the half most brands leave out.</p>"),
+                ("Where we are",
+                 "<p>A UK registered company with a UK warehouse. The address and phone number are on every page.</p>"),
+            ], heading="What there is to say"),
+            "gap": items([
+                ("Who is behind it",
+                 "<p>No founder or team is named on this site yet. That is a real gap, not a stylistic choice, and it will be filled with named people rather than a stock photograph and a mission statement.</p>"),
+                ("How the product was developed",
+                 "<p>Not written yet. When it is, it will not carry invented timelines or test counts.</p>"),
+            ], color_scheme="blue", heading="What is missing, and why we are saying so"),
+            "company": company_rows(eyebrow="The company",
+                heading="Who you are buying from, in full.",
+                lede="<p>If something goes wrong you should know exactly who you are dealing with.</p>"),
+            "reviews": review_module("paper"),
+            "close": closing(eyebrow="The product",
+                heading="Two decisions and a quantity.",
+                body="<p>No account needed.</p>",
+                cta_label="Buy a pair", cta_url=PRODUCT_URL,
+                alt_label="How it is built", alt_url="/pages/technology"),
+        },
+        "order": ["intro", "what", "gap", "company", "reviews", "close"],
+    })
+    print("  page.about: 3 sections + company + reviews + closing")
+
+
+def build_wudu_page():
+    """Sitemap page 7. The reference had six sections against nine rows, and
+    opened on a centre-note rather than a hero, so it read like a placeholder.
+
+    7.4 is BLOCKING in the sitemap: HydroSox publishes no certificate. That is
+    stated on the page's face rather than implied by omission, which is also
+    what stops the page carrying paid spend by accident.
+    """
+    save("wudu-socks", {
+        "sections": {
+            "crumb": breadcrumb("wudu-socks", "Wudu socks"),
+            "hero": {
+                "type": "page-hero",
+                "settings": {
+                    "color_scheme": "ink",
+                    "min_height": 40,
+                    "eyebrow": "Designed with wudu in mind",
+                    "heading": "Built for the three conditions masah turns on.",
+                    "lede": "<p>Waterproof, structured to hold its shape, shaped to stay on the foot. Those are physical properties we can state plainly. What they mean for you is yours to judge.</p>",
+                    "image_fallback": "hydrosox-colourways.jpg",
+                    "image_alt": "Four HydroSox colourways shown together.",
+                    "focal_point": "50% 45%",
+                    "scrim_vertical": 55,
+                    "scrim_horizontal": 35,
+                    "cta_label": "Buy a pair",
+                    "cta_url": PRODUCT_URL,
+                    "link_label": "How it is built",
+                    "link_url": "/pages/technology",
+                },
+            },
+            "certificate": items([
+                ("No certificate has been issued",
+                 "<p>Not by us, not by anyone else, not yet. A brand cannot award itself one, and we are not going to imply approval we do not have by leaving the question unanswered.</p>"),
+                ("What we can state instead",
+                 "<p>The physical facts: what the membrane is, how the sock is constructed, and how it behaves. Those are checkable. The ruling is not ours to make.</p>"),
+            ], color_scheme="blue", heading="On certification",
+                head_note="<p>The most important thing on this page, so it comes first.</p>"),
+            "conditions": items([
+                ("Waterproof",
+                 "<p>A licensed Porelle® membrane sealed between two knitted layers. Water does not pass through it. This is the same membrane in every HydroSox pair, not a separate wudu version.</p>"),
+                ("Holds its shape",
+                 "<p>Structured so it stays a covering over the foot rather than collapsing flat against it when worn.</p>"),
+                ("Stays on the foot",
+                 "<p>A close, shaped fit that stays in place through normal wear, rather than working loose over a day.</p>"),
+            ], numbered=True, heading="The three properties, one at a time"),
+            "credentials": items([
+                ("The membrane is named and licensed",
+                 "<p>Porelle® is a third-party laminate. You can look it up, and someone other than us stands behind it. Compare that with an unnamed waterproof layer.</p>"),
+                ("Three layers, each specified",
+                 "<p>Lining, membrane, wear face. The construction page sets out what each one is for.</p>"),
+                ("PFOA free, stated",
+                 "<p>Printed because it is true, not because it tests well.</p>"),
+            ], color_scheme="wash", heading="Why this pair rather than another",
+                head_note="<p>The differentiator is the named membrane. Everything else in this category tends to be asserted rather than evidenced.</p>"),
+            "travel": items([
+                ("Long days away from home",
+                 "<p>Pilgrimage travel means long days, shared ablution facilities and little chance to dry anything properly. A pair that keeps water out and can be washed cool and air-dried overnight is doing useful work.</p>"),
+                ("Multiples, not singles",
+                 "<p>Most people buying for travel buy more than one pair. The quantity ladder on this page prices that in rather than treating it as a bulk request.</p>"),
+            ], heading="Hajj, Umrah and travel"),
+            "buy": buy_widget_from_home(),
+            "reviews": review_module("wash"),
+            "faq": faq_from_home(limit=4),
+            "scholarly": company_rows(
+                eyebrow="Scholarly questions",
+                heading="Ask about the construction, and we will answer factually.",
+                lede="<p>If you need a specific detail about how the sock is made in order to reach your own judgement, ask. We will tell you what it is made of and how it behaves. We will not offer a ruling on your behalf.</p>"),
+            "close": closing(
+                eyebrow="Whichever reason brought you here",
+                heading="The same sock, at the same price.",
+                body="<p>One product, one page, one price that does not change depending on how you found us.</p>",
+                cta_label="Buy a pair", cta_url=PRODUCT_URL,
+                alt_label="How to make masah", alt_url="/pages/how-to-make-masah"),
+        },
+        "order": ["crumb", "hero", "certificate", "conditions", "credentials",
+                  "travel", "buy", "reviews", "faq", "scholarly", "close"],
+    })
+    print("  page.wudu-socks: hero + certificate + conditions + credentials + travel")
+    print("                   + buy widget + reviews + FAQ + contact + closing")
+
+
+def enrich_form_pages():
+    """Sitemap 21 and 22. Both had the form and a closing note but none of the
+    surrounding content the sitemap asks for: direct contact details, the
+    self-service routes, the trade proposition and the press route.
+
+    The forms themselves are built by build_forms() and are left untouched;
+    this only adds what sits around them.
+    """
+    # 21. Contact
+    data = load("contact")
+    if data and "details" not in data["sections"]:
+        data["sections"]["intro"] = note(
+            heading_tag="h1", heading_size="h2", hide_rule=True,
+            eyebrow="Contact",
+            heading="A phone number, an email, and a person.",
+            body="<p>Both are published on every page of this site rather than held behind a form. The form below is for when writing it out is easier.</p>")
+        data["sections"]["details"] = company_rows(
+            eyebrow="Direct",
+            heading="Reach us without the form.",
+            lede="<p>Phone during the day, or email any time. Registered address below, for anything that has to be posted.</p>")
+        data["sections"]["routes"] = cards([
+            ("Size guide", "<p>Measurement-led, four bands, and what to do if you fall between two.</p>", "/pages/size-guide"),
+            ("Shipping and delivery", "<p>What is settled and what is still being confirmed.</p>", "/pages/shipping-and-delivery"),
+            ("Returns and refunds", "<p>Fourteen days, no reason needed.</p>", "/pages/returns-and-refunds"),
+            ("Care and washing", "<p>What shortens the life of a membrane.</p>", "/pages/care-and-washing"),
+            ("Track an order", "<p>Ask us and we will look.</p>", "/pages/track-order"),
+            ("Questions", "<p>The things people ask before they buy.</p>", "/pages/faq"),
+        ], columns=3, color_scheme="wash", eyebrow="Faster than waiting",
+            heading="Most answers are already written down.",
+            lede="<p>If one of these covers it you do not need to wait for a reply.</p>")
+        order = ["intro", "details"] + [k for k in data["order"] if k not in ("intro", "details")] + ["routes"]
+        data["order"] = order
+        save("contact", data)
+        print("  page.contact: + intro + direct details + 6 self-service routes")
+
+    # 22. Partner with us
+    data = load("partner-with-us")
+    if data and "proposition" not in data["sections"]:
+        data["sections"]["intro"] = note(
+            heading_tag="h1", heading_size="h2", hide_rule=True,
+            eyebrow="Partner with us",
+            heading="Trade enquiries, answered by a person.",
+            body="<p>No public trade pricing, and no automated tiering. Tell us what you sell and to whom, and we will reply with terms that fit.</p>")
+        data["sections"]["proposition"] = items([
+            ("One product, properly specified",
+             "<p>A named, licensed membrane and a published construction. Easier to sell than an unnamed laminate, and it stands up to a customer asking what is actually in it.</p>"),
+            ("A price that does not move",
+             "<p>One retail price across every channel, so you are never undercut by our own storefront.</p>"),
+            ("Stated limits",
+             "<p>We publish what the product will not do. That reduces returns, and it is the reason customers believe the rest of it.</p>"),
+            ("UK company, UK stock",
+             "<p>Registered address and phone published. Shipped from the UK, not drop-shipped.</p>"),
+        ], heading="What you would be stocking")
+        data["sections"]["proof"] = review_module("wash")
+        data["sections"]["direct"] = company_rows(
+            eyebrow="Direct",
+            heading="Or skip the form.",
+            lede="<p>Phone or email, whichever is quicker for you.</p>")
+        data["sections"]["press"] = closing(
+            eyebrow="Not a trade enquiry?",
+            heading="Press and media go somewhere else.",
+            body="<p>Assets, product facts and a named contact.</p>",
+            cta_label="Press", cta_url="/pages/press",
+            alt_label="Our partners", alt_url="/pages/our-partners")
+        order = ["intro", "proposition", "proof"] + \
+                [k for k in data["order"] if k not in ("intro", "proposition", "proof")] + \
+                ["direct", "press"]
+        data["order"] = order
+        save("partner-with-us", data)
+        print("  page.partner-with-us: + intro + proposition + proof + direct + press route")
+
+
 def scrub_all_templates():
     """Strip null settings from every template, including ones nothing rebuilt.
 
@@ -945,6 +1399,15 @@ def main():
 
     print("support and content pages")
     build_support_pages()
+
+    print("remaining sitemap pages")
+    build_content_pages()
+
+    print("wudu page")
+    build_wudu_page()
+
+    print("form pages")
+    enrich_form_pages()
 
     print("404")
     build_404()

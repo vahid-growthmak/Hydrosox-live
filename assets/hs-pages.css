@@ -882,7 +882,17 @@
 
 @media (min-width: 64rem) {
   .hs-cards__grid {
-    grid-template-columns: repeat(var(--hs-cards-cols, 4), minmax(0, 1fr));
+    /*
+      Capped tracks rather than 1fr, plus a centred row. With 1fr there is never
+      any free space to distribute, so a row holding fewer cards than the column
+      count hugged the left and left a hole beside it — which is what the two
+      sibling cards on the activity pages did in a four-column grid. Capped
+      tracks let a short row sit in the middle instead. A full row is unchanged:
+      four tracks at this cap already exceed the shell, so they shrink to fit
+      exactly as 1fr did.
+    */
+    grid-template-columns: repeat(var(--hs-cards-cols, 4), minmax(0, var(--hs-cards-track, 22rem)));
+    justify-content: center;
     gap: 1.5rem;
     margin-top: 3rem;
   }

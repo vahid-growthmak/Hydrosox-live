@@ -187,6 +187,31 @@ def buy_widget_from_home():
     return buy
 
 
+def activity_cards_from_home():
+    """{handle: {"title", "body"}} for every activity card on the homepage.
+
+    One source of truth for what an activity is called and how it is described.
+    The sibling cross-links read from here rather than carrying their own copy,
+    which fixes two things at once: a card repointed at a different activity used
+    to lose its body entirely (what happened when hiking and walking merged and
+    the retired links were replaced), and titles drifted into two spellings — the
+    homepage, menu and footer say "Cycling & Commuting" while a hand-written
+    fallback map said "Cycling and commuting", so a single row could show both.
+    """
+    home = load("index")
+    out = {}
+    activity = home["sections"].get("activity", {})
+    for key in activity.get("block_order", []):
+        st = activity["blocks"][key].get("settings", {})
+        link = (st.get("link") or "").rstrip("/")
+        if link:
+            out[link.split("/")[-1]] = {
+                "title": st.get("title") or "",
+                "body": st.get("problem") or "",
+            }
+    return out
+
+
 def faq_from_home(limit=6):
     """The question list, copied out of the homepage FAQ."""
     home = load("index")
@@ -307,9 +332,24 @@ def build_activity(handle):
     title = ACTIVITY_TITLES[handle]
     tag = handle.split("-")[0]
 
+    # The hero eyebrow carries no running number. These pages are reached from a
+    # menu and from each other, not read as a numbered sequence, so "01 —" in
+    # front of the activity name was counting something the visitor never sees.
+    # The setting stays in the schema, so it can be put back from the editor.
+    hero_settings = data["sections"]["hero"]["settings"]
+    hero_settings.pop("index_label", None)
+
+    # The eyebrow names this activity. Three of the four pages had inherited the
+    # homepage's own label, "Shop by activity", which said nothing about the page
+    # it was on and only read as filler once the number was gone.
+    hero_settings["eyebrow"] = (
+        activity_cards_from_home().get(handle, {}).get("title") or ACTIVITY_TITLES[handle]
+    )
+
     # Trim siblings to the two the sitemap allows.
     sib = data["sections"].get("siblings")
     if sib:
+        cards = activity_cards_from_home()
         wanted = SIBLINGS[handle]
         keep, blocks = [], {}
         for bk in sib.get("block_order", []):
@@ -326,12 +366,29 @@ def build_activity(handle):
                     blocks[nk] = {
                         "type": "card",
                         "settings": {
-                            "title": ACTIVITY_TITLES[w],
+                            "title": cards.get(w, {}).get("title") or ACTIVITY_TITLES[w],
+                            "body": cards.get(w, {}).get("body", ""),
                             "link": f"/pages/{w}",
                         },
                     }
                     keep.append(nk)
         sib["blocks"], sib["block_order"] = blocks, keep[:2]
+
+        # Restate every card from the homepage, so a row cannot mix two
+        # spellings of the same activity or show a card with no body.
+        for bk in sib["block_order"]:
+            st = sib["blocks"][bk].setdefault("settings", {})
+            target = (st.get("link") or "").rstrip("/").split("/")[-1]
+            src = cards.get(target)
+            if src:
+                if src["title"]:
+                    st["title"] = src["title"]
+                if src["body"]:
+                    st["body"] = src["body"]
+
+        # The column count has to match the two-sibling rule. Left at 4 the two
+        # cards sat in the left half of the row with a hole beside them.
+        sib["settings"]["columns"] = len(sib["block_order"])
 
     order = data["order"]
 

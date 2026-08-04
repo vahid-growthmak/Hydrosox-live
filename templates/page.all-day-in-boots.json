@@ -8,8 +8,7 @@
       "settings": {
         "color_scheme": "ink",
         "min_height": 36,
-        "index_label": "03",
-        "eyebrow": "Shop by activity",
+        "eyebrow": "All Day in Boots",
         "heading": "By hour ten it is not the rain.",
         "lede": "<p>A good boot already keeps water out. What it also does, across a twelve-hour shift, is keep everything your foot produces on the inside of it.</p>",
         "image_fallback": "activity-all-day-in-boots.webp",
@@ -247,7 +246,7 @@
       "type": "link-cards",
       "settings": {
         "color_scheme": "paper",
-        "columns": 4,
+        "columns": 2,
         "eyebrow": "Not your problem?",
         "heading": "Same sock, different day."
       },
@@ -263,8 +262,9 @@
         "sib-hiking-and-walking": {
           "type": "card",
           "settings": {
-            "title": "Hiking and walking",
-            "link": "/pages/hiking-and-walking"
+            "title": "Hiking & Walking",
+            "link": "/pages/hiking-and-walking",
+            "body": "Boots that wet out four hours into a long day in the hills."
           }
         }
       },

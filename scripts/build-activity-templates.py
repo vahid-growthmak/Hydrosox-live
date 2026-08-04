@@ -120,7 +120,8 @@ def sibling_blocks(handle, activities):
 def build(handle, page, activities):
     secs = page['sections']
     hero, specs, problem, answers, gal, practice, limits, _sib, close = secs[:9]
-    index, eyebrow = split_eyebrow(hero['eyebrow'])
+    # The leading number is dropped: the hero eyebrow is the activity name only.
+    _index, eyebrow = split_eyebrow(hero['eyebrow'])
     hero_actions = hero.get('actions', [])
     close_actions = close.get('actions', [])
     practice_links = practice.get('actions', [])
@@ -136,7 +137,6 @@ def build(handle, page, activities):
     add('hero', section('page-hero', od(
         ('color_scheme', 'ink'),
         ('min_height', 36),
-        ('index_label', index),
         ('eyebrow', eyebrow),
         ('heading', hero['heading']),
         ('lede', rt(hero['ledes'][0] if hero['ledes'] else '')),

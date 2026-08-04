@@ -116,7 +116,9 @@ def main():
     b, o = activity_cards(idx)
     add('activities', od(('type', 'link-cards'), ('settings', od(
         ('color_scheme', 'paper'),
-        ('columns', 3),
+        # One column per activity, so the row comes out even. At 3 the fourth
+        # activity dropped onto a second row on its own.
+        ('columns', len(o)),
         ('anchor_id', 'activities'),
         ('eyebrow', 'Where it gets used'),
         ('heading', 'Same sock, different problem.'),

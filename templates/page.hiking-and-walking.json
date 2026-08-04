@@ -8,8 +8,7 @@
       "settings": {
         "color_scheme": "ink",
         "min_height": 36,
-        "index_label": "01",
-        "eyebrow": "Hiking and walking",
+        "eyebrow": "Hiking & Walking",
         "heading": "Four hours in, the boot gives up.",
         "lede": "<p>Every waterproof boot wets out eventually \u2014 the outer soaks, the membrane stops breathing, and there is nowhere on a hill to dry anything. This is the layer that is still working when that happens.</p>",
         "image_fallback": "activity-hiking.webp",
@@ -327,7 +326,7 @@
       "type": "link-cards",
       "settings": {
         "color_scheme": "paper",
-        "columns": 4,
+        "columns": 2,
         "eyebrow": "Not your problem?",
         "heading": "Same sock, different day."
       },

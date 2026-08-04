@@ -8,8 +8,7 @@
       "settings": {
         "color_scheme": "ink",
         "min_height": 36,
-        "index_label": "05",
-        "eyebrow": "Shop by activity",
+        "eyebrow": "Running & Trail",
         "heading": "The two objections come before the miles do.",
         "lede": "<p>Runners ask about weight and bulk before anything else, and they are right to. Here is the honest version of that trade, and what the sock is actually for.</p>",
         "image_fallback": "activity-running-and-trail.webp",
@@ -251,7 +250,7 @@
       "type": "link-cards",
       "settings": {
         "color_scheme": "paper",
-        "columns": 4,
+        "columns": 2,
         "eyebrow": "Not your problem?",
         "heading": "Same sock, different day."
       },
@@ -267,8 +266,9 @@
         "sib-hiking-and-walking": {
           "type": "card",
           "settings": {
-            "title": "Hiking and walking",
-            "link": "/pages/hiking-and-walking"
+            "title": "Hiking & Walking",
+            "link": "/pages/hiking-and-walking",
+            "body": "Boots that wet out four hours into a long day in the hills."
           }
         }
       },

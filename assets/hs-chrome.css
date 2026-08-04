@@ -735,6 +735,17 @@
 .hs-footer__mark {
   height: var(--logo-height-footer);
   width: auto;
+  /*
+    .hs-footer__bottom is a column flex container, so its cross axis is
+    horizontal and the default `align-items: stretch` pulled the mark out to the
+    full column width. `width: auto` then resolved to that width rather than to
+    the logo's own 1000:271 ratio, and the image was squashed to a quarter of its
+    proper height — which read as a blurry logo on a phone. Opting out of the
+    stretch lets the width follow from the height and the aspect ratio.
+  */
+  align-self: flex-start;
+  /* Belt and braces: never resample the mark wider than its own pixels. */
+  max-width: 100%;
   opacity: var(--logo-opacity-footer);
 }
 

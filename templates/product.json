@@ -318,7 +318,7 @@
       "type": "link-cards",
       "settings": {
         "color_scheme": "paper",
-        "columns": 3,
+        "columns": 4,
         "anchor_id": "activities",
         "eyebrow": "Where it gets used",
         "heading": "Same sock, different problem."
@@ -332,7 +332,7 @@
             "link": "/pages/hiking-and-walking"
           }
         },
-        "a3": {
+        "a2": {
           "type": "card",
           "settings": {
             "title": "All Day in Boots",
@@ -340,7 +340,7 @@
             "link": "/pages/all-day-in-boots"
           }
         },
-        "a4": {
+        "a3": {
           "type": "card",
           "settings": {
             "title": "Cycling & Commuting",
@@ -348,7 +348,7 @@
             "link": "/pages/cycling-and-commuting"
           }
         },
-        "a5": {
+        "a4": {
           "type": "card",
           "settings": {
             "title": "Running & Trail",
@@ -359,9 +359,9 @@
       },
       "block_order": [
         "a1",
+        "a2",
         "a3",
-        "a4",
-        "a5"
+        "a4"
       ]
     },
     "questions": {

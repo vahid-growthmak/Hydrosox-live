@@ -8,8 +8,7 @@
       "settings": {
         "color_scheme": "ink",
         "min_height": 36,
-        "index_label": "04",
-        "eyebrow": "Shop by activity",
+        "eyebrow": "Cycling & Commuting",
         "heading": "The water comes off the road, not the sky.",
         "lede": "<p>Overshoes seal everywhere except the one place the water actually arrives, and there is nowhere at the office to dry a cycling shoe before the ride home.</p>",
         "image_fallback": "activity-cycling-and-commuting.webp",
@@ -249,7 +248,7 @@
       "type": "link-cards",
       "settings": {
         "color_scheme": "paper",
-        "columns": 4,
+        "columns": 2,
         "eyebrow": "Not your problem?",
         "heading": "Same sock, different day."
       },
@@ -265,8 +264,9 @@
         "sib-hiking-and-walking": {
           "type": "card",
           "settings": {
-            "title": "Hiking and walking",
-            "link": "/pages/hiking-and-walking"
+            "title": "Hiking & Walking",
+            "link": "/pages/hiking-and-walking",
+            "body": "Boots that wet out four hours into a long day in the hills."
           }
         }
       },

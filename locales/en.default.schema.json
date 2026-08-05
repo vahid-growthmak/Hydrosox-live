@@ -578,7 +578,11 @@
       "numbered": "Number the cards",
       "card_fill": "Card style",
       "fill_outline": "Outlined",
-      "fill_solid": "Filled"
+      "fill_solid": "Filled",
+      "image_fit": "Picture fit",
+      "image_fit_info": "Photographs fill the frame and crop. Choose \"Show whole picture\" for artwork with edges, like a partner logo.",
+      "fit_cover": "Fill the frame",
+      "fit_contain": "Show whole picture"
     },
     "close": {
       "name": "Closing call to action",

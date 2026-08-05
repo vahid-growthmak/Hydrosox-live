@@ -963,13 +963,21 @@ def note(**s):
 
 
 def cards(entries, **s):
-    """link-cards from (title, body, link) triples."""
+    """link-cards from (title, body, link) triples, or full setting dicts.
+
+    A dict entry passes straight through as the card's settings — used where a
+    card carries more than the triple, like the partner logos with their
+    image_fallback and image_alt.
+    """
     blocks, order = {}, []
     for i, e in enumerate(entries, 1):
-        title, body, link = (e + (None,))[:3] if len(e) < 3 else e
-        st = {"title": title, "body": body}
-        if link:
-            st["link"] = link
+        if isinstance(e, dict):
+            st = {k: v for k, v in e.items() if v is not None}
+        else:
+            title, body, link = (e + (None,))[:3] if len(e) < 3 else e
+            st = {"title": title, "body": body}
+            if link:
+                st["link"] = link
         blocks[f"c{i}"] = {"type": "card", "settings": st}
         order.append(f"c{i}")
     base = {"color_scheme": "paper", "columns": 3, "numbered": False}
@@ -1191,24 +1199,31 @@ def build_content_pages():
     })
     print("  page.how-to-make-masah: 4 sections + buy widget")
 
-    # 20. Our partners
+    # 20. Our partners — the two logos, shown whole, over one honest line each.
     save("our-partners", {
         "sections": {
             "crumb": breadcrumb("our-partners", "Our partners"),
             "intro": note(heading_tag="h1", heading_size="h2", hide_rule=True,
                 eyebrow="Our partners",
-                heading="Two, and only what we can evidence.",
-                body="<p>A partnership is easy to assert on a website and harder to demonstrate. Both are named below; the detail of each arrangement is published once there is something concrete to point at.</p>"),
-            "who": items([
-                ("The Fair Group",
-                 "<p>Named as a partner. The nature and scope of the arrangement is published here once it can be evidenced rather than asserted.</p>"),
-                ("Humanity Welfare Trust",
-                 "<p>Named as a partner. Same standard: what the relationship actually involves, published when it can be shown.</p>"),
-            ], heading="Who we work with"),
+                heading="Two partners, named and shown.",
+                body="<p>A partnership is easy to assert on a website and harder to demonstrate. Both of ours are below; the detail of each arrangement is published as it becomes concrete.</p>"),
+            # eyebrow and heading are set to empty on purpose: the intro above is
+            # this section's heading, and an absent setting would inherit the
+            # schema's activity-page defaults ("Not your problem?").
+            "who": cards([
+                {"title": "The Fair Group",
+                 "body": "Named partner. The scope of the arrangement is published here as it can be evidenced.",
+                 "image_fallback": "partner-the-fair-group.webp",
+                 "image_alt": "The Fair Group — where fairness meets excellence"},
+                {"title": "Humanity Welfare Trust",
+                 "body": "Named partner. Same standard: what the relationship involves, published when it can be shown.",
+                 "image_fallback": "partner-humanity-welfare-trust.webp",
+                 "image_alt": "Humanity Welfare Trust"},
+            ], columns=2, image_fit="contain", eyebrow="", heading=""),
             "why": note(color_scheme="wash", heading_size="h3",
-                eyebrow="Why so little here",
-                heading="Because the alternative is a logo wall.",
-                body="<p>Unevidenced partner claims are one of the easiest things to put on a store and one of the least useful to read. This page stays short until it can be specific.</p>"),
+                eyebrow="How this page grows",
+                heading="Named now, detailed as it becomes concrete.",
+                body="<p>The logos are the easy part. What each arrangement actually involves is published here once there is something specific to point at, and not before.</p>"),
             "close": closing(eyebrow="Working with us",
                 heading="Trade and press enquiries reach a person.",
                 body="<p>No public trade pricing, and no form queue.</p>",
@@ -1217,7 +1232,7 @@ def build_content_pages():
         },
         "order": ["crumb", "intro", "who", "why", "close"],
     })
-    print("  page.our-partners: 3 sections + closing")
+    print("  page.our-partners: intro + 2 partner logo cards + note + closing")
 
     # 19. About
     save("about", {

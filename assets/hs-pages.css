@@ -869,9 +869,15 @@
 .hs-cards__grid {
   display: grid;
   gap: 1.25rem;
-  margin: 2.5rem 0 0;
+  /* The gap below the heading belongs to sections that have one. A headless
+     grid — the partner logos under their own intro section — starts flush. */
+  margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.hs-cards__head + .hs-cards__grid {
+  margin-top: 2.5rem;
 }
 
 @media (min-width: 40rem) {
@@ -894,6 +900,9 @@
     grid-template-columns: repeat(var(--hs-cards-cols, 4), minmax(0, var(--hs-cards-track, 22rem)));
     justify-content: center;
     gap: 1.5rem;
+  }
+
+  .hs-cards__head + .hs-cards__grid {
     margin-top: 3rem;
   }
 }
@@ -939,6 +948,29 @@
 @media (hover: hover) and (pointer: fine) {
   a.hs-cards__card:hover .hs-cards__img {
     transform: scale(1.04);
+  }
+}
+
+/*
+   Contain mode: artwork with edges — a partner logo, a certificate — shown
+   whole rather than cropped to fill. White rather than a scheme token because
+   these files carry their own baked-in white background; the panel has to match
+   the pixels inside the picture, whatever the theme's paper colour is set to.
+   The hover zoom stays off here: enlarging a letterboxed image pushes its edges
+   into the padding, and a logo that moves reads as an error.
+*/
+.hs-cards__media--contain {
+  padding: 1.5rem;
+  background-color: #ffffff;
+}
+
+.hs-cards__media--contain .hs-cards__img {
+  object-fit: contain;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.hs-cards__card:hover .hs-cards__media--contain .hs-cards__img {
+    transform: none;
   }
 }
 

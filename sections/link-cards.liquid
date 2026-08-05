@@ -13,6 +13,13 @@
   assign cards = section.blocks | where: 'type', 'card'
   assign card_count = cards | size
   assign columns = section.settings.columns | default: 4
+
+  # Photographs fill the frame and crop; artwork with edges — a partner logo, a
+  # certificate — must be shown whole, so 'contain' letterboxes it instead.
+  assign media_class = 'hs-cards__media'
+  if section.settings.image_fit == 'contain'
+    assign media_class = 'hs-cards__media hs-cards__media--contain'
+  endif
 -%}
 
 {%- if card_count > 0 -%}
@@ -67,7 +74,7 @@
                   alt: block.settings.image_alt,
                   aspect: '16 / 9',
                   sizes: '(min-width: 64rem) 24vw, (min-width: 40rem) 45vw, 100vw',
-                  wrapper_class: 'hs-cards__media',
+                  wrapper_class: media_class,
                   class: 'hs-cards__img'
                 %}
               {%- endif -%}
@@ -148,6 +155,17 @@
         { "value": "solid", "label": "t:sections.cards.fill_solid" }
       ],
       "default": "outline"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "t:sections.cards.image_fit",
+      "info": "t:sections.cards.image_fit_info",
+      "options": [
+        { "value": "cover", "label": "t:sections.cards.fit_cover" },
+        { "value": "contain", "label": "t:sections.cards.fit_contain" }
+      ],
+      "default": "cover"
     },
     {
       "type": "checkbox",

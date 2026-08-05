@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "logo_width": 108,
@@ -23,6 +32,7 @@
     "color_blue_wash": "#eaf5ff",
     "color_success": "#00c758",
     "color_error": "#fb2c36",
+    "font_source": "bundled",
     "font_body": "inter_n4",
     "font_heading": "inter_n7",
     "fluid_min_vw": 320,
@@ -88,6 +98,7 @@
     "pace_vast_min": 96,
     "pace_vast_vw": 15,
     "pace_vast_max": 224,
+    "noindex_collections": "all,waterproof-socks",
     "radius_md": 6,
     "radius_lg": 8,
     "radius_xl": 12,
@@ -103,7 +114,58 @@
     "ease_drawer": "cubic-bezier(0.32, 0.72, 0, 1)",
     "cart_type": "drawer",
     "cart_show_note": false,
-    "font_source": "bundled",
-    "noindex_collections": "all,waterproof-socks"
+    "sections": {
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "blocks": {
+          "cart-drawer-0": {
+            "type": "tier",
+            "settings": {
+              "quantity": 2,
+              "discount": 3
+            }
+          },
+          "cart-drawer-1": {
+            "type": "tier",
+            "settings": {
+              "quantity": 3,
+              "discount": 7
+            }
+          },
+          "cart-drawer-2": {
+            "type": "tier",
+            "settings": {
+              "quantity": 4,
+              "discount": 12
+            }
+          },
+          "cart-drawer-3": {
+            "type": "tier",
+            "settings": {
+              "quantity": 5,
+              "discount": 20
+            }
+          }
+        },
+        "block_order": [
+          "cart-drawer-0",
+          "cart-drawer-1",
+          "cart-drawer-2",
+          "cart-drawer-3"
+        ],
+        "settings": {
+          "empty_cta_label": "Shop HydroSox",
+          "empty_cta_url": ""
+        }
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
+        "settings": {}
+      }
+    }
   }
 }

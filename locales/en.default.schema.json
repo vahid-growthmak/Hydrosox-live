@@ -349,8 +349,8 @@
       "guide_close_label": "Close button label",
       "block_guide_row": "Size guide row",
       "block_guide_note": "Size guide note",
-      "delivery_charge": "Single-order delivery charge",
-      "delivery_charge_info": "Shown added to any tier that does not reach the free-delivery threshold, with the grand total beside it. The DMCCA 2024 requires the total including mandatory charges to appear before the customer commits, so this must match what checkout actually charges. Set to 0 to hide the line.",
+      "delivery_charge": "Single-order delivery charge (pence)",
+      "delivery_charge_info": "In pence, so 499 means £4.99. Shown added to any tier that does not reach the free-delivery threshold, with the grand total beside it. The DMCCA 2024 requires the total including mandatory charges to appear before the customer commits, so this must match what checkout actually charges. Set to 0 to hide the line.",
       "delivery_label": "Delivery word",
       "total_label": "Total word"
     },

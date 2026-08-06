@@ -1,0 +1,14 @@
+{%- comment -%}
+  Shop policies — refund, shipping, terms of service and privacy.
+
+  A Liquid template rather than JSON: `policy` is not one of the template types
+  Shopify accepts as JSON, and a policy.json is rejected on upload while every
+  other file in the same push lands. The symptom is a page that silently keeps
+  rendering the old way, which is exactly how this was found.
+
+  Section settings therefore come from the schema defaults in main-policy.liquid
+  rather than from a template file, and the merchant edits them in the theme
+  editor. Company details are not repeated here — the footer publishes the name,
+  address and phone on every page of the site already.
+{%- endcomment -%}
+{% section 'main-policy' %}

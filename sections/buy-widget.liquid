@@ -268,7 +268,7 @@
                           # the cart progress bar reads, so the widget and the
                           # cart cannot disagree about where delivery becomes
                           # free.
-                          assign delivery_cents = section.settings.delivery_charge | times: 100 | round
+                          assign delivery_cents = section.settings.delivery_charge_pence | default: 0
                           assign free_from_cents = settings.free_delivery_threshold | times: 100 | round
                           assign tier_total = net | plus: delivery_cents
                           assign tier_pays_delivery = false
@@ -568,10 +568,10 @@
     },
     {
       "type": "number",
-      "id": "delivery_charge",
+      "id": "delivery_charge_pence",
       "label": "t:sections.buy.delivery_charge",
       "info": "t:sections.buy.delivery_charge_info",
-      "default": 4.99
+      "default": 499
     },
     {
       "type": "text",

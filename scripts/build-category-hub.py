@@ -93,11 +93,11 @@ def main():
             ("cta_link", "#buy"),
             ("link_label", "How they work"),
             ("link_url", "#mechanism"),
+            ("image_fallback", "wet-run-daylight.webp"),
             ("image_alt",
-             "Four pairs of HydroSox waterproof socks in black, white, navy and grey, "
-             "stood upright"),
+             "Running through a flooded suburban street in HydroSox waterproof socks"),
             ("image_aspect", "9 / 8"),
-            ("image_position", "50% 41%"),
+            ("image_position", "50% 60%"),
         ])),
         ("blocks", collections.OrderedDict([
             ("s1", {"type": "spec", "settings": {"label": "Membrane", "value": "Porelle®, licensed"}}),
@@ -139,47 +139,67 @@ def main():
     ])
 
     # ------------------------------------------------------------------- S4
+    # The scroll-scrubbed frame sequence rather than a numbered list: the reader
+    # takes the sock apart with their own scrolling, which is the mechanism
+    # section actually demonstrating the mechanism. The frames are the ones the
+    # homepage already bundles; a shorter track than the homepage's, because
+    # this page has more below it.
     S["mechanism"] = collections.OrderedDict([
-        ("type", "content-columns"),
+        ("type", "construction-layers"),
         ("settings", collections.OrderedDict([
             ("color_scheme", "paper"),
-            ("layout", "list"),
-            ("numbered", True),
             ("anchor_id", "mechanism"),
             ("eyebrow", "The mechanism"),
             ("heading", "Three layers, and why there are three."),
             ("lede", rich(
                 "A single waterproof layer would be uncomfortable and would not last. "
-                "The other two are there to make the middle one wearable."
+                "The other two are there to make the middle one wearable. Scroll, and "
+                "take it apart."
             )),
-            ("link_label", "The full construction, layer by layer"),
-            ("link_url", "/pages/technology"),
+            ("scroll_hint", "Scroll to take it apart."),
+            ("track_height", 260),
+            ("frame_count", 100),
+            ("frame_prefix", "hs-layer-frame-"),
+            ("frame_ext", "webp"),
+            ("frame_alt", "A HydroSox sock separating into its three layers"),
+            ("frame_width", 1280),
+            ("frame_height", 720),
+            ("stage_background", "#f0ede8"),
         ])),
         ("blocks", collections.OrderedDict([
-            ("m1", {"type": "item", "settings": {
-                "title": "Inner layer — against the skin",
+            ("m1", {"type": "layer", "settings": {
+                "heading": "Inner layer",
+                "role": "Against the skin",
                 "body": rich(
                     "A knitted lining that moves sweat away from the foot and keeps "
                     "the membrane from sitting directly against the skin, which is "
                     "what makes a waterproof sock feel like a sock rather than a bag."
-                )}}),
-            ("m2", {"type": "item", "settings": {
-                "title": "Membrane — the waterproof barrier",
+                ),
+                "tint": "#eaeef1"}}),
+            ("m2", {"type": "layer", "settings": {
+                "heading": "Porelle® membrane",
+                "role": "The waterproof barrier",
                 "body": rich(
                     "A licensed Porelle® laminate. Liquid water cannot pass through "
                     "it. Water vapour, which is a much smaller molecule, can. That "
                     "asymmetry is the whole technology, and it has been around for "
                     "decades."
-                )}}),
-            ("m3", {"type": "item", "settings": {
-                "title": "Outer layer — the wear surface",
+                ),
+                "tint": "#eaf5ff"}}),
+            ("m3", {"type": "layer", "settings": {
+                "heading": "Outer layer",
+                "role": "The wear surface",
                 "body": rich(
                     "The knitted face that takes the abrasion inside a boot. It is "
                     "also what holds the sock's shape when it is not being worn, "
                     "which matters for durability and, separately, for masah."
-                )}}),
+                ),
+                "tint": "#f0ede8"}}),
+            ("mlink", {"type": "link", "settings": {
+                "label": "The full construction, layer by layer",
+                "link": "/pages/technology"}}),
         ])),
-        ("block_order", ["m1", "m2", "m3"]),
+        ("block_order", ["m1", "m2", "m3", "mlink"]),
     ])
 
     # ------------------------------------------------------------------- S5
@@ -206,6 +226,8 @@ def main():
         ("blocks", collections.OrderedDict([
             ("l1", {"type": "limit", "settings": {
                 "heading": "Water deeper than the cuff",
+                "image_fallback": "wet-run-park.webp",
+                "image_alt": "Running through standing water on a rain-soaked park path",
                 "body": rich(
                     "A sock is open at the top. Step into water above the cuff and it "
                     "fills, exactly as any sock would. Height is the only thing that "
@@ -214,6 +236,8 @@ def main():
                 "width": "1", "tone": "wash"}}),
             ("l2", {"type": "limit", "settings": {
                 "heading": "Sustained hard effort",
+                "image_fallback": "wet-run-snow.webp",
+                "image_alt": "Sprinting a wet winter trail, spray flying off the ground",
                 "body": rich(
                     "Breathability is real and it is finite. Work hard enough for long "
                     "enough and your foot produces vapour faster than any membrane can "
@@ -222,6 +246,8 @@ def main():
                 "width": "1", "tone": "wash"}}),
             ("l3", {"type": "limit", "settings": {
                 "heading": "A punctured membrane",
+                "image_fallback": "wet-run-mud.webp",
+                "image_alt": "Running through churned mud and forest debris at dusk",
                 "body": rich(
                     "Once the laminate is pierced — a toenail, a thorn, a sharp stone "
                     "inside a boot — the waterproofing is gone and cannot be restored. "
@@ -253,6 +279,8 @@ def main():
         ("blocks", collections.OrderedDict([
             ("u1", {"type": "item", "settings": {
                 "title": "Wudu and masah",
+                "image_fallback": "activity-wudu-masah.webp",
+                "image_alt": "Pulling on a pair of white HydroSox while seated",
                 "body": rich(
                     "Performing wudu five times a day, often somewhere that was not "
                     "designed for it. <a href=\"/pages/wudu-socks\">Waterproof wudhu "
@@ -260,6 +288,8 @@ def main():
                 )}}),
             ("u2", {"type": "item", "settings": {
                 "title": "Hiking and walking",
+                "image_fallback": "activity-hiking.webp",
+                "image_alt": "Hiking on a wet hillside in HydroSox waterproof socks",
                 "body": rich(
                     "<a href=\"/pages/hiking-and-walking\">Waterproof walking socks</a> "
                     "for the point, usually four hours in, where a boot has wet out and "
@@ -267,6 +297,8 @@ def main():
                 )}}),
             ("u3", {"type": "item", "settings": {
                 "title": "Long days in boots",
+                "image_fallback": "activity-all-day-in-boots.webp",
+                "image_alt": "A long shift in work boots wearing HydroSox waterproof socks",
                 "body": rich(
                     "<a href=\"/pages/all-day-in-boots\">Waterproof work socks</a> for a "
                     "ten-hour shift where the boot keeps the rain out and then keeps "
@@ -274,6 +306,8 @@ def main():
                 )}}),
             ("u4", {"type": "item", "settings": {
                 "title": "Cycling and commuting",
+                "image_fallback": "activity-cycling-and-commuting.webp",
+                "image_alt": "Commuting by bike in the rain in HydroSox waterproof socks",
                 "body": rich(
                     "<a href=\"/pages/cycling-and-commuting\">Waterproof cycling socks</a> "
                     "for road spray, and for shoes that are still wet at home time "
@@ -281,6 +315,8 @@ def main():
                 )}}),
             ("u5", {"type": "item", "settings": {
                 "title": "Running and trail",
+                "image_fallback": "activity-running-and-trail.webp",
+                "image_alt": "Running a wet winter trail in HydroSox waterproof socks",
                 "body": rich(
                     "<a href=\"/pages/running-and-trail\">Waterproof running socks</a> for "
                     "cold winter miles and wet races — with the honest caveat about "
@@ -388,6 +424,45 @@ def main():
         ("block_order", ["c1", "c2", "c3", "c4"]),
     ])
 
+    # -------------------------------------------------------------- the film
+    # The client's ten-second clip, played on the portrait stage right before
+    # the price. Shot at 576x1024 — the stage's exact intrinsic size — and the
+    # poster is a frame from the clip itself, so what you see before pressing
+    # play is what plays. Nothing downloads until the visitor presses play.
+    #
+    # The copy describes what the footage actually shows — water poured onto
+    # the sock while it is worn — not the outdoor shots elsewhere on the page.
+    # On this site a caption that oversells its own clip would cost more than
+    # the clip earns.
+    S["film"] = collections.OrderedDict([
+        ("type", "product-film"),
+        ("settings", collections.OrderedDict([
+            ("color_scheme", "ink"),
+            ("anchor_id", "in-motion"),
+            ("eyebrow", "In motion"),
+            ("heading", "Ten seconds under running water."),
+            ("lede", rich(
+                "Our own clip rather than an independent test, so take it for what "
+                "it is: water poured straight onto the sock while it is being worn. "
+                "The claim underneath it is the membrane, not the footage."
+            )),
+            ("stage_background", "#0b0b0b"),
+            ("stage_caption",
+             "Water poured over a black HydroSox sock worn with a trainer, "
+             "beading and running off the knit."),
+            ("play_label", "Play the clip"),
+        ])),
+        ("blocks", collections.OrderedDict([
+            ("f1", {"type": "chapter", "settings": {
+                "title": "Water, poured straight on",
+                "caption": "One sock, ten seconds — poured over the cuff while worn.",
+                "video_fallback": "film-water-pour.mp4",
+                "poster_fallback": "film-water-pour-poster.webp",
+                "poster_alt": "Close-up of a black HydroSox sock about to be doused"}}),
+        ])),
+        ("block_order", ["f1"]),
+    ])
+
     # ------------------------------------------------------------------- S9
     S["buy"] = buy_widget()
 
@@ -468,7 +543,7 @@ def main():
         S["faq"]["block_order"].append(key)
 
     order = ["crumb", "hero", "definition", "mechanism", "limits",
-             "byuse", "alternatives", "choosing", "buy", "faq"]
+             "byuse", "alternatives", "choosing", "film", "buy", "faq"]
     missing = [k for k in order if k not in S]
     extra = [k for k in S if k not in order]
     if missing or extra:

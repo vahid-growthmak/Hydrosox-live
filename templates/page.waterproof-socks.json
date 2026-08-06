@@ -24,9 +24,10 @@
         "cta_link": "#buy",
         "link_label": "How they work",
         "link_url": "#mechanism",
-        "image_alt": "Four pairs of HydroSox waterproof socks in black, white, navy and grey, stood upright",
+        "image_fallback": "wet-run-daylight.webp",
+        "image_alt": "Running through a flooded suburban street in HydroSox waterproof socks",
         "image_aspect": "9 / 8",
-        "image_position": "50% 41%"
+        "image_position": "50% 60%"
       },
       "blocks": {
         "s1": {
@@ -78,45 +79,64 @@
       }
     },
     "mechanism": {
-      "type": "content-columns",
+      "type": "construction-layers",
       "settings": {
         "color_scheme": "paper",
-        "layout": "list",
-        "numbered": true,
         "anchor_id": "mechanism",
         "eyebrow": "The mechanism",
         "heading": "Three layers, and why there are three.",
-        "lede": "<p>A single waterproof layer would be uncomfortable and would not last. The other two are there to make the middle one wearable.</p>",
-        "link_label": "The full construction, layer by layer",
-        "link_url": "/pages/technology"
+        "lede": "<p>A single waterproof layer would be uncomfortable and would not last. The other two are there to make the middle one wearable. Scroll, and take it apart.</p>",
+        "scroll_hint": "Scroll to take it apart.",
+        "track_height": 260,
+        "frame_count": 100,
+        "frame_prefix": "hs-layer-frame-",
+        "frame_ext": "webp",
+        "frame_alt": "A HydroSox sock separating into its three layers",
+        "frame_width": 1280,
+        "frame_height": 720,
+        "stage_background": "#f0ede8"
       },
       "blocks": {
         "m1": {
-          "type": "item",
+          "type": "layer",
           "settings": {
-            "title": "Inner layer — against the skin",
-            "body": "<p>A knitted lining that moves sweat away from the foot and keeps the membrane from sitting directly against the skin, which is what makes a waterproof sock feel like a sock rather than a bag.</p>"
+            "heading": "Inner layer",
+            "role": "Against the skin",
+            "body": "<p>A knitted lining that moves sweat away from the foot and keeps the membrane from sitting directly against the skin, which is what makes a waterproof sock feel like a sock rather than a bag.</p>",
+            "tint": "#eaeef1"
           }
         },
         "m2": {
-          "type": "item",
+          "type": "layer",
           "settings": {
-            "title": "Membrane — the waterproof barrier",
-            "body": "<p>A licensed Porelle® laminate. Liquid water cannot pass through it. Water vapour, which is a much smaller molecule, can. That asymmetry is the whole technology, and it has been around for decades.</p>"
+            "heading": "Porelle® membrane",
+            "role": "The waterproof barrier",
+            "body": "<p>A licensed Porelle® laminate. Liquid water cannot pass through it. Water vapour, which is a much smaller molecule, can. That asymmetry is the whole technology, and it has been around for decades.</p>",
+            "tint": "#eaf5ff"
           }
         },
         "m3": {
-          "type": "item",
+          "type": "layer",
           "settings": {
-            "title": "Outer layer — the wear surface",
-            "body": "<p>The knitted face that takes the abrasion inside a boot. It is also what holds the sock's shape when it is not being worn, which matters for durability and, separately, for masah.</p>"
+            "heading": "Outer layer",
+            "role": "The wear surface",
+            "body": "<p>The knitted face that takes the abrasion inside a boot. It is also what holds the sock's shape when it is not being worn, which matters for durability and, separately, for masah.</p>",
+            "tint": "#f0ede8"
+          }
+        },
+        "mlink": {
+          "type": "link",
+          "settings": {
+            "label": "The full construction, layer by layer",
+            "link": "/pages/technology"
           }
         }
       },
       "block_order": [
         "m1",
         "m2",
-        "m3"
+        "m3",
+        "mlink"
       ]
     },
     "limits": {
@@ -135,6 +155,8 @@
           "type": "limit",
           "settings": {
             "heading": "Water deeper than the cuff",
+            "image_fallback": "wet-run-park.webp",
+            "image_alt": "Running through standing water on a rain-soaked park path",
             "body": "<p>A sock is open at the top. Step into water above the cuff and it fills, exactly as any sock would. Height is the only thing that changes where that line sits.</p>",
             "width": "1",
             "tone": "wash"
@@ -144,6 +166,8 @@
           "type": "limit",
           "settings": {
             "heading": "Sustained hard effort",
+            "image_fallback": "wet-run-snow.webp",
+            "image_alt": "Sprinting a wet winter trail, spray flying off the ground",
             "body": "<p>Breathability is real and it is finite. Work hard enough for long enough and your foot produces vapour faster than any membrane can move it. You end up damp from the inside instead of the outside.</p>",
             "width": "1",
             "tone": "wash"
@@ -153,6 +177,8 @@
           "type": "limit",
           "settings": {
             "heading": "A punctured membrane",
+            "image_fallback": "wet-run-mud.webp",
+            "image_alt": "Running through churned mud and forest debris at dusk",
             "body": "<p>Once the laminate is pierced — a toenail, a thorn, a sharp stone inside a boot — the waterproofing is gone and cannot be restored. No wash, no spray and no reproofing treatment brings it back.</p>",
             "width": "2",
             "tone": "blue"
@@ -181,6 +207,8 @@
           "type": "item",
           "settings": {
             "title": "Wudu and masah",
+            "image_fallback": "activity-wudu-masah.webp",
+            "image_alt": "Pulling on a pair of white HydroSox while seated",
             "body": "<p>Performing wudu five times a day, often somewhere that was not designed for it. <a href=\"/pages/wudu-socks\">Waterproof wudhu socks</a> are the reason most people find this site.</p>"
           }
         },
@@ -188,6 +216,8 @@
           "type": "item",
           "settings": {
             "title": "Hiking and walking",
+            "image_fallback": "activity-hiking.webp",
+            "image_alt": "Hiking on a wet hillside in HydroSox waterproof socks",
             "body": "<p><a href=\"/pages/hiking-and-walking\">Waterproof walking socks</a> for the point, usually four hours in, where a boot has wet out and there is nowhere on a hill to dry anything.</p>"
           }
         },
@@ -195,6 +225,8 @@
           "type": "item",
           "settings": {
             "title": "Long days in boots",
+            "image_fallback": "activity-all-day-in-boots.webp",
+            "image_alt": "A long shift in work boots wearing HydroSox waterproof socks",
             "body": "<p><a href=\"/pages/all-day-in-boots\">Waterproof work socks</a> for a ten-hour shift where the boot keeps the rain out and then keeps everything the foot produces in.</p>"
           }
         },
@@ -202,6 +234,8 @@
           "type": "item",
           "settings": {
             "title": "Cycling and commuting",
+            "image_fallback": "activity-cycling-and-commuting.webp",
+            "image_alt": "Commuting by bike in the rain in HydroSox waterproof socks",
             "body": "<p><a href=\"/pages/cycling-and-commuting\">Waterproof cycling socks</a> for road spray, and for shoes that are still wet at home time because nothing dried at the office.</p>"
           }
         },
@@ -209,6 +243,8 @@
           "type": "item",
           "settings": {
             "title": "Running and trail",
+            "image_fallback": "activity-running-and-trail.webp",
+            "image_alt": "Running a wet winter trail in HydroSox waterproof socks",
             "body": "<p><a href=\"/pages/running-and-trail\">Waterproof running socks</a> for cold winter miles and wet races — with the honest caveat about weight and warm-weather use on that page.</p>"
           }
         }
@@ -323,6 +359,34 @@
         "c2",
         "c3",
         "c4"
+      ]
+    },
+    "film": {
+      "type": "product-film",
+      "settings": {
+        "color_scheme": "ink",
+        "anchor_id": "in-motion",
+        "eyebrow": "In motion",
+        "heading": "Ten seconds under running water.",
+        "lede": "<p>Our own clip rather than an independent test, so take it for what it is: water poured straight onto the sock while it is being worn. The claim underneath it is the membrane, not the footage.</p>",
+        "stage_background": "#0b0b0b",
+        "stage_caption": "Water poured over a black HydroSox sock worn with a trainer, beading and running off the knit.",
+        "play_label": "Play the clip"
+      },
+      "blocks": {
+        "f1": {
+          "type": "chapter",
+          "settings": {
+            "title": "Water, poured straight on",
+            "caption": "One sock, ten seconds — poured over the cuff while worn.",
+            "video_fallback": "film-water-pour.mp4",
+            "poster_fallback": "film-water-pour-poster.webp",
+            "poster_alt": "Close-up of a black HydroSox sock about to be doused"
+          }
+        }
+      },
+      "block_order": [
+        "f1"
       ]
     },
     "buy": {
@@ -671,6 +735,7 @@
     "byuse",
     "alternatives",
     "choosing",
+    "film",
     "buy",
     "faq"
   ]

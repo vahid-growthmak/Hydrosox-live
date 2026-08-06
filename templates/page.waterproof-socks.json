@@ -155,8 +155,6 @@
           "type": "limit",
           "settings": {
             "heading": "Water deeper than the cuff",
-            "image_fallback": "wet-run-park.webp",
-            "image_alt": "Running through standing water on a rain-soaked park path",
             "body": "<p>A sock is open at the top. Step into water above the cuff and it fills, exactly as any sock would. Height is the only thing that changes where that line sits.</p>",
             "width": "1",
             "tone": "wash"
@@ -166,8 +164,6 @@
           "type": "limit",
           "settings": {
             "heading": "Sustained hard effort",
-            "image_fallback": "wet-run-snow.webp",
-            "image_alt": "Sprinting a wet winter trail, spray flying off the ground",
             "body": "<p>Breathability is real and it is finite. Work hard enough for long enough and your foot produces vapour faster than any membrane can move it. You end up damp from the inside instead of the outside.</p>",
             "width": "1",
             "tone": "wash"
@@ -177,8 +173,6 @@
           "type": "limit",
           "settings": {
             "heading": "A punctured membrane",
-            "image_fallback": "wet-run-mud.webp",
-            "image_alt": "Running through churned mud and forest debris at dusk",
             "body": "<p>Once the laminate is pierced — a toenail, a thorn, a sharp stone inside a boot — the waterproofing is gone and cannot be restored. No wash, no spray and no reproofing treatment brings it back.</p>",
             "width": "2",
             "tone": "blue"
@@ -359,34 +353,6 @@
         "c2",
         "c3",
         "c4"
-      ]
-    },
-    "film": {
-      "type": "product-film",
-      "settings": {
-        "color_scheme": "ink",
-        "anchor_id": "in-motion",
-        "eyebrow": "In motion",
-        "heading": "Ten seconds under running water.",
-        "lede": "<p>Our own clip rather than an independent test, so take it for what it is: water poured straight onto the sock while it is being worn. The claim underneath it is the membrane, not the footage.</p>",
-        "stage_background": "#0b0b0b",
-        "stage_caption": "Water poured over a black HydroSox sock worn with a trainer, beading and running off the knit.",
-        "play_label": "Play the clip"
-      },
-      "blocks": {
-        "f1": {
-          "type": "chapter",
-          "settings": {
-            "title": "Water, poured straight on",
-            "caption": "One sock, ten seconds — poured over the cuff while worn.",
-            "video_fallback": "film-water-pour.mp4",
-            "poster_fallback": "film-water-pour-poster.webp",
-            "poster_alt": "Close-up of a black HydroSox sock about to be doused"
-          }
-        }
-      },
-      "block_order": [
-        "f1"
       ]
     },
     "buy": {
@@ -735,7 +701,6 @@
     "byuse",
     "alternatives",
     "choosing",
-    "film",
     "buy",
     "faq"
   ]

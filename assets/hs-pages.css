@@ -870,18 +870,28 @@
   color: var(--on-surface);
 }
 
-/* The same definition treatment inside a content-columns prose body, which is
-   where a long definition belongs: the centred note carried it as nine centred
-   lines, which reads as a wall rather than a structure. Left-set in the prose
-   column, the large opening paragraph works. */
+/* The definition, set as a definition rather than as the first paragraph of
+   body copy: a step larger, on the blue wash the theme already uses for bands
+   that state a claim, held by a blue rule down the left. Type and colour only —
+   no imagery, which is the client's instruction for this block. */
 .hs-cols__prose--lead > p:first-child {
   font-size: var(--type-h4);
   line-height: var(--leading-h4, 1.35);
   color: var(--on-surface);
+  background-color: var(--blue-wash);
+  border-left: 3px solid var(--blue);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+}
+
+@media (min-width: 64rem) {
+  .hs-cols__prose--lead > p:first-child {
+    padding: 2rem 2.25rem;
+  }
 }
 
 .hs-cols__prose--lead > p:first-child + p {
-  margin-top: 1.25em;
+  margin-top: 1.5em;
 }
 
 .hs-note__footnote {

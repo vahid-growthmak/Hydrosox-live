@@ -226,8 +226,6 @@ def main():
         ("blocks", collections.OrderedDict([
             ("l1", {"type": "limit", "settings": {
                 "heading": "Water deeper than the cuff",
-                "image_fallback": "wet-run-park.webp",
-                "image_alt": "Running through standing water on a rain-soaked park path",
                 "body": rich(
                     "A sock is open at the top. Step into water above the cuff and it "
                     "fills, exactly as any sock would. Height is the only thing that "
@@ -236,8 +234,6 @@ def main():
                 "width": "1", "tone": "wash"}}),
             ("l2", {"type": "limit", "settings": {
                 "heading": "Sustained hard effort",
-                "image_fallback": "wet-run-snow.webp",
-                "image_alt": "Sprinting a wet winter trail, spray flying off the ground",
                 "body": rich(
                     "Breathability is real and it is finite. Work hard enough for long "
                     "enough and your foot produces vapour faster than any membrane can "
@@ -246,8 +242,6 @@ def main():
                 "width": "1", "tone": "wash"}}),
             ("l3", {"type": "limit", "settings": {
                 "heading": "A punctured membrane",
-                "image_fallback": "wet-run-mud.webp",
-                "image_alt": "Running through churned mud and forest debris at dusk",
                 "body": rich(
                     "Once the laminate is pierced — a toenail, a thorn, a sharp stone "
                     "inside a boot — the waterproofing is gone and cannot be restored. "
@@ -424,45 +418,6 @@ def main():
         ("block_order", ["c1", "c2", "c3", "c4"]),
     ])
 
-    # -------------------------------------------------------------- the film
-    # The client's ten-second clip, played on the portrait stage right before
-    # the price. Shot at 576x1024 — the stage's exact intrinsic size — and the
-    # poster is a frame from the clip itself, so what you see before pressing
-    # play is what plays. Nothing downloads until the visitor presses play.
-    #
-    # The copy describes what the footage actually shows — water poured onto
-    # the sock while it is worn — not the outdoor shots elsewhere on the page.
-    # On this site a caption that oversells its own clip would cost more than
-    # the clip earns.
-    S["film"] = collections.OrderedDict([
-        ("type", "product-film"),
-        ("settings", collections.OrderedDict([
-            ("color_scheme", "ink"),
-            ("anchor_id", "in-motion"),
-            ("eyebrow", "In motion"),
-            ("heading", "Ten seconds under running water."),
-            ("lede", rich(
-                "Our own clip rather than an independent test, so take it for what "
-                "it is: water poured straight onto the sock while it is being worn. "
-                "The claim underneath it is the membrane, not the footage."
-            )),
-            ("stage_background", "#0b0b0b"),
-            ("stage_caption",
-             "Water poured over a black HydroSox sock worn with a trainer, "
-             "beading and running off the knit."),
-            ("play_label", "Play the clip"),
-        ])),
-        ("blocks", collections.OrderedDict([
-            ("f1", {"type": "chapter", "settings": {
-                "title": "Water, poured straight on",
-                "caption": "One sock, ten seconds — poured over the cuff while worn.",
-                "video_fallback": "film-water-pour.mp4",
-                "poster_fallback": "film-water-pour-poster.webp",
-                "poster_alt": "Close-up of a black HydroSox sock about to be doused"}}),
-        ])),
-        ("block_order", ["f1"]),
-    ])
-
     # ------------------------------------------------------------------- S9
     S["buy"] = buy_widget()
 
@@ -543,7 +498,7 @@ def main():
         S["faq"]["block_order"].append(key)
 
     order = ["crumb", "hero", "definition", "mechanism", "limits",
-             "byuse", "alternatives", "choosing", "film", "buy", "faq"]
+             "byuse", "alternatives", "choosing", "buy", "faq"]
     missing = [k for k in order if k not in S]
     extra = [k for k in S if k not in order]
     if missing or extra:

@@ -10,7 +10,7 @@
         "min_height": 36,
         "eyebrow": "Hiking & Walking",
         "heading": "Four hours in, the boot gives up.",
-        "lede": "<p>Every waterproof boot wets out eventually \u2014 the outer soaks, the membrane stops breathing, and there is nowhere on a hill to dry anything. This is the layer that is still working when that happens.</p>",
+        "lede": "<p>Every waterproof boot wets out eventually — the outer soaks, the membrane stops breathing, and there is nowhere on a hill to dry anything. This is the layer that is still working when that happens.</p>",
         "image_fallback": "activity-hiking.webp",
         "image_alt": "Hiking in HydroSox waterproof socks",
         "focal_point": "center",
@@ -33,7 +33,7 @@
           "type": "spec",
           "settings": {
             "label": "Membrane",
-            "value": "Porelle\u00ae"
+            "value": "Porelle®"
           }
         },
         "f2": {
@@ -73,7 +73,7 @@
         "numbered": false,
         "row_density": "compact",
         "eyebrow": "The problem",
-        "heading": "The boot is not the last line \u2014 and most wet feet are not earned on a mountain.",
+        "heading": "The boot is not the last line — and most wet feet are not earned on a mountain.",
         "lede": "<p>Hill days are long, the ground holds water, and a boot takes it from every direction at once. None of that is a fault in the boot. It is what happens to any waterproof shell worn for eight hours in weather.</p>"
       },
       "blocks": {
@@ -137,7 +137,7 @@
         "numbered": true,
         "eyebrow": "What answers it",
         "heading": "What is doing the work.",
-        "head_note": "<p>The same sock we sell for everything else \u2014 there is no separate, lesser build for one activity. What changes is why each part of it matters here.</p>",
+        "head_note": "<p>The same sock we sell for everything else — there is no separate, lesser build for one activity. What changes is why each part of it matters here.</p>",
         "link_label": "The three layers, in section",
         "link_url": "/#construction"
       },
@@ -146,7 +146,7 @@
           "type": "item",
           "settings": {
             "title": "The membrane is inside the sock",
-            "body": "<p>A licensed Porelle\u00ae waterproof-breathable laminate, sealed between two knitted layers. Water that gets past the boot stops at the sock instead of at your skin.</p>"
+            "body": "<p>A licensed Porelle® waterproof-breathable laminate, sealed between two knitted layers. Water that gets past the boot stops at the sock instead of at your skin.</p>"
           }
         },
         "a2": {
@@ -173,8 +173,8 @@
         "w-a2": {
           "type": "item",
           "settings": {
-            "title": "Porelle\u00ae, named on the label",
-            "body": "<p>A licensed third-party membrane rather than an unnamed laminate \u2014 the one specification in this category you can look up without taking our word for it.</p>"
+            "title": "Porelle®, named on the label",
+            "body": "<p>A licensed third-party membrane rather than an unnamed laminate — the one specification in this category you can look up without taking our word for it.</p>"
           }
         },
         "w-a3": {
@@ -201,7 +201,7 @@
         "layout": "gallery",
         "eyebrow": "In use",
         "heading": "The same pair, in the conditions this page is about.",
-        "head_note": "<p>Product imagery rather than a documentary shoot, so read it for what the sock is and where it goes \u2014 not as evidence. The checkable claim is the membrane.</p>",
+        "head_note": "<p>Product imagery rather than a documentary shoot, so read it for what the sock is and where it goes — not as evidence. The checkable claim is the membrane.</p>",
         "gallery_aspect": "4 / 5"
       },
       "blocks": {
@@ -277,7 +277,7 @@
           "type": "item",
           "settings": {
             "title": "They wash normally",
-            "body": "<p>A cool machine wash. No fabric conditioner and no tumble dryer \u2014 one coats a membrane and the other degrades it.</p>"
+            "body": "<p>A cool machine wash. No fabric conditioner and no tumble dryer — one coats a membrane and the other degrades it.</p>"
           }
         },
         "w-w1": {
@@ -318,7 +318,7 @@
         "max_width": 46,
         "eyebrow": "What it will not do",
         "heading": "Where it stops.",
-        "body": "<p>Go in deeper than the cuff and water comes over the top, and no waterproof sock behaves otherwise. On a crossing that is above the ankle this buys you nothing \u2014 that is a gaiter and a boot problem, not a sock one.</p>",
+        "body": "<p>Go in deeper than the cuff and water comes over the top, and no waterproof sock behaves otherwise. On a crossing that is above the ankle this buys you nothing — that is a gaiter and a boot problem, not a sock one.</p>",
         "footnote": "<p>Every limit we know about is published, not only this one. <a href=\"/#limits\">Read the rest</a>.</p>"
       }
     },
@@ -494,14 +494,14 @@
           "type": "trust",
           "settings": {
             "label": "Checkout",
-            "value": "Guest \u2014 no account required"
+            "value": "Guest — no account required"
           }
         },
         "r4": {
           "type": "trust",
           "settings": {
             "label": "Payment",
-            "value": "Visa \u00b7 Mastercard \u00b7 American Express \u00b7 Apple Pay \u00b7 Google Pay \u00b7 Shop Pay"
+            "value": "Visa · Mastercard · American Express · Apple Pay · Google Pay · Shop Pay"
           }
         },
         "l1": {
@@ -568,7 +568,7 @@
           "type": "guide_note",
           "settings": {
             "label": "Between two sizes",
-            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit — a size down grips the toes and shortens the life of the membrane."
           }
         }
       },
@@ -617,7 +617,7 @@
         "per_unit_label": "per pair",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
-        "guide_intro": "Measure the foot rather than relying on shoe size \u2014 sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
         "guide_col_size": "Size",
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
@@ -644,7 +644,7 @@
           "type": "question",
           "settings": {
             "question": "Are these actually waterproof, or just water resistant?",
-            "answer": "<p>Waterproof. The middle layer is a Porelle\u00ae membrane \u2014 a licensed third-party laminate, not a name we invented \u2014 sealed inside a three-layer knit. Water that goes in over the top of the cuff is inside the sock, and no waterproof sock behaves otherwise.</p>"
+            "answer": "<p>Waterproof. The middle layer is a Porelle® membrane — a licensed third-party laminate, not a name we invented — sealed inside a three-layer knit. Water that goes in over the top of the cuff is inside the sock, and no waterproof sock behaves otherwise.</p>"
           }
         },
         "q2": {
@@ -672,7 +672,7 @@
           "type": "question",
           "settings": {
             "question": "What size should I order?",
-            "answer": "<p>Four bands: S covers UK 3-5, M covers UK 6-8, L covers UK 9-11, XL covers UK 12-14. The size guide opens over the buy widget without leaving the page, and it is measurement-led \u2014 shoe sizing is not consistent between brands.</p>"
+            "answer": "<p>Four bands: S covers UK 3-5, M covers UK 6-8, L covers UK 9-11, XL covers UK 12-14. The size guide opens over the buy widget without leaving the page, and it is measurement-led — shoe sizing is not consistent between brands.</p>"
           }
         },
         "q5": {
@@ -726,13 +726,13 @@
     "breadcrumb",
     "hero",
     "specs",
-    "buy",
-    "reviews",
     "problem",
     "answers",
     "inuse",
     "practice",
     "limits",
+    "reviews",
+    "buy",
     "faq",
     "guides",
     "siblings",

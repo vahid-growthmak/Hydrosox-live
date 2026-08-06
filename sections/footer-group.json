@@ -215,6 +215,22 @@
             "label": "Contact Us",
             "link": "/pages/contact"
           }
+        },
+        "legal_cookies": {
+          "type": "legal_link",
+          "settings": {
+            "policy": "custom",
+            "label": "Cookie Policy",
+            "link": "/pages/cookie-policy"
+          }
+        },
+        "legal_accessibility": {
+          "type": "legal_link",
+          "settings": {
+            "policy": "custom",
+            "label": "Accessibility",
+            "link": "/pages/accessibility"
+          }
         }
       },
       "block_order": [
@@ -247,7 +263,9 @@
         "legal_1",
         "legal_2",
         "legal_3",
-        "legal_4"
+        "legal_4",
+        "legal_cookies",
+        "legal_accessibility"
       ],
       "settings": {
         "color_scheme": "ink",

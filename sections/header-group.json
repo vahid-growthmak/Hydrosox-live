@@ -54,7 +54,7 @@
         "activity": {
           "type": "dropdown",
           "settings": {
-            "label": "Shop by Activity",
+            "label": "Shop by Use",
             "link": "/#activity"
           }
         },
@@ -126,11 +126,25 @@
             "label": "About",
             "link": "/pages/about"
           }
+        },
+        "act_wudu": {
+          "type": "dropdown_item",
+          "settings": {
+            "label": "Wudu & Masah",
+            "description": "Wudu at work, five times a day, without taking your socks off.",
+            "link": "/pages/wudu-socks",
+            "image_fallback": "activity-wudu-masah.webp",
+            "image_alt": "Pulling on a pair of white HydroSox while seated",
+            "focal_point": "50% 70%",
+            "image_zoom": 100,
+            "full_width": true
+          }
         }
       },
       "block_order": [
         "shop",
         "activity",
+        "act_wudu",
         "act_hiking",
         "act_boots",
         "act_cycling",

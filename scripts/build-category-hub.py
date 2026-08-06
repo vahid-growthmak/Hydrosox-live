@@ -433,14 +433,15 @@ def main():
          "Warmer than an equivalent sock, because they block wind and stop evaporative "
          "cooling, but they are not insulated. Waterproofing and warmth are separate "
          "properties and worth choosing separately."),
-        # The brief's wording for this one specified a wash temperature. The
-        # client's care document is silent on machine washing and the Care page
-        # says something different again, so this answer covers only what all
-        # three agree on and leaves the method to the care page.
+        # The brief's wording, restored at the client's instruction pending their
+        # confirmation. It states a wash temperature, which the client's own care
+        # document does not address — the Care & Washing page and the FAQ page now
+        # say the same thing, so at least the site is consistent while that is
+        # being checked.
         ("Can you wear waterproof socks every day?",
-         "Yes. Keep them away from heat and fabric softener — both end a membrane long "
-         "before wear does — and let them air dry. Most people who wear them daily keep "
-         "three or more pairs so a dry pair is always ready."),
+         "Yes. Wash them cool between wears and let them air dry — a membrane dies of "
+         "heat and softener long before it wears out. Most people who wear them daily "
+         "keep three or more pairs so a dry pair is always ready."),
         ("How long do waterproof socks last?",
          "It depends almost entirely on abrasion and how they are washed, not on how "
          "many times they are worn. Heat, fabric softener and tumble drying end a "

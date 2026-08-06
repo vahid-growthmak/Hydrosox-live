@@ -1,0 +1,114 @@
+/* Accessibility statement, composed by scripts/apply-spec-structural.py. */
+{
+  "sections": {
+    "crumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "paper",
+        "home_label": "Home",
+        "current_label": "Accessibility"
+      }
+    },
+    "intro": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "paper",
+        "heading_tag": "h1",
+        "heading_size": "h2",
+        "hide_rule": true,
+        "max_width": 46,
+        "eyebrow": "Accessibility",
+        "heading": "What we have done, and what we have not.",
+        "body": "<p>This site was built to be usable with a keyboard, with a screen reader, and at a text size you choose. That is a standard to be held to rather than a badge, so what follows is specific enough to check and it says where we fall short.</p><p>We aim at WCAG 2.2 level AA. We have not commissioned an independent audit, so nothing here is a certification — it is a description of decisions taken, and it will be corrected as things are found.</p>"
+      }
+    },
+    "done": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "eyebrow": "Specifics",
+        "heading": "Five things you can verify.",
+        "lede": "<p>Each of these is testable in a browser in a couple of minutes, which is the point of listing them.</p>"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Keyboard and focus",
+            "body": "<p>Every control can be reached and operated with a keyboard, focus is always visible, and the menu and cart return focus to where you left it when they close. There is a skip link to the main content.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Text and zoom",
+            "body": "<p>Type is set in relative units, so the site follows your browser's text size and reflows to 400% zoom without content being lost or needing sideways scrolling.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Colour and contrast",
+            "body": "<p>Body text and controls are checked against the AA contrast threshold. Colour is never the only thing carrying meaning.</p>"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "Motion",
+            "body": "<p>Scroll-driven animation and the frame sequence stop when your system asks for reduced motion. Nothing on the site moves or autoplays without being asked.</p>"
+          }
+        },
+        "i5": {
+          "type": "item",
+          "settings": {
+            "title": "Structure and images",
+            "body": "<p>Headings are ordered rather than chosen for size, tables carry real headers, forms have real labels, and images that carry meaning have text alternatives.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4",
+        "i5"
+      ]
+    },
+    "gaps": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "wash",
+        "heading_size": "h3",
+        "max_width": 46,
+        "eyebrow": "Where it falls short",
+        "heading": "Known gaps, stated rather than hidden.",
+        "body": "<p>The product film has no captions yet, because the films are not finished. No independent audit has been carried out. And no amount of care replaces testing with people who rely on assistive technology, which we have not yet done.</p>"
+      }
+    },
+    "close": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "paper",
+        "hide_rule": true,
+        "max_width": 44,
+        "heading_size": "h3",
+        "heading": "Found something that does not work?",
+        "body": "<p>Tell us what you were trying to do and what happened, and we will fix it and say when. A phone number and an email reach a person.</p>",
+        "cta_label": "Contact us",
+        "cta_url": "/pages/contact",
+        "link_label": "Company details",
+        "link_url": "/pages/about"
+      }
+    }
+  },
+  "order": [
+    "crumb",
+    "intro",
+    "done",
+    "gaps",
+    "close"
+  ]
+}

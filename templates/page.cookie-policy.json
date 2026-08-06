@@ -1,0 +1,106 @@
+/* Cookie policy, composed by scripts/apply-spec-structural.py. */
+{
+  "sections": {
+    "crumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "paper",
+        "home_label": "Home",
+        "current_label": "Cookie policy"
+      }
+    },
+    "intro": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "paper",
+        "heading_tag": "h1",
+        "heading_size": "h2",
+        "hide_rule": true,
+        "max_width": 46,
+        "eyebrow": "Cookie policy",
+        "heading": "What this site stores on your device.",
+        "body": "<p>A cookie is a small file a website asks your browser to keep. This store runs on Shopify, which sets the cookies that make a cart and a checkout work at all, and we add nothing that is not described below.</p><p>You can delete cookies or block them in your browser settings at any time. Blocking the essential ones will stop the cart and checkout working, because they are the mechanism by which those remember what you are doing.</p>"
+      }
+    },
+    "kinds": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "eyebrow": "The kinds",
+        "heading": "Four categories, and which we use.",
+        "lede": "<p>Grouped the way the regulations group them, so this can be checked against them rather than taken on trust.</p>"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Strictly necessary",
+            "body": "<p>Set by Shopify so the basket remembers what is in it, the checkout can carry you through payment, and the site can tell one visitor from another for security. These cannot be turned off without breaking the shop, and they are not used for advertising.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Preferences",
+            "body": "<p>Remember choices you have made, such as accepting this notice, so you are not asked again on every page.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Analytics",
+            "body": "<p>Count visits and show which pages are read, in aggregate. We use these to decide what to write next, not to identify anyone.</p>"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "Advertising",
+            "body": "<p>Used to measure or target advertising. If any are ever set on this site, they will be named here first and asked for separately.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ]
+    },
+    "control": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "wash",
+        "heading_size": "h3",
+        "max_width": 44,
+        "eyebrow": "Your choices",
+        "heading": "How to see and change what is stored.",
+        "body": "<p>Every current browser lists the cookies a site has set and lets you delete them, under privacy or site settings. Where consent is required for a category, this site asks before setting it, and a refusal is remembered.</p>",
+        "link_label": "How we handle personal data",
+        "link_url": "/policies/privacy-policy"
+      }
+    },
+    "close": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "paper",
+        "hide_rule": true,
+        "max_width": 44,
+        "heading_size": "h3",
+        "heading": "Questions about any of this reach a person.",
+        "body": "<p>Cookies are the least interesting thing on this site and the easiest to get vague about, so if anything here is unclear, ask.</p>",
+        "cta_label": "Contact us",
+        "cta_url": "/pages/contact"
+      }
+    }
+  },
+  "order": [
+    "crumb",
+    "intro",
+    "kinds",
+    "control",
+    "close"
+  ]
+}

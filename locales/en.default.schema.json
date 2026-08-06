@@ -348,7 +348,11 @@
       "guide_col_shoe": "Shoe size column",
       "guide_close_label": "Close button label",
       "block_guide_row": "Size guide row",
-      "block_guide_note": "Size guide note"
+      "block_guide_note": "Size guide note",
+      "delivery_charge": "Single-order delivery charge",
+      "delivery_charge_info": "Shown added to any tier that does not reach the free-delivery threshold, with the grand total beside it. The DMCCA 2024 requires the total including mandatory charges to appear before the customer commits, so this must match what checkout actually charges. Set to 0 to hide the line.",
+      "delivery_label": "Delivery word",
+      "total_label": "Total word"
     },
     "compare": {
       "name": "Comparison table",
@@ -726,6 +730,16 @@
       "required": "Required",
       "block_choice": "Routing option",
       "block_choice_info": "Add two or more to show a dropdown asking what the enquiry is about. With fewer than two, no dropdown appears."
+    },
+    "policy": {
+      "name": "Policy text",
+      "show_breadcrumb": "Show breadcrumb",
+      "home_label": "Home link label",
+      "body_note": "The policy text itself is edited in Settings → Policies, not here. This section controls how it looks and what sits around it.",
+      "standfirst": "Standfirst",
+      "standfirst_info": "Optional line under the title. Shown on every policy, so keep it general.",
+      "footnote": "Closing note",
+      "aria_label": "Breadcrumb landmark label"
     }
   }
 }

@@ -1,0 +1,36 @@
+/* Shop policies — refund, shipping, terms and privacy. Their text lives in
+   Shopify's Settings > Policies, not here; this template only gives them the
+   site's design. Without it Shopify renders them unstyled, which made the legal
+   pages the only ones on the site that looked like a different shop. */
+{
+  "sections": {
+    "main": {
+      "type": "main-policy",
+      "settings": {
+        "color_scheme": "paper",
+        "show_breadcrumb": true,
+        "home_label": "Home",
+        "eyebrow": "Policy",
+        "footnote": "<p>Nothing on this page reduces your statutory rights under the Consumer Rights Act 2015 or the Consumer Contracts Regulations 2013. If anything here is unclear, phone 0203 4322 920 or email info@hydrosox.com and a person will explain it.</p>"
+      }
+    },
+    "contact": {
+      "type": "company-details",
+      "settings": {
+        "color_scheme": "wash",
+        "emit_schema": false,
+        "eyebrow": "The company",
+        "heading": "Who you are buying from, in full.",
+        "lede": "<p>Published here rather than buried in a policy page, which is the point of the policy page saying so.</p>"
+      },
+      "blocks": {
+        "c1": { "type": "row", "settings": { "label": "Company", "kind": "text", "value": "HydroSox, UK registered" } },
+        "c2": { "type": "row", "settings": { "label": "Registered address", "kind": "address" } },
+        "c3": { "type": "row", "settings": { "label": "Phone", "kind": "tel" } },
+        "c4": { "type": "row", "settings": { "label": "Email", "kind": "email" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"]
+    }
+  },
+  "order": ["main", "contact"]
+}

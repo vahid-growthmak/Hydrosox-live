@@ -1805,3 +1805,81 @@
   padding-top: 2rem;
   border-top: 1px solid var(--rule-strong);
 }
+
+/* --------------------------------------------------------------------------
+   Shop policies
+
+   The body is merchant HTML from Settings > Policies, so it cannot be styled
+   element by element from a template. Everything here is typographic and
+   applies to whatever arrives.
+   -------------------------------------------------------------------------- */
+.hs-policy__crumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.hs-policy__crumb-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hs-policy__head {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hs-policy__standfirst {
+  margin-top: 1rem;
+}
+
+.hs-policy__standfirst > :first-child {
+  margin-top: 0;
+}
+
+.hs-policy__body {
+  margin-top: 2.5rem;
+}
+
+.hs-policy__body > :first-child {
+  margin-top: 0;
+}
+
+/* Merchant HTML arrives with h2/h3 and lists. Put them on the site's scale so
+   a policy reads like the rest of the site rather than like a word processor. */
+.hs-policy__body h2 {
+  margin-top: 3rem;
+  font-size: var(--type-h4);
+  font-weight: var(--weight-heading);
+  letter-spacing: var(--tracking-h4);
+  line-height: var(--leading-h4);
+  color: var(--on-surface);
+}
+
+.hs-policy__body h3 {
+  margin-top: 2rem;
+  font-weight: var(--weight-medium);
+  color: var(--on-surface);
+}
+
+.hs-policy__body ul,
+.hs-policy__body ol {
+  margin-top: 1rem;
+  padding-inline-start: 1.25rem;
+}
+
+.hs-policy__body li + li {
+  margin-top: 0.5rem;
+}
+
+.hs-policy__foot {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.hs-policy__foot > :first-child {
+  margin-top: 0;
+}

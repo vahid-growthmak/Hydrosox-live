@@ -1,0 +1,132 @@
+{%- comment -%}
+  Shop policies — /policies/refund-policy, /shipping-policy, /terms-of-service,
+  /privacy-policy.
+
+  These four are not theme templates. Their text lives in Settings → Policies
+  and Shopify renders it through this one section, so the theme cannot control
+  what they say — only how they read. Without a policy template at all, which
+  is what this theme had, Shopify falls back to unstyled markup and the legal
+  pages become the only pages on the site that look like they belong to a
+  different shop.
+
+  The body arrives as a single blob of merchant HTML, so everything here is
+  typographic: a measure that keeps lines readable, headings on the site's own
+  scale, and rules that match the rest of the site. `hs-rte` is the same class
+  the product description and the guides use, so a policy inherits every
+  correction ever made to long-form prose here.
+{%- endcomment -%}
+
+{%- comment -%}
+  theme-check cannot know which template a section is bound to, so it cannot
+  know that `policy` is defined here. It is: Shopify populates it on the policy
+  template and nowhere else, which is exactly why this section is only ever
+  referenced from templates/policy.json.
+{%- endcomment -%}
+{% # theme-check-disable UndefinedObject %}
+<section
+  class="hs-policy hs-scheme-{{ section.settings.color_scheme }} hs-border-b"
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-base">
+    {%- if section.settings.show_breadcrumb -%}
+      <nav class="hs-policy__crumb hs-caption hs-muted" aria-label="{{ section.settings.aria_label | escape }}">
+        <a class="hs-tap hs-policy__crumb-link" href="{{ routes.root_url }}">
+          {{- section.settings.home_label -}}
+        </a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ policy.title }}</span>
+      </nav>
+    {%- endif -%}
+
+    <header class="hs-policy__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h1 class="hs-h2 hs-policy__title hs-measure-22 hs-balance">{{ policy.title }}</h1>
+      {%- if section.settings.standfirst != blank -%}
+        <div class="hs-body hs-policy__standfirst hs-measure-46 hs-pretty hs-muted">
+          {{ section.settings.standfirst }}
+        </div>
+      {%- endif -%}
+    </header>
+
+    {%- comment -%}
+      The policy text itself. Revealed as one block rather than staggered —
+      these are read start to finish when they are read at all, and a legal
+      page that animates its own clauses in is the wrong register.
+    {%- endcomment -%}
+    <div class="hs-small-body hs-policy__body hs-rte hs-measure-62 hs-pretty hs-reveal">
+      {{ policy.body }}
+    </div>
+
+    {%- if section.settings.footnote != blank -%}
+      <div class="hs-caption hs-policy__foot hs-measure-56 hs-pretty hs-muted">
+        {{ section.settings.footnote }}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{% # theme-check-enable UndefinedObject %}
+
+{% schema %}
+{
+  "name": "t:sections.policy.name",
+  "class": "hs-policy-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "label": "t:sections.policy.show_breadcrumb",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "home_label",
+      "label": "t:sections.policy.home_label",
+      "default": "Home"
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "t:sections.policy.aria_label",
+      "default": "Breadcrumb"
+    },
+    {
+      "type": "header",
+      "content": "t:common.content"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.policy.body_note"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "Policy"
+    },
+    {
+      "type": "richtext",
+      "id": "standfirst",
+      "label": "t:sections.policy.standfirst",
+      "info": "t:sections.policy.standfirst_info"
+    },
+    {
+      "type": "richtext",
+      "id": "footnote",
+      "label": "t:sections.policy.footnote",
+      "default": "<p>Nothing on this page reduces your statutory rights. If anything here is unclear, phone or email us and a person will explain it.</p>"
+    }
+  ]
+}
+{% endschema %}

@@ -1000,7 +1000,7 @@
         "id": "noindex_collections",
         "label": "t:settings.layout.noindex_collections",
         "info": "t:settings.layout.noindex_collections_info",
-        "default": "all,waterproof-socks"
+        "default": "all"
       }
     ]
   },

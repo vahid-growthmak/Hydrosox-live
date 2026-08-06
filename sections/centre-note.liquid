@@ -30,7 +30,16 @@
         </{{ heading_tag }}>
       {%- endif -%}
       {%- if section.settings.body != blank -%}
-        <div class="hs-body hs-note__body hs-measure-58 hs-pretty hs-muted">
+        {%- comment -%}
+          `lead_first_para` sets the opening paragraph a step larger, so a
+          definition reads as a definition rather than as the first line of body
+          copy. Used where the first paragraph is written to stand on its own —
+          both a featured snippet and an LLM lift the opening paragraph, and the
+          type size is the cheapest way to signal that it is self-contained.
+        {%- endcomment -%}
+        <div
+          class="hs-body hs-note__body hs-measure-58 hs-pretty hs-muted{% if section.settings.lead_first_para %} hs-note__body--lead{% endif %}"
+        >
           {{ section.settings.body }}
         </div>
       {%- endif -%}
@@ -149,6 +158,13 @@
         { "value": "h1", "label": "t:sections.note.size_h1" }
       ],
       "default": "h3"
+    },
+    {
+      "type": "checkbox",
+      "id": "lead_first_para",
+      "label": "t:sections.note.lead_first_para",
+      "info": "t:sections.note.lead_first_para_info",
+      "default": false
     },
     { "type": "richtext", "id": "body", "label": "t:common.body" },
     { "type": "richtext", "id": "footnote", "label": "t:sections.cols.footnote" },

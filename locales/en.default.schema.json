@@ -591,7 +591,9 @@
       "pointer_label": "Pointer label",
       "pointer_link_label": "Pointer link text",
       "pointer_url": "Pointer link",
-      "tail_note": "Closing note"
+      "tail_note": "Closing note",
+      "lead_first_para": "Set the first paragraph larger",
+      "lead_first_para_info": "For a paragraph written to stand on its own, like a definition. Search results and AI answers both lift the opening paragraph."
     },
     "cards": {
       "name": "Link cards",

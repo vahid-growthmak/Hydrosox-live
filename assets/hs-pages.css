@@ -831,6 +831,18 @@
   margin-top: 0;
 }
 
+/*
+   A definition, set to read as one. The opening paragraph steps up a size and
+   takes the full-strength ink, so it separates from the paragraphs under it
+   without needing a rule or a box. Scoped to the first paragraph only — the
+   point is the contrast, so enlarging all of them would achieve nothing.
+*/
+.hs-note__body--lead > p:first-child {
+  font-size: var(--type-h4);
+  line-height: var(--leading-h4, 1.35);
+  color: var(--on-surface);
+}
+
 .hs-note__footnote {
   margin-top: 2rem;
   margin-inline: auto;

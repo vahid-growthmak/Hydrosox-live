@@ -98,7 +98,7 @@
     "pace_vast_min": 96,
     "pace_vast_vw": 15,
     "pace_vast_max": 224,
-    "noindex_collections": "all,waterproof-socks",
+    "noindex_collections": "all",
     "radius_md": 6,
     "radius_lg": 8,
     "radius_xl": 12,

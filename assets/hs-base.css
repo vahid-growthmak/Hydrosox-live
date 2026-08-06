@@ -759,7 +759,22 @@ summary::-webkit-details-marker {
     transition-delay: calc(var(--hs-stagger-step) * 5);
   }
 
-  /* Each child enters over a window offset 7% further down its own entry. */
+  .hs-stagger > :nth-child(7) {
+    transition-delay: calc(var(--hs-stagger-step) * 6);
+  }
+
+  .hs-stagger > :nth-child(8) {
+    transition-delay: calc(var(--hs-stagger-step) * 7);
+  }
+
+  /*
+    Each child enters over a window offset 7% further down its own entry.
+
+    Enumerated to eight because the question lists run to eight. Past that the
+    default `.hs-reveal` range takes over, which is the right outcome anyway: a
+    list longer than eight cannot fit one viewport, so its later rows are
+    already staggered by the scroll position at which they arrive.
+  */
   @supports (animation-timeline: view()) {
     .hs-stagger > :nth-child(1) {
       animation-range: entry 5% entry 55%;
@@ -783,6 +798,14 @@ summary::-webkit-details-marker {
 
     .hs-stagger > :nth-child(6) {
       animation-range: entry 40% entry 90%;
+    }
+
+    .hs-stagger > :nth-child(7) {
+      animation-range: entry 47% entry 97%;
+    }
+
+    .hs-stagger > :nth-child(8) {
+      animation-range: entry 54% entry 100%;
     }
   }
 }

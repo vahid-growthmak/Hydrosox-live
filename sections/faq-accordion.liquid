@@ -46,14 +46,21 @@
 
       {%- comment -%} Questions column {%- endcomment -%}
       {%- if question_count > 0 -%}
+        {%- comment -%}
+          A list of eight closed questions is the densest-looking block on these
+          pages, and the one most likely to read as a wall. Staggering the rows
+          in gives it a rhythm as it arrives; the answers themselves still open
+          instantly, and the whole thing renders open and static under
+          prefers-reduced-motion.
+        {%- endcomment -%}
         <hs-accordion
-          class="hs-faq__list"
+          class="hs-faq__list hs-stagger"
           {% if section.settings.one_at_a_time %}
             data-single
           {% endif %}
         >
           {%- for block in questions -%}
-            <details class="hs-faq__item" {{ block.shopify_attributes }}>
+            <details class="hs-faq__item hs-reveal" {{ block.shopify_attributes }}>
               <summary class="hs-faq__summary">
                 <span class="hs-h4 hs-faq__question hs-measure-30 hs-pretty">
                   {{- block.settings.question -}}

@@ -78,7 +78,7 @@
             {%- if shots.size > 0 -%}
               <ul class="hs-cols__gallery hs-stagger" role="list">
                 {%- for block in shots -%}
-                  <li {{ block.shopify_attributes }}>
+                  <li class="hs-reveal" {{ block.shopify_attributes }}>
                     {% render 'hs-image',
                       image: block.settings.image,
                       fallback: block.settings.image_fallback,
@@ -135,8 +135,15 @@
                       assign row_has_media = true
                     endif
                   -%}
+                  {%- comment -%}
+                    The rows carry the reveal, not the list. `hs-stagger` on the
+                    parent only computes the per-child offset; without
+                    `hs-reveal` on the child there is nothing for that offset to
+                    delay, and a long argued list arrives as one wall of text —
+                    which is exactly what these pages cannot afford.
+                  {%- endcomment -%}
                   <li
-                    class="hs-cols__row{% if row_has_media %} hs-cols__row--media{% endif %}"
+                    class="hs-cols__row hs-reveal{% if row_has_media %} hs-cols__row--media{% endif %}"
                     {{ block.shopify_attributes }}
                   >
                     {%- if section.settings.numbered -%}

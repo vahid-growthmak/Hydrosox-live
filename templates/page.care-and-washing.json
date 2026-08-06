@@ -20,6 +20,8 @@
         "color_scheme": "paper",
         "layout": "list",
         "numbered": true,
+        "anchor_id": "washing",
+        "eyebrow": "Washing instructions",
         "heading": "Washing instructions"
       },
       "blocks": {
@@ -41,7 +43,7 @@
           "type": "item",
           "settings": {
             "title": "No fabric softener",
-            "body": "<p>Softener coats the pores the membrane breathes through. Once they are clogged the sock still keeps water out, but it stops moving vapour.</p>"
+            "body": "<p>Softener coats the pores the membrane breathes through. Once they are clogged the sock still keeps water out, but it stops moving vapour — which is the worst of both.</p>"
           }
         },
         "i4": {
@@ -64,6 +66,13 @@
             "title": "Never tumble dry or iron",
             "body": "<p>Both are heat, applied directly.</p>"
           }
+        },
+        "i7": {
+          "type": "item",
+          "settings": {
+            "title": "Rinse the grit out first",
+            "body": "<p>After a muddy walk or a wet ride, rinse under a cold tap before washing. Fine grit trapped in the knit is abrasive against the membrane from the inside, and it does more damage than the mud does.</p>"
+          }
         }
       },
       "block_order": [
@@ -72,7 +81,8 @@
         "i3",
         "i4",
         "i5",
-        "i6"
+        "i6",
+        "i7"
       ]
     },
     "damage": {
@@ -81,27 +91,45 @@
         "color_scheme": "wash",
         "layout": "list",
         "numbered": false,
+        "anchor_id": "damage",
+        "eyebrow": "What damages the membrane",
         "heading": "What damages the membrane"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
-            "title": "They are not indestructible.",
+            "title": "They are not indestructible",
             "body": "<p>A membrane is a membrane. Abrasion, toenails and the wrong wash cycle will eventually end one.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "Breathable does not mean dry inside.",
+            "title": "Breathable does not mean dry inside",
             "body": "<p>Work hard enough and you will sweat faster than any membrane can move vapour. Breathability slows that. It does not repeal it.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Keep your toenails short",
+            "body": "<p>The least glamorous advice on this site and one of the most useful. A long toenail inside a close-fitting sock is a puncture waiting to happen, and a punctured membrane cannot be repaired.</p>"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "Do not leave them damp in a bag",
+            "body": "<p>A wet sock left in a kit bag or a boot overnight is where odour starts, and prolonged damp does the knit no good either. Air dry them the same day.</p>"
           }
         }
       },
       "block_order": [
         "i1",
-        "i2"
+        "i2",
+        "i3",
+        "i4"
       ]
     },
     "life": {
@@ -127,13 +155,112 @@
         "link_label": "HydroSox Waterproof Socks",
         "link_url": "/products/hydrosox-waterproof-socks"
       }
+    },
+    "failing": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "anchor_id": "if-it-changes",
+        "eyebrow": "If something changes",
+        "heading": "If a pair stops keeping water out.",
+        "lede": "<p>There are three usual explanations, and they need different responses.</p>",
+        "link_label": "Where you stand if it is a fault",
+        "link_url": "/pages/warranty"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Water came in over the cuff",
+            "body": "<p>The most common one, and not a fault. If the water was deeper than the sock is tall, it went in the top. Nothing is wrong with the sock.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "The membrane is clogged rather than failed",
+            "body": "<p>If they feel clammy but still keep water out, that is usually fabric softener build-up. A cool wash with no detergent residue sometimes recovers it. Sometimes it does not.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "The membrane is punctured",
+            "body": "<p>If water comes through the body of the sock, the laminate has been pierced. That cannot be repaired or reproofed. If it happened within the first weeks of normal use, that is a fault and we want to hear about it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "questions",
+        "one_at_a_time": false,
+        "emit_schema": true,
+        "eyebrow": "Questions",
+        "heading": "About washing them."
+      },
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How often should I wash them?",
+            "answer": "<p>After every wet or muddy outing, and otherwise as often as you would wash any sock. Washing them correctly does no harm; leaving grit and sweat in them does.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Can I wash them by hand?",
+            "answer": "<p>Yes, and for a single muddy pair it is often quicker. Cool water, a little detergent, no softener, rinse thoroughly and air dry.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "What detergent should I use?",
+            "answer": "<p>An ordinary liquid detergent is fine. Avoid anything marketed as a softening or conditioning detergent, and avoid biological powders left undissolved against the fabric.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Can I put them on a radiator to dry?",
+            "answer": "<p>No. Direct heat is the fastest way to end a laminate, and a radiator is the most common culprit precisely because it is the most tempting after a wet day.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "How long should a pair last?",
+            "answer": "<p>We do not publish a figure yet, because we do not have one we could stand behind. What we can tell you is what decides it: abrasion inside footwear, and heat or softener in the wash. Those end a membrane far sooner than elapsed time does, and three of the four are in your control.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ]
     }
   },
   "order": [
     "intro",
     "wash",
     "damage",
+    "failing",
     "life",
+    "faq",
     "tail"
   ]
 }

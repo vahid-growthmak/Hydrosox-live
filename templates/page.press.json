@@ -14,7 +14,7 @@
         "heading_tag": "h1",
         "heading_size": "h2",
         "body": "<p>Verifiable brand facts and downloadable assets for anyone writing about HydroSox.</p>",
-        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder \u2014 when it ships it will carry real detail, not filler.</p>",
+        "footnote": "<p>This page is not finished yet. Nothing has been written here as a placeholder — when it ships it will carry real detail, not filler.</p>",
         "pointer_label": "",
         "pointer_link_label": "",
         "pointer_url": "",
@@ -124,11 +124,99 @@
         "f3",
         "f4"
       ]
+    },
+    "facts": {
+      "type": "company-details",
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "brand-facts",
+        "emit_schema": false,
+        "eyebrow": "The facts",
+        "heading": "Everything a journalist needs, in one place.",
+        "lede": "<p>Logo, product photography and this fact sheet are available on request. Email us and a person will reply.</p>"
+      },
+      "blocks": {
+        "f1": {
+          "type": "row",
+          "settings": {
+            "label": "Company",
+            "kind": "text",
+            "value": "HydroSox, a UK registered company"
+          }
+        },
+        "f2": {
+          "type": "row",
+          "settings": {
+            "label": "Registered address",
+            "kind": "text",
+            "value": "399–405 Oxford Street, Mayfair, London W1C 2BU"
+          }
+        },
+        "f3": {
+          "type": "row",
+          "settings": {
+            "label": "Product",
+            "kind": "text",
+            "value": "One waterproof sock: three-layer knit, licensed Porelle® membrane, four colourways, UK 3–14"
+          }
+        },
+        "f4": {
+          "type": "row",
+          "settings": {
+            "label": "Price",
+            "kind": "text",
+            "value": "£20.00 a pair, £16.00 a pair in a five-pack"
+          }
+        },
+        "f5": {
+          "type": "row",
+          "settings": {
+            "label": "Membrane",
+            "kind": "text",
+            "value": "Porelle®, licensed third party"
+          }
+        },
+        "f6": {
+          "type": "row",
+          "settings": {
+            "label": "Test data",
+            "kind": "text",
+            "value": "None published. We do not have independently tested figures."
+          }
+        },
+        "f7": {
+          "type": "row",
+          "settings": {
+            "label": "Reviews",
+            "kind": "text",
+            "value": "None published. There are none yet."
+          }
+        },
+        "f8": {
+          "type": "row",
+          "settings": {
+            "label": "Certification",
+            "kind": "text",
+            "value": "No certificate has been issued in relation to masah, by us or by anyone else."
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8"
+      ]
     }
   },
   "order": [
     "breadcrumb",
-    "form",
-    "intro"
+    "intro",
+    "facts",
+    "form"
   ]
 }

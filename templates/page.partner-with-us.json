@@ -145,6 +145,8 @@
         "color_scheme": "paper",
         "layout": "list",
         "numbered": false,
+        "anchor_id": "proposition",
+        "eyebrow": "What you would be stocking",
         "heading": "What you would be stocking"
       },
       "blocks": {
@@ -173,7 +175,21 @@
           "type": "item",
           "settings": {
             "title": "UK company, UK stock",
-            "body": "<p>Registered address and phone published. Shipped from the UK, not drop-shipped.</p>"
+            "body": "<p>Registered address and phone published. Shipped from the UK, not drop-shipped from elsewhere.</p>"
+          }
+        },
+        "i5": {
+          "type": "item",
+          "settings": {
+            "title": "A category with a defined audience",
+            "body": "<p>Waterproof socks sell to walkers, cyclists, runners and trades. The wudu segment adds a large, geographically concentrated audience that mainstream outdoor brands do not serve at all.</p>"
+          }
+        },
+        "i6": {
+          "type": "item",
+          "settings": {
+            "title": "Four sizes, four colours, one SKU family",
+            "body": "<p>A small range to hold and a simple one to merchandise. No seasonal carryover and no size curve to guess at beyond UK 3 to 14.</p>"
           }
         }
       },
@@ -181,7 +197,9 @@
         "i1",
         "i2",
         "i3",
-        "i4"
+        "i4",
+        "i5",
+        "i6"
       ]
     },
     "proof": {
@@ -257,11 +275,59 @@
         "alt_label": "Our partners",
         "alt_url": "/pages/our-partners"
       }
+    },
+    "audience": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "list",
+        "numbered": false,
+        "anchor_id": "who-this-is-for",
+        "eyebrow": "Who this is for",
+        "heading": "The kinds of enquiry we can act on."
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Independent outdoor and cycling retailers",
+            "body": "<p>Physical or online, UK based.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Islamic retailers and mosque shops",
+            "body": "<p>A segment mainstream outdoor wholesalers do not serve, and where the product argument is strongest.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Workwear and safety suppliers",
+            "body": "<p>Selling into trades, agriculture, groundworks and facilities.</p>"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "Corporate and bulk orders",
+            "body": "<p>Staff kit, event supply, and charitable distribution.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ]
     }
   },
   "order": [
     "intro",
     "proposition",
+    "audience",
     "proof",
     "direct",
     "form",

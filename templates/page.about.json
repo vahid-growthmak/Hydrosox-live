@@ -21,6 +21,8 @@
         "color_scheme": "paper",
         "layout": "list",
         "numbered": false,
+        "anchor_id": "what",
+        "eyebrow": "What there is to say",
         "heading": "What there is to say"
       },
       "blocks": {
@@ -28,7 +30,7 @@
           "type": "item",
           "settings": {
             "title": "What we sell",
-            "body": "<p>A waterproof sock with a licensed Porelle\u00ae membrane sealed inside a three-layer knit, in four colourways and four sizes, at one price that does not change depending on how you arrived.</p>"
+            "body": "<p>A waterproof sock with a licensed Porelle® membrane sealed inside a three-layer knit, in four colourways and four sizes, at one price that does not change depending on how you arrived.</p>"
           }
         },
         "i2": {
@@ -44,20 +46,30 @@
             "title": "Where we are",
             "body": "<p>A UK registered company with a UK warehouse. The address and phone number are on every page.</p>"
           }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "What it costs and why",
+            "body": "<p>Twenty pounds a pair, against thirty to fifty for the established performance brands. That is not a lower-quality membrane; it is one product sold direct, with no retail markup and no thirty-item accessory range to fund.</p>"
+          }
         }
       },
       "block_order": [
         "i1",
         "i2",
-        "i3"
+        "i3",
+        "i4"
       ]
     },
     "gap": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "blue",
+        "color_scheme": "wash",
         "layout": "list",
         "numbered": false,
+        "anchor_id": "missing",
+        "eyebrow": "What is missing",
         "heading": "What is missing, and why we are saying so"
       },
       "blocks": {
@@ -74,11 +86,19 @@
             "title": "How the product was developed",
             "body": "<p>Not written yet. When it is, it will not carry invented timelines or test counts.</p>"
           }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Independent test data",
+            "body": "<p>We publish no hydrostatic head or breathability figure, because we do not have independently tested ones. The technology page explains what those numbers mean and why we would rather have none than an unverified one.</p>"
+          }
         }
       },
       "block_order": [
         "i1",
-        "i2"
+        "i2",
+        "i3"
       ]
     },
     "company": {
@@ -154,12 +174,25 @@
         "alt_label": "How it is built",
         "alt_url": "/pages/technology"
       }
+    },
+    "support": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "beyond-the-product",
+        "eyebrow": "Beyond the product",
+        "heading": "Two partnerships, and no logo wall.",
+        "body": "<p>HydroSox works with The Fair Group, supporting mental health innovation and neuro-diagnostic services, and with Humanity Welfare Trust, which delivers humanitarian aid projects. The detail of each arrangement is published on the partners page once it can be evidenced rather than asserted.</p>",
+        "link_label": "What each partnership actually involves",
+        "link_url": "/pages/our-partners"
+      }
     }
   },
   "order": [
     "intro",
     "what",
     "gap",
+    "support",
     "company",
     "reviews",
     "close"

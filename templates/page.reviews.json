@@ -154,14 +154,14 @@
           "type": "trust",
           "settings": {
             "label": "Checkout",
-            "value": "Guest \u2014 no account required"
+            "value": "Guest — no account required"
           }
         },
         "r4": {
           "type": "trust",
           "settings": {
             "label": "Payment",
-            "value": "Visa \u00b7 Mastercard \u00b7 American Express \u00b7 Apple Pay \u00b7 Google Pay \u00b7 Shop Pay"
+            "value": "Visa · Mastercard · American Express · Apple Pay · Google Pay · Shop Pay"
           }
         },
         "l1": {
@@ -228,7 +228,7 @@
           "type": "guide_note",
           "settings": {
             "label": "Between two sizes",
-            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit — a size down grips the toes and shortens the life of the membrane."
           }
         }
       },
@@ -277,7 +277,7 @@
         "per_unit_label": "per pair",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
-        "guide_intro": "Measure the foot rather than relying on shoe size \u2014 sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
         "guide_col_size": "Size",
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
@@ -290,9 +290,10 @@
       "settings": {
         "color_scheme": "paper",
         "layout": "list",
-        "numbered": true,
-        "heading": "The standard this feed will be held to",
-        "head_note": "<p>Set out now, while it costs us nothing to promise, so it can be held against us later.</p>"
+        "numbered": false,
+        "anchor_id": "standard",
+        "eyebrow": "The standard",
+        "heading": "The standard this feed will be held to"
       },
       "blocks": {
         "i1": {
@@ -322,13 +323,21 @@
             "title": "The aggregate is the real one",
             "body": "<p>Whatever the average turns out to be is what gets printed, including the rating and the total volume in one line.</p>"
           }
+        },
+        "i5": {
+          "type": "item",
+          "settings": {
+            "title": "We will not offer anything for a review",
+            "body": "<p>No discount, no free pair, no prize draw. A review bought with an incentive is not evidence, and it is not permitted to be presented as though it were.</p>"
+          }
         }
       },
       "block_order": [
         "i1",
         "i2",
         "i3",
-        "i4"
+        "i4",
+        "i5"
       ]
     },
     "meanwhile": {
@@ -345,7 +354,7 @@
           "type": "item",
           "settings": {
             "title": "The membrane is named",
-            "body": "<p>Porelle\u00ae, licensed from a third party. You can look it up, which is more than an unnamed laminate offers.</p>"
+            "body": "<p>Porelle®, licensed from a third party. You can look it up, which is more than an unnamed laminate offers.</p>"
           }
         },
         "i2": {
@@ -368,6 +377,37 @@
         "i2",
         "i3"
       ]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "questions",
+        "one_at_a_time": false,
+        "emit_schema": true,
+        "eyebrow": "Questions",
+        "heading": "About the feed that is not here yet."
+      },
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "When will there be reviews?",
+            "answer": "<p>When enough people have bought and used a pair to make a rating mean something. We would rather show nothing than show four reviews and an average.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Will you publish bad reviews?",
+            "answer": "<p>Yes, unedited and alongside the rest. A feed with no negatives in it tells a careful reader that it has been filtered, which is worse than a mixed one.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2"
+      ]
     }
   },
   "order": [
@@ -375,6 +415,7 @@
     "intro",
     "standard",
     "meanwhile",
+    "faq",
     "feed",
     "buy"
   ]

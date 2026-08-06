@@ -54,10 +54,24 @@
 >
   <div class="hs-shell hs-buy__pad">
     {%- comment -%} Heading {%- endcomment -%}
+    {%- liquid
+      # On the product template this widget carries the page's H1, and the H1 is
+      # the plain product name from Shopify — the one page where a literal
+      # heading outperforms a written one, because it confirms exactly what the
+      # shopping-intent visitor searched for. Everywhere else the widget keeps
+      # its own heading as an h2.
+      assign buy_heading = section.settings.heading
+      assign buy_heading_tag = 'h2'
+      if template.name == 'product' and product != blank
+        assign buy_heading = product.title
+        assign buy_heading_tag = 'h1'
+      endif
+    -%}
     <div class="hs-buy__head">
       {% render 'hs-section-head',
         eyebrow: section.settings.eyebrow,
-        heading: section.settings.heading,
+        heading: buy_heading,
+        heading_tag: buy_heading_tag,
         lede: section.settings.lede,
         heading_size: 'h3',
         heading_measure: 'hs-measure-22',

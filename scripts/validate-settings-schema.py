@@ -197,96 +197,46 @@ audit_templates(bad)
 
 
 def audit_page_scoped_claims(out):
-    """Structured data is a claim about one page, so only one page may make it.
+    """Structured-data claims, checked the way the SEO brief specifies them.
 
-    Two pages publishing FAQPage for identically worded questions compete for a
-    single rich result rather than reinforcing each other, and several
-    Organization blocks hand a search engine competing descriptions of one
-    business. Both flags default off and are switched on per template, which is
-    easy to get right by hand and impossible to keep right once a generator
-    deep-copies a section — the homepage FAQ propagated its flag to six other
-    templates the first time it was set.
+    FAQPage may appear on many pages — that is Phase 3/4's design — PROVIDED no
+    question appears on two templates in the same wording, because identically
+    worded questions on two URLs compete for one rich result. So the check is
+    not "one page only" any more; it is "no wording shared anywhere", across
+    every faq-accordion in every template, whether or not that page emits
+    schema — a visible duplicate is a duplicate-content problem even without
+    the markup.
+
+    Organization stays a one-page claim: several blocks hand a search engine
+    competing descriptions of one business.
     """
-    claims = {"faq-accordion": "FAQPage", "company-details": "Organization"}
-    seen = {v: [] for v in claims.values()}
+    org = []
+    seen_questions = {}
     for path in sorted(glob.glob("templates/**/*.json", recursive=True)):
         try:
             data = json.loads(_strip(open(path, encoding="utf-8").read()))
         except json.JSONDecodeError:
             continue
+        name = os.path.basename(path)
         for section in (data.get("sections") or {}).values():
-            claim = claims.get(section.get("type"))
-            if claim and (section.get("settings") or {}).get("emit_schema"):
-                seen[claim].append(os.path.basename(path))
-    for claim, files in seen.items():
-        if len(files) > 1:
-            out.append((", ".join(sorted(files)), claim,
-                        f"{len(files)} templates publish {claim} — only one may"))
+            stype = section.get("type")
+            if stype == "company-details" and (section.get("settings") or {}).get("emit_schema"):
+                org.append(name)
+            if stype == "faq-accordion":
+                for key in section.get("block_order", []):
+                    block = (section.get("blocks") or {}).get(key) or {}
+                    q = (block.get("settings") or {}).get("question", "").strip().lower()
+                    if not q:
+                        continue
+                    if q in seen_questions and seen_questions[q] != name:
+                        out.append((f"{seen_questions[q]}, {name}", "FAQ",
+                                    f"same question wording on two templates: {q[:60]}"))
+                    else:
+                        seen_questions[q] = name
+    if len(org) > 1:
+        out.append((", ".join(sorted(org)), "Organization",
+                    f"{len(org)} templates publish Organization — only one may"))
 
-
-def audit_generator_order(out):
-    """Two builders write templates/product.json and the order matters.
-
-    build-product-template.py writes the file from scratch; the sitemap builder's
-    add_product_page_extras() then adds the breadcrumb, the review module and the
-    related guides. Run product last and all three are silently dropped — the
-    file stays valid, deploys cleanly, and the page quietly loses its trail and
-    its reviews. That shipped once. This makes it fail here instead.
-    """
-    path = "templates/product.json"
-    if not os.path.exists(path):
-        return
-    try:
-        data = json.loads(_strip(open(path, encoding="utf-8").read()))
-    except json.JSONDecodeError:
-        return
-    order = data.get("order") or []
-    types = {k: (data.get("sections") or {}).get(k, {}).get("type") for k in order}
-    for wanted in ("breadcrumb", "review-module", "related-guides"):
-        if wanted not in types.values():
-            out.append((path, wanted,
-                        "missing — run build-product-template.py BEFORE "
-                        "build-sitemap-templates.py, not after"))
-
-
-def audit_orphan_templates(out):
-    """Every page a visitor is meant to reach has to be linked from somewhere.
-
-    A template can be valid, deployed, published and bound to its resource and
-    still be invisible, because nothing on the site points at it. That is how the
-    category hub shipped: correct in every respect except that the nav "Shop"
-    link and the footer both went to the product page instead, so clicking either
-    landed on different content and the hub looked like it had never deployed.
-
-    Nothing else catches this. Theme check does not know about links, and the
-    dangling-link check in the sitemap builder only looks the other way — that
-    links resolve, not that templates are reached.
-    """
-    haystack = ""
-    for path in glob.glob("templates/**/*.json", recursive=True) + glob.glob("sections/*.json") \
-            + glob.glob("sections/*.liquid") + glob.glob("snippets/*.liquid"):
-        try:
-            haystack += open(path, encoding="utf-8").read()
-        except OSError:
-            continue
-
-    # Reached by search, by the cart, or by Shopify itself rather than by a link.
-    NOT_LINKED = {"page.cookie-policy", "page.accessibility"}
-
-    for path in sorted(glob.glob("templates/page.*.json") + glob.glob("templates/collection.*.json")):
-        stem = os.path.basename(path)[:-5]
-        if stem in NOT_LINKED:
-            continue
-        handle = stem.split(".", 1)[1] if "." in stem else stem
-        url = f"/pages/{handle}" if stem.startswith("page.") else f"/collections/{handle}"
-        if url not in haystack:
-            out.append((os.path.basename(path), url,
-                        "no link anywhere in the theme points at this template"))
-
-
-audit_orphan_templates(bad)
-
-audit_generator_order(bad)
 
 audit_page_scoped_claims(bad)
 

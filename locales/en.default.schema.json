@@ -187,6 +187,8 @@
       "home_description_info": "Keep under 160 characters so it is not cut off on desktop or mobile.",
       "home_og_title": "Homepage share title",
       "home_og_description": "Homepage share description",
+      "schema_product": "Product these pages are about",
+      "schema_product_info": "The category and use-case pages describe one product. Naming it here lets their structured data point at it, so search engines read the set as one catalogue rather than as unrelated pages.",
       "hreflang": "Publish hreflang tags",
       "hreflang_info": "Adds a self-referencing hreflang plus x-default. Correct for a single-language store; turn off if you add translated storefronts and handle it elsewhere."
     }

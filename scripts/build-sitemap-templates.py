@@ -1278,6 +1278,69 @@ def build_content_pages():
     print("  page.about: 3 sections + company + reviews + closing")
 
 
+def wudu_buy():
+    buy = buy_widget_from_home()
+    buy["settings"]["default_quantity"] = 3
+    return buy
+
+
+def wudu_faq():
+    """Eight wudu-specific questions. Four cover ground the homepage also
+    covers, deliberately reworded — identical Q&A across two URLs competes for
+    the same rich result, and the validator fails the build on it."""
+    QUESTIONS = [
+        ("What are wudhu socks?",
+         "Waterproof socks built to the physical properties the masah conditions rest "
+         "on: water does not pass through them, they hold their shape rather than "
+         "collapsing against the foot, and they stay in place through normal wear. "
+         "HydroSox states those properties. It does not issue rulings on them."),
+        ("Are HydroSox certified for wudu?",
+         "No. No certificate has been issued, by us or by anyone else. A brand cannot "
+         "award itself one. What we publish is what the sock is made of and how it "
+         "behaves, so that you — or the scholar you follow — can judge it."),
+        ("What is the difference between these and ordinary waterproof socks?",
+         "Nothing in the membrane, and everything in the structure. It is the same "
+         "Porelle® laminate in every HydroSox pair. What matters for masah is that "
+         "the sock holds its shape as a covering over the foot, and that is built "
+         "into the construction rather than added for this page."),
+        ("Are these the same as leather socks or khuffs?",
+         "Not the same material, and the same intent. Khuffain are the leather "
+         "footwear the classical rulings were written about. These are a modern "
+         "waterproof construction aimed at the same physical properties. Whether "
+         "that equivalence holds is a question for scholarship, and the masah page "
+         "sets out how it is discussed."),
+        ("Can women wear these?",
+         "Yes. The sock is unisex and the bands start at UK 3. Size on foot length "
+         "rather than on the label you are used to."),
+        ("How many pairs do I need for daily use?",
+         "Most people performing wudu daily keep three. They are washed cool and "
+         "air-dried, which takes longer than a tumble dryer would, so a rotation of "
+         "three keeps a dry pair available every day."),
+        ("Can I wash them without damaging the waterproofing?",
+         "Cool wash, inside out, no fabric softener, no bleach, then air dry away "
+         "from any heat source. Heat and softener end a membrane far faster than "
+         "wearing it does."),
+        ("Where can I read about the masah conditions themselves?",
+         "On the masah page, which sets out the conditions, how masah is performed, "
+         "how long it lasts, and where the schools differ — with every source named. "
+         "We report that scholarship. We do not add to it."),
+    ]
+    blocks, order = {}, []
+    for i, (q, a) in enumerate(QUESTIONS, 1):
+        blocks[f"q{i}"] = {"type": "question", "settings": {
+            "question": q, "answer": rich(a)}}
+        order.append(f"q{i}")
+    return {"type": "faq-accordion", "settings": {
+        "color_scheme": "paper", "anchor_id": "faq", "one_at_a_time": False,
+        "emit_schema": True,
+        "eyebrow": "Questions",
+        "heading": "The things people ask before they buy.",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/pages/contact",
+    }, "blocks": blocks, "block_order": order}
+
+
 def build_wudu_page():
     """Sitemap page 7. The reference had six sections against nine rows, and
     opened on a centre-note rather than a hero, so it read like a placeholder.
@@ -1313,16 +1376,19 @@ def build_wudu_page():
                  "<p>Not by us, not by anyone else, not yet. A brand cannot award itself one, and we are not going to imply approval we do not have by leaving the question unanswered.</p>"),
                 ("What we can state instead",
                  "<p>The physical facts: what the membrane is, how the sock is constructed, and how it behaves. Those are checkable. The ruling is not ours to make.</p>"),
-            ], color_scheme="blue", heading="On certification",
+            ], color_scheme="blue", eyebrow="On certification", heading="On certification",
                 head_note="<p>The most important thing on this page, so it comes first.</p>"),
             "conditions": items([
                 ("Waterproof",
                  "<p>A licensed Porelle® membrane sealed between two knitted layers. Water does not pass through it. This is the same membrane in every HydroSox pair, not a separate wudu version.</p>"),
                 ("Holds its shape",
-                 "<p>Structured so it stays a covering over the foot rather than collapsing flat against it when worn.</p>"),
+                 "<p>Structured so it stays a covering over the foot rather than collapsing flat "
+                 "against it. It stands upright when it is not being worn, and you can see that "
+                 "in the photographs on this page.</p>"),
                 ("Stays on the foot",
                  "<p>A close, shaped fit that stays in place through normal wear, rather than working loose over a day.</p>"),
-            ], numbered=True, heading="The three properties, one at a time"),
+            ], numbered=True, eyebrow="The three properties",
+                heading="The three properties, one at a time"),
             "credentials": items([
                 ("The membrane is named and licensed",
                  "<p>Porelle® is a third-party laminate. You can look it up, and someone other than us stands behind it. Compare that with an unnamed waterproof layer.</p>"),
@@ -1330,17 +1396,38 @@ def build_wudu_page():
                  "<p>Lining, membrane, wear face. The construction page sets out what each one is for.</p>"),
                 ("PFOA free, stated",
                  "<p>Printed because it is true, not because it tests well.</p>"),
-            ], color_scheme="wash", heading="Why this pair rather than another",
+            ], color_scheme="wash", eyebrow="The difference",
+                heading="Why this pair rather than another",
                 head_note="<p>The differentiator is the named membrane. Everything else in this category tends to be asserted rather than evidenced.</p>"),
+            # The daily reality is the actual purchase trigger — Hajj is a few
+            # weeks of a lifetime; the washroom at work is the other fifty-one.
+            "everyday": items([
+                ("The washroom that was not designed for it",
+                 "<p>Washing your feet in a shared sink at work is awkward, cold and slow, and "
+                 "you go back to your desk in wet socks. This is the problem the sock exists "
+                 "for.</p>"),
+                ("Ten minutes back, three times a day",
+                 "<p>The time is not the headline reason people buy, but it is the reason they "
+                 "buy a second pair.</p>"),
+                ("Winter, travel, and everywhere in between",
+                 "<p>Service stations, airports, sites, university prayer rooms. The places wudu "
+                 "actually happens are rarely the places designed for it.</p>"),
+            ], eyebrow="Every day", heading="Wudu at work, five times a day.",
+                head_note="<p>Hajj is a few weeks. The reason most people buy waterproof wudhu "
+                          "socks is the other fifty-one weeks.</p>",
+                link_label="How masah is performed",
+                link_url="/pages/how-to-make-masah"),
             "travel": items([
                 ("Long days away from home",
                  "<p>Pilgrimage travel means long days, shared ablution facilities and little chance to dry anything properly. A pair that keeps water out and can be washed cool and air-dried overnight is doing useful work.</p>"),
                 ("Multiples, not singles",
                  "<p>Most people buying for travel buy more than one pair. The quantity ladder on this page prices that in rather than treating it as a bulk request.</p>"),
-            ], heading="Hajj, Umrah and travel"),
-            "buy": buy_widget_from_home(),
+            ], eyebrow="Travel", heading="Hajj, Umrah and travel"),
+            # Three pairs is the honest minimum for a five-times-a-day use with
+            # a wash-and-air-dry cycle, so the ladder starts there on this page.
+            "buy": wudu_buy(),
             "reviews": review_module("wash"),
-            "faq": faq_from_home(limit=4),
+            "faq": wudu_faq(),
             "scholarly": company_rows(
                 eyebrow="Scholarly questions",
                 heading="Ask about the construction, and we will answer factually.",
@@ -1353,7 +1440,7 @@ def build_wudu_page():
                 alt_label="How to make masah", alt_url="/pages/how-to-make-masah"),
         },
         "order": ["crumb", "hero", "certificate", "conditions", "credentials",
-                  "travel", "buy", "reviews", "faq", "scholarly", "close"],
+                  "everyday", "travel", "buy", "reviews", "faq", "scholarly", "close"],
     })
     print("  page.wudu-socks: hero + certificate + conditions + credentials + travel")
     print("                   + buy widget + reviews + FAQ + contact + closing")

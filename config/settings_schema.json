@@ -1255,6 +1255,12 @@
         "default": "A licensed Porelle® membrane sealed inside a three-layer knit. Hiking, running, cycling, work and wudu. From £20 a pair."
       },
       {
+        "type": "product",
+        "id": "schema_product",
+        "label": "t:settings.search.schema_product",
+        "info": "t:settings.search.schema_product_info"
+      },
+      {
         "type": "checkbox",
         "id": "hreflang_enabled",
         "label": "t:settings.search.hreflang",

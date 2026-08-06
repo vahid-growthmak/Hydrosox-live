@@ -103,6 +103,33 @@
 
     {% render 'hs-meta-social' %}
 
+    {%- comment -%}
+      Structured data that belongs to a template rather than to a section: one
+      WebSite node for the site, one Product node wherever a product renders.
+      Section-level claims (FAQPage, Organization) stay with their sections.
+    {%- endcomment -%}
+    {%- if template.name == 'index' -%}
+      {% render 'hs-schema-website' %}
+    {%- endif -%}
+    {%- if template.name == 'product' and product != blank -%}
+      {% render 'hs-schema-product' %}
+    {%- endif -%}
+
+    {%- comment -%}
+      The category and use-case pages. Listed by handle rather than detected,
+      because "a page that argues a category" is an editorial judgement and not
+      something the template can infer — /pages/about renders through the same
+      template and is not one of these.
+    {%- endcomment -%}
+    {%- if template.name == 'page' -%}
+      {%- assign category_pages = 'waterproof-socks,hiking-and-walking,running-and-trail,cycling-and-commuting,all-day-in-boots' | split: ',' -%}
+      {%- if category_pages contains page.handle -%}
+        {% render 'hs-schema-collection-page' %}
+      {%- elsif page.handle == 'wudu-socks' -%}
+        {% render 'hs-schema-collection-page', defined_term: true %}
+      {%- endif -%}
+    {%- endif -%}
+
     {{ 'hs-base.css' | asset_url | stylesheet_tag }}
     {{ 'hs-chrome.css' | asset_url | stylesheet_tag }}
     {{ 'hs-home.css' | asset_url | stylesheet_tag }}

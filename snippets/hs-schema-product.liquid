@@ -1,0 +1,68 @@
+{%- comment -%}
+  Product structured data, product template only, built from the live product
+  object rather than typed values — the name, the colours, the sizes, the
+  prices and the availability all come from Shopify, so the data can never
+  disagree with what the store actually sells or charges.
+
+  What is deliberately absent, per the SEO brief's appendix:
+  - aggregateRating and review, until genuine reviews exist. Marking up an
+    empty or invented rating is the most common cause of a manual action on a
+    new store.
+  - sku / gtin13 / mpn / material / countryOfOrigin — none is confirmed yet,
+    and schema must never assert what the visible page does not say. Each slot
+    below is ready the moment the fact arrives on the product.
+
+  Prices are the variant prices Shopify charges per unit. The five-pack's
+  effective £16-a-pair is a discount, not a variant price, so it is not
+  presented as an offer price here.
+{%- endcomment -%}
+{%- liquid
+  assign colour_values = ''
+  assign size_values = ''
+  for option in product.options_with_values
+    assign lowered = option.name | downcase
+    if lowered == 'colour' or lowered == 'color'
+      assign colour_values = option.values | join: '","'
+    elsif lowered == 'size'
+      assign size_values = option.values | join: '","'
+    endif
+  endfor
+-%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": "{{ shop.url }}{{ product.url }}#product",
+    "name": {{ product.title | json }},
+    "description": {{ product.description | strip_html | truncate: 300 | json }},
+    "url": "{{ shop.url }}{{ product.url }}",
+    {%- if product.featured_image -%}
+      "image": "https:{{ product.featured_image | image_url: width: 1200 }}",
+    {%- endif -%}
+    "brand": { "@type": "Brand", "name": {{ product.vendor | default: shop.name | json }} },
+    "manufacturer": { "@id": "{{ shop.url }}/#organization" },
+    {%- if colour_values != blank -%}
+      "color": ["{{ colour_values }}"],
+    {%- endif -%}
+    {%- if size_values != blank -%}
+      "size": ["{{ size_values }}"],
+    {%- endif -%}
+    "audience": { "@type": "PeopleAudience", "suggestedGender": "unisex" },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "lowPrice": "{{ product.price_min | divided_by: 100.0 }}",
+      "highPrice": "{{ product.price_max | divided_by: 100.0 }}",
+      "offerCount": {{ product.variants.size }},
+      "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+      "seller": { "@id": "{{ shop.url }}/#organization" },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "GB",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 14,
+        "returnMethod": "https://schema.org/ReturnByMail"
+      }
+    }
+  }
+</script>

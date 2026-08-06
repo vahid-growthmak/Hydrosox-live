@@ -1,0 +1,81 @@
+{%- comment -%}
+  CollectionPage structured data for the pages that argue a category rather than
+  sell a variant: the waterproof-socks hub, the wudu page and the four use-case
+  pages.
+
+  These live at /pages/ rather than /collections/ because the catalogue is a
+  single SKU and a Shopify collection of one product would add a URL without
+  adding an answer. The schema type still says CollectionPage, because the type
+  describes what the page *does* for a reader — sets out a category and points
+  at what is in it — not which Shopify object rendered it.
+
+  Every id is built from `shop.url`, so the graph re-points itself the moment a
+  custom domain is connected and nothing has to be found and edited by hand.
+
+  `about` and the ItemList both name the product these pages describe, which is
+  what ties the set together as one catalogue instead of six loose pages. The
+  product comes from a theme setting rather than a handle typed in here.
+
+  BreadcrumbList is not emitted here — the breadcrumb section already emits it
+  from the same array it draws, so the trail and its markup cannot disagree.
+  FAQPage is not emitted here either; the question section owns that.
+
+  Accepts:
+  - defined_term: {Boolean} Also emit a DefinedTerm for the entity this page
+    defines. Wudu only, where being the source of the definition is the point.
+{%- endcomment -%}
+{%- liquid
+  assign schema_product = settings.schema_product
+  assign page_url = shop.url | append: page.url
+-%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "{{ page_url }}#page",
+    "url": "{{ page_url }}",
+    "name": {{ page.title | json }},
+    {%- if page_description != blank -%}
+      "description": {{ page_description | strip_html | json }},
+    {%- endif -%}
+    "inLanguage": "en-GB",
+    "isPartOf": { "@id": "{{ shop.url }}/#website" },
+    {%- if schema_product != blank -%}
+      "about": { "@id": "{{ shop.url }}{{ schema_product.url }}#product" },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "{{ shop.url }}{{ schema_product.url }}"
+          }
+        ]
+      },
+    {%- endif -%}
+    "publisher": { "@id": "{{ shop.url }}/#organization" }
+  }
+</script>
+
+{%- comment -%}
+  The entity definition. This states what the thing *is*, in the same words the
+  visible page uses — which is the whole basis on which it may be published at
+  all. It makes a claim about the sock's physical properties and no claim about
+  religious validity, permissibility, certification or approval, because schema
+  is ingested directly by language models and a claim made here travels further,
+  and is harder to retract, than the same claim in body copy.
+{%- endcomment -%}
+{%- if defined_term -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "DefinedTerm",
+      "@id": "{{ page_url }}#term",
+      "name": "Wudhu socks",
+      "alternateName": ["Wudu socks", "Ablution socks", "Masah socks"],
+      "description": "Waterproof socks built to the physical properties the masah conditions rest on: water does not pass through them, they hold their shape rather than collapsing against the foot, and they stay in place through normal wear.",
+      "inDefinedTermSet": "{{ shop.url }}/pages/how-to-make-masah",
+      "mainEntityOfPage": { "@id": "{{ page_url }}#page" }
+    }
+  </script>
+{%- endif -%}

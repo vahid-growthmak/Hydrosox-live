@@ -150,6 +150,22 @@
             {%- endif -%}
         {%- endcase -%}
 
+        {%- comment -%}
+          A button rather than the head's text link, for the one position where
+          this section carries the page's primary action — the homepage product
+          summary standing where the buy widget used to. Renders nothing until a
+          label is set, so every other instance is unchanged.
+        {%- endcomment -%}
+        {%- if section.settings.cta_label != blank -%}
+          <p class="hs-cols__cta">
+            {% render 'hs-button',
+              label: section.settings.cta_label,
+              href: section.settings.cta_url,
+              style: 'primary'
+            %}
+          </p>
+        {%- endif -%}
+
         {%- if section.settings.footnote != blank -%}
           <p class="hs-caption hs-cols__footnote hs-measure-52 hs-pretty hs-faint">
             {{- section.settings.footnote -}}
@@ -285,6 +301,17 @@
       "type": "textarea",
       "id": "footnote",
       "label": "t:sections.cols.footnote"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:sections.cols.cta_label",
+      "info": "t:sections.cols.cta_label_info"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "t:sections.cols.cta_url"
     },
     {
       "type": "header",

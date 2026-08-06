@@ -1,0 +1,53 @@
+{%- comment -%}
+  FAQPage structured data for an accordion's question blocks.
+
+  Emitted for one page only. Two pages of the same site carrying FAQPage for
+  questions worded the same way compete for the same rich result, so the section
+  gates this behind a setting rather than emitting it wherever an accordion
+  appears. The homepage carries it; /pages/faq deliberately does not.
+
+  Answers are rich text. Google wants the answer as text or limited HTML, and a
+  block-level wrapper is fine, but the JSON has to be valid — so the value is
+  passed through `json`, which escapes the quotes and newlines for us rather
+  than us trying to.
+
+  Accepts:
+  - blocks: {Array} The section's blocks. Only `question` types are read.
+
+  Usage:
+  {% render 'hs-schema-faq', blocks: section.blocks %}
+{%- endcomment -%}
+{%- liquid
+  assign questions = blocks | where: 'type', 'question'
+  assign answered = ''
+  for q in questions
+    if q.settings.question != blank and q.settings.answer != blank
+      assign answered = answered | append: 'y'
+    endif
+  endfor
+-%}
+{%- if answered != '' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- assign first = true -%}
+        {%- for q in questions -%}
+          {%- if q.settings.question != blank and q.settings.answer != blank -%}
+            {%- unless first %},{% endunless -%}
+            {
+              "@type": "Question",
+              "name": {{ q.settings.question | strip_html | json }},
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": {{ q.settings.answer | json }}
+              }
+            }
+            {%- assign first = false -%}
+          {%- endif -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}

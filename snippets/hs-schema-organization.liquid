@@ -1,0 +1,81 @@
+{%- comment -%}
+  Organization structured data for the company-details section.
+
+  Reads the same theme settings the section's rows fall back to, so the markup a
+  visitor sees and the data a crawler reads cannot drift apart. Emitted on one
+  page only — repeating Organization across a site gives a search engine several
+  competing descriptions of the same entity.
+
+  Every field is omitted when empty rather than emitted blank: a
+  PostalAddress with an empty streetAddress is worse than no address at all,
+  because it asserts something false about the entity.
+
+  Accepts:
+  - blocks: {Array} The section's rows, read for an explicit value first.
+
+  Usage:
+  {% render 'hs-schema-organization', blocks: section.blocks %}
+{%- endcomment -%}
+{%- liquid
+  assign org_phone = settings.phone
+  assign org_email = settings.email
+  assign org_address = settings.address
+  assign org_number = settings.company_number
+
+  # An explicit value on a row wins over the global setting, matching how the
+  # visible rows resolve.
+  for block in blocks
+    case block.settings.kind
+      when 'tel'
+        if block.settings.value != blank
+          assign org_phone = block.settings.value
+        endif
+      when 'email'
+        if block.settings.value != blank
+          assign org_email = block.settings.value
+        endif
+      when 'address'
+        if block.settings.value != blank
+          assign org_address = block.settings.value
+        endif
+    endcase
+  endfor
+
+  assign flat_address = org_address | strip_newlines | strip
+-%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": {{ shop.url | json }}
+    {%- if settings.logo != blank -%}
+      , "logo": {{ settings.logo | image_url: width: 600 | prepend: 'https:' | json }}
+    {%- else -%}
+      , "logo": {{ 'hydrosox-logo.png' | asset_url | prepend: 'https:' | json }}
+    {%- endif -%}
+    {%- if org_number != blank -%}
+      , "identifier": {
+        "@type": "PropertyValue",
+        "name": "Companies House registration number",
+        "value": {{ org_number | json }}
+      }
+    {%- endif -%}
+    {%- if flat_address != blank -%}
+      , "address": {
+        "@type": "PostalAddress",
+        "streetAddress": {{ flat_address | json }},
+        "addressCountry": "GB"
+      }
+    {%- endif -%}
+    {%- if org_phone != blank or org_email != blank -%}
+      , "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service"
+        {%- if org_phone != blank %}, "telephone": {{ org_phone | json }}{% endif -%}
+        {%- if org_email != blank %}, "email": {{ org_email | json }}{% endif -%}
+        , "areaServed": "GB"
+      }
+    {%- endif -%}
+  }
+</script>

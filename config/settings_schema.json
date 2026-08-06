@@ -89,6 +89,12 @@
         "id": "address",
         "label": "t:settings.brand.address",
         "default": "399-405 Oxford Street\nMayfair, London\nW1C 2BU\nUnited Kingdom"
+      },
+      {
+        "type": "text",
+        "id": "company_number",
+        "label": "t:settings.brand.company_number",
+        "info": "t:settings.brand.company_number_info"
       }
     ]
   },
@@ -1206,6 +1212,48 @@
         "type": "url",
         "id": "social_linkedin",
         "label": "t:settings.social.linkedin"
+      }
+    ]
+  },
+  {
+    "name": "t:settings.search.name",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "t:settings.search.intro"
+      },
+      {
+        "type": "text",
+        "id": "home_seo_title",
+        "label": "t:settings.search.home_title",
+        "info": "t:settings.search.home_title_info",
+        "default": "Waterproof Socks UK | Porelle® Membrane, from £20 | HydroSox"
+      },
+      {
+        "type": "textarea",
+        "id": "home_seo_description",
+        "label": "t:settings.search.home_description",
+        "info": "t:settings.search.home_description_info",
+        "default": "Waterproof socks with a licensed Porelle® membrane in a three-layer knit. From £20 a pair, free UK delivery on two or more. We publish the limits too."
+      },
+      {
+        "type": "text",
+        "id": "home_og_title",
+        "label": "t:settings.search.home_og_title",
+        "default": "HydroSox — waterproof socks built for British weather"
+      },
+      {
+        "type": "textarea",
+        "id": "home_og_description",
+        "label": "t:settings.search.home_og_description",
+        "default": "A licensed Porelle® membrane sealed inside a three-layer knit. Hiking, running, cycling, work and wudu. From £20 a pair."
+      },
+      {
+        "type": "checkbox",
+        "id": "hreflang_enabled",
+        "label": "t:settings.search.hreflang",
+        "info": "t:settings.search.hreflang_info",
+        "default": true
       }
     ]
   }

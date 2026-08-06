@@ -89,6 +89,14 @@
   </div>
 </section>
 
+{%- comment -%}
+  Off by default, for the same reason as the FAQ schema: one page should describe
+  the entity, or a search engine gets several competing descriptions of it.
+{%- endcomment -%}
+{%- if section.settings.emit_schema -%}
+  {% render 'hs-schema-organization', blocks: section.blocks %}
+{%- endif -%}
+
 {% schema %}
 {
   "name": "t:sections.company.name",
@@ -111,6 +119,13 @@
       "label": "t:common.anchor_id",
       "info": "t:common.anchor_id_info",
       "default": "about"
+    },
+    {
+      "type": "checkbox",
+      "id": "emit_schema",
+      "label": "t:sections.company.emit_schema",
+      "info": "t:sections.company.emit_schema_info",
+      "default": false
     },
     {
       "type": "header",

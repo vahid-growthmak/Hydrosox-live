@@ -13,7 +13,9 @@
       "logo_height": "Logo height",
       "logo_height_info": "Applies from 640px up. The header bar grows to fit if the logo is taller than the bar allows.",
       "logo_height_footer": "Footer logo height",
-      "logo_footer_opacity": "Footer logo opacity"
+      "logo_footer_opacity": "Footer logo opacity",
+      "company_number": "Companies House number",
+      "company_number_info": "Registration number, e.g. 12345678. Published in the company section and in the store’s Organization data."
     },
     "colours": {
       "name": "Colours",
@@ -173,6 +175,18 @@
       "tiktok": "TikTok",
       "youtube": "YouTube",
       "linkedin": "LinkedIn"
+    },
+    "search": {
+      "name": "Search and sharing",
+      "intro": "Shopify keeps the homepage title and description in the admin, where they are not versioned with the theme. Fill these in to override; leave empty to use the admin values.",
+      "home_title": "Homepage title",
+      "home_title_info": "Shown as the clickable line in search results. Around 60 characters before it truncates.",
+      "home_description": "Homepage meta description",
+      "home_description_info": "Keep under 160 characters so it is not cut off on desktop or mobile.",
+      "home_og_title": "Homepage share title",
+      "home_og_description": "Homepage share description",
+      "hreflang": "Publish hreflang tags",
+      "hreflang_info": "Adds a self-referencing hreflang plus x-default. Correct for a single-language store; turn off if you add translated storefronts and handle it elsewhere."
     }
   },
   "section_groups": {
@@ -425,7 +439,9 @@
       "cta_note": "Note beside the button",
       "block_question": "Question",
       "question": "Question",
-      "answer": "Answer"
+      "answer": "Answer",
+      "emit_schema": "Publish FAQ structured data",
+      "emit_schema_info": "Turn on for ONE page only. Two pages carrying this for the same questions compete for the same search result."
     },
     "company": {
       "name": "Company details",
@@ -435,7 +451,9 @@
       "kind_address": "Address",
       "kind_tel": "Phone number",
       "kind_email": "Email address",
-      "value_info": "Leave empty to use the matching value from Brand in theme settings."
+      "value_info": "Leave empty to use the matching value from Brand in theme settings.",
+      "emit_schema": "Publish Organization data",
+      "emit_schema_info": "Turn on for ONE page only. Describes the business to search engines using the rows below."
     },
     "signup": {
       "name": "Newsletter offer",
@@ -551,7 +569,10 @@
       "row_density_standard": "Standard",
       "row_density_compact": "Compact",
       "layout_media": "Copy beside an image",
-      "media_header": "Image (copy beside an image)"
+      "media_header": "Image (copy beside an image)",
+      "cta_label": "Button label",
+      "cta_label_info": "Adds a button below the content. Leave empty for no button.",
+      "cta_url": "Button link"
     },
     "note": {
       "name": "Centre note",

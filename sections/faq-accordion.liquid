@@ -92,6 +92,15 @@
   </div>
 </section>
 
+{%- comment -%}
+  Off by default. Only one page of the site should claim FAQPage for a given set
+  of questions — two pages carrying it for the same wording compete for the same
+  rich result rather than reinforcing each other.
+{%- endcomment -%}
+{%- if section.settings.emit_schema -%}
+  {% render 'hs-schema-faq', blocks: section.blocks %}
+{%- endif -%}
+
 {% schema %}
 {
   "name": "t:sections.faq.name",
@@ -119,6 +128,13 @@
       "type": "checkbox",
       "id": "one_at_a_time",
       "label": "t:sections.faq.one_at_a_time",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "emit_schema",
+      "label": "t:sections.faq.emit_schema",
+      "info": "t:sections.faq.emit_schema_info",
       "default": false
     },
     {

@@ -293,6 +293,13 @@ summary::-webkit-details-marker {
   max-width: 54ch;
 }
 
+/* The comparison table's intro runs four characters past the 46ch measure the
+   other section heads use. Widening the column is the right call over cutting
+   the sentence, which is doing the page's trust work. */
+.hs-measure-50 {
+  max-width: 50ch;
+}
+
 /* --------------------------------------------------------------------------
    3. Shell and rhythm
    -------------------------------------------------------------------------- */

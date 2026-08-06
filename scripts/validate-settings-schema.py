@@ -120,9 +120,14 @@ def audit_templates(out):
             out.append((os.path.basename(path), "-", f"not valid JSON: {exc}")); continue
         name = os.path.basename(path)
         for key, section in (data.get("sections") or {}).items():
-            schema = schemas.get(section.get("type"))
+            stype = section.get("type")
+            # 'apps' is Shopify's own app-block host section. It has no file in
+            # the theme and appears whenever a merchant drops an app block in.
+            if stype in ("apps",):
+                continue
+            schema = schemas.get(stype)
             if schema is None:
-                out.append((name, key, f"unknown section '{section.get('type')}'")); continue
+                out.append((name, key, f"unknown section '{stype}'")); continue
             check_values(f"{name} [{key}]", _defs(schema), section.get("settings"), out)
             for bkey, block in (section.get("blocks") or {}).items():
                 btype = block.get("type")
@@ -168,8 +173,16 @@ for g in json.load(open('config/settings_schema.json')):
     for s in g.get('settings', []):
         if 'id' in s:
             valid[s['id']] = s
-data = json.load(open('config/settings_data.json'))['current']
+# Shopify rewrites this file and prepends its own /* */ banner, so it is not
+# plain JSON once the theme has been edited in admin or synced back.
+data = json.loads(_strip(open('config/settings_data.json', encoding='utf-8').read()))['current']
+# Keys Shopify owns in this file. They appear the moment the theme is edited in
+# admin — section settings, the legacy index content, and theme blocks — and are
+# not theme settings, so they have no entry in settings_schema and never will.
+SHOPIFY_OWNED = {'sections', 'content_for_index', 'blocks', 'current', 'presets'}
 for k, v in data.items():
+    if k in SHOPIFY_OWNED:
+        continue
     s = valid.get(k)
     if s is None:
         bad.append(('settings_data.json', k, 'not declared in settings_schema')); continue

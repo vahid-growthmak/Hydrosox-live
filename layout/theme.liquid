@@ -12,15 +12,48 @@
       <link rel="icon" type="image/png" href="{{ settings.logo | image_url: width: 48 }}">
     {%- endif -%}
 
-    <title>
-      {{- page_title -}}
-      {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
-      {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
-    </title>
+    {%- comment -%}
+      The homepage's title and description live in the Shopify admin, where they
+      are neither versioned with the theme nor visible in the theme editor. When
+      the matching theme setting is filled it wins, and it is used verbatim —
+      no shop name appended, because a hand-written title has already spent its
+      sixty characters deliberately.
+    {%- endcomment -%}
+    {%- liquid
+      assign seo_title = ''
+      assign seo_description = page_description
+      if template.name == 'index'
+        assign seo_title = settings.home_seo_title
+        if settings.home_seo_description != blank
+          assign seo_description = settings.home_seo_description
+        endif
+      endif
+    -%}
 
-    {%- if page_description -%}
-      <meta name="description" content="{{ page_description | escape }}">
+    {%- if seo_title != blank -%}
+      <title>{{ seo_title }}</title>
+    {%- else -%}
+      <title>
+        {{- page_title -}}
+        {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
+        {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      </title>
+    {%- endif -%}
+
+    {%- if seo_description != blank -%}
+      <meta name="description" content="{{ seo_description | escape }}">
+    {%- endif -%}
+
+    {%- comment -%}
+      A single-language store still needs to say so. Self-referencing plus
+      x-default on the canonical, which is what a one-locale storefront should
+      publish; the setting exists so this can be handed over to a translation
+      app later without editing the layout.
+    {%- endcomment -%}
+    {%- if settings.hreflang_enabled -%}
+      <link rel="alternate" hreflang="{{ request.locale.iso_code }}" href="{{ canonical_url }}">
+      <link rel="alternate" hreflang="x-default" href="{{ canonical_url }}">
     {%- endif -%}
 
     {%- comment -%}

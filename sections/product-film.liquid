@@ -64,6 +64,28 @@
                         preload: 'none',
                         class: 'hs-film__media'
                     }}
+                  {%- elsif block.settings.video_fallback != blank -%}
+                    {%- comment -%}
+                      A clip bundled with the theme, for footage that exists
+                      before anyone has uploaded it through the admin. Same
+                      element the picker path produces, so the play control and
+                      the chapter cross-fade drive it identically. preload=none:
+                      nothing is fetched until the visitor presses play.
+                    {%- endcomment -%}
+                    <video
+                      class="hs-film__media"
+                      muted
+                      playsinline
+                      preload="none"
+                      loop
+                      width="576"
+                      height="1024"
+                      {% if block.settings.poster_fallback != blank %}
+                        poster="{{ block.settings.poster_fallback | asset_url }}"
+                      {% endif %}
+                    >
+                      <source src="{{ block.settings.video_fallback | asset_url }}" type="video/mp4">
+                    </video>
                   {%- elsif block.settings.poster != blank -%}
                     <img
                       src="{{ block.settings.poster | image_url: width: 800 }}"
@@ -246,6 +268,12 @@
           "type": "textarea",
           "id": "caption",
           "label": "t:sections.film.chapter_caption"
+        },
+        {
+          "type": "text",
+          "id": "video_fallback",
+          "label": "t:sections.film.video_fallback",
+          "info": "t:sections.film.video_fallback_info"
         },
         {
           "type": "video",

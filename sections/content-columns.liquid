@@ -129,12 +129,37 @@
             {%- if items.size > 0 -%}
               <{{ list_tag }} class="hs-cols__list hs-cols__list--{{ section.settings.row_density | default: 'standard' }} hs-stagger" role="list">
                 {%- for block in items -%}
-                  <li class="hs-cols__row" {{ block.shopify_attributes }}>
+                  {%- liquid
+                    assign row_has_media = false
+                    if block.settings.image != blank or block.settings.image_fallback != blank
+                      assign row_has_media = true
+                    endif
+                  -%}
+                  <li
+                    class="hs-cols__row{% if row_has_media %} hs-cols__row--media{% endif %}"
+                    {{ block.shopify_attributes }}
+                  >
                     {%- if section.settings.numbered -%}
                       {% render 'hs-index-number',
                         index: forloop.index0,
                         size: 'label',
                         class: 'hs-cols__row-index hs-faint'
+                      %}
+                    {%- endif -%}
+                    {%- comment -%}
+                      A small photograph beside the row, so a list of uses reads
+                      as places rather than paragraphs. The body stays richtext,
+                      which is what keeps the keyword links inside the sentences.
+                    {%- endcomment -%}
+                    {%- if row_has_media -%}
+                      {% render 'hs-image',
+                        image: block.settings.image,
+                        fallback: block.settings.image_fallback,
+                        alt: block.settings.image_alt,
+                        aspect: '4 / 3',
+                        sizes: '9rem',
+                        wrapper_class: 'hs-cols__row-media',
+                        class: 'hs-cols__row-img'
                       %}
                     {%- endif -%}
                     <div class="hs-cols__row-text">
@@ -349,7 +374,15 @@
         { "type": "text", "id": "title", "label": "t:common.title", "default": "A point worth making" },
         { "type": "richtext", "id": "body", "label": "t:common.body" },
         { "type": "text", "id": "link_label", "label": "t:common.link_label" },
-        { "type": "url", "id": "link_url", "label": "t:common.link_url" }
+        { "type": "url", "id": "link_url", "label": "t:common.link_url" },
+        { "type": "image_picker", "id": "image", "label": "t:common.image" },
+        {
+          "type": "text",
+          "id": "image_fallback",
+          "label": "t:sections.cols.image_fallback",
+          "info": "t:sections.cols.image_fallback_info"
+        },
+        { "type": "text", "id": "image_alt", "label": "t:common.image_alt" }
       ]
     },
     {

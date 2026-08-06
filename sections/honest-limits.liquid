@@ -51,10 +51,30 @@
 
       {%- comment -%} Limitation cards {%- endcomment -%}
       {%- for block in section.blocks -%}
+        {%- liquid
+          # A card can carry a photograph of the condition it describes — water
+          # over the cuff, a hard effort — behind the text, graded down for
+          # legibility. Cards without one keep their flat tone, so the homepage
+          # instance is unchanged.
+          assign card_has_media = false
+          if block.settings.image != blank or block.settings.image_fallback != blank
+            assign card_has_media = true
+          endif
+        -%}
         <article
-          class="hs-reveal hs-limits__card hs-limits__card--span-{{ block.settings.width }} hs-limits__card--{{ block.settings.tone }}{% if block.settings.side_by_side %} hs-limits__card--split{% endif %}"
+          class="hs-reveal hs-limits__card hs-limits__card--span-{{ block.settings.width }} hs-limits__card--{{ block.settings.tone }}{% if block.settings.side_by_side %} hs-limits__card--split{% endif %}{% if card_has_media %} hs-limits__card--media{% endif %}"
           {{ block.shopify_attributes }}
         >
+          {%- if card_has_media -%}
+            {% render 'hs-image',
+              image: block.settings.image,
+              fallback: block.settings.image_fallback,
+              alt: block.settings.image_alt,
+              sizes: '(min-width: 64rem) 40vw, 100vw',
+              wrapper_class: 'hs-limits__card-media',
+              class: 'hs-limits__card-img'
+            %}
+          {%- endif -%}
           {% render 'hs-index-number', index: forloop.index0, class: 'hs-limits__index' %}
           <div class="hs-limits__card-body">
             {%- if block.settings.heading != blank -%}
@@ -157,6 +177,22 @@
           "type": "richtext",
           "id": "body",
           "label": "t:common.body"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:common.image"
+        },
+        {
+          "type": "text",
+          "id": "image_fallback",
+          "label": "t:sections.cols.image_fallback",
+          "info": "t:sections.cols.image_fallback_info"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "t:common.image_alt"
         },
         {
           "type": "select",

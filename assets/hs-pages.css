@@ -726,6 +726,33 @@
   border-bottom: 1px solid var(--rule);
 }
 
+/* A row carrying a photograph of the use it names. The thumbnail sits beside
+   the text at every width — even a phone holds a 6.5rem picture and a readable
+   column — and the body stays richtext, which is what keeps the keyword links
+   inside the sentences rather than on the headings. */
+.hs-cols__row--media {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.hs-cols__row-media {
+  flex-shrink: 0;
+  width: clamp(6.5rem, 12vw, 9.5rem);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.hs-cols__row-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hs-cols__row--media .hs-cols__row-text {
+  min-width: 0;
+}
+
 @media (min-width: 64rem) {
   .hs-cols__row {
     padding-block: 1.75rem;

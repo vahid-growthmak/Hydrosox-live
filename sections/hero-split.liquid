@@ -25,9 +25,15 @@
     <div class="hs-hero__grid">
       {%- comment -%} Image plate {%- endcomment -%}
       <div class="hs-hero__plate hs-hero-plate">
+        {%- liquid
+          # A bundled image per instance rather than one hardcoded for all: the
+          # homepage keeps the colourways plate, a landing page can carry its own
+          # photograph before any merchant upload exists.
+          assign hero_fallback = section.settings.image_fallback | default: 'hydrosox-colourways.jpg'
+        -%}
         {% render 'hs-image',
           image: section.settings.image,
-          fallback: 'hydrosox-colourways.jpg',
+          fallback: hero_fallback,
           alt: section.settings.image_alt,
           aspect: section.settings.image_aspect,
           eager: true,
@@ -186,6 +192,12 @@
     {
       "type": "header",
       "content": "t:common.image"
+    },
+    {
+      "type": "text",
+      "id": "image_fallback",
+      "label": "t:sections.cols.image_fallback",
+      "info": "t:sections.cols.image_fallback_info"
     },
     {
       "type": "image_picker",

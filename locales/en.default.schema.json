@@ -414,7 +414,9 @@
       "block_link": "Footer link",
       "stage_group": "Stage",
       "stage_background": "Stage background",
-      "stage_caption_info": "Read out by screen readers to describe what is on the stage."
+      "stage_caption_info": "Read out by screen readers to describe what is on the stage.",
+      "video_fallback": "Bundled clip filename",
+      "video_fallback_info": "An .mp4 in the theme assets, played when no video is chosen above. Nothing downloads until the visitor presses play."
     },
     "activity": {
       "name": "Shop by activity",

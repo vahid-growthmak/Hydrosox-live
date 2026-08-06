@@ -224,6 +224,33 @@ def audit_page_scoped_claims(out):
                         f"{len(files)} templates publish {claim} — only one may"))
 
 
+def audit_generator_order(out):
+    """Two builders write templates/product.json and the order matters.
+
+    build-product-template.py writes the file from scratch; the sitemap builder's
+    add_product_page_extras() then adds the breadcrumb, the review module and the
+    related guides. Run product last and all three are silently dropped — the
+    file stays valid, deploys cleanly, and the page quietly loses its trail and
+    its reviews. That shipped once. This makes it fail here instead.
+    """
+    path = "templates/product.json"
+    if not os.path.exists(path):
+        return
+    try:
+        data = json.loads(_strip(open(path, encoding="utf-8").read()))
+    except json.JSONDecodeError:
+        return
+    order = data.get("order") or []
+    types = {k: (data.get("sections") or {}).get(k, {}).get("type") for k in order}
+    for wanted in ("breadcrumb", "review-module", "related-guides"):
+        if wanted not in types.values():
+            out.append((path, wanted,
+                        "missing — run build-product-template.py BEFORE "
+                        "build-sitemap-templates.py, not after"))
+
+
+audit_generator_order(bad)
+
 audit_page_scoped_claims(bad)
 
 if bad:

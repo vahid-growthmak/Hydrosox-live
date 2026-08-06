@@ -3,10 +3,18 @@
 
   A bento of bordered cards on a four-column grid. Each activity block chooses
   its own footprint: featured (two columns and two rows, the image filling the
-  card), standard (a 16:9 image over the text), or a horizontal wide or full
-  row (image beside the text). The sizes tile the four-column grid without
-  gaps: a featured card holds columns 1-2 across two rows, so columns 3-4
-  need filling on both — two wide cards — before a full-width row closes it.
+  card), standard (one column, a 16:9 image over the text), or a horizontal wide
+  (two columns) or full (four) row with the image beside the text.
+
+  The sizes have to tile the four columns or the grid shows a hole. A featured
+  card holds columns 1-2 across two rows, so columns 3-4 need filling on both.
+  Two combinations do that cleanly:
+
+    featured + four standard          — 4x2, no remainder (five uses)
+    featured + two wide + one full    — 4x3, the full row closing it (four uses)
+
+  Anything else leaves a gap. Adding a card without re-checking the sizes is the
+  way this section breaks.
 {%- endcomment -%}
 
 {%- liquid
@@ -103,11 +111,19 @@
               <span class="hs-activity__body">
                 <span class="hs-activity__head-row">
                   <span class="hs-activity__head-main">
-                    {% render 'hs-index-number',
-                      index: forloop.index0,
-                      size: 'label',
-                      class: 'hs-activity__index hs-faint'
-                    %}
+                    {%- comment -%}
+                      The cards are a grid to browse, not a sequence to read in
+                      order, so the running number is optional and off by
+                      default. It also renumbered itself misleadingly the moment
+                      the cards were reordered.
+                    {%- endcomment -%}
+                    {%- if section.settings.numbered -%}
+                      {% render 'hs-index-number',
+                        index: forloop.index0,
+                        size: 'label',
+                        class: 'hs-activity__index hs-faint'
+                      %}
+                    {%- endif -%}
                     {%- if block.settings.title != blank -%}
                       <span class="{{ title_class }} hs-activity__title">{{ block.settings.title }}</span>
                     {%- endif -%}
@@ -172,6 +188,13 @@
     {
       "type": "header",
       "content": "t:common.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "numbered",
+      "label": "t:sections.activity.numbered",
+      "info": "t:sections.activity.numbered_info",
+      "default": false
     },
     {
       "type": "text",

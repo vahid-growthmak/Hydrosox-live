@@ -1,25 +1,5 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "breadcrumb": {
-      "type": "breadcrumb",
-      "settings": {
-        "color_scheme": "paper",
-        "home_label": "Home",
-        "parent_label": "",
-        "parent_url": "",
-        "current_label": "",
-        "aria_label": "Breadcrumb"
-      }
-    },
     "buy": {
       "type": "buy-widget",
       "blocks": {
@@ -27,8 +7,7 @@
           "type": "colour",
           "settings": {
             "value": "Black",
-            "colour_one": "#111111",
-            "colour_two": ""
+            "colour_one": "#111111"
           }
         },
         "c2": {
@@ -51,8 +30,7 @@
           "type": "colour",
           "settings": {
             "value": "White",
-            "colour_one": "#f4f6f8",
-            "colour_two": ""
+            "colour_one": "#f4f6f8"
           }
         },
         "z1": {
@@ -96,7 +74,7 @@
           "settings": {
             "label": "Two pairs",
             "quantity": 2,
-            "discount": 3.0
+            "discount": 3.01
           }
         },
         "t3": {
@@ -104,7 +82,7 @@
           "settings": {
             "label": "Three pairs",
             "quantity": 3,
-            "discount": 7.0
+            "discount": 7.01
           }
         },
         "t4": {
@@ -112,7 +90,7 @@
           "settings": {
             "label": "Four pairs",
             "quantity": 4,
-            "discount": 12.0
+            "discount": 12.01
           }
         },
         "t5": {
@@ -120,7 +98,7 @@
           "settings": {
             "label": "Five pairs",
             "quantity": 5,
-            "discount": 20.0
+            "discount": 20.01
           }
         },
         "r1": {
@@ -155,7 +133,6 @@
           "type": "link",
           "settings": {
             "label": "Full product details",
-            "link": "",
             "use_product_url": true
           }
         },
@@ -163,16 +140,14 @@
           "type": "link",
           "settings": {
             "label": "How it is built",
-            "link": "/#construction",
-            "use_product_url": false
+            "link": "/#construction"
           }
         },
         "l3": {
           "type": "link",
           "settings": {
             "label": "Delivery and sizing",
-            "link": "/#faq",
-            "use_product_url": false
+            "link": "/#faq"
           }
         },
         "g1": {
@@ -265,7 +240,6 @@
         "add_label": "Add to cart",
         "save_label": "Save",
         "per_unit_label": "per pair",
-        "empty_help": "Choose a product for this section in the theme editor.",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
         "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
@@ -273,7 +247,6 @@
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
-        "guide_link_url": "",
         "guide_close_label": "Close"
       }
     },
@@ -282,27 +255,25 @@
       "settings": {
         "color_scheme": "wash",
         "layout": "media",
-        "numbered": false,
-        "row_density": "standard",
-        "hide_rule": false,
         "anchor_id": "what-it-is",
         "eyebrow": "What it is",
         "heading": "A membrane, sealed inside a knitted sock.",
         "head_note": "<p>A crew-height sock with a waterproof-breathable membrane sealed between two knitted layers. One height, one construction, sized in bands rather than by gender.</p>",
         "link_label": "The three layers, in section",
         "link_url": "/#construction",
-        "link2_label": "",
-        "link2_url": "",
-        "lede": "",
-        "prose": "",
-        "gallery_aspect": "4 / 5",
-        "footnote": "",
         "media_fallback": "hydrosox-colourways.jpg",
         "media_alt": "Four HydroSox colourways standing unsupported"
       }
     },
     "detail": {
       "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "detail",
+        "eyebrow": "In detail",
+        "heading": "The specification, in full.",
+        "lede": "<p>Folded away so the page stays short. Nothing here contradicts anything above it.</p>"
+      },
       "blocks": {
         "s1": {
           "type": "question",
@@ -338,67 +309,56 @@
         "s2",
         "s3",
         "s4"
-      ],
-      "settings": {
-        "color_scheme": "paper",
-        "anchor_id": "detail",
-        "one_at_a_time": false,
-        "eyebrow": "In detail",
-        "heading": "The specification, in full.",
-        "lede": "<p>Folded away so the page stays short. Nothing here contradicts anything above it.</p>",
-        "help_prefix": "Something not here?",
-        "help_label": "Phone or email us",
-        "help_link": "",
-        "cta_label": "Buy a pair",
-        "cta_link": "",
-        "cta_note": "Two decisions and a quantity. No account needed."
-      }
+      ]
     },
     "activities": {
       "type": "link-cards",
+      "settings": {
+        "color_scheme": "paper",
+        "columns": 4,
+        "anchor_id": "activities",
+        "eyebrow": "Where it gets used",
+        "heading": "Same sock, different problem."
+      },
       "blocks": {
         "a1": {
           "type": "card",
           "settings": {
-            "title": "Hiking & Walking",
-            "body": "Boots that wet out four hours into a long day in the hills.",
-            "meta": "",
-            "link": "/pages/hiking-and-walking",
-            "image_fallback": "",
-            "image_alt": ""
+            "title": "Wudu & Masah",
+            "body": "Wudu at work, five times a day, without taking your socks off.",
+            "link": "/pages/wudu-socks"
           }
         },
         "a2": {
           "type": "card",
           "settings": {
-            "title": "All Day in Boots",
-            "body": "Boots that keep the rain out and then seal the sweat in.",
-            "meta": "",
-            "link": "/pages/all-day-in-boots",
-            "image_fallback": "",
-            "image_alt": ""
+            "title": "Hiking & Walking",
+            "body": "Boots that wet out four hours into a long day in the hills.",
+            "link": "/pages/hiking-and-walking"
           }
         },
         "a3": {
           "type": "card",
           "settings": {
-            "title": "Cycling & Commuting",
-            "body": "Overshoes that leak at the ankle, and shoes still wet at home time.",
-            "meta": "",
-            "link": "/pages/cycling-and-commuting",
-            "image_fallback": "",
-            "image_alt": ""
+            "title": "All Day in Boots",
+            "body": "Boots that keep the rain out and then seal the sweat in.",
+            "link": "/pages/all-day-in-boots"
           }
         },
         "a4": {
           "type": "card",
           "settings": {
+            "title": "Cycling & Commuting",
+            "body": "Overshoes that leak at the ankle, and shoes still wet at home time.",
+            "link": "/pages/cycling-and-commuting"
+          }
+        },
+        "a5": {
+          "type": "card",
+          "settings": {
             "title": "Running & Trail",
             "body": "Cold, soaked feet on winter miles, and blisters in a wet race.",
-            "meta": "",
-            "link": "/pages/running-and-trail",
-            "image_fallback": "",
-            "image_alt": ""
+            "link": "/pages/running-and-trail"
           }
         }
       },
@@ -406,19 +366,9 @@
         "a1",
         "a2",
         "a3",
-        "a4"
-      ],
-      "settings": {
-        "color_scheme": "paper",
-        "columns": 4,
-        "numbered": false,
-        "card_fill": "outline",
-        "hide_rule": false,
-        "anchor_id": "activities",
-        "eyebrow": "Where it gets used",
-        "heading": "Same sock, different problem.",
-        "lede": ""
-      }
+        "a4",
+        "a5"
+      ]
     },
     "questions": {
       "type": "faq-accordion",
@@ -471,12 +421,20 @@
             "question": "Who am I buying from?",
             "answer": "<p>HydroSox, a UK registered company at 399-405 Oxford Street, Mayfair, London W1C 2BU. The phone number and email are published on every page of this site, not held behind a contact form.</p>"
           }
+        },
+        "q_wudu": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use these for wudu?",
+            "answer": "<p>They are built to the three physical properties the masah conditions rest on: waterproof, holding their shape, and staying on the foot. No certificate has been issued, by us or by anyone else. The masah page sets out the conditions and names its sources.</p>"
+          }
         }
       },
       "block_order": [
         "q1",
         "q2",
         "q3",
+        "q_wudu",
         "q4",
         "q5",
         "q6",
@@ -494,72 +452,16 @@
         "help_link": "/#about",
         "cta_label": "Buy a pair",
         "cta_link": "/#buy",
-        "cta_note": "Two decisions and a quantity. No account needed."
+        "cta_note": "Two decisions and a quantity. No account needed.",
+        "emit_schema": false
       }
-    },
-    "reviews": {
-      "type": "review-module",
-      "settings": {
-        "layout": "strip",
-        "color_scheme": "wash",
-        "pace": "tight",
-        "anchor_id": "",
-        "eyebrow": "Reviews",
-        "heading": "",
-        "lede": "",
-        "show_aggregate": true,
-        "rating_max": "5",
-        "aggregate_link_label": "Read every review",
-        "aggregate_link_url": "/pages/reviews",
-        "show_filters": false,
-        "filter_label": "Filter reviews",
-        "emit_schema": false,
-        "schema_product_name": "Waterproof Socks"
-      }
-    },
-    "guides": {
-      "type": "related-guides",
-      "settings": {
-        "blog": "guides",
-        "tag": "",
-        "count": 2,
-        "color_scheme": "paper",
-        "pace": "base",
-        "anchor_id": "",
-        "eyebrow": "Guides",
-        "heading": "Worth reading first.",
-        "link_label": "All guides",
-        "link_url": "/blogs/guides"
-      }
-    },
-    "17859127849c436c10": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_wGgqTd": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "no_reviews",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_wGgqTd"
-      ],
-      "settings": {}
     }
   },
   "order": [
-    "breadcrumb",
     "buy",
     "about",
     "detail",
     "activities",
-    "questions",
-    "reviews",
-    "guides",
-    "17859127849c436c10"
+    "questions"
   ]
 }

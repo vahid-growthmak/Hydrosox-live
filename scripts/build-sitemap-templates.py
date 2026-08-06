@@ -213,7 +213,14 @@ def activity_cards_from_home():
 
 
 def faq_from_home(limit=6):
-    """The question list, copied out of the homepage FAQ."""
+    """The question list, copied out of the homepage FAQ.
+
+    The copy is deep, which means it also carries the homepage's settings — and
+    one of those decides whether the section publishes FAQPage structured data.
+    Left alone, every page deriving its questions from the homepage claimed the
+    same rich result, seven of them at once. Only the homepage may claim it, so
+    the flag is cleared here rather than remembered at each call site.
+    """
     home = load("index")
     faq = json.loads(json.dumps(home["sections"]["faq"]))
     keys = [k for k in faq.get("block_order", []) if faq["blocks"][k]["type"] == "question"]
@@ -221,6 +228,7 @@ def faq_from_home(limit=6):
     faq["blocks"] = {k: faq["blocks"][k] for k in keep}
     faq["block_order"] = keep
     faq["settings"]["anchor_id"] = "faq"
+    faq["settings"]["emit_schema"] = False
     return faq
 
 

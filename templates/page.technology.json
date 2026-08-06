@@ -52,14 +52,14 @@
           "type": "item",
           "settings": {
             "title": "Porelle\u00ae membrane",
-            "body": "<p>The waterproof barrier.</p><p>A licensed third-party waterproof-breathable membrane \u2014 not a name we invented. Water cannot get in; vapour from the foot can get out. PFOA free.</p>"
+            "body": "<p>The waterproof barrier.</p><p>A licensed third-party laminate. Water cannot get in; vapour from the foot can get out.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "Outer layer",
-            "body": "<p>Wear surface.</p><p>The knitted face that takes the abrasion inside a boot or shoe, and holds the sock's shape when it is not being worn.</p>"
+            "body": "<p>Wear surface.</p><p>The knitted face that takes abrasion inside a boot or shoe, and holds the sock's shape when it is not being worn.</p>"
           }
         }
       },

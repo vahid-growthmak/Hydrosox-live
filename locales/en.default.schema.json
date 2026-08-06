@@ -425,7 +425,9 @@
       "size_featured": "Featured (2 × 2)",
       "size_standard": "Standard",
       "size_wide": "Wide (half row)",
-      "size_full": "Full row"
+      "size_full": "Full row",
+      "numbered": "Number the cards",
+      "numbered_info": "Adds 01, 02, 03 before each title. Off by default — the grid is browsed rather than read in order."
     },
     "band": {
       "name": "Feature band",

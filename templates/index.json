@@ -7,14 +7,14 @@
           "type": "spec",
           "settings": {
             "label": "Membrane",
-            "value": "Porelle®"
+            "value": "Porelle®, licensed"
           }
         },
         "s2": {
           "type": "spec",
           "settings": {
             "label": "Construction",
-            "value": "Three-layer"
+            "value": "Three-layer knit"
           }
         },
         "s3": {
@@ -42,17 +42,18 @@
         "color_scheme": "ink",
         "full_height": true,
         "heading": "Wet feet are\na solved problem.",
-        "body": "<p>A Porelle® waterproof-breathable membrane, in a three-layer knit. Hiking, running, cycling, commuting and work — the day carries on when the weather turns.</p>",
+        "body": "<p>A licensed Porelle® membrane sealed inside a three-layer knit. Hiking, running, cycling, work and wudu — the day carries on when the weather turns.</p>",
         "cta_label": "Buy a pair",
         "cta_link": "/#buy",
         "link_label": "See how it is built",
         "link_url": "/#construction",
-        "image_alt": "Four HydroSox colourways shown together — black, white, black with navy and black with grey.",
+        "image_alt": "Four pairs of HydroSox waterproof socks in black, white, navy and grey, stood upright",
         "image_aspect": "9 / 8",
         "image_position": "50% 41%",
         "line_stagger": 90,
         "body_delay": 260,
-        "actions_delay": 420
+        "actions_delay": 420,
+        "eyebrow": "Waterproof socks"
       }
     },
     "buy": {
@@ -338,7 +339,7 @@
           "settings": {
             "label": "Price per pair",
             "ours_value": "£20.00",
-            "ours_note": "Cheaper waterproof socks exist, including entry models from the category leader at £15–£20. Those are the ones that do not name a membrane.",
+            "ours_note": "Cheaper waterproof socks exist. Those are the ones that do not name a membrane.",
             "theirs_value": "£35–£55 for mid-range and premium"
           }
         },
@@ -373,7 +374,7 @@
         "anchor_id": "comparison",
         "eyebrow": "The difference",
         "heading": "Everything here is checkable.",
-        "lede": "<p>We are new, and you have no reason to take our word for anything. So this compares the things you can verify yourself in about four minutes — not the things we would like you to feel.</p>",
+        "lede": "<p>We are new, and you have no reason to take our word for anything. So this compares what you can verify yourself in about four minutes — not what we would like you to feel.</p>",
         "table_caption": "HydroSox compared against a typical waterproof sock, across six verifiable criteria.",
         "col_criterion": "What matters",
         "col_ours": "HydroSox",
@@ -523,7 +524,7 @@
           "settings": {
             "heading": "Porelle® membrane",
             "role": "The waterproof barrier",
-            "body": "<p>A licensed third-party waterproof-breathable membrane — not a name we invented. Water cannot get in; vapour from the foot can get out. PFOA free.</p>",
+            "body": "<p>A licensed third-party laminate. Water cannot get in; vapour from the foot can get out.</p>",
             "tint": "#0093ff"
           }
         },
@@ -532,15 +533,15 @@
           "settings": {
             "heading": "Outer layer",
             "role": "Wear surface",
-            "body": "<p>The knitted face that takes the abrasion inside a boot or shoe, and holds the sock's shape when it is not being worn.</p>",
+            "body": "<p>The knitted face that takes abrasion inside a boot or shoe, and holds the sock's shape when it is not being worn.</p>",
             "tint": "#111111"
           }
         },
         "yl": {
           "type": "link",
           "settings": {
-            "label": "How it compares",
-            "link": "/#comparison"
+            "label": "How the layers are made",
+            "link": "/pages/technology"
           }
         }
       },
@@ -554,7 +555,7 @@
         "color_scheme": "paper",
         "anchor_id": "construction",
         "eyebrow": "Construction",
-        "heading": "Three layers, and what each one is for.",
+        "heading": "Three layers, and what each is for.",
         "lede": "<p>“Waterproof” is a claim anybody can print on a label. This is the mechanism underneath it, so you can judge it rather than take our word.</p>",
         "scroll_hint": "Scroll to take it apart.",
         "track_height": 320,
@@ -570,10 +571,21 @@
     "activity": {
       "type": "activity-grid",
       "blocks": {
-        "a1": {
+        "a_wudu": {
           "type": "activity",
           "settings": {
             "size": "featured",
+            "title": "Wudu & Masah",
+            "problem": "Wudu at work, five times a day, without taking your socks off.",
+            "meta": "Built for the three conditions",
+            "link": "/pages/wudu-socks",
+            "image_alt": "A pair of HydroSox standing upright, unworn"
+          }
+        },
+        "a1": {
+          "type": "activity",
+          "settings": {
+            "size": "standard",
             "title": "Hiking & Walking",
             "problem": "Boots that wet out four hours into a long day in the hills.",
             "meta": "Long days, wet ground",
@@ -585,7 +597,7 @@
         "a3": {
           "type": "activity",
           "settings": {
-            "size": "wide",
+            "size": "standard",
             "title": "All Day in Boots",
             "problem": "Boots that keep the rain out and then seal the sweat in.",
             "meta": "Long shifts, five days a week",
@@ -597,7 +609,7 @@
         "a4": {
           "type": "activity",
           "settings": {
-            "size": "wide",
+            "size": "standard",
             "title": "Cycling & Commuting",
             "problem": "Overshoes that leak at the ankle, and shoes still wet at home time.",
             "meta": "No drying option at the other end",
@@ -609,7 +621,7 @@
         "a5": {
           "type": "activity",
           "settings": {
-            "size": "full",
+            "size": "standard",
             "title": "Running & Trail",
             "problem": "Cold, soaked feet on winter miles, and blisters in a wet race.",
             "meta": "Weight and bulk, stated honestly",
@@ -620,6 +632,7 @@
         }
       },
       "block_order": [
+        "a_wudu",
         "a1",
         "a3",
         "a4",
@@ -628,22 +641,10 @@
       "settings": {
         "color_scheme": "ink",
         "anchor_id": "activity",
-        "eyebrow": "Shop by activity",
+        "eyebrow": "Shop by use",
         "heading": "Find the version of wet feet you actually have.",
-        "lede": "<p>One sock. Four different problems it solves, described the way the people with those problems describe them.</p>",
-        "footnote": "Same sock either way — the activity only changes which pair you reach for."
-      }
-    },
-    "wudu": {
-      "type": "feature-band",
-      "settings": {
-        "color_scheme": "wash",
-        "anchor_id": "wudu",
-        "eyebrow": "Designed with wudu in mind",
-        "heading": "Built for the three conditions masah turns on.",
-        "body": "<p>Waterproof, structured to hold its shape, shaped to stay on the foot — the three physical properties the masah conditions rest on. No certificate has been issued yet, and we say so plainly on the page.</p>",
-        "link_label": "How it is built for masah",
-        "link_url": "/#construction"
+        "lede": "<p>One sock. Five different problems it solves, described the way the people with those problems describe them.</p>",
+        "footnote": "Same sock either way — the use only changes which pair you reach for. No certificate has been issued for the wudu claim, and the wudu page says so on its face."
       }
     },
     "faq": {
@@ -697,12 +698,20 @@
             "question": "Who am I buying from?",
             "answer": "<p>HydroSox, a UK registered company at 399-405 Oxford Street, Mayfair, London W1C 2BU. The phone number and email are published on every page of this site, not held behind a contact form.</p>"
           }
+        },
+        "q_wudu": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use these for wudu?",
+            "answer": "<p>They are built to the three physical properties the masah conditions rest on: waterproof, holding their shape, and staying on the foot. No certificate has been issued, by us or by anyone else. The masah page sets out the conditions and names its sources.</p>"
+          }
         }
       },
       "block_order": [
         "q1",
         "q2",
         "q3",
+        "q_wudu",
         "q4",
         "q5",
         "q6",
@@ -720,7 +729,8 @@
         "help_link": "/#about",
         "cta_label": "Buy a pair",
         "cta_link": "/#buy",
-        "cta_note": "Two decisions and a quantity. No account needed."
+        "cta_note": "Two decisions and a quantity. No account needed.",
+        "emit_schema": true
       }
     },
     "about": {
@@ -770,7 +780,8 @@
         "heading": "Who you are buying from, in full.",
         "lede": "<p>If something goes wrong you should know exactly who you are dealing with. So: the company, the address, and two ways to reach a person — published here rather than buried in a policy page.</p>",
         "link_label": "Read the questions first",
-        "link_url": "/#faq"
+        "link_url": "/#faq",
+        "emit_schema": true
       }
     },
     "signup": {
@@ -786,17 +797,59 @@
         "tag": "newsletter",
         "note": "<p>One email to set you up, then only when there is something worth sending. Unsubscribe any time. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>"
       }
+    },
+    "summary": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "anchor_id": "product",
+        "eyebrow": "The product",
+        "heading": "One sock, four colours, four sizes",
+        "lede": "<p>A crew-height waterproof sock in UK 3 to UK 14, from £20 a pair. The same sock and the same price whichever page you arrived on.</p>",
+        "cta_label": "Choose a size",
+        "cta_url": "/#buy"
+      },
+      "blocks": {
+        "p1": {
+          "type": "item",
+          "settings": {
+            "title": "From £20 a pair",
+            "body": "<p>Free UK delivery on two pairs or more. Buying more than one brings the per-pair price down to £16.</p>"
+          }
+        },
+        "p2": {
+          "type": "item",
+          "settings": {
+            "title": "Sized on foot length, not shoe size",
+            "body": "<p>Four bands cover UK 3 to UK 14. Shoe sizing is not consistent between brands, and the foot is what actually has to fit.</p>"
+          }
+        },
+        "p3": {
+          "type": "item",
+          "settings": {
+            "title": "Fourteen days to change your mind",
+            "body": "<p>No reason needed, and no form to find. Your statutory rights are the floor here, not the ceiling.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ]
     }
   },
   "order": [
     "hero",
-    "buy",
+    "summary",
     "comparison",
     "limits",
     "film",
     "construction",
     "activity",
-    "wudu",
+    "buy",
     "faq",
     "about",
     "signup"

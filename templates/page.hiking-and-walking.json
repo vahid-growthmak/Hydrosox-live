@@ -661,6 +661,13 @@
             "answer": "<p>No. They are one component of a system. If your footwear is wrong for the ground you are on, a sock will not fix it.</p>"
           }
         },
+        "q_wudu": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use these for wudu?",
+            "answer": "<p>They are built to the three physical properties the masah conditions rest on: waterproof, holding their shape, and staying on the foot. No certificate has been issued, by us or by anyone else. The masah page sets out the conditions and names its sources.</p>"
+          }
+        },
         "q4": {
           "type": "question",
           "settings": {
@@ -674,22 +681,15 @@
             "question": "How much is delivery?",
             "answer": "<p>Free UK delivery on two pairs or more. On a single pair, delivery is charged at checkout and shown before you pay. No delivery speed is printed anywhere on this site, because we will not promise one that confirmed stock cannot support.</p>"
           }
-        },
-        "q6": {
-          "type": "question",
-          "settings": {
-            "question": "Why are there no reviews on this site?",
-            "answer": "<p>Because there are none yet. HydroSox is new, and a rating with nothing behind it is worth nothing. When there is real review volume it will be published here \u2014 including the reviews that do not flatter us.</p>"
-          }
         }
       },
       "block_order": [
         "q1",
         "q2",
         "q3",
+        "q_wudu",
         "q4",
-        "q5",
-        "q6"
+        "q5"
       ],
       "settings": {
         "color_scheme": "paper",
@@ -703,7 +703,8 @@
         "help_link": "/#about",
         "cta_label": "Buy a pair",
         "cta_link": "/#buy",
-        "cta_note": "Two decisions and a quantity. No account needed."
+        "cta_note": "Two decisions and a quantity. No account needed.",
+        "emit_schema": false
       }
     },
     "guides": {

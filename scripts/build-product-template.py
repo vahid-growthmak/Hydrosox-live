@@ -27,11 +27,21 @@ def load_index():
         return json.load(fh, object_pairs_hook=collections.OrderedDict)
 
 
+#  Settings that describe a claim about the *page*, not about the section, and so
+#  must never ride along on a copy. Structured data is page-scoped: two pages
+#  publishing FAQPage for the same questions compete for one rich result.
+PAGE_SCOPED = ('emit_schema',)
+
+
 def copy_section(idx, key, overrides=None):
     """Deep-copies a homepage section, applying setting overrides."""
     src = json.loads(json.dumps(idx['sections'][key]), object_pairs_hook=collections.OrderedDict)
+    settings = src.setdefault('settings', collections.OrderedDict())
+    for k in PAGE_SCOPED:
+        if k in settings:
+            settings[k] = False
     if overrides:
-        src.setdefault('settings', collections.OrderedDict()).update(overrides)
+        settings.update(overrides)
     return src
 
 
@@ -116,9 +126,13 @@ def main():
     b, o = activity_cards(idx)
     add('activities', od(('type', 'link-cards'), ('settings', od(
         ('color_scheme', 'paper'),
-        # One column per activity, so the row comes out even. At 3 the fourth
-        # activity dropped onto a second row on its own.
-        ('columns', len(o)),
+        # One column per activity, so the row comes out even — but capped at the
+        # section's maximum. The homepage grid gained a fifth use (wudu) and this
+        # section derives from it, which pushed the count to 5; a range setting
+        # outside its bounds is refused on upload and takes the whole template
+        # with it. Four across with the fifth centred beneath is the graceful
+        # version of that.
+        ('columns', 4 if len(o) > 4 else len(o)),
         ('anchor_id', 'activities'),
         ('eyebrow', 'Where it gets used'),
         ('heading', 'Same sock, different problem.'),

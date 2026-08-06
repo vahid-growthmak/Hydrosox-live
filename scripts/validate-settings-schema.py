@@ -195,6 +195,37 @@ for k, v in data.items():
 
 audit_templates(bad)
 
+
+def audit_page_scoped_claims(out):
+    """Structured data is a claim about one page, so only one page may make it.
+
+    Two pages publishing FAQPage for identically worded questions compete for a
+    single rich result rather than reinforcing each other, and several
+    Organization blocks hand a search engine competing descriptions of one
+    business. Both flags default off and are switched on per template, which is
+    easy to get right by hand and impossible to keep right once a generator
+    deep-copies a section — the homepage FAQ propagated its flag to six other
+    templates the first time it was set.
+    """
+    claims = {"faq-accordion": "FAQPage", "company-details": "Organization"}
+    seen = {v: [] for v in claims.values()}
+    for path in sorted(glob.glob("templates/**/*.json", recursive=True)):
+        try:
+            data = json.loads(_strip(open(path, encoding="utf-8").read()))
+        except json.JSONDecodeError:
+            continue
+        for section in (data.get("sections") or {}).values():
+            claim = claims.get(section.get("type"))
+            if claim and (section.get("settings") or {}).get("emit_schema"):
+                seen[claim].append(os.path.basename(path))
+    for claim, files in seen.items():
+        if len(files) > 1:
+            out.append((", ".join(sorted(files)), claim,
+                        f"{len(files)} templates publish {claim} — only one may"))
+
+
+audit_page_scoped_claims(bad)
+
 if bad:
     print(f"{len(bad)} schema problem(s):\n")
     for origin, sid, why in bad:

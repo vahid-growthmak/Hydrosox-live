@@ -159,7 +159,10 @@ def main():
 
     # ---------------------------------------------------------- S8 shop by use
     act = S["activity"]
-    act["settings"]["eyebrow"] = "Shop by use"
+    # The header menu says "Shop by Activity"; the section it links to has to say
+    # the same thing. The spec renamed this to "Shop by use" in isolation, which
+    # left the nav label and its destination disagreeing.
+    act["settings"]["eyebrow"] = "Shop by Activity"
     act["settings"]["heading"] = "Find the version of wet feet you actually have."
     act["settings"]["lede"] = rich(
         "One sock. Five different problems it solves, described the way the people "
@@ -168,7 +171,7 @@ def main():
     # The deleted wudu strip's honest sentence about certification lands here, so
     # the statement stays prominent without the same message twice on one page.
     act["settings"]["footnote"] = (
-        "Same sock either way — the use only changes which pair you reach for. "
+        "Same sock either way — the activity only changes which pair you reach for. "
         "No certificate has been issued for the wudu claim, and the wudu page "
         "says so on its face."
     )
@@ -187,7 +190,8 @@ def main():
         ("problem", "Wudu at work, five times a day, without taking your socks off."),
         ("meta", "Built for the three conditions"),
         ("link", "/pages/wudu-socks"),
-        ("image_alt", "A pair of HydroSox standing upright, unworn"),
+        ("image_fallback", "activity-wudu-masah.webp"),
+        ("image_alt", "Pulling on a pair of white HydroSox while seated"),
     ])
     order = ["a_wudu"]
     blocks = collections.OrderedDict()

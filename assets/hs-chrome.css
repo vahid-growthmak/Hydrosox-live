@@ -256,8 +256,13 @@
 .hs-header__panel-list--media {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.5rem;
-  width: 32rem;
+  gap: 0.625rem;
+  /* Sized so the pictures can actually be read. At 32rem each card was about
+     240x150, which is a thumbnail — the sock in it was too small to tell one
+     activity from another at a glance, which is the only reason the pictures are
+     there. Wider, and capped against the viewport so a small laptop still fits
+     the panel beside its trigger. */
+  width: min(44rem, calc(100vw - var(--gutter) * 2));
 }
 
 .hs-header__panel-list--media .hs-header__panel-link {
@@ -267,7 +272,7 @@
   /* The picture is taken out of flow, so it lends the card no height at all and
      the text alone would size it. A floor rather than an aspect-ratio, so a
      longer supporting line grows the card instead of being clipped. */
-  min-height: 9.5rem;
+  min-height: 13rem;
   height: 100%;
   padding: 0;
   overflow: hidden;
@@ -346,18 +351,18 @@
   }
 }
 
-/* A narrow desktop cannot hold a 32rem panel beside the trigger. */
+/* A narrow desktop cannot hold the wide panel beside the trigger. */
 @media (min-width: 64rem) and (max-width: 75rem) {
   .hs-header__panel-list--media {
     grid-template-columns: minmax(0, 1fr);
-    width: 19rem;
+    width: 24rem;
   }
 
   /* Stacked, four cards at the two-column height ran off the bottom of a short
-     laptop screen and the last one could not be reached. The name is the whole
-     card now, so a shorter one still shows the sock. */
+     laptop screen and the last one could not be reached. This is the tallest
+     card that still fits four of them plus the header on a 700px-high screen. */
   .hs-header__panel-list--media .hs-header__panel-link {
-    min-height: 5.5rem;
+    min-height: 8rem;
   }
 }
 

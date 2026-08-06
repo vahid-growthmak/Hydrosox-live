@@ -44,7 +44,8 @@
           name="q"
           placeholder="{{ 'general.search.placeholder' | t | escape }}"
         >
-        {% render 'hs-button', label: 'general.search.submit' | t, style: 'primary', type: 'submit' %}
+        {%- assign search_submit = 'general.search.submit' | t -%}
+        {% render 'hs-button', label: search_submit, style: 'primary', type: 'submit' %}
       </form>
     {%- endif -%}
 

@@ -45,7 +45,13 @@
         value="{{ search.terms | escape }}"
         placeholder="{{ 'general.search.placeholder' | t | escape }}"
       >
-      {% render 'hs-button', label: 'general.search.submit' | t, style: 'primary', type: 'submit' %}
+      {%- comment -%}
+        Assigned first, not filtered inline. A filter inside a {% render %}
+        argument is silently ignored — the raw key reaches the snippet and the
+        button reads "general.search.submit".
+      {%- endcomment -%}
+      {%- assign search_submit = 'general.search.submit' | t -%}
+      {% render 'hs-button', label: search_submit, style: 'primary', type: 'submit' %}
     </form>
 
     {%- if search.performed -%}

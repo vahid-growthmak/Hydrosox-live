@@ -122,14 +122,14 @@
           "type": "trust",
           "settings": {
             "label": "Checkout",
-            "value": "Guest \u2014 no account required"
+            "value": "Guest — no account required"
           }
         },
         "r4": {
           "type": "trust",
           "settings": {
             "label": "Payment",
-            "value": "Visa \u00b7 Mastercard \u00b7 American Express \u00b7 Apple Pay \u00b7 Google Pay \u00b7 Shop Pay"
+            "value": "Visa · Mastercard · American Express · Apple Pay · Google Pay · Shop Pay"
           }
         },
         "l1": {
@@ -196,7 +196,7 @@
           "type": "guide_note",
           "settings": {
             "label": "Between two sizes",
-            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit — a size down grips the toes and shortens the life of the membrane."
           }
         }
       },
@@ -245,7 +245,7 @@
         "per_unit_label": "per pair",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
-        "guide_intro": "Measure the foot rather than relying on shoe size \u2014 sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
         "guide_col_size": "Size",
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
@@ -282,7 +282,7 @@
           "type": "question",
           "settings": {
             "question": "Three-layer construction",
-            "answer": "<p>A knitted lining next to the skin, a licensed Porelle\u00ae waterproof-breathable membrane, and a knitted outer that takes the abrasion. Bonded, not stitched together.</p>"
+            "answer": "<p>A knitted lining next to the skin, a licensed Porelle® waterproof-breathable membrane, and a knitted outer that takes the abrasion. Bonded, not stitched together.</p>"
           }
         },
         "s2": {
@@ -296,7 +296,7 @@
           "type": "question",
           "settings": {
             "question": "Materials and care",
-            "answer": "<p>A cool machine wash. No fabric conditioner and no tumble dryer \u2014 one coats a membrane and the other degrades it.</p>"
+            "answer": "<p>A cool machine wash. No fabric conditioner and no tumble dryer — one coats a membrane and the other degrades it.</p>"
           }
         },
         "s4": {
@@ -380,7 +380,7 @@
           "type": "question",
           "settings": {
             "question": "Are these actually waterproof, or just water resistant?",
-            "answer": "<p>Waterproof. The middle layer is a Porelle\u00ae membrane \u2014 a licensed third-party laminate, not a name we invented \u2014 sealed inside a three-layer knit. Water that goes in over the top of the cuff is inside the sock, and no waterproof sock behaves otherwise.</p>"
+            "answer": "<p>Waterproof. The middle layer is a Porelle® membrane — a licensed third-party laminate, not a name we invented — sealed inside a three-layer knit. Water that goes in over the top of the cuff is inside the sock, and no waterproof sock behaves otherwise.</p>"
           }
         },
         "q2": {
@@ -401,7 +401,7 @@
           "type": "question",
           "settings": {
             "question": "What size should I order?",
-            "answer": "<p>Four bands: S covers UK 3-5, M covers UK 6-8, L covers UK 9-11, XL covers UK 12-14. The size guide opens over the buy widget without leaving the page, and it is measurement-led \u2014 shoe sizing is not consistent between brands.</p>"
+            "answer": "<p>Four bands: S covers UK 3-5, M covers UK 6-8, L covers UK 9-11, XL covers UK 12-14. The size guide opens over the buy widget without leaving the page, and it is measurement-led — shoe sizing is not consistent between brands.</p>"
           }
         },
         "q5": {
@@ -415,7 +415,7 @@
           "type": "question",
           "settings": {
             "question": "Why are there no reviews on this site?",
-            "answer": "<p>Because there are none yet. HydroSox is new, and a rating with nothing behind it is worth nothing. When there is real review volume it will be published here \u2014 including the reviews that do not flatter us.</p>"
+            "answer": "<p>Because there are none yet. HydroSox is new, and a rating with nothing behind it is worth nothing. When there is real review volume it will be published here — including the reviews that do not flatter us.</p>"
           }
         },
         "q7": {
@@ -463,7 +463,10 @@
       "type": "breadcrumb",
       "settings": {
         "color_scheme": "paper",
-        "home_label": "Home"
+        "home_label": "Home",
+        "parent_label": "Waterproof socks",
+        "parent_url": "/collections/waterproof-socks",
+        "current_label": "HydroSox Waterproof Socks"
       }
     },
     "reviews": {

@@ -69,15 +69,18 @@
             it is the fallback for an Enter press in a quantity field, which
             would otherwise send someone to the checkout by accident.
           {%- endcomment -%}
-          {% render 'hs-button', label: 'cart.general.update' | t, style: 'ghost',
+          {%- assign update_label = 'cart.general.update' | t -%}
+          {%- assign checkout_label = 'cart.general.checkout' | t -%}
+          {% render 'hs-button', label: update_label, style: 'ghost',
              type: 'submit', name: 'update', full: true %}
-          {% render 'hs-button', label: 'cart.general.checkout' | t, style: 'primary',
+          {% render 'hs-button', label: checkout_label, style: 'primary',
              type: 'submit', name: 'checkout', full: true %}
         </div>
       {%- endform -%}
     {%- else -%}
       <p class="hs-body hs-muted">{{ 'cart.general.empty' | t }}</p>
-      {% render 'hs-button', label: 'general.continue_shopping' | t, href: routes.root_url, style: 'primary' %}
+      {%- assign keep_shopping = 'general.continue_shopping' | t -%}
+      {% render 'hs-button', label: keep_shopping, href: routes.root_url, style: 'primary' %}
     {%- endif -%}
   </div>
 </section>

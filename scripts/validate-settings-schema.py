@@ -249,6 +249,43 @@ def audit_generator_order(out):
                         "build-sitemap-templates.py, not after"))
 
 
+def audit_orphan_templates(out):
+    """Every page a visitor is meant to reach has to be linked from somewhere.
+
+    A template can be valid, deployed, published and bound to its resource and
+    still be invisible, because nothing on the site points at it. That is how the
+    category hub shipped: correct in every respect except that the nav "Shop"
+    link and the footer both went to the product page instead, so clicking either
+    landed on different content and the hub looked like it had never deployed.
+
+    Nothing else catches this. Theme check does not know about links, and the
+    dangling-link check in the sitemap builder only looks the other way — that
+    links resolve, not that templates are reached.
+    """
+    haystack = ""
+    for path in glob.glob("templates/**/*.json", recursive=True) + glob.glob("sections/*.json") \
+            + glob.glob("sections/*.liquid") + glob.glob("snippets/*.liquid"):
+        try:
+            haystack += open(path, encoding="utf-8").read()
+        except OSError:
+            continue
+
+    # Reached by search, by the cart, or by Shopify itself rather than by a link.
+    NOT_LINKED = {"page.cookie-policy", "page.accessibility"}
+
+    for path in sorted(glob.glob("templates/page.*.json") + glob.glob("templates/collection.*.json")):
+        stem = os.path.basename(path)[:-5]
+        if stem in NOT_LINKED:
+            continue
+        handle = stem.split(".", 1)[1] if "." in stem else stem
+        url = f"/pages/{handle}" if stem.startswith("page.") else f"/collections/{handle}"
+        if url not in haystack:
+            out.append((os.path.basename(path), url,
+                        "no link anywhere in the theme points at this template"))
+
+
+audit_orphan_templates(bad)
+
 audit_generator_order(bad)
 
 audit_page_scoped_claims(bad)

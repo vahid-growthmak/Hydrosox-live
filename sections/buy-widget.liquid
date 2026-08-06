@@ -252,6 +252,29 @@
                           if block.settings.quantity == section.settings.default_quantity
                             assign is_default = true
                           endif
+
+                          # Price transparency. The DMCCA 2024 requires an
+                          # invitation to purchase to show the total price
+                          # including every mandatory charge, and the CMA has
+                          # confirmed that delivery is mandatory where the
+                          # customer cannot get the goods without paying it —
+                          # there is no collection option here — and that
+                          # showing the parts without summing them is not
+                          # enough. So any tier that does not reach the
+                          # free-delivery threshold prints its own grand total.
+                          #
+                          # Both numbers are settings: the charge belongs to
+                          # this section, the threshold is the same global one
+                          # the cart progress bar reads, so the widget and the
+                          # cart cannot disagree about where delivery becomes
+                          # free.
+                          assign delivery_cents = section.settings.delivery_charge | times: 100 | round
+                          assign free_from_cents = settings.free_delivery_threshold | times: 100 | round
+                          assign tier_total = net | plus: delivery_cents
+                          assign tier_pays_delivery = false
+                          if delivery_cents > 0 and net < free_from_cents
+                            assign tier_pays_delivery = true
+                          endif
                         -%}
                         <button
                           type="button"
@@ -276,7 +299,12 @@
                           </span>
                           <span class="hs-buy__tier-price hs-tnum">
                             <span class="hs-small-body hs-buy__tier-total">{{ net | money }}</span>
-                            {%- if qty > 1 -%}
+                            {%- if tier_pays_delivery -%}
+                              <span class="hs-caption hs-buy__tier-unit">
+                                {{ '+' }} {{ delivery_cents | money }} {{ section.settings.delivery_label }}
+                                &middot; {{ tier_total | money }} {{ section.settings.total_label }}
+                              </span>
+                            {%- elsif qty > 1 -%}
                               <span class="hs-caption hs-buy__tier-unit">
                                 {{ per_unit | money }} {{ section.settings.per_unit_label }}
                               </span>
@@ -537,6 +565,25 @@
       "label": "t:sections.buy.size_option_name",
       "info": "t:sections.buy.option_name_info",
       "default": "Size"
+    },
+    {
+      "type": "number",
+      "id": "delivery_charge",
+      "label": "t:sections.buy.delivery_charge",
+      "info": "t:sections.buy.delivery_charge_info",
+      "default": 4.99
+    },
+    {
+      "type": "text",
+      "id": "delivery_label",
+      "label": "t:sections.buy.delivery_label",
+      "default": "delivery"
+    },
+    {
+      "type": "text",
+      "id": "total_label",
+      "label": "t:sections.buy.total_label",
+      "default": "total"
     },
     {
       "type": "text",

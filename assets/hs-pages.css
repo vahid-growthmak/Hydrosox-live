@@ -843,6 +843,20 @@
   color: var(--on-surface);
 }
 
+/* The same definition treatment inside a content-columns prose body, which is
+   where a long definition belongs: the centred note carried it as nine centred
+   lines, which reads as a wall rather than a structure. Left-set in the prose
+   column, the large opening paragraph works. */
+.hs-cols__prose--lead > p:first-child {
+  font-size: var(--type-h4);
+  line-height: var(--leading-h4, 1.35);
+  color: var(--on-surface);
+}
+
+.hs-cols__prose--lead > p:first-child + p {
+  margin-top: 1.25em;
+}
+
 .hs-note__footnote {
   margin-top: 2rem;
   margin-inline: auto;

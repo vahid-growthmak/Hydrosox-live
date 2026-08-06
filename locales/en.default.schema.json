@@ -578,7 +578,9 @@
       "media_header": "Image (copy beside an image)",
       "cta_label": "Button label",
       "cta_label_info": "Adds a button below the content. Leave empty for no button.",
-      "cta_url": "Button link"
+      "cta_url": "Button link",
+      "lead_first_para": "Set the first paragraph larger",
+      "lead_first_para_info": "For prose that opens with a paragraph written to stand on its own, like a definition. Search results and AI answers both lift the opening paragraph."
     },
     "note": {
       "name": "Centre note",

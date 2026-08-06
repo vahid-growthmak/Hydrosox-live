@@ -112,7 +112,15 @@
 
           {%- when 'prose' -%}
             {%- if section.settings.prose != blank -%}
-              <div class="hs-body hs-cols__prose hs-rte hs-measure-58 hs-pretty">
+              {%- comment -%}
+                `lead_first_para` sets the opening paragraph a step larger and in
+                full ink, for prose whose first paragraph is written to stand on
+                its own — a definition. Search snippets and LLMs both lift the
+                opening paragraph, and the type size signals it is self-contained.
+              {%- endcomment -%}
+              <div
+                class="hs-body hs-cols__prose hs-rte hs-measure-58 hs-pretty{% if section.settings.lead_first_para %} hs-cols__prose--lead{% endif %}"
+              >
                 {{ section.settings.prose }}
               </div>
             {%- endif -%}
@@ -283,6 +291,13 @@
       "type": "richtext",
       "id": "lede",
       "label": "t:common.lede"
+    },
+    {
+      "type": "checkbox",
+      "id": "lead_first_para",
+      "label": "t:sections.cols.lead_first_para",
+      "info": "t:sections.cols.lead_first_para_info",
+      "default": false
     },
     {
       "type": "richtext",

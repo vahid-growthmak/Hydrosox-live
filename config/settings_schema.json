@@ -1076,6 +1076,13 @@
         "info": "t:settings.motion.enabled_info"
       },
       {
+        "type": "checkbox",
+        "id": "reading_progress",
+        "label": "t:settings.motion.reading_progress",
+        "info": "t:settings.motion.reading_progress_info",
+        "default": true
+      },
+      {
         "type": "range",
         "id": "duration_press",
         "min": 60,

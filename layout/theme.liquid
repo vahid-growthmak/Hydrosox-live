@@ -145,6 +145,21 @@
   >
     <a class="hs-skip" href="#hs-main">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
+    {%- comment -%}
+      A hairline showing how far through the page the reader is. The guidance
+      pages are long by necessity — the argument is the product — and length
+      reads as burden when there is no sense of how much is left.
+
+      Purely decorative, so aria-hidden: a screen reader already knows where it
+      is in the document. Driven by the scroll position itself where the
+      browser supports a scroll timeline, and simply absent where it does not,
+      because a progress bar that needs JavaScript to move is not worth the
+      JavaScript.
+    {%- endcomment -%}
+    {%- if settings.reading_progress -%}
+      <div class="hs-progress" aria-hidden="true"><span class="hs-progress__bar"></span></div>
+    {%- endif -%}
+
     {% sections 'header-group' %}
 
     <main id="hs-main" role="main">

@@ -153,7 +153,9 @@
       "ease_out": "Ease out curve",
       "ease_in": "Ease in curve",
       "ease_in_out": "Ease in-out curve",
-      "ease_drawer": "Drawer curve"
+      "ease_drawer": "Drawer curve",
+      "reading_progress": "Reading progress bar",
+      "reading_progress_info": "A hairline across the top of the window showing how far through a page the reader is. Most useful on the long guidance pages, where knowing how much is left is what stops a page feeling heavy."
     },
     "cart": {
       "name": "Cart",

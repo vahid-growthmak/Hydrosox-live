@@ -900,3 +900,49 @@ summary::-webkit-details-marker {
   font-size: var(--type-caption);
   color: var(--success);
 }
+
+/* --------------------------------------------------------------------------
+   Reading progress
+
+   Only drawn where the browser has a scroll timeline. There is no observer
+   fallback on purpose: the bar is an affordance, not content, and a decorative
+   hairline is not worth a scroll listener on every page. Where it is absent
+   nothing shifts, because it is fixed and outside the flow.
+   -------------------------------------------------------------------------- */
+.hs-progress {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 60;
+  height: 2px;
+  pointer-events: none;
+}
+
+.hs-progress__bar {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--blue);
+  transform-origin: 0 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .hs-progress__bar {
+      width: 100%;
+      scale: 0 1;
+      animation: hs-progress-grow linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes hs-progress-grow {
+  from {
+    scale: 0 1;
+  }
+
+  to {
+    scale: 1 1;
+  }
+}

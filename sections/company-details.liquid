@@ -33,7 +33,12 @@
     </div>
 
     {%- if section.blocks.size > 0 -%}
-      <dl class="hs-company__list">
+      {%- comment -%}
+        The press fact sheet runs to eight rows, which is the longest this
+        component gets. Staggering them in stops a dense block of company facts
+        landing as one slab.
+      {%- endcomment -%}
+      <dl class="hs-company__list hs-stagger">
         {%- for block in section.blocks -%}
           {%- if block.type == 'row' -%}
             {%- liquid
@@ -51,7 +56,7 @@
               endif
             -%}
             {%- if value != blank -%}
-              <div class="hs-company__cell" {{ block.shopify_attributes }}>
+              <div class="hs-company__cell hs-reveal" {{ block.shopify_attributes }}>
                 <dt class="hs-eyebrow hs-muted">{{ block.settings.label }}</dt>
                 <dd class="hs-small-body hs-company__value hs-measure-24 hs-pretty">
                   {%- case block.settings.kind -%}

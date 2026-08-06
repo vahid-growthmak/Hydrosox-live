@@ -1,7 +1,7 @@
 /* Waterproof Socks category hub, composed by scripts/build-category-hub.py.
    Re-run that script rather than hand-editing; the section content itself is
-   editable in the Shopify theme editor. This template is bound to the
-   collection through its template suffix, not its handle. */
+   editable in the Shopify theme editor. Bound to the waterproof-socks page
+   through its template suffix. */
 {
   "sections": {
     "crumb": {

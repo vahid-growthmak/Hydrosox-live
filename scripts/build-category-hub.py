@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Composes the Waterproof Socks category hub — templates/collection.waterproof-socks.json.
+"""Composes the Waterproof Socks category hub — templates/page.waterproof-socks.json.
 
 The page answers "are waterproof socks the right thing for me?", which is a
 different question from the product page's "is this the right sock, in my size,
@@ -11,9 +11,13 @@ So: the argument runs first and the buy widget comes last. The one piece of
 repeated content is the buy widget itself, which is functional rather than
 editorial.
 
-The five use-case links point at /pages/*, which is where those pages live. The
-brief's URL map puts them under /collections/* — that migration was considered
-and declined.
+The five use-case links point at /pages/*, which is where those pages live, and
+the hub itself is a page too. The brief's URL map puts all of it under
+/collections/* — the client ruled the other way, twice: pages only. The
+waterproof-socks collection therefore goes back on the noindex list, because
+without this template it renders Shopify's default product grid, which is a thin
+duplicate of the product page — the exact thing brief 3.1 calls the most damaging
+duplication on the site.
 """
 import collections
 import json
@@ -22,14 +26,14 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TPL = ROOT / "templates/collection.waterproof-socks.json"
+TPL = ROOT / "templates/page.waterproof-socks.json"
 INDEX = ROOT / "templates/index.json"
 
 HEADER = (
     "/* Waterproof Socks category hub, composed by scripts/build-category-hub.py.\n"
     "   Re-run that script rather than hand-editing; the section content itself is\n"
-    "   editable in the Shopify theme editor. This template is bound to the\n"
-    "   collection through its template suffix, not its handle. */\n"
+    "   editable in the Shopify theme editor. Bound to the waterproof-socks page\n"
+    "   through its template suffix. */\n"
 )
 
 PRODUCT = "/products/hydrosox-waterproof-socks"

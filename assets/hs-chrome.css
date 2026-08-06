@@ -265,22 +265,43 @@
   width: min(44rem, calc(100vw - var(--gutter) * 2));
 }
 
-/* A card that takes the whole row. Wudu leads the panel, and it is a use rather
-   than a sport, so it reads better as its own row above the four activities than
-   as one of five equal tiles. It also makes an odd number of cards tile at all:
-   two columns cannot divide five without leaving a gap. */
+/* The lead card. With five items the panel mirrors the homepage grid: the lead
+   as a tall portrait tile down the left, the four activities in a 2x2 beside
+   it. This is what lets five cards tile at all — two columns cannot divide five
+   without a gap — and it holds the whole panel to two rows, where the previous
+   full-width banner stacked a third row on top and ran the panel past the
+   bottom of a short screen. A portrait tile also suits the wudu photograph,
+   which is portrait; the banner crop showed a thin band of it.
+
+   Browsers without :has() fall back to the banner layout below, which still
+   tiles — it is the size that was wrong with it, not the arithmetic. */
 .hs-header__panel-item--wide {
   grid-column: 1 / -1;
 }
 
-/* Shorter than a square card, because it is twice as wide — the picture still
-   has more area than the others. It also has to be: a full-width row plus two
-   rows of the 2x2 at the standard height ran the panel past the bottom of a
-   720px screen and cut the last card off. */
-/* Scoped through the list as well, so it outweighs the standard card height
-   below rather than tying with it and losing on source order. */
 .hs-header__panel-list--media .hs-header__panel-item--wide .hs-header__panel-link {
   min-height: 8rem;
+}
+
+.hs-header__panel-list--media:has(> .hs-header__panel-item--wide) {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hs-header__panel-list--media:has(> .hs-header__panel-item--wide) .hs-header__panel-item--wide {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+/* Standard cards drop a step so the two-row panel clears a 720px screen with
+   the header above it. The per-card zoom crops keep the sock large in the
+   frame, so legibility comes from the crop rather than the card size. */
+.hs-header__panel-list--media:has(> .hs-header__panel-item--wide) .hs-header__panel-link {
+  min-height: 11rem;
+}
+
+.hs-header__panel-list--media:has(> .hs-header__panel-item--wide) .hs-header__panel-item--wide .hs-header__panel-link {
+  min-height: 100%;
+  height: 100%;
 }
 
 .hs-header__panel-list--media .hs-header__panel-link {
@@ -372,18 +393,32 @@
   }
 }
 
-/* A narrow desktop cannot hold the wide panel beside the trigger. */
+/* A narrow desktop cannot hold the wide panel beside the trigger. The :has
+   selectors repeat here because the bento rules above carry higher specificity
+   than the bare class — without them, this branch asked for one column and the
+   bento's three won, squeezing three 115px columns into a 24rem panel. */
 @media (min-width: 64rem) and (max-width: 75rem) {
-  .hs-header__panel-list--media {
+  .hs-header__panel-list--media,
+  .hs-header__panel-list--media:has(> .hs-header__panel-item--wide) {
     grid-template-columns: minmax(0, 1fr);
     width: 24rem;
   }
 
-  /* Stacked, four cards at the two-column height ran off the bottom of a short
+  /* Stacked, the lead card is just the first card: there is no second column
+     for it to sit beside, and five tall rows would not fit a short screen. */
+  .hs-header__panel-list--media:has(> .hs-header__panel-item--wide) .hs-header__panel-item--wide {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  /* Four-plus-one cards at the two-column height ran off the bottom of a short
      laptop screen and the last one could not be reached. This is the tallest
-     card that still fits four of them plus the header on a 700px-high screen. */
-  .hs-header__panel-list--media .hs-header__panel-link {
-    min-height: 8rem;
+     card that still fits five of them plus the header on a 700px-high screen. */
+  .hs-header__panel-list--media .hs-header__panel-link,
+  .hs-header__panel-list--media:has(> .hs-header__panel-item--wide) .hs-header__panel-link,
+  .hs-header__panel-list--media:has(> .hs-header__panel-item--wide) .hs-header__panel-item--wide .hs-header__panel-link {
+    min-height: 5.75rem;
+    height: auto;
   }
 }
 

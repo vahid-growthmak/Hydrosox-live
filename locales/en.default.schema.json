@@ -253,8 +253,8 @@
       "item_focal_info": "Which part of the picture to keep as the card crops, e.g. center, or 66% 50% to sit on the sock.",
       "item_zoom": "Picture zoom",
       "item_zoom_info": "Magnifies the picture around the focal point, so the sock fills the card rather than the whole scene.",
-      "item_full_width": "Full-width card",
-      "item_full_width_info": "Gives this item its own row across the panel. Use for the item that leads the menu, and to make an odd number of cards tile."
+      "item_full_width": "Lead card",
+      "item_full_width_info": "Makes this item the tall lead tile, matching the homepage grid. Use on one item; it is also what lets five cards tile without a gap."
     },
     "footer": {
       "name": "Footer",

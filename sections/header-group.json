@@ -48,7 +48,7 @@
           "type": "link",
           "settings": {
             "label": "Shop",
-            "link": "/collections/waterproof-socks"
+            "link": "/pages/waterproof-socks"
           }
         },
         "activity": {
@@ -135,7 +135,7 @@
             "link": "/pages/wudu-socks",
             "image_fallback": "activity-wudu-masah.webp",
             "image_alt": "Pulling on a pair of white HydroSox while seated",
-            "focal_point": "50% 70%",
+            "focal_point": "50% 60%",
             "image_zoom": 100,
             "full_width": true
           }

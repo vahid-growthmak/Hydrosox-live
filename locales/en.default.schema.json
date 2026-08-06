@@ -15,7 +15,9 @@
       "logo_height_footer": "Footer logo height",
       "logo_footer_opacity": "Footer logo opacity",
       "company_number": "Companies House number",
-      "company_number_info": "Registration number, e.g. 12345678. Published in the company section and in the store’s Organization data."
+      "company_number_info": "Registration number, e.g. 12345678. Published in the company section and in the store’s Organization data.",
+      "vat_number": "VAT registration number",
+      "vat_number_info": "Shown in the footer beside the company number. Leave empty if not VAT registered — the footer then omits the line rather than printing a blank."
     },
     "colours": {
       "name": "Colours",
@@ -250,7 +252,9 @@
       "item_focal": "Focal point",
       "item_focal_info": "Which part of the picture to keep as the card crops, e.g. center, or 66% 50% to sit on the sock.",
       "item_zoom": "Picture zoom",
-      "item_zoom_info": "Magnifies the picture around the focal point, so the sock fills the card rather than the whole scene."
+      "item_zoom_info": "Magnifies the picture around the focal point, so the sock fills the card rather than the whole scene.",
+      "item_full_width": "Full-width card",
+      "item_full_width_info": "Gives this item its own row across the panel. Use for the item that leads the menu, and to make an odd number of cards tile."
     },
     "footer": {
       "name": "Footer",

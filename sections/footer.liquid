@@ -152,6 +152,23 @@
       {%- if section.settings.fineprint != blank -%}
         <p class="hs-caption hs-footer__fineprint hs-faint">{{ section.settings.fineprint }}</p>
       {%- endif -%}
+
+      {%- comment -%}
+        The registration and VAT numbers, from theme settings. Renders nothing
+        until they are supplied rather than printing a placeholder — a wrong
+        company number is worse than an absent one. The fineprint above already
+        states that prices include VAT, so the VAT number belongs beside it.
+      {%- endcomment -%}
+      {%- if settings.company_number != blank or settings.vat_number != blank -%}
+        <p class="hs-caption hs-footer__registration hs-faint">
+          {%- if settings.company_number != blank -%}
+            Registered in England and Wales, company no. {{ settings.company_number }}.
+          {%- endif -%}
+          {%- if settings.vat_number != blank -%}
+            VAT registration no. {{ settings.vat_number }}.
+          {%- endif -%}
+        </p>
+      {%- endif -%}
     </div>
   </div>
 </footer>

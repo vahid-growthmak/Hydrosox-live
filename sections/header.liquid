@@ -108,7 +108,10 @@
                       {%- unless item.type == 'dropdown_item' -%}
                         {%- break -%}
                       {%- endunless -%}
-                      <li {{ item.shopify_attributes }}>
+                      <li
+                        class="hs-header__panel-item{% if item.settings.full_width %} hs-header__panel-item--wide{% endif %}"
+                        {{ item.shopify_attributes }}
+                      >
                         <a
                           class="hs-header__panel-link"
                           href="{{ item.settings.link | default: '#' }}"
@@ -438,6 +441,13 @@
           "label": "t:sections.header.item_focal",
           "info": "t:sections.header.item_focal_info",
           "default": "center"
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "t:sections.header.item_full_width",
+          "info": "t:sections.header.item_full_width_info",
+          "default": false
         },
         {
           "type": "range",

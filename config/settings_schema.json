@@ -95,6 +95,12 @@
         "id": "company_number",
         "label": "t:settings.brand.company_number",
         "info": "t:settings.brand.company_number_info"
+      },
+      {
+        "type": "text",
+        "id": "vat_number",
+        "label": "t:settings.brand.vat_number",
+        "info": "t:settings.brand.vat_number_info"
       }
     ]
   },

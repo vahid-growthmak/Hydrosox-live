@@ -70,7 +70,16 @@
     {%- endcomment -%}
     {%- liquid
       assign noindex = false
-      if current_page != 1 or current_tags or request.path contains '/search'
+      # `current_tags.size > 0` rather than `current_tags`, because an empty
+      # array is truthy in Liquid — only nil and false are falsy. Whether Shopify
+      # hands back nil or an empty array when no tag filter is applied decides,
+      # on the bare test, whether this line de-indexes one page or the entire
+      # site. Counting is unambiguous either way.
+      assign tag_filtered = false
+      if current_tags.size > 0
+        assign tag_filtered = true
+      endif
+      if current_page != 1 or tag_filtered or request.path contains '/search'
         assign noindex = true
       endif
       if request.path contains '/cart' or request.path contains '/account'

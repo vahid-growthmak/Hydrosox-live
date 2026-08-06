@@ -18,8 +18,8 @@
         "hide_rule": true,
         "max_width": 46,
         "eyebrow": "Cookie policy",
-        "heading": "What this site stores on your device.",
-        "body": "<p>A cookie is a small file a website asks your browser to keep. This store runs on Shopify, which sets the cookies that make a cart and a checkout work at all, and we add nothing that is not described below.</p><p>You can delete cookies or block them in your browser settings at any time. Blocking the essential ones will stop the cart and checkout working, because they are the mechanism by which those remember what you are doing.</p>"
+        "heading": "What we set, and how to turn it off.",
+        "body": "<p>Only the cookies needed to make the site work run without your permission. Everything else waits until you say yes, and you can change your mind at any time.</p>"
       }
     },
     "kinds": {
@@ -28,45 +28,38 @@
         "color_scheme": "paper",
         "layout": "list",
         "numbered": false,
-        "eyebrow": "The kinds",
-        "heading": "Four categories, and which we use.",
-        "lede": "<p>Grouped the way the regulations group them, so this can be checked against them rather than taken on trust.</p>"
+        "anchor_id": "categories",
+        "eyebrow": "The categories",
+        "heading": "Three categories, and which need asking.",
+        "lede": "<p>The Privacy and Electronic Communications Regulations 2003 require consent before anything that is not strictly necessary. That is the line the three categories below are drawn on.</p>"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Strictly necessary",
-            "body": "<p>Set by Shopify so the basket remembers what is in it, the checkout can carry you through payment, and the site can tell one visitor from another for security. These cannot be turned off without breaking the shop, and they are not used for advertising.</p>"
+            "title": "Strictly necessary — always on",
+            "body": "<p>These make the site function: keeping your basket, remembering your session, processing payment and keeping the site secure. They cannot be switched off and do not require consent, because the site does not work without them.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "Preferences",
-            "body": "<p>Remember choices you have made, such as accepting this notice, so you are not asked again on every page.</p>"
+            "title": "Analytics — off until you agree",
+            "body": "<p>These tell us how the site is used: which pages are read, where people leave, what is not working. They help us improve it. They do not run unless you accept them.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "Analytics",
-            "body": "<p>Count visits and show which pages are read, in aggregate. We use these to decide what to write next, not to identify anyone.</p>"
-          }
-        },
-        "i4": {
-          "type": "item",
-          "settings": {
-            "title": "Advertising",
-            "body": "<p>Used to measure or target advertising. If any are ever set on this site, they will be named here first and asked for separately.</p>"
+            "title": "Marketing and advertising — off until you agree",
+            "body": "<p>These let us measure advertising and show relevant ads elsewhere, including on Meta and Google platforms. They do not run unless you accept them.</p>"
           }
         }
       },
       "block_order": [
         "i1",
         "i2",
-        "i3",
-        "i4"
+        "i3"
       ]
     },
     "control": {
@@ -76,8 +69,8 @@
         "heading_size": "h3",
         "max_width": 44,
         "eyebrow": "Your choices",
-        "heading": "How to see and change what is stored.",
-        "body": "<p>Every current browser lists the cookies a site has set and lets you delete them, under privacy or site settings. Where consent is required for a category, this site asks before setting it, and a refusal is remembered.</p>",
+        "heading": "Changing your mind is as easy as agreeing was.",
+        "body": "<p>Use the cookie settings link in the footer, available on every page. Withdrawing consent is exactly as easy as giving it, which is what the regulations require.</p><p>Every major browser also lets you block or delete cookies directly. Blocking the strictly necessary ones will stop parts of this site working, including checkout.</p>",
         "link_label": "How we handle personal data",
         "link_url": "/policies/privacy-policy"
       }

@@ -21,8 +21,8 @@
         "heading_size": "h2",
         "hide_rule": true,
         "eyebrow": "Warranty",
-        "heading": "We have not set warranty terms yet.",
-        "body": "<p>Saying so is more useful than a vague promise. Your statutory rights already cover a great deal, and they apply whether or not a brand offers anything on top.</p>",
+        "heading": "Twelve months, on top of what the law already gives you.",
+        "body": "<p>A warranty is an addition, never a replacement. Your statutory rights under the Consumer Rights Act 2015 apply in full regardless of anything on this page, and where the two differ the more generous one applies.</p>",
         "footnote": "<p>When terms are set they will be published here in full, including what they exclude.</p>"
       }
     },
@@ -31,8 +31,11 @@
       "settings": {
         "color_scheme": "paper",
         "layout": "list",
-        "numbered": true,
-        "heading": "What you already have"
+        "numbered": false,
+        "anchor_id": "statutory",
+        "eyebrow": "What you already have",
+        "heading": "What you already have",
+        "lede": "<p>None of this depends on us offering anything. It is the law, and it applies whether or not a brand adds to it.</p>"
       },
       "blocks": {
         "i1": {
@@ -46,7 +49,7 @@
           "type": "item",
           "settings": {
             "title": "Thirty days to reject outright",
-            "body": "<p>A full refund, no repair attempt required.</p>"
+            "body": "<p>A full refund, with no repair attempt required first.</p>"
           }
         },
         "i3": {
@@ -55,42 +58,60 @@
             "title": "Six months where the fault is presumed ours",
             "body": "<p>Within six months of delivery a fault is assumed to have been there from the start unless we can show otherwise.</p>"
           }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "Up to six years to bring a claim",
+            "body": "<p>In England and Wales you have up to six years from purchase to bring a claim for goods that were faulty when sold. That is a limitation period rather than a promise that goods last six years — but it is longer than most people assume, and worth knowing.</p>"
+          }
         }
       },
       "block_order": [
         "i1",
         "i2",
-        "i3"
+        "i3",
+        "i4"
       ]
     },
     "fault": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "wash",
+        "color_scheme": "paper",
         "layout": "list",
         "numbered": false,
+        "anchor_id": "fault-or-wear",
+        "eyebrow": "Fault or wear",
         "heading": "Fault or wear",
-        "head_note": "<p>The honest line between the two, so you know which conversation you are having.</p>"
+        "lede": "<p>This is the distinction every warranty turns on, so here it is in plain terms rather than buried.</p>"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "A fault",
-            "body": "<p>Delamination, a seam that lets water through, a membrane that leaks in the first weeks of normal use.</p>"
+            "body": "<p>Delamination, a seam that lets water through, or a membrane that leaks in the first weeks of normal use.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Wear",
-            "body": "<p>Thinning at the heel or toe over months of use, abrasion inside a boot, damage from toenails or the wrong wash cycle.</p>"
+            "body": "<p>Thinning at the heel or toe over months of use, abrasion inside a boot, damage from toenails, or the consequences of the wrong wash cycle.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "The honest line between them",
+            "body": "<p>Time and pattern. A leak in week two, in the body of the sock rather than over the cuff, is almost always a fault. A gradual loss of performance over a year of daily use on a building site is almost always wear. If it is genuinely unclear, we will treat it as a fault.</p>"
           }
         }
       },
       "block_order": [
         "i1",
-        "i2"
+        "i2",
+        "i3"
       ]
     },
     "contact": {
@@ -260,14 +281,14 @@
           "type": "trust",
           "settings": {
             "label": "Checkout",
-            "value": "Guest \u2014 no account required"
+            "value": "Guest — no account required"
           }
         },
         "r4": {
           "type": "trust",
           "settings": {
             "label": "Payment",
-            "value": "Visa \u00b7 Mastercard \u00b7 American Express \u00b7 Apple Pay \u00b7 Google Pay \u00b7 Shop Pay"
+            "value": "Visa · Mastercard · American Express · Apple Pay · Google Pay · Shop Pay"
           }
         },
         "l1": {
@@ -334,7 +355,7 @@
           "type": "guide_note",
           "settings": {
             "label": "Between two sizes",
-            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit — a size down grips the toes and shortens the life of the membrane."
           }
         }
       },
@@ -383,19 +404,68 @@
         "per_unit_label": "per pair",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
-        "guide_intro": "Measure the foot rather than relying on shoe size \u2014 sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
         "guide_col_size": "Size",
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
         "guide_close_label": "Close"
       }
+    },
+    "cover": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "list",
+        "numbered": false,
+        "anchor_id": "warranty",
+        "eyebrow": "Our warranty",
+        "heading": "Twelve months against manufacturing defects.",
+        "lede": "<p>Registered from the delivery date. No registration to complete and no card to post — the order is the proof of purchase.</p>"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "What it covers",
+            "body": "<p>Manufacturing defects: delamination, a failed seam, a membrane that leaks through the body of the sock in normal use, or a knit that comes apart where it was joined.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "What it does not cover",
+            "body": "<p>Wear, which is a different thing and is set out below. Damage from misuse or from the wrong care — tumble drying, ironing, direct heat, bleach and fabric softener all shorten or end a membrane, and the care instructions are published in full.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "What we do about it",
+            "body": "<p>A replacement pair, or a refund where we cannot replace. We do not charge for returning faulty goods at any point, inside the warranty or under your statutory rights.</p>"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "It is not transferable",
+            "body": "<p>The warranty is with the person who bought the socks. Your statutory rights work the same way.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ]
     }
   },
   "order": [
     "crumb",
     "intro",
     "rights",
+    "cover",
     "fault",
     "contact",
     "buy"

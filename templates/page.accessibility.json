@@ -18,8 +18,8 @@
         "hide_rule": true,
         "max_width": 46,
         "eyebrow": "Accessibility",
-        "heading": "What we have done, and what we have not.",
-        "body": "<p>This site was built to be usable with a keyboard, with a screen reader, and at a text size you choose. That is a standard to be held to rather than a badge, so what follows is specific enough to check and it says where we fall short.</p><p>We aim at WCAG 2.2 level AA. We have not commissioned an independent audit, so nothing here is a certification — it is a description of decisions taken, and it will be corrected as things are found.</p>"
+        "heading": "What works, what does not, and who to tell.",
+        "body": "<p>We want this site to be usable by everyone. It is not perfect, and this page says where it falls short rather than claiming it does not.</p>"
       }
     },
     "done": {
@@ -28,44 +28,45 @@
         "color_scheme": "paper",
         "layout": "list",
         "numbered": false,
+        "anchor_id": "what-we-have-done",
         "eyebrow": "Specifics",
-        "heading": "Five things you can verify.",
-        "lede": "<p>Each of these is testable in a browser in a couple of minutes, which is the point of listing them.</p>"
+        "heading": "What we have done.",
+        "lede": "<p>We aim to meet the Web Content Accessibility Guidelines 2.1 at level AA — the standard used across UK public sector sites, and a reasonable bar for a retailer.</p>"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Keyboard and focus",
-            "body": "<p>Every control can be reached and operated with a keyboard, focus is always visible, and the menu and cart return focus to where you left it when they close. There is a skip link to the main content.</p>"
+            "title": "Text resizes without breaking",
+            "body": "<p>Every size on this site is set in relative units, so enlarging text in your browser reflows the page rather than clipping it.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "Text and zoom",
-            "body": "<p>Type is set in relative units, so the site follows your browser's text size and reflows to 400% zoom without content being lost or needing sideways scrolling.</p>"
+            "title": "Images carry alternative text",
+            "body": "<p>Every photograph describes what it shows, including the colour swatches, rather than repeating the file name.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "Colour and contrast",
-            "body": "<p>Body text and controls are checked against the AA contrast threshold. Colour is never the only thing carrying meaning.</p>"
+            "title": "It works from the keyboard",
+            "body": "<p>Every menu, drawer and accordion can be reached and operated without a mouse, and focus is visible and returns where you left it.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
-            "title": "Motion",
-            "body": "<p>Scroll-driven animation and the frame sequence stop when your system asks for reduced motion. Nothing on the site moves or autoplays without being asked.</p>"
+            "title": "Forms have real labels",
+            "body": "<p>Visible labels rather than placeholder text alone, which disappears the moment you start typing.</p>"
           }
         },
         "i5": {
           "type": "item",
           "settings": {
-            "title": "Structure and images",
-            "body": "<p>Headings are ordered rather than chosen for size, tables carry real headers, forms have real labels, and images that carry meaning have text alternatives.</p>"
+            "title": "Motion can be turned off",
+            "body": "<p>Every animation on this site is behind the reduced-motion setting your device already has, and there is a switch in the theme as well.</p>"
           }
         }
       },
@@ -84,8 +85,8 @@
         "heading_size": "h3",
         "max_width": 46,
         "eyebrow": "Where it falls short",
-        "heading": "Known gaps, stated rather than hidden.",
-        "body": "<p>The product film has no captions yet, because the films are not finished. No independent audit has been carried out. And no amount of care replaces testing with people who rely on assistive technology, which we have not yet done.</p>"
+        "heading": "What we know is not right yet.",
+        "body": "<p>This site has not yet had a full independent accessibility audit, so this section is honest rather than complete: we are listing what we know, not everything there is.</p><p>Some muted text sits close to the AA contrast threshold rather than comfortably above it. The scroll-driven sections have been tested with motion turned off but not with every assistive technology. When the audit is done, what it finds will be published here — including the parts that are awkward.</p>"
       }
     },
     "close": {
@@ -96,7 +97,7 @@
         "max_width": 44,
         "heading_size": "h3",
         "heading": "Found something that does not work?",
-        "body": "<p>Tell us what you were trying to do and what happened, and we will fix it and say when. A phone number and an email reach a person.</p>",
+        "body": "<p>Email info@hydrosox.com or phone 0203 4322 920. Tell us what you were trying to do and what happened, and we will tell you honestly whether and when we can fix it.</p><p>If you would rather not use the site at all, phone us and we will take the order over the phone. There is no charge for that.</p>",
         "cta_label": "Contact us",
         "cta_url": "/pages/contact",
         "link_label": "Company details",

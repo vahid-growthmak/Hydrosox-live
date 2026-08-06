@@ -66,15 +66,15 @@
       ]
     },
     "definition": {
-      "type": "centre-note",
+      "type": "content-columns",
       "settings": {
         "color_scheme": "paper",
-        "max_width": 46,
+        "layout": "prose",
+        "anchor_id": "definition",
         "eyebrow": "The definition",
         "heading": "A membrane, wearing a sock.",
-        "heading_size": "h2",
         "lead_first_para": true,
-        "body": "<p>A waterproof sock is an ordinary-looking sock with a waterproof-breathable membrane sealed between two knitted layers. The knit gives it the feel and fit of a sock; the membrane stops liquid water passing through while still letting vapour from the foot escape. Worn inside a boot or shoe, it keeps the foot dry when the footwear no longer can.</p><p>That last part is the point most descriptions skip. A waterproof sock is not a better sock. It is a layer that keeps working at the moment your boots stop — four hours into wet ground, or on the ride home when the shoes never dried from this morning.</p>"
+        "prose": "<p>A waterproof sock is an ordinary-looking sock with a waterproof-breathable membrane sealed between two knitted layers. The knit gives it the feel and fit of a sock; the membrane stops liquid water passing through while still letting vapour from the foot escape. Worn inside a boot or shoe, it keeps the foot dry when the footwear no longer can.</p><p>That last part is the point most descriptions skip. A waterproof sock is not a better sock. It is a layer that keeps working at the moment your boots stop — four hours into wet ground, or on the ride home when the shoes never dried from this morning.</p>"
       }
     },
     "mechanism": {

@@ -109,19 +109,21 @@ def main():
     ])
 
     # ------------------------------------------------------------------- S3
-    # Written to be extracted. The first paragraph is a self-contained definition
-    # that answers the query without the rest of the page, and it is set a size
-    # larger so it reads as one.
+    # Written to be extracted: the first paragraph is a self-contained definition
+    # that answers the query without the rest of the page, set a size larger so
+    # it reads as one. It sits in the same left-heading/right-content structure
+    # as every other section on the page — in a centred note the 55-word opening
+    # ran nine centred lines, which read as a wall rather than a definition.
     S["definition"] = collections.OrderedDict([
-        ("type", "centre-note"),
+        ("type", "content-columns"),
         ("settings", collections.OrderedDict([
             ("color_scheme", "paper"),
-            ("max_width", 46),
+            ("layout", "prose"),
+            ("anchor_id", "definition"),
             ("eyebrow", "The definition"),
             ("heading", "A membrane, wearing a sock."),
-            ("heading_size", "h2"),
             ("lead_first_para", True),
-            ("body", rich(
+            ("prose", rich(
                 "A waterproof sock is an ordinary-looking sock with a "
                 "waterproof-breathable membrane sealed between two knitted layers. "
                 "The knit gives it the feel and fit of a sock; the membrane stops "

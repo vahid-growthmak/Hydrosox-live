@@ -45,21 +45,6 @@ def copy_section(idx, key, overrides=None):
     return src
 
 
-def activity_cards(idx):
-    sec = idx['sections']['activity']
-    blocks, order = collections.OrderedDict(), []
-    for n, key in enumerate(sec.get('block_order', []), start=1):
-        st = sec['blocks'][key].get('settings', {})
-        k = 'a%d' % n
-        blocks[k] = od(('type', 'card'), ('settings', od(
-            ('title', st.get('title', '')),
-            ('body', st.get('problem', '')),
-            ('link', st.get('link', '')),
-        )))
-        order.append(k)
-    return blocks, order
-
-
 def main():
     idx = load_index()
     sections = collections.OrderedDict()
@@ -69,14 +54,38 @@ def main():
         sections[key] = rec
         order.append(key)
 
-    # 1 — the buy area, identical to the homepage's including the price ladder
-    add('buy', copy_section(idx, 'buy', od(
-        ('anchor_id', 'buy'),
-        ('eyebrow', 'What it is'),
-        ('heading', 'Two decisions and a quantity.'),
-    )))
+    # Breadcrumb nests under the category hub (brief 3.1) — owned here, because
+    # this script rebuilds the file from scratch and the sitemap pass only adds
+    # a bare breadcrumb when none exists.
+    add('breadcrumb', od(('type', 'breadcrumb'), ('settings', od(
+        ('color_scheme', 'paper'),
+        ('home_label', 'Home'),
+        ('parent_label', 'Waterproof socks'),
+        ('parent_url', '/pages/waterproof-socks'),
+        ('current_label', 'HydroSox Waterproof Socks'),
+    ))))
 
-    # 2 — what the product is, beside the colourway shot
+    # 1 — the buy area stays at the top: the one page where that is correct.
+    # The widget renders the product's own title as the H1 on this template,
+    # and the lede is the sub-line beneath it. One trust row changes from the
+    # homepage copy: Checkout becomes Returns, because guest checkout removes
+    # no purchase anxiety and the returns position removes a great deal, at
+    # exactly the moment the visitor feels it.
+    buy = copy_section(idx, 'buy', od(
+        ('anchor_id', 'buy'),
+        ('eyebrow', 'Order'),
+        ('lede', '<p>Three-layer waterproof socks with a licensed Porelle® '
+                 'membrane. Four colours, four sizes, from £20 a pair.</p>'),
+    ))
+    for block in buy.get('blocks', {}).values():
+        if block.get('type') == 'trust' and block['settings'].get('label') == 'Checkout':
+            block['settings']['label'] = 'Returns'
+            block['settings']['value'] = 'Fourteen days, no reason needed'
+    add('buy', buy)
+
+    # 2 — what it is. The heading is the best sentence on the page and stays;
+    # the body extends to carry the specification summary the category page
+    # must NOT contain.
     add('about', od(('type', 'content-columns'), ('settings', od(
         ('color_scheme', 'wash'),
         ('layout', 'media'),
@@ -84,62 +93,225 @@ def main():
         ('eyebrow', 'What it is'),
         ('heading', 'A membrane, sealed inside a knitted sock.'),
         ('head_note',
-         '<p>A crew-height sock with a waterproof-breathable membrane sealed between two knitted '
-         'layers. One height, one construction, sized in bands rather than by gender.</p>'),
+         '<p>A crew-height waterproof sock built in three layers: a knitted lining '
+         'against the skin, a licensed Porelle® waterproof-breathable membrane in '
+         'the middle, and a knitted wear face on the outside. One height, one '
+         'construction, four colours, four sizes. The same sock whether you bought '
+         'it for a hill, a commute, a shift or for wudu.</p>'),
         ('link_label', 'The three layers, in section'),
-        ('link_url', '/#construction'),
+        ('link_url', '/pages/technology'),
         ('media_fallback', 'hydrosox-colourways.jpg'),
         ('media_alt', 'Four HydroSox colourways standing unsupported'),
     ))))
 
-    # 3 — the detail, folded away so the page stays short
-    spec = collections.OrderedDict()
-    spec_order = []
-    for n, (q, a) in enumerate([
-        ('Three-layer construction',
-         '<p>A knitted lining next to the skin, a licensed Porelle® waterproof-breathable membrane, '
-         'and a knitted outer that takes the abrasion. Bonded, not stitched together.</p>'),
-        ('What it will not do',
-         '<p>Water over the cuff still gets in, and no waterproof sock behaves otherwise. Every '
-         'limit we know about is published rather than left for you to find.</p>'),
-        ('Materials and care',
-         '<p>A cool machine wash. No fabric conditioner and no tumble dryer — one coats a membrane '
-         'and the other degrades it.</p>'),
-        ('Shipping, returns and warranty',
-         '<p>Free UK delivery on two pairs or more. The full terms are published on their own pages '
-         'as each one is confirmed rather than stated early.</p>'),
-    ], start=1):
-        k = 's%d' % n
-        spec[k] = od(('type', 'question'), ('settings', od(('question', q), ('answer', a))))
+    # 3 — the full specification: the section that makes this page distinct
+    # from the category hub. Four rows are deliberately absent until the client
+    # confirms them — weight, height in centimetres, fibre composition and
+    # country of manufacture. A plausible-sounding value in any of them would
+    # be a guess published as a fact.
+    spec_rows = [
+        ('Construction', 'Three layers: knitted lining, membrane, knitted wear face.'),
+        ('Membrane', 'Porelle®, licensed third-party waterproof-breathable laminate.'),
+        ('Height', 'Crew.'),
+        ('Sizes', 'S (UK 3–5) · M (UK 6–8) · L (UK 9–11) · XL (UK 12–14).'),
+        ('Sized on', 'Foot length in centimetres, not shoe size.'),
+        ('Colours', 'Black · Black / Grey · Black / Navy · White.'),
+        ('Chemistry', 'PFOA free.'),
+        ('Care', 'Cool wash, no softener, no bleach, air dry, never tumble dry or iron.'),
+        ('Warranty', 'Statutory rights apply in full; no additional warranty offered at present.'),
+        ('Origin', 'UK company, UK warehouse.'),
+        ('Price', '£20.00 a pair, £16.00 a pair in a five-pack.'),
+    ]
+    spec, spec_order = collections.OrderedDict(), []
+    for n, (label, value) in enumerate(spec_rows, 1):
+        k = 'sp%d' % n
+        spec[k] = od(('type', 'item'), ('settings', od(
+            ('title', label), ('body', '<p>%s</p>' % value))))
         spec_order.append(k)
-
-    add('detail', od(('type', 'faq-accordion'), ('settings', od(
+    add('specification', od(('type', 'content-columns'), ('settings', od(
         ('color_scheme', 'paper'),
-        ('anchor_id', 'detail'),
-        ('eyebrow', 'In detail'),
-        ('heading', 'The specification, in full.'),
-        ('lede', '<p>Folded away so the page stays short. Nothing here contradicts anything above '
-                 'it.</p>'),
+        ('layout', 'list'),
+        ('numbered', False),
+        ('row_density', 'compact'),
+        ('anchor_id', 'specification'),
+        ('eyebrow', 'Specification'),
+        ('heading', 'Everything we can state.'),
+        ('lede', '<p>Every figure here is checkable, and every gap is a fact we '
+                 'are still confirming rather than a guess. Weight, height in '
+                 'centimetres, fibre composition and country of manufacture are '
+                 'published the moment they are.</p>'),
     )), ('blocks', spec), ('block_order', spec_order)))
 
-    # 4 — where it gets used
-    b, o = activity_cards(idx)
-    add('activities', od(('type', 'link-cards'), ('settings', od(
-        ('color_scheme', 'paper'),
-        # One column per activity, so the row comes out even — but capped at the
-        # section's maximum. The homepage grid gained a fifth use (wudu) and this
-        # section derives from it, which pushed the count to 5; a range setting
-        # outside its bounds is refused on upload and takes the whole template
-        # with it. Four across with the fifth centred beneath is the graceful
-        # version of that.
-        ('columns', 4 if len(o) > 4 else len(o)),
-        ('anchor_id', 'activities'),
-        ('eyebrow', 'Where it gets used'),
-        ('heading', 'Same sock, different problem.'),
-    )), ('blocks', b), ('block_order', o)))
+    # 4 — colourways, one photograph per colour.
+    #
+    # The bundled webp is the fallback, not the image itself: `image` is an
+    # image_picker that stays empty and wins whenever it is filled, so a
+    # merchant can swap any swatch from the theme editor without touching a
+    # file, and the theme still ships with the right photograph out of the box.
+    #
+    # Alt text carries the product keyword deliberately — a colour swatch is one
+    # of the few places it still sits naturally. It also describes the shot
+    # accurately: these are the socks standing upright and unworn.
+    colours, colours_order = collections.OrderedDict(), []
+    for n, (name, asset, body) in enumerate([
+        ('Black', 'colour-black.webp',
+         'The one that disappears under work trousers and inside a boot. The '
+         'most forgiving on wet ground.'),
+        ('Black / Grey', 'colour-black-grey.webp',
+         'The everyday pair. Enough contrast to look deliberate with trainers, '
+         'dark enough not to show a muddy day.'),
+        ('Black / Navy', 'colour-black-navy.webp',
+         'The same idea in a colder tone. Sits better with blue and grey kit.'),
+        ('White', 'colour-white.webp',
+         'The running and cycling pair. Shows dirt, and is the one most people '
+         'photograph.'),
+    ], 1):
+        k = 'cw%d' % n
+        colours[k] = od(('type', 'item'), ('settings', od(
+            ('title', name),
+            ('body', '<p>%s</p>' % body),
+            ('image_fallback', asset),
+            ('image_alt', 'HydroSox waterproof socks in %s, crew height, shown '
+                          'upright' % name.lower()))))
+        colours_order.append(k)
+    add('colourways', od(('type', 'content-columns'), ('settings', od(
+        ('color_scheme', 'wash'),
+        ('layout', 'gallery'),
+        ('numbered', False),
+        ('gallery_aspect', '4 / 5'),
+        ('anchor_id', 'colourways'),
+        ('eyebrow', 'Colours'),
+        ('heading', 'Four, and what each is for.'),
+    )), ('blocks', colours), ('block_order', colours_order)))
 
-    # 5 — the questions, same answers as the homepage
-    add('questions', copy_section(idx, 'faq', od(('anchor_id', 'questions'))))
+    # 5 — sizing
+    sizing, sizing_order = collections.OrderedDict(), []
+    for n, (title, body) in enumerate([
+        ('Four bands',
+         'S fits UK 3–5, M fits UK 6–8, L fits UK 9–11, XL fits UK 12–14. Each '
+         'band is set by foot length in centimetres, published in full on the '
+         'size guide.'),
+        ('Between two bands',
+         'Take the larger one. These are a close, stretchy fit, and a size down '
+         'grips the toes and shortens the life of the membrane.'),
+        ('Inside a boot or a cycling shoe',
+         'They add roughly the bulk of a mid-weight sock. If your footwear is '
+         'already tight with a thick sock, it will be tight with these.'),
+    ], 1):
+        k = 'sz%d' % n
+        sizing[k] = od(('type', 'item'), ('settings', od(
+            ('title', title), ('body', '<p>%s</p>' % body))))
+        sizing_order.append(k)
+    add('sizing', od(('type', 'content-columns'), ('settings', od(
+        ('color_scheme', 'paper'),
+        ('layout', 'list'),
+        ('numbered', False),
+        ('anchor_id', 'sizing'),
+        ('eyebrow', 'Sizing'),
+        ('heading', 'Measure the foot, not the shoe.'),
+        ('lede', '<p>Shoe sizing is not consistent between brands. Foot length is, '
+                 'and it is the thing that actually has to fit inside the sock.</p>'),
+        ('link_label', 'Open the size guide'),
+        ('link_url', '/pages/size-guide'),
+    )), ('blocks', sizing), ('block_order', sizing_order)))
+
+    # 6 — care, returns and warranty, each row linking to the page that owns it
+    after, after_order = collections.OrderedDict(), []
+    for n, (title, body, label, url) in enumerate([
+        ('Washing them will not ruin them. Heat will.',
+         'Cool wash, no fabric softener, no bleach, air dry. A membrane fails '
+         'from heat, softener and abrasion long before it fails from age.',
+         'How to wash them', '/pages/care-and-washing'),
+        ('Fourteen days, no reason needed.',
+         'Unworn and in the original packaging. Your statutory rights are the '
+         'floor here, not the ceiling — the returns page sets out both.',
+         'The returns policy', '/policies/refund-policy'),
+        ('A fault is not the same as wear.',
+         'A seam that lets water through in the first weeks of normal use is a '
+         'fault. Thinning at the heel after months is wear. The warranty page '
+         'draws the line honestly.',
+         'The warranty page', '/pages/warranty'),
+    ], 1):
+        k = 'ab%d' % n
+        after[k] = od(('type', 'item'), ('settings', od(
+            ('title', title), ('body', '<p>%s</p>' % body),
+            ('link_label', label), ('link_url', url))))
+        after_order.append(k)
+    add('aftercare', od(('type', 'content-columns'), ('settings', od(
+        ('color_scheme', 'wash'),
+        ('layout', 'list'),
+        ('numbered', False),
+        ('anchor_id', 'after-you-buy'),
+        ('eyebrow', 'After you buy'),
+        ('heading', 'Three things worth knowing now.'),
+    )), ('blocks', after), ('block_order', after_order)))
+
+    # 7 — the activity cross-link strip is deliberately absent. The content
+    # brief is explicit that this page must not carry activity-specific benefit
+    # copy: it answers "is this the right sock, in my size, at this price?",
+    # and the case for each use is won on the hub and the four use-case pages.
+    # Those pages link here; this one does not link back and restate them.
+
+    # 8 — six product-level questions. None repeats the homepage, the hub or
+    # the FAQ page in the same wording — the validator holds that line.
+    QUESTIONS = [
+        ('Do HydroSox come up big or small?',
+         'They run true to the foot-length bands published on the size guide, and '
+         'they are a close, stretchy fit rather than a loose one. If you are '
+         'between two bands, take the larger — a size down grips the toes and '
+         'shortens the life of the membrane.'),
+        ('Do HydroSox come in different heights?',
+         'No. One height, crew, in every colour and size. A single construction '
+         'is the reason the price is £20 rather than £35.'),
+        ('Are HydroSox suitable for women?',
+         'Yes. The bands run from UK 3, and the sock is unisex. Size on foot '
+         'length rather than on the men\'s or women\'s label you are used to.'),
+        ('How many pairs do most people buy?',
+         'Two or three. They need washing and air drying between wears, and air '
+         'drying takes longer than a tumble dryer would, so one pair rarely keeps '
+         'up with a daily problem.'),
+        ('Can I wash HydroSox in a machine?',
+         'Cool wash, gentle cycle, inside out, no fabric softener and no bleach. '
+         'Then air dry away from a radiator. Never tumble dry and never iron — '
+         'both are heat applied directly to a laminate.'),
+        ('What is included when I order?',
+         'The pairs you selected, in the colour and size you chose, and nothing '
+         'else. No boxes, no printed inserts.'),
+    ]
+    qs, qs_order = collections.OrderedDict(), []
+    for n, (q, a) in enumerate(QUESTIONS, 1):
+        k = 'q%d' % n
+        qs[k] = od(('type', 'question'), ('settings', od(
+            ('question', q), ('answer', '<p>%s</p>' % a))))
+        qs_order.append(k)
+    add('questions', od(('type', 'faq-accordion'), ('settings', od(
+        ('color_scheme', 'paper'),
+        ('anchor_id', 'questions'),
+        ('one_at_a_time', False),
+        ('emit_schema', False),
+        ('eyebrow', 'Questions'),
+        ('heading', 'About this sock, specifically.'),
+        ('help_prefix', 'Something not here?'),
+        ('help_label', 'Phone or email us'),
+        ('help_link', '/pages/contact'),
+    )), ('blocks', qs), ('block_order', qs_order)))
+
+    # 9 — the reviews empty state, stated rather than hidden. The review module
+    # after it renders nothing until real reviews exist; this note is why.
+    add('reviews_note', od(('type', 'centre-note'), ('settings', od(
+        ('color_scheme', 'paper'),
+        ('hide_rule', True),
+        ('max_width', 46),
+        ('eyebrow', 'Reviews'),
+        ('heading', 'There are none yet, and we are not going to invent any.'),
+        ('heading_size', 'h3'),
+        ('body', '<p>HydroSox is new. A rating with nothing behind it is worth '
+                 'nothing, and a feed of five-star reviews with no negatives in it '
+                 'reads as filtered to exactly the person who is reading it '
+                 'carefully.</p>'),
+        ('link_label', 'The standard this feed will be held to'),
+        ('link_url', '/pages/reviews'),
+    ))))
 
     tpl = od(('sections', sections), ('order', order))
     path = os.path.join(ROOT, 'templates', 'product.json')

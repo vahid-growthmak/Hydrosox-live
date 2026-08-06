@@ -423,15 +423,17 @@ def main():
 
     # ------------------------------------------------------------------- S10
     # Category-level questions. None of these appears on the homepage, the
-    # product page or the FAQ page in this wording, and the page does not publish
-    # FAQPage — the homepage holds that claim for the site.
+    # product page or the FAQ page in this wording, so the page publishes its own
+    # FAQPage. Two FAQPage claims on one site are legitimate precisely because
+    # the question sets are disjoint — it is repeating a question across two
+    # URLs that makes them compete, not having two.
     S["faq"] = collections.OrderedDict([
         ("type", "faq-accordion"),
         ("settings", collections.OrderedDict([
             ("color_scheme", "paper"),
             ("anchor_id", "questions"),
             ("one_at_a_time", False),
-            ("emit_schema", False),
+            ("emit_schema", True),
             ("eyebrow", "Questions"),
             ("heading", "What people ask about the category."),
             ("lede", rich(

@@ -37,7 +37,9 @@
         "layout": "list",
         "numbered": false,
         "heading": "On certification",
-        "head_note": "<p>The most important thing on this page, so it comes first.</p>"
+        "head_note": "<p>The most important thing on this page, so it comes first.</p>",
+        "eyebrow": "On certification",
+        "lede": "<p>The most important thing on this page, so it comes first.</p>"
       },
       "blocks": {
         "i1": {
@@ -66,21 +68,24 @@
         "color_scheme": "paper",
         "layout": "list",
         "numbered": true,
-        "heading": "The three properties, one at a time"
+        "heading": "The three properties, one at a time",
+        "eyebrow": "The three properties"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "Waterproof",
-            "body": "<p>A licensed Porelle\u00ae membrane sealed between two knitted layers. Water does not pass through it. This is the same membrane in every HydroSox pair, not a separate wudu version.</p>"
+            "body": "<p>A licensed Porelle® membrane sealed between two knitted layers. Water does not pass through it. This is the same membrane in every HydroSox pair, not a separate wudu version.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Holds its shape",
-            "body": "<p>Structured so it stays a covering over the foot rather than collapsing flat against it when worn.</p>"
+            "body": "<p>Structured so it stays a covering over the foot rather than collapsing flat against it. It stands upright when it is not being worn, and you can see that in the photographs on this page.</p>",
+            "image_fallback": "colour-black.webp",
+            "image_alt": "A pair of black HydroSox standing upright unworn, holding their shape"
           }
         },
         "i3": {
@@ -104,14 +109,16 @@
         "layout": "list",
         "numbered": false,
         "heading": "Why this pair rather than another",
-        "head_note": "<p>The differentiator is the named membrane. Everything else in this category tends to be asserted rather than evidenced.</p>"
+        "head_note": "<p>The differentiator is the named membrane. Everything else in this category tends to be asserted rather than evidenced.</p>",
+        "eyebrow": "The difference",
+        "lede": "<p>The differentiator is the named membrane. Everything else in this category tends to be asserted rather than evidenced.</p>"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "The membrane is named and licensed",
-            "body": "<p>Porelle\u00ae is a third-party laminate. You can look it up, and someone other than us stands behind it. Compare that with an unnamed waterproof layer.</p>"
+            "body": "<p>Porelle® is a third-party laminate. You can look it up, and someone other than us stands behind it. Compare that with an unnamed waterproof layer.</p>"
           }
         },
         "i2": {
@@ -141,7 +148,8 @@
         "color_scheme": "paper",
         "layout": "list",
         "numbered": false,
-        "heading": "Hajj, Umrah and travel"
+        "heading": "Hajj, Umrah and travel",
+        "eyebrow": "Travel"
       },
       "blocks": {
         "i1": {
@@ -155,7 +163,7 @@
           "type": "item",
           "settings": {
             "title": "Multiples, not singles",
-            "body": "<p>Most people buying for travel buy more than one pair. The quantity ladder on this page prices that in rather than treating it as a bulk request.</p>"
+            "body": "<p>Most people buying for travel buy more than one pair. The quantity ladder on this page prices that rather than treating it as a bulk request.</p>"
           }
         }
       },
@@ -283,14 +291,14 @@
           "type": "trust",
           "settings": {
             "label": "Checkout",
-            "value": "Guest \u2014 no account required"
+            "value": "Guest — no account required"
           }
         },
         "r4": {
           "type": "trust",
           "settings": {
             "label": "Payment",
-            "value": "Visa \u00b7 Mastercard \u00b7 American Express \u00b7 Apple Pay \u00b7 Google Pay \u00b7 Shop Pay"
+            "value": "Visa · Mastercard · American Express · Apple Pay · Google Pay · Shop Pay"
           }
         },
         "l1": {
@@ -357,7 +365,7 @@
           "type": "guide_note",
           "settings": {
             "label": "Between two sizes",
-            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit — a size down grips the toes and shortens the life of the membrane."
           }
         }
       },
@@ -400,13 +408,13 @@
         "colour_option_name": "Colour",
         "size_option_name": "Size",
         "quantity_label": "Quantity",
-        "default_quantity": 2,
+        "default_quantity": 3,
         "add_label": "Add to cart",
         "save_label": "Save",
         "per_unit_label": "per pair",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
-        "guide_intro": "Measure the foot rather than relying on shoe size \u2014 sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
         "guide_col_size": "Size",
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
@@ -432,29 +440,57 @@
         "q1": {
           "type": "question",
           "settings": {
-            "question": "Are these actually waterproof, or just water resistant?",
-            "answer": "<p>Waterproof. The middle layer is a Porelle\u00ae membrane \u2014 a licensed third-party laminate, not a name we invented \u2014 sealed inside a three-layer knit. Water that goes in over the top of the cuff is inside the sock, and no waterproof sock behaves otherwise.</p>"
+            "question": "What are wudhu socks?",
+            "answer": "<p>Waterproof socks built to the physical properties the masah conditions rest on: water does not pass through them, they hold their shape rather than collapsing against the foot, and they stay in place through normal wear. HydroSox states those properties. It does not issue rulings on them.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
-            "question": "Will my feet still sweat?",
-            "answer": "<p>If you work hard enough, yes. The membrane moves vapour out, which delays the point at which the foot is wet from the inside. It does not repeal it. Breathable and dry are not the same word.</p>"
+            "question": "Are HydroSox certified for wudu?",
+            "answer": "<p>No. No certificate has been issued, by us or by anyone else. A brand cannot award itself one. What we publish is what the sock is made of and how it behaves, so that you — or the scholar you follow — can judge it.</p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
-            "question": "Do they replace waterproof boots?",
-            "answer": "<p>No. They are one component of a system. If your footwear is wrong for the ground you are on, a sock will not fix it.</p>"
+            "question": "What is the difference between these and ordinary waterproof socks?",
+            "answer": "<p>Nothing in the membrane, and everything in the structure. It is the same Porelle® laminate in every HydroSox pair. What matters for masah is that the sock holds its shape as a covering over the foot, and that is built into the construction rather than added for this page.</p>"
           }
         },
-        "q_wudu": {
+        "q4": {
           "type": "question",
           "settings": {
-            "question": "Can I use these for wudu?",
-            "answer": "<p>They are built to the three physical properties the masah conditions rest on: waterproof, holding their shape, and staying on the foot. No certificate has been issued, by us or by anyone else. The masah page sets out the conditions and names its sources.</p>"
+            "question": "Are these the same as leather socks or khuffs?",
+            "answer": "<p>Not the same material, and the same intent. Khuffain are the leather footwear the classical rulings were written about. These are a modern waterproof construction aimed at the same physical properties. Whether that equivalence holds is a question for scholarship, and the masah page sets out how it is discussed.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Can women wear these?",
+            "answer": "<p>Yes. The sock is unisex and the bands start at UK 3. Size on foot length rather than on the label you are used to.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "How many pairs do I need for daily use?",
+            "answer": "<p>Most people performing wudu daily keep three. They are washed cool and air-dried, which takes longer than a tumble dryer would, so a rotation of three keeps a dry pair available every day.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "Can I wash them without damaging the waterproofing?",
+            "answer": "<p>Cool wash, inside out, no fabric softener, no bleach, then air dry away from any heat source. Heat and softener end a membrane far faster than wearing it does.</p>"
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "Where can I read about the masah conditions themselves?",
+            "answer": "<p>On the masah page, which sets out the conditions, how masah is performed, how long it lasts, and where the schools differ — with every source named. We report that scholarship. We do not add to it.</p>"
           }
         }
       },
@@ -462,7 +498,11 @@
         "q1",
         "q2",
         "q3",
-        "q_wudu"
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8"
       ],
       "settings": {
         "color_scheme": "paper",
@@ -477,7 +517,7 @@
         "cta_label": "Buy a pair",
         "cta_link": "/#buy",
         "cta_note": "Two decisions and a quantity. No account needed.",
-        "emit_schema": false
+        "emit_schema": true
       }
     },
     "scholarly": {
@@ -541,6 +581,48 @@
         "alt_label": "How to make masah",
         "alt_url": "/pages/how-to-make-masah"
       }
+    },
+    "everyday": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "list",
+        "numbered": false,
+        "anchor_id": "every-day",
+        "eyebrow": "Every day",
+        "heading": "Wudu at work, five times a day.",
+        "lede": "<p>Hajj is a few weeks. The reason most people buy waterproof wudhu socks is the other fifty-one weeks.</p>",
+        "link_label": "How masah is performed",
+        "link_url": "/pages/how-to-make-masah"
+      },
+      "blocks": {
+        "e1": {
+          "type": "item",
+          "settings": {
+            "title": "The washroom that was not designed for it",
+            "body": "<p>Washing your feet in a shared sink at work is awkward, cold and slow, and you go back to your desk in wet socks. This is the problem the sock exists for.</p>"
+          }
+        },
+        "e2": {
+          "type": "item",
+          "settings": {
+            "title": "Ten minutes back, three times a day",
+            "body": "<p>The time is not the headline reason people buy, but it is the reason they buy a second pair.</p>"
+          }
+        },
+        "e3": {
+          "type": "item",
+          "settings": {
+            "title": "Winter, travel, and everywhere in between",
+            "body": "<p>Service stations, airports, sites, university prayer rooms. The places wudu actually happens are rarely the places designed for it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "e1",
+        "e2",
+        "e3"
+      ]
     }
   },
   "order": [
@@ -549,6 +631,7 @@
     "certificate",
     "conditions",
     "credentials",
+    "everyday",
     "travel",
     "buy",
     "reviews",

@@ -611,7 +611,7 @@
         "color_scheme": "paper",
         "anchor_id": "questions",
         "one_at_a_time": false,
-        "emit_schema": false,
+        "emit_schema": true,
         "eyebrow": "Questions",
         "heading": "What people ask about the category.",
         "lede": "<p>About waterproof socks generally, rather than about ours. Where the answer is “it depends”, it says what it depends on.</p>",

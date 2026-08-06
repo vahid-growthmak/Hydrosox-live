@@ -9,7 +9,8 @@
  */
 {
   "current": {
-    "logo_width": 108,
+    "logo": "shopify://shop_images/imgi_1_hydrosox-logo.png",
+    "logo_width": 110,
     "phone": "0203 4322 920",
     "email": "info@hydrosox.com",
     "address": "399-405 Oxford Street\nMayfair, London\nW1C 2BU\nUnited Kingdom",

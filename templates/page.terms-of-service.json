@@ -1,0 +1,243 @@
+/* Terms of service, composed by scripts/build-legal-pages.py.
+   Re-run that script rather than hand-editing; the section content
+   itself stays editable in the Shopify theme editor. */
+{
+  "sections": {
+    "crumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "paper",
+        "home_label": "Home",
+        "current_label": "Terms of service"
+      }
+    },
+    "intro": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "terms",
+        "eyebrow": "Terms and conditions",
+        "heading": "The terms, written to be read.",
+        "body": "<p>These govern your use of this website and anything you buy from us. Nothing in them reduces your statutory rights as a consumer.</p>",
+        "heading_tag": "h1"
+      }
+    },
+    "who": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "split",
+        "numbered": false,
+        "mirror": false,
+        "anchor_id": "who-and-use",
+        "eyebrow": "Who and how",
+        "heading": "Who we are, and using this site."
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Who we are",
+            "body": "<p>This website is operated by Hydrosox Ltd, a company registered in England and Wales, with its registered office at 399–405 Oxford Street, Mayfair, London W1C 2BU. You can contact us at info@hydrosox.com or on 0203 4322 920.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Using this website",
+            "body": "<p>By using this site you confirm you are at least 18, or have the consent of a parent or guardian. You agree to use it lawfully, and not in a way that restricts anyone else's use of it. You must not attempt to gain unauthorised access, introduce malicious software, or disrupt the site or its services. We may restrict or end access if we reasonably suspect misuse.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2"
+      ]
+    },
+    "orders": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "steps",
+        "numbered": false,
+        "mirror": false,
+        "anchor_id": "products-and-orders",
+        "eyebrow": "Products and orders",
+        "heading": "What we sell, and when a contract exists."
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Product information",
+            "body": "<p>We take reasonable care to make sure descriptions, images, specifications and prices are accurate and current. Minor variation in colour, texture or appearance can occur through manufacturing and through differences in screen settings; that is not a defect. Where we discover an error in a description or a price, we will tell you before dispatch and you may cancel.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "When a contract is formed",
+            "body": "<p>Placing an order is an offer to buy, subject to these terms. All orders are subject to acceptance and availability. A contract is formed when we confirm dispatch of your order, not when you place it.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "When we may refuse an order",
+            "body": "<p>We may refuse or cancel an order before dispatch — for suspected fraud, a pricing or technical error, a stock problem, or a breach of these terms. If payment has been taken, you receive a full refund to the original payment method.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "money": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "ink",
+        "layout": "focus",
+        "numbered": false,
+        "mirror": true,
+        "anchor_id": "prices-and-delivery",
+        "eyebrow": "Prices and delivery",
+        "heading": "What you pay, and who carries the risk.",
+        "link_label": "Returns and refunds",
+        "link_url": "/pages/returns-and-refunds"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Prices and payment",
+            "body": "<p>All prices are in pounds sterling and include VAT. The price shown when you place your order is the price you pay. We may change prices at any time, but a change never affects an order already confirmed. Where a delivery charge applies, the total price including it is shown before you commit to buying. Payment is taken in full at the time of purchase, through secure third-party processors. We do not store full card details.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Delivery and risk",
+            "body": "<p>Delivery timescales are estimates unless we state otherwise. We are not responsible for delays caused by carriers, customs, weather, industrial action or other circumstances outside our reasonable control — but if a parcel is delayed or lost after dispatch we will work with the carrier to resolve it. Risk in the goods passes to you when they are delivered to the address you gave at checkout.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Cancellation, returns and refunds",
+            "body": "<p>Your right to cancel a distance sale within 14 days, and your rights if goods are faulty, are set out in full on our returns page, which forms part of these terms. Nothing in these terms limits your rights under the Consumer Rights Act 2015 or the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "liability": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "cards",
+        "numbered": false,
+        "mirror": false,
+        "anchor_id": "liability-and-ip",
+        "eyebrow": "Liability",
+        "heading": "Liability, property and events."
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Our liability to you",
+            "body": "<p>We do not exclude or limit our liability for death or personal injury caused by our negligence, for fraud or fraudulent misrepresentation, or for anything else that cannot lawfully be excluded. Subject to that, our liability for any claim arising from an order is limited to the price you paid for the goods. We are not liable for losses that were not reasonably foreseeable when the contract was made.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Intellectual property",
+            "body": "<p>The content of this site — text, images, video, design and trade marks — belongs to us or is used under licence. You may not reproduce it commercially without our written permission. Porelle® is a trade mark of its owner and is used here under licence.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Things outside our control",
+            "body": "<p>We are not liable for failure or delay caused by events outside our reasonable control, including natural events, war, industrial action, supply chain disruption or governmental action.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "general": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "split",
+        "numbered": false,
+        "mirror": false,
+        "anchor_id": "general",
+        "eyebrow": "General",
+        "heading": "Complaints, changes and the governing law."
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "General",
+            "body": "<p>If any provision of these terms is found to be invalid, the rest remain in force. These terms, together with our privacy policy, cookie policy, returns policy and delivery policy, form the whole agreement between us. We may update these terms; the version that applies to your order is the one published when you placed it.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Complaints",
+            "body": "<p>If something has gone wrong, email info@hydrosox.com or phone 0203 4322 920 and we will try to resolve it directly. We are not currently a member of an alternative dispute resolution scheme. If we cannot resolve a complaint between us, you retain your right to bring a claim in the courts.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Governing law",
+            "body": "<p>These terms are governed by the laws of England and Wales, and disputes are subject to the exclusive jurisdiction of the courts of England and Wales. If you live in Scotland or Northern Ireland, you may also bring proceedings in the courts there.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "close": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "ask",
+        "eyebrow": "If something has gone wrong",
+        "heading": "Start with a person, not a clause.",
+        "body": "<p>Most things people reach for terms and conditions about are settled faster by phoning us. The clauses are here because they have to be; they are not the first thing we would like you to try.</p>",
+        "footnote": "<p>The binding version of these terms is the one published at /policies/terms-of-service, which is the text Shopify shows at checkout. This page says the same thing in the site's own words.</p>",
+        "cta_label": "Contact us",
+        "cta_url": "/pages/contact"
+      }
+    }
+  },
+  "order": [
+    "crumb",
+    "intro",
+    "who",
+    "orders",
+    "money",
+    "liability",
+    "general",
+    "close"
+  ]
+}

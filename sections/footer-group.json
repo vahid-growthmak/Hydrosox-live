@@ -14,14 +14,16 @@
           "type": "legal_link",
           "settings": {
             "label": "Privacy Policy",
-            "policy": "privacy"
+            "policy": "custom",
+            "link": "/pages/privacy-policy"
           }
         },
         "legal_2": {
           "type": "legal_link",
           "settings": {
             "label": "Terms of Service",
-            "policy": "terms"
+            "policy": "custom",
+            "link": "/pages/terms-of-service"
           }
         },
         "legal_3": {

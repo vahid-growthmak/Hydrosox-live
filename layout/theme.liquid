@@ -90,6 +90,15 @@
       if request.path contains '/cart' or request.path contains '/account'
         assign noindex = true
       endif
+      # Shopify's own policies say the same thing as the designed pages at
+      # /pages/privacy-policy, /pages/terms-of-service,
+      # /pages/returns-and-refunds and /pages/shipping-and-delivery. They have
+      # to exist — checkout links to them and they are the binding text — but
+      # indexing both would be two URLs competing with the same words, and the
+      # blob is the weaker page of the pair.
+      if request.path contains '/policies/'
+        assign noindex = true
+      endif
       if collection.handle != blank
         assign held = settings.noindex_collections | default: '' | replace: ' ', '' | split: ','
         if held contains collection.handle

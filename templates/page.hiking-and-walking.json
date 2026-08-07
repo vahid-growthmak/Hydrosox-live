@@ -7,16 +7,26 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-/* Composed by scripts/build-sitemap-templates.py from the sitemap.
-   Re-run that script rather than hand-editing this file; section
-   content itself is editable in the Shopify theme editor. */
 {
   "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "paper",
+        "home_label": "Home",
+        "parent_label": "Waterproof socks",
+        "parent_url": "/pages/waterproof-socks",
+        "current_label": "Hiking and walking",
+        "aria_label": "Breadcrumb"
+      }
+    },
     "hero": {
       "type": "page-hero",
       "settings": {
         "color_scheme": "ink",
+        "anchor_id": "",
         "min_height": 36,
+        "index_label": "",
         "eyebrow": "Hiking & Walking",
         "heading": "Four hours in, the boot gives up.",
         "lede": "<p>Every waterproof boot wets out eventually — the outer soaks, the membrane stops breathing, and there is nowhere on a hill to dry anything. This is the layer that is still working when that happens.</p>",
@@ -33,10 +43,6 @@
     },
     "specs": {
       "type": "spec-strip",
-      "settings": {
-        "color_scheme": "ink",
-        "hidden_heading": "Product facts"
-      },
       "blocks": {
         "f1": {
           "type": "spec",
@@ -72,60 +78,315 @@
         "f2",
         "f3",
         "f4"
-      ]
-    },
-    "siblings": {
-      "type": "link-cards",
+      ],
       "settings": {
-        "color_scheme": "wash",
-        "columns": 2,
-        "eyebrow": "Not your problem?",
-        "heading": "Same sock, different day.",
-        "card_fill": "solid"
-      },
+        "color_scheme": "ink",
+        "anchor_id": "",
+        "hidden_heading": "Product facts"
+      }
+    },
+    "problem": {
+      "type": "content-columns",
       "blocks": {
-        "s2": {
-          "type": "card",
+        "i1": {
+          "type": "item",
           "settings": {
-            "title": "All Day in Boots",
-            "body": "Boots that keep the rain out and then seal the sweat in.",
-            "link": "/pages/all-day-in-boots"
+            "title": "Over the top",
+            "body": "<p>Wet grass, bracken and heather put water onto the boot from above, where the gusset and the laces are. Gaiters help. They do not seal.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
           }
         },
-        "s3": {
-          "type": "card",
+        "i2": {
+          "type": "item",
           "settings": {
-            "title": "Cycling & Commuting",
-            "body": "Overshoes that leak at the ankle, and shoes still wet at home time.",
-            "link": "/pages/cycling-and-commuting"
+            "title": "The boot wets out",
+            "body": "<p>The outer fabric saturates, the membrane can no longer pass vapour, and the boot stops breathing. It is not leaking — it is full. This is the four-hour problem.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Stream crossings and bog",
+            "body": "<p>There is a depth beyond which no footwear helps, and on wet British ground you meet it more often than the forecast suggests.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "From the inside",
+            "body": "<p>Eight hours of walking produces a lot of vapour. Some of it condenses. By the afternoon, plenty of dry-footed walkers are damp anyway.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
           }
         }
       },
       "block_order": [
-        "s2",
-        "s3"
-      ]
-    },
-    "close": {
-      "type": "closing-cta",
-      "settings": {
-        "color_scheme": "ink",
-        "show_rule": false,
-        "heading": "One sock. Long days, wet ground.",
-        "cta_label": "Buy a pair",
-        "cta_url": "/products/hydrosox-waterproof-socks",
-        "alt_label": "How it compares",
-        "alt_url": "/#comparison"
-      }
-    },
-    "breadcrumb": {
-      "type": "breadcrumb",
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ],
       "settings": {
         "color_scheme": "paper",
-        "home_label": "Home",
-        "current_label": "Hiking and walking",
-        "parent_label": "Waterproof socks",
-        "parent_url": "/pages/waterproof-socks"
+        "layout": "band",
+        "mirror": false,
+        "numbered": true,
+        "row_density": "standard",
+        "hide_rule": false,
+        "anchor_id": "",
+        "eyebrow": "The problem",
+        "heading": "Four ways a walk gets your feet wet.",
+        "head_note": "",
+        "link_label": "",
+        "link_url": "",
+        "link2_label": "",
+        "link2_url": "",
+        "lede": "<p>Only one of these is the one boots are designed to stop, which is why good boots and wet feet are not a contradiction.</p>",
+        "lead_first_para": false,
+        "prose": "",
+        "gallery_aspect": "4 / 5",
+        "footnote": "",
+        "cta_label": "",
+        "cta_url": "",
+        "media_fallback": "",
+        "media_alt": ""
+      }
+    },
+    "answers": {
+      "type": "content-columns",
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "The boot can be soaked and the foot dry",
+            "body": "<p>Once the waterproof layer is on the foot, a saturated boot is uncomfortable rather than decisive. You stop planning the route around the puddles.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "It works with any boot, including the wrong one",
+            "body": "<p>Most people discover waterproof socks because their boots have started leaking. It is the cheapest useful thing to try before spending two hundred pounds.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "It is not a boot replacement",
+            "body": "<p>Said plainly here and on the homepage: if your footwear is wrong for the ground, this will not fix it. It solves wetness, not support, grip or ankle protection.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ],
+      "settings": {
+        "color_scheme": "ink",
+        "layout": "boxes",
+        "mirror": false,
+        "numbered": true,
+        "row_density": "standard",
+        "hide_rule": false,
+        "anchor_id": "",
+        "eyebrow": "The answer",
+        "heading": "A layer that does not wet out.",
+        "head_note": "",
+        "link_label": "How the three layers work",
+        "link_url": "/pages/technology",
+        "link2_label": "",
+        "link2_url": "",
+        "lede": "<p>The membrane sits inside the sock rather than inside the boot, which changes where the waterproof line is drawn — and what happens when the boot fails.</p>",
+        "lead_first_para": false,
+        "prose": "",
+        "gallery_aspect": "4 / 5",
+        "footnote": "",
+        "cta_label": "",
+        "cta_url": "",
+        "media_fallback": "",
+        "media_alt": ""
+      }
+    },
+    "blisters": {
+      "type": "content-columns",
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Wet skin blisters more easily",
+            "body": "<p>Saturated skin softens and its resistance to friction drops sharply. Keeping the foot dry removes one of the three things a blister needs. That is a real and significant help.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Friction and fit still matter",
+            "body": "<p>The other two things are pressure and movement. A boot that rubs will still rub. A sock that is too small will still bunch. No membrane changes that.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Grit is the one nobody mentions",
+            "body": "<p>On wet ground, fine grit washes in over the cuff and sits under the foot. That is abrasive against skin and against the sock. Rinse both at the end of a wet day.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "stack",
+        "mirror": false,
+        "numbered": false,
+        "row_density": "standard",
+        "hide_rule": false,
+        "anchor_id": "",
+        "eyebrow": "Blisters",
+        "heading": "What a dry foot does and does not prevent.",
+        "head_note": "",
+        "link_label": "",
+        "link_url": "",
+        "link2_label": "",
+        "link2_url": "",
+        "lede": "<p>Waterproof socks help with blisters. They do not prevent them, and any brand telling you otherwise is selling you something.</p>",
+        "lead_first_para": false,
+        "prose": "",
+        "gallery_aspect": "4 / 5",
+        "footnote": "",
+        "cta_label": "",
+        "cta_url": "",
+        "media_fallback": "",
+        "media_alt": ""
+      }
+    },
+    "fit": {
+      "type": "content-columns",
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Roughly a mid-weight sock",
+            "body": "<p>If your boots are already snug with a thick walking sock, they will be tight with these. If you wear a liner and a thick sock together, these replace both.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Take the larger band if you are between two",
+            "body": "<p>A size down grips the toes, which is uncomfortable over eight hours and shortens the life of the membrane. Foot length, not shoe size, sets the band.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Lace pressure over the instep",
+            "body": "<p>A thicker sock changes where a boot loads. Give the laces one honest adjustment on the first walk rather than assuming the fit is wrong.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ],
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "panel",
+        "mirror": false,
+        "numbered": false,
+        "row_density": "standard",
+        "hide_rule": false,
+        "anchor_id": "",
+        "eyebrow": "Fit",
+        "heading": "Before you order, check the boot.",
+        "head_note": "",
+        "link_label": "The size bands in centimetres",
+        "link_url": "/pages/size-guide",
+        "link2_label": "",
+        "link2_url": "",
+        "lede": "<p>This is the question most sellers skip and most returns come from. Waterproof socks are thicker than the sock you are used to.</p>",
+        "lead_first_para": false,
+        "prose": "",
+        "gallery_aspect": "4 / 5",
+        "footnote": "",
+        "cta_label": "",
+        "cta_url": "",
+        "media_fallback": "",
+        "media_alt": ""
+      }
+    },
+    "reviews": {
+      "type": "review-module",
+      "settings": {
+        "layout": "strip",
+        "color_scheme": "wash",
+        "pace": "tight",
+        "anchor_id": "",
+        "eyebrow": "Reviews",
+        "heading": "",
+        "lede": "",
+        "show_aggregate": true,
+        "rating_max": "5",
+        "aggregate_link_label": "Read every review",
+        "aggregate_link_url": "/pages/reviews",
+        "show_filters": false,
+        "filter_label": "Filter reviews",
+        "emit_schema": false,
+        "schema_product_name": "Waterproof Socks"
       }
     },
     "buy": {
@@ -135,7 +396,8 @@
           "type": "colour",
           "settings": {
             "value": "Black",
-            "colour_one": "#111111"
+            "colour_one": "#111111",
+            "colour_two": ""
           }
         },
         "c2": {
@@ -158,7 +420,8 @@
           "type": "colour",
           "settings": {
             "value": "White",
-            "colour_one": "#f4f6f8"
+            "colour_one": "#f4f6f8",
+            "colour_two": ""
           }
         },
         "z1": {
@@ -202,7 +465,7 @@
           "settings": {
             "label": "Two pairs",
             "quantity": 2,
-            "discount": 3.01
+            "discount": 3.0
           }
         },
         "t3": {
@@ -210,7 +473,7 @@
           "settings": {
             "label": "Three pairs",
             "quantity": 3,
-            "discount": 7.01
+            "discount": 7.0
           }
         },
         "t4": {
@@ -218,7 +481,7 @@
           "settings": {
             "label": "Four pairs",
             "quantity": 4,
-            "discount": 12.01
+            "discount": 12.0
           }
         },
         "t5": {
@@ -226,7 +489,7 @@
           "settings": {
             "label": "Five pairs",
             "quantity": 5,
-            "discount": 20.01
+            "discount": 20.0
           }
         },
         "r1": {
@@ -261,6 +524,7 @@
           "type": "link",
           "settings": {
             "label": "Full product details",
+            "link": "",
             "use_product_url": true
           }
         },
@@ -268,14 +532,16 @@
           "type": "link",
           "settings": {
             "label": "How it is built",
-            "link": "/#construction"
+            "link": "/#construction",
+            "use_product_url": false
           }
         },
         "l3": {
           "type": "link",
           "settings": {
             "label": "Delivery and sizing",
-            "link": "/#faq"
+            "link": "/#faq",
+            "use_product_url": false
           }
         },
         "g1": {
@@ -363,11 +629,15 @@
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
+        "delivery_charge_pence": 499,
+        "delivery_label": "delivery",
+        "total_label": "total",
         "quantity_label": "Quantity",
         "default_quantity": 2,
         "add_label": "Add to cart",
         "save_label": "Save",
         "per_unit_label": "per pair",
+        "empty_help": "Choose a product for this section in the theme editor.",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
         "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
@@ -375,35 +645,12 @@
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
+        "guide_link_url": "",
         "guide_close_label": "Close"
-      }
-    },
-    "reviews": {
-      "type": "review-module",
-      "settings": {
-        "layout": "strip",
-        "color_scheme": "wash",
-        "pace": "tight",
-        "show_aggregate": true,
-        "eyebrow": "Reviews",
-        "aggregate_link_label": "Read every review",
-        "aggregate_link_url": "/pages/reviews"
       }
     },
     "faq": {
       "type": "faq-accordion",
-      "settings": {
-        "color_scheme": "wash",
-        "anchor_id": "faq",
-        "one_at_a_time": false,
-        "emit_schema": true,
-        "eyebrow": "Questions",
-        "heading": "The things people ask on this page.",
-        "help_prefix": "Something not here?",
-        "help_label": "Phone or email us",
-        "help_link": "/pages/contact",
-        "cta_link": "#buy"
-      },
       "blocks": {
         "q1": {
           "type": "question",
@@ -455,7 +702,22 @@
         "q4",
         "q5",
         "q6"
-      ]
+      ],
+      "settings": {
+        "color_scheme": "wash",
+        "anchor_id": "faq",
+        "one_at_a_time": false,
+        "emit_schema": true,
+        "eyebrow": "Questions",
+        "heading": "The things people ask on this page.",
+        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair",
+        "cta_link": "#buy",
+        "cta_note": "Two decisions and a quantity. No account needed."
+      }
     },
     "guides": {
       "type": "related-guides",
@@ -465,244 +727,69 @@
         "count": 2,
         "color_scheme": "paper",
         "pace": "tight",
+        "anchor_id": "",
         "eyebrow": "Guides",
         "heading": "Worth reading first.",
         "link_label": "All guides",
         "link_url": "/blogs/guides"
       }
     },
-    "blisters": {
-      "type": "content-columns",
-      "settings": {
-        "color_scheme": "paper",
-        "layout": "stack",
-        "numbered": false,
-        "eyebrow": "Blisters",
-        "heading": "What a dry foot does and does not prevent.",
-        "lede": "<p>Waterproof socks help with blisters. They do not prevent them, and any brand telling you otherwise is selling you something.</p>",
-        "mirror": false
-      },
+    "siblings": {
+      "type": "link-cards",
       "blocks": {
-        "i1": {
-          "type": "item",
+        "s2": {
+          "type": "card",
           "settings": {
-            "title": "Wet skin blisters more easily",
-            "body": "<p>Saturated skin softens and its resistance to friction drops sharply. Keeping the foot dry removes one of the three things a blister needs. That is a real and significant help.</p>"
+            "title": "All Day in Boots",
+            "body": "Boots that keep the rain out and then seal the sweat in.",
+            "meta": "",
+            "link": "/pages/all-day-in-boots",
+            "image_fallback": "",
+            "image_alt": ""
           }
         },
-        "i2": {
-          "type": "item",
+        "s3": {
+          "type": "card",
           "settings": {
-            "title": "Friction and fit still matter",
-            "body": "<p>The other two things are pressure and movement. A boot that rubs will still rub. A sock that is too small will still bunch. No membrane changes that.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "Grit is the one nobody mentions",
-            "body": "<p>On wet ground, fine grit washes in over the cuff and sits under the foot. That is abrasive against skin and against the sock. Rinse both at the end of a wet day.</p>"
+            "title": "Cycling & Commuting",
+            "body": "Overshoes that leak at the ankle, and shoes still wet at home time.",
+            "meta": "",
+            "link": "/pages/cycling-and-commuting",
+            "image_fallback": "",
+            "image_alt": ""
           }
         }
       },
       "block_order": [
-        "i1",
-        "i2",
-        "i3"
-      ]
-    },
-    "fit": {
-      "type": "content-columns",
+        "s2",
+        "s3"
+      ],
       "settings": {
         "color_scheme": "wash",
-        "layout": "panel",
+        "columns": 2,
         "numbered": false,
-        "eyebrow": "Fit",
-        "heading": "Before you order, check the boot.",
-        "lede": "<p>This is the question most sellers skip and most returns come from. Waterproof socks are thicker than the sock you are used to.</p>",
-        "link_label": "The size bands in centimetres",
-        "link_url": "/pages/size-guide",
-        "mirror": false
-      },
-      "blocks": {
-        "i1": {
-          "type": "item",
-          "settings": {
-            "title": "Roughly a mid-weight sock",
-            "body": "<p>If your boots are already snug with a thick walking sock, they will be tight with these. If you wear a liner and a thick sock together, these replace both.</p>"
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "title": "Take the larger band if you are between two",
-            "body": "<p>A size down grips the toes, which is uncomfortable over eight hours and shortens the life of the membrane. Foot length, not shoe size, sets the band.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "Lace pressure over the instep",
-            "body": "<p>A thicker sock changes where a boot loads. Give the laces one honest adjustment on the first walk rather than assuming the fit is wrong.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3"
-      ]
+        "card_fill": "solid",
+        "image_fit": "cover",
+        "hide_rule": false,
+        "anchor_id": "",
+        "eyebrow": "Not your problem?",
+        "heading": "Same sock, different day.",
+        "lede": ""
+      }
     },
-    "problem": {
-      "type": "content-columns",
-      "settings": {
-        "color_scheme": "paper",
-        "layout": "band",
-        "numbered": true,
-        "eyebrow": "The problem",
-        "heading": "Four ways a walk gets your feet wet.",
-        "lede": "<p>Only one of these is the one boots are designed to stop, which is why good boots and wet feet are not a contradiction.</p>",
-        "mirror": false
-      },
-      "blocks": {
-        "i1": {
-          "type": "item",
-          "settings": {
-            "title": "Over the top",
-            "body": "<p>Wet grass, bracken and heather put water onto the boot from above, where the gusset and the laces are. Gaiters help. They do not seal.</p>"
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "title": "The boot wets out",
-            "body": "<p>The outer fabric saturates, the membrane can no longer pass vapour, and the boot stops breathing. It is not leaking — it is full. This is the four-hour problem.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "Stream crossings and bog",
-            "body": "<p>There is a depth beyond which no footwear helps, and on wet British ground you meet it more often than the forecast suggests.</p>"
-          }
-        },
-        "i4": {
-          "type": "item",
-          "settings": {
-            "title": "From the inside",
-            "body": "<p>Eight hours of walking produces a lot of vapour. Some of it condenses. By the afternoon, plenty of dry-footed walkers are damp anyway.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3",
-        "i4"
-      ]
-    },
-    "answers": {
-      "type": "content-columns",
+    "close": {
+      "type": "closing-cta",
       "settings": {
         "color_scheme": "ink",
-        "layout": "boxes",
-        "numbered": true,
-        "eyebrow": "The answer",
-        "heading": "A layer that does not wet out.",
-        "lede": "<p>The membrane sits inside the sock rather than inside the boot, which changes where the waterproof line is drawn — and what happens when the boot fails.</p>",
-        "link_label": "How the three layers work",
-        "link_url": "/pages/technology",
-        "mirror": false
-      },
-      "blocks": {
-        "i1": {
-          "type": "item",
-          "settings": {
-            "title": "The boot can be soaked and the foot dry",
-            "body": "<p>Once the waterproof layer is on the foot, a saturated boot is uncomfortable rather than decisive. You stop planning the route around the puddles.</p>"
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "title": "It works with any boot, including the wrong one",
-            "body": "<p>Most people discover waterproof socks because their boots have started leaking. It is the cheapest useful thing to try before spending two hundred pounds.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "It is not a boot replacement",
-            "body": "<p>Said plainly here and on the homepage: if your footwear is wrong for the ground, this will not fix it. It solves wetness, not support, grip or ankle protection.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3"
-      ]
-    },
-    "inuse": {
-      "type": "content-columns",
-      "settings": {
-        "color_scheme": "wash",
-        "layout": "gallery",
-        "eyebrow": "In use",
-        "heading": "The same pair, in the conditions this page is about.",
-        "head_note": "<p>Product imagery rather than a documentary shoot, so read it for what the sock is and where it goes — not as evidence. The checkable claim is the membrane.</p>",
-        "gallery_aspect": "4 / 5"
-      },
-      "blocks": {
-        "g1": {
-          "type": "image",
-          "settings": {
-            "caption": "Stopped above the valley, boots on rock",
-            "image_fallback": "activity-hiking-01.webp",
-            "image_alt": "Stopped above the valley, boots on rock"
-          }
-        },
-        "g2": {
-          "type": "image",
-          "settings": {
-            "caption": "Mossy trail, mid-step",
-            "image_fallback": "activity-hiking-02.webp",
-            "image_alt": "Mossy trail, mid-step"
-          }
-        },
-        "g3": {
-          "type": "image",
-          "settings": {
-            "caption": "Broken rock, last of the light",
-            "image_fallback": "activity-hiking-03.webp",
-            "image_alt": "Broken rock, last of the light"
-          }
-        },
-        "g4": {
-          "type": "image",
-          "settings": {
-            "caption": "Boots off at the top",
-            "image_fallback": "activity-hiking-04.webp",
-            "image_alt": "Boots off at the top"
-          }
-        }
-      },
-      "block_order": [
-        "g1",
-        "g2",
-        "g3",
-        "g4"
-      ]
-    },
-    "limits": {
-      "type": "centre-note",
-      "settings": {
-        "color_scheme": "blue",
-        "max_width": 46,
-        "eyebrow": "What it will not do",
-        "heading": "Where it stops.",
-        "body": "<p>Go in deeper than the cuff and water comes over the top, and no waterproof sock behaves otherwise. On a crossing that is above the ankle this buys you nothing — that is a gaiter and a boot problem, not a sock one.</p>",
-        "footnote": "<p>Every limit we know about is published, not only this one. <a href=\"/#limits\">Read the rest</a>.</p>"
+        "show_rule": false,
+        "anchor_id": "",
+        "eyebrow": "",
+        "heading": "One sock. Long days, wet ground.",
+        "body": "",
+        "cta_label": "Buy a pair",
+        "cta_url": "/products/hydrosox-waterproof-socks",
+        "alt_label": "How it compares",
+        "alt_url": "/#comparison"
       }
     }
   },
@@ -712,10 +799,8 @@
     "specs",
     "problem",
     "answers",
-    "inuse",
     "blisters",
     "fit",
-    "limits",
     "reviews",
     "buy",
     "faq",

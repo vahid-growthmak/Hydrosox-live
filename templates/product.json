@@ -15,7 +15,8 @@
           "type": "colour",
           "settings": {
             "value": "Black",
-            "colour_one": "#111111"
+            "colour_one": "#111111",
+            "colour_two": ""
           }
         },
         "c2": {
@@ -38,7 +39,8 @@
           "type": "colour",
           "settings": {
             "value": "White",
-            "colour_one": "#f4f6f8"
+            "colour_one": "#f4f6f8",
+            "colour_two": ""
           }
         },
         "z1": {
@@ -74,7 +76,7 @@
           "settings": {
             "label": "Single pair",
             "quantity": 1,
-            "discount": 0
+            "discount_pence": 0
           }
         },
         "t2": {
@@ -82,7 +84,7 @@
           "settings": {
             "label": "Two pairs",
             "quantity": 2,
-            "discount": 3.01
+            "discount_pence": 301
           }
         },
         "t3": {
@@ -90,7 +92,7 @@
           "settings": {
             "label": "Three pairs",
             "quantity": 3,
-            "discount": 7.01
+            "discount_pence": 701
           }
         },
         "t4": {
@@ -98,7 +100,7 @@
           "settings": {
             "label": "Four pairs",
             "quantity": 4,
-            "discount": 12.01
+            "discount_pence": 1201
           }
         },
         "t5": {
@@ -106,7 +108,7 @@
           "settings": {
             "label": "Five pairs",
             "quantity": 5,
-            "discount": 20.01
+            "discount_pence": 2001
           }
         },
         "r1": {
@@ -141,6 +143,7 @@
           "type": "link",
           "settings": {
             "label": "Full product details",
+            "link": "",
             "use_product_url": true
           }
         },
@@ -148,14 +151,16 @@
           "type": "link",
           "settings": {
             "label": "How it is built",
-            "link": "/#construction"
+            "link": "/#construction",
+            "use_product_url": false
           }
         },
         "l3": {
           "type": "link",
           "settings": {
             "label": "Delivery and sizing",
-            "link": "/#faq"
+            "link": "/#faq",
+            "use_product_url": false
           }
         },
         "g1": {
@@ -243,11 +248,15 @@
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
+        "delivery_charge_pence": 499,
+        "delivery_label": "delivery",
+        "total_label": "total",
         "quantity_label": "Quantity",
         "default_quantity": 2,
         "add_label": "Add to cart",
         "save_label": "Save",
         "per_unit_label": "per pair",
+        "empty_help": "Choose a product for this section in the theme editor.",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
         "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
@@ -255,6 +264,7 @@
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
+        "guide_link_url": "",
         "guide_close_label": "Close"
       }
     },
@@ -263,6 +273,7 @@
       "settings": {
         "color_scheme": "wash",
         "layout": "media",
+        "mirror": true,
         "anchor_id": "what-it-is",
         "eyebrow": "What it is",
         "heading": "A membrane, sealed inside a knitted sock.",
@@ -277,7 +288,7 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "paper",
-        "layout": "list",
+        "layout": "split",
         "numbered": false,
         "row_density": "compact",
         "anchor_id": "specification",
@@ -381,8 +392,8 @@
     "colourways": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "wash",
-        "layout": "cards",
+        "color_scheme": "paper",
+        "layout": "stack",
         "numbered": false,
         "gallery_aspect": "4 / 5",
         "anchor_id": "colourways",
@@ -437,8 +448,8 @@
     "sizing": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
-        "layout": "list",
+        "color_scheme": "wash",
+        "layout": "panel",
         "numbered": false,
         "anchor_id": "sizing",
         "eyebrow": "Sizing",
@@ -479,8 +490,9 @@
     "aftercare": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "wash",
-        "layout": "list",
+        "color_scheme": "ink",
+        "layout": "focus",
+        "mirror": true,
         "numbered": false,
         "anchor_id": "after-you-buy",
         "eyebrow": "After you buy",
@@ -591,7 +603,7 @@
     "reviews_note": {
       "type": "centre-note",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "blue",
         "hide_rule": true,
         "max_width": 46,
         "eyebrow": "Reviews",

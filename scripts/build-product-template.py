@@ -13,6 +13,7 @@ Run from the theme root.
 import collections
 import json
 import os
+import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PRODUCT = 'hydrosox-waterproof-socks'
@@ -22,9 +23,27 @@ def od(*pairs):
     return collections.OrderedDict(pairs)
 
 
+def _lead_comments(raw):
+    """Length of every leading /* */ block, not just the first.
+
+    The moment the theme editor touches a file, Shopify prepends its own
+    banner above whatever header is already there — index.json gained one on
+    2026-08-07 and a bare json.load stopped dead at character zero. Same trap
+    as every other script that reads a template; same shared cure.
+    """
+    pos = 0
+    while True:
+        m = re.match(r"\s*/\*[\s\S]*?\*/\s*", raw[pos:])
+        if not m or m.end() == 0:
+            return pos
+        pos += m.end()
+
+
 def load_index():
     with open(os.path.join(ROOT, 'templates/index.json')) as fh:
-        return json.load(fh, object_pairs_hook=collections.OrderedDict)
+        raw = fh.read()
+    return json.loads(raw[_lead_comments(raw):],
+                      object_pairs_hook=collections.OrderedDict)
 
 
 #  Settings that describe a claim about the *page*, not about the section, and so
@@ -96,6 +115,10 @@ def main():
     add('about', od(('type', 'content-columns'), ('settings', od(
         ('color_scheme', 'wash'),
         ('layout', 'media'),
+        # Heading right, photograph left — the buy widget above has just shown
+        # the same image on the LEFT of its own grid, so repeating that
+        # arrangement made the two sections read as one.
+        ('mirror', True),
         ('anchor_id', 'what-it-is'),
         ('eyebrow', 'What it is'),
         ('heading', 'A membrane, sealed inside a knitted sock.'),
@@ -137,7 +160,10 @@ def main():
         spec_order.append(k)
     add('specification', od(('type', 'content-columns'), ('settings', od(
         ('color_scheme', 'paper'),
-        ('layout', 'list'),
+        # Split rows — label beside value — which is what eleven rows of
+        # CONSTRUCTION/MEMBRANE/HEIGHT actually are: a specification sheet,
+        # not prose.
+        ('layout', 'split'),
         ('numbered', False),
         ('row_density', 'compact'),
         ('anchor_id', 'specification'),
@@ -182,11 +208,12 @@ def main():
                           'upright' % name.lower()))))
         colours_order.append(k)
     add('colourways', od(('type', 'content-columns'), ('settings', od(
-        ('color_scheme', 'wash'),
-        # Cards, not gallery. The gallery layout iterates `image` blocks and
-        # ignores `item` blocks, so these four rendered as an empty section —
-        # the copy present in the file and nothing on the page.
-        ('layout', 'cards'),
+        ('color_scheme', 'paper'),
+        # Stack: the heading centred over the four photograph cards, which
+        # gives the page its one centred moment between two side-headed
+        # sections. (Cards, never gallery — gallery iterates `image` blocks
+        # and would render these `item` blocks as nothing at all.)
+        ('layout', 'stack'),
         ('numbered', False),
         ('gallery_aspect', '4 / 5'),
         ('anchor_id', 'colourways'),
@@ -213,8 +240,11 @@ def main():
             ('title', title), ('body', '<p>%s</p>' % body))))
         sizing_order.append(k)
     add('sizing', od(('type', 'content-columns'), ('settings', od(
-        ('color_scheme', 'paper'),
-        ('layout', 'list'),
+        ('color_scheme', 'wash'),
+        # The panel treatment: the heading column becomes an ink card and the
+        # size-guide link becomes its button — the same shape the hiking fit
+        # section uses, because both sections are doing the same job.
+        ('layout', 'panel'),
         ('numbered', False),
         ('anchor_id', 'sizing'),
         ('eyebrow', 'Sizing'),
@@ -248,8 +278,11 @@ def main():
             ('link_label', label), ('link_url', url))))
         after_order.append(k)
     add('aftercare', od(('type', 'content-columns'), ('settings', od(
-        ('color_scheme', 'wash'),
-        ('layout', 'list'),
+        ('color_scheme', 'ink'),
+        # Focus on ink, heading right: the emphasis treatment for the three
+        # commitments — washing, returns, warranty — each keeping its link.
+        ('layout', 'focus'),
+        ('mirror', True),
         ('numbered', False),
         ('anchor_id', 'after-you-buy'),
         ('eyebrow', 'After you buy'),
@@ -309,7 +342,10 @@ def main():
     # 9 — the reviews empty state, stated rather than hidden. The review module
     # after it renders nothing until real reviews exist; this note is why.
     add('reviews_note', od(('type', 'centre-note'), ('settings', od(
-        ('color_scheme', 'paper'),
+        # Blue is this theme's stating-a-limit scheme, and "there are none yet"
+        # is exactly that kind of statement. It also hands the page off into
+        # the dark footer with one colour step instead of none.
+        ('color_scheme', 'blue'),
         ('hide_rule', True),
         ('max_width', 46),
         ('eyebrow', 'Reviews'),

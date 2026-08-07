@@ -1,4 +1,19 @@
 {%- comment -%}
+  Last-resort destination for this section's calls to action.
+
+  Several sections ship a default CTA label with no default URL, so a template
+  that never set one renders `hs-button` without an href — and that is a real
+  <button> that looks completely normal and does nothing when clicked. Neither
+  theme check nor the settings validator looks at a label and its URL together,
+  so it stays invisible until someone taps it.
+
+  Falling back to the product named in theme settings means the worst case is a
+  link to the thing being sold rather than a dead control. A URL set on the
+  section still wins, and templates set `#buy` where the page has the widget.
+{%- endcomment -%}
+{%- assign hs_cta_fallback = all_products[settings.schema_product].url | default: routes.all_products_collection_url -%}
+{%- assign hs_cta_href = section.settings.cta_link | default: hs_cta_fallback -%}
+{%- comment -%}
   Honest limits.
 
   A bento grid: a dark intro card holding the section heading and calls to
@@ -37,7 +52,7 @@
           <div class="hs-limits__actions">
             {% render 'hs-button',
               label: section.settings.cta_label,
-              href: section.settings.cta_link,
+              href: hs_cta_href,
               style: 'primary'
             %}
             {%- if section.settings.link_label != blank -%}

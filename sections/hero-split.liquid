@@ -1,4 +1,20 @@
 {%- comment -%}
+  Last-resort destination for this section's calls to action.
+
+  Several sections ship a default CTA label with no default URL, so a template
+  that never set one renders `hs-button` without an href — and that is a real
+  <button> that looks completely normal and does nothing when clicked. Neither
+  theme check nor the settings validator looks at a label and its URL together,
+  so it stays invisible until someone taps it.
+
+  Falling back to the product named in theme settings means the worst case is a
+  link to the thing being sold rather than a dead control. A URL set on the
+  section still wins, and templates set `#buy` where the page has the widget.
+{%- endcomment -%}
+{%- assign hs_cta_fallback = all_products[settings.schema_product].url | default: routes.all_products_collection_url -%}
+{%- assign hs_cta_href = section.settings.cta_link | default: hs_cta_fallback -%}
+{%- assign hs_link_href = section.settings.link_url | default: hs_cta_fallback -%}
+{%- comment -%}
   Hero.
 
   The heading is a textarea: each line the merchant types becomes its own
@@ -82,12 +98,12 @@
             <div class="hs-hero__actions">
               {% render 'hs-button',
                 label: section.settings.cta_label,
-                href: section.settings.cta_link,
+                href: hs_cta_href,
                 style: 'primary'
               %}
               {% render 'hs-button',
                 label: section.settings.link_label,
-                href: section.settings.link_url,
+                href: hs_link_href,
                 style: 'link'
               %}
             </div>

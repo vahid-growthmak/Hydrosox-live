@@ -1,4 +1,11 @@
 {%- comment -%}
+  Last-resort destination for this section's footer link. The label has a schema
+  default and the URL does not, so a template that never set one would otherwise
+  render a link to `#` — which scrolls to the top and looks like a broken page.
+  A URL set on the section still wins.
+{%- endcomment -%}
+{%- assign hs_cta_fallback = all_products[settings.schema_product].url | default: routes.all_products_collection_url -%}
+{%- comment -%}
   Comparison table.
 
   A real <table> with a proper header row on wide screens; on narrow screens
@@ -85,7 +92,7 @@
 
     {%- if section.settings.link_label != blank -%}
       <div class="hs-compare__foot">
-        <a class="hs-tap hs-small-body hs-compare__foot-link" href="{{ section.settings.link_url | default: '#' }}">
+        <a class="hs-tap hs-small-body hs-compare__foot-link" href="{{ section.settings.link_url | default: hs_cta_fallback }}">
           {{- section.settings.link_label -}}
         </a>
       </div>

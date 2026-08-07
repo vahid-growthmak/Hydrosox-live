@@ -2840,3 +2840,72 @@
 .hs-table__cell:last-child {
   padding-right: 0;
 }
+
+/* Cart, two columns: the lines on the left, the summary standing sticky on
+   the right with the one action that matters. Stacks on a phone with the
+   summary after the lines. */
+.hs-cart__layout {
+  display: grid;
+  gap: 2.5rem 4rem;
+  align-items: start;
+}
+
+@media (min-width: 64rem) {
+  .hs-cart__layout {
+    grid-template-columns: minmax(0, 1fr) 22rem;
+  }
+
+  .hs-cart__aside {
+    position: sticky;
+    top: calc(var(--chrome) + 2rem);
+  }
+}
+
+.hs-cart__summary {
+  display: grid;
+  gap: 0.875rem;
+  padding: 1.75rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+}
+
+.hs-cart__summary .hs-btn {
+  margin-top: 0.5rem;
+}
+
+/* The quantity stepper: −, the count, + in one outlined pill. Each side is a
+   real submit button, so the change is a plain form post. */
+.hs-cart__stepper {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.875rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+}
+
+.hs-cart__step {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  font-size: var(--type-body);
+  line-height: 1;
+  color: var(--on-surface);
+  transition:
+    color var(--duration-press) var(--ease-out),
+    background-color var(--duration-press) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hs-cart__step:hover {
+    color: var(--blue);
+    background-color: var(--wash);
+  }
+}
+
+.hs-cart__qty-value {
+  min-width: 2.25rem;
+  text-align: center;
+}

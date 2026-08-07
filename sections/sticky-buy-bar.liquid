@@ -21,7 +21,16 @@
   competing calls to action.
 {%- endcomment -%}
 
-{%- if section.settings.enabled and section.settings.cta_label != blank -%}
+{%- liquid
+  # The bar rides in the footer group, so it is on every page. `product_only`
+  # confines it to the product template — the client's call (2026-08-07):
+  # everywhere else it shadowed the page's own closing CTA.
+  assign show_bar = section.settings.enabled
+  if section.settings.product_only and template.name != 'product'
+    assign show_bar = false
+  endif
+-%}
+{%- if show_bar and section.settings.cta_label != blank -%}
   {%- liquid
     assign bar_product = all_products[section.settings.product]
     assign title = section.settings.title
@@ -81,6 +90,13 @@
       "id": "enabled",
       "label": "t:sections.buybar.enabled",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "product_only",
+      "label": "t:sections.buybar.product_only",
+      "info": "t:sections.buybar.product_only_info",
+      "default": false
     },
     {
       "type": "select",

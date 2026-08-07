@@ -301,7 +301,9 @@
       "show_after": "Appear after scrolling",
       "show_after_info": "Measured as a share of the screen height.",
       "hide_near": "Hide while this is on screen",
-      "hide_near_info": "A CSS selector, normally the buy section, so the page never shows two competing buttons."
+      "hide_near_info": "A CSS selector, normally the buy section, so the page never shows two competing buttons.",
+      "product_only": "Show only on the product page",
+      "product_only_info": "The bar rides in the footer group, so without this it appears on every page and shadows each page’s own closing call to action."
     },
     "hero": {
       "name": "Hero",

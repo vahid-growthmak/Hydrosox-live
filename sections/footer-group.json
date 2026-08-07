@@ -294,9 +294,10 @@
         "title": "HydroSox Waterproof Socks",
         "note": "Free UK delivery on two pairs or more",
         "cta_label": "Buy a pair",
-        "cta_link": "/#buy",
+        "cta_link": "#buy",
         "show_after": 80,
-        "hide_near_selector": "#buy"
+        "hide_near_selector": "#buy",
+        "product_only": true
       }
     }
   },

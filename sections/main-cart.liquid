@@ -1,4 +1,15 @@
-{%- comment -%} Cart. {%- endcomment -%}
+{%- comment -%}
+  Cart.
+
+  Server-rendered end to end — no script touches money. Each line owns its
+  own small form posting to /cart/change with a − and a + button, so a
+  quantity change applies the moment it is tapped and there is no Update
+  button to forget; − on a quantity of one posts zero, which removes the
+  line. The summary stands as a sticky aside on the right with the one
+  action that matters — checkout — as a plain link to the platform's
+  checkout. Both were the client's instruction (2026-08-07): summary and
+  checkout on the right, steppers instead of a bare field and Remove link.
+{%- endcomment -%}
 <section class="hs-scheme-{{ section.settings.color_scheme }}">
   <div class="hs-shell hs-pace-base">
     <header class="hs-page__head">
@@ -8,7 +19,7 @@
     {% render 'hs-cart-progress' %}
 
     {%- if cart.item_count > 0 -%}
-      {%- form 'cart', cart, class: 'hs-cart__form' -%}
+      <div class="hs-cart__layout">
         <ul class="hs-cart__list" role="list">
           {%- for item in cart.items -%}
             <li class="hs-cart__item">
@@ -29,54 +40,61 @@
                     </p>
                   {%- endfor -%}
                 {%- endif -%}
-                <div class="hs-cart__item-controls">
-                  <label class="hs-visually-hidden" for="hs-qty-{{ item.index | plus: 1 }}">
-                    {{ 'products.product.quantity' | t }}
-                  </label>
-                  <input class="hs-field hs-cart__qty" id="hs-qty-{{ item.index | plus: 1 }}"
-                    type="number" name="updates[]" value="{{ item.quantity }}" min="0" inputmode="numeric">
-                  <a class="hs-tap hs-caption hs-cart__remove" href="{{ item.url_to_remove }}">
-                    {{ 'cart.general.remove' | t }}
-                  </a>
-                </div>
+                {%- comment -%}
+                  One form per line, two submit buttons: the button that is
+                  pressed supplies `quantity`. No JavaScript anywhere in the
+                  path — the platform applies the change and re-renders.
+                {%- endcomment -%}
+                <form action="{{ routes.cart_change_url }}" method="post" class="hs-cart__stepper">
+                  <input type="hidden" name="line" value="{{ forloop.index }}">
+                  <button
+                    class="hs-tap hs-cart__step"
+                    type="submit"
+                    name="quantity"
+                    value="{{ item.quantity | minus: 1 }}"
+                    aria-label="{{ 'cart.general.decrease' | t: title: item.product.title }}"
+                  >&minus;</button>
+                  <span class="hs-small-body hs-tnum hs-cart__qty-value">{{ item.quantity }}</span>
+                  <button
+                    class="hs-tap hs-cart__step"
+                    type="submit"
+                    name="quantity"
+                    value="{{ item.quantity | plus: 1 }}"
+                    aria-label="{{ 'cart.general.increase' | t: title: item.product.title }}"
+                  >+</button>
+                </form>
               </div>
               <p class="hs-small-body hs-tnum hs-cart__item-total">{{ item.final_line_price | money }}</p>
             </li>
           {%- endfor -%}
         </ul>
 
-        <div class="hs-cart__foot">
-          {%- if cart.cart_level_discount_applications.size > 0 -%}
-            {%- for discount in cart.cart_level_discount_applications -%}
-              <p class="hs-caption hs-cart__discount">
-                {{ discount.title }} (&minus;{{ discount.total_allocated_amount | money }})
-              </p>
-            {%- endfor -%}
-          {%- endif -%}
-          <p class="hs-h4 hs-tnum hs-cart__subtotal">
-            <span>{{ 'cart.general.subtotal' | t }}</span>
-            <span>{{ cart.total_price | money }}</span>
-          </p>
-          <p class="hs-caption hs-muted">{{ 'cart.general.taxes_and_shipping' | t }}</p>
-          {%- if settings.delivery_estimate != blank -%}
-            <p class="hs-caption hs-cartd__eta">
-              {% render 'hs-icon', icon: 'check', size: 14 %}
-              {{ settings.delivery_estimate }}
+        <aside class="hs-cart__aside">
+          <div class="hs-cart__summary">
+            {%- if cart.cart_level_discount_applications.size > 0 -%}
+              {%- for discount in cart.cart_level_discount_applications -%}
+                <p class="hs-caption hs-cart__discount">
+                  {{ discount.title }} (&minus;{{ discount.total_allocated_amount | money }})
+                </p>
+              {%- endfor -%}
+            {%- endif -%}
+            <p class="hs-h4 hs-tnum hs-cart__subtotal">
+              <span>{{ 'cart.general.subtotal' | t }}</span>
+              <span>{{ cart.total_price | money }}</span>
             </p>
-          {%- endif -%}
-          {%- comment -%}
-            Both buttons submit the same form. Update is first in the source so
-            it is the fallback for an Enter press in a quantity field, which
-            would otherwise send someone to the checkout by accident.
-          {%- endcomment -%}
-          {%- assign update_label = 'cart.general.update' | t -%}
-          {%- assign checkout_label = 'cart.general.checkout' | t -%}
-          {% render 'hs-button', label: update_label, style: 'ghost',
-             type: 'submit', name: 'update', full: true %}
-          {% render 'hs-button', label: checkout_label, style: 'primary',
-             type: 'submit', name: 'checkout', full: true %}
-        </div>
-      {%- endform -%}
+            <p class="hs-caption hs-muted">{{ 'cart.general.taxes_and_shipping' | t }}</p>
+            {%- if settings.delivery_estimate != blank -%}
+              <p class="hs-caption hs-cartd__eta">
+                {% render 'hs-icon', icon: 'check', size: 14 %}
+                {{ settings.delivery_estimate }}
+              </p>
+            {%- endif -%}
+            {%- assign checkout_label = 'cart.general.checkout' | t -%}
+            {% render 'hs-button', label: checkout_label, href: '/checkout',
+               style: 'primary', full: true %}
+          </div>
+        </aside>
+      </div>
     {%- else -%}
       <p class="hs-body hs-muted">{{ 'cart.general.empty' | t }}</p>
       {%- assign keep_shopping = 'general.continue_shopping' | t -%}

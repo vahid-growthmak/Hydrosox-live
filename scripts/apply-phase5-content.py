@@ -772,6 +772,9 @@ def care():
         "layout": "band", "color_scheme": "paper", "mirror": False,
         "divided": True})
     S["life"]["settings"]["color_scheme"] = "blue"
+    # The closing "Worn one out?" note goes dark, per the client (2026-08-07)
+    # and the mockup — the page hands off into the dark footer from ink.
+    S["tail"]["settings"]["color_scheme"] = "ink"
 
     d["order"] = ["intro", "wash", "damage", "failing", "life", "faq", "tail"]
     orphans = [k for k in S if k not in d["order"]]

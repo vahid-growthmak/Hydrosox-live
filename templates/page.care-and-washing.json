@@ -156,7 +156,7 @@
     "tail": {
       "type": "centre-note",
       "settings": {
-        "color_scheme": "wash",
+        "color_scheme": "ink",
         "hide_rule": true,
         "max_width": 44,
         "heading_size": "h3",

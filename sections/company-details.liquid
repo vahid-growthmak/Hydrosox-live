@@ -23,7 +23,13 @@
   {{ section.shopify_attributes }}
 >
   <div class="hs-shell hs-pace-loose">
-    <div class="hs-company__head">
+    {%- comment -%}
+      Two head shapes: the default sets the lede beside the heading; centred
+      stacks everything on the centre line and can carry the brand email as a
+      large mailto CTA — the wudu scholarly-questions treatment, where the
+      section IS the invitation to write in.
+    {%- endcomment -%}
+    <div class="hs-company__head{% if section.settings.centre_head %} hs-company__head--centre{% endif %}">
       <div>
         {%- if section.settings.eyebrow != blank -%}
           <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
@@ -36,6 +42,9 @@
         <div class="hs-small-body hs-company__lede hs-measure-42 hs-pretty hs-muted">
           {{ section.settings.lede }}
         </div>
+      {%- endif -%}
+      {%- if section.settings.email_cta and settings.email != blank -%}
+        <a class="hs-tap hs-company__cta" href="mailto:{{ settings.email }}">{{ settings.email }}</a>
       {%- endif -%}
     </div>
 
@@ -125,6 +134,19 @@
         { "value": "blue", "label": "t:common.scheme_blue" }
       ],
       "default": "wash"
+    },
+    {
+      "type": "checkbox",
+      "id": "centre_head",
+      "label": "t:sections.company.centre_head",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "email_cta",
+      "label": "t:sections.company.email_cta",
+      "info": "t:sections.company.email_cta_info",
+      "default": false
     },
     {
       "type": "text",

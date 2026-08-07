@@ -519,7 +519,9 @@
         "heading": "Ask about the construction, and we will answer factually.",
         "lede": "<p>If you need a specific detail about how the sock is made in order to reach your own judgement, ask. We will tell you what it is made of and how it behaves. We will not offer a ruling on your behalf.</p>",
         "link_label": "",
-        "link_url": ""
+        "link_url": "",
+        "centre_head": true,
+        "email_cta": true
       },
       "blocks": {
         "d1": {

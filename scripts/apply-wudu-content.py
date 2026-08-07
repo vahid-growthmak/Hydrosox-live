@@ -315,9 +315,11 @@ def main():
     # rows running the full width beneath it, on paper.
     S["credentials"]["settings"].update({
         "layout": "split", "color_scheme": "paper", "wide_head": True})
-    # Scholarly questions: the same company-details band, on the mockup's
-    # pale blue instead of wash.
-    S["scholarly"]["settings"]["color_scheme"] = "blue"
+    # Scholarly questions, to the mockup's DOM: the company band on pale blue
+    # with the header centred and the brand email standing under it as the
+    # section's action — the section IS the invitation to write in.
+    S["scholarly"]["settings"].update({
+        "color_scheme": "blue", "centre_head": True, "email_cta": True})
     # Band on ink: full-width header, the three everyday cases as outlined
     # cards on the dark ground — the page's turn from argument to reality.
     S["everyday"]["settings"].update({

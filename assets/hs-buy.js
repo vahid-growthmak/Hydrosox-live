@@ -74,6 +74,14 @@ class HSBuy extends HTMLElement {
 
     this.tier = this.querySelector('[data-hs-tier].is-selected') || this.querySelector('[data-hs-tier]');
 
+    /*
+      The gallery sits beside this element rather than inside it — the layout
+      puts the picture in one column and the form in the other — so it has to be
+      looked up from the section, not from `this`. Scoped to the closest .hs-buy
+      so two widgets on one page never swap each other's picture.
+    */
+    this.gallery = this.closest('.hs-buy')?.querySelector('[data-hs-gallery] img') || null;
+
     this.bindOptions();
     this.bindTiers();
     this.bindGuide();
@@ -141,6 +149,7 @@ class HSBuy extends HTMLElement {
     if (this.variantInput && variant) this.variantInput.value = String(variant.id);
 
     this.refreshTierPrices(variant);
+    this.refreshGallery(variant);
 
     const unavailable = !variant || !variant.available;
 
@@ -179,6 +188,26 @@ class HSBuy extends HTMLElement {
         this.savings.textContent = '';
       }
     }
+  }
+
+  /*
+    Show the selected variant's own photograph.
+
+    Nothing happens unless the variant actually carries an image and it differs
+    from what is already on screen — otherwise every quantity-tier click would
+    reset src and make the browser re-decode the same file.
+
+    `sizes` is left alone: it is a description of the layout, not of the file,
+    and the layout has not changed.
+  */
+  refreshGallery(variant) {
+    const img = this.gallery;
+    if (!img || !variant || !variant.image) return;
+    if (img.getAttribute('src') === variant.image) return;
+
+    img.setAttribute('src', variant.image);
+    if (variant.srcset) img.setAttribute('srcset', variant.srcset);
+    if (variant.alt) img.setAttribute('alt', variant.alt);
   }
 
   // Tier rows show the price of the variant actually selected.

@@ -11,7 +11,15 @@
              in an argument
   - split    each row set as title beside body rather than title above it
   - cards    the same items as a grid of cards rather than a stack
-  - gallery  a two-up grid of captioned images
+  - band     a full-width header (heading left, lede right, ruled off), then
+             the cards run the whole width beneath it
+  - stack    the header centred above the cards, for a section that reads as a
+             single statement with its evidence below
+  - boxes    each item an outlined box with its numeral set inside it — the
+             dark-section counterpart of cards
+  - panel    the heading column set as an ink panel with the section link as a
+             button, beside rows carried as cards
+  - gallery  a row of captioned images under a band-style header
   - prose    a single block of rich text
   - media    a single image beside the copy, six columns each
 
@@ -30,9 +38,8 @@
   assign items = section.blocks | where: 'type', 'item'
   assign shots = section.blocks | where: 'type', 'image'
 
-  # Steps are a numbered list by definition — the number is the whole point of
-  # the treatment, so it is not left to a separate setting that could contradict
-  # it.
+  # Numerals are a per-section choice, never forced by a layout — they were
+  # removed site-wide once and reinstated only where a mockup asks for them.
   assign show_index = section.settings.numbered
 
   assign list_tag = 'ul'
@@ -54,7 +61,15 @@
     >
       {%- comment -%} Heading column {%- endcomment -%}
       <div class="hs-cols__head-col">
-        <div class="hs-cols__head-sticky">
+        {%- comment -%}
+          The panel layout sets the heading column as a card on the ink scheme.
+          Scheme classes carry their own surface and re-scope every on-surface
+          token, so nesting one here restyles the text without any colour being
+          named — and the section link is promoted from an underlined line to
+          the panel's button, because a dark panel with a quiet text link reads
+          as a dead end.
+        {%- endcomment -%}
+        <div class="hs-cols__head-sticky{% if layout == 'panel' %} hs-scheme-ink hs-cols__head-panel{% endif %}">
           {%- if section.settings.eyebrow != blank -%}
             <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
           {%- endif -%}
@@ -68,7 +83,15 @@
               {{ section.settings.head_note }}
             </div>
           {%- endif -%}
-          {%- if section.settings.link_label != blank or section.settings.link2_label != blank -%}
+          {%- if layout == 'panel' and section.settings.link_label != blank -%}
+            <div class="hs-cols__panel-cta">
+              {% render 'hs-button',
+                label: section.settings.link_label,
+                href: section.settings.link_url,
+                style: 'primary'
+              %}
+            </div>
+          {%- elsif section.settings.link_label != blank or section.settings.link2_label != blank -%}
             <p class="hs-cols__head-links">
               {%- if section.settings.link_label != blank -%}
                 <a class="hs-tap hs-small-body hs-cols__head-link" href="{{ section.settings.link_url | default: '#' }}">
@@ -145,7 +168,7 @@
               </div>
             {%- endif -%}
 
-          {%- when 'cards' -%}
+          {%- when 'cards' or 'band' or 'stack' -%}
             {%- comment -%}
               The same items, laid out as a grid rather than a stack. A card has
               no rule above and below it and no shared left edge, so a section
@@ -201,7 +224,7 @@
 
           {%- else -%}
             {%- if items.size > 0 -%}
-              <{{ list_tag }} class="hs-cols__list hs-cols__list--{{ section.settings.row_density | default: 'standard' }}{% if layout == 'steps' %} hs-cols__list--steps{% endif %}{% if layout == 'focus' %} hs-cols__list--focus{% endif %}{% if layout == 'split' %} hs-cols__list--split{% endif %} hs-stagger" role="list">
+              <{{ list_tag }} class="hs-cols__list hs-cols__list--{{ section.settings.row_density | default: 'standard' }}{% if layout == 'steps' %} hs-cols__list--steps{% endif %}{% if layout == 'focus' %} hs-cols__list--focus{% endif %}{% if layout == 'split' or layout == 'panel' %} hs-cols__list--split{% endif %}{% if layout == 'boxes' %} hs-cols__list--boxes{% endif %}{% if layout == 'panel' %} hs-cols__list--cardrows{% endif %} hs-stagger" role="list">
                 {%- for block in items -%}
                   {%- liquid
                     assign row_has_media = false
@@ -317,6 +340,10 @@
         { "value": "focus", "label": "t:sections.cols.layout_focus" },
         { "value": "split", "label": "t:sections.cols.layout_split" },
         { "value": "cards", "label": "t:sections.cols.layout_cards" },
+        { "value": "band", "label": "t:sections.cols.layout_band" },
+        { "value": "stack", "label": "t:sections.cols.layout_stack" },
+        { "value": "boxes", "label": "t:sections.cols.layout_boxes" },
+        { "value": "panel", "label": "t:sections.cols.layout_panel" },
         { "value": "gallery", "label": "t:sections.cols.layout_gallery" },
         { "value": "prose", "label": "t:sections.cols.layout_prose" },
         { "value": "media", "label": "t:sections.cols.layout_media" }

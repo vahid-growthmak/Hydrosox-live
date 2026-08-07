@@ -474,8 +474,8 @@
     "blisters": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "wash",
-        "layout": "cards",
+        "color_scheme": "paper",
+        "layout": "stack",
         "numbered": false,
         "eyebrow": "Blisters",
         "heading": "What a dry foot does and does not prevent.",
@@ -514,15 +514,15 @@
     "fit": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
-        "layout": "split",
+        "color_scheme": "wash",
+        "layout": "panel",
         "numbered": false,
         "eyebrow": "Fit",
         "heading": "Before you order, check the boot.",
         "lede": "<p>This is the question most sellers skip and most returns come from. Waterproof socks are thicker than the sock you are used to.</p>",
         "link_label": "The size bands in centimetres",
         "link_url": "/pages/size-guide",
-        "mirror": true
+        "mirror": false
       },
       "blocks": {
         "i1": {
@@ -557,8 +557,8 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "paper",
-        "layout": "steps",
-        "numbered": false,
+        "layout": "band",
+        "numbered": true,
         "eyebrow": "The problem",
         "heading": "Four ways a walk gets your feet wet.",
         "lede": "<p>Only one of these is the one boots are designed to stop, which is why good boots and wet feet are not a contradiction.</p>",
@@ -605,14 +605,14 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "ink",
-        "layout": "focus",
-        "numbered": false,
+        "layout": "boxes",
+        "numbered": true,
         "eyebrow": "The answer",
         "heading": "A layer that does not wet out.",
         "lede": "<p>The membrane sits inside the sock rather than inside the boot, which changes where the waterproof line is drawn — and what happens when the boot fails.</p>",
         "link_label": "How the three layers work",
         "link_url": "/pages/technology",
-        "mirror": true
+        "mirror": false
       },
       "blocks": {
         "i1": {
@@ -642,6 +642,68 @@
         "i2",
         "i3"
       ]
+    },
+    "inuse": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "gallery",
+        "eyebrow": "In use",
+        "heading": "The same pair, in the conditions this page is about.",
+        "head_note": "<p>Product imagery rather than a documentary shoot, so read it for what the sock is and where it goes — not as evidence. The checkable claim is the membrane.</p>",
+        "gallery_aspect": "4 / 5"
+      },
+      "blocks": {
+        "g1": {
+          "type": "image",
+          "settings": {
+            "caption": "Stopped above the valley, boots on rock",
+            "image_fallback": "activity-hiking-01.webp",
+            "image_alt": "Stopped above the valley, boots on rock"
+          }
+        },
+        "g2": {
+          "type": "image",
+          "settings": {
+            "caption": "Mossy trail, mid-step",
+            "image_fallback": "activity-hiking-02.webp",
+            "image_alt": "Mossy trail, mid-step"
+          }
+        },
+        "g3": {
+          "type": "image",
+          "settings": {
+            "caption": "Broken rock, last of the light",
+            "image_fallback": "activity-hiking-03.webp",
+            "image_alt": "Broken rock, last of the light"
+          }
+        },
+        "g4": {
+          "type": "image",
+          "settings": {
+            "caption": "Boots off at the top",
+            "image_fallback": "activity-hiking-04.webp",
+            "image_alt": "Boots off at the top"
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ]
+    },
+    "limits": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "blue",
+        "max_width": 46,
+        "eyebrow": "What it will not do",
+        "heading": "Where it stops.",
+        "body": "<p>Go in deeper than the cuff and water comes over the top, and no waterproof sock behaves otherwise. On a crossing that is above the ankle this buys you nothing — that is a gaiter and a boot problem, not a sock one.</p>",
+        "footnote": "<p>Every limit we know about is published, not only this one. <a href=\"/#limits\">Read the rest</a>.</p>"
+      }
     }
   },
   "order": [
@@ -650,8 +712,10 @@
     "specs",
     "problem",
     "answers",
+    "inuse",
     "blisters",
     "fit",
+    "limits",
     "reviews",
     "buy",
     "faq",

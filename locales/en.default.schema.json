@@ -607,7 +607,11 @@
       "mirror": "Put the heading on the right",
       "mirror_info": "Flips the two columns. Use it so two sections in a row do not share the same skeleton — a page built from repeats of this section reads as one slab otherwise, however good the writing is.",
       "layout_focus": "Focus (ghost numerals)",
-      "layout_split": "Split rows (title beside body)"
+      "layout_split": "Split rows (title beside body)",
+      "layout_band": "Band (full-width header, cards below)",
+      "layout_stack": "Stacked (centred header, cards below)",
+      "layout_boxes": "Numbered boxes",
+      "layout_panel": "Panel (dark heading card, rows as cards)"
     },
     "note": {
       "name": "Centre note",

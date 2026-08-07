@@ -125,30 +125,89 @@ def faq(entries, heading="The things people ask on this page."):
 #   cards  a grid, no shared left edge and no rules across it
 #   ink    the dark band that marks the turn from problem to answer
 #   mirror heading on the right, so even the skeleton differs
+# (layout, colour scheme, heading mirrored, numerals shown). Numerals were
+# removed site-wide once; the hiking mockups of 2026-08-07 bring them back on
+# exactly two sections, as ghost figures inside the cards and boxes — so they
+# are a per-section value here, never something a layout switches on.
 RHYTHM = {
+    # Hiking follows the client's section mockups: a full-width band of
+    # numbered cards, a dark section of numbered boxes with the heading kept
+    # left, the blisters as a centred statement over its cards, and the fit
+    # checks as an ink panel with the size-guide button beside card rows.
     "hiking-and-walking": {
-        "problem":    ("steps", "paper", False),   # four ways, enumerated
-        "answers":    ("focus", "ink",   True),    # the turn — dark, emphasised
-        "blisters":   ("cards", "wash",  False),   # does / does not, on a ground
-        "fit":        ("split", "paper", True),    # the pre-purchase check, flipped
+        "problem":    ("band",  "paper", False, True),
+        "answers":    ("boxes", "ink",   False, True),
+        "blisters":   ("stack", "paper", False, False),
+        "fit":        ("panel", "wash",  False, False),
     },
     "running-and-trail": {
-        "trade":      ("focus", "ink",   True),    # the concession, up front
+        "trade":      ("focus", "ink",   True,  False),   # the concession, up front
         # whennot is honest-limits and already a different shape
-        "winter":     ("cards", "paper", False),
-        "blisters":   ("split", "wash",  False),   # the same three causes
+        "winter":     ("cards", "paper", False, False),
+        "blisters":   ("split", "wash",  False, False),   # the same three causes
     },
     "cycling-and-commuting": {
-        "problem":    ("steps", "paper", False),   # where the water comes from
+        "problem":    ("steps", "paper", False, False),   # where the water comes from
         # overshoes is a comparison table and already a different shape
-        "drying":     ("focus", "ink",   True),    # the insight, dark
-        "fit":        ("cards", "paper", False),
+        "drying":     ("focus", "ink",   True,  False),   # the insight, dark
+        "fit":        ("cards", "paper", False, False),
     },
     "all-day-in-boots": {
-        "problem":    ("steps", "paper", False),
-        "durability": ("focus", "ink",   True),    # why the cheap pair failed
-        "fit":        ("cards", "paper", False),
-        "warranty":   ("split", "wash",  False),    # sits after the buy widget
+        "problem":    ("steps", "paper", False, False),
+        "durability": ("focus", "ink",   True,  False),   # why the cheap pair failed
+        "fit":        ("cards", "paper", False, False),
+        "warranty":   ("split", "wash",  False, False),   # sits after the buy widget
+    },
+}
+
+# The hiking mockups also restore two sections the Phase 4 rebuild removed —
+# the in-use photo gallery and the blue limits band. Their content is the
+# historical content, byte for byte, lifted from the template as it stood at
+# commit a037122; no word of it is new. They are stated here as data so the
+# generator owns them the same way it owns everything else on the page.
+RESTORED = {
+    "hiking-and-walking": {
+        "inuse": {
+            "type": "content-columns",
+            "settings": {
+                "color_scheme": "wash",
+                "layout": "gallery",
+                "eyebrow": "In use",
+                "heading": "The same pair, in the conditions this page is about.",
+                "head_note": "<p>Product imagery rather than a documentary shoot, so read it for what the sock is and where it goes \u2014 not as evidence. The checkable claim is the membrane.</p>",
+                "gallery_aspect": "4 / 5",
+            },
+            "blocks": {
+                "g1": {"type": "image", "settings": {
+                    "caption": "Stopped above the valley, boots on rock",
+                    "image_fallback": "activity-hiking-01.webp",
+                    "image_alt": "Stopped above the valley, boots on rock"}},
+                "g2": {"type": "image", "settings": {
+                    "caption": "Mossy trail, mid-step",
+                    "image_fallback": "activity-hiking-02.webp",
+                    "image_alt": "Mossy trail, mid-step"}},
+                "g3": {"type": "image", "settings": {
+                    "caption": "Broken rock, last of the light",
+                    "image_fallback": "activity-hiking-03.webp",
+                    "image_alt": "Broken rock, last of the light"}},
+                "g4": {"type": "image", "settings": {
+                    "caption": "Boots off at the top",
+                    "image_fallback": "activity-hiking-04.webp",
+                    "image_alt": "Boots off at the top"}},
+            },
+            "block_order": ["g1", "g2", "g3", "g4"],
+        },
+        "limits": {
+            "type": "centre-note",
+            "settings": {
+                "color_scheme": "blue",
+                "max_width": 46,
+                "eyebrow": "What it will not do",
+                "heading": "Where it stops.",
+                "body": "<p>Go in deeper than the cuff and water comes over the top, and no waterproof sock behaves otherwise. On a crossing that is above the ankle this buys you nothing \u2014 that is a gaiter and a boot problem, not a sock one.</p>",
+                "footnote": "<p>Every limit we know about is published, not only this one. <a href=\"/#limits\">Read the rest</a>.</p>",
+            },
+        },
     },
 }
 
@@ -198,11 +257,17 @@ def apply(handle, current_label, new_sections, new_order_mid, faq_section,
             S[key]["settings"].update(settings)
 
     # Apply the page's rhythm, so no two adjacent sections share a silhouette.
-    for key, (layout, scheme, mirror) in RHYTHM.get(handle, {}).items():
+    for key, (layout, scheme, mirror, numbered) in RHYTHM.get(handle, {}).items():
         if key not in S or S[key].get("type") != "content-columns":
             continue
         S[key]["settings"].update({
-            "layout": layout, "color_scheme": scheme, "mirror": mirror})
+            "layout": layout, "color_scheme": scheme, "mirror": mirror,
+            "numbered": numbered})
+
+    # Sections restored from history land after the rhythm, with their content
+    # exactly as it was.
+    for key, sec in RESTORED.get(handle, {}).items():
+        S[key] = json.loads(json.dumps(sec))
 
     if buy_overrides and "buy" in S:
         S["buy"]["settings"].update(buy_overrides)
@@ -296,7 +361,11 @@ def main():
                   "is wrong.")],
                 link=("The size bands in centimetres", "/pages/size-guide"))),
         ]),
-        ["problem", "answers", "blisters", "fit"],
+        # inuse and limits are the restored sections; their content is in
+        # RESTORED above. The order follows the mockups: gallery after the
+        # dark answer, the blue limits band closing the argument before the
+        # buy widget.
+        ["problem", "answers", "inuse", "blisters", "fit", "limits"],
         faq([
             ("Are waterproof socks good for hiking?",
              "Yes, particularly on long days in wet conditions. They keep the foot "

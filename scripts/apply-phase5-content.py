@@ -1018,13 +1018,16 @@ def partner_with_us():
         scheme="wash")
 
     # Presentation, to the mockup DOM (2026-08-07): the audience as the band
-    # of paper cards two across on wash, and the form centred in its white
-    # card on wash — the stocking list already matches the mockup's stacked
-    # rows. Words untouched.
+    # of paper cards two across on wash — the stocking list already matches
+    # the mockup's stacked rows. Words untouched.
+    #
+    # The form STAYS two-column: the mockup's centred card was tried and the
+    # client reversed it the same day ("looking too big") — heading, lede and
+    # the direct email/phone on the left, the fields on the right.
     S["audience"]["settings"].update({
         "layout": "band", "color_scheme": "wash", "card_columns": "two"})
     S["form"]["settings"].update({
-        "color_scheme": "wash", "centre": True})
+        "color_scheme": "paper", "centre": False})
 
     d["order"] = ["intro", "proposition", "audience", "proof", "direct",
                   "form", "press"]

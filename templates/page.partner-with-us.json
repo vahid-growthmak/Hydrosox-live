@@ -18,7 +18,7 @@
     "form": {
       "type": "enquiry-form",
       "settings": {
-        "color_scheme": "wash",
+        "color_scheme": "paper",
         "pace": "base",
         "anchor_id": "enquiry",
         "eyebrow": "Get in touch",
@@ -26,7 +26,7 @@
         "lede": "<p>We are selective rather than exclusive. The more of this you fill in, the faster we can tell you whether we are a fit.</p>",
         "submit_label": "Send enquiry",
         "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>",
-        "centre": true
+        "centre": false
       },
       "blocks": {
         "c1": {

@@ -134,7 +134,16 @@ def technology():
     # The membrane section gains the paragraph that explains *why* the trick
     # works. A page called "the mechanism, not the claim" that never states the
     # mechanism is only asserting a different thing.
-    S["membrane"]["settings"]["lede"] = rich(
+    # All three paragraphs live in `prose`, and ONLY there. The section once
+    # carried them in `lede` while an older `prose` value survived underneath
+    # — the layout renders lede above the prose branch, so the page showed
+    # the same paragraphs twice (client screenshot, 2026-08-07). The lede is
+    # cleared explicitly so the duplicate can never return, and the lead
+    # treatment sets the opening claim in the pale-blue panel — the client's
+    # asked-for box against the wall-of-text read.
+    S["membrane"]["settings"]["lede"] = ""
+    S["membrane"]["settings"]["lead_first_para"] = True
+    S["membrane"]["settings"]["prose"] = rich(
         "The waterproof layer is Porelle®, a licensed third-party "
         "waterproof-breathable membrane. That distinction matters more than it "
         "sounds: a membrane you can look up is a membrane someone else has to "
@@ -298,15 +307,15 @@ def technology():
     # ruled stacked rows on paper (title over body, sticky heading left —
     # checked against the live mockup DOM, which sets a dl of stacked rows,
     # not term-beside-definition), the test-figures note on the blue
-    # stating-a-limit band. Failure, per the client 2026-08-07: the dark
-    # numbered ruled list — the silhouette they screenshotted as the
-    # reference — replacing the mockup's paper band of cards; their explicit
-    # instruction outranks the mockup here. Same four rows, same words.
+    # stating-a-limit band. Failure: back to the mockup's paper band of
+    # outlined cards — the client asked for the dark numbered rows on
+    # 2026-08-07 and reversed it the same day after seeing both ("any box"),
+    # attaching the mockup's cards as the target. Same four rows, same words.
     S["breathability"]["settings"].update({
         "layout": "list", "color_scheme": "paper"})
     S["testing"]["settings"]["color_scheme"] = "blue"
     S["failure"]["settings"].update({
-        "layout": "list", "color_scheme": "ink", "numbered": True})
+        "layout": "band", "color_scheme": "paper", "numbered": False})
 
     # The closing band the mockup adds, words from the mockup verbatim.
     S["close"] = collections.OrderedDict([

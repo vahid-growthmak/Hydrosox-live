@@ -73,118 +73,101 @@
       }
     },
     "layers": {
-      "type": "content-columns",
+      "type": "construction-layers",
       "blocks": {
-        "i1": {
-          "type": "item",
+        "y1": {
+          "type": "layer",
           "settings": {
-            "title": "Inner layer",
-            "body": "<p>Next to the skin.</p><p>A soft knitted lining that moves sweat off the foot and stops the membrane sitting against the skin.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "heading": "Inner layer",
+            "role": "Next to the skin",
+            "body": "<p>A soft knitted lining that moves sweat off the foot and stops the membrane sitting against the skin.</p>",
+            "image_alt": "",
+            "tint": "#eaeef1"
           }
         },
-        "i2": {
-          "type": "item",
+        "y2": {
+          "type": "layer",
           "settings": {
-            "title": "Porelle® membrane",
-            "body": "<p>The waterproof barrier.</p><p>A licensed third-party laminate. Water cannot get in; vapour from the foot can get out.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "heading": "Porelle® membrane",
+            "role": "The waterproof barrier",
+            "body": "<p>A licensed third-party laminate. Water cannot get in; vapour from the foot can get out.</p>",
+            "image_alt": "",
+            "tint": "#0093ff"
           }
         },
-        "i3": {
-          "type": "item",
+        "y3": {
+          "type": "layer",
           "settings": {
-            "title": "Outer layer",
-            "body": "<p>Wear surface.</p><p>The knitted face that takes abrasion inside a boot or shoe, and holds the sock's shape when it is not being worn.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "heading": "Outer layer",
+            "role": "Wear surface",
+            "body": "<p>The knitted face that takes abrasion inside a boot or shoe, and holds the sock's shape when it is not being worn.</p>",
+            "image_alt": "",
+            "tint": "#111111"
           }
         }
       },
       "block_order": [
-        "i1",
-        "i2",
-        "i3"
+        "y1",
+        "y2",
+        "y3"
       ],
       "settings": {
-        "color_scheme": "wash",
-        "layout": "list",
-        "mirror": false,
-        "numbered": false,
-        "row_density": "standard",
-        "hide_rule": false,
-        "anchor_id": "",
-        "eyebrow": "The problem",
+        "color_scheme": "paper",
+        "anchor_id": "construction",
+        "eyebrow": "The construction",
         "heading": "Three layers, and what each one is for",
-        "head_note": "",
-        "link_label": "",
-        "link_url": "",
-        "link2_label": "",
-        "link2_url": "",
-        "lede": "",
-        "lead_first_para": false,
-        "prose": "",
-        "gallery_aspect": "4 / 5",
-        "footnote": "The middle layer is the one doing the waterproofing, and it is the one you never touch. That is deliberate: a membrane exposed to abrasion is a membrane with a short life.",
-        "cta_label": "",
-        "cta_url": "",
-        "media_fallback": "",
-        "media_alt": ""
+        "lede": "<p>The middle layer is the one doing the waterproofing, and it is the one you never touch. That is deliberate: a membrane exposed to abrasion is a membrane with a short life.</p>",
+        "scroll_hint": "Scroll to take it apart.",
+        "track_height": 220,
+        "frame_count": 100,
+        "frame_prefix": "hs-layer-frame-",
+        "frame_ext": "webp",
+        "frame_alt": "A HydroSox sock separating into its three layers",
+        "frame_width": 1280,
+        "frame_height": 720,
+        "stage_background": "#f0ede8"
       }
     },
     "breathability": {
       "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "split",
+        "numbered": false,
+        "anchor_id": "breathability",
+        "eyebrow": "Breathability",
+        "heading": "Breathable and dry are not the same word.",
+        "lede": "<p>This is where most waterproof sock pages become vague. It is also the question almost everybody actually has, so here is the mechanism and the limit.</p>",
+        "link_label": "When these are the wrong sock",
+        "link_url": "/pages/running-and-trail"
+      },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "What breathability actually means",
-            "body": "<p>It is a rate, not a state. A membrane moves vapour outwards at a certain speed. It does not remove moisture, and it does not make a sock ventilated.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>It is a rate, not a state. A membrane moves vapour outwards at a certain speed. It does not remove moisture, and it does not make a sock ventilated.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Where the limit is",
-            "body": "<p>Your foot produces vapour at a rate that depends on effort and temperature. If you produce it faster than the membrane can move it, the surplus condenses and you feel damp. That is not a fault. It is arithmetic.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>Your foot produces vapour at a rate that depends on effort and temperature. If you produce it faster than the membrane can move it, the surplus condenses and you feel damp. That is not a fault. It is arithmetic.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "When you will notice it",
-            "body": "<p>Walking pace in British weather is comfortably within it. A steep sustained climb in mild air, a hard run, or summer rain will exceed it. Cold air helps, because the difference in vapour pressure across the membrane is what drives the transfer.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>Walking pace in British weather is comfortably within it. A steep sustained climb in mild air, a hard run, or summer rain will exceed it. Cold air helps, because the difference in vapour pressure across the membrane is what drives the transfer.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
             "title": "What actually helps",
-            "body": "<p>A sock that fits, footwear that is not sealed shut, and taking them off at the end of the day. Nothing about a membrane changes the fact that a foot in a boot for ten hours is in a humid place.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>A sock that fits, footwear that is not sealed shut, and taking them off at the end of the day. Nothing about a membrane changes the fact that a foot in a boot for ten hours is in a humid place.</p>"
           }
         }
       },
@@ -193,37 +176,12 @@
         "i2",
         "i3",
         "i4"
-      ],
-      "settings": {
-        "color_scheme": "wash",
-        "layout": "list",
-        "mirror": false,
-        "numbered": false,
-        "row_density": "standard",
-        "hide_rule": false,
-        "anchor_id": "breathability",
-        "eyebrow": "Breathability",
-        "heading": "Breathable and dry are not the same word.",
-        "head_note": "",
-        "link_label": "When these are the wrong sock",
-        "link_url": "/pages/running-and-trail",
-        "link2_label": "",
-        "link2_url": "",
-        "lede": "<p>This is where most waterproof sock pages become vague. It is also the question almost everybody actually has, so here is the mechanism and the limit.</p>",
-        "lead_first_para": false,
-        "prose": "",
-        "gallery_aspect": "4 / 5",
-        "footnote": "",
-        "cta_label": "",
-        "cta_url": "",
-        "media_fallback": "",
-        "media_alt": ""
-      }
+      ]
     },
     "testing": {
       "type": "centre-note",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "blue",
         "hide_rule": false,
         "anchor_id": "",
         "max_width": 46,
@@ -246,49 +204,44 @@
     },
     "failure": {
       "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "band",
+        "numbered": false,
+        "anchor_id": "failure",
+        "eyebrow": "Failure",
+        "heading": "Four ways a membrane dies.",
+        "lede": "<p>A waterproof sock almost never fails from age. It fails from one of these, and three of them are avoidable.</p>",
+        "link_label": "How to wash them properly",
+        "link_url": "/pages/care-and-washing"
+      },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "Heat",
-            "body": "<p>A tumble dryer, an iron, or a radiator. Direct heat is the fastest way to end a laminate and the most common. Air dry, always.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>A tumble dryer, an iron, or a radiator. Direct heat is the fastest way to end a laminate and the most common. Air dry, always.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Fabric softener",
-            "body": "<p>Softeners coat the pores the membrane breathes through. The sock still keeps water out and stops moving vapour, which is the worst of both.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>Softeners coat the pores the membrane breathes through. The sock still keeps water out and stops moving vapour, which is the worst of both.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "Abrasion",
-            "body": "<p>The outer knit takes this, which is why there are three layers. But a sock worn inside a boot with a rough interior, or over months on site, will eventually wear through.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>The outer knit takes this, which is why there are three layers. But a sock worn inside a boot with a rough interior, or over months on site, will eventually wear through.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
             "title": "Puncture",
-            "body": "<p>A toenail, a thorn, or a sharp stone inside a boot. Once the laminate is pierced the waterproofing is gone and cannot be restored — no spray or reproofing treatment brings a membrane back.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>A toenail, a thorn, or a sharp stone inside a boot. Once the laminate is pierced the waterproofing is gone and cannot be restored — no spray or reproofing treatment brings a membrane back.</p>"
           }
         }
       },
@@ -297,35 +250,21 @@
         "i2",
         "i3",
         "i4"
-      ],
-      "settings": {
-        "color_scheme": "paper",
-        "layout": "list",
-        "mirror": false,
-        "numbered": false,
-        "row_density": "standard",
-        "hide_rule": false,
-        "anchor_id": "failure",
-        "eyebrow": "Failure",
-        "heading": "Four ways a membrane dies.",
-        "head_note": "",
-        "link_label": "How to wash them properly",
-        "link_url": "/pages/care-and-washing",
-        "link2_label": "",
-        "link2_url": "",
-        "lede": "<p>A waterproof sock almost never fails from age. It fails from one of these, and three of them are avoidable.</p>",
-        "lead_first_para": false,
-        "prose": "",
-        "gallery_aspect": "4 / 5",
-        "footnote": "",
-        "cta_label": "",
-        "cta_url": "",
-        "media_fallback": "",
-        "media_alt": ""
-      }
+      ]
     },
     "faq": {
       "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "questions",
+        "one_at_a_time": false,
+        "emit_schema": true,
+        "eyebrow": "Questions",
+        "heading": "The technical ones.",
+        "lede": "<p>About the mechanism rather than about the product. Where we do not have a number, the answer says so.</p>",
+        "cta_link": "#buy",
+        "help_link": "/pages/contact"
+      },
       "blocks": {
         "q1": {
           "type": "question",
@@ -377,22 +316,7 @@
         "q4",
         "q5",
         "q6"
-      ],
-      "settings": {
-        "color_scheme": "paper",
-        "anchor_id": "questions",
-        "one_at_a_time": false,
-        "emit_schema": true,
-        "eyebrow": "Questions",
-        "heading": "The technical ones.",
-        "lede": "<p>About the mechanism rather than about the product. Where we do not have a number, the answer says so.</p>",
-        "help_prefix": "Something not here?",
-        "help_label": "Phone or email us",
-        "help_link": "/pages/contact",
-        "cta_label": "Buy a pair",
-        "cta_link": "#buy",
-        "cta_note": "Two decisions and a quantity. No account needed."
-      }
+      ]
     },
     "buy": {
       "type": "buy-widget",
@@ -654,6 +578,19 @@
         "guide_link_url": "",
         "guide_close_label": "Close"
       }
+    },
+    "close": {
+      "type": "closing-cta",
+      "settings": {
+        "color_scheme": "ink",
+        "anchor_id": "close",
+        "eyebrow": "The product",
+        "heading": "The mechanism is the argument. This is the sock.",
+        "cta_label": "Buy a pair",
+        "cta_url": "#buy",
+        "alt_label": "How to wash them",
+        "alt_url": "/pages/care-and-washing"
+      }
     }
   },
   "order": [
@@ -665,6 +602,7 @@
     "testing",
     "failure",
     "faq",
-    "buy"
+    "buy",
+    "close"
   ]
 }

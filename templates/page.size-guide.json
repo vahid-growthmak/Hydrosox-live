@@ -35,49 +35,43 @@
     },
     "chart": {
       "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "split",
+        "numbered": false,
+        "anchor_id": "bands",
+        "eyebrow": "The four bands",
+        "heading": "The four bands",
+        "lede": "<p>The same measurements appear in the size guide that opens over the buy widget. They are read from one place, so the two cannot disagree.</p>",
+        "row_density": "compact"
+      },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "S",
-            "body": "<p>Foot length 22.0 – 24.0 cm. Fits UK 3–5, EU 36–38, US 4–6.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>Foot length 22.0 – 24.0 cm. Fits UK 3–5, EU 36–38, US 4–6.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "M",
-            "body": "<p>Foot length 24.5 – 26.5 cm. Fits UK 6–8, EU 39–42, US 6.5–9.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>Foot length 24.5 – 26.5 cm. Fits UK 6–8, EU 39–42, US 6.5–9.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "L",
-            "body": "<p>Foot length 27.0 – 29.0 cm. Fits UK 9–11, EU 43–46, US 9.5–12.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>Foot length 27.0 – 29.0 cm. Fits UK 9–11, EU 43–46, US 9.5–12.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
             "title": "XL",
-            "body": "<p>Foot length 29.5 – 32.0 cm. Fits UK 12–14, EU 47–49, US 12.5–14.5.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>Foot length 29.5 – 32.0 cm. Fits UK 12–14, EU 47–49, US 12.5–14.5.</p>"
           }
         }
       },
@@ -86,78 +80,45 @@
         "i2",
         "i3",
         "i4"
-      ],
-      "settings": {
-        "color_scheme": "paper",
-        "layout": "list",
-        "mirror": false,
-        "numbered": false,
-        "row_density": "standard",
-        "hide_rule": false,
-        "anchor_id": "bands",
-        "eyebrow": "The four bands",
-        "heading": "The four bands",
-        "head_note": "",
-        "link_label": "",
-        "link_url": "",
-        "link2_label": "",
-        "link2_url": "",
-        "lede": "<p>The same measurements appear in the size guide that opens over the buy widget. They are read from one place, so the two cannot disagree.</p>",
-        "lead_first_para": false,
-        "prose": "",
-        "gallery_aspect": "4 / 5",
-        "footnote": "",
-        "cta_label": "",
-        "cta_url": "",
-        "media_fallback": "",
-        "media_alt": ""
-      }
+      ]
     },
     "howto": {
       "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "band",
+        "numbered": false,
+        "anchor_id": "measuring",
+        "eyebrow": "Measuring and choosing",
+        "heading": "Measuring and choosing"
+      },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "How to measure",
-            "body": "<p>Stand on a sheet of paper with your heel against a wall, mark the tip of your longest toe, and measure from the wall to the mark. Do it in the afternoon — feet are slightly larger later in the day.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>Stand on a sheet of paper with your heel against a wall, mark the tip of your longest toe, and measure from the wall to the mark. Do it in the afternoon — feet are slightly larger later in the day.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Between two sizes",
-            "body": "<p>Take the larger one. These are a close, stretchy fit, and a size down grips the toes and shortens the life of the membrane.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>Take the larger one. These are a close, stretchy fit, and a size down grips the toes and shortens the life of the membrane.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "Measure both feet",
-            "body": "<p>Most people have one foot slightly larger than the other. Size to the larger one. It is a small thing and it is the reason a lot of socks feel right on one foot and tight on the other.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>Most people have one foot slightly larger than the other. Size to the larger one. It is a small thing and it is the reason a lot of socks feel right on one foot and tight on the other.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
             "title": "Inside boots and cycling shoes",
-            "body": "<p>They sit at roughly the bulk of a mid-weight sock. Snug walking boots and race-fit cycling shoes are where that matters — the use-case pages cover each in more detail.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>They sit at roughly the bulk of a mid-weight sock. Snug walking boots and race-fit cycling shoes are where that matters — the use-case pages cover each in more detail.</p>"
           }
         }
       },
@@ -166,35 +127,20 @@
         "i2",
         "i3",
         "i4"
-      ],
-      "settings": {
-        "color_scheme": "wash",
-        "layout": "list",
-        "mirror": false,
-        "numbered": false,
-        "row_density": "standard",
-        "hide_rule": false,
-        "anchor_id": "measuring",
-        "eyebrow": "Measuring and choosing",
-        "heading": "Measuring and choosing",
-        "head_note": "",
-        "link_label": "",
-        "link_url": "",
-        "link2_label": "",
-        "link2_url": "",
-        "lede": "",
-        "lead_first_para": false,
-        "prose": "",
-        "gallery_aspect": "4 / 5",
-        "footnote": "",
-        "cta_label": "",
-        "cta_url": "",
-        "media_fallback": "",
-        "media_alt": ""
-      }
+      ]
     },
     "faq": {
       "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "questions",
+        "one_at_a_time": false,
+        "emit_schema": true,
+        "eyebrow": "Questions",
+        "heading": "Before you choose a band.",
+        "cta_link": "#buy",
+        "help_link": "/pages/contact"
+      },
       "blocks": {
         "q1": {
           "type": "question",
@@ -230,22 +176,7 @@
         "q2",
         "q3",
         "q4"
-      ],
-      "settings": {
-        "color_scheme": "paper",
-        "anchor_id": "questions",
-        "one_at_a_time": false,
-        "emit_schema": true,
-        "eyebrow": "Questions",
-        "heading": "Before you choose a band.",
-        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
-        "help_prefix": "Something not here?",
-        "help_label": "Phone or email us",
-        "help_link": "/pages/contact",
-        "cta_label": "Buy a pair",
-        "cta_link": "#buy",
-        "cta_note": "Two decisions and a quantity. No account needed."
-      }
+      ]
     },
     "buy": {
       "type": "buy-widget",
@@ -507,6 +438,19 @@
         "guide_link_url": "",
         "guide_close_label": "Close"
       }
+    },
+    "close": {
+      "type": "closing-cta",
+      "settings": {
+        "color_scheme": "ink",
+        "anchor_id": "close",
+        "eyebrow": "The product",
+        "heading": "Measured, and ready to order.",
+        "cta_label": "Buy a pair",
+        "cta_url": "#buy",
+        "alt_label": "Care and washing",
+        "alt_url": "/pages/care-and-washing"
+      }
     }
   },
   "order": [
@@ -514,6 +458,7 @@
     "chart",
     "howto",
     "faq",
-    "buy"
+    "buy",
+    "close"
   ]
 }

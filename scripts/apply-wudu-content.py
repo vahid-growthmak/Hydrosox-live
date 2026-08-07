@@ -283,6 +283,21 @@ def main():
     # --------------------------------------------------------------- quantity
     S["buy"]["settings"]["default_quantity"] = 3
 
+    # ------------------------------------------------- presentation (2026-08-07)
+    # The client's wudu mockup, layout only — not a word moves. The rhythm rule
+    # holds: no two adjacent sections share more than one of layout, scheme and
+    # heading side.
+    S["conditions"]["settings"].update({
+        "layout": "steps", "color_scheme": "paper", "numbered": True})
+    S["credentials"]["settings"].update({
+        "layout": "split", "color_scheme": "wash"})
+    # Band on ink: full-width header, the three everyday cases as outlined
+    # cards on the dark ground — the page's turn from argument to reality.
+    S["everyday"]["settings"].update({
+        "layout": "band", "color_scheme": "ink"})
+    S["travel"]["settings"].update({
+        "layout": "band", "color_scheme": "paper"})
+
     # ------------------------------------------------------------------ order
     order = ["crumb", "hero", "certificate", "conditions", "credentials",
              "everyday", "travel", "buy", "reviews", "faq", "scholarly", "close"]

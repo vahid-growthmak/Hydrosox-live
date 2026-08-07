@@ -2316,3 +2316,19 @@
 .hs-cols__caption {
   margin-top: 0.75rem;
 }
+
+/* Band and stack cards, on the schemes the wash fill cannot serve. On a wash
+   section the wash card would vanish into its own background, so the cards go
+   to paper; on ink they go to outlined boxes, since a light tile on the dark
+   ground would shout. All by scheme token — the cards restate the surface
+   system rather than naming colours. */
+.hs-scheme-wash .hs-cols__grid--band .hs-cols__card,
+.hs-scheme-wash .hs-cols__grid--stack .hs-cols__card {
+  background: var(--paper);
+}
+
+.hs-scheme-ink .hs-cols__grid--band .hs-cols__card,
+.hs-scheme-ink .hs-cols__grid--stack .hs-cols__card {
+  background: transparent;
+  border-color: var(--rule);
+}

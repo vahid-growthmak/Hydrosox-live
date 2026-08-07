@@ -112,13 +112,19 @@ def main():
     # 2 — what it is. The heading is the best sentence on the page and stays;
     # the body extends to carry the specification summary the category page
     # must NOT contain.
+    # The client's mockup: the section's two callout diagrams side by side
+    # under the heading — the sock with its construction labelled, and the
+    # layer infographic. Gallery is the layout that runs image blocks across
+    # the full width under a band-style header.
+    #
+    # The pickers ship empty because the two diagram files exist only in the
+    # client's mockup so far — they are not in Downloads, the theme's assets or
+    # Shopify Files. Until they are chosen in the theme editor the slots render
+    # the neutral placeholder; nothing else about the section waits for them.
     add('about', od(('type', 'content-columns'), ('settings', od(
         ('color_scheme', 'wash'),
-        ('layout', 'media'),
-        # Heading right, photograph left — the buy widget above has just shown
-        # the same image on the LEFT of its own grid, so repeating that
-        # arrangement made the two sections read as one.
-        ('mirror', True),
+        ('layout', 'gallery'),
+        ('gallery_aspect', '1 / 1'),
         ('anchor_id', 'what-it-is'),
         ('eyebrow', 'What it is'),
         ('heading', 'A membrane, sealed inside a knitted sock.'),
@@ -130,15 +136,26 @@ def main():
          'it for a hill, a commute, a shift or for wudu.</p>'),
         ('link_label', 'The three layers, in section'),
         ('link_url', '/pages/technology'),
-        ('media_fallback', 'hydrosox-colourways.jpg'),
-        ('media_alt', 'Four HydroSox colourways standing unsupported'),
-    ))))
+    )), ('blocks', od(
+        ('d1', od(('type', 'image'), ('settings', od(
+            ('image_alt', 'HydroSox construction, labelled: ribbed cuff, '
+                          'breathable mesh, heel-fit design, non-slip sole, '
+                          'seamless toe'))))),
+        ('d2', od(('type', 'image'), ('settings', od(
+            ('image_alt', 'The three layers in section: waterproof barrier, '
+                          'moisture management, comfort and durability'))))),
+    )), ('block_order', ['d1', 'd2'])))
 
     # 3 — the full specification: the section that makes this page distinct
     # from the category hub. Four rows are deliberately absent until the client
     # confirms them — weight, height in centimetres, fibre composition and
     # country of manufacture. A plausible-sounding value in any of them would
     # be a guess published as a fact.
+    # The same eleven rows, as collapsible rows — the client's mockup shows
+    # the specification folded behind plus-marks rather than laid out in full.
+    # Word-for-word the same content; each row's label is the summary and its
+    # value the panel. The section's own CTA and help line are suppressed so
+    # the fold stays a fold and not another call to action.
     spec_rows = [
         ('Construction', 'Three layers: knitted lining, membrane, knitted wear face.'),
         ('Membrane', 'Porelle®, licensed third-party waterproof-breathable laminate.'),
@@ -155,24 +172,22 @@ def main():
     spec, spec_order = collections.OrderedDict(), []
     for n, (label, value) in enumerate(spec_rows, 1):
         k = 'sp%d' % n
-        spec[k] = od(('type', 'item'), ('settings', od(
-            ('title', label), ('body', '<p>%s</p>' % value))))
+        spec[k] = od(('type', 'question'), ('settings', od(
+            ('question', label), ('answer', '<p>%s</p>' % value))))
         spec_order.append(k)
-    add('specification', od(('type', 'content-columns'), ('settings', od(
+    add('specification', od(('type', 'faq-accordion'), ('settings', od(
         ('color_scheme', 'paper'),
-        # Split rows — label beside value — which is what eleven rows of
-        # CONSTRUCTION/MEMBRANE/HEIGHT actually are: a specification sheet,
-        # not prose.
-        ('layout', 'split'),
-        ('numbered', False),
-        ('row_density', 'compact'),
         ('anchor_id', 'specification'),
+        ('one_at_a_time', False),
+        ('emit_schema', False),
         ('eyebrow', 'Specification'),
         ('heading', 'Everything we can state.'),
         ('lede', '<p>Every figure here is checkable, and every gap is a fact we '
                  'are still confirming rather than a guess. Weight, height in '
                  'centimetres, fibre composition and country of manufacture are '
                  'published the moment they are.</p>'),
+        ('help_label', ''),
+        ('cta_label', ''),
     )), ('blocks', spec), ('block_order', spec_order)))
 
     # 4 — colourways, one photograph per colour.

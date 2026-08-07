@@ -272,106 +272,123 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "wash",
-        "layout": "media",
-        "mirror": true,
+        "layout": "gallery",
+        "gallery_aspect": "1 / 1",
         "anchor_id": "what-it-is",
         "eyebrow": "What it is",
         "heading": "A membrane, sealed inside a knitted sock.",
         "head_note": "<p>A crew-height waterproof sock built in three layers: a knitted lining against the skin, a licensed Porelle® waterproof-breathable membrane in the middle, and a knitted wear face on the outside. One height, one construction, four colours, four sizes. The same sock whether you bought it for a hill, a commute, a shift or for wudu.</p>",
         "link_label": "The three layers, in section",
-        "link_url": "/pages/technology",
-        "media_fallback": "hydrosox-colourways.jpg",
-        "media_alt": "Four HydroSox colourways standing unsupported"
-      }
+        "link_url": "/pages/technology"
+      },
+      "blocks": {
+        "d1": {
+          "type": "image",
+          "settings": {
+            "image_alt": "HydroSox construction, labelled: ribbed cuff, breathable mesh, heel-fit design, non-slip sole, seamless toe"
+          }
+        },
+        "d2": {
+          "type": "image",
+          "settings": {
+            "image_alt": "The three layers in section: waterproof barrier, moisture management, comfort and durability"
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2"
+      ]
     },
     "specification": {
-      "type": "content-columns",
+      "type": "faq-accordion",
       "settings": {
         "color_scheme": "paper",
-        "layout": "split",
-        "numbered": false,
-        "row_density": "compact",
         "anchor_id": "specification",
+        "one_at_a_time": false,
+        "emit_schema": false,
         "eyebrow": "Specification",
         "heading": "Everything we can state.",
-        "lede": "<p>Every figure here is checkable, and every gap is a fact we are still confirming rather than a guess. Weight, height in centimetres, fibre composition and country of manufacture are published the moment they are.</p>"
+        "lede": "<p>Every figure here is checkable, and every gap is a fact we are still confirming rather than a guess. Weight, height in centimetres, fibre composition and country of manufacture are published the moment they are.</p>",
+        "help_label": "",
+        "cta_label": ""
       },
       "blocks": {
         "sp1": {
-          "type": "item",
+          "type": "question",
           "settings": {
-            "title": "Construction",
-            "body": "<p>Three layers: knitted lining, membrane, knitted wear face.</p>"
+            "question": "Construction",
+            "answer": "<p>Three layers: knitted lining, membrane, knitted wear face.</p>"
           }
         },
         "sp2": {
-          "type": "item",
+          "type": "question",
           "settings": {
-            "title": "Membrane",
-            "body": "<p>Porelle®, licensed third-party waterproof-breathable laminate.</p>"
+            "question": "Membrane",
+            "answer": "<p>Porelle®, licensed third-party waterproof-breathable laminate.</p>"
           }
         },
         "sp3": {
-          "type": "item",
+          "type": "question",
           "settings": {
-            "title": "Height",
-            "body": "<p>Crew.</p>"
+            "question": "Height",
+            "answer": "<p>Crew.</p>"
           }
         },
         "sp4": {
-          "type": "item",
+          "type": "question",
           "settings": {
-            "title": "Sizes",
-            "body": "<p>S (UK 3–5) · M (UK 6–8) · L (UK 9–11) · XL (UK 12–14).</p>"
+            "question": "Sizes",
+            "answer": "<p>S (UK 3–5) · M (UK 6–8) · L (UK 9–11) · XL (UK 12–14).</p>"
           }
         },
         "sp5": {
-          "type": "item",
+          "type": "question",
           "settings": {
-            "title": "Sized on",
-            "body": "<p>Foot length in centimetres, not shoe size.</p>"
+            "question": "Sized on",
+            "answer": "<p>Foot length in centimetres, not shoe size.</p>"
           }
         },
         "sp6": {
-          "type": "item",
+          "type": "question",
           "settings": {
-            "title": "Colours",
-            "body": "<p>Black · Black / Grey · Black / Navy · White.</p>"
+            "question": "Colours",
+            "answer": "<p>Black · Black / Grey · Black / Navy · White.</p>"
           }
         },
         "sp7": {
-          "type": "item",
+          "type": "question",
           "settings": {
-            "title": "Chemistry",
-            "body": "<p>PFOA free.</p>"
+            "question": "Chemistry",
+            "answer": "<p>PFOA free.</p>"
           }
         },
         "sp8": {
-          "type": "item",
+          "type": "question",
           "settings": {
-            "title": "Care",
-            "body": "<p>Cool wash, no softener, no bleach, air dry, never tumble dry or iron.</p>"
+            "question": "Care",
+            "answer": "<p>Cool wash, no softener, no bleach, air dry, never tumble dry or iron.</p>"
           }
         },
         "sp9": {
-          "type": "item",
+          "type": "question",
           "settings": {
-            "title": "Warranty",
-            "body": "<p>Statutory rights apply in full; no additional warranty offered at present.</p>"
+            "question": "Warranty",
+            "answer": "<p>Statutory rights apply in full; no additional warranty offered at present.</p>"
           }
         },
         "sp10": {
-          "type": "item",
+          "type": "question",
           "settings": {
-            "title": "Origin",
-            "body": "<p>UK company, UK warehouse.</p>"
+            "question": "Origin",
+            "answer": "<p>UK company, UK warehouse.</p>"
           }
         },
         "sp11": {
-          "type": "item",
+          "type": "question",
           "settings": {
-            "title": "Price",
-            "body": "<p>£20.00 a pair, £16.00 a pair in a five-pack.</p>"
+            "question": "Price",
+            "answer": "<p>£20.00 a pair, £16.00 a pair in a five-pack.</p>"
           }
         }
       },

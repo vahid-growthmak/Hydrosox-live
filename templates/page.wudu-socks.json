@@ -83,8 +83,8 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "paper",
-        "layout": "list",
-        "numbered": false,
+        "layout": "steps",
+        "numbered": true,
         "heading": "The three properties, one at a time",
         "eyebrow": "The three properties"
       },
@@ -123,7 +123,7 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "wash",
-        "layout": "list",
+        "layout": "split",
         "numbered": false,
         "heading": "Why this pair rather than another",
         "head_note": "<p>The differentiator is the named membrane. Everything else in this category tends to be asserted rather than evidenced.</p>",
@@ -163,7 +163,7 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "paper",
-        "layout": "list",
+        "layout": "band",
         "numbered": false,
         "heading": "Hajj, Umrah and travel",
         "eyebrow": "Travel"
@@ -602,8 +602,8 @@
     "everyday": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "wash",
-        "layout": "list",
+        "color_scheme": "ink",
+        "layout": "band",
         "numbered": false,
         "anchor_id": "every-day",
         "eyebrow": "Every day",

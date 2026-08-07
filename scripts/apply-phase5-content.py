@@ -120,6 +120,12 @@ def faq(anchor, eyebrow, heading, lede, questions, emit=False):
         ("blocks", blocks), ("block_order", order)])
 
 
+def load_index():
+    raw = (TPL / "index.json").read_text()
+    return json.loads(raw[_lead_comments(raw):],
+                      object_pairs_hook=collections.OrderedDict)
+
+
 # ===========================================================================
 def technology():
     header, d = read("page.technology.json")
@@ -143,10 +149,40 @@ def technology():
         "That asymmetry is the entire technology, and it has been in outdoor "
         "clothing for decades.")
 
-    S["layers"]["settings"]["footnote"] = (
-        "The middle layer is the one doing the waterproofing, and it is the "
-        "one you never touch. That is deliberate: a membrane exposed to "
-        "abrasion is a membrane with a short life.")
+    # The construction section becomes the homepage's scroll-scrub — the
+    # reader takes the sock apart with their own scrolling, which is the one
+    # treatment where the section demonstrates the thing it describes. Copied
+    # wholesale from index.json so the layer text and the frames can never
+    # drift between the two pages; the three layer bodies there are already
+    # word-identical to what this page carried as a list. The heading stays
+    # this page's own, and the eyebrow becomes "The construction" — it said
+    # "The problem", the same copy-paste error the wudu brief documents, and
+    # the client's mockup shows the corrected label.
+    idx = load_index()
+    layers = json.loads(json.dumps(idx["sections"]["construction"]),
+                        object_pairs_hook=collections.OrderedDict)
+    layers["settings"].update({
+        "anchor_id": "construction",
+        "eyebrow": "The construction",
+        "heading": "Three layers, and what each one is for",
+        "lede": rich(
+            "The middle layer is the one doing the waterproofing, and it is "
+            "the one you never touch. That is deliberate: a membrane exposed "
+            "to abrasion is a membrane with a short life."),
+        # A shorter track than the homepage's: this page has more below it.
+        "track_height": 220,
+    })
+    # The homepage section ends with a link block pointing at this very page;
+    # a self-link is dropped, everything else is kept.
+    keep = collections.OrderedDict()
+    for bk in (layers.get("block_order") or []):
+        b = layers["blocks"][bk]
+        if b.get("type") == "link" and "/pages/technology" in str(b.get("settings", {})):
+            continue
+        keep[bk] = b
+    layers["blocks"] = keep
+    layers["block_order"] = list(keep)
+    S["layers"] = layers
 
     # The sweat objection decides more sales than any other, and every
     # competitor page in the mapped set either ignores it or overclaims.
@@ -253,8 +289,32 @@ def technology():
     # questions, and the use-case argument belongs to the pages that own it.
     for dead in ("activities", "wont"):
         S.pop(dead, None)
+    # Presentation, to the client's mockup: breathability as split rows, the
+    # test-figures note on the blue stating-a-limit band, failure as a
+    # full-width band of four cards.
+    S["breathability"]["settings"].update({
+        "layout": "split", "color_scheme": "wash"})
+    S["testing"]["settings"]["color_scheme"] = "blue"
+    S["failure"]["settings"].update({
+        "layout": "band", "color_scheme": "paper"})
+
+    # The closing band the mockup adds, words from the mockup verbatim.
+    S["close"] = collections.OrderedDict([
+        ("type", "closing-cta"),
+        ("settings", collections.OrderedDict([
+            ("color_scheme", "ink"),
+            ("anchor_id", "close"),
+            ("eyebrow", "The product"),
+            ("heading", "The mechanism is the argument. This is the sock."),
+            ("cta_label", "Buy a pair"),
+            ("cta_url", "#buy"),
+            ("alt_label", "How to wash them"),
+            ("alt_url", "/pages/care-and-washing"),
+        ])),
+    ])
+
     d["order"] = ["crumb", "intro", "membrane", "layers", "breathability",
-                  "testing", "failure", "faq", "buy"]
+                  "testing", "failure", "faq", "buy", "close"]
     orphans = [k for k in S if k not in d["order"]]
     if orphans:
         raise SystemExit("technology: orphaned %s" % orphans)
@@ -529,7 +589,31 @@ def size_guide():
           "is quicker than guessing.")],
         emit=True)
 
-    d["order"] = ["intro", "chart", "howto", "faq", "buy"]
+    # Presentation: the bands as split rows — the band letter beside its full
+    # sentence, which is as close to the mockup's table as the copy can get
+    # without breaking a sentence into cells. Measuring as a band of four
+    # cards, exactly the mockup's two-by-two.
+    S["chart"]["settings"].update({
+        "layout": "split", "color_scheme": "paper", "row_density": "compact"})
+    S["howto"]["settings"].update({
+        "layout": "band", "color_scheme": "wash"})
+
+    # The closing band the mockup adds, words from the mockup verbatim.
+    S["close"] = collections.OrderedDict([
+        ("type", "closing-cta"),
+        ("settings", collections.OrderedDict([
+            ("color_scheme", "ink"),
+            ("anchor_id", "close"),
+            ("eyebrow", "The product"),
+            ("heading", "Measured, and ready to order."),
+            ("cta_label", "Buy a pair"),
+            ("cta_url", "#buy"),
+            ("alt_label", "Care and washing"),
+            ("alt_url", "/pages/care-and-washing"),
+        ])),
+    ])
+
+    d["order"] = ["intro", "chart", "howto", "faq", "buy", "close"]
     orphans = [k for k in S if k not in d["order"]]
     if orphans:
         raise SystemExit("size-guide: orphaned %s" % orphans)
@@ -631,6 +715,17 @@ def care():
           "membrane far sooner than elapsed time does, and three of the four "
           "are in your control.")],
         emit=True)
+
+    # Presentation: the seven wash steps on the numbered rail, the damage
+    # list as cards, the what-changed triage as the dark emphasis band, and
+    # the no-figure statement on the blue stating-a-limit scheme.
+    S["wash"]["settings"].update({
+        "layout": "steps", "color_scheme": "paper", "numbered": True})
+    S["damage"]["settings"].update({
+        "layout": "cards", "color_scheme": "wash"})
+    S["failing"]["settings"].update({
+        "layout": "focus", "color_scheme": "ink", "mirror": True})
+    S["life"]["settings"]["color_scheme"] = "blue"
 
     d["order"] = ["intro", "wash", "damage", "failing", "life", "faq", "tail"]
     orphans = [k for k in S if k not in d["order"]]

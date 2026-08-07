@@ -46,60 +46,48 @@
     },
     "standard": {
       "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "anchor_id": "standard",
+        "eyebrow": "The standard",
+        "heading": "The standard this feed will be held to"
+      },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "Verified buyers only",
-            "body": "<p>A review has to come from an order. No unverified submissions, and no reviews written by us.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>A review has to come from an order. No unverified submissions, and no reviews written by us.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Negative reviews stay up",
-            "body": "<p>Published alongside the rest, unedited. If the socks disappoint someone, that belongs here.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>Published alongside the rest, unedited. If the socks disappoint someone, that belongs here.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "Filterable by activity and rating",
-            "body": "<p>A commuter's experience is more useful to another commuter than an overall average is. The filters go live with the feed.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>A commuter's experience is more useful to another commuter than an overall average is. The filters go live with the feed.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
             "title": "The aggregate is the real one",
-            "body": "<p>Whatever the average turns out to be is what gets printed, including the rating and the total volume in one line.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>Whatever the average turns out to be is what gets printed, including the rating and the total volume in one line.</p>"
           }
         },
         "i5": {
           "type": "item",
           "settings": {
             "title": "We will not offer anything for a review",
-            "body": "<p>No discount, no free pair, no prize draw. A review bought with an incentive is not evidence, and it is not permitted to be presented as though it were.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>No discount, no free pair, no prize draw. A review bought with an incentive is not evidence, and it is not permitted to be presented as though it were.</p>"
           }
         }
       },
@@ -109,32 +97,7 @@
         "i3",
         "i4",
         "i5"
-      ],
-      "settings": {
-        "color_scheme": "paper",
-        "layout": "list",
-        "mirror": false,
-        "numbered": false,
-        "row_density": "standard",
-        "hide_rule": false,
-        "anchor_id": "standard",
-        "eyebrow": "The standard",
-        "heading": "The standard this feed will be held to",
-        "head_note": "",
-        "link_label": "",
-        "link_url": "",
-        "link2_label": "",
-        "link2_url": "",
-        "lede": "",
-        "lead_first_para": false,
-        "prose": "",
-        "gallery_aspect": "4 / 5",
-        "footnote": "",
-        "cta_label": "",
-        "cta_url": "",
-        "media_fallback": "",
-        "media_alt": ""
-      }
+      ]
     },
     "meanwhile": {
       "type": "content-columns",
@@ -206,6 +169,16 @@
     },
     "faq": {
       "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "questions",
+        "one_at_a_time": false,
+        "emit_schema": true,
+        "eyebrow": "Questions",
+        "heading": "About the feed that is not here yet.",
+        "cta_link": "#buy",
+        "help_link": "/pages/contact"
+      },
       "blocks": {
         "q1": {
           "type": "question",
@@ -225,22 +198,7 @@
       "block_order": [
         "q1",
         "q2"
-      ],
-      "settings": {
-        "color_scheme": "paper",
-        "anchor_id": "questions",
-        "one_at_a_time": false,
-        "emit_schema": true,
-        "eyebrow": "Questions",
-        "heading": "About the feed that is not here yet.",
-        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
-        "help_prefix": "Something not here?",
-        "help_label": "Phone or email us",
-        "help_link": "/pages/contact",
-        "cta_label": "Buy a pair",
-        "cta_link": "#buy",
-        "cta_note": "Two decisions and a quantity. No account needed."
-      }
+      ]
     },
     "feed": {
       "type": "review-module",

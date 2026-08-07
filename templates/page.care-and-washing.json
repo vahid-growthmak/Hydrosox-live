@@ -27,8 +27,8 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "paper",
-        "layout": "list",
-        "numbered": false,
+        "layout": "steps",
+        "numbered": true,
         "anchor_id": "washing",
         "eyebrow": "Washing instructions",
         "heading": "Washing instructions"
@@ -98,7 +98,7 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "wash",
-        "layout": "list",
+        "layout": "cards",
         "numbered": false,
         "anchor_id": "damage",
         "eyebrow": "What damages the membrane",
@@ -144,7 +144,7 @@
     "life": {
       "type": "centre-note",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "blue",
         "heading_size": "h3",
         "eyebrow": "Expected lifespan",
         "heading": "We do not publish a figure for this.",
@@ -168,15 +168,16 @@
     "failing": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
-        "layout": "list",
+        "color_scheme": "ink",
+        "layout": "focus",
         "numbered": false,
         "anchor_id": "if-it-changes",
         "eyebrow": "If something changes",
         "heading": "If a pair stops keeping water out.",
         "lede": "<p>There are three usual explanations, and they need different responses.</p>",
         "link_label": "Where you stand if it is a fault",
-        "link_url": "/pages/warranty"
+        "link_url": "/pages/warranty",
+        "mirror": true
       },
       "blocks": {
         "i1": {

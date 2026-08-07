@@ -7,35 +7,34 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-/* FAQ page, composed by scripts/build-faq-page.py.
-   Re-run that script rather than hand-editing; the question text itself is
-   editable in the Shopify theme editor. */
 {
   "sections": {
     "intro": {
       "type": "centre-note",
       "settings": {
         "color_scheme": "paper",
-        "heading_tag": "h1",
-        "heading_size": "h2",
+        "hide_rule": true,
+        "anchor_id": "",
+        "max_width": 46,
         "eyebrow": "Questions",
         "heading": "Everything we get asked, grouped.",
+        "heading_tag": "h1",
+        "heading_size": "h2",
+        "lead_first_para": false,
         "body": "<p>Thirty-one questions, in seven groups. The eight on the homepage and the eight on the waterproof socks page are different questions, not the same ones reworded — if one of these contradicts something elsewhere on the site, the more specific page is the one to trust.</p><p>Where the answer is “it depends”, it says what it depends on. Where we do not know, it says that instead of guessing.</p>",
-        "hide_rule": true
+        "footnote": "",
+        "pointer_label": "",
+        "pointer_link_label": "",
+        "pointer_url": "",
+        "cta_label": "",
+        "cta_url": "",
+        "link_label": "",
+        "link_url": "",
+        "tail_note": ""
       }
     },
     "groups": {
       "type": "link-cards",
-      "settings": {
-        "color_scheme": "wash",
-        "columns": 3,
-        "numbered": false,
-        "hide_rule": true,
-        "anchor_id": "groups",
-        "eyebrow": "Jump to",
-        "heading": "Six groups.",
-        "lede": "<p>Each one is a section further down this page.</p>"
-      },
       "blocks": {
         "g1": {
           "type": "card",
@@ -43,7 +42,9 @@
             "title": "The product",
             "body": "What the sock actually is.",
             "meta": "6 questions",
-            "link": "#product"
+            "link": "#product",
+            "image_fallback": "",
+            "image_alt": ""
           }
         },
         "g2": {
@@ -52,7 +53,9 @@
             "title": "Wudu and masah",
             "body": "The everyday questions.",
             "meta": "6 questions",
-            "link": "#wudu"
+            "link": "#wudu",
+            "image_fallback": "",
+            "image_alt": ""
           }
         },
         "g3": {
@@ -61,7 +64,9 @@
             "title": "Sizing and fit",
             "body": "The bands are on the size guide.",
             "meta": "5 questions",
-            "link": "#sizing"
+            "link": "#sizing",
+            "image_fallback": "",
+            "image_alt": ""
           }
         },
         "g4": {
@@ -70,7 +75,9 @@
             "title": "Washing and lifespan",
             "body": "The full instructions are on the care page.",
             "meta": "5 questions",
-            "link": "#care"
+            "link": "#care",
+            "image_fallback": "",
+            "image_alt": ""
           }
         },
         "g5": {
@@ -79,7 +86,9 @@
             "title": "Delivery, returns and warranty",
             "body": "What is settled, and what is not.",
             "meta": "6 questions",
-            "link": "#delivery"
+            "link": "#delivery",
+            "image_fallback": "",
+            "image_alt": ""
           }
         },
         "g6": {
@@ -88,7 +97,9 @@
             "title": "The company",
             "body": "Who is behind this.",
             "meta": "4 questions",
-            "link": "#company"
+            "link": "#company",
+            "image_fallback": "",
+            "image_alt": ""
           }
         }
       },
@@ -99,18 +110,430 @@
         "g4",
         "g5",
         "g6"
-      ]
+      ],
+      "settings": {
+        "color_scheme": "wash",
+        "columns": 3,
+        "numbered": false,
+        "card_fill": "outline",
+        "image_fit": "cover",
+        "hide_rule": true,
+        "anchor_id": "groups",
+        "eyebrow": "Jump to",
+        "heading": "Six groups.",
+        "lede": "<p>Each one is a section further down this page.</p>"
+      }
+    },
+    "product": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Can water get in over the top of the sock?",
+            "answer": "<p>Yes. A sock is open at the cuff, so water deeper than the cuff will go in, exactly as it would with any sock. No waterproof sock behaves otherwise, and any brand implying it does is overstating.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Do waterproof socks work in snow?",
+            "answer": "<p>They keep melted snow out well, and they block wind, which is most of what makes feet cold. They are not insulated, though, so in genuinely cold conditions you want them for the dryness rather than for the warmth.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Can I wear them for swimming, or in the shower?",
+            "answer": "<p>They are not designed for immersion. They are built for water arriving from outside during normal use — rain, spray, puddles, wet ground — not for being submerged, and we would rather say so than take the sale.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Will they start to smell?",
+            "answer": "<p>They are no more prone to it than any sock, provided they are washed and air dried between wears rather than left damp in a bag. A membrane does not cause odour; a wet sock left in a boot overnight does.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Do they stretch out over time?",
+            "answer": "<p>They loosen slightly with wear, as knitted socks do. The shaped fit is built to hold longer than a standard sock because it is structural rather than decorative — it is also the property that matters for masah.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Can I wear them without shoes?",
+            "answer": "<p>Around the house, yes. But the outer knit is the wear surface, and walking on hard floors or outside without footwear abrades it far faster than a boot does. It is the quickest way to shorten their life.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "product",
+        "one_at_a_time": false,
+        "emit_schema": false,
+        "eyebrow": "The product",
+        "heading": "What the sock actually is.",
+        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair",
+        "cta_link": "#buy",
+        "cta_note": "Two decisions and a quantity. No account needed."
+      }
+    },
+    "wudu": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need to wash my feet before putting them on?",
+            "answer": "<p>Yes. The sources are consistent that the footwear must be put on after a complete wudu in which the feet were washed. Masah applies from the next wudu onwards, not from the one during which you put them on.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Can I wear them for Hajj or Umrah?",
+            "answer": "<p>Many people buy them for pilgrimage travel, where facilities are shared and there is little chance to dry anything. On the separate question of footwear restrictions in ihram, ask a scholar — that is not a question we should be answering.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Can children use them for wudu?",
+            "answer": "<p>Our sizes start at UK 3, so they fit older children. On whether and from what age masah applies for a child, ask a scholar rather than a sock company.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "What happens if water gets inside them during wudu?",
+            "answer": "<p>This is addressed in the sources and it is a point we have deliberately not paraphrased, because it matters and because getting it approximately right is worse than not answering. The masah page carries the reviewed wording.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Are these suitable for use at the mosque?",
+            "answer": "<p>There is no reason they would not be. The practical reason people buy them is the places where wudu is harder — offices, sites, airports, universities — rather than a mosque with proper facilities.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Do you sell a separate wudu version?",
+            "answer": "<p>No. It is the same sock, the same membrane and the same construction whichever page you buy it from, at the same price. There is no wudu edition and no wudu premium.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "wudu",
+        "one_at_a_time": false,
+        "emit_schema": false,
+        "eyebrow": "Wudu and masah",
+        "heading": "The everyday questions.",
+        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair",
+        "cta_link": "#buy",
+        "cta_note": "Two decisions and a quantity. No account needed."
+      }
+    },
+    "sizing": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How do I measure my foot?",
+            "answer": "<p>Stand on a sheet of paper with your heel against a wall, mark the tip of your longest toe, and measure from the wall to the mark. That figure in centimetres is what the size bands are set by, and it is more reliable than your shoe size.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "What if I am larger than UK 14?",
+            "answer": "<p>We do not currently make a size above XL, which covers UK 12–14. We would rather tell you that plainly than sell you something that will not fit.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Do they fit wide feet?",
+            "answer": "<p>They are a close, stretchy fit rather than a loose one. If you normally need a wide fitting in shoes, take the larger band — a sock that grips across the width is uncomfortable over a full day and shortens the life of the membrane.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Will they slip down?",
+            "answer": "<p>They are shaped to stay in place through normal wear rather than working loose over a day. If a pair does slip, it is usually a size too large, which is worth checking against the foot-length bands.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Can I wear another sock underneath?",
+            "answer": "<p>You can, but there is usually no need — the inner knit is designed to sit against the skin. Adding a liner underneath adds bulk, which matters most in cycling shoes and safety boots where there is least room.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "sizing",
+        "one_at_a_time": false,
+        "emit_schema": false,
+        "eyebrow": "Sizing and fit",
+        "heading": "The bands are on the size guide.",
+        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair",
+        "cta_link": "#buy",
+        "cta_note": "Two decisions and a quantity. No account needed."
+      }
+    },
+    "care": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How do I dry them quickly?",
+            "answer": "<p>You cannot, safely. Turn them inside out and air dry at room temperature with air moving around them. Never on a radiator and never in a tumble dryer — direct heat is the single most common way a waterproof sock dies.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Can I wash them with the rest of my washing?",
+            "answer": "<p>Yes, on a cool cycle, provided there is no fabric softener in the load and nothing abrasive like zips or Velcro. Softener is the problem more often than temperature is.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "What temperature should I wash them at?",
+            "answer": "<p>Cool, on a gentle cycle. The membrane is a laminate, and heat is what breaks laminates down.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "How do I get mud off them?",
+            "answer": "<p>Rinse under a cold tap first to get the grit out, then wash cool. Grit left in the knit is abrasive against the membrane from the inside, which matters more than the mud does.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Are they still waterproof once they have been punctured?",
+            "answer": "<p>No, and it cannot be repaired. A membrane is a continuous barrier — once it is pierced by a toenail, a thorn or a stone, the water goes through and no spray or reproofing treatment will bring it back.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "care",
+        "one_at_a_time": false,
+        "emit_schema": false,
+        "eyebrow": "Washing and lifespan",
+        "heading": "The full instructions are on the care page.",
+        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair",
+        "cta_link": "#buy",
+        "cta_note": "Two decisions and a quantity. No account needed."
+      }
+    },
+    "delivery": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Where do you deliver to?",
+            "answer": "<p>The United Kingdom, from a UK warehouse. Delivery is free on two pairs or more; on a single pair it is charged at checkout and shown before you pay.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Do you deliver outside the UK?",
+            "answer": "<p>This is still being confirmed and we will not promise a service we cannot yet support. If you are outside the UK, email us and we will tell you honestly where things stand.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return them if I have worn them?",
+            "answer": "<p>Returns are for unworn socks in the original packaging with the seal intact — you may inspect them as you would in a shop. If a pair is faulty, that is a different matter entirely and worn or not makes no difference.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "What if my order does not arrive?",
+            "answer": "<p>Email or phone us with the order number and we will chase it with the courier. Until the parcel is with you, the responsibility for getting it there is ours.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Can I change or cancel an order?",
+            "answer": "<p>If it has not been dispatched, yes — email or phone us straight away. After dispatch it becomes a return, and you have fourteen days from the day the parcel arrives to tell us you are cancelling.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Do you offer exchanges?",
+            "answer": "<p>If a size is wrong, the simplest route is to return the unworn pair and order the right one. Contact us before sending anything back and we will tell you exactly what to do.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "delivery",
+        "one_at_a_time": false,
+        "emit_schema": false,
+        "eyebrow": "Delivery, returns and warranty",
+        "heading": "What is settled, and what is not.",
+        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair",
+        "cta_link": "#buy",
+        "cta_note": "Two decisions and a quantity. No account needed."
+      }
+    },
+    "company": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Where are HydroSox made?",
+            "answer": "<p>We have not published a country of manufacture yet, and we are not going to print one we have not confirmed with the manufacturer. It is a fair question, it will be answered here plainly when we can evidence it, and in the meantime what we can say is that HydroSox is a UK registered company shipping from a UK warehouse.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Do you sell to shops, or wholesale?",
+            "answer": "<p>Yes. There is no public trade pricing and no automated tiering — tell us what you sell and to whom on the trade page, and we will reply with terms that fit.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "How can I pay?",
+            "answer": "<p>Visa, Mastercard, American Express, Apple Pay, Google Pay and Shop Pay. Checkout is guest by default, so no account is needed. We never see or store your full card details.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Is there a shop I can visit?",
+            "answer": "<p>No. HydroSox is online only, from a UK warehouse. The registered address and phone number are on every page of this site rather than behind a contact form, so there is always a person to reach.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "company",
+        "one_at_a_time": false,
+        "emit_schema": false,
+        "eyebrow": "The company",
+        "heading": "Who is behind this.",
+        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair",
+        "cta_link": "#buy",
+        "cta_note": "Two decisions and a quantity. No account needed."
+      }
     },
     "still": {
       "type": "centre-note",
       "settings": {
         "color_scheme": "wash",
-        "heading_size": "h3",
+        "hide_rule": false,
+        "anchor_id": "",
+        "max_width": 46,
         "eyebrow": "Still have a question",
         "heading": "Ask a person.",
+        "heading_tag": "h2",
+        "heading_size": "h3",
+        "lead_first_para": false,
         "body": "<p>The phone number and email are published on every page of this site, not held behind a contact form.</p>",
+        "footnote": "",
+        "pointer_label": "",
+        "pointer_link_label": "",
+        "pointer_url": "",
         "cta_label": "Contact us",
-        "cta_url": "/pages/contact"
+        "cta_url": "/pages/contact",
+        "link_label": "",
+        "link_url": "",
+        "tail_note": ""
       }
     },
     "buy": {
@@ -120,7 +543,8 @@
           "type": "colour",
           "settings": {
             "value": "Black",
-            "colour_one": "#111111"
+            "colour_one": "#111111",
+            "colour_two": ""
           }
         },
         "c2": {
@@ -143,7 +567,8 @@
           "type": "colour",
           "settings": {
             "value": "White",
-            "colour_one": "#f4f6f8"
+            "colour_one": "#f4f6f8",
+            "colour_two": ""
           }
         },
         "z1": {
@@ -187,7 +612,7 @@
           "settings": {
             "label": "Two pairs",
             "quantity": 2,
-            "discount": 3.01
+            "discount": 3.0
           }
         },
         "t3": {
@@ -195,7 +620,7 @@
           "settings": {
             "label": "Three pairs",
             "quantity": 3,
-            "discount": 7.01
+            "discount": 7.0
           }
         },
         "t4": {
@@ -203,7 +628,7 @@
           "settings": {
             "label": "Four pairs",
             "quantity": 4,
-            "discount": 12.01
+            "discount": 12.0
           }
         },
         "t5": {
@@ -211,7 +636,7 @@
           "settings": {
             "label": "Five pairs",
             "quantity": 5,
-            "discount": 20.01
+            "discount": 20.0
           }
         },
         "r1": {
@@ -246,6 +671,7 @@
           "type": "link",
           "settings": {
             "label": "Full product details",
+            "link": "",
             "use_product_url": true
           }
         },
@@ -253,14 +679,16 @@
           "type": "link",
           "settings": {
             "label": "How it is built",
-            "link": "/#construction"
+            "link": "/#construction",
+            "use_product_url": false
           }
         },
         "l3": {
           "type": "link",
           "settings": {
             "label": "Delivery and sizing",
-            "link": "/#faq"
+            "link": "/#faq",
+            "use_product_url": false
           }
         },
         "g1": {
@@ -338,6 +766,7 @@
         "n1",
         "n2"
       ],
+      "disabled": true,
       "settings": {
         "product": "hydrosox-waterproof-socks",
         "color_scheme": "paper",
@@ -348,11 +777,15 @@
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
+        "delivery_charge_pence": 499,
+        "delivery_label": "delivery",
+        "total_label": "total",
         "quantity_label": "Quantity",
         "default_quantity": 2,
         "add_label": "Add to cart",
         "save_label": "Save",
         "per_unit_label": "per pair",
+        "empty_help": "Choose a product for this section in the theme editor.",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
         "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
@@ -360,366 +793,9 @@
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
+        "guide_link_url": "",
         "guide_close_label": "Close"
       }
-    },
-    "product": {
-      "type": "faq-accordion",
-      "settings": {
-        "color_scheme": "paper",
-        "anchor_id": "product",
-        "one_at_a_time": false,
-        "emit_schema": false,
-        "eyebrow": "The product",
-        "heading": "What the sock actually is.",
-        "cta_link": "#buy",
-        "help_link": "/pages/contact"
-      },
-      "blocks": {
-        "q1": {
-          "type": "question",
-          "settings": {
-            "question": "Can water get in over the top of the sock?",
-            "answer": "<p>Yes. A sock is open at the cuff, so water deeper than the cuff will go in, exactly as it would with any sock. No waterproof sock behaves otherwise, and any brand implying it does is overstating.</p>"
-          }
-        },
-        "q2": {
-          "type": "question",
-          "settings": {
-            "question": "Do waterproof socks work in snow?",
-            "answer": "<p>They keep melted snow out well, and they block wind, which is most of what makes feet cold. They are not insulated, though, so in genuinely cold conditions you want them for the dryness rather than for the warmth.</p>"
-          }
-        },
-        "q3": {
-          "type": "question",
-          "settings": {
-            "question": "Can I wear them for swimming, or in the shower?",
-            "answer": "<p>They are not designed for immersion. They are built for water arriving from outside during normal use — rain, spray, puddles, wet ground — not for being submerged, and we would rather say so than take the sale.</p>"
-          }
-        },
-        "q4": {
-          "type": "question",
-          "settings": {
-            "question": "Will they start to smell?",
-            "answer": "<p>They are no more prone to it than any sock, provided they are washed and air dried between wears rather than left damp in a bag. A membrane does not cause odour; a wet sock left in a boot overnight does.</p>"
-          }
-        },
-        "q5": {
-          "type": "question",
-          "settings": {
-            "question": "Do they stretch out over time?",
-            "answer": "<p>They loosen slightly with wear, as knitted socks do. The shaped fit is built to hold longer than a standard sock because it is structural rather than decorative — it is also the property that matters for masah.</p>"
-          }
-        },
-        "q6": {
-          "type": "question",
-          "settings": {
-            "question": "Can I wear them without shoes?",
-            "answer": "<p>Around the house, yes. But the outer knit is the wear surface, and walking on hard floors or outside without footwear abrades it far faster than a boot does. It is the quickest way to shorten their life.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "q1",
-        "q2",
-        "q3",
-        "q4",
-        "q5",
-        "q6"
-      ]
-    },
-    "wudu": {
-      "type": "faq-accordion",
-      "settings": {
-        "color_scheme": "paper",
-        "anchor_id": "wudu",
-        "one_at_a_time": false,
-        "emit_schema": false,
-        "eyebrow": "Wudu and masah",
-        "heading": "The everyday questions.",
-        "cta_link": "#buy",
-        "help_link": "/pages/contact"
-      },
-      "blocks": {
-        "q1": {
-          "type": "question",
-          "settings": {
-            "question": "Do I need to wash my feet before putting them on?",
-            "answer": "<p>Yes. The sources are consistent that the footwear must be put on after a complete wudu in which the feet were washed. Masah applies from the next wudu onwards, not from the one during which you put them on.</p>"
-          }
-        },
-        "q2": {
-          "type": "question",
-          "settings": {
-            "question": "Can I wear them for Hajj or Umrah?",
-            "answer": "<p>Many people buy them for pilgrimage travel, where facilities are shared and there is little chance to dry anything. On the separate question of footwear restrictions in ihram, ask a scholar — that is not a question we should be answering.</p>"
-          }
-        },
-        "q3": {
-          "type": "question",
-          "settings": {
-            "question": "Can children use them for wudu?",
-            "answer": "<p>Our sizes start at UK 3, so they fit older children. On whether and from what age masah applies for a child, ask a scholar rather than a sock company.</p>"
-          }
-        },
-        "q4": {
-          "type": "question",
-          "settings": {
-            "question": "What happens if water gets inside them during wudu?",
-            "answer": "<p>This is addressed in the sources and it is a point we have deliberately not paraphrased, because it matters and because getting it approximately right is worse than not answering. The masah page carries the reviewed wording.</p>"
-          }
-        },
-        "q5": {
-          "type": "question",
-          "settings": {
-            "question": "Are these suitable for use at the mosque?",
-            "answer": "<p>There is no reason they would not be. The practical reason people buy them is the places where wudu is harder — offices, sites, airports, universities — rather than a mosque with proper facilities.</p>"
-          }
-        },
-        "q6": {
-          "type": "question",
-          "settings": {
-            "question": "Do you sell a separate wudu version?",
-            "answer": "<p>No. It is the same sock, the same membrane and the same construction whichever page you buy it from, at the same price. There is no wudu edition and no wudu premium.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "q1",
-        "q2",
-        "q3",
-        "q4",
-        "q5",
-        "q6"
-      ]
-    },
-    "sizing": {
-      "type": "faq-accordion",
-      "settings": {
-        "color_scheme": "paper",
-        "anchor_id": "sizing",
-        "one_at_a_time": false,
-        "emit_schema": false,
-        "eyebrow": "Sizing and fit",
-        "heading": "The bands are on the size guide.",
-        "cta_link": "#buy",
-        "help_link": "/pages/contact"
-      },
-      "blocks": {
-        "q1": {
-          "type": "question",
-          "settings": {
-            "question": "How do I measure my foot?",
-            "answer": "<p>Stand on a sheet of paper with your heel against a wall, mark the tip of your longest toe, and measure from the wall to the mark. That figure in centimetres is what the size bands are set by, and it is more reliable than your shoe size.</p>"
-          }
-        },
-        "q2": {
-          "type": "question",
-          "settings": {
-            "question": "What if I am larger than UK 14?",
-            "answer": "<p>We do not currently make a size above XL, which covers UK 12–14. We would rather tell you that plainly than sell you something that will not fit.</p>"
-          }
-        },
-        "q3": {
-          "type": "question",
-          "settings": {
-            "question": "Do they fit wide feet?",
-            "answer": "<p>They are a close, stretchy fit rather than a loose one. If you normally need a wide fitting in shoes, take the larger band — a sock that grips across the width is uncomfortable over a full day and shortens the life of the membrane.</p>"
-          }
-        },
-        "q4": {
-          "type": "question",
-          "settings": {
-            "question": "Will they slip down?",
-            "answer": "<p>They are shaped to stay in place through normal wear rather than working loose over a day. If a pair does slip, it is usually a size too large, which is worth checking against the foot-length bands.</p>"
-          }
-        },
-        "q5": {
-          "type": "question",
-          "settings": {
-            "question": "Can I wear another sock underneath?",
-            "answer": "<p>You can, but there is usually no need — the inner knit is designed to sit against the skin. Adding a liner underneath adds bulk, which matters most in cycling shoes and safety boots where there is least room.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "q1",
-        "q2",
-        "q3",
-        "q4",
-        "q5"
-      ]
-    },
-    "care": {
-      "type": "faq-accordion",
-      "settings": {
-        "color_scheme": "paper",
-        "anchor_id": "care",
-        "one_at_a_time": false,
-        "emit_schema": false,
-        "eyebrow": "Washing and lifespan",
-        "heading": "The full instructions are on the care page.",
-        "cta_link": "#buy",
-        "help_link": "/pages/contact"
-      },
-      "blocks": {
-        "q1": {
-          "type": "question",
-          "settings": {
-            "question": "How do I dry them quickly?",
-            "answer": "<p>You cannot, safely. Turn them inside out and air dry at room temperature with air moving around them. Never on a radiator and never in a tumble dryer — direct heat is the single most common way a waterproof sock dies.</p>"
-          }
-        },
-        "q2": {
-          "type": "question",
-          "settings": {
-            "question": "Can I wash them with the rest of my washing?",
-            "answer": "<p>Yes, on a cool cycle, provided there is no fabric softener in the load and nothing abrasive like zips or Velcro. Softener is the problem more often than temperature is.</p>"
-          }
-        },
-        "q3": {
-          "type": "question",
-          "settings": {
-            "question": "What temperature should I wash them at?",
-            "answer": "<p>Cool, on a gentle cycle. The membrane is a laminate, and heat is what breaks laminates down.</p>"
-          }
-        },
-        "q4": {
-          "type": "question",
-          "settings": {
-            "question": "How do I get mud off them?",
-            "answer": "<p>Rinse under a cold tap first to get the grit out, then wash cool. Grit left in the knit is abrasive against the membrane from the inside, which matters more than the mud does.</p>"
-          }
-        },
-        "q5": {
-          "type": "question",
-          "settings": {
-            "question": "Are they still waterproof once they have been punctured?",
-            "answer": "<p>No, and it cannot be repaired. A membrane is a continuous barrier — once it is pierced by a toenail, a thorn or a stone, the water goes through and no spray or reproofing treatment will bring it back.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "q1",
-        "q2",
-        "q3",
-        "q4",
-        "q5"
-      ]
-    },
-    "delivery": {
-      "type": "faq-accordion",
-      "settings": {
-        "color_scheme": "paper",
-        "anchor_id": "delivery",
-        "one_at_a_time": false,
-        "emit_schema": false,
-        "eyebrow": "Delivery, returns and warranty",
-        "heading": "What is settled, and what is not.",
-        "cta_link": "#buy",
-        "help_link": "/pages/contact"
-      },
-      "blocks": {
-        "q1": {
-          "type": "question",
-          "settings": {
-            "question": "Where do you deliver to?",
-            "answer": "<p>The United Kingdom, from a UK warehouse. Delivery is free on two pairs or more; on a single pair it is charged at checkout and shown before you pay.</p>"
-          }
-        },
-        "q2": {
-          "type": "question",
-          "settings": {
-            "question": "Do you deliver outside the UK?",
-            "answer": "<p>This is still being confirmed and we will not promise a service we cannot yet support. If you are outside the UK, email us and we will tell you honestly where things stand.</p>"
-          }
-        },
-        "q3": {
-          "type": "question",
-          "settings": {
-            "question": "Can I return them if I have worn them?",
-            "answer": "<p>Returns are for unworn socks in the original packaging with the seal intact — you may inspect them as you would in a shop. If a pair is faulty, that is a different matter entirely and worn or not makes no difference.</p>"
-          }
-        },
-        "q4": {
-          "type": "question",
-          "settings": {
-            "question": "What if my order does not arrive?",
-            "answer": "<p>Email or phone us with the order number and we will chase it with the courier. Until the parcel is with you, the responsibility for getting it there is ours.</p>"
-          }
-        },
-        "q5": {
-          "type": "question",
-          "settings": {
-            "question": "Can I change or cancel an order?",
-            "answer": "<p>If it has not been dispatched, yes — email or phone us straight away. After dispatch it becomes a return, and you have fourteen days from the day the parcel arrives to tell us you are cancelling.</p>"
-          }
-        },
-        "q6": {
-          "type": "question",
-          "settings": {
-            "question": "Do you offer exchanges?",
-            "answer": "<p>If a size is wrong, the simplest route is to return the unworn pair and order the right one. Contact us before sending anything back and we will tell you exactly what to do.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "q1",
-        "q2",
-        "q3",
-        "q4",
-        "q5",
-        "q6"
-      ]
-    },
-    "company": {
-      "type": "faq-accordion",
-      "settings": {
-        "color_scheme": "paper",
-        "anchor_id": "company",
-        "one_at_a_time": false,
-        "emit_schema": false,
-        "eyebrow": "The company",
-        "heading": "Who is behind this.",
-        "cta_link": "#buy",
-        "help_link": "/pages/contact"
-      },
-      "blocks": {
-        "q1": {
-          "type": "question",
-          "settings": {
-            "question": "Where are HydroSox made?",
-            "answer": "<p>We have not published a country of manufacture yet, and we are not going to print one we have not confirmed with the manufacturer. It is a fair question, it will be answered here plainly when we can evidence it, and in the meantime what we can say is that HydroSox is a UK registered company shipping from a UK warehouse.</p>"
-          }
-        },
-        "q2": {
-          "type": "question",
-          "settings": {
-            "question": "Do you sell to shops, or wholesale?",
-            "answer": "<p>Yes. There is no public trade pricing and no automated tiering — tell us what you sell and to whom on the trade page, and we will reply with terms that fit.</p>"
-          }
-        },
-        "q3": {
-          "type": "question",
-          "settings": {
-            "question": "How can I pay?",
-            "answer": "<p>Visa, Mastercard, American Express, Apple Pay, Google Pay and Shop Pay. Checkout is guest by default, so no account is needed. We never see or store your full card details.</p>"
-          }
-        },
-        "q4": {
-          "type": "question",
-          "settings": {
-            "question": "Is there a shop I can visit?",
-            "answer": "<p>No. HydroSox is online only, from a UK warehouse. The registered address and phone number are on every page of this site rather than behind a contact form, so there is always a person to reach.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "q1",
-        "q2",
-        "q3",
-        "q4"
-      ]
     }
   },
   "order": [

@@ -1,6 +1,12 @@
-/* Composed by scripts/build-sitemap-templates.py from the sitemap.
-   Re-run that script rather than hand-editing this file; section
-   content itself is editable in the Shopify theme editor. */
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "crumb": {
@@ -8,39 +14,48 @@
       "settings": {
         "color_scheme": "paper",
         "home_label": "Home",
-        "current_label": "Our partners"
+        "parent_label": "",
+        "parent_url": "",
+        "current_label": "Our partners",
+        "aria_label": "Breadcrumb"
       }
     },
     "intro": {
       "type": "centre-note",
       "settings": {
         "color_scheme": "paper",
-        "heading_tag": "h1",
-        "heading_size": "h2",
         "hide_rule": true,
+        "anchor_id": "",
+        "max_width": 46,
         "eyebrow": "Our partners",
         "heading": "Two partners, named and shown.",
-        "body": "<p>A partnership is easy to assert on a website and harder to demonstrate. Both of ours are below; the detail of each arrangement is published as it becomes concrete.</p>"
+        "heading_tag": "h1",
+        "heading_size": "h2",
+        "lead_first_para": false,
+        "body": "<p>A partnership is easy to assert on a website and harder to demonstrate. Both of ours are below; the detail of each arrangement is published as it becomes concrete.</p>",
+        "footnote": "",
+        "pointer_label": "",
+        "pointer_link_label": "",
+        "pointer_url": "",
+        "cta_label": "",
+        "cta_url": "",
+        "link_label": "",
+        "link_url": "",
+        "tail_note": ""
       }
     },
     "who": {
       "type": "link-cards",
-      "settings": {
-        "color_scheme": "paper",
-        "columns": 2,
-        "numbered": false,
-        "image_fit": "contain",
-        "eyebrow": "",
-        "heading": ""
-      },
       "blocks": {
         "c1": {
           "type": "card",
           "settings": {
             "title": "The Fair Group",
             "body": "Named partner. The scope of the arrangement is published here as it can be evidenced.",
+            "meta": "",
+            "link": "",
             "image_fallback": "partner-the-fair-group.webp",
-            "image_alt": "The Fair Group \u2014 where fairness meets excellence"
+            "image_alt": "The Fair Group — where fairness meets excellence"
           }
         },
         "c2": {
@@ -48,6 +63,8 @@
           "settings": {
             "title": "Humanity Welfare Trust",
             "body": "Named partner. Same standard: what the relationship involves, published when it can be shown.",
+            "meta": "",
+            "link": "",
             "image_fallback": "partner-humanity-welfare-trust.webp",
             "image_alt": "Humanity Welfare Trust"
           }
@@ -56,16 +73,43 @@
       "block_order": [
         "c1",
         "c2"
-      ]
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "columns": 2,
+        "numbered": false,
+        "card_fill": "outline",
+        "image_fit": "contain",
+        "hide_rule": false,
+        "anchor_id": "",
+        "eyebrow": "",
+        "heading": "",
+        "lede": ""
+      }
     },
     "why": {
       "type": "centre-note",
+      "disabled": true,
       "settings": {
         "color_scheme": "wash",
-        "heading_size": "h3",
+        "hide_rule": false,
+        "anchor_id": "",
+        "max_width": 46,
         "eyebrow": "How this page grows",
         "heading": "Named now, detailed as it becomes concrete.",
-        "body": "<p>The logos are the easy part. What each arrangement actually involves is published here once there is something specific to point at, and not before.</p>"
+        "heading_tag": "h2",
+        "heading_size": "h3",
+        "lead_first_para": false,
+        "body": "<p>The logos are the easy part. What each arrangement actually involves is published here once there is something specific to point at, and not before.</p>",
+        "footnote": "",
+        "pointer_label": "",
+        "pointer_link_label": "",
+        "pointer_url": "",
+        "cta_label": "",
+        "cta_url": "",
+        "link_label": "",
+        "link_url": "",
+        "tail_note": ""
       }
     },
     "close": {
@@ -73,6 +117,7 @@
       "settings": {
         "color_scheme": "ink",
         "show_rule": false,
+        "anchor_id": "",
         "eyebrow": "Working with us",
         "heading": "Trade and press enquiries reach a person.",
         "body": "<p>No public trade pricing, and no form queue.</p>",

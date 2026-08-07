@@ -2767,3 +2767,76 @@
     border-left: 1px solid var(--rule);
   }
 }
+
+/* --------------------------------------------------------------------------
+   Data table
+   --------------------------------------------------------------------------
+
+   The size guide's four bands: heading column beside a real table. The table
+   scrolls inside its own wrapper on a phone; the page never scrolls sideways
+   because a row of conversions is wider than the screen. */
+.hs-table__grid {
+  display: grid;
+  gap: 2.5rem 4rem;
+}
+
+@media (min-width: 64rem) {
+  .hs-table__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .hs-table__head-col {
+    grid-column: span 4;
+  }
+
+  .hs-table__scroll {
+    grid-column: span 8;
+  }
+}
+
+.hs-table__heading {
+  margin-top: 1.25rem;
+}
+
+.hs-table__note {
+  margin-top: 1.25rem;
+}
+
+.hs-table__note > :first-child {
+  margin-top: 0;
+}
+
+.hs-table__scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hs-table__table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.hs-table__col {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule-strong);
+  font-weight: var(--weight-semibold);
+}
+
+.hs-table__table tbody tr {
+  border-bottom: 1px solid var(--rule);
+}
+
+.hs-table__lead {
+  padding: 1.25rem 1.5rem 1.25rem 0;
+  font-weight: var(--weight-semibold);
+}
+
+.hs-table__cell {
+  padding: 1.25rem 1.5rem 1.25rem 0;
+}
+
+.hs-table__cell:last-child {
+  padding-right: 0;
+}

@@ -637,6 +637,21 @@
       "open_default": "Open by default",
       "cta_note": "Note beside the button"
     },
+    "table": {
+      "name": "Data table",
+      "columns": "Columns",
+      "col1": "Column 1 heading (row header)",
+      "col2": "Column 2 heading",
+      "col3": "Column 3 heading",
+      "col4": "Column 4 heading",
+      "col5": "Column 5 heading",
+      "block_row": "Row",
+      "cell1": "Cell 1 (row header)",
+      "cell2": "Cell 2",
+      "cell3": "Cell 3",
+      "cell4": "Cell 4",
+      "cell5": "Cell 5"
+    },
     "note": {
       "name": "Centre note",
       "max_width": "Maximum width",

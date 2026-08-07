@@ -34,52 +34,66 @@
       }
     },
     "chart": {
-      "type": "content-columns",
+      "type": "data-table",
       "settings": {
         "color_scheme": "paper",
-        "layout": "split",
-        "numbered": false,
         "anchor_id": "bands",
         "eyebrow": "The four bands",
         "heading": "The four bands",
-        "lede": "<p>The same measurements appear in the size guide that opens over the buy widget. They are read from one place, so the two cannot disagree.</p>",
-        "row_density": "compact"
+        "head_note": "<p>The same measurements appear in the size guide that opens over the buy widget. They are read from one place, so the two cannot disagree.</p>",
+        "col1": "Band",
+        "col2": "Foot length",
+        "col3": "UK",
+        "col4": "EU",
+        "col5": "US"
       },
       "blocks": {
-        "i1": {
-          "type": "item",
+        "b1": {
+          "type": "row",
           "settings": {
-            "title": "S",
-            "body": "<p>Foot length 22.0 – 24.0 cm. Fits UK 3–5, EU 36–38, US 4–6.</p>"
+            "cell1": "S",
+            "cell2": "22.0 - 24.0 cm",
+            "cell3": "UK 3-5",
+            "cell4": "EU 36-38",
+            "cell5": "US 4-6"
           }
         },
-        "i2": {
-          "type": "item",
+        "b2": {
+          "type": "row",
           "settings": {
-            "title": "M",
-            "body": "<p>Foot length 24.5 – 26.5 cm. Fits UK 6–8, EU 39–42, US 6.5–9.</p>"
+            "cell1": "M",
+            "cell2": "24.5 - 26.5 cm",
+            "cell3": "UK 6-8",
+            "cell4": "EU 39-42",
+            "cell5": "US 6.5-9"
           }
         },
-        "i3": {
-          "type": "item",
+        "b3": {
+          "type": "row",
           "settings": {
-            "title": "L",
-            "body": "<p>Foot length 27.0 – 29.0 cm. Fits UK 9–11, EU 43–46, US 9.5–12.</p>"
+            "cell1": "L",
+            "cell2": "27.0 - 29.0 cm",
+            "cell3": "UK 9-11",
+            "cell4": "EU 43-46",
+            "cell5": "US 9.5-12"
           }
         },
-        "i4": {
-          "type": "item",
+        "b4": {
+          "type": "row",
           "settings": {
-            "title": "XL",
-            "body": "<p>Foot length 29.5 – 32.0 cm. Fits UK 12–14, EU 47–49, US 12.5–14.5.</p>"
+            "cell1": "XL",
+            "cell2": "29.5 - 32.0 cm",
+            "cell3": "UK 12-14",
+            "cell4": "EU 47-49",
+            "cell5": "US 12.5-14.5"
           }
         }
       },
       "block_order": [
-        "i1",
-        "i2",
-        "i3",
-        "i4"
+        "b1",
+        "b2",
+        "b3",
+        "b4"
       ]
     },
     "howto": {
@@ -90,7 +104,8 @@
         "numbered": false,
         "anchor_id": "measuring",
         "eyebrow": "Measuring and choosing",
-        "heading": "Measuring and choosing"
+        "heading": "Measuring and choosing",
+        "card_columns": "two"
       },
       "blocks": {
         "i1": {

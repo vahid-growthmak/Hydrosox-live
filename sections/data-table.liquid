@@ -1,0 +1,165 @@
+{%- comment -%}
+  Data table — a heading column beside a real table.
+
+  Built for the size guide's four bands, where the mockup sets the band, foot
+  length and the UK/EU/US conversions as columns rather than sentences. Up to
+  five columns: a header row from the section's column labels, one block per
+  row, the first cell set as the row's header. Columns whose label is blank
+  are skipped entirely, so a three-column table is just two labels left empty.
+
+  The table scrolls inside its own wrapper on a narrow screen — the page must
+  never scroll sideways because a table is wider than a phone.
+{%- endcomment -%}
+
+{%- liquid
+  assign rows = section.blocks | where: 'type', 'row'
+  assign labels = ''
+  for n in (1..5)
+    assign key = 'col' | append: n
+    assign label = section.settings[key]
+    if label != blank
+      assign labels = labels | append: n
+    endif
+  endfor
+-%}
+
+<section
+  class="hs-table hs-scheme-{{ section.settings.color_scheme }}{% unless section.settings.hide_rule %} hs-border-b{% endunless %} hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-base">
+    <div class="hs-table__grid">
+      <div class="hs-table__head-col">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="hs-h2 hs-table__heading hs-measure-14 hs-balance">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.head_note != blank -%}
+          <div class="hs-small-body hs-table__note hs-measure-38 hs-pretty hs-muted">
+            {{ section.settings.head_note }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if rows.size > 0 and labels != blank -%}
+        <div class="hs-table__scroll">
+          <table class="hs-table__table">
+            <thead>
+              <tr>
+                {%- for n in (1..5) -%}
+                  {%- assign key = 'col' | append: n -%}
+                  {%- if section.settings[key] != blank -%}
+                    <th scope="col" class="hs-eyebrow hs-table__col hs-muted">{{ section.settings[key] }}</th>
+                  {%- endif -%}
+                {%- endfor -%}
+              </tr>
+            </thead>
+            <tbody>
+              {%- for block in rows -%}
+                <tr {{ block.shopify_attributes }}>
+                  {%- for n in (1..5) -%}
+                    {%- assign col_key = 'col' | append: n -%}
+                    {%- if section.settings[col_key] != blank -%}
+                      {%- assign cell_key = 'cell' | append: n -%}
+                      {%- if forloop.first -%}
+                        <th scope="row" class="hs-h4 hs-table__lead">{{ block.settings[cell_key] }}</th>
+                      {%- else -%}
+                        <td class="hs-small-body hs-table__cell hs-tnum hs-muted">{{ block.settings[cell_key] }}</td>
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.table.name",
+  "class": "hs-table-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" },
+        { "value": "blue", "label": "t:common.scheme_blue" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_rule",
+      "label": "t:sections.cols.hide_rule",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.cols.heading_column"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "A table of the facts."
+    },
+    {
+      "type": "richtext",
+      "id": "head_note",
+      "label": "t:sections.cols.head_note"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.table.columns"
+    },
+    { "type": "text", "id": "col1", "label": "t:sections.table.col1" },
+    { "type": "text", "id": "col2", "label": "t:sections.table.col2" },
+    { "type": "text", "id": "col3", "label": "t:sections.table.col3" },
+    { "type": "text", "id": "col4", "label": "t:sections.table.col4" },
+    { "type": "text", "id": "col5", "label": "t:sections.table.col5" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "t:sections.table.block_row",
+      "settings": [
+        { "type": "text", "id": "cell1", "label": "t:sections.table.cell1" },
+        { "type": "text", "id": "cell2", "label": "t:sections.table.cell2" },
+        { "type": "text", "id": "cell3", "label": "t:sections.table.cell3" },
+        { "type": "text", "id": "cell4", "label": "t:sections.table.cell4" },
+        { "type": "text", "id": "cell5", "label": "t:sections.table.cell5" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.table.name",
+      "blocks": [{ "type": "row" }, { "type": "row" }, { "type": "row" }]
+    }
+  ]
+}
+{% endschema %}

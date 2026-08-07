@@ -551,22 +551,46 @@ def size_guide():
     header, d = read("page.size-guide.json")
     S = d["sections"]
 
-    # EU and US conversions restored. "sock size conversion uk eu us" is real
-    # demand, and international visitors land here whether or not we ship to
-    # them yet. The centimetre ranges are unchanged — they are the same figures
-    # the buy widget's overlay reads, and the two must not disagree.
-    bands = [
-        ("S", "Foot length 22.0 – 24.0 cm. Fits UK 3–5, EU 36–38, US 4–6."),
-        ("M", "Foot length 24.5 – 26.5 cm. Fits UK 6–8, EU 39–42, US 6.5–9."),
-        ("L", "Foot length 27.0 – 29.0 cm. Fits UK 9–11, EU 43–46, US 9.5–12."),
-        ("XL", "Foot length 29.5 – 32.0 cm. Fits UK 12–14, EU 47–49, "
-               "US 12.5–14.5."),
+    # The four bands as the mockup's real table (client, 2026-08-07: "you can
+    # add as section please") — Band, Foot length, UK, EU, US as columns, one
+    # row per band, every cell verbatim from the mockup's own markup. The same
+    # figures the buy widget's overlay carries; the EU/US conversions serve
+    # "sock size conversion uk eu us" demand from international visitors.
+    band_rows = [
+        ("S", "22.0 - 24.0 cm", "UK 3-5", "EU 36-38", "US 4-6"),
+        ("M", "24.5 - 26.5 cm", "UK 6-8", "EU 39-42", "US 6.5-9"),
+        ("L", "27.0 - 29.0 cm", "UK 9-11", "EU 43-46", "US 9.5-12"),
+        ("XL", "29.5 - 32.0 cm", "UK 12-14", "EU 47-49", "US 12.5-14.5"),
     ]
-    S["chart"] = cols(
-        "bands", "The four bands", "The four bands",
-        "The same measurements appear in the size guide that opens over the "
-        "buy widget. They are read from one place, so the two cannot disagree.",
-        bands)
+    chart_blocks, chart_order = collections.OrderedDict(), []
+    for n, cells in enumerate(band_rows, 1):
+        k = "b%d" % n
+        chart_blocks[k] = collections.OrderedDict([
+            ("type", "row"),
+            ("settings", collections.OrderedDict(
+                ("cell%d" % i, cell) for i, cell in enumerate(cells, 1))),
+        ])
+        chart_order.append(k)
+    S["chart"] = collections.OrderedDict([
+        ("type", "data-table"),
+        ("settings", collections.OrderedDict([
+            ("color_scheme", "paper"),
+            ("anchor_id", "bands"),
+            ("eyebrow", "The four bands"),
+            ("heading", "The four bands"),
+            ("head_note", rich(
+                "The same measurements appear in the size guide that opens "
+                "over the buy widget. They are read from one place, so the "
+                "two cannot disagree.")),
+            ("col1", "Band"),
+            ("col2", "Foot length"),
+            ("col3", "UK"),
+            ("col4", "EU"),
+            ("col5", "US"),
+        ])),
+        ("blocks", chart_blocks),
+        ("block_order", chart_order),
+    ])
 
     S["howto"] = cols(
         "measuring", "Measuring and choosing", "Measuring and choosing", None,
@@ -608,14 +632,11 @@ def size_guide():
           "is quicker than guessing.")],
         emit=True)
 
-    # Presentation: the bands as split rows — the band letter beside its full
-    # sentence, which is as close to the mockup's table as the copy can get
-    # without breaking a sentence into cells. Measuring as a band of four
-    # cards, exactly the mockup's two-by-two.
-    S["chart"]["settings"].update({
-        "layout": "split", "color_scheme": "paper", "row_density": "compact"})
+    # Presentation. The chart is built above as the data-table; measuring
+    # runs as the band
+    # of four paper cards on wash, pinned two across as the mockup sets them.
     S["howto"]["settings"].update({
-        "layout": "band", "color_scheme": "wash"})
+        "layout": "band", "color_scheme": "wash", "card_columns": "two"})
 
     # The closing band the mockup adds, words from the mockup verbatim.
     S["close"] = collections.OrderedDict([

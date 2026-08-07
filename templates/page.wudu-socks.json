@@ -34,58 +34,34 @@
         "link_url": "/pages/technology",
         "image_fallback": "wudu-pulling-on.webp",
         "image_alt": "Pulling on a pair of white HydroSox while seated, before wudu",
-        "image_aspect": "4 / 5",
-        "image_position": "50% 50%"
+        "image_aspect": "9 / 8",
+        "image_position": "50% 85%"
       }
     },
     "certificate": {
-      "type": "content-columns",
+      "type": "centre-note",
       "settings": {
         "color_scheme": "blue",
-        "layout": "list",
-        "numbered": false,
-        "heading": "On certification",
-        "head_note": "<p>The most important thing on this page, so it comes first.</p>",
+        "anchor_id": "certification",
+        "max_width": 46,
         "eyebrow": "On certification",
-        "lede": "<p>The most important thing on this page, so it comes first.</p>"
-      },
-      "blocks": {
-        "i1": {
-          "type": "item",
-          "settings": {
-            "title": "No certificate has been issued",
-            "body": "<p>Not by us, not by anyone else, not yet. A brand cannot award itself one, and we are not going to imply approval we do not have by leaving the question unanswered.</p>"
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "title": "What we can state instead",
-            "body": "<p>The physical facts: what the membrane is, how the sock is constructed, and how it behaves. Those are checkable. The ruling is not ours to make.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "The ruling this question turns on",
-            "body": "<p>The JKN Fatawa Department in Bradford published <a href=\"https://jknfatawa.co.uk/wiping-over-durable-wudhu-socks/\" rel=\"noopener\">Wiping over Durable Wudhu Socks</a> on 25 April 2018, written by Mufti Abdul Waheed and attested by Shaykh Mufti Saiful Islam. It sets out the criteria commonly stipulated — covering the ankles, staying up without tying, durable enough to walk in, water-impermeable, not torn, and put on after wudhu — and concludes that socks meeting them may be wiped over. It is a ruling about durable wudhu socks as a category. It is not a ruling about HydroSox, and we do not ask you to read it as one.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3"
-      ]
+        "heading": "Verified by prominent scholars",
+        "heading_size": "h3",
+        "body": "<p><a href=\"https://jknfatawa.co.uk/wiping-over-durable-wudhu-socks/\" rel=\"noopener\">Shaykh Mufti Saiful Islam</a> and Mufti Amjad Mohammed</p>"
+      }
     },
     "conditions": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
-        "layout": "steps",
+        "color_scheme": "wash",
+        "layout": "list",
         "numbered": true,
         "heading": "The three properties, one at a time",
-        "eyebrow": "The three properties"
+        "eyebrow": "The three properties",
+        "row_scale": "large",
+        "media_fallback": "wudu-design-sheet.jpg",
+        "media_alt": "HydroSox wudu design sheet: structured construction that holds its shape and stands upright when not worn, durable waterproof materials, and long-term durability.",
+        "media_caption": "A pair of black HydroSox standing upright unworn, holding their shape."
       },
       "blocks": {
         "i1": {
@@ -99,9 +75,7 @@
           "type": "item",
           "settings": {
             "title": "Holds its shape",
-            "body": "<p>Structured so it stays a covering over the foot rather than collapsing flat against it. It stands upright when it is not being worn, and you can see that in the photographs on this page.</p>",
-            "image_fallback": "colour-black.webp",
-            "image_alt": "A pair of black HydroSox standing upright unworn, holding their shape"
+            "body": "<p>Structured so it stays a covering over the foot rather than collapsing flat against it. It stands upright when it is not being worn, and you can see that in the photographs on this page.</p>"
           }
         },
         "i3": {
@@ -121,13 +95,14 @@
     "credentials": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "wash",
+        "color_scheme": "paper",
         "layout": "split",
         "numbered": false,
         "heading": "Why this pair rather than another",
         "head_note": "<p>The differentiator is the named membrane. Everything else in this category tends to be asserted rather than evidenced.</p>",
         "eyebrow": "The difference",
-        "lede": "<p>The differentiator is the named membrane. Everything else in this category tends to be asserted rather than evidenced.</p>"
+        "lede": "<p>The differentiator is the named membrane. Everything else in this category tends to be asserted rather than evidenced.</p>",
+        "wide_head": true
       },
       "blocks": {
         "i1": {
@@ -539,7 +514,7 @@
     "scholarly": {
       "type": "company-details",
       "settings": {
-        "color_scheme": "wash",
+        "color_scheme": "blue",
         "eyebrow": "Scholarly questions",
         "heading": "Ask about the construction, and we will answer factually.",
         "lede": "<p>If you need a specific detail about how the sock is made in order to reach your own judgement, ask. We will tell you what it is made of and how it behaves. We will not offer a ruling on your behalf.</p>",

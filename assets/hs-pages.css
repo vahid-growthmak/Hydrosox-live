@@ -2622,3 +2622,59 @@
 .hs-scheme-ink .hs-cols__list:not(.hs-cols__list--boxes) .hs-cols__row-index {
   color: var(--blue);
 }
+
+/* Wide head: the header block sits above the rows instead of beside them, and
+   the rows run the full shell width — the mockup's shape for the wudu
+   difference section, where each split row already carries its own 5/7 grid. */
+.hs-cols__grid--wide .hs-cols__head-col {
+  grid-column: 1 / -1;
+}
+
+.hs-cols__grid--wide .hs-cols__head-sticky {
+  position: static;
+  max-width: 46rem;
+}
+
+.hs-cols__grid--wide .hs-cols__body-col {
+  grid-column: 1 / -1;
+}
+
+/* The heading column's figure: a photograph that belongs to the claim in the
+   heading, holding still under it while the rows scroll past. */
+.hs-cols__head-figure {
+  margin: 2.5rem 0 0;
+  max-width: 25rem;
+}
+
+.hs-cols__head-media {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.hs-cols__head-figure .hs-cols__caption {
+  margin-top: 1rem;
+}
+
+/* Large rows: the emphasis scale for a short list that IS the section — the
+   wudu three properties. Titles step up to h3, bodies to full body size, and
+   the numerals to h4, with the extra breathing room that scale needs. */
+.hs-cols__list--large .hs-cols__row {
+  padding-block: 2.25rem;
+}
+
+.hs-cols__list--large .hs-cols__row-title {
+  font-size: var(--type-h3);
+  letter-spacing: var(--tracking-h3);
+  line-height: var(--leading-h3);
+}
+
+.hs-cols__list--large .hs-cols__row-body {
+  margin-top: 1rem;
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+}
+
+.hs-cols__list--large .hs-cols__row-index {
+  font-size: var(--type-h4);
+  letter-spacing: var(--tracking-h4);
+}

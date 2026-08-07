@@ -60,7 +60,7 @@
 >
   <div class="hs-shell hs-pace-base">
     <div
-      class="hs-cols__grid hs-cols__grid--{{ layout }}{% if section.settings.mirror %} hs-cols__grid--mirror{% endif %}"
+      class="hs-cols__grid hs-cols__grid--{{ layout }}{% if section.settings.mirror %} hs-cols__grid--mirror{% endif %}{% if section.settings.wide_head %} hs-cols__grid--wide{% endif %}"
     >
       {%- comment -%} Heading column {%- endcomment -%}
       <div class="hs-cols__head-col">
@@ -107,6 +107,32 @@
                 </a>
               {%- endif -%}
             </p>
+          {%- endif -%}
+          {%- comment -%}
+            The media settings double as a heading-column figure on every
+            layout except `media` (which renders them in the body column).
+            The wudu three-properties section holds its design sheet under
+            the sticky heading this way — the photograph stays with the
+            claim while the rows scroll past it.
+          {%- endcomment -%}
+          {%- if layout != 'media' -%}
+            {%- if section.settings.media_image != blank or section.settings.media_fallback != blank -%}
+              <figure class="hs-cols__head-figure">
+                {% render 'hs-image',
+                  image: section.settings.media_image,
+                  fallback: section.settings.media_fallback,
+                  alt: section.settings.media_alt,
+                  sizes: '(min-width: 64rem) 25rem, 100vw',
+                  wrapper_class: 'hs-cols__head-media',
+                  class: 'hs-cols__head-img'
+                %}
+                {%- if section.settings.media_caption != blank -%}
+                  <figcaption class="hs-caption hs-cols__caption hs-pretty hs-muted">
+                    {{- section.settings.media_caption -}}
+                  </figcaption>
+                {%- endif -%}
+              </figure>
+            {%- endif -%}
           {%- endif -%}
         </div>
       </div>
@@ -258,7 +284,7 @@
 
           {%- else -%}
             {%- if items.size > 0 -%}
-              <{{ list_tag }} class="hs-cols__list hs-cols__list--{{ section.settings.row_density | default: 'standard' }}{% if layout == 'steps' %} hs-cols__list--steps{% endif %}{% if layout == 'focus' %} hs-cols__list--focus{% endif %}{% if layout == 'split' or layout == 'panel' %} hs-cols__list--split{% endif %}{% if layout == 'boxes' %} hs-cols__list--boxes{% endif %}{% if layout == 'panel' %} hs-cols__list--cardrows{% endif %} hs-stagger" role="list">
+              <{{ list_tag }} class="hs-cols__list hs-cols__list--{{ section.settings.row_density | default: 'standard' }}{% if section.settings.row_scale == 'large' %} hs-cols__list--large{% endif %}{% if layout == 'steps' %} hs-cols__list--steps{% endif %}{% if layout == 'focus' %} hs-cols__list--focus{% endif %}{% if layout == 'split' or layout == 'panel' %} hs-cols__list--split{% endif %}{% if layout == 'boxes' %} hs-cols__list--boxes{% endif %}{% if layout == 'panel' %} hs-cols__list--cardrows{% endif %} hs-stagger" role="list">
                 {%- for block in items -%}
                   {%- liquid
                     assign row_has_media = false
@@ -410,6 +436,23 @@
       "default": "standard"
     },
     {
+      "type": "select",
+      "id": "row_scale",
+      "label": "t:sections.cols.row_scale",
+      "options": [
+        { "value": "standard", "label": "t:sections.cols.row_density_standard" },
+        { "value": "large", "label": "t:sections.cols.row_scale_large" }
+      ],
+      "default": "standard"
+    },
+    {
+      "type": "checkbox",
+      "id": "wide_head",
+      "label": "t:sections.cols.wide_head",
+      "info": "t:sections.cols.wide_head_info",
+      "default": false
+    },
+    {
       "type": "checkbox",
       "id": "hide_rule",
       "label": "t:sections.cols.hide_rule",
@@ -518,7 +561,8 @@
       "label": "t:sections.cols.image_fallback",
       "info": "t:sections.cols.image_fallback_info"
     },
-    { "type": "text", "id": "media_alt", "label": "t:common.image_alt" }
+    { "type": "text", "id": "media_alt", "label": "t:common.image_alt" },
+    { "type": "text", "id": "media_caption", "label": "t:sections.cols.caption" }
   ],
   "blocks": [
     {

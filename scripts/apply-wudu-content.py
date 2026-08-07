@@ -122,62 +122,53 @@ def main():
             ("image_fallback", "wudu-pulling-on.webp"),
             ("image_alt", "Pulling on a pair of white HydroSox while seated, "
                           "before wudu"),
-            ("image_aspect", "4 / 5"),
-            ("image_position", "50% 50%"),
+            # The homepage hero's ratio, per the client ("the hero section is
+            # too big"): the 4:5 source crops to 9:8, and the position rides
+            # low so the crop spends itself on the empty top of the frame and
+            # the socks stay whole. Nudgeable from the theme editor.
+            ("image_aspect", "9 / 8"),
+            ("image_position", "50% 85%"),
         ])),
     ])
 
     # ---------------------------------------------------------------- eyebrows
     for key, eyebrow in (
-        ("certificate", "On certification"),
         ("conditions", "The three properties"),
         ("credentials", "The difference"),
         ("travel", "Travel"),
     ):
         S[key]["settings"]["eyebrow"] = eyebrow
 
-    # ------------------------------------------------------- the JKN ruling
-    # Reported as a source, NOT as an endorsement, and the distinction is the
-    # whole point.
+    # ------------------------------------------------- the certification note
+    # 2026-08-07, the client's explicit instruction, replacing the earlier
+    # bounded-citation section wholesale: a centred note — "On certification"
+    # over "Verified by prominent scholars" over the two names. The earlier
+    # design cited the JKN ruling and stated no certificate exists; the client
+    # was told (their own research said the same) that a "verified by" claim
+    # naming living scholars needs their written approval, and asked for this
+    # anyway. Their store, their call, recorded here so a regeneration never
+    # silently reverses it in either direction.
     #
-    # "Wiping over Durable Wudhu Socks" is a real, public, citable ruling about
-    # durable wudhu socks as a category. It predates this product by years and
-    # says nothing about it. Presenting it as "verified by" would convert a
-    # general fatwa into a product endorsement that nobody gave — which
-    # misrepresents two named living scholars, contradicts the sentence
-    # directly above it on this same page, and is the exact claim the client's
-    # own research says needs written permission first.
-    #
-    # So it is cited the way the masah page cites Nadwi: named, linked, and
-    # explicitly bounded. A "Verified by" badge needs written approval from JKN
-    # for both the wording and any logo use — info@jkn.org.uk, +44 1274 308456
-    # — and this item is where it goes once that exists.
-    S["certificate"]["blocks"]["i3"] = collections.OrderedDict([
-        ("type", "item"),
+    # Shaykh Mufti Saiful Islam links to the JKN ruling he attested — the one
+    # source the store holds. No source URL exists in the repo for Mufti Amjad
+    # Mohammed; his name ships unlinked until the client supplies one (asked).
+    S["certificate"] = collections.OrderedDict([
+        ("type", "centre-note"),
         ("settings", collections.OrderedDict([
-            ("title", "The ruling this question turns on"),
-            ("body", rich(
-                "The JKN Fatawa Department in Bradford published "
-                "<a href=\"https://jknfatawa.co.uk/wiping-over-durable-wudhu-socks/\" "
-                "rel=\"noopener\">Wiping over Durable Wudhu Socks</a> on 25 April "
-                "2018, written by Mufti Abdul Waheed and attested by Shaykh "
-                "Mufti Saiful Islam. It sets out the criteria commonly "
-                "stipulated — covering the ankles, staying up without tying, "
-                "durable enough to walk in, water-impermeable, not torn, and "
-                "put on after wudhu — and concludes that socks meeting them "
-                "may be wiped over. It is a ruling about durable wudhu socks "
-                "as a category. It is not a ruling about HydroSox, and we do "
-                "not ask you to read it as one.")),
+            ("color_scheme", "blue"),
+            ("anchor_id", "certification"),
+            ("max_width", 46),
+            ("eyebrow", "On certification"),
+            ("heading", "Verified by prominent scholars"),
+            ("heading_size", "h3"),
+            ("body", (
+                '<p><a href="https://jknfatawa.co.uk/wiping-over-durable-'
+                'wudhu-socks/" rel="noopener">Shaykh Mufti Saiful Islam</a> '
+                'and Mufti Amjad Mohammed</p>')),
         ])),
     ])
-    order = S["certificate"].get("block_order") or list(S["certificate"]["blocks"])
-    if "i3" not in order:
-        order.append("i3")
-    S["certificate"]["block_order"] = order
 
     # ------------------------------------------------------------------ ledes
-    S["certificate"]["settings"]["lede"] = rich(
-        "The most important thing on this page, so it comes first.")
     S["credentials"]["settings"]["lede"] = rich(
         "The differentiator is the named membrane. Everything else in this "
         "category tends to be asserted rather than evidenced.")
@@ -190,13 +181,12 @@ def main():
         "Structured so it stays a covering over the foot rather than "
         "collapsing flat against it. It stands upright when it is not being "
         "worn, and you can see that in the photographs on this page.")
-    # That sentence has to be able to point at something. The studio shot of the
-    # pair standing unsupported is the evidence for the claim, and it is the one
-    # visual no competitor in the mapped set publishes. `image` stays empty and
-    # overrides this from the theme editor.
-    holds_shape["image_fallback"] = "colour-black.webp"
-    holds_shape["image_alt"] = (
-        "A pair of black HydroSox standing upright unworn, holding their shape")
+    # That sentence has to be able to point at something. Per the mockup, the
+    # evidence moved from a row thumbnail to the design sheet standing under
+    # the sticky heading — the head figure the section renders from its media
+    # settings — so the old row image is removed rather than left to compete.
+    holds_shape.pop("image_fallback", None)
+    holds_shape.pop("image_alt", None)
 
     nth(S, "travel", 2)["body"] = rich(
         "Most people buying for travel buy more than one pair. The quantity "
@@ -307,10 +297,27 @@ def main():
     # The client's wudu mockup, layout only — not a word moves. The rhythm rule
     # holds: no two adjacent sections share more than one of layout, scheme and
     # heading side.
+    # Three properties, to the mockup's DOM: plain numbered rows at the large
+    # scale on wash, with the wudu design sheet as the heading column's figure
+    # — the photograph holds still with the claim while the rows scroll.
     S["conditions"]["settings"].update({
-        "layout": "steps", "color_scheme": "paper", "numbered": True})
+        "layout": "list", "color_scheme": "wash", "numbered": True,
+        "row_scale": "large",
+        "media_fallback": "wudu-design-sheet.jpg",
+        "media_alt": (
+            "HydroSox wudu design sheet: structured construction that holds "
+            "its shape and stands upright when not worn, durable waterproof "
+            "materials, and long-term durability."),
+        "media_caption": (
+            "A pair of black HydroSox standing upright unworn, holding their "
+            "shape.")})
+    # The difference, to the mockup's DOM: the header block above, the split
+    # rows running the full width beneath it, on paper.
     S["credentials"]["settings"].update({
-        "layout": "split", "color_scheme": "wash"})
+        "layout": "split", "color_scheme": "paper", "wide_head": True})
+    # Scholarly questions: the same company-details band, on the mockup's
+    # pale blue instead of wash.
+    S["scholarly"]["settings"]["color_scheme"] = "blue"
     # Band on ink: full-width header, the three everyday cases as outlined
     # cards on the dark ground — the page's turn from argument to reality.
     S["everyday"]["settings"].update({

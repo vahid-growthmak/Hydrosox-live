@@ -39,11 +39,31 @@ def rich(*paras):
     return "".join("<p>%s</p>" % p.strip() for p in paras if p and p.strip())
 
 
+def _lead_comments(raw):
+    """Length of every leading /* */ block, not just the first.
+
+    A composed template carries a provenance header; the moment the Shopify
+    theme editor touches it, Shopify prepends its own banner above that. The
+    file then opens with two blocks, and a reader that consumes one hands the
+    other to json.loads.
+
+    That matters more than it looks here: this script catches JSONDecodeError
+    and skips the file, so the failure is not an error — it is a template
+    quietly going unprocessed while the run reports success.
+    """
+    pos = 0
+    while True:
+        m = re.match(r"\s*/\*[\s\S]*?\*/\s*", raw[pos:])
+        if not m or m.end() == 0:
+            return pos
+        pos += m.end()
+
+
 def read(name):
     raw = (TPL / name).read_text()
-    m = re.match(r"^\s*/\*[\s\S]*?\*/\s*", raw)
-    header = raw[: m.end()] if m else ""
-    return header, json.loads(raw[m.end():] if m else raw,
+    cut = _lead_comments(raw)
+    header = raw[:cut]
+    return header, json.loads(raw[cut:],
                               object_pairs_hook=collections.OrderedDict)
 
 

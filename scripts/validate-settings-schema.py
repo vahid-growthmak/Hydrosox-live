@@ -46,7 +46,22 @@ def audit(settings, origin, out):
 # ---------------------------------------------------------- template values
 
 def _strip(text):
-    return re.sub(r"^\s*/\*[\s\S]*?\*/\s*", "", text)
+    """Remove every leading /* */ block, not just the first.
+
+    A composed template already carries a provenance header. The moment the
+    Shopify theme editor touches that file it prepends its own "auto-generated"
+    banner above it, so the file now opens with two comment blocks — and a
+    stripper that removes one leaves the other, which is not valid JSON.
+
+    That failure is silent in the worst way: this validator reported sixteen
+    templates as malformed when nothing was wrong with any of them, which is
+    exactly the noise that gets a real failure ignored.
+    """
+    while True:
+        stripped = re.sub(r"^\s*/\*[\s\S]*?\*/\s*", "", text)
+        if stripped == text:
+            return stripped
+        text = stripped
 
 
 def _section_schemas():

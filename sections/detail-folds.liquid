@@ -1,0 +1,286 @@
+{%- comment -%}
+  Detail folds — a dossier section: diagrams up front, depth behind folds.
+
+  The client's product mockup opens "What it is" with two captioned callout
+  diagrams, then carries the construction and the limits as two collapsible
+  rows, and closes on the buy button with a note beside it. Nothing in the
+  section library does that shape: content-columns has no fold, faq-accordion
+  has no image row and its answers are prose rather than term/definition pairs.
+
+  Blocks are flat, so the grouping is positional: a `fold` block opens a
+  <details>, and every `row` block after it belongs to that fold until the next
+  one. Image blocks render in their own grid above the folds wherever they sit
+  in the order. The fold panels reuse `.hs-faq__answer-wrap`, which is the
+  exact class hs-accordion.js animates — same element, same motion, no new JS.
+{%- endcomment -%}
+{%- assign hs_cta_fallback = all_products[settings.schema_product].url | default: routes.all_products_collection_url -%}
+{%- assign hs_cta_href = section.settings.cta_url | default: hs_cta_fallback -%}
+
+{%- liquid
+  assign shots = section.blocks | where: 'type', 'image'
+  assign folds = section.blocks | where: 'type', 'fold'
+-%}
+
+<section
+  class="hs-folds hs-scheme-{{ section.settings.color_scheme }}{% unless section.settings.hide_rule %} hs-border-b{% endunless %} hs-anchor"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id }}"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  <div class="hs-shell hs-pace-base">
+    <div class="hs-folds__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="hs-h2 hs-folds__heading hs-measure-18 hs-balance">
+          {{- section.settings.heading -}}
+        </h2>
+      {%- endif -%}
+      {%- comment -%}
+        Full ink, not the muted head-note treatment: in the mockup these two
+        paragraphs are the section's argument, not an aside under the heading.
+      {%- endcomment -%}
+      {%- if section.settings.head_note != blank -%}
+        <div class="hs-body hs-folds__intro hs-measure-58 hs-pretty">
+          {{ section.settings.head_note }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if shots.size > 0 -%}
+      <ul class="hs-folds__shots hs-stagger" role="list">
+        {%- for block in shots -%}
+          <li class="hs-reveal" {{ block.shopify_attributes }}>
+            {% render 'hs-image',
+              image: block.settings.image,
+              fallback: block.settings.image_fallback,
+              alt: block.settings.image_alt,
+              aspect: section.settings.shots_aspect,
+              sizes: '(min-width: 40rem) 44vw, 100vw',
+              wrapper_class: 'hs-folds__shot',
+              class: 'hs-folds__shot-img'
+            %}
+            {%- if block.settings.caption != blank -%}
+              <p class="hs-caption hs-folds__caption hs-pretty hs-muted">
+                {{- block.settings.caption -}}
+              </p>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if folds.size > 0 -%}
+      {%- comment -%}
+        theme-check sees tags opened under one branch and closed under another
+        and reports all of them unclosed — but that split is the mechanism
+        here: a fold opens its <details> and list, and the NEXT fold (or the
+        end of the loop) is what closes them. Every `fold` emits one opener,
+        and both close sites are guarded by the same `fold_open` flag, so the
+        rendered document is balanced for any block order the editor produces.
+      {%- endcomment -%}
+      {% # theme-check-disable UnclosedHTMLElement %}
+      <hs-accordion class="hs-folds__acc">
+        {%- assign fold_open = false -%}
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'fold' -%}
+              {%- if fold_open %}</dl></div></div></details>{% endif -%}
+              {%- assign fold_open = true -%}
+              <details
+                class="hs-folds__fold"
+                {% if block.settings.open %}
+                  open
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                <summary class="hs-folds__summary">
+                  <span class="hs-h4 hs-folds__title hs-pretty">{{ block.settings.title }}</span>
+                  <span class="hs-folds__marker" aria-hidden="true">
+                    {% render 'hs-icon', icon: 'plus', size: 16 %}
+                  </span>
+                </summary>
+                <div class="hs-faq__answer-wrap">
+                  <div class="hs-folds__panel">
+                    {%- if block.settings.note != blank -%}
+                      <p class="hs-small-body hs-folds__note hs-measure-36 hs-pretty hs-muted">
+                        {{- block.settings.note -}}
+                      </p>
+                    {%- endif -%}
+                    <dl class="hs-folds__rows">
+            {%- when 'row' -%}
+              {%- if fold_open -%}
+                <div class="hs-folds__def" {{ block.shopify_attributes }}>
+                  <dt class="hs-small-body hs-folds__term">{{ block.settings.title }}</dt>
+                  <dd class="hs-small-body hs-folds__desc hs-measure-62 hs-pretty hs-muted">
+                    {{ block.settings.body }}
+                  </dd>
+                </div>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+        {%- if fold_open %}</dl></div></div></details>{% endif -%}
+      </hs-accordion>
+      {% # theme-check-enable UnclosedHTMLElement %}
+
+      <script src="{{ 'hs-accordion.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <div class="hs-folds__cta">
+        {% render 'hs-button',
+          label: section.settings.cta_label,
+          href: hs_cta_href,
+          style: 'primary'
+        %}
+        {%- if section.settings.cta_note != blank -%}
+          <p class="hs-small-body hs-folds__cta-note hs-measure-34 hs-pretty hs-muted">
+            {{- section.settings.cta_note -}}
+          </p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.folds.name",
+  "class": "hs-folds-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:common.color_scheme",
+      "options": [
+        { "value": "paper", "label": "t:common.scheme_paper" },
+        { "value": "wash", "label": "t:common.scheme_wash" },
+        { "value": "ink", "label": "t:common.scheme_ink" },
+        { "value": "blue", "label": "t:common.scheme_blue" }
+      ],
+      "default": "paper"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_rule",
+      "label": "t:sections.cols.hide_rule",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:common.anchor_id",
+      "info": "t:common.anchor_id_info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.cols.heading_column"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "What it is"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:common.heading",
+      "default": "What this section is about."
+    },
+    {
+      "type": "richtext",
+      "id": "head_note",
+      "label": "t:sections.cols.head_note"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.cols.media_header"
+    },
+    {
+      "type": "text",
+      "id": "shots_aspect",
+      "label": "t:sections.cols.gallery_aspect",
+      "info": "t:sections.cols.gallery_aspect_info",
+      "default": "4 / 3"
+    },
+    {
+      "type": "header",
+      "content": "t:common.actions"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:sections.cols.cta_label",
+      "info": "t:sections.cols.cta_label_info"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "t:sections.cols.cta_url"
+    },
+    {
+      "type": "text",
+      "id": "cta_note",
+      "label": "t:sections.folds.cta_note"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "t:sections.cols.block_image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "t:common.image" },
+        {
+          "type": "text",
+          "id": "image_fallback",
+          "label": "t:sections.cols.image_fallback",
+          "info": "t:sections.cols.image_fallback_info"
+        },
+        { "type": "text", "id": "image_alt", "label": "t:common.image_alt" },
+        { "type": "text", "id": "caption", "label": "t:sections.cols.caption" }
+      ]
+    },
+    {
+      "type": "fold",
+      "name": "t:sections.folds.block_fold",
+      "settings": [
+        { "type": "text", "id": "title", "label": "t:common.title", "default": "A point worth opening" },
+        {
+          "type": "text",
+          "id": "note",
+          "label": "t:sections.folds.note",
+          "info": "t:sections.folds.note_info"
+        },
+        {
+          "type": "checkbox",
+          "id": "open",
+          "label": "t:sections.folds.open_default",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "row",
+      "name": "t:sections.folds.block_row",
+      "settings": [
+        { "type": "text", "id": "title", "label": "t:common.title", "default": "A term worth defining" },
+        { "type": "richtext", "id": "body", "label": "t:common.body" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.folds.name",
+      "blocks": [
+        { "type": "fold" },
+        { "type": "row" },
+        { "type": "row" },
+        { "type": "row" }
+      ]
+    }
+  ]
+}
+{% endschema %}

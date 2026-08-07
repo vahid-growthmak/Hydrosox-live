@@ -10,6 +10,9 @@
              arrives; the emphasis treatment, for the section carrying the turn
              in an argument
   - split    each row set as title beside body rather than title above it
+  - definition  term/definition pairs as an open table under a band-style
+             header, two newspaper columns on a desktop; a row's `flag`
+             renders in place of its value for figures not yet published
   - cards    the same items as a grid of cards rather than a stack
   - band     a full-width header (heading left, lede right, ruled off), then
              the cards run the whole width beneath it
@@ -166,6 +169,37 @@
               >
                 {{ section.settings.prose }}
               </div>
+            {%- endif -%}
+
+          {%- when 'definition' -%}
+            {%- comment -%}
+              The open specification table: term and definition pairs under a
+              band-style header, run as two newspaper columns on a desktop. A
+              row whose `flag` is set renders the flag where its value would be
+              — the client's "Not published yet" rows, where the honest state
+              of a figure is the content — with the body demoted to the muted
+              explanation of what the figure will be.
+            {%- endcomment -%}
+            {%- if items.size > 0 -%}
+              <dl class="hs-cols__defs">
+                {%- for block in items -%}
+                  <div class="hs-cols__def" {{ block.shopify_attributes }}>
+                    {%- if block.settings.title != blank -%}
+                      <dt class="hs-eyebrow hs-cols__def-term">{{ block.settings.title }}</dt>
+                    {%- endif -%}
+                    <dd class="hs-cols__def-desc">
+                      {%- if block.settings.flag != blank -%}
+                        <span class="hs-eyebrow hs-cols__def-flag">{{ block.settings.flag }}</span>
+                      {%- endif -%}
+                      {%- if block.settings.body != blank -%}
+                        <div class="hs-small-body hs-cols__def-body hs-measure-46 hs-pretty{% if block.settings.flag != blank %} hs-muted{% endif %}">
+                          {{ block.settings.body }}
+                        </div>
+                      {%- endif -%}
+                    </dd>
+                  </div>
+                {%- endfor -%}
+              </dl>
             {%- endif -%}
 
           {%- when 'cards' or 'band' or 'stack' -%}
@@ -339,6 +373,7 @@
         { "value": "steps", "label": "t:sections.cols.layout_steps" },
         { "value": "focus", "label": "t:sections.cols.layout_focus" },
         { "value": "split", "label": "t:sections.cols.layout_split" },
+        { "value": "definition", "label": "t:sections.cols.layout_definition" },
         { "value": "cards", "label": "t:sections.cols.layout_cards" },
         { "value": "band", "label": "t:sections.cols.layout_band" },
         { "value": "stack", "label": "t:sections.cols.layout_stack" },
@@ -492,6 +527,12 @@
       "settings": [
         { "type": "text", "id": "title", "label": "t:common.title", "default": "A point worth making" },
         { "type": "richtext", "id": "body", "label": "t:common.body" },
+        {
+          "type": "text",
+          "id": "flag",
+          "label": "t:sections.cols.flag",
+          "info": "t:sections.cols.flag_info"
+        },
         { "type": "text", "id": "link_label", "label": "t:common.link_label" },
         { "type": "url", "id": "link_url", "label": "t:common.link_url" },
         { "type": "image_picker", "id": "image", "label": "t:common.image" },

@@ -608,10 +608,22 @@
       "mirror_info": "Flips the two columns. Use it so two sections in a row do not share the same skeleton — a page built from repeats of this section reads as one slab otherwise, however good the writing is.",
       "layout_focus": "Focus (ghost numerals)",
       "layout_split": "Split rows (title beside body)",
+      "layout_definition": "Definition table",
       "layout_band": "Band (full-width header, cards below)",
       "layout_stack": "Stacked (centred header, cards below)",
       "layout_boxes": "Numbered boxes",
-      "layout_panel": "Panel (dark heading card, rows as cards)"
+      "layout_panel": "Panel (dark heading card, rows as cards)",
+      "flag": "Status label",
+      "flag_info": "Renders in place of the value on the definition layout — for a figure honestly not published yet. The body becomes the muted explanation beneath it."
+    },
+    "folds": {
+      "name": "Detail folds",
+      "block_fold": "Fold",
+      "block_row": "Row",
+      "note": "Side note",
+      "note_info": "Sits to the left of the rows inside the opened fold.",
+      "open_default": "Open by default",
+      "cta_note": "Note beside the button"
     },
     "note": {
       "name": "Centre note",

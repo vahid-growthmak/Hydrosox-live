@@ -109,85 +109,136 @@ def main():
             block['settings']['value'] = 'Fourteen days, no reason needed'
     add('buy', buy)
 
-    # 2 — what it is. The heading is the best sentence on the page and stays;
-    # the body extends to carry the specification summary the category page
-    # must NOT contain.
-    # The client's mockup: the section's two callout diagrams side by side
-    # under the heading — the sock with its construction labelled, and the
-    # layer infographic. Gallery is the layout that runs image blocks across
-    # the full width under a band-style header.
+    # 2 — what it is, rebuilt 2026-08-07 to the client's live mockup
+    # (hydrosox-website.vercel.app): the detail-folds dossier. Two captioned
+    # diagrams under the heading, then the construction and the limits behind
+    # two <details> folds, then the buy button with its back-to-the-top note.
+    # Every word below is lifted verbatim from the mockup — including the fold
+    # copy the page did not previously carry, and the two intro paragraphs
+    # that replaced the old single-paragraph summary.
     #
-    # The pickers ship empty because the two diagram files exist only in the
-    # client's mockup so far — they are not in Downloads, the theme's assets or
-    # Shopify Files. Until they are chosen in the theme editor the slots render
-    # the neutral placeholder; nothing else about the section waits for them.
-    add('about', od(('type', 'content-columns'), ('settings', od(
-        ('color_scheme', 'wash'),
-        ('layout', 'gallery'),
-        ('gallery_aspect', '1 / 1'),
+    # The diagram files themselves were pulled from the mockup's own assets
+    # into assets/, so the image_fallback pattern renders them with no editor
+    # step; the pickers still win the moment a merchant fills one.
+    fold_rows = [
+        ('f1', 'fold', {'title': 'Three-layer construction',
+                        'note': 'The mechanism behind the waterproof claim, '
+                                'layer by layer.'}),
+        ('w1', 'row', {'title': 'Inner layer',
+                       'body': '<p>A soft knitted lining that moves sweat off the '
+                               'foot and stops the membrane sitting against the '
+                               'skin.</p>'}),
+        ('w2', 'row', {'title': 'Porelle® membrane',
+                       'body': '<p>A licensed third-party waterproof-breathable '
+                               'membrane — not a name we invented. Water cannot '
+                               'get in; vapour from the foot can get out. PFOA '
+                               'free.</p>'}),
+        ('w3', 'row', {'title': 'Outer layer',
+                       'body': '<p>The knitted face that takes the abrasion '
+                               'inside a boot or shoe, and holds the sock\'s '
+                               'shape when it is not being worn.</p>'}),
+        ('f2', 'fold', {'title': 'What it will not do',
+                        'note': 'The limits are real and physical. No competitor '
+                                'in the mapped set states theirs.'}),
+        ('w4', 'row', {'title': 'They are not a boot replacement.',
+                       'body': '<p>One component of a system. If your footwear is '
+                               'wrong for the ground, this will not fix it.</p>'}),
+        ('w5', 'row', {'title': 'Water over the cuff gets in.',
+                       'body': '<p>A sock is open at the top. Go deeper than the '
+                               'cuff and you are wet, and no waterproof sock '
+                               'behaves otherwise.</p>'}),
+        ('w6', 'row', {'title': 'They are not indestructible.',
+                       'body': '<p>A membrane is a membrane. Abrasion, toenails '
+                               'and the wrong wash cycle will eventually end '
+                               'one.</p>'}),
+        ('w7', 'row', {'title': 'Breathable does not mean dry inside.',
+                       'body': '<p>Work hard enough and you will sweat faster '
+                               'than any membrane can move vapour. Breathability '
+                               'slows that. It does not repeal it.</p>'}),
+    ]
+    about_blocks = od(
+        ('d1', od(('type', 'image'), ('settings', od(
+            ('image_fallback', 'diagram-anatomy.jpg'),
+            ('image_alt', 'Anatomy diagram of a HydroSox sock labelling the '
+                          'ribbed cuff, breathable mesh panel, seamless toe, '
+                          'heel-fit shaping and non-slip sole.'),
+            ('caption', 'Anatomy — cuff, mesh panel, seamless toe, heel-fit'))))),
+        ('d2', od(('type', 'image'), ('settings', od(
+            ('image_fallback', 'diagram-layers.jpg'),
+            ('image_alt', 'Cutaway diagram of the three-layer fabric: the '
+                          'Porelle® waterproof barrier, the moisture-management '
+                          'layer, and the breathable inner face.'),
+            ('caption', 'The three layers, in section'))))),
+    )
+    for key, btype, settings in fold_rows:
+        about_blocks[key] = od(('type', btype),
+                               ('settings', od(*settings.items())))
+    add('about', od(('type', 'detail-folds'), ('settings', od(
+        ('color_scheme', 'paper'),
         ('anchor_id', 'what-it-is'),
         ('eyebrow', 'What it is'),
         ('heading', 'A membrane, sealed inside a knitted sock.'),
         ('head_note',
-         '<p>A crew-height waterproof sock built in three layers: a knitted lining '
-         'against the skin, a licensed Porelle® waterproof-breathable membrane in '
-         'the middle, and a knitted wear face on the outside. One height, one '
-         'construction, four colours, four sizes. The same sock whether you bought '
-         'it for a hill, a commute, a shift or for wudu.</p>'),
-        ('link_label', 'The three layers, in section'),
-        ('link_url', '/pages/technology'),
-    )), ('blocks', od(
-        ('d1', od(('type', 'image'), ('settings', od(
-            ('image_alt', 'HydroSox construction, labelled: ribbed cuff, '
-                          'breathable mesh, heel-fit design, non-slip sole, '
-                          'seamless toe'))))),
-        ('d2', od(('type', 'image'), ('settings', od(
-            ('image_alt', 'The three layers in section: waterproof barrier, '
-                          'moisture management, comfort and durability'))))),
-    )), ('block_order', ['d1', 'd2'])))
+         '<p>A crew-height sock with a waterproof-breathable membrane sealed '
+         'between two knitted layers. You wear them under the boots, shoes or '
+         'trainers you already own — the water that gets past your footwear '
+         'stops at the sock.</p><p>They are built for the days the forecast is '
+         'wrong: a hill walk that turns, a commute in the rain, a shift that '
+         'runs long on wet ground. One pair covers most of what a British year '
+         'does to your feet.</p>'),
+        ('shots_aspect', '4 / 3'),
+        ('cta_label', 'Buy a pair'),
+        ('cta_url', '#buy'),
+        ('cta_note', 'Back to the top of the page — size, colour and quantity '
+                     'are all there.'),
+    )), ('blocks', about_blocks),
+        ('block_order', list(about_blocks.keys()))))
 
-    # 3 — the full specification: the section that makes this page distinct
-    # from the category hub. Four rows are deliberately absent until the client
-    # confirms them — weight, height in centimetres, fibre composition and
-    # country of manufacture. A plausible-sounding value in any of them would
-    # be a guess published as a fact.
-    # The same eleven rows, as collapsible rows — the client's mockup shows
-    # the specification folded behind plus-marks rather than laid out in full.
-    # Word-for-word the same content; each row's label is the summary and its
-    # value the panel. The section's own CTA and help line are suppressed so
-    # the fold stays a fold and not another call to action.
+    # 3 — the full specification, reopened 2026-08-07 to the client's live
+    # mockup: an open definition table under a band header, not an accordion.
+    # The mockup also states four figures the accordion never carried — as
+    # "Not published yet" rows, because the honest state of a figure is itself
+    # the content. A plausible-sounding value in any of them would be a guess
+    # published as a fact, and the flag renders where the value would sit.
+    # The mockup's Price row spells out the whole per-pair ladder, matching
+    # the verified automatic discounts to the penny.
     spec_rows = [
-        ('Construction', 'Three layers: knitted lining, membrane, knitted wear face.'),
-        ('Membrane', 'Porelle®, licensed third-party waterproof-breathable laminate.'),
-        ('Height', 'Crew.'),
-        ('Sizes', 'S (UK 3–5) · M (UK 6–8) · L (UK 9–11) · XL (UK 12–14).'),
-        ('Sized on', 'Foot length in centimetres, not shoe size.'),
-        ('Colours', 'Black · Black / Grey · Black / Navy · White.'),
-        ('Chemistry', 'PFOA free.'),
-        ('Care', 'Cool wash, no softener, no bleach, air dry, never tumble dry or iron.'),
-        ('Warranty', 'Statutory rights apply in full; no additional warranty offered at present.'),
-        ('Origin', 'UK company, UK warehouse.'),
-        ('Price', '£20.00 a pair, £16.00 a pair in a five-pack.'),
+        ('Construction', 'Three layers: knitted lining, membrane, knitted wear face.', None),
+        ('Membrane', 'Porelle®, licensed third-party waterproof-breathable laminate.', None),
+        ('Height', 'Crew.', None),
+        ('Sizes', 'S (UK 3–5) · M (UK 6–8) · L (UK 9–11) · XL (UK 12–14).', None),
+        ('Sized on', 'Foot length in centimetres, not shoe size.', None),
+        ('Colours', 'Black · Black / Grey · Black / Navy · White.', None),
+        ('Chemistry', 'PFOA free.', None),
+        ('Care', 'Cool wash, no softener, no bleach, air dry, never tumble dry or iron.', None),
+        ('Warranty', 'Statutory rights apply in full; no additional warranty offered at present.', None),
+        ('Origin', 'UK company, UK warehouse.', None),
+        ('Price', '£20.00 a pair, £18.49 a pair in a 2-pack, £17.66 a pair in a '
+                  '3-pack, £16.99 a pair in a 4-pack, £15.99 a pair in a 5-pack', None),
+        ('Weight', 'Per pair, in grams.', 'Not published yet'),
+        ('Height in centimetres', 'Cuff to sole, measured flat.', 'Not published yet'),
+        ('Fibre composition', 'Percentage split across the three layers.', 'Not published yet'),
+        ('Country of manufacture', 'The factory, not the company address.', 'Not published yet'),
     ]
     spec, spec_order = collections.OrderedDict(), []
-    for n, (label, value) in enumerate(spec_rows, 1):
+    for n, (label, value, flag) in enumerate(spec_rows, 1):
         k = 'sp%d' % n
-        spec[k] = od(('type', 'question'), ('settings', od(
-            ('question', label), ('answer', '<p>%s</p>' % value))))
+        row = od(('title', label), ('body', '<p>%s</p>' % value))
+        if flag:
+            row['flag'] = flag
+        spec[k] = od(('type', 'item'), ('settings', row))
         spec_order.append(k)
-    add('specification', od(('type', 'faq-accordion'), ('settings', od(
-        ('color_scheme', 'paper'),
+    add('specification', od(('type', 'content-columns'), ('settings', od(
+        ('color_scheme', 'wash'),
+        ('layout', 'definition'),
+        ('numbered', False),
         ('anchor_id', 'specification'),
-        ('one_at_a_time', False),
-        ('emit_schema', False),
         ('eyebrow', 'Specification'),
         ('heading', 'Everything we can state.'),
         ('lede', '<p>Every figure here is checkable, and every gap is a fact we '
                  'are still confirming rather than a guess. Weight, height in '
                  'centimetres, fibre composition and country of manufacture are '
                  'published the moment they are.</p>'),
-        ('help_label', ''),
-        ('cta_label', ''),
     )), ('blocks', spec), ('block_order', spec_order)))
 
     # 4 — colourways, one photograph per colour.
@@ -280,7 +331,9 @@ def main():
         ('Fourteen days, no reason needed.',
          'Unworn and in the original packaging. Your statutory rights are the '
          'floor here, not the ceiling — the returns page sets out both.',
-         'The returns policy', '/policies/refund-policy'),
+         # The designed page, as the mockup links it — not the bare /policies/
+         # twin, which stays the checkout-linked legal copy of the same text.
+         'The returns policy', '/pages/returns-and-refunds'),
         ('A fault is not the same as wear.',
          'A seam that lets water through in the first weeks of normal use is a '
          'fault. Thinning at the heel after months is wear. The warranty page '
@@ -294,10 +347,11 @@ def main():
         after_order.append(k)
     add('aftercare', od(('type', 'content-columns'), ('settings', od(
         ('color_scheme', 'ink'),
-        # Focus on ink, heading right: the emphasis treatment for the three
-        # commitments — washing, returns, warranty — each keeping its link.
-        ('layout', 'focus'),
-        ('mirror', True),
+        # The mockup's shape: the heading top-left, then the three commitments
+        # as outlined cards running the full width — band on ink already draws
+        # cards as bordered boxes, and each card's link holds its bottom edge.
+        ('layout', 'band'),
+        ('mirror', False),
         ('numbered', False),
         ('anchor_id', 'after-you-buy'),
         ('eyebrow', 'After you buy'),
@@ -354,24 +408,23 @@ def main():
         ('help_link', '/pages/contact'),
     )), ('blocks', qs), ('block_order', qs_order)))
 
-    # 9 — the reviews empty state, stated rather than hidden. The review module
-    # after it renders nothing until real reviews exist; this note is why.
-    add('reviews_note', od(('type', 'centre-note'), ('settings', od(
-        # Blue is this theme's stating-a-limit scheme, and "there are none yet"
-        # is exactly that kind of statement. It also hands the page off into
-        # the dark footer with one colour step instead of none.
+    # 9 — the reviews empty state, stated rather than hidden. The mockup sets
+    # it as a two-column band on the pale blue scheme — heading left, the
+    # paragraph bottom-right — and carries no link; the client's mockup is the
+    # authority here, and the reviews-standard page stays reachable from the
+    # footer. Blue is this theme's stating-a-limit scheme, and "there are none
+    # yet" is exactly that kind of statement; it also hands the page off into
+    # the dark footer with one colour step instead of none.
+    add('reviews_note', od(('type', 'content-columns'), ('settings', od(
         ('color_scheme', 'blue'),
-        ('hide_rule', True),
-        ('max_width', 46),
+        ('layout', 'list'),
+        ('numbered', False),
         ('eyebrow', 'Reviews'),
         ('heading', 'There are none yet, and we are not going to invent any.'),
-        ('heading_size', 'h3'),
-        ('body', '<p>HydroSox is new. A rating with nothing behind it is worth '
+        ('lede', '<p>HydroSox is new. A rating with nothing behind it is worth '
                  'nothing, and a feed of five-star reviews with no negatives in it '
                  'reads as filtered to exactly the person who is reading it '
                  'carefully.</p>'),
-        ('link_label', 'The standard this feed will be held to'),
-        ('link_url', '/pages/reviews'),
     ))))
 
     tpl = od(('sections', sections), ('order', order))

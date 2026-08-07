@@ -269,126 +269,232 @@
       }
     },
     "about": {
-      "type": "content-columns",
+      "type": "detail-folds",
       "settings": {
-        "color_scheme": "wash",
-        "layout": "gallery",
-        "gallery_aspect": "1 / 1",
+        "color_scheme": "paper",
         "anchor_id": "what-it-is",
         "eyebrow": "What it is",
         "heading": "A membrane, sealed inside a knitted sock.",
-        "head_note": "<p>A crew-height waterproof sock built in three layers: a knitted lining against the skin, a licensed Porelle® waterproof-breathable membrane in the middle, and a knitted wear face on the outside. One height, one construction, four colours, four sizes. The same sock whether you bought it for a hill, a commute, a shift or for wudu.</p>",
-        "link_label": "The three layers, in section",
-        "link_url": "/pages/technology"
+        "head_note": "<p>A crew-height sock with a waterproof-breathable membrane sealed between two knitted layers. You wear them under the boots, shoes or trainers you already own — the water that gets past your footwear stops at the sock.</p><p>They are built for the days the forecast is wrong: a hill walk that turns, a commute in the rain, a shift that runs long on wet ground. One pair covers most of what a British year does to your feet.</p>",
+        "shots_aspect": "4 / 3",
+        "cta_label": "Buy a pair",
+        "cta_url": "#buy",
+        "cta_note": "Back to the top of the page — size, colour and quantity are all there."
       },
       "blocks": {
         "d1": {
           "type": "image",
           "settings": {
-            "image_alt": "HydroSox construction, labelled: ribbed cuff, breathable mesh, heel-fit design, non-slip sole, seamless toe"
+            "image_fallback": "diagram-anatomy.jpg",
+            "image_alt": "Anatomy diagram of a HydroSox sock labelling the ribbed cuff, breathable mesh panel, seamless toe, heel-fit shaping and non-slip sole.",
+            "caption": "Anatomy — cuff, mesh panel, seamless toe, heel-fit"
           }
         },
         "d2": {
           "type": "image",
           "settings": {
-            "image_alt": "The three layers in section: waterproof barrier, moisture management, comfort and durability"
+            "image_fallback": "diagram-layers.jpg",
+            "image_alt": "Cutaway diagram of the three-layer fabric: the Porelle® waterproof barrier, the moisture-management layer, and the breathable inner face.",
+            "caption": "The three layers, in section"
+          }
+        },
+        "f1": {
+          "type": "fold",
+          "settings": {
+            "title": "Three-layer construction",
+            "note": "The mechanism behind the waterproof claim, layer by layer."
+          }
+        },
+        "w1": {
+          "type": "row",
+          "settings": {
+            "title": "Inner layer",
+            "body": "<p>A soft knitted lining that moves sweat off the foot and stops the membrane sitting against the skin.</p>"
+          }
+        },
+        "w2": {
+          "type": "row",
+          "settings": {
+            "title": "Porelle® membrane",
+            "body": "<p>A licensed third-party waterproof-breathable membrane — not a name we invented. Water cannot get in; vapour from the foot can get out. PFOA free.</p>"
+          }
+        },
+        "w3": {
+          "type": "row",
+          "settings": {
+            "title": "Outer layer",
+            "body": "<p>The knitted face that takes the abrasion inside a boot or shoe, and holds the sock's shape when it is not being worn.</p>"
+          }
+        },
+        "f2": {
+          "type": "fold",
+          "settings": {
+            "title": "What it will not do",
+            "note": "The limits are real and physical. No competitor in the mapped set states theirs."
+          }
+        },
+        "w4": {
+          "type": "row",
+          "settings": {
+            "title": "They are not a boot replacement.",
+            "body": "<p>One component of a system. If your footwear is wrong for the ground, this will not fix it.</p>"
+          }
+        },
+        "w5": {
+          "type": "row",
+          "settings": {
+            "title": "Water over the cuff gets in.",
+            "body": "<p>A sock is open at the top. Go deeper than the cuff and you are wet, and no waterproof sock behaves otherwise.</p>"
+          }
+        },
+        "w6": {
+          "type": "row",
+          "settings": {
+            "title": "They are not indestructible.",
+            "body": "<p>A membrane is a membrane. Abrasion, toenails and the wrong wash cycle will eventually end one.</p>"
+          }
+        },
+        "w7": {
+          "type": "row",
+          "settings": {
+            "title": "Breathable does not mean dry inside.",
+            "body": "<p>Work hard enough and you will sweat faster than any membrane can move vapour. Breathability slows that. It does not repeal it.</p>"
           }
         }
       },
       "block_order": [
         "d1",
-        "d2"
+        "d2",
+        "f1",
+        "w1",
+        "w2",
+        "w3",
+        "f2",
+        "w4",
+        "w5",
+        "w6",
+        "w7"
       ]
     },
     "specification": {
-      "type": "faq-accordion",
+      "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "wash",
+        "layout": "definition",
+        "numbered": false,
         "anchor_id": "specification",
-        "one_at_a_time": false,
-        "emit_schema": false,
         "eyebrow": "Specification",
         "heading": "Everything we can state.",
-        "lede": "<p>Every figure here is checkable, and every gap is a fact we are still confirming rather than a guess. Weight, height in centimetres, fibre composition and country of manufacture are published the moment they are.</p>",
-        "help_label": "",
-        "cta_label": ""
+        "lede": "<p>Every figure here is checkable, and every gap is a fact we are still confirming rather than a guess. Weight, height in centimetres, fibre composition and country of manufacture are published the moment they are.</p>"
       },
       "blocks": {
         "sp1": {
-          "type": "question",
+          "type": "item",
           "settings": {
-            "question": "Construction",
-            "answer": "<p>Three layers: knitted lining, membrane, knitted wear face.</p>"
+            "title": "Construction",
+            "body": "<p>Three layers: knitted lining, membrane, knitted wear face.</p>"
           }
         },
         "sp2": {
-          "type": "question",
+          "type": "item",
           "settings": {
-            "question": "Membrane",
-            "answer": "<p>Porelle®, licensed third-party waterproof-breathable laminate.</p>"
+            "title": "Membrane",
+            "body": "<p>Porelle®, licensed third-party waterproof-breathable laminate.</p>"
           }
         },
         "sp3": {
-          "type": "question",
+          "type": "item",
           "settings": {
-            "question": "Height",
-            "answer": "<p>Crew.</p>"
+            "title": "Height",
+            "body": "<p>Crew.</p>"
           }
         },
         "sp4": {
-          "type": "question",
+          "type": "item",
           "settings": {
-            "question": "Sizes",
-            "answer": "<p>S (UK 3–5) · M (UK 6–8) · L (UK 9–11) · XL (UK 12–14).</p>"
+            "title": "Sizes",
+            "body": "<p>S (UK 3–5) · M (UK 6–8) · L (UK 9–11) · XL (UK 12–14).</p>"
           }
         },
         "sp5": {
-          "type": "question",
+          "type": "item",
           "settings": {
-            "question": "Sized on",
-            "answer": "<p>Foot length in centimetres, not shoe size.</p>"
+            "title": "Sized on",
+            "body": "<p>Foot length in centimetres, not shoe size.</p>"
           }
         },
         "sp6": {
-          "type": "question",
+          "type": "item",
           "settings": {
-            "question": "Colours",
-            "answer": "<p>Black · Black / Grey · Black / Navy · White.</p>"
+            "title": "Colours",
+            "body": "<p>Black · Black / Grey · Black / Navy · White.</p>"
           }
         },
         "sp7": {
-          "type": "question",
+          "type": "item",
           "settings": {
-            "question": "Chemistry",
-            "answer": "<p>PFOA free.</p>"
+            "title": "Chemistry",
+            "body": "<p>PFOA free.</p>"
           }
         },
         "sp8": {
-          "type": "question",
+          "type": "item",
           "settings": {
-            "question": "Care",
-            "answer": "<p>Cool wash, no softener, no bleach, air dry, never tumble dry or iron.</p>"
+            "title": "Care",
+            "body": "<p>Cool wash, no softener, no bleach, air dry, never tumble dry or iron.</p>"
           }
         },
         "sp9": {
-          "type": "question",
+          "type": "item",
           "settings": {
-            "question": "Warranty",
-            "answer": "<p>Statutory rights apply in full; no additional warranty offered at present.</p>"
+            "title": "Warranty",
+            "body": "<p>Statutory rights apply in full; no additional warranty offered at present.</p>"
           }
         },
         "sp10": {
-          "type": "question",
+          "type": "item",
           "settings": {
-            "question": "Origin",
-            "answer": "<p>UK company, UK warehouse.</p>"
+            "title": "Origin",
+            "body": "<p>UK company, UK warehouse.</p>"
           }
         },
         "sp11": {
-          "type": "question",
+          "type": "item",
           "settings": {
-            "question": "Price",
-            "answer": "<p>£20.00 a pair, £16.00 a pair in a five-pack.</p>"
+            "title": "Price",
+            "body": "<p>£20.00 a pair, £18.49 a pair in a 2-pack, £17.66 a pair in a 3-pack, £16.99 a pair in a 4-pack, £15.99 a pair in a 5-pack</p>"
+          }
+        },
+        "sp12": {
+          "type": "item",
+          "settings": {
+            "title": "Weight",
+            "body": "<p>Per pair, in grams.</p>",
+            "flag": "Not published yet"
+          }
+        },
+        "sp13": {
+          "type": "item",
+          "settings": {
+            "title": "Height in centimetres",
+            "body": "<p>Cuff to sole, measured flat.</p>",
+            "flag": "Not published yet"
+          }
+        },
+        "sp14": {
+          "type": "item",
+          "settings": {
+            "title": "Fibre composition",
+            "body": "<p>Percentage split across the three layers.</p>",
+            "flag": "Not published yet"
+          }
+        },
+        "sp15": {
+          "type": "item",
+          "settings": {
+            "title": "Country of manufacture",
+            "body": "<p>The factory, not the company address.</p>",
+            "flag": "Not published yet"
           }
         }
       },
@@ -403,7 +509,11 @@
         "sp8",
         "sp9",
         "sp10",
-        "sp11"
+        "sp11",
+        "sp12",
+        "sp13",
+        "sp14",
+        "sp15"
       ]
     },
     "colourways": {
@@ -508,8 +618,8 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "ink",
-        "layout": "focus",
-        "mirror": true,
+        "layout": "band",
+        "mirror": false,
         "numbered": false,
         "anchor_id": "after-you-buy",
         "eyebrow": "After you buy",
@@ -531,7 +641,7 @@
             "title": "Fourteen days, no reason needed.",
             "body": "<p>Unworn and in the original packaging. Your statutory rights are the floor here, not the ceiling — the returns page sets out both.</p>",
             "link_label": "The returns policy",
-            "link_url": "/policies/refund-policy"
+            "link_url": "/pages/returns-and-refunds"
           }
         },
         "ab3": {
@@ -561,8 +671,7 @@
         "heading": "About this sock, specifically.",
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
-        "help_link": "/pages/contact",
-        "cta_link": "#buy"
+        "help_link": "/pages/contact"
       },
       "blocks": {
         "q1": {
@@ -618,17 +727,14 @@
       ]
     },
     "reviews_note": {
-      "type": "centre-note",
+      "type": "content-columns",
       "settings": {
         "color_scheme": "blue",
-        "hide_rule": true,
-        "max_width": 46,
+        "layout": "list",
+        "numbered": false,
         "eyebrow": "Reviews",
         "heading": "There are none yet, and we are not going to invent any.",
-        "heading_size": "h3",
-        "body": "<p>HydroSox is new. A rating with nothing behind it is worth nothing, and a feed of five-star reviews with no negatives in it reads as filtered to exactly the person who is reading it carefully.</p>",
-        "link_label": "The standard this feed will be held to",
-        "link_url": "/pages/reviews"
+        "lede": "<p>HydroSox is new. A rating with nothing behind it is worth nothing, and a feed of five-star reviews with no negatives in it reads as filtered to exactly the person who is reading it carefully.</p>"
       }
     }
   },

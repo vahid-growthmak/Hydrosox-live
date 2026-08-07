@@ -112,7 +112,7 @@
         "y3"
       ],
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "wash",
         "anchor_id": "construction",
         "eyebrow": "The construction",
         "heading": "Three layers, and what each one is for",
@@ -131,8 +131,8 @@
     "breathability": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "wash",
-        "layout": "split",
+        "color_scheme": "paper",
+        "layout": "list",
         "numbered": false,
         "anchor_id": "breathability",
         "eyebrow": "Breathability",

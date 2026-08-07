@@ -171,6 +171,11 @@ def technology():
             "to abrasion is a membrane with a short life."),
         # A shorter track than the homepage's: this page has more below it.
         "track_height": 220,
+        # Wash, as the mockup sets this section on this page (the homepage
+        # copy stays paper). Safe for the frames: the sequence draws inside
+        # the stage's own rounded --plate panel, so the section ground never
+        # touches the imagery.
+        "color_scheme": "wash",
     })
     # The homepage section ends with a link block pointing at this very page;
     # a self-link is dropped, everything else is kept.
@@ -289,13 +294,16 @@ def technology():
     # questions, and the use-case argument belongs to the pages that own it.
     for dead in ("activities", "wont"):
         S.pop(dead, None)
-    # Presentation, to the client's mockup: breathability as split rows, the
-    # test-figures note on the blue stating-a-limit band. Failure, per the
-    # client 2026-08-07: the dark numbered ruled list — the same silhouette as
-    # the wudu hero's property rows they screenshotted as the reference —
-    # replacing the paper band of cards. Same four rows, same words.
+    # Presentation, to the client's mockup: breathability as the mockup's
+    # ruled stacked rows on paper (title over body, sticky heading left —
+    # checked against the live mockup DOM, which sets a dl of stacked rows,
+    # not term-beside-definition), the test-figures note on the blue
+    # stating-a-limit band. Failure, per the client 2026-08-07: the dark
+    # numbered ruled list — the silhouette they screenshotted as the
+    # reference — replacing the mockup's paper band of cards; their explicit
+    # instruction outranks the mockup here. Same four rows, same words.
     S["breathability"]["settings"].update({
-        "layout": "split", "color_scheme": "wash"})
+        "layout": "list", "color_scheme": "paper"})
     S["testing"]["settings"]["color_scheme"] = "blue"
     S["failure"]["settings"].update({
         "layout": "list", "color_scheme": "ink", "numbered": True})

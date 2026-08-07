@@ -391,7 +391,8 @@
         "heading": "The things people ask on this page.",
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_link": "#buy"
       },
       "blocks": {
         "q1": {
@@ -460,53 +461,6 @@
         "link_url": "/blogs/guides"
       }
     },
-    "problem": {
-      "type": "content-columns",
-      "settings": {
-        "color_scheme": "paper",
-        "layout": "list",
-        "numbered": false,
-        "eyebrow": "The problem",
-        "heading": "Upwards, mostly.",
-        "lede": "<p>Riding in the rain is not really a rain problem. It is a spray problem, and spray behaves differently.</p>"
-      },
-      "blocks": {
-        "i1": {
-          "type": "item",
-          "settings": {
-            "title": "Off the front wheel, onto the ankle",
-            "body": "<p>The front wheel throws a continuous fan of water backwards onto the shoe and the ankle. That is where an overshoe is open, and it is where an overshoe ends.</p>"
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "title": "Standing water, at speed",
-            "body": "<p>A puddle taken at twenty miles an hour goes into the shoe through the vents in a way that rain simply does not.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "The road is dirtier than the rain",
-            "body": "<p>Road spray carries grit and oil. It stains, it abrades and it is why cycling kit wears out faster than walking kit.</p>"
-          }
-        },
-        "i4": {
-          "type": "item",
-          "settings": {
-            "title": "And then there is nowhere to dry it",
-            "body": "<p>A soaked cycling shoe does not dry under an office desk in eight hours. The evening ride starts wet regardless of the forecast.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3",
-        "i4"
-      ]
-    },
     "overshoes": {
       "type": "comparison-table",
       "settings": {
@@ -514,6 +468,7 @@
         "anchor_id": "overshoes",
         "eyebrow": "The comparison",
         "heading": "Against overshoes, including where they win.",
+        "link_url": "/pages/technology",
         "lede": "<p>Most people reading this already own overshoes. This is not an argument that they are useless — it is a description of what each one is actually good at.</p>",
         "table_caption": "Waterproof socks compared with overshoes, including the rows where overshoes win.",
         "col_criterion": "What matters",
@@ -582,14 +537,15 @@
     "drying": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "ink",
         "layout": "list",
         "numbered": false,
         "eyebrow": "The other end",
         "heading": "The ride home starts where the ride in finished.",
         "lede": "<p>Almost every product in this category is designed around the outbound journey. The commute has two halves and only one of them has a radiator at the end.</p>",
         "link_label": "How to wash them properly",
-        "link_url": "/pages/care-and-washing"
+        "link_url": "/pages/care-and-washing",
+        "mirror": true
       },
       "blocks": {
         "i1": {
@@ -624,13 +580,14 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "paper",
-        "layout": "list",
+        "layout": "cards",
         "numbered": false,
         "eyebrow": "Fit",
         "heading": "Check the shoe before you order.",
         "lede": "<p>Cycling shoes are built with far less volume than a walking boot, so this matters more here than on any other page.</p>",
         "link_label": "The size bands in centimetres",
-        "link_url": "/pages/size-guide"
+        "link_url": "/pages/size-guide",
+        "mirror": false
       },
       "blocks": {
         "i1": {
@@ -659,6 +616,54 @@
         "i1",
         "i2",
         "i3"
+      ]
+    },
+    "problem": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "steps",
+        "numbered": false,
+        "eyebrow": "The problem",
+        "heading": "Upwards, mostly.",
+        "lede": "<p>Riding in the rain is not really a rain problem. It is a spray problem, and spray behaves differently.</p>",
+        "mirror": false
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Off the front wheel, onto the ankle",
+            "body": "<p>The front wheel throws a continuous fan of water backwards onto the shoe and the ankle. That is where an overshoe is open, and it is where an overshoe ends.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Standing water, at speed",
+            "body": "<p>A puddle taken at twenty miles an hour goes into the shoe through the vents in a way that rain simply does not.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "The road is dirtier than the rain",
+            "body": "<p>Road spray carries grit and oil. It stains, it abrades and it is why cycling kit wears out faster than walking kit.</p>"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "And then there is nowhere to dry it",
+            "body": "<p>A soaked cycling shoe does not dry under an office desk in eight hours. The evening ride starts wet regardless of the forecast.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
       ]
     }
   },

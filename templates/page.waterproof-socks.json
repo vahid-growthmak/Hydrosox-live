@@ -148,7 +148,8 @@
         "heading": "Three things no waterproof sock does.",
         "lede": "<p>This is the part of the category nobody writes down. It is also the part that decides whether waterproof socks are right for you, so it goes above the price rather than below it.</p>",
         "link_label": "How they are built",
-        "link_url": "/pages/technology"
+        "link_url": "/pages/technology",
+        "cta_link": "#buy"
       },
       "blocks": {
         "l1": {
@@ -262,7 +263,8 @@
         "table_caption": "Four ways to keep feet dry, with the conditions each one works and fails in.",
         "col_criterion": "The option",
         "col_ours": "Works when",
-        "col_theirs": "Fails when"
+        "col_theirs": "Fails when",
+        "link_url": "/pages/technology"
       },
       "blocks": {
         "a1": {

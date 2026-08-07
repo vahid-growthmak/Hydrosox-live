@@ -391,7 +391,8 @@
         "heading": "Asked from site, mostly.",
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_link": "#buy"
       },
       "blocks": {
         "q1": {
@@ -452,56 +453,18 @@
         "link_url": "/blogs/guides"
       }
     },
-    "problem": {
-      "type": "content-columns",
-      "settings": {
-        "color_scheme": "paper",
-        "layout": "list",
-        "numbered": false,
-        "eyebrow": "The problem",
-        "heading": "The boot is doing half the job.",
-        "lede": "<p>A safety boot is built to keep water and everything else out. Nothing about it is built to let anything back out again.</p>"
-      },
-      "blocks": {
-        "i1": {
-          "type": "item",
-          "settings": {
-            "title": "Wet from the inside by lunchtime",
-            "body": "<p>A foot produces a serious amount of moisture across a ten-hour shift. In a sealed boot most of it stays there, which is why feet are wet on dry days too.</p>"
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "title": "Wet skin, all winter",
-            "body": "<p>Skin that stays damp for months softens, splits and stops recovering overnight. That is the actual cost of this, and it is not comfort.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "Rain and standing water on top of that",
-            "body": "<p>Sites flood, ditches fill and wellies get overtopped. The boot handles some of it. The rest arrives anyway.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3"
-      ]
-    },
     "durability": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "ink",
         "layout": "list",
         "numbered": false,
         "eyebrow": "Durability",
         "heading": "Three weeks is not a membrane problem.",
         "lede": "<p>Most cheap waterproof socks do not fail because the membrane is bad. They fail for three reasons, and two of them are fixable.</p>",
         "link_label": "What actually damages a membrane",
-        "link_url": "/pages/care-and-washing"
+        "link_url": "/pages/care-and-washing",
+        "mirror": true
       },
       "blocks": {
         "i1": {
@@ -536,13 +499,14 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "paper",
-        "layout": "list",
+        "layout": "cards",
         "numbered": false,
         "eyebrow": "Fit",
         "heading": "Check the boot before you order.",
         "lede": "<p>Safety boots have a fixed toe cap and no give in it. This is the one thing worth checking before buying.</p>",
         "link_label": "The size bands in centimetres",
-        "link_url": "/pages/size-guide"
+        "link_url": "/pages/size-guide",
+        "mirror": false
       },
       "blocks": {
         "i1": {
@@ -583,7 +547,8 @@
         "heading": "Where you stand.",
         "lede": "<p>On every other page this sits in the footer links. It is here because this is where the decision gets made.</p>",
         "link_label": "The full warranty position",
-        "link_url": "/pages/warranty"
+        "link_url": "/pages/warranty",
+        "mirror": true
       },
       "blocks": {
         "i1": {
@@ -605,6 +570,46 @@
           "settings": {
             "title": "Six months where the fault is presumed ours",
             "body": "<p>Within six months of delivery, a fault is assumed to have been there from the start unless we can show otherwise.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "problem": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "steps",
+        "numbered": false,
+        "eyebrow": "The problem",
+        "heading": "The boot is doing half the job.",
+        "lede": "<p>A safety boot is built to keep water and everything else out. Nothing about it is built to let anything back out again.</p>",
+        "mirror": false
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Wet from the inside by lunchtime",
+            "body": "<p>A foot produces a serious amount of moisture across a ten-hour shift. In a sealed boot most of it stays there, which is why feet are wet on dry days too.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Wet skin, all winter",
+            "body": "<p>Skin that stays damp for months softens, splits and stops recovering overnight. That is the actual cost of this, and it is not comfort.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Rain and standing water on top of that",
+            "body": "<p>Sites flood, ditches fill and wellies get overtopped. The boot handles some of it. The rest arrives anyway.</p>"
           }
         }
       },

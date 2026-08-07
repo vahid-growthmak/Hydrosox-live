@@ -2,23 +2,40 @@
   Content columns — the workhorse content section.
 
   A heading column that stays with the reader while a second column runs past
-  it. The right column renders one of three things, chosen by `layout`:
+  it. The right column renders one of several things, chosen by `layout`:
 
   - list     ruled rows of title and body, optionally numbered
+  - steps    the same rows, always numbered, on a rail that fills as you scroll
+  - cards    the same items as a grid of cards rather than a stack
   - gallery  a two-up grid of captioned images
   - prose    a single block of rich text
   - media    a single image beside the copy, six columns each
 
-  This is the shape the design uses for almost every explanatory section, so
-  most pages are built from repeats of it rather than one-off sections.
+  This is the shape the design uses for almost every explanatory section, which
+  is its strength and its risk: a page built from four of them in a row reads as
+  one undifferentiated slab however good the writing is. `steps`, `cards` and
+  `mirror` exist so consecutive sections can be told apart at a glance without
+  changing a word of the copy or adding a bespoke section per page.
+
+  Adjacent sections should differ on at least two of: colour scheme, which side
+  the heading sits on, and the shape of the items.
 {%- endcomment -%}
 
 {%- liquid
   assign layout = section.settings.layout | default: 'list'
   assign items = section.blocks | where: 'type', 'item'
   assign shots = section.blocks | where: 'type', 'image'
+
+  # Steps are a numbered list by definition — the number is the whole point of
+  # the treatment, so it is not left to a separate setting that could contradict
+  # it.
+  assign show_index = section.settings.numbered
+  if layout == 'steps'
+    assign show_index = true
+  endif
+
   assign list_tag = 'ul'
-  if section.settings.numbered
+  if show_index
     assign list_tag = 'ol'
   endif
 -%}
@@ -31,7 +48,9 @@
   {{ section.shopify_attributes }}
 >
   <div class="hs-shell hs-pace-base">
-    <div class="hs-cols__grid hs-cols__grid--{{ layout }}">
+    <div
+      class="hs-cols__grid hs-cols__grid--{{ layout }}{% if section.settings.mirror %} hs-cols__grid--mirror{% endif %}"
+    >
       {%- comment -%} Heading column {%- endcomment -%}
       <div class="hs-cols__head-col">
         <div class="hs-cols__head-sticky">
@@ -125,9 +144,45 @@
               </div>
             {%- endif -%}
 
+          {%- when 'cards' -%}
+            {%- comment -%}
+              The same items, laid out as a grid rather than a stack. A card has
+              no rule above and below it and no shared left edge, so a section
+              using this reads as a different kind of thing from the ruled list
+              above it even though the content is identical.
+            {%- endcomment -%}
+            {%- if items.size > 0 -%}
+              <ul class="hs-cols__cards hs-stagger" role="list">
+                {%- for block in items -%}
+                  <li class="hs-cols__card hs-reveal" {{ block.shopify_attributes }}>
+                    {%- if show_index -%}
+                      {% render 'hs-index-number',
+                        index: forloop.index0,
+                        size: 'label',
+                        class: 'hs-cols__card-index hs-faint'
+                      %}
+                    {%- endif -%}
+                    {%- if block.settings.title != blank -%}
+                      <h3 class="hs-h4 hs-cols__card-title hs-balance">{{ block.settings.title }}</h3>
+                    {%- endif -%}
+                    {%- if block.settings.body != blank -%}
+                      <div class="hs-small-body hs-cols__card-body hs-pretty hs-muted">
+                        {{ block.settings.body }}
+                      </div>
+                    {%- endif -%}
+                    {%- if block.settings.link_label != blank -%}
+                      <a class="hs-tap hs-small-body hs-cols__row-link" href="{{ block.settings.link_url | default: '#' }}">
+                        {{- block.settings.link_label -}}
+                      </a>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+
           {%- else -%}
             {%- if items.size > 0 -%}
-              <{{ list_tag }} class="hs-cols__list hs-cols__list--{{ section.settings.row_density | default: 'standard' }} hs-stagger" role="list">
+              <{{ list_tag }} class="hs-cols__list hs-cols__list--{{ section.settings.row_density | default: 'standard' }}{% if layout == 'steps' %} hs-cols__list--steps{% endif %} hs-stagger" role="list">
                 {%- for block in items -%}
                   {%- liquid
                     assign row_has_media = false
@@ -146,7 +201,7 @@
                     class="hs-cols__row hs-reveal{% if row_has_media %} hs-cols__row--media{% endif %}"
                     {{ block.shopify_attributes }}
                   >
-                    {%- if section.settings.numbered -%}
+                    {%- if show_index -%}
                       {% render 'hs-index-number',
                         index: forloop.index0,
                         size: 'label',
@@ -239,11 +294,20 @@
       "label": "t:sections.cols.layout",
       "options": [
         { "value": "list", "label": "t:sections.cols.layout_list" },
+        { "value": "steps", "label": "t:sections.cols.layout_steps" },
+        { "value": "cards", "label": "t:sections.cols.layout_cards" },
         { "value": "gallery", "label": "t:sections.cols.layout_gallery" },
         { "value": "prose", "label": "t:sections.cols.layout_prose" },
         { "value": "media", "label": "t:sections.cols.layout_media" }
       ],
       "default": "list"
+    },
+    {
+      "type": "checkbox",
+      "id": "mirror",
+      "label": "t:sections.cols.mirror",
+      "info": "t:sections.cols.mirror_info",
+      "default": false
     },
     {
       "type": "checkbox",

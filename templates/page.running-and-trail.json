@@ -391,7 +391,8 @@
         "heading": "The things people ask on this page.",
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_link": "#buy"
       },
       "blocks": {
         "q1": {
@@ -463,12 +464,13 @@
     "trade": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "ink",
         "layout": "list",
         "numbered": false,
         "eyebrow": "The trade",
         "heading": "Heavier than a racing sock. Lighter than a wet one.",
-        "lede": "<p>A waterproof sock has three layers where a racing sock has one. There is no version of this where the weight is the same. The measured weight per pair is being confirmed and will be published here as a number, not an adjective.</p>"
+        "lede": "<p>A waterproof sock has three layers where a racing sock has one. There is no version of this where the weight is the same. The measured weight per pair is being confirmed and will be published here as a number, not an adjective.</p>",
+        "mirror": true
       },
       "blocks": {
         "i1": {
@@ -498,6 +500,8 @@
         "anchor_id": "when-not",
         "eyebrow": "When not to",
         "heading": "Three runs where you should not wear these.",
+        "cta_link": "#buy",
+        "link_url": "/pages/technology",
         "lede": "<p>Every brand tells you when to wear their product. On a running page that is close to useless, because the conditions that suit a waterproof sock are narrower than the conditions people run in.</p>"
       },
       "blocks": {
@@ -550,11 +554,12 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "paper",
-        "layout": "list",
+        "layout": "cards",
         "numbered": false,
         "eyebrow": "Winter",
         "heading": "The runs these are actually for.",
-        "lede": "<p>Not performance. Consistency — the training block staying intact through the months when it usually does not.</p>"
+        "lede": "<p>Not performance. Consistency — the training block staying intact through the months when it usually does not.</p>",
+        "mirror": false
       },
       "blocks": {
         "i1": {
@@ -588,12 +593,13 @@
     "blisters": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
-        "layout": "list",
+        "color_scheme": "wash",
+        "layout": "steps",
         "numbered": false,
         "eyebrow": "Blisters",
         "heading": "Faster feet, the same three causes.",
-        "lede": "<p>Running compresses the same blister problem walkers have into a much shorter time, which is why runners feel it more sharply.</p>"
+        "lede": "<p>Running compresses the same blister problem walkers have into a much shorter time, which is why runners feel it more sharply.</p>",
+        "mirror": false
       },
       "blocks": {
         "i1": {

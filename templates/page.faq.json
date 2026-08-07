@@ -362,7 +362,9 @@
         "one_at_a_time": false,
         "emit_schema": false,
         "eyebrow": "The product",
-        "heading": "What the sock actually is."
+        "heading": "What the sock actually is.",
+        "cta_link": "#buy",
+        "help_link": "/pages/contact"
       },
       "blocks": {
         "q1": {
@@ -425,7 +427,9 @@
         "one_at_a_time": false,
         "emit_schema": false,
         "eyebrow": "Wudu and masah",
-        "heading": "The everyday questions."
+        "heading": "The everyday questions.",
+        "cta_link": "#buy",
+        "help_link": "/pages/contact"
       },
       "blocks": {
         "q1": {
@@ -488,7 +492,9 @@
         "one_at_a_time": false,
         "emit_schema": false,
         "eyebrow": "Sizing and fit",
-        "heading": "The bands are on the size guide."
+        "heading": "The bands are on the size guide.",
+        "cta_link": "#buy",
+        "help_link": "/pages/contact"
       },
       "blocks": {
         "q1": {
@@ -543,7 +549,9 @@
         "one_at_a_time": false,
         "emit_schema": false,
         "eyebrow": "Washing and lifespan",
-        "heading": "The full instructions are on the care page."
+        "heading": "The full instructions are on the care page.",
+        "cta_link": "#buy",
+        "help_link": "/pages/contact"
       },
       "blocks": {
         "q1": {
@@ -598,7 +606,9 @@
         "one_at_a_time": false,
         "emit_schema": false,
         "eyebrow": "Delivery, returns and warranty",
-        "heading": "What is settled, and what is not."
+        "heading": "What is settled, and what is not.",
+        "cta_link": "#buy",
+        "help_link": "/pages/contact"
       },
       "blocks": {
         "q1": {
@@ -661,7 +671,9 @@
         "one_at_a_time": false,
         "emit_schema": false,
         "eyebrow": "The company",
-        "heading": "Who is behind this."
+        "heading": "Who is behind this.",
+        "cta_link": "#buy",
+        "help_link": "/pages/contact"
       },
       "blocks": {
         "q1": {

@@ -133,7 +133,8 @@
         "emit_schema": false,
         "eyebrow": "The facts",
         "heading": "Everything a journalist needs, in one place.",
-        "lede": "<p>Logo, product photography and this fact sheet are available on request. Email us and a person will reply.</p>"
+        "lede": "<p>Logo, product photography and this fact sheet are available on request. Email us and a person will reply.</p>",
+        "link_url": "/pages/faq"
       },
       "blocks": {
         "f1": {

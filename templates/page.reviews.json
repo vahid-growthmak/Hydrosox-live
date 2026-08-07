@@ -386,7 +386,9 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "About the feed that is not here yet."
+        "heading": "About the feed that is not here yet.",
+        "cta_link": "#buy",
+        "help_link": "/pages/contact"
       },
       "blocks": {
         "q1": {

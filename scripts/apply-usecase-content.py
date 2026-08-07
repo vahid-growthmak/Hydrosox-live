@@ -78,7 +78,59 @@ def faq(entries, heading="The things people ask on this page."):
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
         "help_link": "/pages/contact",
+        # The label is a schema default; the link is not, so a CTA built without
+        # this line renders as a button that looks fine and does nothing.
+        "cta_link": "#buy",
     }, "blocks": blocks, "block_order": order}
+
+
+# ---------------------------------------------------------------- the rhythm
+#
+# content-columns is the right component for almost every section on these
+# pages, and that is the problem: four of them in sequence is four identical
+# 5/7 grids with a sticky heading left and a ruled list right, on the same white
+# background. The writing is doing different work in each one and the page does
+# not show it, so it reads as one slab and a reader skims all four.
+#
+# The fix is not less content — it is a different silhouette per section. Each
+# entry below sets the layout, the background and which side the heading sits
+# on. The rule the table is built to: no two adjacent sections may share more
+# than one of those three.
+#
+# It lives here, in one table, rather than at each call site, because it is a
+# single design decision about the shape of a page and should be reviewable as
+# one. Sections not listed keep the plain list.
+#
+#   steps  a numbered route with a rail that fills as you scroll
+#   cards  a grid, no shared left edge and no rules across it
+#   ink    the dark band that marks the turn from problem to answer
+#   mirror heading on the right, so even the skeleton differs
+RHYTHM = {
+    "hiking-and-walking": {
+        "problem":    ("steps", "paper", False),   # four ways, enumerated
+        "answers":    ("list",  "ink",   True),    # the turn — dark, flipped
+        "blisters":   ("cards", "paper", False),   # does / does not, side by side
+        "fit":        ("list",  "wash",  True),    # checks before ordering
+    },
+    "running-and-trail": {
+        "trade":      ("list",  "ink",   True),    # the concession, up front
+        # whennot is honest-limits and already a different shape
+        "winter":     ("cards", "paper", False),
+        "blisters":   ("steps", "wash",  False),   # the same three causes
+    },
+    "cycling-and-commuting": {
+        "problem":    ("steps", "paper", False),   # where the water comes from
+        # overshoes is a comparison table and already a different shape
+        "drying":     ("list",  "ink",   True),    # the insight, dark
+        "fit":        ("cards", "paper", False),
+    },
+    "all-day-in-boots": {
+        "problem":    ("steps", "paper", False),
+        "durability": ("list",  "ink",   True),    # why the cheap pair failed
+        "fit":        ("cards", "paper", False),
+        "warranty":   ("list",  "wash",  True),    # sits after the buy widget
+    },
+}
 
 
 def apply(handle, current_label, new_sections, new_order_mid, faq_section,
@@ -101,6 +153,13 @@ def apply(handle, current_label, new_sections, new_order_mid, faq_section,
     for key, sec in new_sections.items():
         S[key] = sec
     S["faq"] = faq_section
+
+    # Apply the page's rhythm, so no two adjacent sections share a silhouette.
+    for key, (layout, scheme, mirror) in RHYTHM.get(handle, {}).items():
+        if key not in S or S[key].get("type") != "content-columns":
+            continue
+        S[key]["settings"].update({
+            "layout": layout, "color_scheme": scheme, "mirror": mirror})
 
     if buy_overrides and "buy" in S:
         S["buy"]["settings"].update(buy_overrides)
@@ -232,6 +291,8 @@ def main():
             "color_scheme": "ink", "anchor_id": "when-not",
             "eyebrow": "When not to",
             "heading": "Three runs where you should not wear these.",
+            "cta_link": "#buy",
+            "link_url": "/pages/technology",
             "lede": rich(
                 "Every brand tells you when to wear their product. On a running "
                 "page that is close to useless, because the conditions that suit a "
@@ -359,6 +420,7 @@ def main():
             "color_scheme": "paper", "anchor_id": "overshoes",
             "eyebrow": "The comparison",
             "heading": "Against overshoes, including where they win.",
+            "link_url": "/pages/technology",
             "lede": rich(
                 "Most people reading this already own overshoes. This is not an "
                 "argument that they are useless — it is a description of what each "

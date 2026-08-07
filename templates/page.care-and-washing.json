@@ -206,7 +206,9 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "About washing them."
+        "heading": "About washing them.",
+        "cta_link": "/products/hydrosox-waterproof-socks",
+        "help_link": "/pages/contact"
       },
       "blocks": {
         "q1": {

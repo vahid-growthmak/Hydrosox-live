@@ -534,7 +534,8 @@
         "heading": "About this sock, specifically.",
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_link": "#buy"
       },
       "blocks": {
         "q1": {

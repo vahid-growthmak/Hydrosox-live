@@ -367,7 +367,9 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "Before you choose a band."
+        "heading": "Before you choose a band.",
+        "cta_link": "#buy",
+        "help_link": "/pages/contact"
       },
       "blocks": {
         "q1": {

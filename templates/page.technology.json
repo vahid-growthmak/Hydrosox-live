@@ -441,7 +441,9 @@
         "emit_schema": true,
         "eyebrow": "Questions",
         "heading": "The technical ones.",
-        "lede": "<p>About the mechanism rather than about the product. Where we do not have a number, the answer says so.</p>"
+        "lede": "<p>About the mechanism rather than about the product. Where we do not have a number, the answer says so.</p>",
+        "cta_link": "#buy",
+        "help_link": "/pages/contact"
       },
       "blocks": {
         "q1": {

@@ -1883,3 +1883,126 @@
 .hs-policy__foot > :first-child {
   margin-top: 0;
 }
+
+/* --------------------------------------------------------------------------
+   Content columns — breaking the repeat
+
+   Four of this section in a row is the normal shape of a use-case page, and
+   four identical 5/7 grids read as one slab whatever the writing is doing.
+   These three treatments change the silhouette without touching the copy.
+   -------------------------------------------------------------------------- */
+
+/* Heading on the right. Only above the breakpoint — stacked, the heading has to
+   come first or the reader meets a list with nothing to frame it. */
+@media (min-width: 64rem) {
+  .hs-cols__grid--mirror .hs-cols__head-col {
+    grid-column: 8 / span 5;
+    grid-row: 1;
+  }
+
+  .hs-cols__grid--mirror .hs-cols__body-col {
+    grid-column: 1 / span 7;
+    grid-row: 1;
+  }
+}
+
+/* Cards: a grid rather than a stack, so the section has no shared left edge
+   and no rules running across it. auto-fit means three across on a desktop and
+   one on a phone without a breakpoint per count. */
+.hs-cols__cards {
+  display: grid;
+  gap: 1rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hs-cols__cards:first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 48rem) {
+  .hs-cols__cards {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+}
+
+.hs-cols__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1.5rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+}
+
+.hs-cols__card-index {
+  display: block;
+}
+
+.hs-cols__card-body > :first-child {
+  margin-top: 0;
+}
+
+/* Steps: a rail down the left of a numbered list, filling as the reader moves
+   through it. The list stops being four equal rows and becomes a route with a
+   position on it. */
+.hs-cols__list--steps {
+  position: relative;
+  margin-top: 2.5rem;
+  padding-left: 3rem;
+  border-top: 0;
+}
+
+.hs-cols__list--steps .hs-cols__row {
+  border-bottom: 0;
+  padding-block: 1rem 1.75rem;
+}
+
+.hs-cols__list--steps .hs-cols__row-index {
+  position: absolute;
+  left: 0;
+  width: 2rem;
+  text-align: center;
+}
+
+/* The track. Always drawn, so the shape reads even where the fill cannot. */
+.hs-cols__list--steps::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: var(--rule);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .hs-cols__list--steps::after {
+      content: "";
+      position: absolute;
+      left: 1rem;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 1px;
+      background: var(--blue);
+      transform-origin: 50% 0;
+      scale: 1 0;
+      animation: hs-rail-draw linear both;
+      animation-timeline: view();
+      animation-range: cover 10% cover 80%;
+    }
+  }
+}
+
+@keyframes hs-rail-draw {
+  from {
+    scale: 1 0;
+  }
+
+  to {
+    scale: 1 1;
+  }
+}

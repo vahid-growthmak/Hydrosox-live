@@ -590,7 +590,11 @@
       "cta_label_info": "Adds a button below the content. Leave empty for no button.",
       "cta_url": "Button link",
       "lead_first_para": "Set the first paragraph larger",
-      "lead_first_para_info": "For prose that opens with a paragraph written to stand on its own, like a definition. Search results and AI answers both lift the opening paragraph."
+      "lead_first_para_info": "For prose that opens with a paragraph written to stand on its own, like a definition. Search results and AI answers both lift the opening paragraph.",
+      "layout_steps": "Numbered steps",
+      "layout_cards": "Cards",
+      "mirror": "Put the heading on the right",
+      "mirror_info": "Flips the two columns. Use it so two sections in a row do not share the same skeleton — a page built from repeats of this section reads as one slab otherwise, however good the writing is."
     },
     "note": {
       "name": "Centre note",

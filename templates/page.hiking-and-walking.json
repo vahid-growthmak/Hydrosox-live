@@ -391,7 +391,8 @@
         "heading": "The things people ask on this page.",
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_link": "#buy"
       },
       "blocks": {
         "q1": {
@@ -460,15 +461,98 @@
         "link_url": "/blogs/guides"
       }
     },
+    "blisters": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "cards",
+        "numbered": false,
+        "eyebrow": "Blisters",
+        "heading": "What a dry foot does and does not prevent.",
+        "lede": "<p>Waterproof socks help with blisters. They do not prevent them, and any brand telling you otherwise is selling you something.</p>",
+        "mirror": false
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Wet skin blisters more easily",
+            "body": "<p>Saturated skin softens and its resistance to friction drops sharply. Keeping the foot dry removes one of the three things a blister needs. That is a real and significant help.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Friction and fit still matter",
+            "body": "<p>The other two things are pressure and movement. A boot that rubs will still rub. A sock that is too small will still bunch. No membrane changes that.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Grit is the one nobody mentions",
+            "body": "<p>On wet ground, fine grit washes in over the cuff and sits under the foot. That is abrasive against skin and against the sock. Rinse both at the end of a wet day.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "fit": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "list",
+        "numbered": false,
+        "eyebrow": "Fit",
+        "heading": "Before you order, check the boot.",
+        "lede": "<p>This is the question most sellers skip and most returns come from. Waterproof socks are thicker than the sock you are used to.</p>",
+        "link_label": "The size bands in centimetres",
+        "link_url": "/pages/size-guide",
+        "mirror": true
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Roughly a mid-weight sock",
+            "body": "<p>If your boots are already snug with a thick walking sock, they will be tight with these. If you wear a liner and a thick sock together, these replace both.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Take the larger band if you are between two",
+            "body": "<p>A size down grips the toes, which is uncomfortable over eight hours and shortens the life of the membrane. Foot length, not shoe size, sets the band.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Lace pressure over the instep",
+            "body": "<p>A thicker sock changes where a boot loads. Give the laces one honest adjustment on the first walk rather than assuming the fit is wrong.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
     "problem": {
       "type": "content-columns",
       "settings": {
         "color_scheme": "paper",
-        "layout": "list",
+        "layout": "steps",
         "numbered": false,
         "eyebrow": "The problem",
         "heading": "Four ways a walk gets your feet wet.",
-        "lede": "<p>Only one of these is the one boots are designed to stop, which is why good boots and wet feet are not a contradiction.</p>"
+        "lede": "<p>Only one of these is the one boots are designed to stop, which is why good boots and wet feet are not a contradiction.</p>",
+        "mirror": false
       },
       "blocks": {
         "i1": {
@@ -510,14 +594,15 @@
     "answers": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "ink",
         "layout": "list",
         "numbered": false,
         "eyebrow": "The answer",
         "heading": "A layer that does not wet out.",
         "lede": "<p>The membrane sits inside the sock rather than inside the boot, which changes where the waterproof line is drawn — and what happens when the boot fails.</p>",
         "link_label": "How the three layers work",
-        "link_url": "/pages/technology"
+        "link_url": "/pages/technology",
+        "mirror": true
       },
       "blocks": {
         "i1": {
@@ -539,86 +624,6 @@
           "settings": {
             "title": "It is not a boot replacement",
             "body": "<p>Said plainly here and on the homepage: if your footwear is wrong for the ground, this will not fix it. It solves wetness, not support, grip or ankle protection.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3"
-      ]
-    },
-    "blisters": {
-      "type": "content-columns",
-      "settings": {
-        "color_scheme": "paper",
-        "layout": "list",
-        "numbered": false,
-        "eyebrow": "Blisters",
-        "heading": "What a dry foot does and does not prevent.",
-        "lede": "<p>Waterproof socks help with blisters. They do not prevent them, and any brand telling you otherwise is selling you something.</p>"
-      },
-      "blocks": {
-        "i1": {
-          "type": "item",
-          "settings": {
-            "title": "Wet skin blisters more easily",
-            "body": "<p>Saturated skin softens and its resistance to friction drops sharply. Keeping the foot dry removes one of the three things a blister needs. That is a real and significant help.</p>"
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "title": "Friction and fit still matter",
-            "body": "<p>The other two things are pressure and movement. A boot that rubs will still rub. A sock that is too small will still bunch. No membrane changes that.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "Grit is the one nobody mentions",
-            "body": "<p>On wet ground, fine grit washes in over the cuff and sits under the foot. That is abrasive against skin and against the sock. Rinse both at the end of a wet day.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3"
-      ]
-    },
-    "fit": {
-      "type": "content-columns",
-      "settings": {
-        "color_scheme": "paper",
-        "layout": "list",
-        "numbered": false,
-        "eyebrow": "Fit",
-        "heading": "Before you order, check the boot.",
-        "lede": "<p>This is the question most sellers skip and most returns come from. Waterproof socks are thicker than the sock you are used to.</p>",
-        "link_label": "The size bands in centimetres",
-        "link_url": "/pages/size-guide"
-      },
-      "blocks": {
-        "i1": {
-          "type": "item",
-          "settings": {
-            "title": "Roughly a mid-weight sock",
-            "body": "<p>If your boots are already snug with a thick walking sock, they will be tight with these. If you wear a liner and a thick sock together, these replace both.</p>"
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "title": "Take the larger band if you are between two",
-            "body": "<p>A size down grips the toes, which is uncomfortable over eight hours and shortens the life of the membrane. Foot length, not shoe size, sets the band.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "Lace pressure over the instep",
-            "body": "<p>A thicker sock changes where a boot loads. Give the laces one honest adjustment on the first walk rather than assuming the fit is wrong.</p>"
           }
         }
       },

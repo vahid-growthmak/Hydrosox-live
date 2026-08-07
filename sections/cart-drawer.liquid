@@ -232,7 +232,19 @@
           </button>
         </form>
 
-        <a class="hs-link hs-caption hs-cartd__viewcart" href="{{ routes.cart_url }}">
+        {%- comment -%}
+          data-hs-cart-bypass is required, not decorative. hs-cart.js intercepts
+          every link ending in /cart so the bag icon opens the drawer instead of
+          navigating — and this link ends in /cart too, so without the opt-out it
+          cancels its own click and reopens the drawer that is already open. The
+          one link that must reach the cart page is the one the interceptor
+          would otherwise swallow.
+        {%- endcomment -%}
+        <a
+          class="hs-link hs-caption hs-cartd__viewcart"
+          href="{{ routes.cart_url }}"
+          data-hs-cart-bypass
+        >
           {{- 'cart.general.view' | t -}}
         </a>
       </footer>

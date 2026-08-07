@@ -54,14 +54,21 @@ def main():
         sections[key] = rec
         order.append(key)
 
-    # Breadcrumb nests under the category hub (brief 3.1) — owned here, because
-    # this script rebuilds the file from scratch and the sitemap pass only adds
-    # a bare breadcrumb when none exists.
+    # Two levels: Home, then the product. Owned here, because this script
+    # rebuilds the file from scratch and the sitemap pass only adds a bare
+    # breadcrumb when none exists.
+    #
+    # This reverses brief 3.1, which nested the product under the hub so the two
+    # pages could not be mistaken for each other and so hub authority passed
+    # down the trail. The client asked for it directly on 2026-08-07: the
+    # product is the destination, and a trail that puts a category above it
+    # reads as though the reader is still on the way somewhere.
+    #
+    # The hub is not orphaned by this — it is in the header, the footer and the
+    # five use-case pages' own breadcrumbs, which still nest under it.
     add('breadcrumb', od(('type', 'breadcrumb'), ('settings', od(
         ('color_scheme', 'paper'),
         ('home_label', 'Home'),
-        ('parent_label', 'Waterproof socks'),
-        ('parent_url', '/pages/waterproof-socks'),
         ('current_label', 'HydroSox Waterproof Socks'),
     ))))
 

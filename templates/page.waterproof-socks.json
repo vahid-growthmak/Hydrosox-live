@@ -312,7 +312,7 @@
       "settings": {
         "color_scheme": "paper",
         "layout": "list",
-        "numbered": true,
+        "numbered": false,
         "anchor_id": "choosing",
         "eyebrow": "Choosing",
         "heading": "Four things worth checking.",

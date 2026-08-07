@@ -19,7 +19,7 @@
       "settings": {
         "color_scheme": "paper",
         "layout": "list",
-        "numbered": true,
+        "numbered": false,
         "anchor_id": "washing",
         "eyebrow": "Washing instructions",
         "heading": "Washing instructions"

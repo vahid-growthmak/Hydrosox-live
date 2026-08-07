@@ -30,7 +30,7 @@
       "settings": {
         "color_scheme": "paper",
         "layout": "list",
-        "numbered": true,
+        "numbered": false,
         "heading": "Three ways to find out"
       },
       "blocks": {

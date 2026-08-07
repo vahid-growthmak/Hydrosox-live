@@ -30,14 +30,16 @@
           "type": "legal_link",
           "settings": {
             "label": "Refund Policy",
-            "policy": "refund"
+            "policy": "custom",
+            "link": "/pages/returns-and-refunds"
           }
         },
         "legal_4": {
           "type": "legal_link",
           "settings": {
             "label": "Shipping Policy",
-            "policy": "shipping"
+            "policy": "custom",
+            "link": "/pages/shipping-and-delivery"
           }
         },
         "col_shop": {

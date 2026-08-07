@@ -2028,42 +2028,69 @@
 /* --------------------------------------------------------------------------
    Focus rows
 
-   An oversized numeral sits alongside each row, set faint enough to read as
-   texture rather than content. It gives the stack a second rhythm — the eye
-   catches the figures before the prose, so three dense rows scan as three
-   things rather than one block.
+   The emphasis treatment, for the section carrying the turn in an argument —
+   the point where a page stops describing the problem and states the answer.
+
+   Titles a step larger, generous rhythm, and a short accent rule that draws
+   itself in as each row arrives. The rule is what makes it read as a sequence
+   of statements rather than a list of entries, and it does the job the ghost
+   numerals were doing without putting a count on screen: the reader is being
+   told these are three separate claims, not asked to keep track of which.
    -------------------------------------------------------------------------- */
 .hs-cols__list--focus {
   border-top: 0;
 }
 
 .hs-cols__list--focus .hs-cols__row {
-  display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1fr);
-  gap: 0 1.25rem;
-  align-items: start;
-  padding-block: 1.75rem;
+  border-bottom: 0;
+  padding-block: 0 2.5rem;
 }
 
-@media (min-width: 48rem) {
-  .hs-cols__list--focus .hs-cols__row {
-    grid-template-columns: 4.5rem minmax(0, 1fr);
-    gap: 0 2rem;
+.hs-cols__list--focus .hs-cols__row + .hs-cols__row {
+  padding-top: 0.5rem;
+}
+
+.hs-cols__list--focus .hs-cols__row-title {
+  font-size: var(--type-h3);
+  line-height: var(--leading-h3);
+  letter-spacing: var(--tracking-h3);
+}
+
+.hs-cols__list--focus .hs-cols__row-body {
+  margin-top: 0.875rem;
+}
+
+/* A pseudo-element rather than markup: it is decoration, and decoration should
+   not need an element in the document to exist. */
+.hs-cols__list--focus .hs-cols__row::before {
+  content: "";
+  display: block;
+  width: 2.75rem;
+  height: 2px;
+  margin-bottom: 1.5rem;
+  background: var(--blue);
+  transform-origin: 0 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .hs-cols__list--focus .hs-cols__row::before {
+      scale: 0 1;
+      animation: hs-rule-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 15% entry 60%;
+    }
   }
 }
 
-/* The numeral. Sized off the heading scale so it tracks the type system. */
-.hs-cols__list--focus .hs-cols__row-index {
-  grid-row: 1 / span 2;
-  font-size: var(--type-h3);
-  line-height: 1;
-  font-weight: var(--weight-heading);
-  letter-spacing: var(--tracking-h3);
-  opacity: 0.22;
-}
+@keyframes hs-rule-draw {
+  from {
+    scale: 0 1;
+  }
 
-.hs-cols__list--focus .hs-cols__row-index + .hs-cols__row-text .hs-cols__row-title {
-  margin-top: 0;
+  to {
+    scale: 1 1;
+  }
 }
 
 /* --------------------------------------------------------------------------

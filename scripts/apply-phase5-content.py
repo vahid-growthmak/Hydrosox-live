@@ -543,7 +543,7 @@ def care():
           "washing. Fine grit trapped in the knit is abrasive against the "
           "membrane from the inside, and it does more damage than the mud "
           "does.")],
-        numbered=True)
+        numbered=False)
 
     S["damage"] = cols(
         "damage", "What damages the membrane", "What damages the membrane",

@@ -38,7 +38,7 @@
       "settings": {
         "color_scheme": "wash",
         "layout": "list",
-        "numbered": true,
+        "numbered": false,
         "heading": "Three layers, and what each one is for",
         "footnote": "The middle layer is the one doing the waterproofing, and it is the one you never touch. That is deliberate: a membrane exposed to abrasion is a membrane with a short life."
       },

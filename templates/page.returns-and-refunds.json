@@ -30,7 +30,7 @@
       "settings": {
         "color_scheme": "paper",
         "layout": "list",
-        "numbered": true,
+        "numbered": false,
         "heading": "Changing your mind"
       },
       "blocks": {
@@ -38,7 +38,7 @@
           "type": "item",
           "settings": {
             "title": "Tell us within 14 days",
-            "body": "<p>Fourteen days from the day the parcel arrives. Email or phone us \u2014 a clear statement that you are cancelling is enough, there is no form to find.</p>"
+            "body": "<p>Fourteen days from the day the parcel arrives. Email or phone us — a clear statement that you are cancelling is enough, there is no form to find.</p>"
           }
         },
         "i2": {
@@ -253,14 +253,14 @@
           "type": "trust",
           "settings": {
             "label": "Checkout",
-            "value": "Guest \u2014 no account required"
+            "value": "Guest — no account required"
           }
         },
         "r4": {
           "type": "trust",
           "settings": {
             "label": "Payment",
-            "value": "Visa \u00b7 Mastercard \u00b7 American Express \u00b7 Apple Pay \u00b7 Google Pay \u00b7 Shop Pay"
+            "value": "Visa · Mastercard · American Express · Apple Pay · Google Pay · Shop Pay"
           }
         },
         "l1": {
@@ -327,7 +327,7 @@
           "type": "guide_note",
           "settings": {
             "label": "Between two sizes",
-            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit — a size down grips the toes and shortens the life of the membrane."
           }
         }
       },
@@ -376,7 +376,7 @@
         "per_unit_label": "per pair",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
-        "guide_intro": "Measure the foot rather than relying on shoe size \u2014 sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
         "guide_col_size": "Size",
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",

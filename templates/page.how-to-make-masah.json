@@ -29,7 +29,7 @@
       "settings": {
         "color_scheme": "paper",
         "layout": "list",
-        "numbered": true,
+        "numbered": false,
         "heading": "The three physical properties",
         "head_note": "<p>These are the properties the masah conditions rest on, and they are ours to state because they are facts about the product rather than rulings.</p>"
       },

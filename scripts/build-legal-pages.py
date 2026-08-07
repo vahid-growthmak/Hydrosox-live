@@ -105,7 +105,7 @@ def privacy():
 
     S["intro"] = note(
         "privacy", "Privacy policy",
-        "What we do with your data, in plain English.",
+        "What we do with your data.",
         ["Hydrosox Ltd is the data controller for everything described here. "
          "If any of it is unclear, email us and a person will explain it — that "
          "is a faster route than reading it twice."],

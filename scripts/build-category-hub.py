@@ -376,7 +376,7 @@ def main():
         ("settings", collections.OrderedDict([
             ("color_scheme", "paper"),
             ("layout", "list"),
-            ("numbered", True),
+            ("numbered", False),
             ("anchor_id", "choosing"),
             ("eyebrow", "Choosing"),
             ("heading", "Four things worth checking."),

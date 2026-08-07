@@ -498,7 +498,7 @@ def build_reviews_page():
          "<p>A commuter's experience is more useful to another commuter than an overall average is. The filters go live with the feed.</p>"),
         ("The aggregate is the real one",
          "<p>Whatever the average turns out to be is what gets printed, including the rating and the total volume in one line.</p>"),
-    ], numbered=True, heading="The standard this feed will be held to",
+    ], numbered=False, heading="The standard this feed will be held to",
         head_note="<p>Set out now, while it costs us nothing to promise, so it can be held against us later.</p>")
 
     data["sections"]["meanwhile"] = items([
@@ -890,7 +890,7 @@ def build_support_pages():
                 "color_scheme": "paper", "heading_tag": "h1", "heading_size": "h2",
                 "eyebrow": "Care and washing", "heading": "What shortens the life of a membrane.",
                 "body": "<p>These are washable and meant to be washed. Almost everything that ends a waterproof sock early is heat, softener or abrasion — not wear.</p>"}},
-            "wash": items(wash, numbered=True, heading="Washing instructions"),
+            "wash": items(wash, numbered=False, heading="Washing instructions"),
             "damage": items(damage or limits[:2], color_scheme="wash", heading="What damages the membrane"),
             "life": {"type": "centre-note", "settings": {
                 "color_scheme": "paper", "heading_size": "h3", "eyebrow": "Expected lifespan",
@@ -938,7 +938,7 @@ def build_support_pages():
                 "color_scheme": "paper", "layout": "prose", "eyebrow": "The membrane",
                 "heading": "Porelle® is not a name we invented.",
                 "prose": "<p>The waterproof layer is Porelle®, a licensed third-party waterproof-breathable membrane. That distinction matters more than it sounds: a membrane you can look up is a membrane someone else has to stand behind. Water cannot get through it; vapour from the foot can. It is PFOA free.</p><p>Brands that do not name their membrane are asking you to trust an unnamed laminate. We would rather you checked ours.</p>"}},
-            "layers": items(layer_items, numbered=True, color_scheme="wash",
+            "layers": items(layer_items, numbered=False, color_scheme="wash",
                             heading="Three layers, and what each one is for"),
             "testing": {"type": "centre-note", "settings": {
                 "color_scheme": "paper", "heading_size": "h3",
@@ -1091,7 +1091,7 @@ def build_content_pages():
                  "<p>Unworn, in the original packaging, with any seal intact. You may inspect them as you would in a shop.</p>"),
                 ("Refunded within 14 days of arrival",
                  "<p>The price plus the standard outbound delivery charge if you paid one, back to the card you used.</p>"),
-            ], numbered=True, heading="Changing your mind"),
+            ], numbered=False, heading="Changing your mind"),
             "faulty": items([
                 ("Within 30 days, reject and get a full refund",
                  "<p>Under the Consumer Rights Act 2015 goods must be of satisfactory quality, fit for purpose and as described.</p>"),
@@ -1132,7 +1132,7 @@ def build_content_pages():
                  "<p>A full refund, no repair attempt required.</p>"),
                 ("Six months where the fault is presumed ours",
                  "<p>Within six months of delivery a fault is assumed to have been there from the start unless we can show otherwise.</p>"),
-            ], numbered=True, heading="What you already have"),
+            ], numbered=False, heading="What you already have"),
             "fault": items([
                 ("A fault", "<p>Delamination, a seam that lets water through, a membrane that leaks in the first weeks of normal use.</p>"),
                 ("Wear", "<p>Thinning at the heel or toe over months of use, abrasion inside a boot, damage from toenails or the wrong wash cycle.</p>"),
@@ -1162,7 +1162,7 @@ def build_content_pages():
                  "<p>Quicker if your parcel is due today.</p>"),
                 ("Order history, if you made an account",
                  "<p>Guest checkout is the default here, so most orders will not have one. Nothing is hidden behind an account.</p>"),
-            ], numbered=True, heading="Three ways to find out"),
+            ], numbered=False, heading="Three ways to find out"),
             "contact": company_rows(eyebrow="Checking an order",
                 heading="Reach us directly.",
                 lede="<p>Have the order number to hand and this takes one message.</p>"),
@@ -1190,7 +1190,7 @@ def build_content_pages():
                 ("Waterproof", "<p>A Porelle® membrane sealed inside a three-layer knit. Water does not pass through it.</p>"),
                 ("Holds its shape", "<p>Structured so it stays as a covering rather than collapsing against the foot.</p>"),
                 ("Stays on the foot", "<p>Shaped and close-fitting, so it remains in place in normal use.</p>"),
-            ], numbered=True, heading="The three physical properties",
+            ], numbered=False, heading="The three physical properties",
                 head_note="<p>These are the properties the masah conditions rest on, and they are ours to state because they are facts about the product rather than rulings.</p>"),
             "scholarly": company_rows(eyebrow="Scholarly questions",
                 heading="Ask, and we will say what we know.",
@@ -1387,7 +1387,7 @@ def build_wudu_page():
                  "in the photographs on this page.</p>"),
                 ("Stays on the foot",
                  "<p>A close, shaped fit that stays in place through normal wear, rather than working loose over a day.</p>"),
-            ], numbered=True, eyebrow="The three properties",
+            ], numbered=False, eyebrow="The three properties",
                 heading="The three properties, one at a time"),
             "credentials": items([
                 ("The membrane is named and licensed",

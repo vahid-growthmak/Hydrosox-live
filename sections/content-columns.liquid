@@ -6,8 +6,9 @@
 
   - list     ruled rows of title and body, optionally numbered
   - steps    the same rows, always numbered, on a rail that fills as you scroll
-  - focus    a stack carrying an oversized ghost numeral, each row arriving on
-             its own as it reaches the reading zone
+  - focus    larger titles and an accent rule that draws in as each row
+             arrives; the emphasis treatment, for the section carrying the turn
+             in an argument
   - split    each row set as title beside body rather than title above it
   - cards    the same items as a grid of cards rather than a stack
   - gallery  a two-up grid of captioned images
@@ -33,9 +34,6 @@
   # the treatment, so it is not left to a separate setting that could contradict
   # it.
   assign show_index = section.settings.numbered
-  if layout == 'steps' or layout == 'focus'
-    assign show_index = true
-  endif
 
   assign list_tag = 'ul'
   if show_index

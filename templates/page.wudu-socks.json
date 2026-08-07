@@ -67,7 +67,7 @@
       "settings": {
         "color_scheme": "paper",
         "layout": "list",
-        "numbered": true,
+        "numbered": false,
         "heading": "The three properties, one at a time",
         "eyebrow": "The three properties"
       },

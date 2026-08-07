@@ -198,7 +198,7 @@ def main():
           "and the left hand the left."),
          ("Both feet, and only the top surface",
           "The wiping is of the upper surface. The sole is not wiped.")],
-        numbered=True, scheme="wash")
+        numbered=False, scheme="wash")
 
     # ---------------------------------------------------------------- S5
     S["duration"] = cols(

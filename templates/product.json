@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "breadcrumb": {
@@ -391,7 +382,7 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "wash",
-        "layout": "gallery",
+        "layout": "cards",
         "numbered": false,
         "gallery_aspect": "4 / 5",
         "anchor_id": "colourways",

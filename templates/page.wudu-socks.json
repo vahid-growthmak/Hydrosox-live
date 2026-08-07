@@ -28,9 +28,9 @@
         "eyebrow": "Designed with wudu in mind",
         "heading": "Built for the three conditions masah turns on.",
         "lede": "<p>Waterproof, structured to hold its shape, shaped to stay on the foot. Those are physical properties we can state plainly. What they mean for you is yours to judge.</p>",
-        "image_fallback": "hydrosox-colourways.jpg",
-        "image_alt": "Four HydroSox colourways shown together.",
-        "focal_point": "50% 45%",
+        "image_fallback": "wudu-pulling-on.webp",
+        "image_alt": "Pulling on a pair of white HydroSox while seated, before wudu",
+        "focal_point": "50% 62%",
         "scrim_vertical": 55,
         "scrim_horizontal": 35,
         "cta_label": "Buy a pair",
@@ -64,11 +64,19 @@
             "title": "What we can state instead",
             "body": "<p>The physical facts: what the membrane is, how the sock is constructed, and how it behaves. Those are checkable. The ruling is not ours to make.</p>"
           }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "The ruling this question turns on",
+            "body": "<p>The JKN Fatawa Department in Bradford published <a href=\"https://jknfatawa.co.uk/wiping-over-durable-wudhu-socks/\" rel=\"noopener\">Wiping over Durable Wudhu Socks</a> on 25 April 2018, written by Mufti Abdul Waheed and attested by Shaykh Mufti Saiful Islam. It sets out the criteria commonly stipulated — covering the ankles, staying up without tying, durable enough to walk in, water-impermeable, not torn, and put on after wudhu — and concludes that socks meeting them may be wiped over. It is a ruling about durable wudhu socks as a category. It is not a ruling about HydroSox, and we do not ask you to read it as one.</p>"
+          }
         }
       },
       "block_order": [
         "i1",
-        "i2"
+        "i2",
+        "i3"
       ]
     },
     "conditions": {

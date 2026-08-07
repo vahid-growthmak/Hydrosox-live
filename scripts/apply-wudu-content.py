@@ -93,6 +93,20 @@ def main():
     header, d = read()
     S = d["sections"]
 
+    # ------------------------------------------------------------------- hero
+    # The photograph a wudu reader recognises: someone pulling a pair on while
+    # seated, which is the moment the product exists for. The colourway shot it
+    # replaced said "here are four socks" on the one page where the question is
+    # "will this work for me".
+    S["hero"]["settings"].update({
+        "image_fallback": "wudu-pulling-on.webp",
+        "image_alt": (
+            "Pulling on a pair of white HydroSox while seated, before wudu"),
+        # Portrait source in a wide hero crops hard from the middle, and the
+        # socks sit low in the frame, so the focus is pulled below centre.
+        "focal_point": "50% 62%",
+    })
+
     # ---------------------------------------------------------------- eyebrows
     for key, eyebrow in (
         ("certificate", "On certification"),
@@ -101,6 +115,45 @@ def main():
         ("travel", "Travel"),
     ):
         S[key]["settings"]["eyebrow"] = eyebrow
+
+    # ------------------------------------------------------- the JKN ruling
+    # Reported as a source, NOT as an endorsement, and the distinction is the
+    # whole point.
+    #
+    # "Wiping over Durable Wudhu Socks" is a real, public, citable ruling about
+    # durable wudhu socks as a category. It predates this product by years and
+    # says nothing about it. Presenting it as "verified by" would convert a
+    # general fatwa into a product endorsement that nobody gave — which
+    # misrepresents two named living scholars, contradicts the sentence
+    # directly above it on this same page, and is the exact claim the client's
+    # own research says needs written permission first.
+    #
+    # So it is cited the way the masah page cites Nadwi: named, linked, and
+    # explicitly bounded. A "Verified by" badge needs written approval from JKN
+    # for both the wording and any logo use — info@jkn.org.uk, +44 1274 308456
+    # — and this item is where it goes once that exists.
+    S["certificate"]["blocks"]["i3"] = collections.OrderedDict([
+        ("type", "item"),
+        ("settings", collections.OrderedDict([
+            ("title", "The ruling this question turns on"),
+            ("body", rich(
+                "The JKN Fatawa Department in Bradford published "
+                "<a href=\"https://jknfatawa.co.uk/wiping-over-durable-wudhu-socks/\" "
+                "rel=\"noopener\">Wiping over Durable Wudhu Socks</a> on 25 April "
+                "2018, written by Mufti Abdul Waheed and attested by Shaykh "
+                "Mufti Saiful Islam. It sets out the criteria commonly "
+                "stipulated — covering the ankles, staying up without tying, "
+                "durable enough to walk in, water-impermeable, not torn, and "
+                "put on after wudhu — and concludes that socks meeting them "
+                "may be wiped over. It is a ruling about durable wudhu socks "
+                "as a category. It is not a ruling about HydroSox, and we do "
+                "not ask you to read it as one.")),
+        ])),
+    ])
+    order = S["certificate"].get("block_order") or list(S["certificate"]["blocks"])
+    if "i3" not in order:
+        order.append("i3")
+    S["certificate"]["block_order"] = order
 
     # ------------------------------------------------------------------ ledes
     S["certificate"]["settings"]["lede"] = rich(

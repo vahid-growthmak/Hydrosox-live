@@ -156,6 +156,24 @@
               <ul class="hs-cols__cards hs-stagger" role="list">
                 {%- for block in items -%}
                   <li class="hs-cols__card hs-reveal" {{ block.shopify_attributes }}>
+                    {%- comment -%}
+                      A card carries its item's picture when there is one. The
+                      `gallery` layout looks the other way — it iterates `image`
+                      blocks and ignores `item` blocks entirely — so a section
+                      built from items and set to gallery renders as nothing at
+                      all, with the copy present in the file and invisible on
+                      the page. Cards take items, so a picture belongs here.
+                    {%- endcomment -%}
+                    {%- if block.settings.image != blank or block.settings.image_fallback != blank -%}
+                      {% render 'hs-image',
+                        image: block.settings.image,
+                        fallback: block.settings.image_fallback,
+                        alt: block.settings.image_alt,
+                        aspect: section.settings.gallery_aspect,
+                        sizes: '(min-width: 64rem) 22vw, (min-width: 48rem) 45vw, 100vw',
+                        wrapper_class: 'hs-cols__card-media'
+                      %}
+                    {%- endif -%}
                     {%- if show_index -%}
                       {% render 'hs-index-number',
                         index: forloop.index0,

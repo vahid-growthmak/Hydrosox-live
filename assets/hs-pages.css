@@ -2115,3 +2115,17 @@
     grid-column: 2;
   }
 }
+
+/* A card that carries a picture: image first, then the name and the copy. */
+.hs-cols__card-media {
+  margin: -1.5rem -1.5rem 0.25rem;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  overflow: hidden;
+}
+
+.hs-cols__card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

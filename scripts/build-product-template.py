@@ -183,7 +183,10 @@ def main():
         colours_order.append(k)
     add('colourways', od(('type', 'content-columns'), ('settings', od(
         ('color_scheme', 'wash'),
-        ('layout', 'gallery'),
+        # Cards, not gallery. The gallery layout iterates `image` blocks and
+        # ignores `item` blocks, so these four rendered as an empty section —
+        # the copy present in the file and nothing on the page.
+        ('layout', 'cards'),
         ('numbered', False),
         ('gallery_aspect', '4 / 5'),
         ('anchor_id', 'colourways'),

@@ -108,27 +108,27 @@ def faq(entries, heading="The things people ask on this page."):
 RHYTHM = {
     "hiking-and-walking": {
         "problem":    ("steps", "paper", False),   # four ways, enumerated
-        "answers":    ("list",  "ink",   True),    # the turn — dark, flipped
+        "answers":    ("focus", "ink",   True),    # the turn — dark, ghost numerals
         "blisters":   ("cards", "paper", False),   # does / does not, side by side
-        "fit":        ("list",  "wash",  True),    # checks before ordering
+        "fit":        ("split", "wash",  False),   # checks, title beside body
     },
     "running-and-trail": {
-        "trade":      ("list",  "ink",   True),    # the concession, up front
+        "trade":      ("focus", "ink",   True),    # the concession, up front
         # whennot is honest-limits and already a different shape
         "winter":     ("cards", "paper", False),
-        "blisters":   ("steps", "wash",  False),   # the same three causes
+        "blisters":   ("split", "wash",  False),   # the same three causes
     },
     "cycling-and-commuting": {
         "problem":    ("steps", "paper", False),   # where the water comes from
         # overshoes is a comparison table and already a different shape
-        "drying":     ("list",  "ink",   True),    # the insight, dark
+        "drying":     ("focus", "ink",   True),    # the insight, dark
         "fit":        ("cards", "paper", False),
     },
     "all-day-in-boots": {
         "problem":    ("steps", "paper", False),
-        "durability": ("list",  "ink",   True),    # why the cheap pair failed
+        "durability": ("focus", "ink",   True),    # why the cheap pair failed
         "fit":        ("cards", "paper", False),
-        "warranty":   ("list",  "wash",  True),    # sits after the buy widget
+        "warranty":   ("split", "wash",  False),    # sits after the buy widget
     },
 }
 

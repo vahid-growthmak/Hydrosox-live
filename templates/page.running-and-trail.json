@@ -465,7 +465,7 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "ink",
-        "layout": "list",
+        "layout": "focus",
         "numbered": false,
         "eyebrow": "The trade",
         "heading": "Heavier than a racing sock. Lighter than a wet one.",
@@ -594,7 +594,7 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "wash",
-        "layout": "steps",
+        "layout": "split",
         "numbered": false,
         "eyebrow": "Blisters",
         "heading": "Faster feet, the same three causes.",

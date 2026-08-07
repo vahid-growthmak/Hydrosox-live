@@ -505,14 +505,14 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "wash",
-        "layout": "list",
+        "layout": "split",
         "numbered": false,
         "eyebrow": "Fit",
         "heading": "Before you order, check the boot.",
         "lede": "<p>This is the question most sellers skip and most returns come from. Waterproof socks are thicker than the sock you are used to.</p>",
         "link_label": "The size bands in centimetres",
         "link_url": "/pages/size-guide",
-        "mirror": true
+        "mirror": false
       },
       "blocks": {
         "i1": {
@@ -595,7 +595,7 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "ink",
-        "layout": "list",
+        "layout": "focus",
         "numbered": false,
         "eyebrow": "The answer",
         "heading": "A layer that does not wet out.",

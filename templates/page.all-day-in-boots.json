@@ -457,7 +457,7 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "ink",
-        "layout": "list",
+        "layout": "focus",
         "numbered": false,
         "eyebrow": "Durability",
         "heading": "Three weeks is not a membrane problem.",
@@ -541,14 +541,14 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "wash",
-        "layout": "list",
+        "layout": "split",
         "numbered": false,
         "eyebrow": "If something goes wrong",
         "heading": "Where you stand.",
         "lede": "<p>On every other page this sits in the footer links. It is here because this is where the decision gets made.</p>",
         "link_label": "The full warranty position",
         "link_url": "/pages/warranty",
-        "mirror": true
+        "mirror": false
       },
       "blocks": {
         "i1": {

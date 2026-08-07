@@ -538,7 +538,7 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "ink",
-        "layout": "list",
+        "layout": "focus",
         "numbered": false,
         "eyebrow": "The other end",
         "heading": "The ride home starts where the ride in finished.",

@@ -2006,3 +2006,85 @@
     scale: 1 1;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Mirrored sections: close the void
+
+   A mirrored heading is short and sticky, so at the default 5/7 split roughly
+   half its column is empty and the section reads as broken rather than
+   composed. Narrowing the heading side and letting the content run wider fixes
+   both the emptiness and the short measure it forced on the copy.
+   -------------------------------------------------------------------------- */
+@media (min-width: 64rem) {
+  .hs-cols__grid--mirror .hs-cols__head-col {
+    grid-column: 9 / span 4;
+  }
+
+  .hs-cols__grid--mirror .hs-cols__body-col {
+    grid-column: 1 / span 8;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Focus rows
+
+   An oversized numeral sits alongside each row, set faint enough to read as
+   texture rather than content. It gives the stack a second rhythm — the eye
+   catches the figures before the prose, so three dense rows scan as three
+   things rather than one block.
+   -------------------------------------------------------------------------- */
+.hs-cols__list--focus {
+  border-top: 0;
+}
+
+.hs-cols__list--focus .hs-cols__row {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 0 1.25rem;
+  align-items: start;
+  padding-block: 1.75rem;
+}
+
+@media (min-width: 48rem) {
+  .hs-cols__list--focus .hs-cols__row {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    gap: 0 2rem;
+  }
+}
+
+/* The numeral. Sized off the heading scale so it tracks the type system. */
+.hs-cols__list--focus .hs-cols__row-index {
+  grid-row: 1 / span 2;
+  font-size: var(--type-h3);
+  line-height: 1;
+  font-weight: var(--weight-heading);
+  letter-spacing: var(--tracking-h3);
+  opacity: 0.22;
+}
+
+.hs-cols__list--focus .hs-cols__row-index + .hs-cols__row-text .hs-cols__row-title {
+  margin-top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Split rows
+
+   Title beside body rather than above it. The row silhouette changes and the
+   copy uses the full column width, which is what a mirrored section has spare.
+   -------------------------------------------------------------------------- */
+@media (min-width: 48rem) {
+  .hs-cols__list--split .hs-cols__row-text {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 0 2.5rem;
+    align-items: baseline;
+  }
+
+  .hs-cols__list--split .hs-cols__row-body {
+    margin-top: 0;
+  }
+
+  .hs-cols__list--split .hs-cols__row-link {
+    grid-column: 2;
+  }
+}

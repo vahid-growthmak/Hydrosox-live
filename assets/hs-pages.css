@@ -2854,11 +2854,6 @@
   .hs-cart__layout {
     grid-template-columns: minmax(0, 1fr) 22rem;
   }
-
-  .hs-cart__aside {
-    position: sticky;
-    top: calc(var(--chrome) + 2rem);
-  }
 }
 
 .hs-cart__summary {
@@ -2875,10 +2870,14 @@
 }
 
 /* The quantity stepper: −, the count, + in one outlined pill. Each side is a
-   real submit button, so the change is a plain form post. */
+   real submit button, so the change is a plain form post. `align-self` matters:
+   the item body is a flex column, which stretches children to the full line —
+   the pill shipped as a bar the width of the cart before it was pinned. */
 .hs-cart__stepper {
   display: inline-flex;
   align-items: center;
+  align-self: flex-start;
+  width: max-content;
   margin-top: 0.875rem;
   border: 1px solid var(--rule);
   border-radius: 999px;

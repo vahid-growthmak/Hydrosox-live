@@ -16,7 +16,11 @@
       <h1 class="hs-h2 hs-balance hs-page__title">{{ 'cart.general.title' | t }}</h1>
     </header>
 
-    {% render 'hs-cart-progress' %}
+    {%- comment -%}
+      No delivery progress strip here — the client pulled it from this page
+      (2026-08-07). The drawer keeps its own; on the full cart the summary
+      column carries everything the buyer needs.
+    {%- endcomment -%}
 
     {%- if cart.item_count > 0 -%}
       <div class="hs-cart__layout">

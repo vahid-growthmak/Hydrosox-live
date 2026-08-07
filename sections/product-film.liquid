@@ -13,6 +13,13 @@
 {%- endcomment -%}
 
 {%- liquid
+  # preload=none is right for a clip that waits to be pressed and wrong for one
+  # that plays itself: the element would sit on its poster with nothing fetched
+  # and never start.
+  assign preload_mode = 'none'
+  if section.settings.autoplay
+    assign preload_mode = 'metadata'
+  endif
   assign chapters = section.blocks | where: 'type', 'chapter'
   assign chapter_count = chapters | size
 -%}
@@ -40,7 +47,8 @@
     %}
 
     {%- if chapter_count > 0 -%}
-      <hs-film class="hs-film__wrap">
+      <hs-film class="hs-film__wrap"
+    {% if section.settings.autoplay %}data-autoplay{% endif %}>
         <div class="hs-film__grid">
           {%- comment -%} Portrait stage {%- endcomment -%}
           <div class="hs-film__stage-col">
@@ -61,7 +69,8 @@
                         image_size: '800x',
                         muted: true,
                         playsinline: true,
-                        preload: 'none',
+                        loop: true,
+                        preload: preload_mode,
                         class: 'hs-film__media'
                     }}
                   {%- elsif block.settings.video_fallback != blank -%}
@@ -76,7 +85,7 @@
                       class="hs-film__media"
                       muted
                       playsinline
-                      preload="none"
+                      preload="{{ preload_mode }}"
                       loop
                       width="576"
                       height="1024"
@@ -199,6 +208,13 @@
         { "value": "wash", "label": "t:common.scheme_wash" }
       ],
       "default": "ink"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "t:sections.film.autoplay",
+      "info": "t:sections.film.autoplay_info",
+      "default": true
     },
     {
       "type": "text",

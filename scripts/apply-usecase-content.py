@@ -160,56 +160,12 @@ RHYTHM = {
     },
 }
 
-# The hiking mockups also restore two sections the Phase 4 rebuild removed —
-# the in-use photo gallery and the blue limits band. Their content is the
-# historical content, byte for byte, lifted from the template as it stood at
-# commit a037122; no word of it is new. They are stated here as data so the
-# generator owns them the same way it owns everything else on the page.
-RESTORED = {
-    "hiking-and-walking": {
-        "inuse": {
-            "type": "content-columns",
-            "settings": {
-                "color_scheme": "wash",
-                "layout": "gallery",
-                "eyebrow": "In use",
-                "heading": "The same pair, in the conditions this page is about.",
-                "head_note": "<p>Product imagery rather than a documentary shoot, so read it for what the sock is and where it goes \u2014 not as evidence. The checkable claim is the membrane.</p>",
-                "gallery_aspect": "4 / 5",
-            },
-            "blocks": {
-                "g1": {"type": "image", "settings": {
-                    "caption": "Stopped above the valley, boots on rock",
-                    "image_fallback": "activity-hiking-01.webp",
-                    "image_alt": "Stopped above the valley, boots on rock"}},
-                "g2": {"type": "image", "settings": {
-                    "caption": "Mossy trail, mid-step",
-                    "image_fallback": "activity-hiking-02.webp",
-                    "image_alt": "Mossy trail, mid-step"}},
-                "g3": {"type": "image", "settings": {
-                    "caption": "Broken rock, last of the light",
-                    "image_fallback": "activity-hiking-03.webp",
-                    "image_alt": "Broken rock, last of the light"}},
-                "g4": {"type": "image", "settings": {
-                    "caption": "Boots off at the top",
-                    "image_fallback": "activity-hiking-04.webp",
-                    "image_alt": "Boots off at the top"}},
-            },
-            "block_order": ["g1", "g2", "g3", "g4"],
-        },
-        "limits": {
-            "type": "centre-note",
-            "settings": {
-                "color_scheme": "blue",
-                "max_width": 46,
-                "eyebrow": "What it will not do",
-                "heading": "Where it stops.",
-                "body": "<p>Go in deeper than the cuff and water comes over the top, and no waterproof sock behaves otherwise. On a crossing that is above the ankle this buys you nothing \u2014 that is a gaiter and a boot problem, not a sock one.</p>",
-                "footnote": "<p>Every limit we know about is published, not only this one. <a href=\"/#limits\">Read the rest</a>.</p>",
-            },
-        },
-    },
-}
+# NOTE: two sections (the in-use gallery and the blue limits band) were briefly
+# restored here from history and then removed by the client in the theme editor
+# — writeback 050bccc, 2026-08-07. They must NOT come back: the generator
+# re-creating a section the client deleted by hand is the worst version of the
+# generator-discards-edits trap. The old content remains reachable at commit
+# a037122 if it is ever wanted again.
 
 
 # Everything after the buy widget was four paper sections in a row — the same
@@ -264,10 +220,6 @@ def apply(handle, current_label, new_sections, new_order_mid, faq_section,
             "layout": layout, "color_scheme": scheme, "mirror": mirror,
             "numbered": numbered})
 
-    # Sections restored from history land after the rhythm, with their content
-    # exactly as it was.
-    for key, sec in RESTORED.get(handle, {}).items():
-        S[key] = json.loads(json.dumps(sec))
 
     if buy_overrides and "buy" in S:
         S["buy"]["settings"].update(buy_overrides)
@@ -361,11 +313,7 @@ def main():
                   "is wrong.")],
                 link=("The size bands in centimetres", "/pages/size-guide"))),
         ]),
-        # inuse and limits are the restored sections; their content is in
-        # RESTORED above. The order follows the mockups: gallery after the
-        # dark answer, the blue limits band closing the argument before the
-        # buy widget.
-        ["problem", "answers", "inuse", "blisters", "fit", "limits"],
+        ["problem", "answers", "blisters", "fit"],
         faq([
             ("Are waterproof socks good for hiking?",
              "Yes, particularly on long days in wet conditions. They keep the foot "

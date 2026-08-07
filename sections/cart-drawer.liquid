@@ -179,7 +179,9 @@
               same as on the buy widget — not a percentage. Stating it as a
               percentage here would misdescribe the offer.
             endcomment
-            assign tier_saving = next_tier.settings.discount | times: 100 | round
+            # Integer pence, for the same reason as the buy widget: a pounds
+            # decimal in a number setting does not survive a theme-editor save.
+            assign tier_saving = next_tier.settings.discount_pence | default: 0
           -%}
           {%- if tier_saving > 0 -%}
             <p class="hs-caption hs-cartd__tier">
@@ -306,9 +308,9 @@
         },
         {
           "type": "number",
-          "id": "discount",
+          "id": "discount_pence",
           "label": "t:sections.cart_drawer.tier_discount",
-          "default": 10
+          "default": 1000
         }
       ]
     }
@@ -319,28 +321,28 @@
         "type": "tier",
         "settings": {
           "quantity": 2,
-          "discount": 3.01
+          "discount_pence": 301
         }
       },
       {
         "type": "tier",
         "settings": {
           "quantity": 3,
-          "discount": 7.01
+          "discount_pence": 701
         }
       },
       {
         "type": "tier",
         "settings": {
           "quantity": 4,
-          "discount": 12.01
+          "discount_pence": 1201
         }
       },
       {
         "type": "tier",
         "settings": {
           "quantity": 5,
-          "discount": 20.01
+          "discount_pence": 2001
         }
       }
     ]

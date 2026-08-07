@@ -285,7 +285,13 @@
                         {%- liquid
                           assign tier_i = tier_i | plus: 1
                           assign qty = block.settings.quantity | at_least: 1
-                          assign discount_cents = block.settings.discount | times: 100 | round
+                          # Pence, as an integer. This was pounds with a
+                          # decimal until the theme editor rounded every tier
+                          # on save — Shopify coerces a number setting, so
+                          # 3.01 became 3.0 and nine templates showed £37.00
+                          # for a bundle that checkout charges £36.99 for.
+                          # An integer survives the round trip.
+                          assign discount_cents = block.settings.discount_pence | default: 0
                           assign gross = unit_price | times: qty
                           assign net = gross | minus: discount_cents
                           assign per_unit = net | divided_by: qty
@@ -798,7 +804,7 @@
         },
         {
           "type": "number",
-          "id": "discount",
+          "id": "discount_pence",
           "label": "t:sections.buy.tier_discount",
           "info": "t:sections.buy.tier_discount_info",
           "default": 0

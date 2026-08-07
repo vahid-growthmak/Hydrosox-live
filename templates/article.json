@@ -82,7 +82,7 @@
       "settings": {
         "color_scheme": "paper",
         "show_author": false,
-        "kicker_divider": "\u00b7",
+        "kicker_divider": "·",
         "image_aspect": "16 / 9",
         "back_label": "All guides",
         "route_eyebrow": "Made for this"
@@ -154,7 +154,7 @@
           "settings": {
             "label": "Single pair",
             "quantity": 1,
-            "discount": 0
+            "discount_pence": 0
           }
         },
         "t2": {
@@ -162,7 +162,7 @@
           "settings": {
             "label": "Two pairs",
             "quantity": 2,
-            "discount": 3.01
+            "discount_pence": 301
           }
         },
         "t3": {
@@ -170,7 +170,7 @@
           "settings": {
             "label": "Three pairs",
             "quantity": 3,
-            "discount": 7.01
+            "discount_pence": 701
           }
         },
         "t4": {
@@ -178,7 +178,7 @@
           "settings": {
             "label": "Four pairs",
             "quantity": 4,
-            "discount": 12.01
+            "discount_pence": 1201
           }
         },
         "t5": {
@@ -186,7 +186,7 @@
           "settings": {
             "label": "Five pairs",
             "quantity": 5,
-            "discount": 20.01
+            "discount_pence": 2001
           }
         },
         "r1": {
@@ -207,14 +207,14 @@
           "type": "trust",
           "settings": {
             "label": "Checkout",
-            "value": "Guest \u2014 no account required"
+            "value": "Guest — no account required"
           }
         },
         "r4": {
           "type": "trust",
           "settings": {
             "label": "Payment",
-            "value": "Visa \u00b7 Mastercard \u00b7 American Express \u00b7 Apple Pay \u00b7 Google Pay \u00b7 Shop Pay"
+            "value": "Visa · Mastercard · American Express · Apple Pay · Google Pay · Shop Pay"
           }
         },
         "l1": {
@@ -281,7 +281,7 @@
           "type": "guide_note",
           "settings": {
             "label": "Between two sizes",
-            "body": "Between two bands? Take the larger one. These are a close, stretchy fit \u2014 a size down grips the toes and shortens the life of the membrane."
+            "body": "Between two bands? Take the larger one. These are a close, stretchy fit — a size down grips the toes and shortens the life of the membrane."
           }
         }
       },
@@ -330,7 +330,7 @@
         "per_unit_label": "per pair",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
-        "guide_intro": "Measure the foot rather than relying on shoe size \u2014 sizing is not consistent across brands, and the foot length is what actually has to fit.",
+        "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
         "guide_col_size": "Size",
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
@@ -356,7 +356,7 @@
       "type": "newsletter-offer",
       "settings": {
         "color_scheme": "wash",
-        "eyebrow": "\u00a35 off your first pair",
+        "eyebrow": "£5 off your first pair",
         "heading": "Get the code before the weather turns.",
         "body": "<p>Applies to a single pair. The two-pair saving is already built into the price.</p>",
         "field_label": "Email address",

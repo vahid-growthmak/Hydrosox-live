@@ -127,28 +127,28 @@
             "type": "tier",
             "settings": {
               "quantity": 2,
-              "discount": 3
+              "discount_pence": 301
             }
           },
           "cart-drawer-1": {
             "type": "tier",
             "settings": {
               "quantity": 3,
-              "discount": 7
+              "discount_pence": 701
             }
           },
           "cart-drawer-2": {
             "type": "tier",
             "settings": {
               "quantity": 4,
-              "discount": 12
+              "discount_pence": 1201
             }
           },
           "cart-drawer-3": {
             "type": "tier",
             "settings": {
               "quantity": 5,
-              "discount": 20
+              "discount_pence": 2001
             }
           }
         },

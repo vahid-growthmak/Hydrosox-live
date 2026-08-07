@@ -345,8 +345,8 @@
       "block_tier": "Quantity tier",
       "block_tier_info": "State the discount, not the finished price. The price shown is worked out from the live product price, so it matches the automatic discount you set up in Shopify.",
       "tier_quantity": "Number of items",
-      "tier_discount": "Discount off the total",
-      "tier_discount_info": "In your store currency. Use 0 for the single-item tier. This must equal the amount on the matching automatic discount.",
+      "tier_discount": "Discount at this quantity (pence)",
+      "tier_discount_info": "In pence, so 301 means £3.01. The same number as the matching automatic discount in Shopify — the two must always be equal, and it is stored in pence because the theme editor rounds a decimal number setting on save.",
       "block_trust": "Detail row",
       "block_link": "Detail link",
       "use_product_url": "Link to the product page",
@@ -710,7 +710,7 @@
       "block_tier": "Quantity break",
       "block_tier_info": "Keep these level with the quantity tiers on the buy widget, including the saving, which is an absolute amount in your shop currency rather than a percentage. Only the next tier the shopper has not yet reached is ever shown.",
       "tier_quantity": "Quantity",
-      "tier_discount": "Saving (amount off, not a percentage)"
+      "tier_discount": "Discount at this quantity (pence)"
     },
     "psearch": {
       "name": "Predictive search results",

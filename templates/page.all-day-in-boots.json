@@ -193,7 +193,7 @@
           "settings": {
             "label": "Single pair",
             "quantity": 1,
-            "discount": 0
+            "discount_pence": 0
           }
         },
         "t2": {
@@ -201,7 +201,7 @@
           "settings": {
             "label": "Two pairs",
             "quantity": 2,
-            "discount": 3.01
+            "discount_pence": 301
           }
         },
         "t3": {
@@ -209,7 +209,7 @@
           "settings": {
             "label": "Three pairs",
             "quantity": 3,
-            "discount": 7.01
+            "discount_pence": 701
           }
         },
         "t4": {
@@ -217,7 +217,7 @@
           "settings": {
             "label": "Four pairs",
             "quantity": 4,
-            "discount": 12.01
+            "discount_pence": 1201
           }
         },
         "t5": {
@@ -225,7 +225,7 @@
           "settings": {
             "label": "Five pairs",
             "quantity": 5,
-            "discount": 20.01
+            "discount_pence": 2001
           }
         },
         "r1": {

@@ -205,9 +205,9 @@
     "failure": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
-        "layout": "band",
-        "numbered": false,
+        "color_scheme": "ink",
+        "layout": "list",
+        "numbered": true,
         "anchor_id": "failure",
         "eyebrow": "Failure",
         "heading": "Four ways a membrane dies.",

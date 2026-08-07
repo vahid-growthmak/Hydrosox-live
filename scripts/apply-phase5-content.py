@@ -290,13 +290,15 @@ def technology():
     for dead in ("activities", "wont"):
         S.pop(dead, None)
     # Presentation, to the client's mockup: breathability as split rows, the
-    # test-figures note on the blue stating-a-limit band, failure as a
-    # full-width band of four cards.
+    # test-figures note on the blue stating-a-limit band. Failure, per the
+    # client 2026-08-07: the dark numbered ruled list — the same silhouette as
+    # the wudu hero's property rows they screenshotted as the reference —
+    # replacing the paper band of cards. Same four rows, same words.
     S["breathability"]["settings"].update({
         "layout": "split", "color_scheme": "wash"})
     S["testing"]["settings"]["color_scheme"] = "blue"
     S["failure"]["settings"].update({
-        "layout": "band", "color_scheme": "paper"})
+        "layout": "list", "color_scheme": "ink", "numbered": True})
 
     # The closing band the mockup adds, words from the mockup verbatim.
     S["close"] = collections.OrderedDict([

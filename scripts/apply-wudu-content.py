@@ -95,17 +95,37 @@ def main():
 
     # ------------------------------------------------------------------- hero
     # The photograph a wudu reader recognises: someone pulling a pair on while
-    # seated, which is the moment the product exists for. The colourway shot it
-    # replaced said "here are four socks" on the one page where the question is
-    # "will this work for me".
-    S["hero"]["settings"].update({
-        "image_fallback": "wudu-pulling-on.webp",
-        "image_alt": (
-            "Pulling on a pair of white HydroSox while seated, before wudu"),
-        # Portrait source in a wide hero crops hard from the middle, and the
-        # socks sit low in the frame, so the focus is pulled below centre.
-        "focal_point": "50% 62%",
-    })
+    # seated, which is the moment the product exists for.
+    #
+    # 2026-08-07, per the client: the hero becomes the split hero — copy left,
+    # the photograph standing whole on the right — replacing the full-bleed
+    # page-hero. The mockup carries the three property names as text in that
+    # right column; the client asked for the image there INSTEAD of that text,
+    # so no spec blocks are set. Same words throughout; the heading's line
+    # breaks follow the mockup's three-line setting (presentation, not copy).
+    # The photo is 4:5, so the plate takes its native aspect uncropped.
+    S["hero"] = collections.OrderedDict([
+        ("type", "hero-split"),
+        ("settings", collections.OrderedDict([
+            ("color_scheme", "ink"),
+            ("full_height", False),
+            ("eyebrow", "Designed with wudu in mind"),
+            ("heading", "Built for the\nthree conditions\nmasah turns on."),
+            ("body", rich(
+                "Waterproof, structured to hold its shape, shaped to stay on "
+                "the foot. Those are physical properties we can state plainly. "
+                "What they mean for you is yours to judge.")),
+            ("cta_label", "Buy a pair"),
+            ("cta_link", "/products/hydrosox-waterproof-socks"),
+            ("link_label", "How it is built"),
+            ("link_url", "/pages/technology"),
+            ("image_fallback", "wudu-pulling-on.webp"),
+            ("image_alt", "Pulling on a pair of white HydroSox while seated, "
+                          "before wudu"),
+            ("image_aspect", "4 / 5"),
+            ("image_position", "50% 50%"),
+        ])),
+    ])
 
     # ---------------------------------------------------------------- eyebrows
     for key, eyebrow in (

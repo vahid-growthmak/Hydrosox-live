@@ -21,22 +21,21 @@
       }
     },
     "hero": {
-      "type": "page-hero",
+      "type": "hero-split",
       "settings": {
         "color_scheme": "ink",
-        "min_height": 40,
+        "full_height": false,
         "eyebrow": "Designed with wudu in mind",
-        "heading": "Built for the three conditions masah turns on.",
-        "lede": "<p>Waterproof, structured to hold its shape, shaped to stay on the foot. Those are physical properties we can state plainly. What they mean for you is yours to judge.</p>",
+        "heading": "Built for the\nthree conditions\nmasah turns on.",
+        "body": "<p>Waterproof, structured to hold its shape, shaped to stay on the foot. Those are physical properties we can state plainly. What they mean for you is yours to judge.</p>",
+        "cta_label": "Buy a pair",
+        "cta_link": "/products/hydrosox-waterproof-socks",
+        "link_label": "How it is built",
+        "link_url": "/pages/technology",
         "image_fallback": "wudu-pulling-on.webp",
         "image_alt": "Pulling on a pair of white HydroSox while seated, before wudu",
-        "focal_point": "50% 62%",
-        "scrim_vertical": 55,
-        "scrim_horizontal": 35,
-        "cta_label": "Buy a pair",
-        "cta_url": "/products/hydrosox-waterproof-socks",
-        "link_label": "How it is built",
-        "link_url": "/pages/technology"
+        "image_aspect": "4 / 5",
+        "image_position": "50% 50%"
       }
     },
     "certificate": {

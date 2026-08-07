@@ -2614,3 +2614,11 @@
   border-top: 1px solid var(--rule);
   padding-top: 2.5rem;
 }
+
+/* On the dark scheme, a ruled list's numerals go to blue — the same treatment
+   the hero's property rows established, so a dark numbered list reads as one
+   family with it. Boxes keep their ghost numerals; theirs live inside the
+   outline and set the box's own rhythm. */
+.hs-scheme-ink .hs-cols__list:not(.hs-cols__list--boxes) .hs-cols__row-index {
+  color: var(--blue);
+}

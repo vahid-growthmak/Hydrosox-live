@@ -738,12 +738,18 @@ def care():
     # Presentation: the seven wash steps on the numbered rail, the damage
     # list as cards, the what-changed triage as the dark emphasis band, and
     # the no-figure statement on the blue stating-a-limit scheme.
+    # Presentation, to the client's mockup DOM (2026-08-07): the wash steps as
+    # plain stacked rows under the sticky heading — the mockup numbers nothing
+    # here; the damage list as the 2 × 2 band of paper cards on wash; and the
+    # three what-changed cases as light divided columns under a band header,
+    # replacing the dark focus treatment. Words untouched throughout.
     S["wash"]["settings"].update({
-        "layout": "steps", "color_scheme": "paper", "numbered": True})
+        "layout": "list", "color_scheme": "paper", "numbered": False})
     S["damage"]["settings"].update({
-        "layout": "cards", "color_scheme": "wash"})
+        "layout": "band", "color_scheme": "wash", "card_columns": "two"})
     S["failing"]["settings"].update({
-        "layout": "focus", "color_scheme": "ink", "mirror": True})
+        "layout": "band", "color_scheme": "paper", "mirror": False,
+        "divided": True})
     S["life"]["settings"]["color_scheme"] = "blue"
 
     d["order"] = ["intro", "wash", "damage", "failing", "life", "faq", "tail"]

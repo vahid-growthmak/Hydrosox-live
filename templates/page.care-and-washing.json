@@ -27,8 +27,8 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "paper",
-        "layout": "steps",
-        "numbered": true,
+        "layout": "list",
+        "numbered": false,
         "anchor_id": "washing",
         "eyebrow": "Washing instructions",
         "heading": "Washing instructions"
@@ -98,11 +98,12 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "wash",
-        "layout": "cards",
+        "layout": "band",
         "numbered": false,
         "anchor_id": "damage",
         "eyebrow": "What damages the membrane",
-        "heading": "What damages the membrane"
+        "heading": "What damages the membrane",
+        "card_columns": "two"
       },
       "blocks": {
         "i1": {
@@ -168,8 +169,8 @@
     "failing": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "ink",
-        "layout": "focus",
+        "color_scheme": "paper",
+        "layout": "band",
         "numbered": false,
         "anchor_id": "if-it-changes",
         "eyebrow": "If something changes",
@@ -177,7 +178,8 @@
         "lede": "<p>There are three usual explanations, and they need different responses.</p>",
         "link_label": "Where you stand if it is a fault",
         "link_url": "/pages/warranty",
-        "mirror": true
+        "mirror": false,
+        "divided": true
       },
       "blocks": {
         "i1": {

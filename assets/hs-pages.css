@@ -2716,3 +2716,54 @@
     text-decoration-color: var(--blue);
   }
 }
+
+/* Two-across cards: the 2 × 2 grid the mockup uses when four cards need the
+   width to breathe — auto-fit would run them four in a row. */
+@media (min-width: 48rem) {
+  .hs-cols__cards--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Divided columns: the same items with no card chrome at all — a ruled line
+   above, hairlines between, and the copy standing on the page. The extra
+   selector weight is deliberate: it has to outrank the per-scheme card fills
+   declared above it. */
+.hs-cols .hs-cols__cards--divided {
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.hs-cols .hs-cols__cards--divided .hs-cols__card {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 2rem 0;
+}
+
+.hs-cols .hs-cols__cards--divided .hs-cols__card + .hs-cols__card {
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 64rem) {
+  .hs-cols .hs-cols__cards--divided {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+
+  .hs-cols .hs-cols__cards--divided .hs-cols__card {
+    padding: 2rem 2.5rem;
+  }
+
+  .hs-cols .hs-cols__cards--divided .hs-cols__card:first-child {
+    padding-left: 0;
+  }
+
+  .hs-cols .hs-cols__cards--divided .hs-cols__card:last-child {
+    padding-right: 0;
+  }
+
+  .hs-cols .hs-cols__cards--divided .hs-cols__card + .hs-cols__card {
+    border-top: 0;
+    border-left: 1px solid var(--rule);
+  }
+}

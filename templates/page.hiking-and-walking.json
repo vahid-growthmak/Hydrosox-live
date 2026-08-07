@@ -77,10 +77,11 @@
     "siblings": {
       "type": "link-cards",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "wash",
         "columns": 2,
         "eyebrow": "Not your problem?",
-        "heading": "Same sock, different day."
+        "heading": "Same sock, different day.",
+        "card_fill": "solid"
       },
       "blocks": {
         "s2": {
@@ -108,7 +109,7 @@
     "close": {
       "type": "closing-cta",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "ink",
         "show_rule": false,
         "heading": "One sock. Long days, wet ground.",
         "cta_label": "Buy a pair",
@@ -392,7 +393,7 @@
     "faq": {
       "type": "faq-accordion",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "wash",
         "anchor_id": "faq",
         "one_at_a_time": false,
         "emit_schema": true,
@@ -463,7 +464,7 @@
         "tag": "hiking",
         "count": 2,
         "color_scheme": "paper",
-        "pace": "base",
+        "pace": "tight",
         "eyebrow": "Guides",
         "heading": "Worth reading first.",
         "link_label": "All guides",
@@ -473,7 +474,7 @@
     "blisters": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "wash",
         "layout": "cards",
         "numbered": false,
         "eyebrow": "Blisters",
@@ -513,7 +514,7 @@
     "fit": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "wash",
+        "color_scheme": "paper",
         "layout": "split",
         "numbered": false,
         "eyebrow": "Fit",
@@ -521,7 +522,7 @@
         "lede": "<p>This is the question most sellers skip and most returns come from. Waterproof socks are thicker than the sock you are used to.</p>",
         "link_label": "The size bands in centimetres",
         "link_url": "/pages/size-guide",
-        "mirror": false
+        "mirror": true
       },
       "blocks": {
         "i1": {

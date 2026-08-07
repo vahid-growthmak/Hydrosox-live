@@ -128,9 +128,9 @@ def faq(entries, heading="The things people ask on this page."):
 RHYTHM = {
     "hiking-and-walking": {
         "problem":    ("steps", "paper", False),   # four ways, enumerated
-        "answers":    ("focus", "ink",   True),    # the turn — dark, ghost numerals
-        "blisters":   ("cards", "paper", False),   # does / does not, side by side
-        "fit":        ("split", "wash",  False),   # checks, title beside body
+        "answers":    ("focus", "ink",   True),    # the turn — dark, emphasised
+        "blisters":   ("cards", "wash",  False),   # does / does not, on a ground
+        "fit":        ("split", "paper", True),    # the pre-purchase check, flipped
     },
     "running-and-trail": {
         "trade":      ("focus", "ink",   True),    # the concession, up front
@@ -149,6 +149,23 @@ RHYTHM = {
         "durability": ("focus", "ink",   True),    # why the cheap pair failed
         "fit":        ("cards", "paper", False),
         "warranty":   ("split", "wash",  False),    # sits after the buy widget
+    },
+}
+
+
+# Everything after the buy widget was four paper sections in a row — the same
+# flat run the argument sections were fixed for, left in place on the last
+# quarter of the page because nothing in the rhythm table reached it.
+#
+# These are not content-columns, so there is no layout to vary; the background
+# is what there is. The page darkens as it ends, which hands off into the footer
+# rather than stopping dead in front of it.
+TAIL = {
+    "hiking-and-walking": {
+        "faq":      {"color_scheme": "wash"},    # off the buy widget above it
+        "guides":   {"color_scheme": "paper", "pace": "tight"},
+        "siblings": {"color_scheme": "wash", "card_fill": "solid"},
+        "close":    {"color_scheme": "ink"},     # into the dark footer
     },
 }
 
@@ -173,6 +190,12 @@ def apply(handle, current_label, new_sections, new_order_mid, faq_section,
     for key, sec in new_sections.items():
         S[key] = sec
     S["faq"] = faq_section
+
+    # The tail sections carry no layout of their own; the background is the
+    # only thing that separates them.
+    for key, settings in TAIL.get(handle, {}).items():
+        if key in S:
+            S[key]["settings"].update(settings)
 
     # Apply the page's rhythm, so no two adjacent sections share a silhouette.
     for key, (layout, scheme, mirror) in RHYTHM.get(handle, {}).items():

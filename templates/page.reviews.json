@@ -7,28 +7,239 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-/* Composed by scripts/build-sitemap-templates.py from the sitemap.
-   Re-run that script rather than hand-editing this file; section
-   content itself is editable in the Shopify theme editor. */
 {
   "sections": {
-    "intro": {
-      "type": "centre-note",
-      "settings": {
-        "color_scheme": "paper",
-        "heading_tag": "h1",
-        "heading_size": "h2",
-        "hide_rule": true,
-        "eyebrow": "Reviews",
-        "heading": "There are none yet, and we are not going to invent any.",
-        "body": "<p>HydroSox is new. A rating with nothing behind it is worth nothing, and a feed of five-star reviews with no negatives in it reads as filtered to exactly the person who is reading carefully.</p>"
-      }
-    },
     "breadcrumb": {
       "type": "breadcrumb",
       "settings": {
         "color_scheme": "paper",
-        "home_label": "Home"
+        "home_label": "Home",
+        "parent_label": "",
+        "parent_url": "",
+        "current_label": "",
+        "aria_label": "Breadcrumb"
+      }
+    },
+    "intro": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "paper",
+        "hide_rule": true,
+        "anchor_id": "",
+        "max_width": 46,
+        "eyebrow": "Reviews",
+        "heading": "There are none yet, and we are not going to invent any.",
+        "heading_tag": "h1",
+        "heading_size": "h2",
+        "lead_first_para": false,
+        "body": "<p>HydroSox is new. A rating with nothing behind it is worth nothing, and a feed of five-star reviews with no negatives in it reads as filtered to exactly the person who is reading carefully.</p>",
+        "footnote": "",
+        "pointer_label": "",
+        "pointer_link_label": "",
+        "pointer_url": "",
+        "cta_label": "",
+        "cta_url": "",
+        "link_label": "",
+        "link_url": "",
+        "tail_note": ""
+      }
+    },
+    "standard": {
+      "type": "content-columns",
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Verified buyers only",
+            "body": "<p>A review has to come from an order. No unverified submissions, and no reviews written by us.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Negative reviews stay up",
+            "body": "<p>Published alongside the rest, unedited. If the socks disappoint someone, that belongs here.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Filterable by activity and rating",
+            "body": "<p>A commuter's experience is more useful to another commuter than an overall average is. The filters go live with the feed.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "The aggregate is the real one",
+            "body": "<p>Whatever the average turns out to be is what gets printed, including the rating and the total volume in one line.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i5": {
+          "type": "item",
+          "settings": {
+            "title": "We will not offer anything for a review",
+            "body": "<p>No discount, no free pair, no prize draw. A review bought with an incentive is not evidence, and it is not permitted to be presented as though it were.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4",
+        "i5"
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "mirror": false,
+        "numbered": false,
+        "row_density": "standard",
+        "hide_rule": false,
+        "anchor_id": "standard",
+        "eyebrow": "The standard",
+        "heading": "The standard this feed will be held to",
+        "head_note": "",
+        "link_label": "",
+        "link_url": "",
+        "link2_label": "",
+        "link2_url": "",
+        "lede": "",
+        "lead_first_para": false,
+        "prose": "",
+        "gallery_aspect": "4 / 5",
+        "footnote": "",
+        "cta_label": "",
+        "cta_url": "",
+        "media_fallback": "",
+        "media_alt": ""
+      }
+    },
+    "meanwhile": {
+      "type": "content-columns",
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "The membrane is named",
+            "body": "<p>Porelle®, licensed from a third party. You can look it up, which is more than an unnamed laminate offers.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "The limits are published",
+            "body": "<p>What the socks will not do is on the homepage. No competitor in this category publishes that.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "The company is named",
+            "body": "<p>UK registered, with the address and phone number on every page rather than behind a contact form.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ],
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "list",
+        "mirror": false,
+        "numbered": false,
+        "row_density": "standard",
+        "hide_rule": false,
+        "anchor_id": "",
+        "eyebrow": "The problem",
+        "heading": "What you can check instead",
+        "head_note": "<p>Reviews are one kind of evidence. Until there are some, here is the kind that does not depend on volume.</p>",
+        "link_label": "",
+        "link_url": "",
+        "link2_label": "",
+        "link2_url": "",
+        "lede": "",
+        "lead_first_para": false,
+        "prose": "",
+        "gallery_aspect": "4 / 5",
+        "footnote": "",
+        "cta_label": "",
+        "cta_url": "",
+        "media_fallback": "",
+        "media_alt": ""
+      }
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "When will there be reviews?",
+            "answer": "<p>When enough people have bought and used a pair to make a rating mean something. We would rather show nothing than show four reviews and an average.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Will you publish bad reviews?",
+            "answer": "<p>Yes, unedited and alongside the rest. A feed with no negatives in it tells a careful reader that it has been filtered, which is worse than a mixed one.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2"
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "questions",
+        "one_at_a_time": false,
+        "emit_schema": true,
+        "eyebrow": "Questions",
+        "heading": "About the feed that is not here yet.",
+        "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair",
+        "cta_link": "#buy",
+        "cta_note": "Two decisions and a quantity. No account needed."
       }
     },
     "feed": {
@@ -37,11 +248,18 @@
         "layout": "feed",
         "color_scheme": "paper",
         "pace": "base",
-        "show_aggregate": true,
-        "show_filters": true,
-        "emit_schema": true,
+        "anchor_id": "",
         "eyebrow": "Reviews",
-        "heading": "What people say after a wet day."
+        "heading": "What people say after a wet day.",
+        "lede": "",
+        "show_aggregate": true,
+        "rating_max": "5",
+        "aggregate_link_label": "",
+        "aggregate_link_url": "",
+        "show_filters": true,
+        "filter_label": "Filter reviews",
+        "emit_schema": true,
+        "schema_product_name": "Waterproof Socks"
       }
     },
     "buy": {
@@ -51,7 +269,8 @@
           "type": "colour",
           "settings": {
             "value": "Black",
-            "colour_one": "#111111"
+            "colour_one": "#111111",
+            "colour_two": ""
           }
         },
         "c2": {
@@ -74,7 +293,8 @@
           "type": "colour",
           "settings": {
             "value": "White",
-            "colour_one": "#f4f6f8"
+            "colour_one": "#f4f6f8",
+            "colour_two": ""
           }
         },
         "z1": {
@@ -118,7 +338,7 @@
           "settings": {
             "label": "Two pairs",
             "quantity": 2,
-            "discount": 3.01
+            "discount": 3.0
           }
         },
         "t3": {
@@ -126,7 +346,7 @@
           "settings": {
             "label": "Three pairs",
             "quantity": 3,
-            "discount": 7.01
+            "discount": 7.0
           }
         },
         "t4": {
@@ -134,7 +354,7 @@
           "settings": {
             "label": "Four pairs",
             "quantity": 4,
-            "discount": 12.01
+            "discount": 12.0
           }
         },
         "t5": {
@@ -142,7 +362,7 @@
           "settings": {
             "label": "Five pairs",
             "quantity": 5,
-            "discount": 20.01
+            "discount": 20.0
           }
         },
         "r1": {
@@ -177,6 +397,7 @@
           "type": "link",
           "settings": {
             "label": "Full product details",
+            "link": "",
             "use_product_url": true
           }
         },
@@ -184,14 +405,16 @@
           "type": "link",
           "settings": {
             "label": "How it is built",
-            "link": "/#construction"
+            "link": "/#construction",
+            "use_product_url": false
           }
         },
         "l3": {
           "type": "link",
           "settings": {
             "label": "Delivery and sizing",
-            "link": "/#faq"
+            "link": "/#faq",
+            "use_product_url": false
           }
         },
         "g1": {
@@ -269,6 +492,7 @@
         "n1",
         "n2"
       ],
+      "disabled": true,
       "settings": {
         "product": "hydrosox-waterproof-socks",
         "color_scheme": "paper",
@@ -279,11 +503,15 @@
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
+        "delivery_charge_pence": 499,
+        "delivery_label": "delivery",
+        "total_label": "total",
         "quantity_label": "Quantity",
         "default_quantity": 2,
         "add_label": "Add to cart",
         "save_label": "Save",
         "per_unit_label": "per pair",
+        "empty_help": "Choose a product for this section in the theme editor.",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
         "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
@@ -291,134 +519,9 @@
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
+        "guide_link_url": "",
         "guide_close_label": "Close"
       }
-    },
-    "standard": {
-      "type": "content-columns",
-      "settings": {
-        "color_scheme": "paper",
-        "layout": "list",
-        "numbered": false,
-        "anchor_id": "standard",
-        "eyebrow": "The standard",
-        "heading": "The standard this feed will be held to"
-      },
-      "blocks": {
-        "i1": {
-          "type": "item",
-          "settings": {
-            "title": "Verified buyers only",
-            "body": "<p>A review has to come from an order. No unverified submissions, and no reviews written by us.</p>"
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "title": "Negative reviews stay up",
-            "body": "<p>Published alongside the rest, unedited. If the socks disappoint someone, that belongs here.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "Filterable by activity and rating",
-            "body": "<p>A commuter's experience is more useful to another commuter than an overall average is. The filters go live with the feed.</p>"
-          }
-        },
-        "i4": {
-          "type": "item",
-          "settings": {
-            "title": "The aggregate is the real one",
-            "body": "<p>Whatever the average turns out to be is what gets printed, including the rating and the total volume in one line.</p>"
-          }
-        },
-        "i5": {
-          "type": "item",
-          "settings": {
-            "title": "We will not offer anything for a review",
-            "body": "<p>No discount, no free pair, no prize draw. A review bought with an incentive is not evidence, and it is not permitted to be presented as though it were.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3",
-        "i4",
-        "i5"
-      ]
-    },
-    "meanwhile": {
-      "type": "content-columns",
-      "settings": {
-        "color_scheme": "wash",
-        "layout": "list",
-        "numbered": false,
-        "heading": "What you can check instead",
-        "head_note": "<p>Reviews are one kind of evidence. Until there are some, here is the kind that does not depend on volume.</p>"
-      },
-      "blocks": {
-        "i1": {
-          "type": "item",
-          "settings": {
-            "title": "The membrane is named",
-            "body": "<p>Porelle®, licensed from a third party. You can look it up, which is more than an unnamed laminate offers.</p>"
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "title": "The limits are published",
-            "body": "<p>What the socks will not do is on the homepage. No competitor in this category publishes that.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "The company is named",
-            "body": "<p>UK registered, with the address and phone number on every page rather than behind a contact form.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3"
-      ]
-    },
-    "faq": {
-      "type": "faq-accordion",
-      "settings": {
-        "color_scheme": "paper",
-        "anchor_id": "questions",
-        "one_at_a_time": false,
-        "emit_schema": true,
-        "eyebrow": "Questions",
-        "heading": "About the feed that is not here yet.",
-        "cta_link": "#buy",
-        "help_link": "/pages/contact"
-      },
-      "blocks": {
-        "q1": {
-          "type": "question",
-          "settings": {
-            "question": "When will there be reviews?",
-            "answer": "<p>When enough people have bought and used a pair to make a rating mean something. We would rather show nothing than show four reviews and an average.</p>"
-          }
-        },
-        "q2": {
-          "type": "question",
-          "settings": {
-            "question": "Will you publish bad reviews?",
-            "answer": "<p>Yes, unedited and alongside the rest. A feed with no negatives in it tells a careful reader that it has been filtered, which is worse than a mixed one.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "q1",
-        "q2"
-      ]
     }
   },
   "order": [

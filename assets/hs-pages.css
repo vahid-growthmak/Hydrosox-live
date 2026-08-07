@@ -2908,3 +2908,48 @@
   min-width: 2.25rem;
   text-align: center;
 }
+
+/* Outlined band/stack cards: the border and surface fill kept — the about
+   page's four-across say-cards — instead of the scheme's tile treatment.
+   Weighted to outrank the per-scheme card fills above. */
+.hs-cols .hs-cols__cards--outlined .hs-cols__card {
+  background: var(--surface);
+  border-color: var(--rule);
+}
+
+/* Centred enquiry form: the header on the centre line and the form standing
+   in its own bordered card — the trade page's get-in-touch treatment. */
+.hs-enquiry__grid--centre {
+  display: block;
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+.hs-enquiry__grid--centre .hs-enquiry__head {
+  text-align: center;
+}
+
+.hs-enquiry__grid--centre .hs-enquiry__heading,
+.hs-enquiry__grid--centre .hs-enquiry__lede {
+  margin-inline: auto;
+}
+
+/* The direct email and phone live one section up on this page; repeating
+   them under a centred header reads as clutter, not help. */
+.hs-enquiry__grid--centre .hs-enquiry__direct {
+  display: none;
+}
+
+.hs-enquiry__grid--centre .hs-enquiry__body {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-xl);
+  background: var(--paper);
+}
+
+@media (min-width: 40rem) {
+  .hs-enquiry__grid--centre .hs-enquiry__body {
+    padding: 2rem;
+  }
+}

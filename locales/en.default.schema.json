@@ -609,6 +609,8 @@
       "card_columns_two": "Two across",
       "divided": "Divided columns instead of cards",
       "divided_info": "Drops the card fill and border and separates the items with hairlines — plain ruled columns.",
+      "outlined": "Outlined cards",
+      "outlined_info": "Keeps the border and the surface fill on band and stack cards, instead of the scheme’s tile treatment.",
       "layout_media": "Copy beside an image",
       "media_header": "Image (copy beside an image)",
       "cta_label": "Button label",
@@ -791,7 +793,9 @@
       "help": "Helper text",
       "required": "Required",
       "block_choice": "Routing option",
-      "block_choice_info": "Add two or more to show a dropdown asking what the enquiry is about. With fewer than two, no dropdown appears."
+      "block_choice_info": "Add two or more to show a dropdown asking what the enquiry is about. With fewer than two, no dropdown appears.",
+      "centre": "Centre the header and card the form",
+      "centre_info": "Stacks the header on the centre line and sets the form in a bordered card beneath it, instead of the two-column layout."
     },
     "policy": {
       "name": "Policy text",

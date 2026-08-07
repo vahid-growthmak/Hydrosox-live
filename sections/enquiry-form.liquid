@@ -22,7 +22,7 @@
   {{ section.shopify_attributes }}
 >
   <div class="hs-shell hs-pace-{{ section.settings.pace }}">
-    <div class="hs-enquiry__grid">
+    <div class="hs-enquiry__grid{% if section.settings.centre %} hs-enquiry__grid--centre{% endif %}">
       <header class="hs-enquiry__head">
         {%- if section.settings.eyebrow != blank -%}
           <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
@@ -234,6 +234,13 @@
         { "value": "ink", "label": "t:common.scheme_ink" }
       ],
       "default": "paper"
+    },
+    {
+      "type": "checkbox",
+      "id": "centre",
+      "label": "t:sections.enquiry.centre",
+      "info": "t:sections.enquiry.centre_info",
+      "default": false
     },
     {
       "type": "select",

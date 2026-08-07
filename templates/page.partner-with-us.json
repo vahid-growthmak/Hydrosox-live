@@ -18,14 +18,15 @@
     "form": {
       "type": "enquiry-form",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "wash",
         "pace": "base",
         "anchor_id": "enquiry",
         "eyebrow": "Get in touch",
         "heading": "Tell us about your business.",
         "lede": "<p>We are selective rather than exclusive. The more of this you fill in, the faster we can tell you whether we are a fit.</p>",
         "submit_label": "Send enquiry",
-        "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>"
+        "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>",
+        "centre": true
       },
       "blocks": {
         "c1": {
@@ -280,11 +281,12 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "wash",
-        "layout": "list",
+        "layout": "band",
         "numbered": false,
         "anchor_id": "who-this-is-for",
         "eyebrow": "Who this is for",
-        "heading": "The kinds of enquiry we can act on."
+        "heading": "The kinds of enquiry we can act on.",
+        "card_columns": "two"
       },
       "blocks": {
         "i1": {

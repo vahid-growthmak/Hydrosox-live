@@ -236,7 +236,7 @@
               above it even though the content is identical.
             {%- endcomment -%}
             {%- if items.size > 0 -%}
-              <ul class="hs-cols__cards{% if section.settings.card_columns == 'two' %} hs-cols__cards--two{% endif %}{% if section.settings.divided %} hs-cols__cards--divided{% endif %} hs-stagger" role="list">
+              <ul class="hs-cols__cards{% if section.settings.card_columns == 'two' %} hs-cols__cards--two{% endif %}{% if section.settings.divided %} hs-cols__cards--divided{% endif %}{% if section.settings.outlined %} hs-cols__cards--outlined{% endif %} hs-stagger" role="list">
                 {%- for block in items -%}
                   <li class="hs-cols__card hs-reveal" {{ block.shopify_attributes }}>
                     {%- comment -%}
@@ -467,6 +467,13 @@
       "id": "divided",
       "label": "t:sections.cols.divided",
       "info": "t:sections.cols.divided_info",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "outlined",
+      "label": "t:sections.cols.outlined",
+      "info": "t:sections.cols.outlined_info",
       "default": false
     },
     {

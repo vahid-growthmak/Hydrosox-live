@@ -19,11 +19,12 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "paper",
-        "layout": "list",
+        "layout": "band",
         "numbered": false,
         "anchor_id": "what",
         "eyebrow": "What there is to say",
-        "heading": "What there is to say"
+        "heading": "What there is to say",
+        "outlined": true
       },
       "blocks": {
         "i1": {
@@ -66,11 +67,12 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "wash",
-        "layout": "list",
+        "layout": "band",
         "numbered": false,
         "anchor_id": "missing",
         "eyebrow": "What is missing",
-        "heading": "What is missing, and why we are saying so"
+        "heading": "What is missing, and why we are saying so",
+        "divided": true
       },
       "blocks": {
         "i1": {

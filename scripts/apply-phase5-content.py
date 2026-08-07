@@ -849,6 +849,14 @@ def about():
         ])),
     ])
 
+    # Presentation, to the mockup DOM (2026-08-07): the four say-cards as an
+    # outlined row under the heading — bordered paper cards, four across on a
+    # desktop — and the three gaps as divided columns on wash. Words untouched.
+    S["what"]["settings"].update({
+        "layout": "band", "color_scheme": "paper", "outlined": True})
+    S["gap"]["settings"].update({
+        "layout": "band", "color_scheme": "wash", "divided": True})
+
     d["order"] = ["intro", "what", "gap", "support", "company", "reviews",
                   "close"]
     orphans = [k for k in S if k not in d["order"]]
@@ -1008,6 +1016,15 @@ def partner_with_us():
          ("Corporate and bulk orders",
           "Staff kit, event supply, and charitable distribution.")],
         scheme="wash")
+
+    # Presentation, to the mockup DOM (2026-08-07): the audience as the band
+    # of paper cards two across on wash, and the form centred in its white
+    # card on wash — the stocking list already matches the mockup's stacked
+    # rows. Words untouched.
+    S["audience"]["settings"].update({
+        "layout": "band", "color_scheme": "wash", "card_columns": "two"})
+    S["form"]["settings"].update({
+        "color_scheme": "wash", "centre": True})
 
     d["order"] = ["intro", "proposition", "audience", "proof", "direct",
                   "form", "press"]

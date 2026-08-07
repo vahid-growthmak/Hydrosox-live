@@ -1,6 +1,12 @@
-/* Composed by scripts/build-sitemap-templates.py from the sitemap.
-   Re-run that script rather than hand-editing this file; section
-   content itself is editable in the Shopify theme editor. */
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "crumb": {
@@ -8,51 +14,70 @@
       "settings": {
         "color_scheme": "paper",
         "home_label": "Home",
-        "current_label": "Returns and refunds",
         "parent_label": "Help",
-        "parent_url": "/pages/faq"
+        "parent_url": "/pages/faq",
+        "current_label": "Returns and refunds",
+        "aria_label": "Breadcrumb"
       }
     },
     "intro": {
       "type": "centre-note",
       "settings": {
         "color_scheme": "paper",
-        "heading_tag": "h1",
-        "heading_size": "h2",
         "hide_rule": true,
+        "anchor_id": "",
+        "max_width": 46,
         "eyebrow": "Returns and refunds",
         "heading": "Fourteen days, no reason needed.",
-        "body": "<p>Your statutory rights are the floor here, not the ceiling. Nothing on this page reduces them.</p>"
+        "heading_tag": "h1",
+        "heading_size": "h2",
+        "lead_first_para": false,
+        "body": "<p>Your statutory rights are the floor here, not the ceiling. Nothing on this page reduces them.</p>",
+        "footnote": "",
+        "pointer_label": "",
+        "pointer_link_label": "",
+        "pointer_url": "",
+        "cta_label": "",
+        "cta_url": "",
+        "link_label": "",
+        "link_url": "",
+        "tail_note": ""
       }
     },
     "how": {
       "type": "content-columns",
-      "settings": {
-        "color_scheme": "paper",
-        "layout": "list",
-        "numbered": false,
-        "heading": "Changing your mind"
-      },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "Tell us within 14 days",
-            "body": "<p>Fourteen days from the day the parcel arrives. Email or phone us — a clear statement that you are cancelling is enough, there is no form to find.</p>"
+            "body": "<p>Fourteen days from the day the parcel arrives. Email or phone us — a clear statement that you are cancelling is enough, there is no form to find.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Send them back within 14 more",
-            "body": "<p>Unworn, in the original packaging, with any seal intact. You may inspect them as you would in a shop.</p>"
+            "body": "<p>Unworn, in the original packaging, with any seal intact. You may inspect them as you would in a shop.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "Refunded within 14 days of arrival",
-            "body": "<p>The price plus the standard outbound delivery charge if you paid one, back to the card you used.</p>"
+            "body": "<p>The price plus the standard outbound delivery charge if you paid one, back to the card you used.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
           }
         }
       },
@@ -60,78 +85,167 @@
         "i1",
         "i2",
         "i3"
-      ]
+      ],
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "mirror": false,
+        "numbered": false,
+        "row_density": "standard",
+        "hide_rule": false,
+        "anchor_id": "",
+        "eyebrow": "The problem",
+        "heading": "Changing your mind",
+        "head_note": "",
+        "link_label": "",
+        "link_url": "",
+        "link2_label": "",
+        "link2_url": "",
+        "lede": "",
+        "lead_first_para": false,
+        "prose": "",
+        "gallery_aspect": "4 / 5",
+        "footnote": "",
+        "cta_label": "",
+        "cta_url": "",
+        "media_fallback": "",
+        "media_alt": ""
+      }
     },
     "faulty": {
       "type": "content-columns",
-      "settings": {
-        "color_scheme": "wash",
-        "layout": "list",
-        "numbered": false,
-        "heading": "If something is actually wrong with them"
-      },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "Within 30 days, reject and get a full refund",
-            "body": "<p>Under the Consumer Rights Act 2015 goods must be of satisfactory quality, fit for purpose and as described.</p>"
+            "body": "<p>Under the Consumer Rights Act 2015 goods must be of satisfactory quality, fit for purpose and as described.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "After 30 days, repair or replacement",
-            "body": "<p>And a refund or price reduction if that does not resolve it. We do not charge for returning faulty goods.</p>"
+            "body": "<p>And a refund or price reduction if that does not resolve it. We do not charge for returning faulty goods.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
           }
         }
       },
       "block_order": [
         "i1",
         "i2"
-      ]
+      ],
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "list",
+        "mirror": false,
+        "numbered": false,
+        "row_density": "standard",
+        "hide_rule": false,
+        "anchor_id": "",
+        "eyebrow": "The problem",
+        "heading": "If something is actually wrong with them",
+        "head_note": "",
+        "link_label": "",
+        "link_url": "",
+        "link2_label": "",
+        "link2_url": "",
+        "lede": "",
+        "lead_first_para": false,
+        "prose": "",
+        "gallery_aspect": "4 / 5",
+        "footnote": "",
+        "cta_label": "",
+        "cta_url": "",
+        "media_fallback": "",
+        "media_alt": ""
+      }
     },
     "not": {
       "type": "content-columns",
-      "settings": {
-        "color_scheme": "blue",
-        "layout": "list",
-        "numbered": false,
-        "heading": "What is not covered"
-      },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "Normal wear is not a fault",
-            "body": "<p>A membrane ends through abrasion, heat and clogged pores. That is wear, not a defect.</p>"
+            "body": "<p>A membrane ends through abrasion, heat and clogged pores. That is wear, not a defect.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Washing against the care instructions",
-            "body": "<p>Fabric softener, bleach, a hot wash or a tumble dryer will end a membrane early. The care page explains why.</p>"
+            "body": "<p>Fabric softener, bleach, a hot wash or a tumble dryer will end a membrane early. The care page explains why.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
           }
         }
       },
       "block_order": [
         "i1",
         "i2"
-      ]
+      ],
+      "settings": {
+        "color_scheme": "blue",
+        "layout": "list",
+        "mirror": false,
+        "numbered": false,
+        "row_density": "standard",
+        "hide_rule": false,
+        "anchor_id": "",
+        "eyebrow": "The problem",
+        "heading": "What is not covered",
+        "head_note": "",
+        "link_label": "",
+        "link_url": "",
+        "link2_label": "",
+        "link2_url": "",
+        "lede": "",
+        "lead_first_para": false,
+        "prose": "",
+        "gallery_aspect": "4 / 5",
+        "footnote": "",
+        "cta_label": "",
+        "cta_url": "",
+        "media_fallback": "",
+        "media_alt": ""
+      }
     },
     "policy": {
       "type": "centre-note",
       "settings": {
         "color_scheme": "wash",
-        "heading_size": "h3",
+        "hide_rule": false,
+        "anchor_id": "",
+        "max_width": 46,
         "eyebrow": "The formal version",
         "heading": "The refund policy is the binding text.",
+        "heading_tag": "h2",
+        "heading_size": "h3",
+        "lead_first_para": false,
         "body": "<p>Who pays return postage and the return address are stated there.</p>",
+        "footnote": "",
+        "pointer_label": "",
+        "pointer_link_label": "",
+        "pointer_url": "",
         "cta_label": "Read the refund policy",
         "cta_url": "/policies/refund-policy",
         "link_label": "Care and washing",
-        "link_url": "/pages/care-and-washing"
+        "link_url": "/pages/care-and-washing",
+        "tail_note": ""
       }
     },
     "buy": {
@@ -141,7 +255,8 @@
           "type": "colour",
           "settings": {
             "value": "Black",
-            "colour_one": "#111111"
+            "colour_one": "#111111",
+            "colour_two": ""
           }
         },
         "c2": {
@@ -164,7 +279,8 @@
           "type": "colour",
           "settings": {
             "value": "White",
-            "colour_one": "#f4f6f8"
+            "colour_one": "#f4f6f8",
+            "colour_two": ""
           }
         },
         "z1": {
@@ -208,7 +324,7 @@
           "settings": {
             "label": "Two pairs",
             "quantity": 2,
-            "discount": 3.01
+            "discount": 3.0
           }
         },
         "t3": {
@@ -216,7 +332,7 @@
           "settings": {
             "label": "Three pairs",
             "quantity": 3,
-            "discount": 7.01
+            "discount": 7.0
           }
         },
         "t4": {
@@ -224,7 +340,7 @@
           "settings": {
             "label": "Four pairs",
             "quantity": 4,
-            "discount": 12.01
+            "discount": 12.0
           }
         },
         "t5": {
@@ -232,7 +348,7 @@
           "settings": {
             "label": "Five pairs",
             "quantity": 5,
-            "discount": 20.01
+            "discount": 20.0
           }
         },
         "r1": {
@@ -267,6 +383,7 @@
           "type": "link",
           "settings": {
             "label": "Full product details",
+            "link": "",
             "use_product_url": true
           }
         },
@@ -274,14 +391,16 @@
           "type": "link",
           "settings": {
             "label": "How it is built",
-            "link": "/#construction"
+            "link": "/#construction",
+            "use_product_url": false
           }
         },
         "l3": {
           "type": "link",
           "settings": {
             "label": "Delivery and sizing",
-            "link": "/#faq"
+            "link": "/#faq",
+            "use_product_url": false
           }
         },
         "g1": {
@@ -359,6 +478,7 @@
         "n1",
         "n2"
       ],
+      "disabled": true,
       "settings": {
         "product": "hydrosox-waterproof-socks",
         "color_scheme": "paper",
@@ -369,11 +489,15 @@
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
+        "delivery_charge_pence": 499,
+        "delivery_label": "delivery",
+        "total_label": "total",
         "quantity_label": "Quantity",
         "default_quantity": 2,
         "add_label": "Add to cart",
         "save_label": "Save",
         "per_unit_label": "per pair",
+        "empty_help": "Choose a product for this section in the theme editor.",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
         "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
@@ -381,6 +505,7 @@
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
+        "guide_link_url": "",
         "guide_close_label": "Close"
       }
     }

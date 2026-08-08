@@ -140,8 +140,11 @@ RHYTHM = {
         "blisters":   ("stack", "paper", False, False),
         "fit":        ("panel", "wash",  False, False),
     },
+    # 2026-08-08, the client: each page's dark emphasis section takes the
+    # numbered-boxes treatment they screenshotted from the boots page's
+    # "What answers it" — outlined boxes, ghost numerals, heading left.
     "running-and-trail": {
-        "trade":      ("focus", "ink",   True,  False),   # the concession, up front
+        "trade":      ("boxes", "ink",   False, True),    # the concession, up front
         # whennot is honest-limits and already a different shape
         "winter":     ("cards", "paper", False, False),
         "blisters":   ("split", "wash",  False, False),   # the same three causes
@@ -149,12 +152,12 @@ RHYTHM = {
     "cycling-and-commuting": {
         "problem":    ("steps", "paper", False, False),   # where the water comes from
         # overshoes is a comparison table and already a different shape
-        "drying":     ("focus", "ink",   True,  False),   # the insight, dark
+        "drying":     ("boxes", "ink",   False, True),    # the insight, dark
         "fit":        ("cards", "paper", False, False),
     },
     "all-day-in-boots": {
         "problem":    ("steps", "paper", False, False),
-        "durability": ("focus", "ink",   True,  False),   # why the cheap pair failed
+        "durability": ("boxes", "ink",   False, True),    # why the cheap pair failed
         "fit":        ("cards", "paper", False, False),
         "warranty":   ("split", "wash",  False, False),   # sits after the buy widget
     },

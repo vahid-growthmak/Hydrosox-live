@@ -466,14 +466,14 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "ink",
-        "layout": "focus",
-        "numbered": false,
+        "layout": "boxes",
+        "numbered": true,
         "eyebrow": "Durability",
         "heading": "Three weeks is not a membrane problem.",
         "lede": "<p>Most cheap waterproof socks do not fail because the membrane is bad. They fail for three reasons, and two of them are fixable.</p>",
         "link_label": "What actually damages a membrane",
         "link_url": "/pages/care-and-washing",
-        "mirror": true
+        "mirror": false
       },
       "blocks": {
         "i1": {

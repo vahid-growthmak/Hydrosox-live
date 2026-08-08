@@ -474,12 +474,12 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "ink",
-        "layout": "focus",
-        "numbered": false,
+        "layout": "boxes",
+        "numbered": true,
         "eyebrow": "The trade",
         "heading": "Heavier than a racing sock. Lighter than a wet one.",
         "lede": "<p>A waterproof sock has three layers where a racing sock has one. There is no version of this where the weight is the same. The measured weight per pair is being confirmed and will be published here as a number, not an adjective.</p>",
-        "mirror": true
+        "mirror": false
       },
       "blocks": {
         "i1": {

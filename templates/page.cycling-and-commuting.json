@@ -547,14 +547,14 @@
       "type": "content-columns",
       "settings": {
         "color_scheme": "ink",
-        "layout": "focus",
-        "numbered": false,
+        "layout": "boxes",
+        "numbered": true,
         "eyebrow": "The other end",
         "heading": "The ride home starts where the ride in finished.",
         "lede": "<p>Almost every product in this category is designed around the outbound journey. The commute has two halves and only one of them has a radiator at the end.</p>",
         "link_label": "How to wash them properly",
         "link_url": "/pages/care-and-washing",
-        "mirror": true
+        "mirror": false
       },
       "blocks": {
         "i1": {

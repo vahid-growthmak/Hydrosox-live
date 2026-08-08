@@ -240,18 +240,11 @@
         "q3": {
           "type": "question",
           "settings": {
-            "question": "What detergent should I use?",
-            "answer": "<p>An ordinary liquid detergent is fine. Avoid anything marketed as a softening or conditioning detergent, and avoid biological powders left undissolved against the fabric.</p>"
-          }
-        },
-        "q4": {
-          "type": "question",
-          "settings": {
             "question": "Can I put them on a radiator to dry?",
             "answer": "<p>No. Direct heat is the fastest way to end a laminate, and a radiator is the most common culprit precisely because it is the most tempting after a wet day.</p>"
           }
         },
-        "q5": {
+        "q4": {
           "type": "question",
           "settings": {
             "question": "How long should a pair last?",
@@ -263,8 +256,7 @@
         "q1",
         "q2",
         "q3",
-        "q4",
-        "q5"
+        "q4"
       ]
     }
   },

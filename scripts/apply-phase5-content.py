@@ -396,189 +396,219 @@ def faq_page():
     header, d = read("page.faq.json")
     S = d["sections"]
 
+    # v4 Document 3 (8 Aug 2026): the 33, verbatim, minus two red-gated
+    # placeholders. The Amazon question is held entirely until the client
+    # confirms whether the listing is live. The made-in question keeps the
+    # existing honest answer instead of the doc's [CLIENT TO CONFIRM]
+    # placeholder — an unanswered question is the thing the doc most fears,
+    # and the standing answer states the truth without inventing a country.
+    # Q11's and Q12's closing claims (reviewed wording exists / words
+    # published in full) wait with the scholars' material, per Document 3's
+    # own red blocks.
     groups = [
-        ("product", "The product", "What the sock actually is.", [
-            ("Can water get in over the top of the sock?",
-             "Yes. A sock is open at the cuff, so water deeper than the cuff "
+        ("product", "The socks", None, [
+            ("Can water get in over the top?",
+             "Yes. A sock is open at the top, so water deeper than the sock "
              "will go in, exactly as it would with any sock. No waterproof "
-             "sock behaves otherwise, and any brand implying it does is "
+             "sock behaves differently, and anyone implying otherwise is "
              "overstating."),
-            # The snow question moved to the category hub verbatim in the v4
-            # content (8 Aug 2026), and the site rule is one page per
-            # question. Removed here rather than reworded — the FAQ page's
-            # own v4 document decides what replaces it.
-            ("Can I wear them for swimming, or in the shower?",
-             "They are not designed for immersion. They are built for water "
-             "arriving from outside during normal use — rain, spray, puddles, "
-             "wet ground — not for being submerged, and we would rather say so "
-             "than take the sale."),
             ("Will they start to smell?",
-             "They are no more prone to it than any sock, provided they are "
-             "washed and air dried between wears rather than left damp in a "
-             "bag. A membrane does not cause odour; a wet sock left in a boot "
-             "overnight does."),
+             "No more than any sock, as long as you wash them and let them "
+             "air dry between wears rather than leaving them damp in a bag. "
+             "A waterproof layer doesn\u2019t cause odour. A wet sock left "
+             "in a boot overnight does."),
             ("Do they stretch out over time?",
-             "They loosen slightly with wear, as knitted socks do. The shaped "
-             "fit is built to hold longer than a standard sock because it is "
-             "structural rather than decorative — it is also the property that "
-             "matters for masah."),
-            ("Can I wear them without shoes?",
-             "Around the house, yes. But the outer knit is the wear surface, "
-             "and walking on hard floors or outside without footwear abrades "
-             "it far faster than a boot does. It is the quickest way to "
-             "shorten their life."),
+             "They loosen a little with wear, as knitted socks do. The shaped "
+             "fit holds longer than a standard sock because it\u2019s built "
+             "into the knit rather than added on \u2014 and it\u2019s also "
+             "the property that matters for masah."),
+            ("Can I wear them around the house without shoes?",
+             "You can, but the outer knit is the wear surface, and walking on "
+             "hard floors abrades it far faster than a boot does. It\u2019s "
+             "the quickest way to shorten their life."),
+            ("Are they any good in hot weather?",
+             "Less so. They keep water out just as well, but in warm air your "
+             "foot produces sweat faster than the waterproof layer can move "
+             "it. In a British summer downpour a thin sock is often the "
+             "better call."),
+            ("Do you make children\u2019s sizes?",
+             "Not below UK 3, which is where our smallest size starts. It "
+             "fits older children but not younger ones, and we\u2019d rather "
+             "say so than sell you something that won\u2019t fit."),
         ]),
-        ("wudu", "Wudu and masah", "The everyday questions.", [
-            ("Do I need to wash my feet before putting them on?",
-             "Yes. The sources are consistent that the footwear must be put on "
-             "after a complete wudu in which the feet were washed. Masah "
-             "applies from the next wudu onwards, not from the one during "
-             "which you put them on."),
+        ("wudu", "Wudu and masah",
+         "The conditions and the rulings are on the masah page. These are "
+         "the everyday questions.", [
             ("Can I wear them for Hajj or Umrah?",
-             "Many people buy them for pilgrimage travel, where facilities are "
-             "shared and there is little chance to dry anything. On the "
+             "A lot of people buy them for pilgrimage, where facilities are "
+             "shared and there\u2019s nowhere to dry anything. On the "
              "separate question of footwear restrictions in ihram, ask a "
-             "scholar — that is not a question we should be answering."),
+             "scholar \u2014 that isn\u2019t a question we should be "
+             "answering."),
             ("Can children use them for wudu?",
              "Our sizes start at UK 3, so they fit older children. On whether "
              "and from what age masah applies for a child, ask a scholar "
              "rather than a sock company."),
-            ("What happens if water gets inside them during wudu?",
-             "This is addressed in the sources and it is a point we have "
-             "deliberately not paraphrased, because it matters and because "
-             "getting it approximately right is worse than not answering. The "
-             "masah page carries the reviewed wording."),
-            ("Are these suitable for use at the mosque?",
-             "There is no reason they would not be. The practical reason "
-             "people buy them is the places where wudu is harder — offices, "
-             "sites, airports, universities — rather than a mosque with proper "
-             "facilities."),
+            ("Are they suitable for use at the mosque?",
+             "There\u2019s no reason they wouldn\u2019t be. The practical "
+             "reason people buy them is for the places where wudu is harder "
+             "\u2014 offices, sites, airports, universities \u2014 rather "
+             "than a mosque with proper facilities."),
             ("Do you sell a separate wudu version?",
-             "No. It is the same sock, the same membrane and the same "
-             "construction whichever page you buy it from, at the same price. "
-             "There is no wudu edition and no wudu premium."),
+             "No. It\u2019s the same sock, the same waterproof layer and the "
+             "same build whichever page you buy it from, at the same price. "
+             "There\u2019s no wudu edition and no wudu premium."),
+            ("What happens if water gets inside them during wudu?",
+             "This is covered in the sources and it\u2019s a point "
+             "we\u2019ve deliberately not paraphrased, because getting it "
+             "approximately right would be worse than not answering."),
+            ("Who has reviewed these socks?",
+             "Shaykh Mufti Saiful Islam of the JKN Institute in Bradford, "
+             "and Mufti Amjad Mohammed of D\u0101r al-\u02bfUl\u016bm "
+             "al-Zaytuniyya, also in Bradford."),
         ]),
-        ("sizing", "Sizing and fit", "The bands are on the size guide.", [
+        ("sizing", "Sizing and fit",
+         "The size chart itself is on the size guide.", [
             ("How do I measure my foot?",
              "Stand on a sheet of paper with your heel against a wall, mark "
-             "the tip of your longest toe, and measure from the wall to the "
-             "mark. That figure in centimetres is what the size bands are set "
-             "by, and it is more reliable than your shoe size."),
-            ("What if I am larger than UK 14?",
-             "We do not currently make a size above XL, which covers UK 12–14. "
-             "We would rather tell you that plainly than sell you something "
-             "that will not fit."),
+             "where your longest toe ends, and measure from the wall to the "
+             "mark. That measurement in centimetres is what our sizes are "
+             "set by, and it\u2019s far more reliable than your shoe size."),
+            ("What if I\u2019m bigger than UK 14?",
+             "We don\u2019t currently make anything above XL, which covers "
+             "UK 12 to 14. We\u2019d rather tell you plainly than sell you "
+             "a pair that won\u2019t fit."),
             ("Do they fit wide feet?",
-             "They are a close, stretchy fit rather than a loose one. If you "
-             "normally need a wide fitting in shoes, take the larger band — a "
-             "sock that grips across the width is uncomfortable over a full "
-             "day and shortens the life of the membrane."),
+             "They\u2019re a close, stretchy fit rather than a loose one. "
+             "If you normally need a wide fitting in shoes, take the bigger "
+             "size \u2014 a sock that grips across the width is "
+             "uncomfortable over a full day and hard on the waterproof "
+             "layer."),
             ("Will they slip down?",
-             "They are shaped to stay in place through normal wear rather than "
-             "working loose over a day. If a pair does slip, it is usually a "
-             "size too large, which is worth checking against the foot-length "
-             "bands."),
+             "They\u2019re shaped to stay in place through a normal day "
+             "rather than working loose. If a pair does slip, it\u2019s "
+             "usually a size too big, which is worth checking against the "
+             "foot-length measurements."),
             ("Can I wear another sock underneath?",
-             "You can, but there is usually no need — the inner knit is "
-             "designed to sit against the skin. Adding a liner underneath adds "
-             "bulk, which matters most in cycling shoes and safety boots where "
-             "there is least room."),
+             "You can, but there\u2019s usually no need \u2014 the inner "
+             "knit is designed to sit against your skin. Adding a liner adds "
+             "bulk, which matters most in cycling shoes and safety boots "
+             "where there\u2019s least room."),
         ]),
-        ("care", "Washing and lifespan", "The full instructions are on the "
-         "care page.", [
+        ("care", "Washing and looking after them",
+         "Full instructions are on the care page.", [
             ("How do I dry them quickly?",
-             "You cannot, safely. Turn them inside out and air dry at room "
-             "temperature with air moving around them. Never on a radiator and "
-             "never in a tumble dryer — direct heat is the single most common "
-             "way a waterproof sock dies."),
+             "You can\u2019t, safely. Turn them inside out and air dry them "
+             "at room temperature with air moving around them. Never on a "
+             "radiator and never in a tumble dryer \u2014 direct heat is "
+             "the most common way a waterproof sock dies."),
             ("Can I wash them with the rest of my washing?",
-             "Yes, on a cool cycle, provided there is no fabric softener in "
-             "the load and nothing abrasive like zips or Velcro. Softener is "
-             "the problem more often than temperature is."),
-            ("What temperature should I wash them at?",
-             "Cool, on a gentle cycle. The membrane is a laminate, and heat is "
-             "what breaks laminates down."),
+             "Yes, on a cool cycle, as long as there\u2019s no fabric "
+             "softener in the load and nothing abrasive like zips or Velcro. "
+             "Softener causes more problems than temperature does."),
+            ("What detergent should I use?",
+             "An ordinary liquid detergent is fine. Avoid anything sold as a "
+             "softening or conditioning detergent, and avoid biological "
+             "powder left undissolved against the fabric."),
             ("How do I get mud off them?",
              "Rinse under a cold tap first to get the grit out, then wash "
-             "cool. Grit left in the knit is abrasive against the membrane "
-             "from the inside, which matters more than the mud does."),
-            ("Are they still waterproof once they have been punctured?",
-             "No, and it cannot be repaired. A membrane is a continuous "
-             "barrier — once it is pierced by a toenail, a thorn or a stone, "
-             "the water goes through and no spray or reproofing treatment will "
-             "bring it back."),
+             "cool. Grit left in the knit rubs against the waterproof layer "
+             "from the inside, which does more damage than the mud does."),
+            ("Are they still waterproof once there\u2019s a hole in them?",
+             "No, and it can\u2019t be repaired. The waterproof layer is a "
+             "continuous barrier \u2014 once it\u2019s pierced by a "
+             "toenail, a thorn or a stone, water goes through and no spray "
+             "or treatment brings it back."),
         ]),
-        ("delivery", "Delivery, returns and warranty", "What is settled, and "
-         "what is not.", [
+        ("delivery", "Delivery, returns and warranty", None, [
             ("Where do you deliver to?",
-             "The United Kingdom, from a UK warehouse. Delivery is free on two "
-             "pairs or more; on a single pair it is charged at checkout and "
-             "shown before you pay."),
+             "The United Kingdom, from our UK warehouse. Delivery is free on "
+             "two pairs or more. On a single pair there\u2019s a charge, "
+             "and you\u2019ll see the full total before anything goes in "
+             "your basket."),
             ("Do you deliver outside the UK?",
-             "This is still being confirmed and we will not promise a service "
-             "we cannot yet support. If you are outside the UK, email us and "
-             "we will tell you honestly where things stand."),
-            ("Can I return them if I have worn them?",
-             "Returns are for unworn socks in the original packaging with the "
-             "seal intact — you may inspect them as you would in a shop. If a "
-             "pair is faulty, that is a different matter entirely and worn or "
-             "not makes no difference."),
-            ("What if my order does not arrive?",
-             "Email or phone us with the order number and we will chase it "
-             "with the courier. Until the parcel is with you, the "
-             "responsibility for getting it there is ours."),
+             "This is still being confirmed, and we won\u2019t promise a "
+             "service we can\u2019t yet support. If you\u2019re outside "
+             "the UK, email us and we\u2019ll tell you honestly where "
+             "things stand."),
+            ("Can I return them if I\u2019ve worn them?",
+             "Returns are for unworn socks in the original packaging. You "
+             "can try a pair on to check the size, the same as you would in "
+             "a shop. If a pair is faulty that\u2019s a different matter, "
+             "and whether you\u2019ve worn them makes no difference."),
+            ("What if my order doesn\u2019t arrive?",
+             "Email or phone us with your order number and we\u2019ll "
+             "chase it with the carrier. Until the parcel reaches you, "
+             "getting it there is our responsibility."),
             ("Can I change or cancel an order?",
-             "If it has not been dispatched, yes — email or phone us straight "
-             "away. After dispatch it becomes a return, and you have fourteen "
-             "days from the day the parcel arrives to tell us you are "
-             "cancelling."),
-            ("Do you offer exchanges?",
-             "If a size is wrong, the simplest route is to return the unworn "
-             "pair and order the right one. Contact us before sending anything "
-             "back and we will tell you exactly what to do."),
+             "If it hasn\u2019t been dispatched, yes \u2014 email or "
+             "phone straight away. After dispatch it becomes a return, and "
+             "you have fourteen days from the day it arrives to tell us "
+             "you\u2019re cancelling."),
+            ("Do you do exchanges?",
+             "If the size is wrong, the simplest route is to return the "
+             "unworn pair and order the right one. Get in touch before "
+             "sending anything back and we\u2019ll tell you exactly what "
+             "to do."),
         ]),
-        ("company", "The company", "Who is behind this.", [
-            # Answered rather than omitted: an unanswered manufacturing
-            # question is one an assistant will fill in for us.
+        ("company", "The company", None, [
+            # Kept from the previous rewrite: the doc's answer here is a
+            # [CLIENT TO CONFIRM] placeholder, and an unanswered question is
+            # the thing its red block most fears. This one states the truth
+            # without inventing a country, until the client confirms one.
             ("Where are HydroSox made?",
              "We have not published a country of manufacture yet, and we are "
              "not going to print one we have not confirmed with the "
              "manufacturer. It is a fair question, it will be answered here "
-             "plainly when we can evidence it, and in the meantime what we can "
-             "say is that HydroSox is a UK registered company shipping from a "
-             "UK warehouse."),
+             "plainly when we can evidence it, and in the meantime what we "
+             "can say is that HydroSox is a UK registered company shipping "
+             "from a UK warehouse."),
             ("Do you sell to shops, or wholesale?",
-             "Yes. There is no public trade pricing and no automated tiering — "
-             "tell us what you sell and to whom on the trade page, and we will "
-             "reply with terms that fit."),
+             "Yes. There\u2019s no public trade pricing and no automated "
+             "tiering \u2014 tell us what you sell and to whom on the trade "
+             "page, and we\u2019ll reply with terms that fit."),
             ("How can I pay?",
              "Visa, Mastercard, American Express, Apple Pay, Google Pay and "
-             "Shop Pay. Checkout is guest by default, so no account is needed. "
-             "We never see or store your full card details."),
+             "Shop Pay. Checkout is guest by default, so you don\u2019t "
+             "need an account. We never see or store your full card "
+             "details."),
             ("Is there a shop I can visit?",
-             "No. HydroSox is online only, from a UK warehouse. The registered "
-             "address and phone number are on every page of this site rather "
-             "than behind a contact form, so there is always a person to "
-             "reach."),
+             "No, we\u2019re online only, from a UK warehouse. Our "
+             "registered address and phone number are on every page rather "
+             "than behind a contact form, so there\u2019s always a person "
+             "to reach."),
         ]),
     ]
+
+    # v4 opening: the page H1 and the correction-offer standfirst.
+    S["intro"]["settings"].update({
+        "eyebrow": "Questions",
+        "heading": "Common questions",
+        "body": rich(
+            "Straight answers, in six groups. If one of these contradicts a "
+            "product page, the product page is the one that’s wrong "
+            "— tell us and we’ll fix it."),
+    })
+    S["buy"]["settings"]["heading"] = "Choose your colour and size"
 
     for old in ("product", "wudu", "sizing", "care", "delivery", "returns",
                 "company"):
         S.pop(old, None)
     total = 0
-    for key, eyebrow, heading, qs in groups:
-        S[key] = faq(key, eyebrow, heading, None, qs, emit=False)
+    # The group NAME is the heading and the doc's group note (where one
+    # exists) is the lede — v4 groups carry no separate subtitle.
+    for key, name, note, qs in groups:
+        S[key] = faq(key, "", name, note, qs, emit=False)
         total += len(qs)
 
     # The jump grid has to match the groups it jumps to.
     tiles, tile_order = collections.OrderedDict(), []
-    for n, (key, eyebrow, heading, qs) in enumerate(groups, 1):
+    for n, (key, name, note, qs) in enumerate(groups, 1):
         k = "g%d" % n
         tiles[k] = collections.OrderedDict([
             ("type", "card"),
             ("settings", collections.OrderedDict([
-                ("title", eyebrow), ("body", heading),
+                ("title", name), ("body", note or ""),
                 ("meta", "%d questions" % len(qs)), ("link", "#%s" % key)]))])
         tile_order.append(k)
     S["groups"]["blocks"] = tiles
@@ -788,10 +818,9 @@ def care():
          ("Can I wash them by hand?",
           "Yes, and for a single muddy pair it is often quicker. Cool water, a "
           "little detergent, no softener, rinse thoroughly and air dry."),
-         ("What detergent should I use?",
-          "An ordinary liquid detergent is fine. Avoid anything marketed as a "
-          "softening or conditioning detergent, and avoid biological powders "
-          "left undissolved against the fabric."),
+         # The detergent question moved to the FAQ page verbatim in v4
+         # Document 3 (8 Aug 2026); one page per question. The care page's
+         # own v4 document decides what replaces it.
          ("Can I put them on a radiator to dry?",
           "No. Direct heat is the fastest way to end a laminate, and a "
           "radiator is the most common culprit precisely because it is the "

@@ -80,7 +80,7 @@
           "settings": {
             "heading": "Inner layer",
             "role": "Next to the skin",
-            "body": "<p>A soft knitted lining that moves sweat off the foot and stops the membrane sitting against the skin.</p>",
+            "body": "<p>A soft knitted lining against your foot. It moves sweat away and keeps the waterproof layer off your skin.</p>",
             "image_alt": "",
             "tint": "#eaeef1"
           }
@@ -88,9 +88,9 @@
         "y2": {
           "type": "layer",
           "settings": {
-            "heading": "Porelle® membrane",
+            "heading": "Waterproof layer",
             "role": "The waterproof barrier",
-            "body": "<p>A licensed third-party laminate. Water cannot get in; vapour from the foot can get out.</p>",
+            "body": "<p>A Porelle® membrane, sealed in the middle. Made by a separate company, so you can look it up. Water can’t get through it. Sweat can get out.</p>",
             "image_alt": "",
             "tint": "#0093ff"
           }
@@ -100,7 +100,7 @@
           "settings": {
             "heading": "Outer layer",
             "role": "Wear surface",
-            "body": "<p>The knitted face that takes abrasion inside a boot or shoe, and holds the sock's shape when it is not being worn.</p>",
+            "body": "<p>A tough knit that takes the rubbing inside your boot, so the membrane doesn’t have to. It’s also what keeps the sock in shape.</p>",
             "image_alt": "",
             "tint": "#111111"
           }

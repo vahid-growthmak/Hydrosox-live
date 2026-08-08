@@ -41,7 +41,7 @@
           "settings": {
             "title": "The product",
             "body": "What the sock actually is.",
-            "meta": "6 questions",
+            "meta": "5 questions",
             "link": "#product"
           }
         },
@@ -420,32 +420,25 @@
         "q2": {
           "type": "question",
           "settings": {
-            "question": "Do waterproof socks work in snow?",
-            "answer": "<p>They keep melted snow out well, and they block wind, which is most of what makes feet cold. They are not insulated, though, so in genuinely cold conditions you want them for the dryness rather than for the warmth.</p>"
-          }
-        },
-        "q3": {
-          "type": "question",
-          "settings": {
             "question": "Can I wear them for swimming, or in the shower?",
             "answer": "<p>They are not designed for immersion. They are built for water arriving from outside during normal use — rain, spray, puddles, wet ground — not for being submerged, and we would rather say so than take the sale.</p>"
           }
         },
-        "q4": {
+        "q3": {
           "type": "question",
           "settings": {
             "question": "Will they start to smell?",
             "answer": "<p>They are no more prone to it than any sock, provided they are washed and air dried between wears rather than left damp in a bag. A membrane does not cause odour; a wet sock left in a boot overnight does.</p>"
           }
         },
-        "q5": {
+        "q4": {
           "type": "question",
           "settings": {
             "question": "Do they stretch out over time?",
             "answer": "<p>They loosen slightly with wear, as knitted socks do. The shaped fit is built to hold longer than a standard sock because it is structural rather than decorative — it is also the property that matters for masah.</p>"
           }
         },
-        "q6": {
+        "q5": {
           "type": "question",
           "settings": {
             "question": "Can I wear them without shoes?",
@@ -458,8 +451,7 @@
         "q2",
         "q3",
         "q4",
-        "q5",
-        "q6"
+        "q5"
       ]
     },
     "wudu": {

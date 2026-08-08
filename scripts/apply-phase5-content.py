@@ -353,11 +353,10 @@ def faq_page():
              "will go in, exactly as it would with any sock. No waterproof "
              "sock behaves otherwise, and any brand implying it does is "
              "overstating."),
-            ("Do waterproof socks work in snow?",
-             "They keep melted snow out well, and they block wind, which is "
-             "most of what makes feet cold. They are not insulated, though, so "
-             "in genuinely cold conditions you want them for the dryness "
-             "rather than for the warmth."),
+            # The snow question moved to the category hub verbatim in the v4
+            # content (8 Aug 2026), and the site rule is one page per
+            # question. Removed here rather than reworded — the FAQ page's
+            # own v4 document decides what replaces it.
             ("Can I wear them for swimming, or in the shower?",
              "They are not designed for immersion. They are built for water "
              "arriving from outside during normal use — rain, spray, puddles, "

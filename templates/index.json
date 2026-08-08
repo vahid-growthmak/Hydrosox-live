@@ -15,29 +15,29 @@
         "s1": {
           "type": "spec",
           "settings": {
-            "label": "Membrane",
-            "value": "Porelle®, licensed"
+            "label": "Waterproof layer",
+            "value": "Porelle® membrane"
           }
         },
         "s2": {
           "type": "spec",
           "settings": {
-            "label": "Construction",
-            "value": "Three-layer knit"
+            "label": "Build",
+            "value": "Three layers"
           }
         },
         "s3": {
           "type": "spec",
           "settings": {
-            "label": "Chemistry",
-            "value": "PFOA free"
+            "label": "Sizes",
+            "value": "UK 3 to 14"
           }
         },
         "s4": {
           "type": "spec",
           "settings": {
-            "label": "Origin",
-            "value": "UK company, UK stock"
+            "label": "Price",
+            "value": "From £20 a pair"
           }
         }
       },
@@ -52,11 +52,11 @@
         "full_height": true,
         "anchor_id": "",
         "eyebrow": "Waterproof socks",
-        "heading": "Wet feet are\na solved problem.",
-        "body": "<p>A licensed Porelle® membrane sealed inside a three-layer knit. Hiking, running, cycling, work and wudu — the day carries on when the weather turns.</p>",
+        "heading": "Waterproof socks for every terrain.\nAnd for wudu.",
+        "body": "<p>One sock for hiking, work, cycling, running and everyday wear — and made to meet the conditions for masah. From £20 a pair.</p>",
         "cta_label": "Buy a pair",
         "cta_link": "/#buy",
-        "link_label": "See how it is built",
+        "link_label": "See how they work",
         "link_url": "/#construction",
         "image_fallback": "",
         "image_alt": "Four pairs of HydroSox waterproof socks in black, white, navy and grey, stood upright",
@@ -141,60 +141,50 @@
         "k1": {
           "type": "criterion",
           "settings": {
-            "label": "Waterproof layer",
-            "ours_value": "Porelle®, named and licensed",
-            "ours_note": "A membrane you can look up is a membrane someone else has to stand behind.",
-            "theirs_value": "An unnamed “waterproof” laminate",
+            "label": "The waterproof layer",
+            "ours_value": "Porelle®, named on the box.",
+            "ours_note": "",
+            "theirs_value": "Usually named too. This isn’t where we’ve saved money.",
             "theirs_note": ""
           }
         },
         "k2": {
           "type": "criterion",
           "settings": {
-            "label": "Construction",
-            "ours_value": "Three layers, each one specified",
+            "label": "How big the range is",
+            "ours_value": "One product.",
             "ours_note": "",
-            "theirs_value": "Layer count rarely published",
+            "theirs_value": "Hats, gloves, jackets and more. The range has to be paid for.",
             "theirs_note": ""
           }
         },
         "k3": {
           "type": "criterion",
           "settings": {
-            "label": "Chemistry",
-            "ours_value": "PFOA free, stated",
+            "label": "Where you buy it",
+            "ours_value": "Direct from us.",
             "ours_note": "",
-            "theirs_value": "Usually not stated either way",
+            "theirs_value": "Through shops, each taking a margin.",
             "theirs_note": ""
           }
         },
         "k4": {
           "type": "criterion",
           "settings": {
-            "label": "Price per pair",
-            "ours_value": "£20.00",
-            "ours_note": "Cheaper waterproof socks exist. Those are the ones that do not name a membrane.",
-            "theirs_value": "£35–£55 for mid-range and premium",
+            "label": "What they tell you",
+            "ours_value": "We publish what these socks can’t do, in the section above.",
+            "ours_note": "",
+            "theirs_value": "Very few do.",
             "theirs_note": ""
           }
         },
         "k5": {
           "type": "criterion",
           "settings": {
-            "label": "Stated limitations",
-            "ours_value": "Published on this page",
-            "ours_note": "The one claim no competitor in the category makes.",
-            "theirs_value": "Not stated anywhere in the mapped set",
-            "theirs_note": ""
-          }
-        },
-        "k6": {
-          "type": "criterion",
-          "settings": {
-            "label": "Who you are buying from",
-            "ours_value": "UK company, address and phone published",
+            "label": "Who you’re buying from",
+            "ours_value": "A UK company with an address and phone number on every page.",
             "ours_note": "",
-            "theirs_value": "Often a marketplace seller with neither",
+            "theirs_value": "Sometimes a marketplace seller with neither.",
             "theirs_note": ""
           }
         }
@@ -204,21 +194,20 @@
         "k2",
         "k3",
         "k4",
-        "k5",
-        "k6"
+        "k5"
       ],
       "settings": {
         "color_scheme": "wash",
         "anchor_id": "comparison",
-        "eyebrow": "The difference",
-        "heading": "Everything here is checkable.",
-        "lede": "<p>We are new, and you have no reason to take our word for anything. So this compares what you can verify yourself in about four minutes — not what we would like you to feel.</p>",
-        "table_caption": "HydroSox compared against a typical waterproof sock, across six verifiable criteria.",
+        "eyebrow": "The price",
+        "heading": "Why we’re £20 and not £40",
+        "lede": "<p>A fair question. It isn’t a cheaper waterproof layer — it’s everything around it that we don’t have to pay for.</p>",
+        "table_caption": "HydroSox compared against a £40 pair, across five criteria.",
         "col_criterion": "What matters",
         "col_ours": "HydroSox",
-        "col_theirs": "A typical sock",
-        "link_label": "Check the membrane spec",
-        "link_url": "/#construction"
+        "col_theirs": "A £40 pair",
+        "link_label": "",
+        "link_url": ""
       }
     },
     "limits": {
@@ -227,8 +216,8 @@
         "m1": {
           "type": "limit",
           "settings": {
-            "heading": "They are not a boot replacement.",
-            "body": "<p>One component of a system. If your footwear is wrong for the ground, this will not fix it.</p>",
+            "heading": "They won’t replace your boots.",
+            "body": "<p>If your footwear is wrong for the ground, socks won’t fix it. These keep your feet dry. They don’t add grip or ankle support.</p>",
             "image_fallback": "",
             "image_alt": "",
             "width": "1",
@@ -239,8 +228,8 @@
         "m2": {
           "type": "limit",
           "settings": {
-            "heading": "Water over the cuff gets in.",
-            "body": "<p>A sock is open at the top. Go deeper than the cuff and you are wet, and no waterproof sock behaves otherwise.</p>",
+            "heading": "Water can get in over the top.",
+            "body": "<p>A sock is open at the top. Step into water deeper than the sock and it fills up, the same as any sock would.</p>",
             "image_fallback": "",
             "image_alt": "",
             "width": "1",
@@ -251,8 +240,8 @@
         "m3": {
           "type": "limit",
           "settings": {
-            "heading": "They are not indestructible.",
-            "body": "<p>A membrane is a membrane. Abrasion, toenails and the wrong wash cycle will eventually end one.</p>",
+            "heading": "They won’t last forever.",
+            "body": "<p>Toenails, sharp stones and a tumble dryer will all finish off a waterproof layer. Looked after properly, they last a long time.</p>",
             "image_fallback": "",
             "image_alt": "",
             "width": "2",
@@ -263,8 +252,8 @@
         "m4": {
           "type": "limit",
           "settings": {
-            "heading": "Breathable does not mean dry inside.",
-            "body": "<p>Work hard enough and you will sweat faster than any membrane can move vapour. Breathability slows that. It does not repeal it.</p>",
+            "heading": "You can still get sweaty feet.",
+            "body": "<p>Work hard enough and you’ll sweat faster than the membrane can cope with. It slows it down. It doesn’t stop it.</p>",
             "image_fallback": "",
             "image_alt": "",
             "width": "4",
@@ -282,9 +271,9 @@
       "settings": {
         "color_scheme": "paper",
         "anchor_id": "limits",
-        "eyebrow": "Honest limits",
-        "heading": "What these socks will not do.",
-        "lede": "<p>Every brand in this category tells you what their socks do. Here is the other half, so you can decide with the whole picture rather than find out in a bog.</p>",
+        "eyebrow": "Before you buy",
+        "heading": "What they won’t do",
+        "lede": "<p>Most brands only tell you what their socks do. Here’s the other half, so you know before you buy.</p>",
         "cta_label": "Buy a pair",
         "cta_link": "/#buy",
         "link_label": "How it is built",
@@ -373,7 +362,7 @@
           "settings": {
             "heading": "Inner layer",
             "role": "Next to the skin",
-            "body": "<p>A soft knitted lining that moves sweat off the foot and stops the membrane sitting against the skin.</p>",
+            "body": "<p>A soft knitted lining against your foot. It moves sweat away and keeps the waterproof layer off your skin.</p>",
             "image_alt": "",
             "tint": "#eaeef1"
           }
@@ -381,9 +370,9 @@
         "y2": {
           "type": "layer",
           "settings": {
-            "heading": "Porelle® membrane",
+            "heading": "Waterproof layer",
             "role": "The waterproof barrier",
-            "body": "<p>A licensed third-party laminate. Water cannot get in; vapour from the foot can get out.</p>",
+            "body": "<p>A Porelle® membrane, sealed in the middle. Made by a separate company, so you can look it up. Water can’t get through it. Sweat can get out.</p>",
             "image_alt": "",
             "tint": "#0093ff"
           }
@@ -393,7 +382,7 @@
           "settings": {
             "heading": "Outer layer",
             "role": "Wear surface",
-            "body": "<p>The knitted face that takes abrasion inside a boot or shoe, and holds the sock's shape when it is not being worn.</p>",
+            "body": "<p>A tough knit that takes the rubbing inside your boot, so the membrane doesn’t have to. It’s also what keeps the sock in shape.</p>",
             "image_alt": "",
             "tint": "#111111"
           }
@@ -401,7 +390,7 @@
         "yl": {
           "type": "link",
           "settings": {
-            "label": "How the layers are made",
+            "label": "More on how they’re made",
             "link": "/pages/technology"
           }
         }
@@ -415,9 +404,9 @@
       "settings": {
         "color_scheme": "paper",
         "anchor_id": "construction",
-        "eyebrow": "Construction",
-        "heading": "Three layers, and what each is for.",
-        "lede": "<p>“Waterproof” is a claim anybody can print on a label. This is the mechanism underneath it, so you can judge it rather than take our word.</p>",
+        "eyebrow": "How they work",
+        "heading": "How they work",
+        "lede": "<p>Three layers. Only the middle one is waterproof, and it never touches your skin or the inside of your boot.</p>",
         "scroll_hint": "Scroll to take it apart.",
         "track_height": 320,
         "frame_count": 100,
@@ -436,8 +425,8 @@
           "type": "activity",
           "settings": {
             "size": "featured",
-            "title": "Wudu & Masah",
-            "problem": "Wudu at work, five times a day, without taking your socks off.",
+            "title": "Wudu and masah",
+            "problem": "Wipe over them during wudu instead of taking them off and washing your feet.",
             "meta": "Built for the three conditions",
             "link": "/pages/wudu-socks",
             "image_alt": "Pulling on a pair of white HydroSox while seated",
@@ -448,8 +437,8 @@
           "type": "activity",
           "settings": {
             "size": "standard",
-            "title": "Hiking & Walking",
-            "problem": "Boots that wet out four hours into a long day in the hills.",
+            "title": "Hiking and walking",
+            "problem": "Long days on wet ground, when your boots have soaked through and there’s nowhere to dry anything.",
             "meta": "Long days, wet ground",
             "link": "/pages/hiking-and-walking",
             "image_alt": "A walker stopped on a rocky mountain path in white HydroSox.",
@@ -460,8 +449,8 @@
           "type": "activity",
           "settings": {
             "size": "standard",
-            "title": "All Day in Boots",
-            "problem": "Boots that keep the rain out and then seal the sweat in.",
+            "title": "Work and site",
+            "problem": "Ten-hour shifts in safety boots or wellies, all through a British winter.",
             "meta": "Long shifts, five days a week",
             "link": "/pages/all-day-in-boots",
             "image_alt": "Brown leather lace-up boots on a city pavement, worn with HydroSox.",
@@ -472,8 +461,8 @@
           "type": "activity",
           "settings": {
             "size": "standard",
-            "title": "Cycling & Commuting",
-            "problem": "Overshoes that leak at the ankle, and shoes still wet at home time.",
+            "title": "Cycling and commuting",
+            "problem": "Road spray at the ankle, and shoes that are still wet when it’s time to ride home.",
             "meta": "No drying option at the other end",
             "link": "/pages/cycling-and-commuting",
             "image_alt": "A commuter riding across a city bridge in white HydroSox.",
@@ -484,8 +473,8 @@
           "type": "activity",
           "settings": {
             "size": "standard",
-            "title": "Running & Trail",
-            "problem": "Cold, soaked feet on winter miles, and blisters in a wet race.",
+            "title": "Running and trail",
+            "problem": "Cold, wet winter miles and muddy trails, where wet feet mean blisters.",
             "meta": "Weight and bulk, stated honestly",
             "link": "/pages/running-and-trail",
             "image_alt": "A runner mid-stride on a stony mountain trail in white HydroSox.",
@@ -494,20 +483,20 @@
         }
       },
       "block_order": [
-        "a_wudu",
         "a1",
         "a3",
         "a4",
-        "a5"
+        "a5",
+        "a_wudu"
       ],
       "settings": {
         "color_scheme": "ink",
         "anchor_id": "activity",
         "numbered": false,
-        "eyebrow": "Shop by use",
-        "heading": "Find the version of wet feet you actually have.",
-        "lede": "<p>One sock. Five different problems it solves, described the way the people with those problems describe them.</p>",
-        "footnote": "Same sock either way — the use only changes which pair you reach for. No certificate has been issued for the wudu claim, and the wudu page says so on its face."
+        "eyebrow": "Every terrain",
+        "heading": "Where people wear them",
+        "lede": "<p>Same sock every time. Pick the page that sounds like your week.</p>",
+        "footnote": "Any pair works for all five. The pages just explain each one properly."
       }
     },
     "buy": {
@@ -617,28 +606,28 @@
           "type": "trust",
           "settings": {
             "label": "Delivery",
-            "value": "Free UK delivery on two pairs or more"
+            "value": "Free on two pairs or more"
           }
         },
         "r2": {
           "type": "trust",
           "settings": {
-            "label": "Dispatch",
-            "value": "UK company, UK warehouse"
+            "label": "Sent from",
+            "value": "Our UK warehouse"
           }
         },
         "r3": {
           "type": "trust",
           "settings": {
-            "label": "Checkout",
-            "value": "Guest — no account required"
+            "label": "Returns",
+            "value": "14 days, no reason needed"
           }
         },
         "r4": {
           "type": "trust",
           "settings": {
-            "label": "Payment",
-            "value": "Visa · Mastercard · American Express · Apple Pay · Google Pay · Shop Pay"
+            "label": "Pay with",
+            "value": "Visa · Mastercard · Amex · Apple Pay · Google Pay · Shop Pay"
           }
         },
         "l1": {
@@ -745,8 +734,8 @@
         "color_scheme": "paper",
         "anchor_id": "buy",
         "eyebrow": "Order",
-        "heading": "Two decisions and a quantity.",
-        "lede": "<p>One product, one page, one price that does not change depending on how you found us.</p>",
+        "heading": "Choose your colour and size",
+        "lede": "<p>One price, whichever page you came in on.</p>",
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
@@ -767,7 +756,8 @@
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
         "guide_link_url": "",
-        "guide_close_label": "Close"
+        "guide_close_label": "Close",
+        "ladder_note": "Most people buy two. They air dry rather than tumble dry, so one pair doesn’t always keep up with a wet week."
       }
     },
     "faq": {
@@ -776,57 +766,57 @@
         "q1": {
           "type": "question",
           "settings": {
-            "question": "Are these actually waterproof, or just water resistant?",
-            "answer": "<p>Waterproof. The middle layer is a Porelle® membrane — a licensed third-party laminate, not a name we invented — sealed inside a three-layer knit. Water that goes in over the top of the cuff is inside the sock, and no waterproof sock behaves otherwise.</p>"
+            "question": "Do waterproof socks actually work?",
+            "answer": "<p>Yes. There’s a waterproof layer sealed inside the sock, so rain, puddles and wet ground don’t reach your foot. Two things worth knowing: water that comes in over the top of the sock stays in, and if you work hard you’ll still sweat.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
-            "question": "Will my feet still sweat?",
-            "answer": "<p>If you work hard enough, yes. The membrane moves vapour out, which delays the point at which the foot is wet from the inside. It does not repeal it. Breathable and dry are not the same word.</p>"
+            "question": "Will my feet get sweaty?",
+            "answer": "<p>Less than you’d expect, but yes if you push hard. The middle layer lets sweat out as vapour, which buys you a lot of time. Walking, work and commuting are comfortably within it. A hard run in mild weather isn’t.</p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
             "question": "Do they replace waterproof boots?",
-            "answer": "<p>No. They are one component of a system. If your footwear is wrong for the ground you are on, a sock will not fix it.</p>"
+            "answer": "<p>No. They’re the layer that keeps working after your boots have soaked through, which on a wet day is usually a matter of when rather than if. They don’t give you grip or ankle support.</p>"
           }
         },
         "q_wudu": {
           "type": "question",
           "settings": {
-            "question": "Can I use these for wudu?",
-            "answer": "<p>They are built to the three physical properties the masah conditions rest on: waterproof, holding their shape, and staying on the foot. No certificate has been issued, by us or by anyone else. The masah page sets out the conditions and names its sources.</p>"
+            "question": "Can I use them for wudu?",
+            "answer": "<p>Yes, that’s what a lot of people buy them for. They’re waterproof, they hold their shape and they stay on your foot. Two UK scholars have examined them, and the wudu page explains it properly.</p>"
           }
         },
         "q4": {
           "type": "question",
           "settings": {
-            "question": "What size should I order?",
-            "answer": "<p>Four bands: S covers UK 3-5, M covers UK 6-8, L covers UK 9-11, XL covers UK 12-14. The size guide opens over the buy widget without leaving the page, and it is measurement-led — shoe sizing is not consistent between brands.</p>"
+            "question": "What size do I get?",
+            "answer": "<p>Four sizes cover UK 3 to 14. S is 3–5, M is 6–8, L is 9–11, XL is 12–14. If you’re between two, take the bigger one.</p>"
           }
         },
         "q5": {
           "type": "question",
           "settings": {
             "question": "How much is delivery?",
-            "answer": "<p>Free UK delivery on two pairs or more. On a single pair, delivery is charged at checkout and shown before you pay. No delivery speed is printed anywhere on this site, because we will not promise one that confirmed stock cannot support.</p>"
+            "answer": "<p>Free on two pairs or more. On a single pair there’s a delivery charge, and you’ll see the full total before anything goes in your basket.</p>"
           }
         },
         "q6": {
           "type": "question",
           "settings": {
-            "question": "Why are there no reviews on this site?",
-            "answer": "<p>Because there are none yet. HydroSox is new, and a rating with nothing behind it is worth nothing. When there is real review volume it will be published here — including the reviews that do not flatter us.</p>"
+            "question": "Why are there no reviews?",
+            "answer": "<p>Because we don’t have any yet. We’re new, and a few five-star reviews with nothing behind them aren’t worth reading. When there are real ones they’ll go here, including the bad ones.</p>"
           }
         },
         "q7": {
           "type": "question",
           "settings": {
             "question": "Who am I buying from?",
-            "answer": "<p>HydroSox, a UK registered company at 399-405 Oxford Street, Mayfair, London W1C 2BU. The phone number and email are published on every page of this site, not held behind a contact form.</p>"
+            "answer": "<p>HydroSox, a UK company at 399–405 Oxford Street, Mayfair, London W1C 2BU. Our phone number and email are at the bottom of every page.</p>"
           }
         }
       },
@@ -846,14 +836,14 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "The things people ask before they buy.",
+        "heading": "Common questions",
         "lede": "<p>Answered with the same facts as the rest of this page. If one of them contradicts something above, the answer above is the one that is wrong.</p>",
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
         "help_link": "/#about",
         "cta_label": "Buy a pair",
         "cta_link": "/#buy",
-        "cta_note": "Two decisions and a quantity. No account needed."
+        "cta_note": ""
       }
     },
     "about": {
@@ -902,10 +892,10 @@
         "color_scheme": "wash",
         "anchor_id": "about",
         "emit_schema": true,
-        "eyebrow": "The company",
-        "heading": "Who you are buying from, in full.",
-        "lede": "<p>If something goes wrong you should know exactly who you are dealing with. So: the company, the address, and two ways to reach a person — published here rather than buried in a policy page.</p>",
-        "link_label": "Read the questions first",
+        "eyebrow": "Who we are",
+        "heading": "Who we are",
+        "lede": "<p>If something goes wrong you should know who you’re dealing with. Here’s the company, the address and two ways to reach a person.</p>",
+        "link_label": "",
         "link_url": "/#faq"
       }
     },
@@ -923,16 +913,30 @@
         "tag": "newsletter",
         "note": "<p>One email to set you up, then only when there is something worth sending. Unsubscribe any time. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>"
       }
+    },
+    "wudu_note": {
+      "type": "centre-note",
+      "settings": {
+        "color_scheme": "paper",
+        "max_width": 46,
+        "eyebrow": "Made for wudu too",
+        "heading": "Wipe over them instead of washing your feet.",
+        "heading_size": "h3",
+        "body": "<p>Masah means wiping over your socks during wudu rather than washing your feet. The socks have to be waterproof, hold their shape and stay on the foot. Ours are made to do all three, and two UK scholars have examined them.</p>",
+        "link_label": "How masah works, and what the scholars said",
+        "link_url": "/pages/wudu-socks"
+      }
     }
   },
   "order": [
     "hero",
     "summary",
-    "comparison",
+    "activity",
+    "construction",
     "limits",
     "film",
-    "construction",
-    "activity",
+    "comparison",
+    "wudu_note",
     "buy",
     "faq",
     "about",

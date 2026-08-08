@@ -27,8 +27,8 @@
         "color_scheme": "ink",
         "full_height": false,
         "eyebrow": "Waterproof socks",
-        "heading": "Waterproof socks, and what they honestly do.",
-        "body": "<p>A membrane sealed inside a knitted sock, so the water stays outside it. That works well in some conditions and less well in others, and this page covers both.</p>",
+        "heading": "Waterproof socks that\nkeep your feet dry",
+        "body": "<p>A waterproof layer sealed inside a knitted sock. Your boots can soak through and your feet stay dry. Hiking, work, cycling, running and wudu.</p>",
         "cta_label": "Buy a pair",
         "cta_link": "#buy",
         "link_label": "How they work",
@@ -42,29 +42,29 @@
         "s1": {
           "type": "spec",
           "settings": {
-            "label": "Membrane",
-            "value": "Porelle®, licensed"
+            "label": "Waterproof layer",
+            "value": "Porelle® membrane"
           }
         },
         "s2": {
           "type": "spec",
           "settings": {
-            "label": "Construction",
-            "value": "Three-layer knit"
+            "label": "Build",
+            "value": "Three layers"
           }
         },
         "s3": {
           "type": "spec",
           "settings": {
-            "label": "Chemistry",
-            "value": "PFOA free"
+            "label": "Sizes",
+            "value": "UK 3 to 14"
           }
         },
         "s4": {
           "type": "spec",
           "settings": {
-            "label": "Origin",
-            "value": "UK company, UK stock"
+            "label": "Price",
+            "value": "From £20 a pair"
           }
         }
       },
@@ -81,10 +81,11 @@
         "color_scheme": "paper",
         "layout": "prose",
         "anchor_id": "definition",
-        "eyebrow": "The definition",
-        "heading": "A membrane, wearing a sock.",
+        "eyebrow": "The basics",
+        "heading": "What a waterproof sock is",
         "lead_first_para": true,
-        "prose": "<p>A waterproof sock is an ordinary-looking sock with a waterproof-breathable membrane sealed between two knitted layers. The knit gives it the feel and fit of a sock; the membrane stops liquid water passing through while still letting vapour from the foot escape. Worn inside a boot or shoe, it keeps the foot dry when the footwear no longer can.</p><p>That last part is the point most descriptions skip. A waterproof sock is not a better sock. It is a layer that keeps working at the moment your boots stop — four hours into wet ground, or on the ride home when the shoes never dried from this morning.</p>"
+        "prose": "<p>A waterproof sock looks like an ordinary sock and has a thin waterproof layer sealed between two knitted layers. The knit gives it the fit and feel of a sock. The layer in the middle stops water reaching your foot, while still letting sweat escape as vapour.</p><p>Worn inside a boot or a shoe, it keeps your feet dry at the point your footwear can’t any more — four hours into a wet walk, or on the ride home in shoes that never dried out.</p>",
+        "lede": ""
       }
     },
     "mechanism": {
@@ -92,9 +93,9 @@
       "settings": {
         "color_scheme": "paper",
         "anchor_id": "mechanism",
-        "eyebrow": "The mechanism",
-        "heading": "Three layers, and why there are three.",
-        "lede": "<p>A single waterproof layer would be uncomfortable and would not last. The other two are there to make the middle one wearable. Scroll, and take it apart.</p>",
+        "eyebrow": "How they work",
+        "heading": "Three layers, and why",
+        "lede": "<p>One waterproof layer on its own would be uncomfortable and wouldn’t last. The other two are there to make it wearable.</p>",
         "scroll_hint": "Scroll to take it apart.",
         "track_height": 260,
         "frame_count": 100,
@@ -109,34 +110,34 @@
         "m1": {
           "type": "layer",
           "settings": {
-            "heading": "Inner layer",
+            "heading": "The lining",
             "role": "Against the skin",
-            "body": "<p>A knitted lining that moves sweat away from the foot and keeps the membrane from sitting directly against the skin, which is what makes a waterproof sock feel like a sock rather than a bag.</p>",
+            "body": "<p>A knitted layer against your skin. It moves sweat away from the foot and stops the waterproof layer sitting directly against you — which is what makes it feel like a sock rather than a bag.</p>",
             "tint": "#eaeef1"
           }
         },
         "m2": {
           "type": "layer",
           "settings": {
-            "heading": "Porelle® membrane",
+            "heading": "The waterproof layer",
             "role": "The waterproof barrier",
-            "body": "<p>A licensed Porelle® laminate. Liquid water cannot pass through it. Water vapour, which is a much smaller molecule, can. That asymmetry is the whole technology, and it has been around for decades.</p>",
+            "body": "<p>A Porelle® membrane. Water can’t get through it. Water vapour, which is far smaller, can. That is the entire principle, and it has been used in outdoor clothing since the 1970s.</p>",
             "tint": "#eaf5ff"
           }
         },
         "m3": {
           "type": "layer",
           "settings": {
-            "heading": "Outer layer",
+            "heading": "The outer knit",
             "role": "The wear surface",
-            "body": "<p>The knitted face that takes the abrasion inside a boot. It is also what holds the sock's shape when it is not being worn, which matters for durability and, separately, for masah.</p>",
+            "body": "<p>This takes all the rubbing inside your boot, so the waterproof layer never has to. It’s also what holds the sock’s shape when you’re not wearing it.</p>",
             "tint": "#f0ede8"
           }
         },
         "mlink": {
           "type": "link",
           "settings": {
-            "label": "The full construction, layer by layer",
+            "label": "More on how they’re made",
             "link": "/pages/technology"
           }
         }
@@ -154,8 +155,8 @@
         "color_scheme": "ink",
         "anchor_id": "limits",
         "eyebrow": "The limits",
-        "heading": "Three things no waterproof sock does.",
-        "lede": "<p>This is the part of the category nobody writes down. It is also the part that decides whether waterproof socks are right for you, so it goes above the price rather than below it.</p>",
+        "heading": "Three things no waterproof sock does",
+        "lede": "<p>Nobody in this category writes this bit down. It’s also the part that decides whether waterproof socks are right for you, so it goes above the price rather than below it.</p>",
         "link_label": "How they are built",
         "link_url": "/pages/technology",
         "cta_link": "#buy"
@@ -164,8 +165,8 @@
         "l1": {
           "type": "limit",
           "settings": {
-            "heading": "Water deeper than the cuff",
-            "body": "<p>A sock is open at the top. Step into water above the cuff and it fills, exactly as any sock would. Height is the only thing that changes where that line sits.</p>",
+            "heading": "Water deeper than the sock",
+            "body": "<p>A sock is open at the top. Step into water higher than the cuff and it fills, the same as any sock. The only thing that changes where that line sits is how tall the sock is.</p>",
             "width": "1",
             "tone": "wash"
           }
@@ -173,8 +174,8 @@
         "l2": {
           "type": "limit",
           "settings": {
-            "heading": "Sustained hard effort",
-            "body": "<p>Breathability is real and it is finite. Work hard enough for long enough and your foot produces vapour faster than any membrane can move it. You end up damp from the inside instead of the outside.</p>",
+            "heading": "Very hard work, for a long time",
+            "body": "<p>Breathability is real and it has a limit. Work hard enough for long enough and your foot produces vapour faster than the layer can move it. You end up damp from the inside instead of the outside.</p>",
             "width": "1",
             "tone": "wash"
           }
@@ -182,8 +183,8 @@
         "l3": {
           "type": "limit",
           "settings": {
-            "heading": "A punctured membrane",
-            "body": "<p>Once the laminate is pierced — a toenail, a thorn, a sharp stone inside a boot — the waterproofing is gone and cannot be restored. No wash, no spray and no reproofing treatment brings it back.</p>",
+            "heading": "A hole in the waterproof layer",
+            "body": "<p>Once it’s pierced — by a toenail, a thorn, a sharp stone inside a boot — the waterproofing is gone and can’t be put back. No wash, spray or reproofing treatment brings it back.</p>",
             "width": "2",
             "tone": "blue"
           }
@@ -203,8 +204,8 @@
         "numbered": false,
         "anchor_id": "by-use",
         "eyebrow": "By use",
-        "heading": "Five problems, one sock.",
-        "lede": "<p>The sock does not change. What changes is which of these you recognise, and therefore which page is worth your time.</p>"
+        "heading": "Who they’re for",
+        "lede": "<p>The sock doesn’t change. What changes is which of these sounds like your week.</p>"
       },
       "blocks": {
         "u1": {
@@ -213,7 +214,9 @@
             "title": "Wudu and masah",
             "image_fallback": "activity-wudu-masah.webp",
             "image_alt": "Pulling on a pair of white HydroSox while seated",
-            "body": "<p>Performing wudu five times a day, often somewhere that was not designed for it. <a href=\"/pages/wudu-socks\">Waterproof wudhu socks</a> are the reason most people find this site.</p>"
+            "body": "<p>Making wudu five times a day, often somewhere that wasn’t built for it. <a href=\"/pages/wudu-socks\">Waterproof wudhu socks</a> are how most people find this site.</p>",
+            "link_label": "",
+            "link_url": ""
           }
         },
         "u2": {
@@ -222,16 +225,20 @@
             "title": "Hiking and walking",
             "image_fallback": "activity-hiking.webp",
             "image_alt": "Hiking on a wet hillside in HydroSox waterproof socks",
-            "body": "<p><a href=\"/pages/hiking-and-walking\">Waterproof walking socks</a> for the point, usually four hours in, where a boot has wet out and there is nowhere on a hill to dry anything.</p>"
+            "body": "<p><a href=\"/pages/hiking-and-walking\">Waterproof walking socks</a> for the point, usually four hours in, where a boot has soaked through and there’s nowhere on a hill to dry anything.</p>",
+            "link_label": "",
+            "link_url": ""
           }
         },
         "u3": {
           "type": "item",
           "settings": {
-            "title": "Long days in boots",
+            "title": "Work and boots",
             "image_fallback": "activity-all-day-in-boots.webp",
             "image_alt": "A long shift in work boots wearing HydroSox waterproof socks",
-            "body": "<p><a href=\"/pages/all-day-in-boots\">Waterproof work socks</a> for a ten-hour shift where the boot keeps the rain out and then keeps everything the foot produces in.</p>"
+            "body": "<p><a href=\"/pages/all-day-in-boots\">Waterproof work socks</a> for a ten-hour shift where the boot keeps the rain out and then keeps everything your foot produces in.</p>",
+            "link_label": "",
+            "link_url": ""
           }
         },
         "u4": {
@@ -240,7 +247,9 @@
             "title": "Cycling and commuting",
             "image_fallback": "activity-cycling-and-commuting.webp",
             "image_alt": "Commuting by bike in the rain in HydroSox waterproof socks",
-            "body": "<p><a href=\"/pages/cycling-and-commuting\">Waterproof cycling socks</a> for road spray, and for shoes that are still wet at home time because nothing dried at the office.</p>"
+            "body": "<p><a href=\"/pages/cycling-and-commuting\">Waterproof cycling socks</a> for road spray, and for shoes that are still wet at home time because nothing dried at the office.</p>",
+            "link_label": "",
+            "link_url": ""
           }
         },
         "u5": {
@@ -249,7 +258,9 @@
             "title": "Running and trail",
             "image_fallback": "activity-running-and-trail.webp",
             "image_alt": "Running a wet winter trail in HydroSox waterproof socks",
-            "body": "<p><a href=\"/pages/running-and-trail\">Waterproof running socks</a> for cold winter miles and wet races — with the honest caveat about weight and warm-weather use on that page.</p>"
+            "body": "<p><a href=\"/pages/running-and-trail\">Waterproof running socks</a> for cold winter miles and wet races — with the honest caveat about weight and warm weather on that page.</p>",
+            "link_label": "",
+            "link_url": ""
           }
         }
       },
@@ -267,45 +278,53 @@
         "color_scheme": "paper",
         "anchor_id": "alternatives",
         "eyebrow": "The alternatives",
-        "heading": "Against the other three options.",
-        "lede": "<p>Most people arriving here are choosing between four things, not four brands. This is where each one wins.</p>",
-        "table_caption": "Four ways to keep feet dry, with the conditions each one works and fails in.",
+        "heading": "Compared with the alternatives",
+        "lede": "<p>Most people reading this are choosing between four things rather than four brands. Here’s where each one wins.</p>",
+        "table_caption": "Four ways of keeping feet dry, and where each one wins.",
         "col_criterion": "The option",
-        "col_ours": "Works when",
-        "col_theirs": "Fails when",
+        "col_ours": "Good when",
+        "col_theirs": "Not so good when",
         "link_url": "/pages/technology"
       },
       "blocks": {
         "a1": {
           "type": "criterion",
           "settings": {
-            "label": "Ordinary socks + waterproof boots",
-            "ours_value": "The ground is wet but shallow, and the day is short enough that the boot does not wet out.",
-            "theirs_value": "The boot wets out, or water comes over the top."
+            "label": "Ordinary socks and waterproof boots",
+            "ours_value": "The ground is wet but shallow and the day is short enough that the boot doesn’t soak through.",
+            "theirs_value": "The boot soaks through, or water comes over the top of it.",
+            "ours_note": "",
+            "theirs_note": ""
           }
         },
         "a2": {
           "type": "criterion",
           "settings": {
-            "label": "Waterproof socks + any footwear",
-            "ours_value": "The footwear will get wet and you accept that, but the foot must not. Lets you wear lighter, cheaper or non-waterproof shoes.",
-            "theirs_value": "Water goes over the cuff, or the effort is hard enough to out-sweat the membrane."
+            "label": "Waterproof socks with any footwear",
+            "ours_value": "The footwear is going to get wet and you’ve accepted that, but your foot mustn’t. Lets you wear lighter or cheaper shoes.",
+            "theirs_value": "Water goes over the top of the sock, or you’re working hard enough to out-sweat it.",
+            "ours_note": "",
+            "theirs_note": ""
           }
         },
         "a3": {
           "type": "criterion",
           "settings": {
-            "label": "Overshoes (cycling)",
+            "label": "Overshoes, for cycling",
             "ours_value": "You want to keep the shoe itself dry and block wind as well as water.",
-            "theirs_value": "They leak at the ankle, wear through at the heel, and are awkward to fit in the dark."
+            "theirs_value": "They leak at the ankle, wear through at the heel, and are awkward to put on in the dark.",
+            "ours_note": "",
+            "theirs_note": ""
           }
         },
         "a4": {
           "type": "criterion",
           "settings": {
-            "label": "Waterproof socks + overshoes",
-            "ours_value": "Genuinely cold, genuinely wet, genuinely long. The most effective and most expensive combination.",
-            "theirs_value": "Anything milder — you will overheat."
+            "label": "Both together",
+            "ours_value": "Genuinely cold, genuinely wet, genuinely long. The most effective and most expensive option.",
+            "theirs_value": "Anything milder — you’ll overheat.",
+            "ours_note": "",
+            "theirs_note": ""
           }
         }
       },
@@ -324,37 +343,37 @@
         "numbered": false,
         "anchor_id": "choosing",
         "eyebrow": "Choosing",
-        "heading": "Four things worth checking.",
-        "lede": "<p>Whoever you end up buying from, these are the questions that separate a waterproof sock that works from one that has the word printed on the label.</p>",
-        "link_label": "Our size bands, in centimetres",
+        "heading": "How to choose a pair",
+        "lede": "<p>Whoever you end up buying from, these four questions separate a waterproof sock that works from one with the word printed on the label.</p>",
+        "link_label": "Our sizes, in centimetres",
         "link_url": "/pages/size-guide"
       },
       "blocks": {
         "c1": {
           "type": "item",
           "settings": {
-            "title": "Is the membrane named?",
-            "body": "<p>An unnamed “waterproof laminate” is a claim with nobody behind it. A named membrane is one a third party has to stand behind. Ours is Porelle®.</p>"
+            "title": "Is the waterproof layer named?",
+            "body": "<p>An unnamed “waterproof laminate” is a claim with nobody behind it. A named one is made by a company that has to stand behind it. Ours is Porelle®.</p>"
           }
         },
         "c2": {
           "type": "item",
           "settings": {
-            "title": "How many layers, and are they specified?",
-            "body": "<p>Three is the standard construction: lining, membrane, wear face. If a listing does not say, it is usually because the answer is two.</p>"
+            "title": "How many layers, and does it say?",
+            "body": "<p>Three is the standard build: lining, waterproof layer, outer knit. If a listing doesn’t say, it’s usually because the answer is two.</p>"
           }
         },
         "c3": {
           "type": "item",
           "settings": {
-            "title": "Is the sock sized on the foot or on the shoe?",
-            "body": "<p>Shoe sizing is not consistent between brands. Foot length is. A brand that publishes foot-length bands has thought about fit.</p>"
+            "title": "Is it sized on the foot or the shoe?",
+            "body": "<p>Shoe sizes aren’t consistent between brands. Foot length is. A brand that publishes foot-length measurements has thought about fit.</p>"
           }
         },
         "c4": {
           "type": "item",
           "settings": {
-            "title": "Does it say what it will not do?",
+            "title": "Does it say what it won’t do?",
             "body": "<p>This is the one that sorts the category. Every waterproof sock has the same three limits. Very few sellers print them.</p>"
           }
         }
@@ -596,8 +615,8 @@
         "color_scheme": "paper",
         "anchor_id": "buy",
         "eyebrow": "Order",
-        "heading": "Two decisions and a quantity.",
-        "lede": "<p>One product, one page, one price that does not change depending on how you found us.</p>",
+        "heading": "Choose your colour and size",
+        "lede": "<p>One price, whichever page you came in on.</p>",
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
@@ -624,8 +643,8 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "What people ask about the category.",
-        "lede": "<p>About waterproof socks generally, rather than about ours. Where the answer is “it depends”, it says what it depends on.</p>",
+        "heading": "Common questions",
+        "lede": "",
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
         "help_link": "/pages/contact",
@@ -637,57 +656,57 @@
         "q1": {
           "type": "question",
           "settings": {
-            "question": "Do waterproof socks actually work?",
-            "answer": "<p>Yes, within limits worth knowing. A membrane sealed inside the knit stops liquid water reaching the foot, so you stay dry when a boot has wet out or a shoe is soaked. Water entering over the cuff, and sweat produced faster than the membrane can move it, are the two exceptions.</p>"
+            "question": "Are waterproof socks worth buying?",
+            "answer": "<p>If your feet get wet on a regular basis — a job, a commute, a weekly walk, daily wudu — then yes, because the problem keeps coming back. For one wet holiday a year, probably not.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
-            "question": "Are waterproof socks breathable?",
-            "answer": "<p>They are breathable, not ventilated. The membrane passes water vapour outwards, which delays the point at which the foot feels wet from the inside. On a hard, sustained effort you will out-produce it. That is thermodynamics, not a fault.</p>"
+            "question": "What’s the difference between waterproof and water-resistant socks?",
+            "answer": "<p>A waterproof sock has a sealed layer inside it and stops water. A water-resistant sock has a treated or tightly knitted surface that shrugs off light rain for a while and then wets through. If a product doesn’t name a waterproof layer, it’s usually the second kind.</p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
-            "question": "What is the difference between waterproof and water-resistant socks?",
-            "answer": "<p>A waterproof sock has a membrane and stops liquid water. A water-resistant sock has a treated or tightly knitted face that sheds light rain for a while and then wets through. If a product does not name a membrane, it is almost always the second kind.</p>"
+            "question": "Are waterproof socks warm?",
+            "answer": "<p>Warmer than the same sock without the layer, because they block wind and stop your foot cooling as water evaporates. But they aren’t insulated. Waterproof and warm are two different things worth choosing separately.</p>"
           }
         },
         "q4": {
           "type": "question",
           "settings": {
-            "question": "Are waterproof socks warm?",
-            "answer": "<p>Warmer than an equivalent sock, because they block wind and stop evaporative cooling, but they are not insulated. Waterproofing and warmth are separate properties and worth choosing separately.</p>"
+            "question": "Can you wear waterproof socks every day?",
+            "answer": "<p>Yes. Wash them cool and air dry them between wears. Most people who wear them daily keep two or three pairs so there’s always a dry one ready.</p>"
           }
         },
         "q5": {
           "type": "question",
           "settings": {
-            "question": "Can you wear waterproof socks every day?",
-            "answer": "<p>Yes. Wash them cool between wears and let them air dry — a membrane dies of heat and softener long before it wears out. Most people who wear them daily keep three or more pairs so a dry pair is always ready.</p>"
+            "question": "Are waterproof socks breathable?",
+            "answer": "<p>They’re breathable, not ventilated. The layer passes sweat outwards as vapour, which delays the point where your foot feels damp. On a hard, sustained effort you’ll produce more than it can move. That’s physics, not a fault.</p>"
           }
         },
         "q6": {
           "type": "question",
           "settings": {
-            "question": "How long do waterproof socks last?",
-            "answer": "<p>It depends almost entirely on abrasion and how they are washed, not on how many times they are worn. Heat, fabric softener and tumble drying end a membrane far faster than use does.</p>"
+            "question": "Do waterproof socks work in snow?",
+            "answer": "<p>They keep melted snow out well and they block wind, which is most of what makes feet cold. They aren’t insulated though, so in properly cold weather you want them for the dryness rather than the warmth.</p>"
           }
         },
         "q7": {
           "type": "question",
           "settings": {
-            "question": "Are waterproof socks worth it?",
-            "answer": "<p>If your feet get wet on a recurring schedule — a job, a commute, a weekly walk, daily wudu — then yes, because the problem repeats. For one wet holiday a year, probably not.</p>"
+            "question": "Are they suitable for swimming or the shower?",
+            "answer": "<p>No. They’re built for water arriving from outside during normal use — rain, spray, puddles, wet ground — not for being under water. We’d rather say so than take the sale.</p>"
           }
         },
         "q8": {
           "type": "question",
           "settings": {
             "question": "What are the best waterproof socks in the UK?",
-            "answer": "<p>Judge them on four checkable things: whether the membrane is named, whether the layer count is published, whether sizing is measurement-led, and whether the seller states the limits. Most listings fail at least two.</p>"
+            "answer": "<p>Judge them on four things you can actually check: is the waterproof layer named, is the number of layers published, is sizing based on foot length, and does the seller say what the socks won’t do. Most listings fail at least two.</p>"
           }
         }
       },

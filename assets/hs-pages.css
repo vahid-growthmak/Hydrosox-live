@@ -2967,3 +2967,9 @@
 .hs-cols__grid--band .hs-cols__cta {
   grid-column: 1 / -1;
 }
+
+/* The sentence under the quantity ladder — why most people buy two. */
+.hs-buy__ladder-note {
+  margin-top: 0.875rem;
+  max-width: 46ch;
+}

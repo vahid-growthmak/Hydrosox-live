@@ -361,6 +361,16 @@
                       {%- endif -%}
                     {%- endfor -%}
                   </div>
+                  {%- comment -%}
+                    The v4 content sets one sentence directly under the
+                    ladder — why most people buy two — which had no slot
+                    until now. Renders nothing while the setting is empty.
+                  {%- endcomment -%}
+                  {%- if section.settings.ladder_note != blank -%}
+                    <p class="hs-caption hs-buy__ladder-note hs-pretty hs-muted">
+                      {{- section.settings.ladder_note -}}
+                    </p>
+                  {%- endif -%}
                 </fieldset>
               {%- endif -%}
 
@@ -637,6 +647,11 @@
       "id": "quantity_label",
       "label": "t:sections.buy.quantity_label",
       "default": "Quantity"
+    },
+    {
+      "type": "text",
+      "id": "ladder_note",
+      "label": "t:sections.buy.ladder_note"
     },
     {
       "type": "number",

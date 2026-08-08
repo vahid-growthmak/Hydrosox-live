@@ -77,8 +77,10 @@ def cols(eyebrow, heading, lede, entries, link=None, scheme="paper", numbered=Fa
         order.append(f"i{i}")
     st = collections.OrderedDict([
         ("color_scheme", scheme), ("layout", "list"), ("numbered", numbered),
-        ("eyebrow", eyebrow), ("heading", heading), ("lede", rich(lede)),
+        ("eyebrow", eyebrow), ("heading", heading),
     ])
+    if lede:
+        st["lede"] = rich(lede)
     if link:
         st["link_label"], st["link_url"] = link
     return {"type": "content-columns", "settings": st,
@@ -189,9 +191,23 @@ TAIL = {
 
 
 def apply(handle, current_label, new_sections, new_order_mid, faq_section,
-          buy_overrides=None, after_buy=None):
+          buy_overrides=None, after_buy=None, hero=None):
     header, d = read(handle)
     S = d["sections"]
+
+    # v4 Document 2 (8 Aug 2026): each page's hero, and the spec bar the
+    # documents set identically everywhere.
+    if hero and "hero" in S:
+        S["hero"]["settings"].update(hero)
+    if "specs" in S:
+        cells = [("Waterproof layer", "Porelle® membrane"),
+                 ("Build", "Three layers"),
+                 ("Sizes", "UK 3 to 14"),
+                 ("Price", "From £20 a pair")]
+        border = S["specs"].get("block_order") or list(S["specs"]["blocks"])
+        for bk, cell in zip(border, cells):
+            S["specs"]["blocks"][bk]["settings"].update(
+                {"label": cell[0], "value": cell[1]})
 
     # Breadcrumbs nest under the category hub: a breadcrumb step has to point
     # somewhere, and "Shop by activity" was a navigation label, not a URL.
@@ -214,14 +230,6 @@ def apply(handle, current_label, new_sections, new_order_mid, faq_section,
     for key, settings in TAIL.get(handle, {}).items():
         if key in S:
             S[key]["settings"].update(settings)
-
-    # The PFOA claim came off the site on 2026-08-08 — the v4 documents
-    # remove it everywhere until it can be evidenced in writing. The spec
-    # strip's Chemistry cell becomes the doc's Sizes cell instead.
-    if "specs" in S:
-        for blk in S["specs"].get("blocks", {}).values():
-            if blk.get("settings", {}).get("value") == "PFOA free":
-                blk["settings"].update({"label": "Sizes", "value": "UK 3 to 14"})
 
     # Apply the page's rhythm, so no two adjacent sections share a silhouette.
     for key, (layout, scheme, mirror, numbered) in RHYTHM.get(handle, {}).items():
@@ -250,497 +258,592 @@ def apply(handle, current_label, new_sections, new_order_mid, faq_section,
 
 
 def main():
+    # =================================================================
+    # v4 Document 2 (8 Aug 2026), applied verbatim. Per-page red gates:
+    # the running weight item is DELETED, not hedged — the document's own
+    # instruction when no figure exists; the boots warranty section stays
+    # three items until a warranty period beyond statutory rights exists.
     # ------------------------------------------------------------- HIKING
     apply(
         "hiking-and-walking", "Hiking and walking",
         collections.OrderedDict([
             ("problem", cols(
-                "The problem", "Four ways a walk gets your feet wet.",
-                "Only one of these is the one boots are designed to stop, which is "
-                "why good boots and wet feet are not a contradiction.",
+                "The problem", "Four ways a walk gets your feet wet",
+                "Only one of these is the thing boots are designed to stop. "
+                "That’s why good boots and wet feet aren’t a "
+                "contradiction.",
                 [("Over the top",
-                  "Wet grass, bracken and heather put water onto the boot from above, "
-                  "where the gusset and the laces are. Gaiters help. They do not seal."),
-                 ("The boot wets out",
-                  "The outer fabric saturates, the membrane can no longer pass vapour, "
-                  "and the boot stops breathing. It is not leaking — it is full. This "
-                  "is the four-hour problem."),
-                 ("Stream crossings and bog",
-                  "There is a depth beyond which no footwear helps, and on wet British "
-                  "ground you meet it more often than the forecast suggests."),
+                  "Wet grass, bracken and heather put water onto the boot "
+                  "from above, where the tongue and the laces are. Gaiters "
+                  "help. They don’t seal."),
+                 ("The boot soaks through",
+                  "The outer fabric saturates, the boot stops breathing, and "
+                  "everything your foot produces stays inside. It isn’t "
+                  "leaking — it’s full. This is the four-hour "
+                  "problem."),
+                 ("Streams and bog",
+                  "There’s a depth beyond which no footwear helps, and "
+                  "on wet British ground you meet it more often than the "
+                  "forecast suggests."),
                  ("From the inside",
-                  "Eight hours of walking produces a lot of vapour. Some of it "
-                  "condenses. By the afternoon, plenty of dry-footed walkers are damp "
+                  "Eight hours of walking produces a lot of moisture. Plenty "
+                  "of people with perfectly good boots finish the day damp "
                   "anyway.")])),
             ("answers", cols(
-                "The answer", "A layer that does not wet out.",
-                "The membrane sits inside the sock rather than inside the boot, which "
-                "changes where the waterproof line is drawn — and what happens when "
-                "the boot fails.",
-                [("The boot can be soaked and the foot dry",
-                  "Once the waterproof layer is on the foot, a saturated boot is "
-                  "uncomfortable rather than decisive. You stop planning the route "
-                  "around the puddles."),
-                 ("It works with any boot, including the wrong one",
-                  "Most people discover waterproof socks because their boots have "
-                  "started leaking. It is the cheapest useful thing to try before "
-                  "spending two hundred pounds."),
-                 ("It is not a boot replacement",
-                  "Said plainly here and on the homepage: if your footwear is wrong "
-                  "for the ground, this will not fix it. It solves wetness, not "
-                  "support, grip or ankle protection.")],
+                "The answer", "What the socks do about it",
+                "The waterproof layer sits inside the sock rather than "
+                "inside the boot. That changes where the waterproof line is, "
+                "and what happens when the boot gives up.",
+                [("Your boot can be soaked and your foot dry",
+                  "Once the waterproof layer is on your foot, a wet boot is "
+                  "uncomfortable rather than a disaster. You stop planning "
+                  "the route around the puddles."),
+                 ("They work with any boot, including a leaky one",
+                  "Most people find waterproof socks because their boots "
+                  "have started letting water in. It’s the cheapest "
+                  "useful thing to try before spending two hundred pounds."),
+                 ("They aren’t a replacement for boots",
+                  "Said plainly here as well as on the homepage. If your "
+                  "footwear is wrong for the ground, this won’t fix it. "
+                  "It solves wet, not grip or ankle support.")],
                 link=("How the three layers work", "/pages/technology"))),
             ("blisters", cols(
-                "Blisters", "What a dry foot does and does not prevent.",
-                "Waterproof socks help with blisters. They do not prevent them, and "
-                "any brand telling you otherwise is selling you something.",
+                "Blisters", "What dry feet do and don’t prevent",
+                "Waterproof socks help with blisters. They don’t "
+                "prevent them, and anyone telling you otherwise is selling "
+                "you something.",
                 [("Wet skin blisters more easily",
-                  "Saturated skin softens and its resistance to friction drops "
-                  "sharply. Keeping the foot dry removes one of the three things a "
-                  "blister needs. That is a real and significant help."),
+                  "Soft, wet skin gives up under friction much faster than "
+                  "dry skin. Keeping your feet dry removes one of the three "
+                  "things a blister needs, and that’s a genuine help."),
                  ("Friction and fit still matter",
-                  "The other two things are pressure and movement. A boot that rubs "
-                  "will still rub. A sock that is too small will still bunch. No "
-                  "membrane changes that."),
+                  "The other two are pressure and movement. A boot that rubs "
+                  "will still rub. A sock that’s too small will still "
+                  "bunch up. No waterproof layer changes either."),
                  ("Grit is the one nobody mentions",
-                  "On wet ground, fine grit washes in over the cuff and sits under "
-                  "the foot. That is abrasive against skin and against the sock. "
-                  "Rinse both at the end of a wet day.")])),
+                  "On wet ground, fine grit washes in over the top and sits "
+                  "under your foot. It’s abrasive against your skin and "
+                  "against the sock. Rinse both at the end of a wet day.")])),
             ("fit", cols(
-                "Fit", "Before you order, check the boot.",
-                "This is the question most sellers skip and most returns come from. "
-                "Waterproof socks are thicker than the sock you are used to.",
-                [("Roughly a mid-weight sock",
-                  "If your boots are already snug with a thick walking sock, they "
-                  "will be tight with these. If you wear a liner and a thick sock "
-                  "together, these replace both."),
-                 ("Take the larger band if you are between two",
-                  "A size down grips the toes, which is uncomfortable over eight "
-                  "hours and shortens the life of the membrane. Foot length, not "
-                  "shoe size, sets the band."),
-                 ("Lace pressure over the instep",
-                  "A thicker sock changes where a boot loads. Give the laces one "
-                  "honest adjustment on the first walk rather than assuming the fit "
-                  "is wrong.")],
-                link=("The size bands in centimetres", "/pages/size-guide"))),
+                "Fit", "Check the boot before you order",
+                "This is the question most sellers skip and where most "
+                "returns come from. Waterproof socks are thicker than the "
+                "sock you’re used to.",
+                [("About the same as a mid-weight sock",
+                  "If your boots are already snug with a thick walking sock, "
+                  "they’ll be tight with these. If you wear a thin liner "
+                  "under a thick sock, these replace both."),
+                 ("Between two sizes, go up",
+                  "Going down grips your toes, which is uncomfortable over "
+                  "eight hours and hard on the waterproof layer. Foot "
+                  "length, not shoe size, sets the size."),
+                 ("Your laces will need adjusting",
+                  "A thicker sock changes where a boot loads over the "
+                  "instep. Give the laces one honest adjustment on the first "
+                  "walk rather than deciding the fit is wrong.")],
+                link=("The sizes in centimetres", "/pages/size-guide"))),
         ]),
         ["problem", "answers", "blisters", "fit"],
         faq([
             ("Are waterproof socks good for hiking?",
-             "Yes, particularly on long days in wet conditions. They keep the foot "
-             "dry once a boot has wet out, which on British hills is usually a "
-             "question of when rather than whether. They do not replace a boot's "
-             "support, grip or ankle protection."),
+             "Yes, especially on long days in the wet. They keep your feet "
+             "dry once a boot has soaked through, which on British hills is "
+             "usually a question of when rather than whether. They "
+             "don’t replace a boot’s grip or ankle support."),
             ("Do waterproof socks stop blisters?",
-             "They remove one of the three causes. Wet skin softens and blisters "
-             "more readily, so keeping the foot dry helps considerably. Friction "
-             "and poor fit still cause blisters, and no sock fixes a boot that rubs."),
+             "They remove one of the three causes. Wet skin gives up under "
+             "friction much faster than dry skin, so keeping your feet dry "
+             "helps a lot. Fit and rubbing still cause blisters, and no "
+             "sock fixes a boot that rubs."),
             ("Can you wear waterproof socks with walking boots?",
-             "Yes, with one check. They sit at roughly the bulk of a mid-weight "
-             "walking sock, so if your boots are already tight with thick socks "
-             "they will be tighter with these. They replace a liner-and-sock "
-             "combination rather than adding to it."),
+             "Yes, with one check. They’re about the bulk of a "
+             "mid-weight walking sock, so if your boots are already tight "
+             "with thick socks they’ll be tighter with these. They "
+             "replace a liner-and-sock combination rather than going over "
+             "it."),
             ("Are waterproof socks better than waterproof boots?",
-             "They solve different halves of the same problem. A boot keeps water "
-             "out until its outer saturates; a waterproof sock keeps working after "
-             "that. Most people who walk regularly in the wet end up using both."),
-            ("What socks should I wear for hiking in the rain?",
-             "Something that is still doing its job in hour six, not just hour one. "
-             "That means either a boot that will not wet out in the conditions you "
-             "are actually in, or a waterproof layer on the foot itself. On a full "
-             "wet British day, usually the second."),
-            ("Will my feet get sweaty on a long walk?",
-             "Walking pace is well within what the membrane can move, so most "
-             "people are dry all day. On a steep sustained climb in mild weather "
-             "you will out-produce it for a while, then catch up on the descent."),
-        ]))
-
-    # ------------------------------------------------------------ RUNNING
-    whennot = {
-        "type": "honest-limits",
-        "settings": {
-            "color_scheme": "ink", "anchor_id": "when-not",
-            "eyebrow": "When not to",
-            "heading": "Three runs where you should not wear these.",
-            "cta_link": "#buy",
-            "link_url": "/pages/technology",
-            "lede": rich(
-                "Every brand tells you when to wear their product. On a running "
-                "page that is close to useless, because the conditions that suit a "
-                "waterproof sock are narrower than the conditions people run in."),
+             "They solve different halves of the same problem. A boot keeps "
+             "water out until its outer soaks through. A waterproof sock "
+             "carries on after that. Most people who walk regularly in the "
+             "wet end up using both."),
+            ("What socks should I wear for walking in the rain?",
+             "Something still doing its job in hour six, not just hour one. "
+             "That means either a boot that won’t soak through in the "
+             "conditions you’re actually in, or a waterproof layer on "
+             "your foot. On a full wet British day, usually the second."),
+            ("Will my feet sweat on a long walk?",
+             "Walking pace is well within what the waterproof layer can "
+             "handle, so most people stay dry all day. On a steep climb in "
+             "mild weather you’ll out-produce it for a while and then "
+             "catch up on the way down."),
+        ], heading="Common questions"),
+        buy_overrides={
+            "heading": "Choose your colour and size",
+            "lede": rich("One price, whichever page you came in on."),
         },
-        "blocks": collections.OrderedDict([
-            ("w1", {"type": "limit", "settings": {
-                "heading": "Warm and wet",
-                "body": rich(
-                    "Summer rain is the worst case. The air is already saturated, "
-                    "you are producing heat, and the membrane has nowhere to send "
-                    "the vapour. Wear a thin sock and accept wet feet."),
-                "width": "1", "tone": "wash"}}),
-            ("w2", {"type": "limit", "settings": {
-                "heading": "Hard efforts in mild weather",
-                "body": rich(
-                    "Intervals, tempo, anything above steady in double figures. You "
-                    "will out-produce the membrane inside twenty minutes and finish "
-                    "damp from the inside."),
-                "width": "1", "tone": "wash"}}),
-            ("w3", {"type": "limit", "settings": {
-                "heading": "A race-fit shoe with no volume",
-                "body": rich(
-                    "If your racing shoe is already snug in a thin sock, do not put "
-                    "a three-layer sock in it. This is a training and long-run "
-                    "product first."),
-                "width": "2", "tone": "blue"}}),
-            ("w4", {"type": "limit", "settings": {
-                "heading": "",
-                "body": rich(
-                    "Cold and wet is where these earn their place. That is most of "
-                    "a British winter, but it is not July."),
-                "width": "4", "tone": "paper", "side_by_side": True}}),
-        ]),
-        "block_order": ["w1", "w2", "w3", "w4"],
-    }
-    apply(
-        "running-and-trail", "Running and trail",
-        collections.OrderedDict([
-            ("trade", cols(
-                "The trade", "Heavier than a racing sock. Lighter than a wet one.",
-                "A waterproof sock has three layers where a racing sock has one. "
-                "There is no version of this where the weight is the same. The "
-                "measured weight per pair is being confirmed and will be published "
-                "here as a number, not an adjective.",
-                [("Bulk is the more real objection",
-                  "They sit at about the volume of a cushioned training sock. In a "
-                  "race-fit shoe with no room, that matters. In a normal training "
-                  "shoe, it does not."),
-                 ("What you are trading it for",
-                  "A foot that is dry at mile ten in December rather than soaked at "
-                  "mile two. Whether that is worth three layers is a question only "
-                  "your local weather can answer.")])),
-            ("whennot", whennot),
-            ("winter", cols(
-                "Winter", "The runs these are actually for.",
-                "Not performance. Consistency — the training block staying intact "
-                "through the months when it usually does not.",
-                [("Wet feet get cold fast",
-                  "A soaked foot in five degrees loses heat quickly, and cold toes "
-                  "are the reason a lot of winter long runs get cut short. Dry feet "
-                  "stay warm at temperatures where wet ones do not."),
-                 ("Trail, water crossings and standing water",
-                  "On a wet trail you stop choosing your line around the puddles, "
-                  "which is faster and considerably more enjoyable."),
-                 ("The pair waiting for tomorrow",
-                  "They air dry rather than tumble dry, which takes longer. If you "
-                  "run four mornings a week in winter, you need more than one pair "
-                  "— that is the honest reason the two- and three-pair prices "
-                  "exist.")])),
-            ("blisters", cols(
-                "Blisters", "Faster feet, the same three causes.",
-                "Running compresses the same blister problem walkers have into a "
-                "much shorter time, which is why runners feel it more sharply.",
-                [("Wet skin is weaker skin",
-                  "Saturated skin resists friction far less well. Keeping the foot "
-                  "dry removes one of the three things a blister needs, and at "
-                  "running cadence that is the one that changes fastest."),
-                 ("Fit does the rest",
-                  "A sock that bunches at the toe will blister you at any moisture "
-                  "level. Take the larger band if you are between two, and check "
-                  "for rucking before you set off."),
-                 ("We do not guarantee this",
-                  "Some brands offer a blister-free guarantee. We do not, because "
-                  "blistering depends on your shoe, your gait and your distance far "
-                  "more than on your sock.")])),
-        ]),
-        ["trade", "whennot", "winter", "blisters"],
-        faq([
-            ("Are waterproof socks good for running?",
-             "In cold, wet conditions, yes — they keep the foot dry and therefore "
-             "warm on winter miles and on wet trails. In warm rain or on hard "
-             "efforts in mild weather they are the wrong choice, and this page "
-             "says which runs those are."),
-            ("Are waterproof socks too hot for running?",
-             "In summer, generally yes. The membrane moves vapour but it cannot "
-             "keep up with a running foot in warm, humid air. In British winter "
-             "conditions the balance goes the other way and they are comfortable "
-             "for hours."),
-            ("Do waterproof socks feel bulky when running?",
-             "They sit at about the volume of a cushioned training sock. In a "
-             "normal training shoe that is unremarkable. In a snug race-fit shoe "
-             "it is noticeable, and we would not recommend them for that."),
-            ("What socks should I wear for trail running in the rain?",
-             "If it is cold, a waterproof sock — wet feet lose heat quickly and "
-             "that is what ends winter runs. If it is mild, a thin quick-draining "
-             "sock and dry socks in the car. The temperature decides, not the "
-             "rain."),
-            ("Will waterproof socks stop blisters when running?",
-             "They remove one of the three causes, and at running cadence wet skin "
-             "is the one that changes fastest. Fit and shoe friction still matter, "
-             "and we do not offer a blister-free guarantee because those are not "
-             "ours to control."),
-            ("How many pairs do runners usually need?",
-             "Two or three if you run through winter. They air dry rather than "
-             "tumble dry, so a single pair will not be ready for tomorrow morning "
-             "after a wet run today."),
-        ]),
-        buy_overrides={"default_quantity": 2})
-
-    # ------------------------------------------------------------ CYCLING
-    overshoes = {
-        "type": "comparison-table",
-        "settings": {
-            "color_scheme": "paper", "anchor_id": "overshoes",
-            "eyebrow": "The comparison",
-            "heading": "Against overshoes, including where they win.",
-            "link_url": "/pages/technology",
+        hero={
+            "eyebrow": "Hiking & walking",
+            "heading": "Waterproof socks for hiking and walking",
             "lede": rich(
-                "Most people reading this already own overshoes. This is not an "
-                "argument that they are useless — it is a description of what each "
-                "one is actually good at."),
-            "table_caption": "Waterproof socks compared with overshoes, including "
-                             "the rows where overshoes win.",
-            "col_criterion": "What matters",
-            "col_ours": "Waterproof socks",
-            "col_theirs": "Overshoes",
-        },
-        "blocks": collections.OrderedDict([
-            ("o1", {"type": "criterion", "settings": {
-                "label": "Where the water gets in",
-                "ours_value": "The waterproof line is on the foot, so ankle spray "
-                              "lands on the outside of the barrier rather than "
-                              "inside it.",
-                "theirs_value": "Sealed over the shoe, open at the ankle — which is "
-                                "exactly where the spray arrives."}}),
-            ("o2", {"type": "criterion", "settings": {
-                "label": "Wind",
-                "ours_value": "They insulate the foot but do nothing for the shoe. "
-                              "In genuinely cold wind, that is a real gap.",
-                "theirs_value": "Better. A neoprene or softshell overshoe blocks "
-                                "windchill across the whole shoe, which matters "
-                                "below about five degrees."}}),
-            ("o3", {"type": "criterion", "settings": {
-                "label": "The shoe itself",
-                "ours_value": "The shoe gets soaked. The foot does not. Whether "
-                              "that matters depends on whether you can leave the "
-                              "shoe somewhere warm.",
-                "theirs_value": "The shoe stays dry, which is the strongest "
-                                "argument for them on a commute with no drying "
-                                "option."}}),
-            ("o4", {"type": "criterion", "settings": {
-                "label": "Getting them on",
-                "ours_value": "You put a sock on.",
-                "theirs_value": "Fiddly, especially in the dark with cold hands, "
-                                "and they tear at the heel where they meet the "
-                                "cleat."}}),
-            ("o5", {"type": "criterion", "settings": {
-                "label": "Durability and cost",
-                "ours_value": "£20, and they fail from heat and washing rather "
-                              "than from cleat abrasion.",
-                "theirs_value": "Around £30–£40 and commonly a one-season item on "
-                                "a daily commute."}}),
-            ("o6", {"type": "criterion", "settings": {
-                "label": "Both together",
-                "ours_value": "Worth it when it is genuinely cold, genuinely wet "
-                              "and genuinely long.",
-                "theirs_value": "Anything milder and you will overheat."}}),
-        ]),
-        "block_order": ["o1", "o2", "o3", "o4", "o5", "o6"],
-    }
-    apply(
-        "cycling-and-commuting", "Cycling and commuting",
-        collections.OrderedDict([
-            ("problem", cols(
-                "The problem", "Upwards, mostly.",
-                "Riding in the rain is not really a rain problem. It is a spray "
-                "problem, and spray behaves differently.",
-                [("Off the front wheel, onto the ankle",
-                  "The front wheel throws a continuous fan of water backwards onto "
-                  "the shoe and the ankle. That is where an overshoe is open, and "
-                  "it is where an overshoe ends."),
-                 ("Standing water, at speed",
-                  "A puddle taken at twenty miles an hour goes into the shoe "
-                  "through the vents in a way that rain simply does not."),
-                 ("The road is dirtier than the rain",
-                  "Road spray carries grit and oil. It stains, it abrades and it "
-                  "is why cycling kit wears out faster than walking kit."),
-                 ("And then there is nowhere to dry it",
-                  "A soaked cycling shoe does not dry under an office desk in "
-                  "eight hours. The evening ride starts wet regardless of the "
-                  "forecast.")])),
-            ("overshoes", overshoes),
-            ("drying", cols(
-                "The other end", "The ride home starts where the ride in finished.",
-                "Almost every product in this category is designed around the "
-                "outbound journey. The commute has two halves and only one of them "
-                "has a radiator at the end.",
-                [("A shoe does not dry in eight hours",
-                  "Especially not under a desk, in a building with the heating on "
-                  "a timer. Overshoes protect the shoe on the way in; they do not "
-                  "dry it by five o'clock."),
-                 ("A sock can be swapped",
-                  "A second pair in a bag weighs almost nothing and means the "
-                  "evening ride starts dry even if the shoe does not. This is the "
-                  "practical reason commuters buy two pairs, not a sales "
-                  "argument."),
-                 ("Wash cool, air dry overnight",
-                  "They will be ready for the morning. They will not be ready in "
-                  "two hours, and they must never go on a radiator — direct heat "
-                  "is what ends a membrane.")],
-                link=("How to wash them properly", "/pages/care-and-washing"))),
-            ("fit", cols(
-                "Fit", "Check the shoe before you order.",
-                "Cycling shoes are built with far less volume than a walking boot, "
-                "so this matters more here than on any other page.",
-                [("Roughly a cushioned training sock",
-                  "If your shoes are already snug in a thin summer sock, they will "
-                  "be tight in these. Winter shoes and commuting shoes usually "
-                  "have room. Race-fit road shoes often do not."),
-                 ("Take the larger band if you are between two",
-                  "A tight sock in a tight shoe creates a pressure point across "
-                  "the toes that you will notice at about mile four."),
-                 ("Some people size the shoe up for winter",
-                  "If you already run a half size up in winter shoes, these fit "
-                  "that space exactly. If you do not, try them in the shoe before "
-                  "committing to a long ride.")],
-                link=("The size bands in centimetres", "/pages/size-guide"))),
-        ]),
-        ["problem", "overshoes", "drying", "fit"],
-        faq([
-            ("Are waterproof socks good for cycling?",
-             "Yes, particularly for commuting in the wet. Road spray arrives at "
-             "the ankle, which is where an overshoe is open, and a waterproof "
-             "sock puts the barrier below that line. They are less useful in cold "
-             "wind, where an overshoe also blocks windchill on the shoe."),
-            ("Are waterproof socks better than overshoes?",
-             "For keeping the foot dry, generally yes, because they seal where "
-             "the spray actually arrives. For keeping the shoe dry and blocking "
-             "wind, overshoes win. In cold, wet, long conditions many people use "
-             "both."),
-            ("Will they fit inside cycling shoes?",
-             "They sit at about the volume of a cushioned training sock. Winter "
-             "and commuting shoes usually have the room; snug race-fit road shoes "
-             "often do not. If you already size up for winter shoes, they fit "
-             "that space."),
-            ("What socks should I wear cycling to work in winter?",
-             "Something that is still working on the ride home, when the shoe "
-             "never dried. A waterproof sock plus a spare pair in the bag solves "
-             "both halves of the commute, which overshoes on their own do not."),
-            ("Do waterproof socks keep your feet warm on a bike?",
-             "Warmer than a wet sock by a long way, because they stop evaporative "
-             "cooling and block the wind reaching the foot. They are not "
-             "insulated, though — below about five degrees you may still want an "
-             "overshoe over the top."),
-            ("How do I wash them after a wet commute?",
-             "Rinse the road grit off, then a cool wash inside out with no fabric "
-             "softener, and air dry away from any heat. Never on a radiator, "
-             "however tempting after a wet ride — direct heat is what kills a "
-             "membrane."),
-        ]))
+                "Every waterproof boot soaks through eventually. This is "
+                "the layer still working when yours does, four hours into a "
+                "wet day with eleven miles to go."),
+            "cta_label": "Buy a pair",
+            "cta_url": "#buy",
+            "link_label": "How they work",
+            "link_url": "/pages/technology",
+        })
 
-    # -------------------------------------------------------------- BOOTS
+    # ------------------------------------------------------------- BOOTS
     apply(
         "all-day-in-boots", "All day in boots",
         collections.OrderedDict([
             ("problem", cols(
-                "The problem", "The boot is doing half the job.",
-                "A safety boot is built to keep water and everything else out. "
-                "Nothing about it is built to let anything back out again.",
+                "The problem", "Ten hours in a boot",
+                "A safety boot is built to keep water and everything else "
+                "out. Nothing about it is built to let anything back out "
+                "again.",
                 [("Wet from the inside by lunchtime",
-                  "A foot produces a serious amount of moisture across a ten-hour "
-                  "shift. In a sealed boot most of it stays there, which is why "
-                  "feet are wet on dry days too."),
-                 ("Wet skin, all winter",
+                  "Your foot produces a serious amount of moisture across a "
+                  "ten-hour shift. In a sealed boot most of it stays there, "
+                  "which is why your feet are wet on dry days too."),
+                 ("Damp skin, all winter",
                   "Skin that stays damp for months softens, splits and stops "
-                  "recovering overnight. That is the actual cost of this, and it "
-                  "is not comfort."),
+                  "recovering overnight. That’s the real cost of this, "
+                  "and it isn’t comfort."),
                  ("Rain and standing water on top of that",
-                  "Sites flood, ditches fill and wellies get overtopped. The boot "
-                  "handles some of it. The rest arrives anyway.")])),
+                  "Sites flood, ditches fill and wellies get overtopped. The "
+                  "boot handles some of it. The rest arrives anyway.")])),
             ("durability", cols(
-                "Durability", "Three weeks is not a membrane problem.",
-                "Most cheap waterproof socks do not fail because the membrane is "
-                "bad. They fail for three reasons, and two of them are fixable.",
-                [("There was no membrane to begin with",
-                  "A great deal of what is sold as waterproof is a treated knit "
-                  "that sheds light rain and then wets through. If a listing does "
-                  "not name a membrane, that is usually why. Ours is Porelle®, "
-                  "licensed, and named on every page."),
-                 ("The wear face gave out first",
-                  "Inside a work boot the abrasion is constant. The outer knit is "
-                  "what takes that, and a thin one wears through to the membrane "
-                  "in weeks. Three layers exist so the middle one is never the "
-                  "wear surface."),
+                "Durability", "Why the cheap pair failed",
+                "Most cheap waterproof socks don’t fail because the "
+                "waterproof layer is bad. They fail for three reasons, and "
+                "two of them are avoidable.",
+                [("There was no waterproof layer",
+                  "A lot of what’s sold as waterproof is a treated knit "
+                  "that shrugs off light rain and then wets through. If a "
+                  "listing doesn’t name a waterproof layer, that’s "
+                  "usually why. Ours is Porelle®, named on every page."),
+                 ("The outside wore through first",
+                  "Inside a work boot the rubbing is constant. The outer "
+                  "knit takes that, and a thin one wears through to the "
+                  "waterproof layer in weeks. Three layers exist so the "
+                  "middle one is never the wear surface."),
                  ("It went in the tumble dryer",
-                  "The most common way a waterproof sock dies, and the least "
-                  "discussed. Heat and fabric softener end a laminate far faster "
-                  "than a site does. Cool wash, no softener, air dry.")],
-                link=("What actually damages a membrane", "/pages/care-and-washing"))),
+                  "The most common way a waterproof sock dies and the least "
+                  "discussed. Heat and fabric softener finish one off far "
+                  "faster than a building site does. Cool wash, no softener, "
+                  "air dry.")],
+                link=("What damages the waterproof layer",
+                      "/pages/care-and-washing"))),
             ("fit", cols(
-                "Fit", "Check the boot before you order.",
-                "Safety boots have a fixed toe cap and no give in it. This is the "
-                "one thing worth checking before buying.",
-                [("Roughly a thick work sock",
-                  "If you already wear thick socks in your boots, these replace "
-                  "them rather than going over them. If you wear thin socks in a "
-                  "snug boot, allow for the difference."),
-                 ("Take the larger band if you are between two",
-                  "A sock that grips the toes inside a steel toe cap is "
-                  "uncomfortable by hour three and shortens the life of the "
-                  "membrane."),
+                "Fit", "Check the boot before you order",
+                "Safety boots have a fixed toe cap with no give in it. "
+                "That’s the one thing worth checking before you buy.",
+                [("About the same as a thick work sock",
+                  "If you already wear thick socks in your boots, these "
+                  "replace them rather than going over them. If you wear "
+                  "thin socks in a snug boot, allow for the difference."),
+                 ("Between two sizes, go up",
+                  "A sock that grips your toes inside a steel toe cap is "
+                  "uncomfortable by hour three and hard on the waterproof "
+                  "layer."),
                  ("Wellies",
-                  "No fit problem at all — wellies have volume to spare, which is "
-                  "why a waterproof sock inside a welly is one of the more "
-                  "sensible things you can do with one.")],
-                link=("The size bands in centimetres", "/pages/size-guide"))),
+                  "No fit problem at all. Wellies have room to spare, which "
+                  "is why a waterproof sock inside a welly is one of the "
+                  "more sensible things you can do with one.")],
+                link=("The sizes in centimetres", "/pages/size-guide"))),
             ("warranty", cols(
-                "If something goes wrong", "Where you stand.",
-                "On every other page this sits in the footer links. It is here "
-                "because this is where the decision gets made.",
-                [("A fault is not the same as wear",
-                  "A seam letting water through in the first weeks of normal use "
-                  "is a fault. Thinning at the heel after months on site is wear. "
-                  "We do not charge for returning faulty goods."),
+                "If something goes wrong", "Where you stand",
+                None,
+                [("A fault isn’t the same as wear",
+                  "A seam letting water through in the first few weeks of "
+                  "normal use is a fault. Thinning at the heel after months "
+                  "on site is wear. We don’t charge for returning "
+                  "faulty goods."),
                  ("Thirty days to reject outright",
-                  "Under the Consumer Rights Act 2015 goods must be of "
-                  "satisfactory quality, fit for purpose and as described. Within "
-                  "thirty days of delivery you can reject them for a full refund."),
-                 ("Six months where the fault is presumed ours",
-                  "Within six months of delivery, a fault is assumed to have been "
-                  "there from the start unless we can show otherwise.")],
-                scheme="wash",
+                  "Under the Consumer Rights Act 2015, goods have to be of "
+                  "satisfactory quality, fit for purpose and as described. "
+                  "Within thirty days of delivery you can reject them for a "
+                  "full refund."),
+                 ("Six months where we have to prove otherwise",
+                  "Within six months of delivery a fault is assumed to have "
+                  "been there from the start unless we can show it "
+                  "wasn’t.")],
                 link=("The full warranty position", "/pages/warranty"))),
         ]),
         ["problem", "durability", "fit"],
         faq([
             ("Are waterproof socks good for work boots?",
-             "Yes, and mostly for a reason people do not expect. A safety boot "
-             "already keeps rain out; what it cannot do is let moisture from the "
-             "foot escape across a ten-hour shift. A waterproof breathable sock "
-             "addresses the half the boot cannot."),
+             "Yes, and mostly for a reason people don’t expect. A "
+             "safety boot already keeps rain out. What it can’t do is "
+             "let moisture from your foot escape across a ten-hour shift, "
+             "and that’s the half these deal with."),
             ("What socks do you wear with wellies?",
-             "A waterproof sock is a sensible choice, because wellies have plenty "
-             "of volume and no breathability at all. Feet get wet inside wellies "
-             "from the inside far more often than from the outside."),
+             "A waterproof sock is a sensible choice, because wellies have "
+             "plenty of room and no breathability at all. Feet get wet "
+             "inside wellies from the inside far more often than from the "
+             "outside."),
             ("Will they fit inside safety boots?",
-             "They sit at about the bulk of a thick work sock, so they replace "
-             "one rather than going over it. Safety boots have a fixed toe cap "
-             "with no give, so take the larger band if you are between two."),
+             "They’re about the bulk of a thick work sock, so they "
+             "replace one rather than going over it. Safety boots have a "
+             "fixed toe cap with no give, so if you’re between two "
+             "sizes take the bigger."),
             ("How long do they last on site?",
-             "Longer than a cheap pair, and shorter than a boot. Abrasion inside "
-             "a boot and the wrong wash cycle end a waterproof sock long before "
-             "age does — cool wash, no softener, air dry, and never a tumble "
-             "dryer or a radiator."),
+             "Longer than a cheap pair and shorter than a boot. Rubbing "
+             "inside a boot and the wrong wash cycle finish a waterproof "
+             "sock off long before age does — cool wash, no softener, "
+             "air dry, and never a tumble dryer or a radiator."),
             ("What are the best socks for standing all day?",
-             "Something that manages moisture rather than just adding padding. "
-             "Cushioning helps the joints; it does nothing about the fact that a "
-             "sealed boot keeps a day's worth of moisture against the skin."),
-        ], heading="Asked from site, mostly."),
+             "Something that deals with moisture rather than just adding "
+             "padding. Cushioning helps your joints. It does nothing about "
+             "a sealed boot keeping a day’s worth of sweat against "
+             "your skin."),
+        ], heading="Common questions"),
         buy_overrides={
-            "default_quantity": 5,
+            "heading": "Choose your colour and size",
             "lede": rich(
-                "Five pairs is a working week. That is why the five-pair price is "
-                "the one most people on site end up taking."),
+                "Five pairs is a working week, which is why it’s the "
+                "option most people on site end up taking."),
+            # Mark needs a fresh pair every working day; the ladder is
+            # framed as a week's worth, per the document's developer note.
+            "default_quantity": 5,
         },
-        after_buy=["warranty"])
+        after_buy=["warranty"],
+        hero={
+            "eyebrow": "All day in boots",
+            "heading": "Waterproof socks for work boots and wellies",
+            "lede": rich(
+                "A good boot keeps the rain out. What it also does, across "
+                "a ten-hour shift, is keep everything your foot produces on "
+                "the inside."),
+            "cta_label": "Buy a pair",
+            "cta_url": "#buy",
+            "link_label": "How they work",
+            "link_url": "/pages/technology",
+        })
+
+    # ----------------------------------------------------------- CYCLING
+    overshoe_rows = [
+        ("Where the water gets in",
+         "The waterproof line is on your foot, so ankle spray lands outside "
+         "it rather than inside.",
+         "Sealed over the shoe, open at the ankle — which is where the "
+         "spray arrives."),
+        ("Wind",
+         "They keep your foot warmer but do nothing for the shoe. In "
+         "properly cold wind that’s a real gap.",
+         "Better. They block windchill across the whole shoe, which matters "
+         "below about five degrees."),
+        ("The shoe itself",
+         "The shoe gets soaked. Your foot doesn’t.",
+         "The shoe stays dry, which is the strongest argument for them on a "
+         "commute with nowhere to dry anything."),
+        ("Putting them on",
+         "You put a sock on.",
+         "Fiddly, especially in the dark with cold hands, and they tear at "
+         "the heel where the cleat sits."),
+        ("Cost and how long they last",
+         "£20, and they fail from heat and washing rather than from cleat "
+         "abrasion.",
+         "Around £30–£40 and often a one-season item on a daily "
+         "commute."),
+        ("Both together",
+         "Worth it when: properly cold, properly wet, properly long. The "
+         "most effective and most expensive option.",
+         "Not worth it when: anything milder. You’ll overheat."),
+    ]
+    ov_blocks, ov_order = collections.OrderedDict(), []
+    for n, (label, ours, theirs) in enumerate(overshoe_rows, 1):
+        k = f"r{n}"
+        ov_blocks[k] = {"type": "criterion", "settings": {
+            "label": label, "ours_value": ours, "theirs_value": theirs}}
+        ov_order.append(k)
+    overshoes = {
+        "type": "comparison-table",
+        "settings": collections.OrderedDict([
+            ("color_scheme", "wash"),
+            ("anchor_id", "vs-overshoes"),
+            ("eyebrow", "Vs overshoes"),
+            ("heading", "Compared with overshoes"),
+            ("lede", rich(
+                "Most people reading this already own a pair. This "
+                "isn’t an argument that they’re useless — "
+                "it’s what each one is actually good at.")),
+            ("table_caption",
+             "Waterproof socks and overshoes, and what each one is "
+             "actually good at."),
+            ("col_criterion", "What matters"),
+            ("col_ours", "Waterproof socks"),
+            ("col_theirs", "Overshoes"),
+        ]),
+        "blocks": ov_blocks, "block_order": ov_order}
+
+    apply(
+        "cycling-and-commuting", "Cycling and commuting",
+        collections.OrderedDict([
+            ("problem", cols(
+                "The problem", "Where the water actually comes from",
+                "Riding in the rain isn’t really a rain problem. "
+                "It’s a spray problem, and spray behaves differently.",
+                [("Off the front wheel, onto your ankle",
+                  "The front wheel throws a constant fan of water backwards "
+                  "onto the shoe and the ankle. That’s where an "
+                  "overshoe stops, and where it’s open."),
+                 ("Standing water, at speed",
+                  "A puddle taken at twenty miles an hour goes into your "
+                  "shoe through the vents in a way that rain simply "
+                  "doesn’t."),
+                 ("The road is dirtier than the rain",
+                  "Road spray carries grit and oil. It stains, it wears "
+                  "things out, and it’s why cycling kit gives up faster "
+                  "than walking kit."),
+                 ("And nothing dries at the office",
+                  "A soaked cycling shoe doesn’t dry under a desk in "
+                  "eight hours. The ride home starts wet whatever the "
+                  "forecast says.")])),
+            ("overshoes", overshoes),
+            ("drying", cols(
+                "The other half",
+                "The ride home starts where the ride in finished",
+                "Almost everything in this category is designed around the "
+                "journey in. A commute has two halves, and only one of them "
+                "ends near a radiator.",
+                [("A shoe won’t dry in eight hours",
+                  "Especially not under a desk in a building with the "
+                  "heating on a timer. Overshoes protect the shoe on the "
+                  "way in. They don’t dry it by five o’clock."),
+                 ("A sock can be swapped",
+                  "A second pair in your bag weighs almost nothing and "
+                  "means the ride home starts dry even if the shoe "
+                  "doesn’t. That’s the practical reason commuters "
+                  "buy two pairs."),
+                 ("Wash cool, air dry overnight",
+                  "They’ll be ready for the morning. They won’t "
+                  "be ready in two hours, and they must never go on a "
+                  "radiator — direct heat is what finishes a waterproof "
+                  "layer off.")],
+                link=("How to wash them properly", "/pages/care-and-washing"))),
+            ("fit", cols(
+                "Fit", "Check the shoe before you order",
+                "Cycling shoes have far less room than a walking boot, so "
+                "this matters more here than anywhere else on the site.",
+                [("About the same as a cushioned training sock",
+                  "If your shoes are already snug in a thin summer sock "
+                  "they’ll be tight in these. Winter and commuting "
+                  "shoes usually have room. Race-fit road shoes often "
+                  "don’t."),
+                 ("Between two sizes, go up",
+                  "A tight sock in a tight shoe creates a pressure point "
+                  "across your toes that you’ll notice at about mile "
+                  "four."),
+                 ("If you size up for winter shoes",
+                  "These fit that space exactly. If you don’t, try "
+                  "them in the shoe before committing to a long ride.")],
+                link=("The sizes in centimetres", "/pages/size-guide"))),
+        ]),
+        ["problem", "overshoes", "drying", "fit"],
+        faq([
+            ("Are waterproof socks good for cycling?",
+             "Yes, especially commuting in the wet. Road spray arrives at "
+             "the ankle, which is where an overshoe is open, and a "
+             "waterproof sock puts the barrier below that line. "
+             "They’re less useful in cold wind, where an overshoe "
+             "also blocks windchill on the shoe."),
+            ("Are waterproof socks better than overshoes?",
+             "For keeping your foot dry, generally yes, because they seal "
+             "where the spray actually arrives. For keeping the shoe dry "
+             "and blocking wind, overshoes win. In cold, wet, long "
+             "conditions a lot of people use both."),
+            ("Will they fit inside cycling shoes?",
+             "They’re about the bulk of a cushioned training sock. "
+             "Winter and commuting shoes usually have the room. Snug "
+             "race-fit road shoes often don’t. If you already size "
+             "up for winter shoes, they fit that space."),
+            ("What socks should I wear cycling to work in winter?",
+             "Something still working on the ride home, when the shoe "
+             "never dried. A waterproof sock plus a spare pair in your bag "
+             "deals with both halves of the commute, which overshoes on "
+             "their own don’t."),
+            ("Do waterproof socks keep your feet warm on a bike?",
+             "Much warmer than a wet sock, because they stop your foot "
+             "cooling as water evaporates and they block the wind reaching "
+             "it. They aren’t insulated though — below about five "
+             "degrees you may still want an overshoe over the top."),
+            ("How do I wash them after a wet commute?",
+             "Rinse the road grit off first, then a cool wash inside out "
+             "with no fabric softener, and air dry away from any heat. "
+             "Never on a radiator, however tempting after a wet ride."),
+        ], heading="Common questions"),
+        buy_overrides={
+            "heading": "Choose your colour and size",
+            "lede": rich(
+                "Two pairs is what most commuters take — one on, one "
+                "drying."),
+        },
+        hero={
+            "eyebrow": "Cycling & commuting",
+            "heading": "Waterproof socks for cycling and commuting",
+            "lede": rich(
+                "On a wet road the water comes up, not down. Overshoes are "
+                "sealed everywhere except the ankle, which is exactly where "
+                "it arrives."),
+            "cta_label": "Buy a pair",
+            "cta_url": "#buy",
+            "link_label": "How they work",
+            "link_url": "/pages/technology",
+        })
+
+    # ----------------------------------------------------------- RUNNING
+    # The weight item is deleted, not hedged: the document's own red block
+    # forbids publishing its [x]/[y] placeholders and says to cut the item
+    # entirely until the real per-pair weight exists.
+    whennot = {
+        "type": "honest-limits",
+        "settings": collections.OrderedDict([
+            ("color_scheme", "ink"),
+            ("anchor_id", "when-not"),
+            ("eyebrow", "When not to"),
+            ("heading", "When these are the wrong sock"),
+            ("lede", rich(
+                "Every brand tells you when to wear their product. On a "
+                "running page that’s close to useless, because the "
+                "conditions these suit are narrower than the conditions "
+                "people run in.")),
+            ("footnote",
+             "Cold and wet is where these earn their place. That’s "
+             "most of a British winter. It isn’t July."),
+            ("cta_link", "#buy"),
+        ]),
+        "blocks": collections.OrderedDict([
+            ("m1", {"type": "limit", "settings": {
+                "heading": "Warm and wet",
+                "body": rich(
+                    "Summer rain is the worst case. The air is already "
+                    "saturated, you’re producing heat, and the sweat "
+                    "has nowhere to go. Wear a thin sock and accept wet "
+                    "feet.")}}),
+            ("m2", {"type": "limit", "settings": {
+                "heading": "Hard efforts in mild weather",
+                "body": rich(
+                    "Intervals, tempo, anything above steady in double "
+                    "figures. You’ll out-produce the waterproof layer "
+                    "within twenty minutes and finish damp from the "
+                    "inside.")}}),
+            ("m3", {"type": "limit", "settings": {
+                "heading": "A race-fit shoe with no room",
+                "body": rich(
+                    "If your racing shoe is already snug in a thin sock, "
+                    "don’t put a three-layer sock in it. This is a "
+                    "training and long-run product first.")}}),
+        ]),
+        "block_order": ["m1", "m2", "m3"]}
+
+    apply(
+        "running-and-trail", "Running and trail",
+        collections.OrderedDict([
+            ("trade", cols(
+                "The trade", "Weight and bulk, honestly",
+                "A waterproof sock has three layers where a racing sock has "
+                "one. There’s no version of this where the weight is "
+                "the same, so here’s what the difference actually is.",
+                [("Bulk is the more real objection",
+                  "They’re about the volume of a cushioned training "
+                  "sock. In a race-fit shoe with no room, that matters. In "
+                  "a normal training shoe it doesn’t."),
+                 ("What you’re trading it for",
+                  "Dry feet at mile ten in December instead of soaked feet "
+                  "at mile two. Whether that’s worth three layers is a "
+                  "question only your local weather can answer.")])),
+            ("whennot", whennot),
+            ("winter", cols(
+                "Winter", "The runs these are for",
+                "Not performance. Consistency — the training block "
+                "surviving the months when it usually doesn’t.",
+                [("Wet feet get cold fast",
+                  "A soaked foot at five degrees loses heat quickly, and "
+                  "cold toes are why a lot of winter long runs get cut "
+                  "short. Dry feet stay warm at temperatures where wet ones "
+                  "don’t."),
+                 ("Trail, crossings and standing water",
+                  "On a wet trail you stop picking your line around the "
+                  "puddles, which is faster and a good deal more "
+                  "enjoyable."),
+                 ("The pair waiting for tomorrow",
+                  "They air dry rather than tumble dry, which takes longer. "
+                  "If you run four mornings a week in winter you need more "
+                  "than one pair — that’s the honest reason the "
+                  "two-pair price exists.")])),
+            ("blisters", cols(
+                "Blisters", "Blisters at running pace",
+                "Running compresses the same problem walkers have into a "
+                "much shorter time, which is why runners feel it more "
+                "sharply.",
+                [("Wet skin is weaker skin",
+                  "Soft, wet skin gives up under friction far faster. "
+                  "Keeping your foot dry removes one of the three things a "
+                  "blister needs, and at running cadence that’s the "
+                  "one that changes quickest."),
+                 ("Fit does the rest",
+                  "A sock that bunches at the toe will blister you at any "
+                  "moisture level. Take the bigger size if you’re "
+                  "between two, and check for rucking before you set off."),
+                 ("We don’t guarantee this",
+                  "Some brands offer a blister-free guarantee. We "
+                  "don’t, because blistering depends on your shoe, "
+                  "your gait and your distance far more than on your "
+                  "sock.")])),
+        ]),
+        ["trade", "whennot", "winter", "blisters"],
+        faq([
+            ("Are waterproof socks good for running?",
+             "In cold, wet conditions, yes — they keep your feet dry "
+             "and therefore warm on winter miles and wet trails. In warm "
+             "rain, or on hard efforts in mild weather, they’re the "
+             "wrong choice, and this page says which runs those are."),
+            ("Are waterproof socks too hot for running?",
+             "In summer, generally yes. The waterproof layer moves sweat "
+             "out as vapour but it can’t keep up with a running foot "
+             "in warm, humid air. In British winter conditions the balance "
+             "goes the other way and they’re comfortable for hours."),
+            ("Do waterproof socks feel bulky when running?",
+             "They’re about the volume of a cushioned training sock. "
+             "In a normal training shoe that’s unremarkable. In a "
+             "snug race-fit shoe it’s noticeable, and we "
+             "wouldn’t recommend them for that."),
+            ("What socks should I wear for trail running in the rain?",
+             "If it’s cold, a waterproof sock — wet feet lose "
+             "heat quickly and that’s what ends winter runs. If "
+             "it’s mild, a thin quick-draining sock and dry socks in "
+             "the car. The temperature decides, not the rain."),
+            ("Will waterproof socks stop blisters when running?",
+             "They remove one of the three causes, and at running pace wet "
+             "skin is the one that changes fastest. Fit and shoe friction "
+             "still matter, and we don’t offer a blister-free "
+             "guarantee because neither of those is ours to control."),
+            ("How many pairs do runners need?",
+             "Two or three if you run through winter. They air dry rather "
+             "than tumble dry, so a single pair won’t be ready for "
+             "tomorrow morning after a wet run today."),
+        ], heading="Common questions"),
+        buy_overrides={
+            "heading": "Choose your colour and size",
+            "lede": rich(
+                "Two pairs is the usual choice for anyone running through "
+                "winter — one on, one drying."),
+        },
+        hero={
+            "eyebrow": "Running & trail",
+            "heading": "Waterproof socks for running and trail",
+            "lede": rich(
+                "Runners ask about weight and bulk before anything else, "
+                "and they’re right to. Here’s the honest answer, "
+                "and the runs these are actually for."),
+            "cta_label": "Buy a pair",
+            "cta_url": "#buy",
+            "link_label": "How they work",
+            "link_url": "/pages/technology",
+        })
 
 
 if __name__ == "__main__":

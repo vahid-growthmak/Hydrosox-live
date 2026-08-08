@@ -17,18 +17,18 @@
       "settings": {
         "color_scheme": "ink",
         "min_height": 36,
-        "eyebrow": "Running & Trail",
-        "heading": "The two objections come before the miles do.",
-        "lede": "<p>Runners ask about weight and bulk before anything else, and they are right to. Here is the honest version of that trade, and what the sock is actually for.</p>",
+        "eyebrow": "Running & trail",
+        "heading": "Waterproof socks for running and trail",
+        "lede": "<p>Runners ask about weight and bulk before anything else, and they’re right to. Here’s the honest answer, and the runs these are actually for.</p>",
         "image_fallback": "activity-running-and-trail.webp",
         "image_alt": "Running & Trail in HydroSox waterproof socks",
         "focal_point": "center",
         "scrim_vertical": 70,
         "scrim_horizontal": 55,
         "cta_label": "Buy a pair",
-        "cta_url": "/products/hydrosox-waterproof-socks",
-        "link_label": "See how it is built",
-        "link_url": "/#construction"
+        "cta_url": "#buy",
+        "link_label": "How they work",
+        "link_url": "/pages/technology"
       }
     },
     "specs": {
@@ -41,15 +41,15 @@
         "f1": {
           "type": "spec",
           "settings": {
-            "label": "Membrane",
-            "value": "Porelle®"
+            "label": "Waterproof layer",
+            "value": "Porelle® membrane"
           }
         },
         "f2": {
           "type": "spec",
           "settings": {
-            "label": "Construction",
-            "value": "Three-layer"
+            "label": "Build",
+            "value": "Three layers"
           }
         },
         "f3": {
@@ -62,8 +62,8 @@
         "f4": {
           "type": "spec",
           "settings": {
-            "label": "Origin",
-            "value": "UK company, UK stock"
+            "label": "Price",
+            "value": "From £20 a pair"
           }
         }
       },
@@ -357,8 +357,8 @@
         "color_scheme": "paper",
         "anchor_id": "buy",
         "eyebrow": "Order",
-        "heading": "Two decisions and a quantity.",
-        "lede": "<p>One product, one page, one price that does not change depending on how you found us.</p>",
+        "heading": "Choose your colour and size",
+        "lede": "<p>Two pairs is the usual choice for anyone running through winter — one on, one drying.</p>",
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
@@ -397,7 +397,7 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "The things people ask on this page.",
+        "heading": "Common questions",
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
         "help_link": "/pages/contact",
@@ -408,42 +408,42 @@
           "type": "question",
           "settings": {
             "question": "Are waterproof socks good for running?",
-            "answer": "<p>In cold, wet conditions, yes — they keep the foot dry and therefore warm on winter miles and on wet trails. In warm rain or on hard efforts in mild weather they are the wrong choice, and this page says which runs those are.</p>"
+            "answer": "<p>In cold, wet conditions, yes — they keep your feet dry and therefore warm on winter miles and wet trails. In warm rain, or on hard efforts in mild weather, they’re the wrong choice, and this page says which runs those are.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
             "question": "Are waterproof socks too hot for running?",
-            "answer": "<p>In summer, generally yes. The membrane moves vapour but it cannot keep up with a running foot in warm, humid air. In British winter conditions the balance goes the other way and they are comfortable for hours.</p>"
+            "answer": "<p>In summer, generally yes. The waterproof layer moves sweat out as vapour but it can’t keep up with a running foot in warm, humid air. In British winter conditions the balance goes the other way and they’re comfortable for hours.</p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
             "question": "Do waterproof socks feel bulky when running?",
-            "answer": "<p>They sit at about the volume of a cushioned training sock. In a normal training shoe that is unremarkable. In a snug race-fit shoe it is noticeable, and we would not recommend them for that.</p>"
+            "answer": "<p>They’re about the volume of a cushioned training sock. In a normal training shoe that’s unremarkable. In a snug race-fit shoe it’s noticeable, and we wouldn’t recommend them for that.</p>"
           }
         },
         "q4": {
           "type": "question",
           "settings": {
             "question": "What socks should I wear for trail running in the rain?",
-            "answer": "<p>If it is cold, a waterproof sock — wet feet lose heat quickly and that is what ends winter runs. If it is mild, a thin quick-draining sock and dry socks in the car. The temperature decides, not the rain.</p>"
+            "answer": "<p>If it’s cold, a waterproof sock — wet feet lose heat quickly and that’s what ends winter runs. If it’s mild, a thin quick-draining sock and dry socks in the car. The temperature decides, not the rain.</p>"
           }
         },
         "q5": {
           "type": "question",
           "settings": {
             "question": "Will waterproof socks stop blisters when running?",
-            "answer": "<p>They remove one of the three causes, and at running cadence wet skin is the one that changes fastest. Fit and shoe friction still matter, and we do not offer a blister-free guarantee because those are not ours to control.</p>"
+            "answer": "<p>They remove one of the three causes, and at running pace wet skin is the one that changes fastest. Fit and shoe friction still matter, and we don’t offer a blister-free guarantee because neither of those is ours to control.</p>"
           }
         },
         "q6": {
           "type": "question",
           "settings": {
-            "question": "How many pairs do runners usually need?",
-            "answer": "<p>Two or three if you run through winter. They air dry rather than tumble dry, so a single pair will not be ready for tomorrow morning after a wet run today.</p>"
+            "question": "How many pairs do runners need?",
+            "answer": "<p>Two or three if you run through winter. They air dry rather than tumble dry, so a single pair won’t be ready for tomorrow morning after a wet run today.</p>"
           }
         }
       },
@@ -477,8 +477,8 @@
         "layout": "boxes",
         "numbered": true,
         "eyebrow": "The trade",
-        "heading": "Heavier than a racing sock. Lighter than a wet one.",
-        "lede": "<p>A waterproof sock has three layers where a racing sock has one. There is no version of this where the weight is the same. The measured weight per pair is being confirmed and will be published here as a number, not an adjective.</p>",
+        "heading": "Weight and bulk, honestly",
+        "lede": "<p>A waterproof sock has three layers where a racing sock has one. There’s no version of this where the weight is the same, so here’s what the difference actually is.</p>",
         "mirror": false
       },
       "blocks": {
@@ -486,14 +486,14 @@
           "type": "item",
           "settings": {
             "title": "Bulk is the more real objection",
-            "body": "<p>They sit at about the volume of a cushioned training sock. In a race-fit shoe with no room, that matters. In a normal training shoe, it does not.</p>"
+            "body": "<p>They’re about the volume of a cushioned training sock. In a race-fit shoe with no room, that matters. In a normal training shoe it doesn’t.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "What you are trading it for",
-            "body": "<p>A foot that is dry at mile ten in December rather than soaked at mile two. Whether that is worth three layers is a question only your local weather can answer.</p>"
+            "title": "What you’re trading it for",
+            "body": "<p>Dry feet at mile ten in December instead of soaked feet at mile two. Whether that’s worth three layers is a question only your local weather can answer.</p>"
           }
         }
       },
@@ -508,55 +508,39 @@
         "color_scheme": "ink",
         "anchor_id": "when-not",
         "eyebrow": "When not to",
-        "heading": "Three runs where you should not wear these.",
+        "heading": "When these are the wrong sock",
+        "lede": "<p>Every brand tells you when to wear their product. On a running page that’s close to useless, because the conditions these suit are narrower than the conditions people run in.</p>",
+        "footnote": "Cold and wet is where these earn their place. That’s most of a British winter. It isn’t July.",
         "cta_link": "#buy",
-        "link_url": "/pages/technology",
-        "lede": "<p>Every brand tells you when to wear their product. On a running page that is close to useless, because the conditions that suit a waterproof sock are narrower than the conditions people run in.</p>"
+        "link_url": "/pages/technology"
       },
       "blocks": {
-        "w1": {
+        "m1": {
           "type": "limit",
           "settings": {
             "heading": "Warm and wet",
-            "body": "<p>Summer rain is the worst case. The air is already saturated, you are producing heat, and the membrane has nowhere to send the vapour. Wear a thin sock and accept wet feet.</p>",
-            "width": "1",
-            "tone": "wash"
+            "body": "<p>Summer rain is the worst case. The air is already saturated, you’re producing heat, and the sweat has nowhere to go. Wear a thin sock and accept wet feet.</p>"
           }
         },
-        "w2": {
+        "m2": {
           "type": "limit",
           "settings": {
             "heading": "Hard efforts in mild weather",
-            "body": "<p>Intervals, tempo, anything above steady in double figures. You will out-produce the membrane inside twenty minutes and finish damp from the inside.</p>",
-            "width": "1",
-            "tone": "wash"
+            "body": "<p>Intervals, tempo, anything above steady in double figures. You’ll out-produce the waterproof layer within twenty minutes and finish damp from the inside.</p>"
           }
         },
-        "w3": {
+        "m3": {
           "type": "limit",
           "settings": {
-            "heading": "A race-fit shoe with no volume",
-            "body": "<p>If your racing shoe is already snug in a thin sock, do not put a three-layer sock in it. This is a training and long-run product first.</p>",
-            "width": "2",
-            "tone": "blue"
-          }
-        },
-        "w4": {
-          "type": "limit",
-          "settings": {
-            "heading": "",
-            "body": "<p>Cold and wet is where these earn their place. That is most of a British winter, but it is not July.</p>",
-            "width": "4",
-            "tone": "paper",
-            "side_by_side": true
+            "heading": "A race-fit shoe with no room",
+            "body": "<p>If your racing shoe is already snug in a thin sock, don’t put a three-layer sock in it. This is a training and long-run product first.</p>"
           }
         }
       },
       "block_order": [
-        "w1",
-        "w2",
-        "w3",
-        "w4"
+        "m1",
+        "m2",
+        "m3"
       ]
     },
     "winter": {
@@ -566,8 +550,8 @@
         "layout": "cards",
         "numbered": false,
         "eyebrow": "Winter",
-        "heading": "The runs these are actually for.",
-        "lede": "<p>Not performance. Consistency — the training block staying intact through the months when it usually does not.</p>",
+        "heading": "The runs these are for",
+        "lede": "<p>Not performance. Consistency — the training block surviving the months when it usually doesn’t.</p>",
         "mirror": false
       },
       "blocks": {
@@ -575,21 +559,21 @@
           "type": "item",
           "settings": {
             "title": "Wet feet get cold fast",
-            "body": "<p>A soaked foot in five degrees loses heat quickly, and cold toes are the reason a lot of winter long runs get cut short. Dry feet stay warm at temperatures where wet ones do not.</p>"
+            "body": "<p>A soaked foot at five degrees loses heat quickly, and cold toes are why a lot of winter long runs get cut short. Dry feet stay warm at temperatures where wet ones don’t.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "Trail, water crossings and standing water",
-            "body": "<p>On a wet trail you stop choosing your line around the puddles, which is faster and considerably more enjoyable.</p>"
+            "title": "Trail, crossings and standing water",
+            "body": "<p>On a wet trail you stop picking your line around the puddles, which is faster and a good deal more enjoyable.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "The pair waiting for tomorrow",
-            "body": "<p>They air dry rather than tumble dry, which takes longer. If you run four mornings a week in winter, you need more than one pair — that is the honest reason the two- and three-pair prices exist.</p>"
+            "body": "<p>They air dry rather than tumble dry, which takes longer. If you run four mornings a week in winter you need more than one pair — that’s the honest reason the two-pair price exists.</p>"
           }
         }
       },
@@ -606,8 +590,8 @@
         "layout": "split",
         "numbered": false,
         "eyebrow": "Blisters",
-        "heading": "Faster feet, the same three causes.",
-        "lede": "<p>Running compresses the same blister problem walkers have into a much shorter time, which is why runners feel it more sharply.</p>",
+        "heading": "Blisters at running pace",
+        "lede": "<p>Running compresses the same problem walkers have into a much shorter time, which is why runners feel it more sharply.</p>",
         "mirror": false
       },
       "blocks": {
@@ -615,21 +599,21 @@
           "type": "item",
           "settings": {
             "title": "Wet skin is weaker skin",
-            "body": "<p>Saturated skin resists friction far less well. Keeping the foot dry removes one of the three things a blister needs, and at running cadence that is the one that changes fastest.</p>"
+            "body": "<p>Soft, wet skin gives up under friction far faster. Keeping your foot dry removes one of the three things a blister needs, and at running cadence that’s the one that changes quickest.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Fit does the rest",
-            "body": "<p>A sock that bunches at the toe will blister you at any moisture level. Take the larger band if you are between two, and check for rucking before you set off.</p>"
+            "body": "<p>A sock that bunches at the toe will blister you at any moisture level. Take the bigger size if you’re between two, and check for rucking before you set off.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "We do not guarantee this",
-            "body": "<p>Some brands offer a blister-free guarantee. We do not, because blistering depends on your shoe, your gait and your distance far more than on your sock.</p>"
+            "title": "We don’t guarantee this",
+            "body": "<p>Some brands offer a blister-free guarantee. We don’t, because blistering depends on your shoe, your gait and your distance far more than on your sock.</p>"
           }
         }
       },

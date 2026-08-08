@@ -27,18 +27,18 @@
         "anchor_id": "",
         "min_height": 36,
         "index_label": "",
-        "eyebrow": "Hiking & Walking",
-        "heading": "Four hours in, the boot gives up.",
-        "lede": "<p>Every waterproof boot wets out eventually — the outer soaks, the membrane stops breathing, and there is nowhere on a hill to dry anything. This is the layer that is still working when that happens.</p>",
+        "eyebrow": "Hiking & walking",
+        "heading": "Waterproof socks for hiking and walking",
+        "lede": "<p>Every waterproof boot soaks through eventually. This is the layer still working when yours does, four hours into a wet day with eleven miles to go.</p>",
         "image_fallback": "activity-hiking.webp",
         "image_alt": "Hiking in HydroSox waterproof socks",
         "focal_point": "center",
         "scrim_vertical": 70,
         "scrim_horizontal": 55,
         "cta_label": "Buy a pair",
-        "cta_url": "/products/hydrosox-waterproof-socks",
-        "link_label": "See how it is built",
-        "link_url": "/#construction"
+        "cta_url": "#buy",
+        "link_label": "How they work",
+        "link_url": "/pages/technology"
       }
     },
     "specs": {
@@ -47,15 +47,15 @@
         "f1": {
           "type": "spec",
           "settings": {
-            "label": "Membrane",
-            "value": "Porelle®"
+            "label": "Waterproof layer",
+            "value": "Porelle® membrane"
           }
         },
         "f2": {
           "type": "spec",
           "settings": {
-            "label": "Construction",
-            "value": "Three-layer"
+            "label": "Build",
+            "value": "Three layers"
           }
         },
         "f3": {
@@ -68,8 +68,8 @@
         "f4": {
           "type": "spec",
           "settings": {
-            "label": "Origin",
-            "value": "UK company, UK stock"
+            "label": "Price",
+            "value": "From £20 a pair"
           }
         }
       },
@@ -92,8 +92,8 @@
         "layout": "stack",
         "numbered": false,
         "eyebrow": "Blisters",
-        "heading": "What a dry foot does and does not prevent.",
-        "lede": "<p>Waterproof socks help with blisters. They do not prevent them, and any brand telling you otherwise is selling you something.</p>",
+        "heading": "What dry feet do and don’t prevent",
+        "lede": "<p>Waterproof socks help with blisters. They don’t prevent them, and anyone telling you otherwise is selling you something.</p>",
         "mirror": false
       },
       "blocks": {
@@ -101,21 +101,21 @@
           "type": "item",
           "settings": {
             "title": "Wet skin blisters more easily",
-            "body": "<p>Saturated skin softens and its resistance to friction drops sharply. Keeping the foot dry removes one of the three things a blister needs. That is a real and significant help.</p>"
+            "body": "<p>Soft, wet skin gives up under friction much faster than dry skin. Keeping your feet dry removes one of the three things a blister needs, and that’s a genuine help.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Friction and fit still matter",
-            "body": "<p>The other two things are pressure and movement. A boot that rubs will still rub. A sock that is too small will still bunch. No membrane changes that.</p>"
+            "body": "<p>The other two are pressure and movement. A boot that rubs will still rub. A sock that’s too small will still bunch up. No waterproof layer changes either.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "Grit is the one nobody mentions",
-            "body": "<p>On wet ground, fine grit washes in over the cuff and sits under the foot. That is abrasive against skin and against the sock. Rinse both at the end of a wet day.</p>"
+            "body": "<p>On wet ground, fine grit washes in over the top and sits under your foot. It’s abrasive against your skin and against the sock. Rinse both at the end of a wet day.</p>"
           }
         }
       },
@@ -132,9 +132,9 @@
         "layout": "panel",
         "numbered": false,
         "eyebrow": "Fit",
-        "heading": "Before you order, check the boot.",
-        "lede": "<p>This is the question most sellers skip and most returns come from. Waterproof socks are thicker than the sock you are used to.</p>",
-        "link_label": "The size bands in centimetres",
+        "heading": "Check the boot before you order",
+        "lede": "<p>This is the question most sellers skip and where most returns come from. Waterproof socks are thicker than the sock you’re used to.</p>",
+        "link_label": "The sizes in centimetres",
         "link_url": "/pages/size-guide",
         "mirror": false
       },
@@ -142,22 +142,22 @@
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Roughly a mid-weight sock",
-            "body": "<p>If your boots are already snug with a thick walking sock, they will be tight with these. If you wear a liner and a thick sock together, these replace both.</p>"
+            "title": "About the same as a mid-weight sock",
+            "body": "<p>If your boots are already snug with a thick walking sock, they’ll be tight with these. If you wear a thin liner under a thick sock, these replace both.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "Take the larger band if you are between two",
-            "body": "<p>A size down grips the toes, which is uncomfortable over eight hours and shortens the life of the membrane. Foot length, not shoe size, sets the band.</p>"
+            "title": "Between two sizes, go up",
+            "body": "<p>Going down grips your toes, which is uncomfortable over eight hours and hard on the waterproof layer. Foot length, not shoe size, sets the size.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "Lace pressure over the instep",
-            "body": "<p>A thicker sock changes where a boot loads. Give the laces one honest adjustment on the first walk rather than assuming the fit is wrong.</p>"
+            "title": "Your laces will need adjusting",
+            "body": "<p>A thicker sock changes where a boot loads over the instep. Give the laces one honest adjustment on the first walk rather than deciding the fit is wrong.</p>"
           }
         }
       },
@@ -422,8 +422,8 @@
         "color_scheme": "paper",
         "anchor_id": "buy",
         "eyebrow": "Order",
-        "heading": "Two decisions and a quantity.",
-        "lede": "<p>One product, one page, one price that does not change depending on how you found us.</p>",
+        "heading": "Choose your colour and size",
+        "lede": "<p>One price, whichever page you came in on.</p>",
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
@@ -455,7 +455,7 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "The things people ask on this page.",
+        "heading": "Common questions",
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
         "help_link": "/pages/contact",
@@ -466,42 +466,42 @@
           "type": "question",
           "settings": {
             "question": "Are waterproof socks good for hiking?",
-            "answer": "<p>Yes, particularly on long days in wet conditions. They keep the foot dry once a boot has wet out, which on British hills is usually a question of when rather than whether. They do not replace a boot's support, grip or ankle protection.</p>"
+            "answer": "<p>Yes, especially on long days in the wet. They keep your feet dry once a boot has soaked through, which on British hills is usually a question of when rather than whether. They don’t replace a boot’s grip or ankle support.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
             "question": "Do waterproof socks stop blisters?",
-            "answer": "<p>They remove one of the three causes. Wet skin softens and blisters more readily, so keeping the foot dry helps considerably. Friction and poor fit still cause blisters, and no sock fixes a boot that rubs.</p>"
+            "answer": "<p>They remove one of the three causes. Wet skin gives up under friction much faster than dry skin, so keeping your feet dry helps a lot. Fit and rubbing still cause blisters, and no sock fixes a boot that rubs.</p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
             "question": "Can you wear waterproof socks with walking boots?",
-            "answer": "<p>Yes, with one check. They sit at roughly the bulk of a mid-weight walking sock, so if your boots are already tight with thick socks they will be tighter with these. They replace a liner-and-sock combination rather than adding to it.</p>"
+            "answer": "<p>Yes, with one check. They’re about the bulk of a mid-weight walking sock, so if your boots are already tight with thick socks they’ll be tighter with these. They replace a liner-and-sock combination rather than going over it.</p>"
           }
         },
         "q4": {
           "type": "question",
           "settings": {
             "question": "Are waterproof socks better than waterproof boots?",
-            "answer": "<p>They solve different halves of the same problem. A boot keeps water out until its outer saturates; a waterproof sock keeps working after that. Most people who walk regularly in the wet end up using both.</p>"
+            "answer": "<p>They solve different halves of the same problem. A boot keeps water out until its outer soaks through. A waterproof sock carries on after that. Most people who walk regularly in the wet end up using both.</p>"
           }
         },
         "q5": {
           "type": "question",
           "settings": {
-            "question": "What socks should I wear for hiking in the rain?",
-            "answer": "<p>Something that is still doing its job in hour six, not just hour one. That means either a boot that will not wet out in the conditions you are actually in, or a waterproof layer on the foot itself. On a full wet British day, usually the second.</p>"
+            "question": "What socks should I wear for walking in the rain?",
+            "answer": "<p>Something still doing its job in hour six, not just hour one. That means either a boot that won’t soak through in the conditions you’re actually in, or a waterproof layer on your foot. On a full wet British day, usually the second.</p>"
           }
         },
         "q6": {
           "type": "question",
           "settings": {
-            "question": "Will my feet get sweaty on a long walk?",
-            "answer": "<p>Walking pace is well within what the membrane can move, so most people are dry all day. On a steep sustained climb in mild weather you will out-produce it for a while, then catch up on the descent.</p>"
+            "question": "Will my feet sweat on a long walk?",
+            "answer": "<p>Walking pace is well within what the waterproof layer can handle, so most people stay dry all day. On a steep climb in mild weather you’ll out-produce it for a while and then catch up on the way down.</p>"
           }
         }
       },
@@ -594,8 +594,8 @@
         "layout": "band",
         "numbered": true,
         "eyebrow": "The problem",
-        "heading": "Four ways a walk gets your feet wet.",
-        "lede": "<p>Only one of these is the one boots are designed to stop, which is why good boots and wet feet are not a contradiction.</p>",
+        "heading": "Four ways a walk gets your feet wet",
+        "lede": "<p>Only one of these is the thing boots are designed to stop. That’s why good boots and wet feet aren’t a contradiction.</p>",
         "mirror": false
       },
       "blocks": {
@@ -603,28 +603,28 @@
           "type": "item",
           "settings": {
             "title": "Over the top",
-            "body": "<p>Wet grass, bracken and heather put water onto the boot from above, where the gusset and the laces are. Gaiters help. They do not seal.</p>"
+            "body": "<p>Wet grass, bracken and heather put water onto the boot from above, where the tongue and the laces are. Gaiters help. They don’t seal.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "The boot wets out",
-            "body": "<p>The outer fabric saturates, the membrane can no longer pass vapour, and the boot stops breathing. It is not leaking — it is full. This is the four-hour problem.</p>"
+            "title": "The boot soaks through",
+            "body": "<p>The outer fabric saturates, the boot stops breathing, and everything your foot produces stays inside. It isn’t leaking — it’s full. This is the four-hour problem.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "Stream crossings and bog",
-            "body": "<p>There is a depth beyond which no footwear helps, and on wet British ground you meet it more often than the forecast suggests.</p>"
+            "title": "Streams and bog",
+            "body": "<p>There’s a depth beyond which no footwear helps, and on wet British ground you meet it more often than the forecast suggests.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
             "title": "From the inside",
-            "body": "<p>Eight hours of walking produces a lot of vapour. Some of it condenses. By the afternoon, plenty of dry-footed walkers are damp anyway.</p>"
+            "body": "<p>Eight hours of walking produces a lot of moisture. Plenty of people with perfectly good boots finish the day damp anyway.</p>"
           }
         }
       },
@@ -642,8 +642,8 @@
         "layout": "boxes",
         "numbered": true,
         "eyebrow": "The answer",
-        "heading": "A layer that does not wet out.",
-        "lede": "<p>The membrane sits inside the sock rather than inside the boot, which changes where the waterproof line is drawn — and what happens when the boot fails.</p>",
+        "heading": "What the socks do about it",
+        "lede": "<p>The waterproof layer sits inside the sock rather than inside the boot. That changes where the waterproof line is, and what happens when the boot gives up.</p>",
         "link_label": "How the three layers work",
         "link_url": "/pages/technology",
         "mirror": false
@@ -652,22 +652,22 @@
         "i1": {
           "type": "item",
           "settings": {
-            "title": "The boot can be soaked and the foot dry",
-            "body": "<p>Once the waterproof layer is on the foot, a saturated boot is uncomfortable rather than decisive. You stop planning the route around the puddles.</p>"
+            "title": "Your boot can be soaked and your foot dry",
+            "body": "<p>Once the waterproof layer is on your foot, a wet boot is uncomfortable rather than a disaster. You stop planning the route around the puddles.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "It works with any boot, including the wrong one",
-            "body": "<p>Most people discover waterproof socks because their boots have started leaking. It is the cheapest useful thing to try before spending two hundred pounds.</p>"
+            "title": "They work with any boot, including a leaky one",
+            "body": "<p>Most people find waterproof socks because their boots have started letting water in. It’s the cheapest useful thing to try before spending two hundred pounds.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "It is not a boot replacement",
-            "body": "<p>Said plainly here and on the homepage: if your footwear is wrong for the ground, this will not fix it. It solves wetness, not support, grip or ankle protection.</p>"
+            "title": "They aren’t a replacement for boots",
+            "body": "<p>Said plainly here as well as on the homepage. If your footwear is wrong for the ground, this won’t fix it. It solves wet, not grip or ankle support.</p>"
           }
         }
       },

@@ -17,18 +17,18 @@
       "settings": {
         "color_scheme": "ink",
         "min_height": 36,
-        "eyebrow": "All Day in Boots",
-        "heading": "By hour ten it is not the rain.",
-        "lede": "<p>A good boot already keeps water out. What it also does, across a twelve-hour shift, is keep everything your foot produces on the inside of it.</p>",
+        "eyebrow": "All day in boots",
+        "heading": "Waterproof socks for work boots and wellies",
+        "lede": "<p>A good boot keeps the rain out. What it also does, across a ten-hour shift, is keep everything your foot produces on the inside.</p>",
         "image_fallback": "activity-all-day-in-boots.webp",
         "image_alt": "All Day in Boots in HydroSox waterproof socks",
         "focal_point": "center",
         "scrim_vertical": 70,
         "scrim_horizontal": 55,
         "cta_label": "Buy a pair",
-        "cta_url": "/products/hydrosox-waterproof-socks",
-        "link_label": "See how it is built",
-        "link_url": "/#construction"
+        "cta_url": "#buy",
+        "link_label": "How they work",
+        "link_url": "/pages/technology"
       }
     },
     "specs": {
@@ -41,15 +41,15 @@
         "f1": {
           "type": "spec",
           "settings": {
-            "label": "Membrane",
-            "value": "Porelle®"
+            "label": "Waterproof layer",
+            "value": "Porelle® membrane"
           }
         },
         "f2": {
           "type": "spec",
           "settings": {
-            "label": "Construction",
-            "value": "Three-layer"
+            "label": "Build",
+            "value": "Three layers"
           }
         },
         "f3": {
@@ -62,8 +62,8 @@
         "f4": {
           "type": "spec",
           "settings": {
-            "label": "Origin",
-            "value": "UK company, UK stock"
+            "label": "Price",
+            "value": "From £20 a pair"
           }
         }
       },
@@ -357,8 +357,8 @@
         "color_scheme": "paper",
         "anchor_id": "buy",
         "eyebrow": "Order",
-        "heading": "Two decisions and a quantity.",
-        "lede": "<p>Five pairs is a working week. That is why the five-pair price is the one most people on site end up taking.</p>",
+        "heading": "Choose your colour and size",
+        "lede": "<p>Five pairs is a working week, which is why it’s the option most people on site end up taking.</p>",
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
@@ -397,7 +397,7 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "Asked from site, mostly.",
+        "heading": "Common questions",
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
         "help_link": "/pages/contact",
@@ -408,35 +408,35 @@
           "type": "question",
           "settings": {
             "question": "Are waterproof socks good for work boots?",
-            "answer": "<p>Yes, and mostly for a reason people do not expect. A safety boot already keeps rain out; what it cannot do is let moisture from the foot escape across a ten-hour shift. A waterproof breathable sock addresses the half the boot cannot.</p>"
+            "answer": "<p>Yes, and mostly for a reason people don’t expect. A safety boot already keeps rain out. What it can’t do is let moisture from your foot escape across a ten-hour shift, and that’s the half these deal with.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
             "question": "What socks do you wear with wellies?",
-            "answer": "<p>A waterproof sock is a sensible choice, because wellies have plenty of volume and no breathability at all. Feet get wet inside wellies from the inside far more often than from the outside.</p>"
+            "answer": "<p>A waterproof sock is a sensible choice, because wellies have plenty of room and no breathability at all. Feet get wet inside wellies from the inside far more often than from the outside.</p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
             "question": "Will they fit inside safety boots?",
-            "answer": "<p>They sit at about the bulk of a thick work sock, so they replace one rather than going over it. Safety boots have a fixed toe cap with no give, so take the larger band if you are between two.</p>"
+            "answer": "<p>They’re about the bulk of a thick work sock, so they replace one rather than going over it. Safety boots have a fixed toe cap with no give, so if you’re between two sizes take the bigger.</p>"
           }
         },
         "q4": {
           "type": "question",
           "settings": {
             "question": "How long do they last on site?",
-            "answer": "<p>Longer than a cheap pair, and shorter than a boot. Abrasion inside a boot and the wrong wash cycle end a waterproof sock long before age does — cool wash, no softener, air dry, and never a tumble dryer or a radiator.</p>"
+            "answer": "<p>Longer than a cheap pair and shorter than a boot. Rubbing inside a boot and the wrong wash cycle finish a waterproof sock off long before age does — cool wash, no softener, air dry, and never a tumble dryer or a radiator.</p>"
           }
         },
         "q5": {
           "type": "question",
           "settings": {
             "question": "What are the best socks for standing all day?",
-            "answer": "<p>Something that manages moisture rather than just adding padding. Cushioning helps the joints; it does nothing about the fact that a sealed boot keeps a day's worth of moisture against the skin.</p>"
+            "answer": "<p>Something that deals with moisture rather than just adding padding. Cushioning helps your joints. It does nothing about a sealed boot keeping a day’s worth of sweat against your skin.</p>"
           }
         }
       },
@@ -469,9 +469,9 @@
         "layout": "boxes",
         "numbered": true,
         "eyebrow": "Durability",
-        "heading": "Three weeks is not a membrane problem.",
-        "lede": "<p>Most cheap waterproof socks do not fail because the membrane is bad. They fail for three reasons, and two of them are fixable.</p>",
-        "link_label": "What actually damages a membrane",
+        "heading": "Why the cheap pair failed",
+        "lede": "<p>Most cheap waterproof socks don’t fail because the waterproof layer is bad. They fail for three reasons, and two of them are avoidable.</p>",
+        "link_label": "What damages the waterproof layer",
         "link_url": "/pages/care-and-washing",
         "mirror": false
       },
@@ -479,22 +479,22 @@
         "i1": {
           "type": "item",
           "settings": {
-            "title": "There was no membrane to begin with",
-            "body": "<p>A great deal of what is sold as waterproof is a treated knit that sheds light rain and then wets through. If a listing does not name a membrane, that is usually why. Ours is Porelle®, licensed, and named on every page.</p>"
+            "title": "There was no waterproof layer",
+            "body": "<p>A lot of what’s sold as waterproof is a treated knit that shrugs off light rain and then wets through. If a listing doesn’t name a waterproof layer, that’s usually why. Ours is Porelle®, named on every page.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "The wear face gave out first",
-            "body": "<p>Inside a work boot the abrasion is constant. The outer knit is what takes that, and a thin one wears through to the membrane in weeks. Three layers exist so the middle one is never the wear surface.</p>"
+            "title": "The outside wore through first",
+            "body": "<p>Inside a work boot the rubbing is constant. The outer knit takes that, and a thin one wears through to the waterproof layer in weeks. Three layers exist so the middle one is never the wear surface.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "It went in the tumble dryer",
-            "body": "<p>The most common way a waterproof sock dies, and the least discussed. Heat and fabric softener end a laminate far faster than a site does. Cool wash, no softener, air dry.</p>"
+            "body": "<p>The most common way a waterproof sock dies and the least discussed. Heat and fabric softener finish one off far faster than a building site does. Cool wash, no softener, air dry.</p>"
           }
         }
       },
@@ -511,9 +511,9 @@
         "layout": "cards",
         "numbered": false,
         "eyebrow": "Fit",
-        "heading": "Check the boot before you order.",
-        "lede": "<p>Safety boots have a fixed toe cap and no give in it. This is the one thing worth checking before buying.</p>",
-        "link_label": "The size bands in centimetres",
+        "heading": "Check the boot before you order",
+        "lede": "<p>Safety boots have a fixed toe cap with no give in it. That’s the one thing worth checking before you buy.</p>",
+        "link_label": "The sizes in centimetres",
         "link_url": "/pages/size-guide",
         "mirror": false
       },
@@ -521,22 +521,22 @@
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Roughly a thick work sock",
+            "title": "About the same as a thick work sock",
             "body": "<p>If you already wear thick socks in your boots, these replace them rather than going over them. If you wear thin socks in a snug boot, allow for the difference.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "Take the larger band if you are between two",
-            "body": "<p>A sock that grips the toes inside a steel toe cap is uncomfortable by hour three and shortens the life of the membrane.</p>"
+            "title": "Between two sizes, go up",
+            "body": "<p>A sock that grips your toes inside a steel toe cap is uncomfortable by hour three and hard on the waterproof layer.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "Wellies",
-            "body": "<p>No fit problem at all — wellies have volume to spare, which is why a waterproof sock inside a welly is one of the more sensible things you can do with one.</p>"
+            "body": "<p>No fit problem at all. Wellies have room to spare, which is why a waterproof sock inside a welly is one of the more sensible things you can do with one.</p>"
           }
         }
       },
@@ -553,8 +553,7 @@
         "layout": "split",
         "numbered": false,
         "eyebrow": "If something goes wrong",
-        "heading": "Where you stand.",
-        "lede": "<p>On every other page this sits in the footer links. It is here because this is where the decision gets made.</p>",
+        "heading": "Where you stand",
         "link_label": "The full warranty position",
         "link_url": "/pages/warranty",
         "mirror": false
@@ -563,22 +562,22 @@
         "i1": {
           "type": "item",
           "settings": {
-            "title": "A fault is not the same as wear",
-            "body": "<p>A seam letting water through in the first weeks of normal use is a fault. Thinning at the heel after months on site is wear. We do not charge for returning faulty goods.</p>"
+            "title": "A fault isn’t the same as wear",
+            "body": "<p>A seam letting water through in the first few weeks of normal use is a fault. Thinning at the heel after months on site is wear. We don’t charge for returning faulty goods.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Thirty days to reject outright",
-            "body": "<p>Under the Consumer Rights Act 2015 goods must be of satisfactory quality, fit for purpose and as described. Within thirty days of delivery you can reject them for a full refund.</p>"
+            "body": "<p>Under the Consumer Rights Act 2015, goods have to be of satisfactory quality, fit for purpose and as described. Within thirty days of delivery you can reject them for a full refund.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "Six months where the fault is presumed ours",
-            "body": "<p>Within six months of delivery, a fault is assumed to have been there from the start unless we can show otherwise.</p>"
+            "title": "Six months where we have to prove otherwise",
+            "body": "<p>Within six months of delivery a fault is assumed to have been there from the start unless we can show it wasn’t.</p>"
           }
         }
       },
@@ -595,7 +594,7 @@
         "layout": "steps",
         "numbered": false,
         "eyebrow": "The problem",
-        "heading": "The boot is doing half the job.",
+        "heading": "Ten hours in a boot",
         "lede": "<p>A safety boot is built to keep water and everything else out. Nothing about it is built to let anything back out again.</p>",
         "mirror": false
       },
@@ -604,14 +603,14 @@
           "type": "item",
           "settings": {
             "title": "Wet from the inside by lunchtime",
-            "body": "<p>A foot produces a serious amount of moisture across a ten-hour shift. In a sealed boot most of it stays there, which is why feet are wet on dry days too.</p>"
+            "body": "<p>Your foot produces a serious amount of moisture across a ten-hour shift. In a sealed boot most of it stays there, which is why your feet are wet on dry days too.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "Wet skin, all winter",
-            "body": "<p>Skin that stays damp for months softens, splits and stops recovering overnight. That is the actual cost of this, and it is not comfort.</p>"
+            "title": "Damp skin, all winter",
+            "body": "<p>Skin that stays damp for months softens, splits and stops recovering overnight. That’s the real cost of this, and it isn’t comfort.</p>"
           }
         },
         "i3": {

@@ -2973,3 +2973,8 @@
   margin-top: 0.875rem;
   max-width: 46ch;
 }
+
+/* The line after the limits cards — the running page's closing verdict. */
+.hs-limits__footnote {
+  margin-top: 2rem;
+}

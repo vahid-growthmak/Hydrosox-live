@@ -60,6 +60,12 @@
                 {{- section.settings.link_label -}}
               </a>
             {%- endif -%}
+
+    {%- if section.settings.footnote != blank -%}
+      <p class="hs-caption hs-limits__footnote hs-measure-52 hs-pretty hs-muted">
+        {{- section.settings.footnote -}}
+      </p>
+    {%- endif -%}
           </div>
         {%- endif -%}
       </div>
@@ -153,6 +159,11 @@
       "id": "lede",
       "label": "t:common.lede",
       "default": "<p>Every brand in this category tells you what their socks do. Here is the other half, so you can decide with the whole picture rather than find out in a bog.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "footnote",
+      "label": "t:sections.cols.footnote"
     },
     {
       "type": "text",

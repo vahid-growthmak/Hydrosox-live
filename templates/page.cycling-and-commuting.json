@@ -17,18 +17,18 @@
       "settings": {
         "color_scheme": "ink",
         "min_height": 36,
-        "eyebrow": "Cycling & Commuting",
-        "heading": "The water comes off the road, not the sky.",
-        "lede": "<p>Overshoes seal everywhere except the one place the water actually arrives, and there is nowhere at the office to dry a cycling shoe before the ride home.</p>",
+        "eyebrow": "Cycling & commuting",
+        "heading": "Waterproof socks for cycling and commuting",
+        "lede": "<p>On a wet road the water comes up, not down. Overshoes are sealed everywhere except the ankle, which is exactly where it arrives.</p>",
         "image_fallback": "activity-cycling-and-commuting.webp",
         "image_alt": "Cycling & Commuting in HydroSox waterproof socks",
         "focal_point": "center",
         "scrim_vertical": 70,
         "scrim_horizontal": 55,
         "cta_label": "Buy a pair",
-        "cta_url": "/products/hydrosox-waterproof-socks",
-        "link_label": "See how it is built",
-        "link_url": "/#construction"
+        "cta_url": "#buy",
+        "link_label": "How they work",
+        "link_url": "/pages/technology"
       }
     },
     "specs": {
@@ -41,15 +41,15 @@
         "f1": {
           "type": "spec",
           "settings": {
-            "label": "Membrane",
-            "value": "Porelle®"
+            "label": "Waterproof layer",
+            "value": "Porelle® membrane"
           }
         },
         "f2": {
           "type": "spec",
           "settings": {
-            "label": "Construction",
-            "value": "Three-layer"
+            "label": "Build",
+            "value": "Three layers"
           }
         },
         "f3": {
@@ -62,8 +62,8 @@
         "f4": {
           "type": "spec",
           "settings": {
-            "label": "Origin",
-            "value": "UK company, UK stock"
+            "label": "Price",
+            "value": "From £20 a pair"
           }
         }
       },
@@ -357,8 +357,8 @@
         "color_scheme": "paper",
         "anchor_id": "buy",
         "eyebrow": "Order",
-        "heading": "Two decisions and a quantity.",
-        "lede": "<p>One product, one page, one price that does not change depending on how you found us.</p>",
+        "heading": "Choose your colour and size",
+        "lede": "<p>Two pairs is what most commuters take — one on, one drying.</p>",
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
@@ -397,7 +397,7 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "The things people ask on this page.",
+        "heading": "Common questions",
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
         "help_link": "/pages/contact",
@@ -408,42 +408,42 @@
           "type": "question",
           "settings": {
             "question": "Are waterproof socks good for cycling?",
-            "answer": "<p>Yes, particularly for commuting in the wet. Road spray arrives at the ankle, which is where an overshoe is open, and a waterproof sock puts the barrier below that line. They are less useful in cold wind, where an overshoe also blocks windchill on the shoe.</p>"
+            "answer": "<p>Yes, especially commuting in the wet. Road spray arrives at the ankle, which is where an overshoe is open, and a waterproof sock puts the barrier below that line. They’re less useful in cold wind, where an overshoe also blocks windchill on the shoe.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
             "question": "Are waterproof socks better than overshoes?",
-            "answer": "<p>For keeping the foot dry, generally yes, because they seal where the spray actually arrives. For keeping the shoe dry and blocking wind, overshoes win. In cold, wet, long conditions many people use both.</p>"
+            "answer": "<p>For keeping your foot dry, generally yes, because they seal where the spray actually arrives. For keeping the shoe dry and blocking wind, overshoes win. In cold, wet, long conditions a lot of people use both.</p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
             "question": "Will they fit inside cycling shoes?",
-            "answer": "<p>They sit at about the volume of a cushioned training sock. Winter and commuting shoes usually have the room; snug race-fit road shoes often do not. If you already size up for winter shoes, they fit that space.</p>"
+            "answer": "<p>They’re about the bulk of a cushioned training sock. Winter and commuting shoes usually have the room. Snug race-fit road shoes often don’t. If you already size up for winter shoes, they fit that space.</p>"
           }
         },
         "q4": {
           "type": "question",
           "settings": {
             "question": "What socks should I wear cycling to work in winter?",
-            "answer": "<p>Something that is still working on the ride home, when the shoe never dried. A waterproof sock plus a spare pair in the bag solves both halves of the commute, which overshoes on their own do not.</p>"
+            "answer": "<p>Something still working on the ride home, when the shoe never dried. A waterproof sock plus a spare pair in your bag deals with both halves of the commute, which overshoes on their own don’t.</p>"
           }
         },
         "q5": {
           "type": "question",
           "settings": {
             "question": "Do waterproof socks keep your feet warm on a bike?",
-            "answer": "<p>Warmer than a wet sock by a long way, because they stop evaporative cooling and block the wind reaching the foot. They are not insulated, though — below about five degrees you may still want an overshoe over the top.</p>"
+            "answer": "<p>Much warmer than a wet sock, because they stop your foot cooling as water evaporates and they block the wind reaching it. They aren’t insulated though — below about five degrees you may still want an overshoe over the top.</p>"
           }
         },
         "q6": {
           "type": "question",
           "settings": {
             "question": "How do I wash them after a wet commute?",
-            "answer": "<p>Rinse the road grit off, then a cool wash inside out with no fabric softener, and air dry away from any heat. Never on a radiator, however tempting after a wet ride — direct heat is what kills a membrane.</p>"
+            "answer": "<p>Rinse the road grit off first, then a cool wash inside out with no fabric softener, and air dry away from any heat. Never on a radiator, however tempting after a wet ride.</p>"
           }
         }
       },
@@ -473,74 +473,74 @@
     "overshoes": {
       "type": "comparison-table",
       "settings": {
-        "color_scheme": "paper",
-        "anchor_id": "overshoes",
-        "eyebrow": "The comparison",
-        "heading": "Against overshoes, including where they win.",
-        "link_url": "/pages/technology",
-        "lede": "<p>Most people reading this already own overshoes. This is not an argument that they are useless — it is a description of what each one is actually good at.</p>",
-        "table_caption": "Waterproof socks compared with overshoes, including the rows where overshoes win.",
+        "color_scheme": "wash",
+        "anchor_id": "vs-overshoes",
+        "eyebrow": "Vs overshoes",
+        "heading": "Compared with overshoes",
+        "lede": "<p>Most people reading this already own a pair. This isn’t an argument that they’re useless — it’s what each one is actually good at.</p>",
+        "table_caption": "Waterproof socks and overshoes, and what each one is actually good at.",
         "col_criterion": "What matters",
         "col_ours": "Waterproof socks",
-        "col_theirs": "Overshoes"
+        "col_theirs": "Overshoes",
+        "link_url": "/pages/technology"
       },
       "blocks": {
-        "o1": {
+        "r1": {
           "type": "criterion",
           "settings": {
             "label": "Where the water gets in",
-            "ours_value": "The waterproof line is on the foot, so ankle spray lands on the outside of the barrier rather than inside it.",
-            "theirs_value": "Sealed over the shoe, open at the ankle — which is exactly where the spray arrives."
+            "ours_value": "The waterproof line is on your foot, so ankle spray lands outside it rather than inside.",
+            "theirs_value": "Sealed over the shoe, open at the ankle — which is where the spray arrives."
           }
         },
-        "o2": {
+        "r2": {
           "type": "criterion",
           "settings": {
             "label": "Wind",
-            "ours_value": "They insulate the foot but do nothing for the shoe. In genuinely cold wind, that is a real gap.",
-            "theirs_value": "Better. A neoprene or softshell overshoe blocks windchill across the whole shoe, which matters below about five degrees."
+            "ours_value": "They keep your foot warmer but do nothing for the shoe. In properly cold wind that’s a real gap.",
+            "theirs_value": "Better. They block windchill across the whole shoe, which matters below about five degrees."
           }
         },
-        "o3": {
+        "r3": {
           "type": "criterion",
           "settings": {
             "label": "The shoe itself",
-            "ours_value": "The shoe gets soaked. The foot does not. Whether that matters depends on whether you can leave the shoe somewhere warm.",
-            "theirs_value": "The shoe stays dry, which is the strongest argument for them on a commute with no drying option."
+            "ours_value": "The shoe gets soaked. Your foot doesn’t.",
+            "theirs_value": "The shoe stays dry, which is the strongest argument for them on a commute with nowhere to dry anything."
           }
         },
-        "o4": {
+        "r4": {
           "type": "criterion",
           "settings": {
-            "label": "Getting them on",
+            "label": "Putting them on",
             "ours_value": "You put a sock on.",
-            "theirs_value": "Fiddly, especially in the dark with cold hands, and they tear at the heel where they meet the cleat."
+            "theirs_value": "Fiddly, especially in the dark with cold hands, and they tear at the heel where the cleat sits."
           }
         },
-        "o5": {
+        "r5": {
           "type": "criterion",
           "settings": {
-            "label": "Durability and cost",
+            "label": "Cost and how long they last",
             "ours_value": "£20, and they fail from heat and washing rather than from cleat abrasion.",
-            "theirs_value": "Around £30–£40 and commonly a one-season item on a daily commute."
+            "theirs_value": "Around £30–£40 and often a one-season item on a daily commute."
           }
         },
-        "o6": {
+        "r6": {
           "type": "criterion",
           "settings": {
             "label": "Both together",
-            "ours_value": "Worth it when it is genuinely cold, genuinely wet and genuinely long.",
-            "theirs_value": "Anything milder and you will overheat."
+            "ours_value": "Worth it when: properly cold, properly wet, properly long. The most effective and most expensive option.",
+            "theirs_value": "Not worth it when: anything milder. You’ll overheat."
           }
         }
       },
       "block_order": [
-        "o1",
-        "o2",
-        "o3",
-        "o4",
-        "o5",
-        "o6"
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
       ]
     },
     "drying": {
@@ -549,9 +549,9 @@
         "color_scheme": "ink",
         "layout": "boxes",
         "numbered": true,
-        "eyebrow": "The other end",
-        "heading": "The ride home starts where the ride in finished.",
-        "lede": "<p>Almost every product in this category is designed around the outbound journey. The commute has two halves and only one of them has a radiator at the end.</p>",
+        "eyebrow": "The other half",
+        "heading": "The ride home starts where the ride in finished",
+        "lede": "<p>Almost everything in this category is designed around the journey in. A commute has two halves, and only one of them ends near a radiator.</p>",
         "link_label": "How to wash them properly",
         "link_url": "/pages/care-and-washing",
         "mirror": false
@@ -560,22 +560,22 @@
         "i1": {
           "type": "item",
           "settings": {
-            "title": "A shoe does not dry in eight hours",
-            "body": "<p>Especially not under a desk, in a building with the heating on a timer. Overshoes protect the shoe on the way in; they do not dry it by five o'clock.</p>"
+            "title": "A shoe won’t dry in eight hours",
+            "body": "<p>Especially not under a desk in a building with the heating on a timer. Overshoes protect the shoe on the way in. They don’t dry it by five o’clock.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "A sock can be swapped",
-            "body": "<p>A second pair in a bag weighs almost nothing and means the evening ride starts dry even if the shoe does not. This is the practical reason commuters buy two pairs, not a sales argument.</p>"
+            "body": "<p>A second pair in your bag weighs almost nothing and means the ride home starts dry even if the shoe doesn’t. That’s the practical reason commuters buy two pairs.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "Wash cool, air dry overnight",
-            "body": "<p>They will be ready for the morning. They will not be ready in two hours, and they must never go on a radiator — direct heat is what ends a membrane.</p>"
+            "body": "<p>They’ll be ready for the morning. They won’t be ready in two hours, and they must never go on a radiator — direct heat is what finishes a waterproof layer off.</p>"
           }
         }
       },
@@ -592,9 +592,9 @@
         "layout": "cards",
         "numbered": false,
         "eyebrow": "Fit",
-        "heading": "Check the shoe before you order.",
-        "lede": "<p>Cycling shoes are built with far less volume than a walking boot, so this matters more here than on any other page.</p>",
-        "link_label": "The size bands in centimetres",
+        "heading": "Check the shoe before you order",
+        "lede": "<p>Cycling shoes have far less room than a walking boot, so this matters more here than anywhere else on the site.</p>",
+        "link_label": "The sizes in centimetres",
         "link_url": "/pages/size-guide",
         "mirror": false
       },
@@ -602,22 +602,22 @@
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Roughly a cushioned training sock",
-            "body": "<p>If your shoes are already snug in a thin summer sock, they will be tight in these. Winter shoes and commuting shoes usually have room. Race-fit road shoes often do not.</p>"
+            "title": "About the same as a cushioned training sock",
+            "body": "<p>If your shoes are already snug in a thin summer sock they’ll be tight in these. Winter and commuting shoes usually have room. Race-fit road shoes often don’t.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "Take the larger band if you are between two",
-            "body": "<p>A tight sock in a tight shoe creates a pressure point across the toes that you will notice at about mile four.</p>"
+            "title": "Between two sizes, go up",
+            "body": "<p>A tight sock in a tight shoe creates a pressure point across your toes that you’ll notice at about mile four.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "Some people size the shoe up for winter",
-            "body": "<p>If you already run a half size up in winter shoes, these fit that space exactly. If you do not, try them in the shoe before committing to a long ride.</p>"
+            "title": "If you size up for winter shoes",
+            "body": "<p>These fit that space exactly. If you don’t, try them in the shoe before committing to a long ride.</p>"
           }
         }
       },
@@ -634,37 +634,37 @@
         "layout": "steps",
         "numbered": false,
         "eyebrow": "The problem",
-        "heading": "Upwards, mostly.",
-        "lede": "<p>Riding in the rain is not really a rain problem. It is a spray problem, and spray behaves differently.</p>",
+        "heading": "Where the water actually comes from",
+        "lede": "<p>Riding in the rain isn’t really a rain problem. It’s a spray problem, and spray behaves differently.</p>",
         "mirror": false
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Off the front wheel, onto the ankle",
-            "body": "<p>The front wheel throws a continuous fan of water backwards onto the shoe and the ankle. That is where an overshoe is open, and it is where an overshoe ends.</p>"
+            "title": "Off the front wheel, onto your ankle",
+            "body": "<p>The front wheel throws a constant fan of water backwards onto the shoe and the ankle. That’s where an overshoe stops, and where it’s open.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Standing water, at speed",
-            "body": "<p>A puddle taken at twenty miles an hour goes into the shoe through the vents in a way that rain simply does not.</p>"
+            "body": "<p>A puddle taken at twenty miles an hour goes into your shoe through the vents in a way that rain simply doesn’t.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "The road is dirtier than the rain",
-            "body": "<p>Road spray carries grit and oil. It stains, it abrades and it is why cycling kit wears out faster than walking kit.</p>"
+            "body": "<p>Road spray carries grit and oil. It stains, it wears things out, and it’s why cycling kit gives up faster than walking kit.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
-            "title": "And then there is nowhere to dry it",
-            "body": "<p>A soaked cycling shoe does not dry under an office desk in eight hours. The evening ride starts wet regardless of the forecast.</p>"
+            "title": "And nothing dries at the office",
+            "body": "<p>A soaked cycling shoe doesn’t dry under a desk in eight hours. The ride home starts wet whatever the forecast says.</p>"
           }
         }
       },

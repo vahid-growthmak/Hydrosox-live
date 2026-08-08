@@ -186,7 +186,9 @@ def main():
          'wrong: a hill walk that turns, a commute in the rain, a shift that '
          'runs long on wet ground. One pair covers most of what a British year '
          'does to your feet.</p>'),
-        ('shots_aspect', '4 / 3'),
+        # Square, because the diagram files are square: a 4:3 frame either
+        # crops the callouts or letterboxes on the sides.
+        ('shots_aspect', '1 / 1'),
         ('cta_label', 'Buy a pair'),
         ('cta_url', '#buy'),
         ('cta_note', 'Back to the top of the page — size, colour and quantity '

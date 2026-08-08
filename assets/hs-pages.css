@@ -2493,13 +2493,16 @@
   background-color: var(--surface);
 }
 
-.hs-folds__shot-img {
+/* `> img` and not the class alone: the base sheet's `.hs-media > img` sets
+   cover at the same class-plus-element weight, so the class-only selector
+   lost and the diagrams shipped cropped — callout labels cut mid-word. */
+.hs-folds__shot > img {
   object-fit: contain;
   padding: 1rem;
 }
 
 @media (min-width: 64rem) {
-  .hs-folds__shot-img {
+  .hs-folds__shot > img {
     padding: 2rem;
   }
 }

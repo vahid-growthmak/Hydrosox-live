@@ -141,21 +141,33 @@ def technology():
     # cleared explicitly so the duplicate can never return, and the lead
     # treatment sets the opening claim in the pale-blue panel — the client's
     # asked-for box against the wall-of-text read.
+    # v4 (Document 3, 8 Aug 2026). The PFOA claim is removed site-wide by
+    # that document's red block — it appears in none of the client's own
+    # documents; it returns only if evidenced in writing.
+    S["intro"]["settings"].update({
+        "eyebrow": "The technology",
+        "heading": "How waterproof socks work",
+        "body": rich(
+            "“Waterproof” is a word anyone can print on a label. This "
+            "is what’s underneath ours, so you can judge it rather than "
+            "take our word for it."),
+    })
+    S["membrane"]["settings"]["eyebrow"] = "The waterproof layer"
+    S["membrane"]["settings"]["heading"] = "Porelle® isn’t a name we made up"
     S["membrane"]["settings"]["lede"] = ""
     S["membrane"]["settings"]["lead_first_para"] = True
     S["membrane"]["settings"]["prose"] = rich(
-        "The waterproof layer is Porelle®, a licensed third-party "
-        "waterproof-breathable membrane. That distinction matters more than it "
-        "sounds: a membrane you can look up is a membrane someone else has to "
-        "stand behind. Water cannot get through it; vapour from the foot can. "
-        "It is PFOA free.",
-        "Brands that do not name their membrane are asking you to trust an "
-        "unnamed laminate. We would rather you checked ours.",
-        "The principle is not new and is not proprietary to us. A "
-        "waterproof-breathable membrane works because liquid water and water "
-        "vapour are very different sizes. The pores are far too small for a "
-        "droplet to pass through and comfortably large for a vapour molecule. "
-        "That asymmetry is the entire technology, and it has been in outdoor "
+        "The waterproof layer is Porelle®, made by a separate company. That "
+        "matters more than it sounds: a named layer is one someone else has "
+        "to stand behind, and you can go and look them up. Water can’t "
+        "get through it. Sweat, as vapour, can.",
+        "Brands that don’t name their waterproof layer are asking you to "
+        "trust an unnamed one. We’d rather you checked ours.",
+        "The principle isn’t new and isn’t ours. A waterproof "
+        "breathable layer works because liquid water and water vapour are "
+        "very different sizes. The holes are far too small for a droplet to "
+        "pass through and comfortably big for a vapour molecule. That "
+        "difference is the whole technology, and it’s been in outdoor "
         "clothing for decades.")
 
     # The construction section becomes the homepage's scroll-scrub — the
@@ -172,12 +184,18 @@ def technology():
                         object_pairs_hook=collections.OrderedDict)
     layers["settings"].update({
         "anchor_id": "construction",
-        "eyebrow": "The construction",
-        "heading": "Three layers, and what each one is for",
-        "lede": rich(
-            "The middle layer is the one doing the waterproofing, and it is "
-            "the one you never touch. That is deliberate: a membrane exposed "
-            "to abrasion is a membrane with a short life."),
+        # v4: this page's layer copy DIVERGES from the homepage's on purpose
+        # now — the document writes each page its own sentences ("no sentence
+        # appears on two pages"), so the single-source copy carries this
+        # page's own text below. The frames and the scrub stay shared.
+        "eyebrow": "The build",
+        "heading": "Why there are three layers",
+        "lede": (
+            "<p>One waterproof layer on its own would be uncomfortable and "
+            "wouldn’t last. The other two exist to make it wearable.</p>"
+            "<p>The layer doing the waterproofing is the one you never touch. "
+            "That’s deliberate — a waterproof layer exposed to rubbing "
+            "is a waterproof layer with a short life.</p>"),
         # A shorter track than the homepage's: this page has more below it.
         "track_height": 220,
         # Wash, as the mockup sets this section on this page (the homepage
@@ -186,6 +204,26 @@ def technology():
         # touches the imagery.
         "color_scheme": "wash",
     })
+    for bk, (heading, role, body) in {
+        "y1": ("Inner layer", "Against your skin",
+               "<p>A soft knitted lining that moves sweat off your foot and "
+               "keeps the waterproof layer from sitting directly against you. "
+               "Without it a waterproof sock feels like a carrier bag, and "
+               "the layer wears out against your foot instead of against the "
+               "shoe.</p>"),
+        "y2": ("Middle layer", "The waterproof one",
+               "<p>The Porelle® membrane. Water can’t get in. Sweat can "
+               "get out. It’s sealed between the other two and never "
+               "forms the outside of the sock.</p>"),
+        "y3": ("Outer layer", "The wear surface",
+               "<p>The knitted face that takes the rubbing inside a boot or "
+               "shoe. It’s also what holds the sock’s shape when "
+               "you’re not wearing it, which matters for how long it "
+               "lasts and, separately, for masah.</p>"),
+    }.items():
+        if bk in layers["blocks"]:
+            layers["blocks"][bk]["settings"].update({
+                "heading": heading, "role": role, "body": body})
     # The homepage section ends with a link block pointing at this very page;
     # a self-link is dropped, everything else is kept.
     keep = collections.OrderedDict()
@@ -202,28 +240,29 @@ def technology():
     # competitor page in the mapped set either ignores it or overclaims.
     S["breathability"] = cols(
         "breathability", "Breathability",
-        "Breathable and dry are not the same word.",
-        "This is where most waterproof sock pages become vague. It is also the "
-        "question almost everybody actually has, so here is the mechanism and "
-        "the limit.",
-        [("What breathability actually means",
-          "It is a rate, not a state. A membrane moves vapour outwards at a "
-          "certain speed. It does not remove moisture, and it does not make a "
-          "sock ventilated."),
+        "Breathable doesn’t mean dry",
+        "This is where most waterproof sock pages go vague. It’s also "
+        "the question nearly everyone actually has, so here’s the "
+        "mechanism and the limit.",
+        [("Breathability is a rate, not a state",
+          "The layer moves sweat outwards at a certain speed. It "
+          "doesn’t remove moisture and it doesn’t make a sock "
+          "ventilated."),
          ("Where the limit is",
-          "Your foot produces vapour at a rate that depends on effort and "
-          "temperature. If you produce it faster than the membrane can move "
-          "it, the surplus condenses and you feel damp. That is not a fault. "
-          "It is arithmetic."),
-         ("When you will notice it",
+          "Your foot produces sweat at a rate that depends on effort and "
+          "temperature. Produce it faster than the layer can move it and the "
+          "surplus stays inside. That isn’t a fault, it’s "
+          "arithmetic."),
+         ("When you’ll notice",
           "Walking pace in British weather is comfortably within it. A steep "
-          "sustained climb in mild air, a hard run, or summer rain will exceed "
-          "it. Cold air helps, because the difference in vapour pressure "
-          "across the membrane is what drives the transfer."),
+          "climb in mild air, a hard run, or summer rain will exceed it. "
+          "Cold air helps, because the difference in humidity across the "
+          "layer is what drives it out."),
          ("What actually helps",
-          "A sock that fits, footwear that is not sealed shut, and taking them "
-          "off at the end of the day. Nothing about a membrane changes the "
-          "fact that a foot in a boot for ten hours is in a humid place.")],
+          "A sock that fits, footwear that isn’t sealed shut, and "
+          "taking them off at the end of the day. No waterproof layer "
+          "changes the fact that a foot in a boot for ten hours is in a "
+          "humid place.")],
         scheme="wash",
         link=("When these are the wrong sock", "/pages/running-and-trail"))
 
@@ -234,68 +273,79 @@ def technology():
     # Shopify refuses a bare string in a richtext setting on upload, and the
     # template it refuses is the one that stops updating — so the two are not
     # interchangeable even though they look it.
-    S["testing"]["settings"]["footnote"] = rich(
-        "For context: hydrostatic head measures the water pressure a fabric "
-        "resists before it lets water through, and breathability is usually "
-        "given as grams of vapour passed per square metre in twenty-four "
-        "hours. Those are the two numbers to ask any brand in this category "
-        "for.")
+    S["testing"]["settings"].update({
+        "eyebrow": "Testing",
+        "heading": "We don’t publish test figures yet",
+        "body": rich(
+            "Independent test data is the only kind worth printing and we "
+            "don’t have it yet. Rather than quote a waterproof rating or "
+            "a breathability number we can’t stand behind, we’ve "
+            "left this section empty until we can."),
+        "footnote": rich(
+            "For what it’s worth, the two numbers to ask any brand in "
+            "this category for are hydrostatic head — how much water "
+            "pressure a fabric holds back before it leaks — and a "
+            "breathability rating, usually given as grams of vapour passed "
+            "per square metre in twenty-four hours."),
+    })
 
     S["failure"] = cols(
-        "failure", "Failure", "Four ways a membrane dies.",
+        "failure", "What ends it", "Four ways a waterproof layer dies",
         "A waterproof sock almost never fails from age. It fails from one of "
-        "these, and three of them are avoidable.",
+        "these, and three are avoidable.",
         [("Heat",
-          "A tumble dryer, an iron, or a radiator. Direct heat is the fastest "
-          "way to end a laminate and the most common. Air dry, always."),
+          "A tumble dryer, an iron, or a radiator. Direct heat is the "
+          "fastest way to finish one off and the most common. Air dry, "
+          "always."),
          ("Fabric softener",
-          "Softeners coat the pores the membrane breathes through. The sock "
-          "still keeps water out and stops moving vapour, which is the worst "
-          "of both."),
-         ("Abrasion",
-          "The outer knit takes this, which is why there are three layers. But "
-          "a sock worn inside a boot with a rough interior, or over months on "
-          "site, will eventually wear through."),
-         ("Puncture",
-          "A toenail, a thorn, or a sharp stone inside a boot. Once the "
-          "laminate is pierced the waterproofing is gone and cannot be "
-          "restored — no spray or reproofing treatment brings a membrane "
-          "back.")],
+          "Softener coats the holes the layer breathes through. The sock "
+          "still keeps water out and stops letting sweat out, which is the "
+          "worst of both."),
+         ("Rubbing",
+          "The outer knit takes this, which is why there are three layers. "
+          "But a sock worn in a boot with a rough interior, or over months "
+          "on site, will eventually wear through."),
+         ("A hole",
+          "A toenail, a thorn, or a sharp stone inside a boot. Once "
+          "it’s pierced the waterproofing is gone and can’t be "
+          "restored. No spray or reproofing treatment brings a waterproof "
+          "layer back.")],
         link=("How to wash them properly", "/pages/care-and-washing"))
 
     S["faq"] = faq(
-        "questions", "Questions", "The technical ones.",
-        "About the mechanism rather than about the product. Where we do not "
-        "have a number, the answer says so.",
+        "questions", "Questions", "Common questions",
+        None,
         [("How do waterproof socks work?",
-          "A waterproof-breathable membrane is sealed between two knitted "
-          "layers. Its pores are too small for liquid water to pass through "
-          "and large enough for water vapour to escape, so rain and puddle "
-          "water stay out while sweat can move away from the foot."),
+          "A thin waterproof layer is sealed between two knitted layers. Its "
+          "holes are too small for liquid water to pass through and big "
+          "enough for water vapour to escape, so rain and puddle water stay "
+          "out while sweat can move away from your foot."),
          ("What is a waterproof breathable membrane?",
-          "A thin laminate that blocks liquid water in one direction while "
-          "allowing water vapour through in the other. The effect relies on "
-          "the size difference between a water droplet and a vapour molecule. "
-          "HydroSox uses Porelle®, a licensed third-party membrane."),
-         ("Why do waterproof socks have three layers?",
-          "Because the membrane needs protecting on both sides. The inner knit "
-          "keeps it off the skin and moves sweat towards it; the outer knit "
-          "takes the abrasion inside a boot. A membrane used as the wear "
-          "surface would not last a season."),
-         ("What is PFOA and why does it matter?",
-          "PFOA is a perfluorinated compound historically used in some "
-          "water-repellent treatments and now widely restricted because of "
-          "environmental and health concerns. Stating that a product is PFOA "
-          "free tells you which chemistry was not used."),
+          "A thin sheet that blocks liquid water one way while letting water "
+          "vapour through the other. It works because a water droplet is far "
+          "bigger than a vapour molecule. HydroSox uses Porelle®, made by a "
+          "separate company."),
+         ("Why do waterproof socks need three layers?",
+          "Because the waterproof layer needs protecting on both sides. The "
+          "inner knit keeps it off your skin and moves sweat towards it. The "
+          "outer knit takes the rubbing inside a boot. A waterproof layer "
+          "used as the wear surface wouldn’t last a season."),
          ("Can waterproof socks be reproofed?",
-          "No. Reproofing works on a durable water repellent finish applied to "
-          "a fabric surface. It cannot repair a membrane. Once a laminate is "
-          "punctured or degraded, the waterproofing is gone permanently."),
+          "No. Reproofing works on a water-repellent finish applied to a "
+          "fabric surface. It can’t repair a waterproof layer. Once one "
+          "is pierced or worn through, the waterproofing is gone for good."),
          ("What is hydrostatic head?",
-          "The standard measure of how much water pressure a fabric resists "
-          "before water passes through, expressed in millimetres. It is the "
-          "figure worth asking any waterproof brand for. We do not publish one "
-          "yet, because we do not have independent test data.")],
+          "The standard measure of how much water pressure a fabric holds "
+          "back before water passes through, given in millimetres. It’s "
+          "the number worth asking any waterproof brand for. We don’t "
+          "publish one yet because we don’t have independent test "
+          "data."),
+         ("Do all waterproof socks use the same membrane?",
+          "No, and many don’t say what they use at all. Some use a "
+          "named third-party layer, some use an unnamed one, and some are "
+          "just a tightly knitted or treated sock with no waterproof layer "
+          "in it. If a listing doesn’t name one, that’s usually "
+          "why.")],
         emit=True)
 
     # The activity strip goes: the brief's section list for this page runs

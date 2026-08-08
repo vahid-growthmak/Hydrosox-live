@@ -215,6 +215,14 @@ def apply(handle, current_label, new_sections, new_order_mid, faq_section,
         if key in S:
             S[key]["settings"].update(settings)
 
+    # The PFOA claim came off the site on 2026-08-08 — the v4 documents
+    # remove it everywhere until it can be evidenced in writing. The spec
+    # strip's Chemistry cell becomes the doc's Sizes cell instead.
+    if "specs" in S:
+        for blk in S["specs"].get("blocks", {}).values():
+            if blk.get("settings", {}).get("value") == "PFOA free":
+                blk["settings"].update({"label": "Sizes", "value": "UK 3 to 14"})
+
     # Apply the page's rhythm, so no two adjacent sections share a silhouette.
     for key, (layout, scheme, mirror, numbered) in RHYTHM.get(handle, {}).items():
         if key not in S or S[key].get("type") != "content-columns":

@@ -28,11 +28,11 @@
         "anchor_id": "",
         "max_width": 46,
         "eyebrow": "The technology",
-        "heading": "The mechanism, not the claim.",
+        "heading": "How waterproof socks work",
         "heading_tag": "h1",
         "heading_size": "h2",
         "lead_first_para": false,
-        "body": "<p>“Waterproof” is a word anybody can print on a label. This is what is underneath ours, so you can judge it rather than take our word.</p>",
+        "body": "<p>“Waterproof” is a word anyone can print on a label. This is what’s underneath ours, so you can judge it rather than take our word for it.</p>",
         "footnote": "",
         "pointer_label": "",
         "pointer_link_label": "",
@@ -54,8 +54,8 @@
         "row_density": "standard",
         "hide_rule": false,
         "anchor_id": "",
-        "eyebrow": "The membrane",
-        "heading": "Porelle® is not a name we invented.",
+        "eyebrow": "The waterproof layer",
+        "heading": "Porelle® isn’t a name we made up",
         "head_note": "",
         "link_label": "",
         "link_url": "",
@@ -63,7 +63,7 @@
         "link2_url": "",
         "lede": "",
         "lead_first_para": true,
-        "prose": "<p>The waterproof layer is Porelle®, a licensed third-party waterproof-breathable membrane. That distinction matters more than it sounds: a membrane you can look up is a membrane someone else has to stand behind. Water cannot get through it; vapour from the foot can. It is PFOA free.</p><p>Brands that do not name their membrane are asking you to trust an unnamed laminate. We would rather you checked ours.</p><p>The principle is not new and is not proprietary to us. A waterproof-breathable membrane works because liquid water and water vapour are very different sizes. The pores are far too small for a droplet to pass through and comfortably large for a vapour molecule. That asymmetry is the entire technology, and it has been in outdoor clothing for decades.</p>",
+        "prose": "<p>The waterproof layer is Porelle®, made by a separate company. That matters more than it sounds: a named layer is one someone else has to stand behind, and you can go and look them up. Water can’t get through it. Sweat, as vapour, can.</p><p>Brands that don’t name their waterproof layer are asking you to trust an unnamed one. We’d rather you checked ours.</p><p>The principle isn’t new and isn’t ours. A waterproof breathable layer works because liquid water and water vapour are very different sizes. The holes are far too small for a droplet to pass through and comfortably big for a vapour molecule. That difference is the whole technology, and it’s been in outdoor clothing for decades.</p>",
         "gallery_aspect": "4 / 5",
         "footnote": "",
         "cta_label": "",
@@ -79,8 +79,8 @@
           "type": "layer",
           "settings": {
             "heading": "Inner layer",
-            "role": "Next to the skin",
-            "body": "<p>A soft knitted lining against your foot. It moves sweat away and keeps the waterproof layer off your skin.</p>",
+            "role": "Against your skin",
+            "body": "<p>A soft knitted lining that moves sweat off your foot and keeps the waterproof layer from sitting directly against you. Without it a waterproof sock feels like a carrier bag, and the layer wears out against your foot instead of against the shoe.</p>",
             "image_alt": "",
             "tint": "#eaeef1"
           }
@@ -88,9 +88,9 @@
         "y2": {
           "type": "layer",
           "settings": {
-            "heading": "Waterproof layer",
-            "role": "The waterproof barrier",
-            "body": "<p>A Porelle® membrane, sealed in the middle. Made by a separate company, so you can look it up. Water can’t get through it. Sweat can get out.</p>",
+            "heading": "Middle layer",
+            "role": "The waterproof one",
+            "body": "<p>The Porelle® membrane. Water can’t get in. Sweat can get out. It’s sealed between the other two and never forms the outside of the sock.</p>",
             "image_alt": "",
             "tint": "#0093ff"
           }
@@ -99,8 +99,8 @@
           "type": "layer",
           "settings": {
             "heading": "Outer layer",
-            "role": "Wear surface",
-            "body": "<p>A tough knit that takes the rubbing inside your boot, so the membrane doesn’t have to. It’s also what keeps the sock in shape.</p>",
+            "role": "The wear surface",
+            "body": "<p>The knitted face that takes the rubbing inside a boot or shoe. It’s also what holds the sock’s shape when you’re not wearing it, which matters for how long it lasts and, separately, for masah.</p>",
             "image_alt": "",
             "tint": "#111111"
           }
@@ -114,9 +114,9 @@
       "settings": {
         "color_scheme": "wash",
         "anchor_id": "construction",
-        "eyebrow": "The construction",
-        "heading": "Three layers, and what each one is for",
-        "lede": "<p>The middle layer is the one doing the waterproofing, and it is the one you never touch. That is deliberate: a membrane exposed to abrasion is a membrane with a short life.</p>",
+        "eyebrow": "The build",
+        "heading": "Why there are three layers",
+        "lede": "<p>One waterproof layer on its own would be uncomfortable and wouldn’t last. The other two exist to make it wearable.</p><p>The layer doing the waterproofing is the one you never touch. That’s deliberate — a waterproof layer exposed to rubbing is a waterproof layer with a short life.</p>",
         "scroll_hint": "Scroll to take it apart.",
         "track_height": 220,
         "frame_count": 100,
@@ -136,8 +136,8 @@
         "numbered": false,
         "anchor_id": "breathability",
         "eyebrow": "Breathability",
-        "heading": "Breathable and dry are not the same word.",
-        "lede": "<p>This is where most waterproof sock pages become vague. It is also the question almost everybody actually has, so here is the mechanism and the limit.</p>",
+        "heading": "Breathable doesn’t mean dry",
+        "lede": "<p>This is where most waterproof sock pages go vague. It’s also the question nearly everyone actually has, so here’s the mechanism and the limit.</p>",
         "link_label": "When these are the wrong sock",
         "link_url": "/pages/running-and-trail"
       },
@@ -145,29 +145,29 @@
         "i1": {
           "type": "item",
           "settings": {
-            "title": "What breathability actually means",
-            "body": "<p>It is a rate, not a state. A membrane moves vapour outwards at a certain speed. It does not remove moisture, and it does not make a sock ventilated.</p>"
+            "title": "Breathability is a rate, not a state",
+            "body": "<p>The layer moves sweat outwards at a certain speed. It doesn’t remove moisture and it doesn’t make a sock ventilated.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Where the limit is",
-            "body": "<p>Your foot produces vapour at a rate that depends on effort and temperature. If you produce it faster than the membrane can move it, the surplus condenses and you feel damp. That is not a fault. It is arithmetic.</p>"
+            "body": "<p>Your foot produces sweat at a rate that depends on effort and temperature. Produce it faster than the layer can move it and the surplus stays inside. That isn’t a fault, it’s arithmetic.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "When you will notice it",
-            "body": "<p>Walking pace in British weather is comfortably within it. A steep sustained climb in mild air, a hard run, or summer rain will exceed it. Cold air helps, because the difference in vapour pressure across the membrane is what drives the transfer.</p>"
+            "title": "When you’ll notice",
+            "body": "<p>Walking pace in British weather is comfortably within it. A steep climb in mild air, a hard run, or summer rain will exceed it. Cold air helps, because the difference in humidity across the layer is what drives it out.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
             "title": "What actually helps",
-            "body": "<p>A sock that fits, footwear that is not sealed shut, and taking them off at the end of the day. Nothing about a membrane changes the fact that a foot in a boot for ten hours is in a humid place.</p>"
+            "body": "<p>A sock that fits, footwear that isn’t sealed shut, and taking them off at the end of the day. No waterproof layer changes the fact that a foot in a boot for ten hours is in a humid place.</p>"
           }
         }
       },
@@ -185,13 +185,13 @@
         "hide_rule": false,
         "anchor_id": "",
         "max_width": 46,
-        "eyebrow": "How this is tested",
-        "heading": "We publish no test figures yet.",
+        "eyebrow": "Testing",
+        "heading": "We don’t publish test figures yet",
         "heading_tag": "h2",
         "heading_size": "h3",
         "lead_first_para": false,
-        "body": "<p>Independent test data is the only kind worth printing, and we do not have it yet. Rather than quote a hydrostatic head or a breathability rating we cannot evidence, we name the membrane and let you look it up.</p>",
-        "footnote": "<p>For context: hydrostatic head measures the water pressure a fabric resists before it lets water through, and breathability is usually given as grams of vapour passed per square metre in twenty-four hours. Those are the two numbers to ask any brand in this category for.</p>",
+        "body": "<p>Independent test data is the only kind worth printing and we don’t have it yet. Rather than quote a waterproof rating or a breathability number we can’t stand behind, we’ve left this section empty until we can.</p>",
+        "footnote": "<p>For what it’s worth, the two numbers to ask any brand in this category for are hydrostatic head — how much water pressure a fabric holds back before it leaks — and a breathability rating, usually given as grams of vapour passed per square metre in twenty-four hours.</p>",
         "pointer_label": "",
         "pointer_link_label": "",
         "pointer_url": "",
@@ -209,9 +209,9 @@
         "layout": "band",
         "numbered": false,
         "anchor_id": "failure",
-        "eyebrow": "Failure",
-        "heading": "Four ways a membrane dies.",
-        "lede": "<p>A waterproof sock almost never fails from age. It fails from one of these, and three of them are avoidable.</p>",
+        "eyebrow": "What ends it",
+        "heading": "Four ways a waterproof layer dies",
+        "lede": "<p>A waterproof sock almost never fails from age. It fails from one of these, and three are avoidable.</p>",
         "link_label": "How to wash them properly",
         "link_url": "/pages/care-and-washing"
       },
@@ -220,28 +220,28 @@
           "type": "item",
           "settings": {
             "title": "Heat",
-            "body": "<p>A tumble dryer, an iron, or a radiator. Direct heat is the fastest way to end a laminate and the most common. Air dry, always.</p>"
+            "body": "<p>A tumble dryer, an iron, or a radiator. Direct heat is the fastest way to finish one off and the most common. Air dry, always.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Fabric softener",
-            "body": "<p>Softeners coat the pores the membrane breathes through. The sock still keeps water out and stops moving vapour, which is the worst of both.</p>"
+            "body": "<p>Softener coats the holes the layer breathes through. The sock still keeps water out and stops letting sweat out, which is the worst of both.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "Abrasion",
-            "body": "<p>The outer knit takes this, which is why there are three layers. But a sock worn inside a boot with a rough interior, or over months on site, will eventually wear through.</p>"
+            "title": "Rubbing",
+            "body": "<p>The outer knit takes this, which is why there are three layers. But a sock worn in a boot with a rough interior, or over months on site, will eventually wear through.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
-            "title": "Puncture",
-            "body": "<p>A toenail, a thorn, or a sharp stone inside a boot. Once the laminate is pierced the waterproofing is gone and cannot be restored — no spray or reproofing treatment brings a membrane back.</p>"
+            "title": "A hole",
+            "body": "<p>A toenail, a thorn, or a sharp stone inside a boot. Once it’s pierced the waterproofing is gone and can’t be restored. No spray or reproofing treatment brings a waterproof layer back.</p>"
           }
         }
       },
@@ -260,8 +260,7 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "The technical ones.",
-        "lede": "<p>About the mechanism rather than about the product. Where we do not have a number, the answer says so.</p>",
+        "heading": "Common questions",
         "cta_link": "#buy",
         "help_link": "/pages/contact"
       },
@@ -270,42 +269,42 @@
           "type": "question",
           "settings": {
             "question": "How do waterproof socks work?",
-            "answer": "<p>A waterproof-breathable membrane is sealed between two knitted layers. Its pores are too small for liquid water to pass through and large enough for water vapour to escape, so rain and puddle water stay out while sweat can move away from the foot.</p>"
+            "answer": "<p>A thin waterproof layer is sealed between two knitted layers. Its holes are too small for liquid water to pass through and big enough for water vapour to escape, so rain and puddle water stay out while sweat can move away from your foot.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
             "question": "What is a waterproof breathable membrane?",
-            "answer": "<p>A thin laminate that blocks liquid water in one direction while allowing water vapour through in the other. The effect relies on the size difference between a water droplet and a vapour molecule. HydroSox uses Porelle®, a licensed third-party membrane.</p>"
+            "answer": "<p>A thin sheet that blocks liquid water one way while letting water vapour through the other. It works because a water droplet is far bigger than a vapour molecule. HydroSox uses Porelle®, made by a separate company.</p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
-            "question": "Why do waterproof socks have three layers?",
-            "answer": "<p>Because the membrane needs protecting on both sides. The inner knit keeps it off the skin and moves sweat towards it; the outer knit takes the abrasion inside a boot. A membrane used as the wear surface would not last a season.</p>"
+            "question": "Why do waterproof socks need three layers?",
+            "answer": "<p>Because the waterproof layer needs protecting on both sides. The inner knit keeps it off your skin and moves sweat towards it. The outer knit takes the rubbing inside a boot. A waterproof layer used as the wear surface wouldn’t last a season.</p>"
           }
         },
         "q4": {
           "type": "question",
           "settings": {
-            "question": "What is PFOA and why does it matter?",
-            "answer": "<p>PFOA is a perfluorinated compound historically used in some water-repellent treatments and now widely restricted because of environmental and health concerns. Stating that a product is PFOA free tells you which chemistry was not used.</p>"
+            "question": "Can waterproof socks be reproofed?",
+            "answer": "<p>No. Reproofing works on a water-repellent finish applied to a fabric surface. It can’t repair a waterproof layer. Once one is pierced or worn through, the waterproofing is gone for good.</p>"
           }
         },
         "q5": {
           "type": "question",
           "settings": {
-            "question": "Can waterproof socks be reproofed?",
-            "answer": "<p>No. Reproofing works on a durable water repellent finish applied to a fabric surface. It cannot repair a membrane. Once a laminate is punctured or degraded, the waterproofing is gone permanently.</p>"
+            "question": "What is hydrostatic head?",
+            "answer": "<p>The standard measure of how much water pressure a fabric holds back before water passes through, given in millimetres. It’s the number worth asking any waterproof brand for. We don’t publish one yet because we don’t have independent test data.</p>"
           }
         },
         "q6": {
           "type": "question",
           "settings": {
-            "question": "What is hydrostatic head?",
-            "answer": "<p>The standard measure of how much water pressure a fabric resists before water passes through, expressed in millimetres. It is the figure worth asking any waterproof brand for. We do not publish one yet, because we do not have independent test data.</p>"
+            "question": "Do all waterproof socks use the same membrane?",
+            "answer": "<p>No, and many don’t say what they use at all. Some use a named third-party layer, some use an unnamed one, and some are just a tightly knitted or treated sock with no waterproof layer in it. If a listing doesn’t name one, that’s usually why.</p>"
           }
         }
       },

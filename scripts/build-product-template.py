@@ -124,11 +124,12 @@ def main():
                        'body': '<p>A soft knitted lining that moves sweat off the '
                                'foot and stops the membrane sitting against the '
                                'skin.</p>'}),
+        # The PFOA clause came off 2026-08-08: the v4 documents remove the
+        # claim site-wide until it can be evidenced in writing.
         ('w2', 'row', {'title': 'Porelle® membrane',
                        'body': '<p>A licensed third-party waterproof-breathable '
                                'membrane — not a name we invented. Water cannot '
-                               'get in; vapour from the foot can get out. PFOA '
-                               'free.</p>'}),
+                               'get in; vapour from the foot can get out.</p>'}),
         ('w3', 'row', {'title': 'Outer layer',
                        'body': '<p>The knitted face that takes the abrasion '
                                'inside a boot or shoe, and holds the sock\'s '

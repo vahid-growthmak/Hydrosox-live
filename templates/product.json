@@ -5,6 +5,8 @@
       "settings": {
         "color_scheme": "paper",
         "home_label": "Home",
+        "parent_label": "Waterproof socks",
+        "parent_url": "/pages/waterproof-socks",
         "current_label": "HydroSox Waterproof Socks"
       }
     },
@@ -115,28 +117,28 @@
           "type": "trust",
           "settings": {
             "label": "Delivery",
-            "value": "Free UK delivery on two pairs or more"
+            "value": "Free on two pairs or more"
           }
         },
         "r2": {
           "type": "trust",
           "settings": {
-            "label": "Dispatch",
-            "value": "UK company, UK warehouse"
+            "label": "Sent from",
+            "value": "Our UK warehouse"
           }
         },
         "r3": {
           "type": "trust",
           "settings": {
             "label": "Returns",
-            "value": "Fourteen days, no reason needed"
+            "value": "14 days, no reason needed"
           }
         },
         "r4": {
           "type": "trust",
           "settings": {
-            "label": "Payment",
-            "value": "Visa · Mastercard · American Express · Apple Pay · Google Pay · Shop Pay"
+            "label": "Pay with",
+            "value": "Visa · Mastercard · Amex · Apple Pay · Google Pay · Shop Pay"
           }
         },
         "l1": {
@@ -243,8 +245,8 @@
         "color_scheme": "paper",
         "anchor_id": "buy",
         "eyebrow": "Order",
-        "heading": "Two decisions and a quantity.",
-        "lede": "<p>Three-layer waterproof socks with a licensed Porelle® membrane. Four colours, four sizes, from £20 a pair.</p>",
+        "heading": "Choose your colour and size",
+        "lede": "<p>Waterproof socks for hiking, work, cycling, running and wudu. Four colours, four sizes, from £20 a pair.</p>",
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
@@ -265,7 +267,8 @@
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
         "guide_link_url": "",
-        "guide_close_label": "Close"
+        "guide_close_label": "Close",
+        "ladder_note": "Two is the most common order. A pair needs a day to air dry, so a second one means there is always a dry pair ready."
       }
     },
     "about": {
@@ -274,8 +277,8 @@
         "color_scheme": "paper",
         "anchor_id": "what-it-is",
         "eyebrow": "What it is",
-        "heading": "A membrane, sealed inside a knitted sock.",
-        "head_note": "<p>A crew-height sock with a waterproof-breathable membrane sealed between two knitted layers. You wear them under the boots, shoes or trainers you already own — the water that gets past your footwear stops at the sock.</p><p>They are built for the days the forecast is wrong: a hill walk that turns, a commute in the rain, a shift that runs long on wet ground. One pair covers most of what a British year does to your feet.</p>",
+        "heading": "What it is",
+        "head_note": "<p>A crew-height waterproof sock built in three layers: a knitted lining against your skin, a Porelle® waterproof layer in the middle, and a tough knit on the outside. One height, one build, four colours, four sizes. The same sock whether you bought it for a hill, a commute, a shift or for wudu.</p>",
         "shots_aspect": "1 / 1",
         "cta_label": "Buy a pair",
         "cta_url": "#buy",
@@ -384,117 +387,78 @@
         "numbered": false,
         "anchor_id": "specification",
         "eyebrow": "Specification",
-        "heading": "Everything we can state.",
-        "lede": "<p>Every figure here is checkable, and every gap is a fact we are still confirming rather than a guess. Weight, height in centimetres, fibre composition and country of manufacture are published the moment they are.</p>"
+        "heading": "The full specification",
+        "lede": ""
       },
       "blocks": {
         "sp1": {
           "type": "item",
           "settings": {
-            "title": "Construction",
-            "body": "<p>Three layers: knitted lining, membrane, knitted wear face.</p>"
+            "title": "Build",
+            "body": "<p>Three layers: knitted lining, waterproof layer, outer knit</p>"
           }
         },
         "sp2": {
           "type": "item",
           "settings": {
-            "title": "Membrane",
-            "body": "<p>Porelle®, licensed third-party waterproof-breathable laminate.</p>"
+            "title": "Waterproof layer",
+            "body": "<p>Porelle® membrane</p>"
           }
         },
         "sp3": {
           "type": "item",
           "settings": {
             "title": "Height",
-            "body": "<p>Crew.</p>"
+            "body": "<p>Crew</p>"
           }
         },
         "sp4": {
           "type": "item",
           "settings": {
             "title": "Sizes",
-            "body": "<p>S (UK 3–5) · M (UK 6–8) · L (UK 9–11) · XL (UK 12–14).</p>"
+            "body": "<p>S (UK 3–5) · M (UK 6–8) · L (UK 9–11) · XL (UK 12–14)</p>"
           }
         },
         "sp5": {
           "type": "item",
           "settings": {
-            "title": "Sized on",
-            "body": "<p>Foot length in centimetres, not shoe size.</p>"
+            "title": "Sized by",
+            "body": "<p>Foot length in centimetres, not shoe size</p>"
           }
         },
         "sp6": {
           "type": "item",
           "settings": {
             "title": "Colours",
-            "body": "<p>Black · Black / Grey · Black / Navy · White.</p>"
+            "body": "<p>Black · Black / Grey · Black / Navy · White</p>"
           }
         },
         "sp7": {
           "type": "item",
           "settings": {
-            "title": "Chemistry",
-            "body": "<p>PFOA free.</p>"
+            "title": "Care",
+            "body": "<p>Cool wash, no softener, no bleach, air dry, never tumble dry or iron</p>"
           }
         },
         "sp8": {
           "type": "item",
           "settings": {
-            "title": "Care",
-            "body": "<p>Cool wash, no softener, no bleach, air dry, never tumble dry or iron.</p>"
+            "title": "Warranty",
+            "body": "<p>Your statutory rights apply in full. No extra warranty at present.</p>"
           }
         },
         "sp9": {
           "type": "item",
           "settings": {
-            "title": "Warranty",
-            "body": "<p>Statutory rights apply in full; no additional warranty offered at present.</p>"
+            "title": "Sent from",
+            "body": "<p>Our UK warehouse</p>"
           }
         },
         "sp10": {
           "type": "item",
           "settings": {
-            "title": "Origin",
-            "body": "<p>UK company, UK warehouse.</p>"
-          }
-        },
-        "sp11": {
-          "type": "item",
-          "settings": {
             "title": "Price",
-            "body": "<p>£20.00 a pair, £18.49 a pair in a 2-pack, £17.66 a pair in a 3-pack, £16.99 a pair in a 4-pack, £15.99 a pair in a 5-pack</p>"
-          }
-        },
-        "sp12": {
-          "type": "item",
-          "settings": {
-            "title": "Weight",
-            "body": "<p>Per pair, in grams.</p>",
-            "flag": "Not published yet"
-          }
-        },
-        "sp13": {
-          "type": "item",
-          "settings": {
-            "title": "Height in centimetres",
-            "body": "<p>Cuff to sole, measured flat.</p>",
-            "flag": "Not published yet"
-          }
-        },
-        "sp14": {
-          "type": "item",
-          "settings": {
-            "title": "Fibre composition",
-            "body": "<p>Percentage split across the three layers.</p>",
-            "flag": "Not published yet"
-          }
-        },
-        "sp15": {
-          "type": "item",
-          "settings": {
-            "title": "Country of manufacture",
-            "body": "<p>The factory, not the company address.</p>",
-            "flag": "Not published yet"
+            "body": "<p>£20.00 a pair, or £16.00 each in a five-pack</p>"
           }
         }
       },
@@ -508,12 +472,7 @@
         "sp7",
         "sp8",
         "sp9",
-        "sp10",
-        "sp11",
-        "sp12",
-        "sp13",
-        "sp14",
-        "sp15"
+        "sp10"
       ]
     },
     "colourways": {
@@ -525,14 +484,14 @@
         "gallery_aspect": "4 / 5",
         "anchor_id": "colourways",
         "eyebrow": "Colours",
-        "heading": "Four, and what each is for."
+        "heading": "The four colours"
       },
       "blocks": {
         "cw1": {
           "type": "item",
           "settings": {
             "title": "Black",
-            "body": "<p>The one that disappears under work trousers and inside a boot. The most forgiving on wet ground.</p>",
+            "body": "<p>Disappears under work trousers and inside a boot. The most forgiving on wet ground.</p>",
             "image_fallback": "colour-black.webp",
             "image_alt": "HydroSox waterproof socks in black, crew height, shown upright"
           }
@@ -541,7 +500,7 @@
           "type": "item",
           "settings": {
             "title": "Black / Grey",
-            "body": "<p>The everyday pair. Enough contrast to look deliberate with trainers, dark enough not to show a muddy day.</p>",
+            "body": "<p>The everyday pair. Enough contrast to look deliberate with trainers, dark enough to survive a muddy day.</p>",
             "image_fallback": "colour-black-grey.webp",
             "image_alt": "HydroSox waterproof socks in black / grey, crew height, shown upright"
           }
@@ -559,7 +518,7 @@
           "type": "item",
           "settings": {
             "title": "White",
-            "body": "<p>The running and cycling pair. Shows dirt, and is the one most people photograph.</p>",
+            "body": "<p>The running and cycling pair. Shows the dirt, and it’s the one people photograph.</p>",
             "image_fallback": "colour-white.webp",
             "image_alt": "HydroSox waterproof socks in white, crew height, shown upright"
           }
@@ -580,8 +539,8 @@
         "numbered": false,
         "anchor_id": "sizing",
         "eyebrow": "Sizing",
-        "heading": "Measure the foot, not the shoe.",
-        "lede": "<p>Shoe sizing is not consistent between brands. Foot length is, and it is the thing that actually has to fit inside the sock.</p>",
+        "heading": "Getting the size right",
+        "lede": "<p>Shoe sizes aren’t consistent between brands. Foot length is, and it’s what actually has to fit inside the sock.</p>",
         "link_label": "Open the size guide",
         "link_url": "/pages/size-guide"
       },
@@ -589,22 +548,22 @@
         "sz1": {
           "type": "item",
           "settings": {
-            "title": "Four bands",
-            "body": "<p>S fits UK 3–5, M fits UK 6–8, L fits UK 9–11, XL fits UK 12–14. Each band is set by foot length in centimetres, published in full on the size guide.</p>"
+            "title": "Four sizes",
+            "body": "<p>S fits UK 3–5, M fits UK 6–8, L fits UK 9–11, XL fits UK 12–14. Each one is set by foot length in centimetres, published in full on the size guide.</p>"
           }
         },
         "sz2": {
           "type": "item",
           "settings": {
-            "title": "Between two bands",
-            "body": "<p>Take the larger one. These are a close, stretchy fit, and a size down grips the toes and shortens the life of the membrane.</p>"
+            "title": "Between two sizes",
+            "body": "<p>Take the bigger one. The fit is close and stretchy, so the larger size will not feel loose — and a size down puts constant tension on the waterproof layer.</p>"
           }
         },
         "sz3": {
           "type": "item",
           "settings": {
-            "title": "Inside a boot or a cycling shoe",
-            "body": "<p>They add roughly the bulk of a mid-weight sock. If your footwear is already tight with a thick sock, it will be tight with these.</p>"
+            "title": "Inside boots and cycling shoes",
+            "body": "<p>They add roughly the bulk of a mid-weight sock. If your footwear is already tight with a thick sock, it’ll be tight with these.</p>"
           }
         }
       },
@@ -623,14 +582,14 @@
         "numbered": false,
         "anchor_id": "after-you-buy",
         "eyebrow": "After you buy",
-        "heading": "Three things worth knowing now."
+        "heading": "Three things worth knowing now"
       },
       "blocks": {
         "ab1": {
           "type": "item",
           "settings": {
-            "title": "Washing them will not ruin them. Heat will.",
-            "body": "<p>Cool wash, no fabric softener, no bleach, air dry. A membrane fails from heat, softener and abrasion long before it fails from age.</p>",
+            "title": "Washing them won’t ruin them. Heat will.",
+            "body": "<p>Cool wash, no fabric softener, no bleach, air dry. A waterproof layer fails from heat, softener and rubbing long before it fails from age.</p>",
             "link_label": "How to wash them",
             "link_url": "/pages/care-and-washing"
           }
@@ -647,8 +606,8 @@
         "ab3": {
           "type": "item",
           "settings": {
-            "title": "A fault is not the same as wear.",
-            "body": "<p>A seam that lets water through in the first weeks of normal use is a fault. Thinning at the heel after months is wear. The warranty page draws the line honestly.</p>",
+            "title": "A fault isn’t the same as wear.",
+            "body": "<p>A seam letting water through in the first few weeks is a fault. Thinning at the heel after months is wear. The warranty page draws that line honestly.</p>",
             "link_label": "The warranty page",
             "link_url": "/pages/warranty"
           }
@@ -679,42 +638,42 @@
           "type": "question",
           "settings": {
             "question": "Do HydroSox come up big or small?",
-            "answer": "<p>They run true to the foot-length bands published on the size guide, and they are a close, stretchy fit rather than a loose one. If you are between two bands, take the larger — a size down grips the toes and shortens the life of the membrane.</p>"
+            "answer": "<p>They run true to the foot-length sizes on the size guide, and they’re a close stretchy fit rather than a loose one. Between two sizes, take the bigger — going down grips your toes and is hard on the waterproof layer.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
-            "question": "Do HydroSox come in different heights?",
-            "answer": "<p>No. One height, crew, in every colour and size. A single construction is the reason the price is £20 rather than £35.</p>"
+            "question": "Do they come in different heights?",
+            "answer": "<p>No. One height, crew, in every colour and size. Having one build is part of why they’re £20 and not £35.</p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
-            "question": "Are HydroSox suitable for women?",
-            "answer": "<p>Yes. The bands run from UK 3, and the sock is unisex. Size on foot length rather than on the men's or women's label you are used to.</p>"
+            "question": "Are they unisex?",
+            "answer": "<p>Yes. The sizes run from UK 3 to UK 14 and the sock is the same for everyone. Go by foot length rather than the men’s or women’s size you’re used to.</p>"
           }
         },
         "q4": {
           "type": "question",
           "settings": {
             "question": "How many pairs do most people buy?",
-            "answer": "<p>Two or three. They need washing and air drying between wears, and air drying takes longer than a tumble dryer would, so one pair rarely keeps up with a daily problem.</p>"
+            "answer": "<p>Two or three. They need washing and air drying between wears, and air drying takes longer than a tumble dryer, so one pair rarely keeps up with a daily problem.</p>"
           }
         },
         "q5": {
           "type": "question",
           "settings": {
-            "question": "Can I wash HydroSox in a machine?",
-            "answer": "<p>Cool wash, gentle cycle, inside out, no fabric softener and no bleach. Then air dry away from a radiator. Never tumble dry and never iron — both are heat applied directly to a laminate.</p>"
+            "question": "Can I put them in the washing machine?",
+            "answer": "<p>Cool wash, gentle cycle, inside out, no fabric softener and no bleach. Then air dry away from a radiator. Never tumble dry and never iron — both are heat straight onto the waterproof layer.</p>"
           }
         },
         "q6": {
           "type": "question",
           "settings": {
-            "question": "What is included when I order?",
-            "answer": "<p>The pairs you selected, in the colour and size you chose, and nothing else. No boxes, no printed inserts.</p>"
+            "question": "What arrives in the parcel?",
+            "answer": "<p>The pairs you chose, in the colour and size you picked. No boxes, no printed inserts. Keeping the packaging simple is part of what keeps postage out of the price.</p>"
           }
         }
       },
@@ -734,8 +693,10 @@
         "layout": "list",
         "numbered": false,
         "eyebrow": "Reviews",
-        "heading": "There are none yet, and we are not going to invent any.",
-        "lede": "<p>HydroSox is new. A rating with nothing behind it is worth nothing, and a feed of five-star reviews with no negatives in it reads as filtered to exactly the person who is reading it carefully.</p>"
+        "heading": "Nothing here yet",
+        "lede": "<p>No customer has reviewed this product so far, so there is nothing to show. Reviews will appear in this space once real orders have been placed and used. The standard we will hold them to is set out on its own page.</p>",
+        "link_label": "The standard we’ll hold this to",
+        "link_url": "/pages/reviews"
       }
     }
   },

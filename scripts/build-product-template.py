@@ -73,21 +73,15 @@ def main():
         sections[key] = rec
         order.append(key)
 
-    # Two levels: Home, then the product. Owned here, because this script
-    # rebuilds the file from scratch and the sitemap pass only adds a bare
-    # breadcrumb when none exists.
-    #
-    # This reverses brief 3.1, which nested the product under the hub so the two
-    # pages could not be mistaken for each other and so hub authority passed
-    # down the trail. The client asked for it directly on 2026-08-07: the
-    # product is the destination, and a trail that puts a category above it
-    # reads as though the reader is still on the way somewhere.
-    #
-    # The hub is not orphaned by this — it is in the header, the footer and the
-    # five use-case pages' own breadcrumbs, which still nest under it.
+    # Three levels again: Home › Waterproof socks › the product. The client's
+    # v4 content document (8 Aug 2026) states the breadcrumb explicitly,
+    # which supersedes their 2026-08-07 request for the two-level trail — the
+    # newest instruction wins, and the history stays in git.
     add('breadcrumb', od(('type', 'breadcrumb'), ('settings', od(
         ('color_scheme', 'paper'),
         ('home_label', 'Home'),
+        ('parent_label', 'Waterproof socks'),
+        ('parent_url', '/pages/waterproof-socks'),
         ('current_label', 'HydroSox Waterproof Socks'),
     ))))
 
@@ -100,13 +94,15 @@ def main():
     buy = copy_section(idx, 'buy', od(
         ('anchor_id', 'buy'),
         ('eyebrow', 'Order'),
-        ('lede', '<p>Three-layer waterproof socks with a licensed Porelle® '
-                 'membrane. Four colours, four sizes, from £20 a pair.</p>'),
+        # v4: the sub-line under the product H1, and this page's own line
+        # under the quantity ladder. The trust rows arrive correct from the
+        # homepage copy — Delivery / Sent from / Returns / Pay with.
+        ('lede', '<p>Waterproof socks for hiking, work, cycling, running and '
+                 'wudu. Four colours, four sizes, from £20 a pair.</p>'),
+        ('ladder_note', 'Two is the most common order. A pair needs a day to '
+                        'air dry, so a second one means there is always a dry '
+                        'pair ready.'),
     ))
-    for block in buy.get('blocks', {}).values():
-        if block.get('type') == 'trust' and block['settings'].get('label') == 'Checkout':
-            block['settings']['label'] = 'Returns'
-            block['settings']['value'] = 'Fourteen days, no reason needed'
     add('buy', buy)
 
     # 2 — what it is, rebuilt 2026-08-07 to the client's live mockup
@@ -176,16 +172,16 @@ def main():
     add('about', od(('type', 'detail-folds'), ('settings', od(
         ('color_scheme', 'paper'),
         ('anchor_id', 'what-it-is'),
+        # v4 words in the mockup's design: the doc's S2 heading and single
+        # paragraph carry the section; the diagrams and folds stay.
         ('eyebrow', 'What it is'),
-        ('heading', 'A membrane, sealed inside a knitted sock.'),
+        ('heading', 'What it is'),
         ('head_note',
-         '<p>A crew-height sock with a waterproof-breathable membrane sealed '
-         'between two knitted layers. You wear them under the boots, shoes or '
-         'trainers you already own — the water that gets past your footwear '
-         'stops at the sock.</p><p>They are built for the days the forecast is '
-         'wrong: a hill walk that turns, a commute in the rain, a shift that '
-         'runs long on wet ground. One pair covers most of what a British year '
-         'does to your feet.</p>'),
+         '<p>A crew-height waterproof sock built in three layers: a knitted '
+         'lining against your skin, a Porelle® waterproof layer in the middle, '
+         'and a tough knit on the outside. One height, one build, four colours, '
+         'four sizes. The same sock whether you bought it for a hill, a '
+         'commute, a shift or for wudu.</p>'),
         # Square, because the diagram files are square: a 4:3 frame either
         # crops the callouts or letterboxes on the sides.
         ('shots_aspect', '1 / 1'),
@@ -204,31 +200,26 @@ def main():
     # published as a fact, and the flag renders where the value would sit.
     # The mockup's Price row spells out the whole per-pair ladder, matching
     # the verified automatic discounts to the penny.
+    # v4, doc-exact at the client's instruction (8 Aug 2026): the ten rows the
+    # document lists, in its words and order. The four unconfirmed figures
+    # stay absent per the document's own red block — not filled, not flagged.
     spec_rows = [
-        ('Construction', 'Three layers: knitted lining, membrane, knitted wear face.', None),
-        ('Membrane', 'Porelle®, licensed third-party waterproof-breathable laminate.', None),
-        ('Height', 'Crew.', None),
-        ('Sizes', 'S (UK 3–5) · M (UK 6–8) · L (UK 9–11) · XL (UK 12–14).', None),
-        ('Sized on', 'Foot length in centimetres, not shoe size.', None),
-        ('Colours', 'Black · Black / Grey · Black / Navy · White.', None),
-        ('Chemistry', 'PFOA free.', None),
-        ('Care', 'Cool wash, no softener, no bleach, air dry, never tumble dry or iron.', None),
-        ('Warranty', 'Statutory rights apply in full; no additional warranty offered at present.', None),
-        ('Origin', 'UK company, UK warehouse.', None),
-        ('Price', '£20.00 a pair, £18.49 a pair in a 2-pack, £17.66 a pair in a '
-                  '3-pack, £16.99 a pair in a 4-pack, £15.99 a pair in a 5-pack', None),
-        ('Weight', 'Per pair, in grams.', 'Not published yet'),
-        ('Height in centimetres', 'Cuff to sole, measured flat.', 'Not published yet'),
-        ('Fibre composition', 'Percentage split across the three layers.', 'Not published yet'),
-        ('Country of manufacture', 'The factory, not the company address.', 'Not published yet'),
+        ('Build', 'Three layers: knitted lining, waterproof layer, outer knit'),
+        ('Waterproof layer', 'Porelle® membrane'),
+        ('Height', 'Crew'),
+        ('Sizes', 'S (UK 3–5) · M (UK 6–8) · L (UK 9–11) · XL (UK 12–14)'),
+        ('Sized by', 'Foot length in centimetres, not shoe size'),
+        ('Colours', 'Black · Black / Grey · Black / Navy · White'),
+        ('Care', 'Cool wash, no softener, no bleach, air dry, never tumble dry or iron'),
+        ('Warranty', 'Your statutory rights apply in full. No extra warranty at present.'),
+        ('Sent from', 'Our UK warehouse'),
+        ('Price', '£20.00 a pair, or £16.00 each in a five-pack'),
     ]
     spec, spec_order = collections.OrderedDict(), []
-    for n, (label, value, flag) in enumerate(spec_rows, 1):
+    for n, (label, value) in enumerate(spec_rows, 1):
         k = 'sp%d' % n
-        row = od(('title', label), ('body', '<p>%s</p>' % value))
-        if flag:
-            row['flag'] = flag
-        spec[k] = od(('type', 'item'), ('settings', row))
+        spec[k] = od(('type', 'item'), ('settings', od(
+            ('title', label), ('body', '<p>%s</p>' % value))))
         spec_order.append(k)
     add('specification', od(('type', 'content-columns'), ('settings', od(
         ('color_scheme', 'wash'),
@@ -236,11 +227,8 @@ def main():
         ('numbered', False),
         ('anchor_id', 'specification'),
         ('eyebrow', 'Specification'),
-        ('heading', 'Everything we can state.'),
-        ('lede', '<p>Every figure here is checkable, and every gap is a fact we '
-                 'are still confirming rather than a guess. Weight, height in '
-                 'centimetres, fibre composition and country of manufacture are '
-                 'published the moment they are.</p>'),
+        ('heading', 'The full specification'),
+        ('lede', ''),
     )), ('blocks', spec), ('block_order', spec_order)))
 
     # 4 — colourways, one photograph per colour.
@@ -256,16 +244,16 @@ def main():
     colours, colours_order = collections.OrderedDict(), []
     for n, (name, asset, body) in enumerate([
         ('Black', 'colour-black.webp',
-         'The one that disappears under work trousers and inside a boot. The '
-         'most forgiving on wet ground.'),
+         'Disappears under work trousers and inside a boot. The most forgiving '
+         'on wet ground.'),
         ('Black / Grey', 'colour-black-grey.webp',
          'The everyday pair. Enough contrast to look deliberate with trainers, '
-         'dark enough not to show a muddy day.'),
+         'dark enough to survive a muddy day.'),
         ('Black / Navy', 'colour-black-navy.webp',
          'The same idea in a colder tone. Sits better with blue and grey kit.'),
         ('White', 'colour-white.webp',
-         'The running and cycling pair. Shows dirt, and is the one most people '
-         'photograph.'),
+         'The running and cycling pair. Shows the dirt, and it’s the one '
+         'people photograph.'),
     ], 1):
         k = 'cw%d' % n
         colours[k] = od(('type', 'item'), ('settings', od(
@@ -286,22 +274,23 @@ def main():
         ('gallery_aspect', '4 / 5'),
         ('anchor_id', 'colourways'),
         ('eyebrow', 'Colours'),
-        ('heading', 'Four, and what each is for.'),
+        ('heading', 'The four colours'),
     )), ('blocks', colours), ('block_order', colours_order)))
 
     # 5 — sizing
     sizing, sizing_order = collections.OrderedDict(), []
     for n, (title, body) in enumerate([
-        ('Four bands',
-         'S fits UK 3–5, M fits UK 6–8, L fits UK 9–11, XL fits UK 12–14. Each '
-         'band is set by foot length in centimetres, published in full on the '
-         'size guide.'),
-        ('Between two bands',
-         'Take the larger one. These are a close, stretchy fit, and a size down '
-         'grips the toes and shortens the life of the membrane.'),
-        ('Inside a boot or a cycling shoe',
+        ('Four sizes',
+         'S fits UK 3–5, M fits UK 6–8, L fits UK 9–11, XL fits '
+         'UK 12–14. Each one is set by foot length in centimetres, '
+         'published in full on the size guide.'),
+        ('Between two sizes',
+         'Take the bigger one. The fit is close and stretchy, so the larger '
+         'size will not feel loose — and a size down puts constant tension '
+         'on the waterproof layer.'),
+        ('Inside boots and cycling shoes',
          'They add roughly the bulk of a mid-weight sock. If your footwear is '
-         'already tight with a thick sock, it will be tight with these.'),
+         'already tight with a thick sock, it’ll be tight with these.'),
     ], 1):
         k = 'sz%d' % n
         sizing[k] = od(('type', 'item'), ('settings', od(
@@ -316,9 +305,10 @@ def main():
         ('numbered', False),
         ('anchor_id', 'sizing'),
         ('eyebrow', 'Sizing'),
-        ('heading', 'Measure the foot, not the shoe.'),
-        ('lede', '<p>Shoe sizing is not consistent between brands. Foot length is, '
-                 'and it is the thing that actually has to fit inside the sock.</p>'),
+        ('heading', 'Getting the size right'),
+        ('lede', '<p>Shoe sizes aren’t consistent between brands. Foot '
+                 'length is, and it’s what actually has to fit inside the '
+                 'sock.</p>'),
         ('link_label', 'Open the size guide'),
         ('link_url', '/pages/size-guide'),
     )), ('blocks', sizing), ('block_order', sizing_order)))
@@ -326,9 +316,10 @@ def main():
     # 6 — care, returns and warranty, each row linking to the page that owns it
     after, after_order = collections.OrderedDict(), []
     for n, (title, body, label, url) in enumerate([
-        ('Washing them will not ruin them. Heat will.',
-         'Cool wash, no fabric softener, no bleach, air dry. A membrane fails '
-         'from heat, softener and abrasion long before it fails from age.',
+        ('Washing them won’t ruin them. Heat will.',
+         'Cool wash, no fabric softener, no bleach, air dry. A waterproof '
+         'layer fails from heat, softener and rubbing long before it fails '
+         'from age.',
          'How to wash them', '/pages/care-and-washing'),
         ('Fourteen days, no reason needed.',
          'Unworn and in the original packaging. Your statutory rights are the '
@@ -336,10 +327,10 @@ def main():
          # The designed page, as the mockup links it — not the bare /policies/
          # twin, which stays the checkout-linked legal copy of the same text.
          'The returns policy', '/pages/returns-and-refunds'),
-        ('A fault is not the same as wear.',
-         'A seam that lets water through in the first weeks of normal use is a '
-         'fault. Thinning at the heel after months is wear. The warranty page '
-         'draws the line honestly.',
+        ('A fault isn’t the same as wear.',
+         'A seam letting water through in the first few weeks is a fault. '
+         'Thinning at the heel after months is wear. The warranty page draws '
+         'that line honestly.',
          'The warranty page', '/pages/warranty'),
     ], 1):
         k = 'ab%d' % n
@@ -357,7 +348,7 @@ def main():
         ('numbered', False),
         ('anchor_id', 'after-you-buy'),
         ('eyebrow', 'After you buy'),
-        ('heading', 'Three things worth knowing now.'),
+        ('heading', 'Three things worth knowing now'),
     )), ('blocks', after), ('block_order', after_order)))
 
     # 7 — the activity cross-link strip is deliberately absent. The content
@@ -370,27 +361,29 @@ def main():
     # the FAQ page in the same wording — the validator holds that line.
     QUESTIONS = [
         ('Do HydroSox come up big or small?',
-         'They run true to the foot-length bands published on the size guide, and '
-         'they are a close, stretchy fit rather than a loose one. If you are '
-         'between two bands, take the larger — a size down grips the toes and '
-         'shortens the life of the membrane.'),
-        ('Do HydroSox come in different heights?',
-         'No. One height, crew, in every colour and size. A single construction '
-         'is the reason the price is £20 rather than £35.'),
-        ('Are HydroSox suitable for women?',
-         'Yes. The bands run from UK 3, and the sock is unisex. Size on foot '
-         'length rather than on the men\'s or women\'s label you are used to.'),
+         'They run true to the foot-length sizes on the size guide, and '
+         'they’re a close stretchy fit rather than a loose one. Between '
+         'two sizes, take the bigger — going down grips your toes and is '
+         'hard on the waterproof layer.'),
+        ('Do they come in different heights?',
+         'No. One height, crew, in every colour and size. Having one build is '
+         'part of why they’re £20 and not £35.'),
+        ('Are they unisex?',
+         'Yes. The sizes run from UK 3 to UK 14 and the sock is the same for '
+         'everyone. Go by foot length rather than the men’s or '
+         'women’s size you’re used to.'),
         ('How many pairs do most people buy?',
-         'Two or three. They need washing and air drying between wears, and air '
-         'drying takes longer than a tumble dryer would, so one pair rarely keeps '
-         'up with a daily problem.'),
-        ('Can I wash HydroSox in a machine?',
-         'Cool wash, gentle cycle, inside out, no fabric softener and no bleach. '
-         'Then air dry away from a radiator. Never tumble dry and never iron — '
-         'both are heat applied directly to a laminate.'),
-        ('What is included when I order?',
-         'The pairs you selected, in the colour and size you chose, and nothing '
-         'else. No boxes, no printed inserts.'),
+         'Two or three. They need washing and air drying between wears, and '
+         'air drying takes longer than a tumble dryer, so one pair rarely '
+         'keeps up with a daily problem.'),
+        ('Can I put them in the washing machine?',
+         'Cool wash, gentle cycle, inside out, no fabric softener and no '
+         'bleach. Then air dry away from a radiator. Never tumble dry and '
+         'never iron — both are heat straight onto the waterproof layer.'),
+        ('What arrives in the parcel?',
+         'The pairs you chose, in the colour and size you picked. No boxes, '
+         'no printed inserts. Keeping the packaging simple is part of what '
+         'keeps postage out of the price.'),
     ]
     qs, qs_order = collections.OrderedDict(), []
     for n, (q, a) in enumerate(QUESTIONS, 1):
@@ -422,11 +415,13 @@ def main():
         ('layout', 'list'),
         ('numbered', False),
         ('eyebrow', 'Reviews'),
-        ('heading', 'There are none yet, and we are not going to invent any.'),
-        ('lede', '<p>HydroSox is new. A rating with nothing behind it is worth '
-                 'nothing, and a feed of five-star reviews with no negatives in it '
-                 'reads as filtered to exactly the person who is reading it '
-                 'carefully.</p>'),
+        ('heading', 'Nothing here yet'),
+        ('lede', '<p>No customer has reviewed this product so far, so there is '
+                 'nothing to show. Reviews will appear in this space once real '
+                 'orders have been placed and used. The standard we will hold '
+                 'them to is set out on its own page.</p>'),
+        ('link_label', 'The standard we’ll hold this to'),
+        ('link_url', '/pages/reviews'),
     ))))
 
     tpl = od(('sections', sections), ('order', order))

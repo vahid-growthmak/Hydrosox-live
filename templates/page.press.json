@@ -141,7 +141,7 @@
         "anchor_id": "brand-facts",
         "emit_schema": false,
         "eyebrow": "The facts",
-        "heading": "Everything a journalist needs, in one place.",
+        "heading": "Everything a journalist needs",
         "lede": "<p>Logo, product photography and this fact sheet are available on request. Email us and a person will reply.</p>",
         "link_url": "/pages/faq"
       },
@@ -167,7 +167,7 @@
           "settings": {
             "label": "Product",
             "kind": "text",
-            "value": "One waterproof sock: three-layer knit, licensed Porelle® membrane, four colourways, UK 3–14"
+            "value": "One waterproof sock: three-layer knit, Porelle® waterproof layer, four colours, UK 3–14"
           }
         },
         "f4": {
@@ -175,15 +175,15 @@
           "settings": {
             "label": "Price",
             "kind": "text",
-            "value": "£20.00 a pair, £16.00 a pair in a five-pack"
+            "value": "£20.00 a pair, or £16.00 each in a five-pack"
           }
         },
         "f5": {
           "type": "row",
           "settings": {
-            "label": "Membrane",
+            "label": "Waterproof layer",
             "kind": "text",
-            "value": "Porelle®, licensed third party"
+            "value": "Porelle®, made by a separate company"
           }
         },
         "f6": {
@@ -191,7 +191,7 @@
           "settings": {
             "label": "Test data",
             "kind": "text",
-            "value": "None published. We do not have independently tested figures."
+            "value": "None published. We don’t have independently tested figures."
           }
         },
         "f7": {
@@ -199,15 +199,15 @@
           "settings": {
             "label": "Reviews",
             "kind": "text",
-            "value": "None published. There are none yet."
+            "value": "None published. There aren’t any yet."
           }
         },
         "f8": {
           "type": "row",
           "settings": {
-            "label": "Certification",
+            "label": "Wudu",
             "kind": "text",
-            "value": "No certificate has been issued in relation to masah, by us or by anyone else."
+            "value": "Examined by Shaykh Mufti Saiful Islam and Mufti Amjad Mohammed. No certificate has been issued, by us or anyone else."
           }
         }
       },

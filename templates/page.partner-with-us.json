@@ -11,8 +11,8 @@
         "heading_size": "h2",
         "hide_rule": true,
         "eyebrow": "Partner with us",
-        "heading": "Trade enquiries, answered by a person.",
-        "body": "<p>No public trade pricing, and no automated tiering. Tell us what you sell and to whom, and we will reply with terms that fit.</p>"
+        "heading": "Wholesale and trade",
+        "body": "<p>Trade enquiries answered by a person. No public trade pricing and no automated tiering — tell us what you sell and to whom, and we’ll come back with terms that fit.</p>"
       }
     },
     "form": {
@@ -147,29 +147,29 @@
         "layout": "list",
         "numbered": false,
         "anchor_id": "proposition",
-        "eyebrow": "What you would be stocking",
-        "heading": "What you would be stocking"
+        "eyebrow": "What you’d be stocking",
+        "heading": "What you’d be stocking"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "One product, properly specified",
-            "body": "<p>A named, licensed membrane and a published construction. Easier to sell than an unnamed laminate, and it stands up to a customer asking what is actually in it.</p>"
+            "body": "<p>A named waterproof layer and a published build. Easier to sell than an unnamed laminate, and it stands up when a customer asks what’s actually in it.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "A price that does not move",
-            "body": "<p>One retail price across every channel, so you are never undercut by our own storefront.</p>"
+            "title": "A price that doesn’t move",
+            "body": "<p>One retail price across every channel, so you’re never undercut by our own shop.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "Stated limits",
-            "body": "<p>We publish what the product will not do. That reduces returns, and it is the reason customers believe the rest of it.</p>"
+            "body": "<p>We publish what the product won’t do. That reduces returns, and it’s why customers believe the rest of it.</p>"
           }
         },
         "i4": {
@@ -183,13 +183,13 @@
           "type": "item",
           "settings": {
             "title": "A category with a defined audience",
-            "body": "<p>Waterproof socks sell to walkers, cyclists, runners and trades. The wudu segment adds a large, geographically concentrated audience that mainstream outdoor brands do not serve at all.</p>"
+            "body": "<p>Waterproof socks sell to walkers, cyclists, runners and trades. The wudu segment adds a large, geographically concentrated audience that mainstream outdoor brands don’t serve at all.</p>"
           }
         },
         "i6": {
           "type": "item",
           "settings": {
-            "title": "Four sizes, four colours, one SKU family",
+            "title": "Four sizes, four colours, one product",
             "body": "<p>A small range to hold and a simple one to merchandise. No seasonal carryover and no size curve to guess at beyond UK 3 to 14.</p>"
           }
         }
@@ -285,7 +285,7 @@
         "numbered": false,
         "anchor_id": "who-this-is-for",
         "eyebrow": "Who this is for",
-        "heading": "The kinds of enquiry we can act on.",
+        "heading": "The kinds of enquiry we can act on",
         "card_columns": "two"
       },
       "blocks": {
@@ -300,7 +300,7 @@
           "type": "item",
           "settings": {
             "title": "Islamic retailers and mosque shops",
-            "body": "<p>A segment mainstream outdoor wholesalers do not serve, and where the product argument is strongest.</p>"
+            "body": "<p>A segment mainstream outdoor wholesalers don’t serve, and where the product argument is strongest.</p>"
           }
         },
         "i3": {
@@ -314,7 +314,7 @@
           "type": "item",
           "settings": {
             "title": "Corporate and bulk orders",
-            "body": "<p>Staff kit, event supply, and charitable distribution.</p>"
+            "body": "<p>Staff kit, event supply and charitable distribution.</p>"
           }
         }
       },

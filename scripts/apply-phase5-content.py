@@ -671,44 +671,62 @@ def size_guide():
         ("block_order", chart_order),
     ])
 
+    # v4 Document 4 (8 Aug 2026): the opening, and the doc's words in the
+    # existing structures. The table keeps the design's figures — the doc
+    # itself uses them — and the EU/US columns the doc restores were already
+    # here from the mockup pass.
+    S["intro"]["settings"].update({
+        "eyebrow": "Size guide",
+        "heading": "Sock size guide",
+        "body": rich(
+            "Shoe sizes aren\u2019t consistent between brands, and "
+            "it\u2019s your foot that has to fit. Four sizes cover UK 3 "
+            "to UK 14."),
+    })
+    S["chart"]["settings"]["eyebrow"] = "The sizes"
+    S["chart"]["settings"]["heading"] = "The four sizes"
+
     S["howto"] = cols(
-        "measuring", "Measuring and choosing", "Measuring and choosing", None,
+        "measuring", "How to measure", "How to measure and choose", None,
         [("How to measure",
-          "Stand on a sheet of paper with your heel against a wall, mark the "
-          "tip of your longest toe, and measure from the wall to the mark. Do "
-          "it in the afternoon — feet are slightly larger later in the day."),
+          "Stand on a sheet of paper with your heel against a wall, mark "
+          "where your longest toe ends, and measure from the wall to the "
+          "mark. Do it in the afternoon \u2014 feet are slightly bigger "
+          "later in the day."),
          ("Between two sizes",
-          "Take the larger one. These are a close, stretchy fit, and a size "
-          "down grips the toes and shortens the life of the membrane."),
+          "Take the bigger one. These are a close, stretchy fit, and going "
+          "down grips your toes and shortens the life of the waterproof "
+          "layer."),
          ("Measure both feet",
-          "Most people have one foot slightly larger than the other. Size to "
-          "the larger one. It is a small thing and it is the reason a lot of "
-          "socks feel right on one foot and tight on the other."),
-         ("Inside boots and cycling shoes",
-          "They sit at roughly the bulk of a mid-weight sock. Snug walking "
-          "boots and race-fit cycling shoes are where that matters — the "
-          "use-case pages cover each in more detail.")],
+          "Most people have one foot slightly bigger than the other. Size "
+          "to the bigger one. It\u2019s a small thing and it\u2019s why a "
+          "lot of socks feel right on one foot and tight on the other."),
+         ("In boots and cycling shoes",
+          "They\u2019re about the bulk of a mid-weight sock. Snug walking "
+          "boots and race-fit cycling shoes are where that matters most "
+          "\u2014 the use-case pages cover each of them.")],
         scheme="wash")
 
     S["faq"] = faq(
-        "questions", "Questions", "Before you choose a band.", None,
-        [("What if I am between two size bands?",
-          "Take the larger. A sock that grips across the toes is uncomfortable "
-          "over a full day and puts constant tension on the membrane, which "
-          "shortens its life. The fit is stretchy enough that the larger band "
-          "will not feel loose."),
-         ("Are the sizes unisex?",
-          "Yes. One range from UK 3 to UK 14, sized on foot length rather than "
-          "on a men's or women's scale. Take the band your measurement falls "
-          "into and ignore the label you are used to."),
+        "questions", "Questions", "Common questions", None,
+        [("What if I\u2019m between two sizes?",
+          "Take the bigger one. A sock that grips across your toes is "
+          "uncomfortable over a full day and puts constant tension on the "
+          "waterproof layer. The fit is stretchy enough that the bigger "
+          "size won\u2019t feel loose."),
+         ("Are the sizes the same for everyone?",
+          "Yes. One range from UK 3 to 14, set by foot length rather than a "
+          "men\u2019s or women\u2019s scale. Take the size your "
+          "measurement falls into and ignore the label you\u2019re used "
+          "to."),
          ("Do they fit the same as my normal socks?",
-          "Closer. They are shaped and structural rather than loose-knit, so "
-          "they feel more fitted than a standard sock at the same nominal "
-          "size. That is deliberate and it is what keeps them in place."),
+          "Closer. They\u2019re shaped rather than loose-knit, so they "
+          "feel more fitted at the same nominal size. That\u2019s "
+          "deliberate \u2014 it\u2019s what keeps them in place."),
          ("What if I order the wrong size?",
           "Return the unworn pair within fourteen days and order the right "
-          "one. Contact us first and we will tell you exactly what to do — it "
-          "is quicker than guessing.")],
+          "one. Get in touch first and we\u2019ll tell you exactly what "
+          "to do \u2014 it\u2019s quicker than guessing.")],
         emit=True)
 
     # Presentation. The chart is built above as the data-table; measuring
@@ -745,43 +763,55 @@ def care():
     header, d = read("page.care-and-washing.json")
     S = d["sections"]
 
+    # v4 Document 4 (8 Aug 2026): the opening and every section in the
+    # doc's words, in the layouts the client already approved.
+    S["intro"]["settings"].update({
+        "eyebrow": "Care & washing",
+        "heading": "How to wash waterproof socks",
+        "body": rich(
+            "They\u2019re washable and meant to be washed. Almost "
+            "everything that finishes a waterproof sock off early is heat, "
+            "softener or rubbing \u2014 not wear."),
+    })
     S["wash"] = cols(
-        "washing", "Washing instructions", "Washing instructions", None,
+        "washing", "Washing instructions", "Washing them", None,
         [("Wash cool",
-          "A laminate fails from heat long before it fails from age. Cool "
-          "wash, gentle cycle."),
+          "A waterproof layer gives up from heat long before it gives up "
+          "from age. Cool wash, gentle cycle."),
          ("Turn them inside out",
-          "It puts the knit face, not the lining, against the drum."),
+          "It puts the outer knit, not the lining, against the drum."),
          ("No fabric softener",
-          "Softener coats the pores the membrane breathes through. Once they "
-          "are clogged the sock still keeps water out, but it stops moving "
-          "vapour — which is the worst of both."),
-         ("No bleach", "It attacks the laminate, not just the colour."),
+          "Softener coats the holes the layer breathes through. Once "
+          "they\u2019re clogged the sock still keeps water out but stops "
+          "letting sweat out, which is the worst of both."),
+         ("No bleach",
+          "It attacks the waterproof layer, not just the colour."),
          ("Air dry",
-          "Away from a radiator. A membrane does not need heat to dry, and "
-          "heat is the thing most likely to end it."),
-         ("Never tumble dry or iron", "Both are heat, applied directly."),
+          "Away from a radiator. A waterproof layer doesn\u2019t need heat "
+          "to dry, and heat is the thing most likely to end it."),
+         ("Never tumble dry or iron",
+          "Both are heat, straight onto the layer."),
          ("Rinse the grit out first",
           "After a muddy walk or a wet ride, rinse under a cold tap before "
-          "washing. Fine grit trapped in the knit is abrasive against the "
-          "membrane from the inside, and it does more damage than the mud "
-          "does.")],
+          "washing. Fine grit trapped in the knit rubs against the "
+          "waterproof layer from the inside, and does more damage than the "
+          "mud.")],
         numbered=False)
 
     S["damage"] = cols(
-        "damage", "What damages the membrane", "What damages the membrane",
+        "damage", "What damages them", "What damages them",
         None,
-        [("They are not indestructible",
-          "A membrane is a membrane. Abrasion, toenails and the wrong wash "
-          "cycle will eventually end one."),
-         ("Breathable does not mean dry inside",
-          "Work hard enough and you will sweat faster than any membrane can "
-          "move vapour. Breathability slows that. It does not repeal it."),
+        [("They aren\u2019t indestructible",
+          "A waterproof layer is a thin sheet. Rubbing, toenails and the "
+          "wrong wash cycle will eventually end one."),
+         ("Breathable doesn\u2019t mean dry inside",
+          "Work hard enough and you\u2019ll sweat faster than the layer "
+          "can move it. It slows that down. It doesn\u2019t stop it."),
          ("Keep your toenails short",
-          "The least glamorous advice on this site and one of the most useful. "
-          "A long toenail inside a close-fitting sock is a puncture waiting to "
-          "happen, and a punctured membrane cannot be repaired."),
-         ("Do not leave them damp in a bag",
+          "The least glamorous advice on this site and one of the most "
+          "useful. A long toenail inside a close-fitting sock is a hole "
+          "waiting to happen, and a hole can\u2019t be repaired."),
+         ("Don\u2019t leave them damp in a bag",
           "A wet sock left in a kit bag or a boot overnight is where odour "
           "starts, and prolonged damp does the knit no good either. Air dry "
           "them the same day.")],
@@ -794,44 +824,48 @@ def care():
         "If a pair stops keeping water out.",
         "There are three usual explanations, and they need different "
         "responses.",
-        [("Water came in over the cuff",
-          "The most common one, and not a fault. If the water was deeper than "
-          "the sock is tall, it went in the top. Nothing is wrong with the "
-          "sock."),
-         ("The membrane is clogged rather than failed",
-          "If they feel clammy but still keep water out, that is usually "
-          "fabric softener build-up. A cool wash with no detergent residue "
-          "sometimes recovers it. Sometimes it does not."),
-         ("The membrane is punctured",
-          "If water comes through the body of the sock, the laminate has been "
-          "pierced. That cannot be repaired or reproofed. If it happened "
-          "within the first weeks of normal use, that is a fault and we want "
-          "to hear about it.")],
-        link=("Where you stand if it is a fault", "/pages/warranty"))
+        [("Water came in over the top",
+          "The most common one, and not a fault. If the water was deeper "
+          "than the sock is tall, it went in the top. Nothing is wrong with "
+          "the sock."),
+         ("It\u2019s clogged rather than failed",
+          "If they feel clammy but still keep water out, that\u2019s "
+          "usually fabric softener build-up. A cool wash with no detergent "
+          "residue sometimes recovers it. Sometimes it doesn\u2019t."),
+         ("There\u2019s a hole in it",
+          "If water comes through the body of the sock, the waterproof "
+          "layer has been pierced. That can\u2019t be repaired or "
+          "reproofed. If it happened in the first few weeks of normal use, "
+          "that\u2019s a fault and we want to hear about it.")],
+        link=("Where you stand if it\u2019s a fault", "/pages/warranty"))
 
+    # v4 questions. The lifespan answer keeps the standing honest interim
+    # form — the doc's own answer is a [CLIENT TO CONFIRM] placeholder and
+    # its red block asks for a real figure before anything stronger ships.
     S["faq"] = faq(
-        "questions", "Questions", "About washing them.", None,
+        "questions", "Questions", "Common questions", None,
         [("How often should I wash them?",
-          "After every wet or muddy outing, and otherwise as often as you "
-          "would wash any sock. Washing them correctly does no harm; leaving "
-          "grit and sweat in them does."),
+          "After every wet or muddy outing, and otherwise as often as "
+          "you\u2019d wash any sock. Washing them properly does no harm. "
+          "Leaving grit and sweat in them does."),
          ("Can I wash them by hand?",
-          "Yes, and for a single muddy pair it is often quicker. Cool water, a "
-          "little detergent, no softener, rinse thoroughly and air dry."),
-         # The detergent question moved to the FAQ page verbatim in v4
-         # Document 3 (8 Aug 2026); one page per question. The care page's
-         # own v4 document decides what replaces it.
+          "Yes, and for one muddy pair it\u2019s often quicker. Cool "
+          "water, a little detergent, no softener, rinse thoroughly and air "
+          "dry."),
          ("Can I put them on a radiator to dry?",
-          "No. Direct heat is the fastest way to end a laminate, and a "
-          "radiator is the most common culprit precisely because it is the "
-          "most tempting after a wet day."),
-         # Answered in the shape this site already uses for test figures.
+          "No. Direct heat is the fastest way to end a waterproof layer, "
+          "and a radiator is the most common culprit precisely because "
+          "it\u2019s the most tempting after a wet day."),
+         ("Can I use a waterproofing spray on them?",
+          "No, and it wouldn\u2019t help. Sprays work on the outside of "
+          "a fabric. They can\u2019t reach or repair a layer sealed "
+          "inside a sock."),
          ("How long should a pair last?",
-          "We do not publish a figure yet, because we do not have one we could "
-          "stand behind. What we can tell you is what decides it: abrasion "
-          "inside footwear, and heat or softener in the wash. Those end a "
-          "membrane far sooner than elapsed time does, and three of the four "
-          "are in your control.")],
+          "We do not publish a figure yet, because we do not have one we "
+          "could stand behind. What we can tell you is what decides it: "
+          "abrasion inside footwear, and heat or softener in the wash. "
+          "Those end a membrane far sooner than elapsed time does, and "
+          "three of the four are in your control.")],
         emit=True)
 
     # Presentation: the seven wash steps on the numbered rail, the damage
@@ -867,43 +901,50 @@ def about():
     header, d = read("page.about.json")
     S = d["sections"]
 
+    # v4 Document 4 (8 Aug 2026): the opening, and the doc's words.
+    S["intro"]["settings"].update({
+        "eyebrow": "About HydroSox",
+        "heading": "About HydroSox",
+        "body": rich(
+            "A UK company selling one waterproof sock properly. One product, "
+            "one price, and every claim on this site either checkable or "
+            "absent."),
+    })
     S["what"] = cols(
-        "what", "What there is to say", "What there is to say", None,
+        "what", "The short version", "What there is to say", None,
         [("What we sell",
-          "A waterproof sock with a licensed Porelle® membrane sealed inside a "
-          "three-layer knit, in four colourways and four sizes, at one price "
-          "that does not change depending on how you arrived."),
+          "One waterproof sock, with a Porelle® layer sealed inside a "
+          "three-layer knit, in four colours and four sizes, at one price "
+          "that doesn’t change depending on how you got here."),
          ("How we talk about it",
-          "Every claim on this site is either checkable or absent. We publish "
-          "what the product will not do on the homepage, which is the half "
-          "most brands leave out."),
+          "Every claim on this site is either checkable or absent. We "
+          "publish what the socks won’t do on the homepage, which is "
+          "the half most brands leave out."),
          ("Where we are",
-          "A UK registered company with a UK warehouse. The address and phone "
-          "number are on every page."),
-         # Answers the question a sceptical reader has before the first
-         # paragraph is finished: if the membrane is comparable, why half the
-         # price? Left unanswered it reads as a reason to distrust the rest.
-         ("What it costs and why",
-          "Twenty pounds a pair, against thirty to fifty for the established "
-          "performance brands. That is not a lower-quality membrane; it is one "
-          "product sold direct, with no retail markup and no thirty-item "
-          "accessory range to fund.")])
+          "A UK registered company with a UK warehouse. The address and "
+          "phone number are on every page."),
+         ("What it costs, and why",
+          "Twenty pounds a pair against thirty to fifty for the established "
+          "names. That isn’t a cheaper waterproof layer — "
+          "it’s one product sold direct, with no shop markup and no "
+          "range of hats and jackets to fund.")])
 
     S["gap"] = cols(
-        "missing", "What is missing",
-        "What is missing, and why we are saying so", None,
-        [("Who is behind it",
-          "No founder or team is named on this site yet. That is a real gap, "
-          "not a stylistic choice, and it will be filled with named people "
-          "rather than a stock photograph and a mission statement."),
+        "missing", "What’s missing",
+        "What’s missing, and why we’re saying so", None,
+        [("Who’s behind it",
+          "No founder or team is named on this site yet. That’s a real "
+          "gap rather than a stylistic choice, and it’ll be filled "
+          "with named people rather than a stock photograph and a mission "
+          "statement."),
          ("How the product was developed",
-          "Not written yet. When it is, it will not carry invented timelines "
-          "or test counts."),
+          "Not written yet. When it is, it won’t carry invented "
+          "timelines or made-up test counts."),
          ("Independent test data",
-          "We publish no hydrostatic head or breathability figure, because we "
-          "do not have independently tested ones. The technology page explains "
-          "what those numbers mean and why we would rather have none than an "
-          "unverified one.")],
+          "We don’t publish a waterproof rating or a breathability "
+          "figure, because we don’t have independently tested ones. "
+          "The technology page explains what those numbers mean and why "
+          "we’d rather have none than an unverified one.")],
         scheme="wash")
 
     # Named, with no arrangement described — neither has been evidenced, and an
@@ -914,15 +955,15 @@ def about():
         ("settings", collections.OrderedDict([
             ("color_scheme", "paper"),
             ("anchor_id", "beyond-the-product"),
-            ("eyebrow", "Beyond the product"),
-            ("heading", "Two partnerships, and no logo wall."),
+            ("eyebrow", "Beyond the socks"),
+            ("heading", "Two partnerships, and no logo wall"),
             ("body", rich(
                 "HydroSox works with The Fair Group, supporting mental health "
                 "innovation and neuro-diagnostic services, and with Humanity "
-                "Welfare Trust, which delivers humanitarian aid projects. The "
-                "detail of each arrangement is published on the partners page "
-                "once it can be evidenced rather than asserted.")),
-            ("link_label", "What each partnership actually involves"),
+                "Welfare Trust, which delivers humanitarian aid projects. "
+                "What each arrangement actually involves is published on the "
+                "partners page once it can be shown rather than asserted.")),
+            ("link_label", "What each partnership involves"),
             ("link_url", "/pages/our-partners"),
         ])),
     ])
@@ -935,7 +976,10 @@ def about():
     S["gap"]["settings"].update({
         "layout": "band", "color_scheme": "wash", "divided": True})
 
-    d["order"] = ["intro", "what", "gap", "support", "company", "reviews",
+    # v4 order: the company details come before the partnerships.
+    S["company"]["settings"]["eyebrow"] = "The company"
+    S["company"]["settings"]["heading"] = "Who you\u2019re buying from"
+    d["order"] = ["intro", "what", "gap", "company", "support", "reviews",
                   "close"]
     orphans = [k for k in S if k not in d["order"]]
     if orphans:
@@ -949,36 +993,59 @@ def reviews():
     header, d = read("page.reviews.json")
     S = d["sections"]
 
+    # v4 Document 4: "ship as drawn" — the opening and the standard.
+    S["intro"]["settings"].update({
+        "eyebrow": "Reviews",
+        "heading": "No reviews yet",
+        "body": rich(
+            "We’re new, so there aren’t any. A rating with "
+            "nothing behind it is worth nothing, and a page of five-star "
+            "reviews with no negatives reads as filtered to anyone paying "
+            "attention."),
+    })
     S["standard"] = cols(
-        "standard", "The standard", "The standard this feed will be held to",
+        "standard", "The standard", "The standard we’ll hold them to",
         None,
         [("Verified buyers only",
-          "A review has to come from an order. No unverified submissions, and "
-          "no reviews written by us."),
+          "A review has to come from an order. No unverified submissions, "
+          "and none written by us."),
          ("Negative reviews stay up",
           "Published alongside the rest, unedited. If the socks disappoint "
           "someone, that belongs here."),
-         ("Filterable by activity and rating",
-          "A commuter's experience is more useful to another commuter than an "
-          "overall average is. The filters go live with the feed."),
-         ("The aggregate is the real one",
-          "Whatever the average turns out to be is what gets printed, "
-          "including the rating and the total volume in one line."),
-         ("We will not offer anything for a review",
-          "No discount, no free pair, no prize draw. A review bought with an "
-          "incentive is not evidence, and it is not permitted to be presented "
-          "as though it were.")])
+         ("Filterable by use and rating",
+          "A commuter’s experience is more useful to another commuter "
+          "than an overall average. The filters go live with the reviews."),
+         ("The average is the real one",
+          "Whatever it turns out to be is what gets printed, along with how "
+          "many reviews it’s based on."),
+         ("We won’t offer anything for a review",
+          "No discount, no free pair, no prize draw. A review bought with "
+          "an incentive isn’t evidence, and presenting it as though "
+          "it were is now specifically prohibited.")])
+
+    S["meanwhile"] = cols(
+        "instead", "Instead", "What you can check instead", None,
+        [("The waterproof layer is named",
+          "Porelle®, made by a separate company. You can look it up, which "
+          "is more than an unnamed layer offers."),
+         ("The limits are published",
+          "What the socks won’t do is on the homepage. Nobody else in "
+          "this category publishes that."),
+         ("The company is named",
+          "UK registered, with the address and phone number on every page "
+          "rather than behind a contact form.")],
+        scheme="wash")
 
     S["faq"] = faq(
-        "questions", "Questions", "About the feed that is not here yet.", None,
+        "questions", "Questions", "Common questions", None,
         [("When will there be reviews?",
-          "When enough people have bought and used a pair to make a rating "
-          "mean something. We would rather show nothing than show four reviews "
-          "and an average."),
+          "When enough people have bought and used a pair for a rating to "
+          "mean something. We’d rather show nothing than show four "
+          "reviews and an average."),
          ("Will you publish bad reviews?",
-          "Yes, unedited and alongside the rest. A feed with no negatives in "
-          "it tells a careful reader that it has been filtered, which is worse "
-          "than a mixed one.")],
+          "Yes, unedited and alongside the rest. A page with no negatives "
+          "on it tells a careful reader it’s been filtered, which is "
+          "worse than a mixed one.")],
         emit=True)
 
     d["order"] = ["breadcrumb", "intro", "standard", "meanwhile", "faq",
@@ -1005,7 +1072,7 @@ def press():
             ("anchor_id", "brand-facts"),
             ("emit_schema", False),
             ("eyebrow", "The facts"),
-            ("heading", "Everything a journalist needs, in one place."),
+            ("heading", "Everything a journalist needs"),
             ("lede", rich(
                 "Logo, product photography and this fact sheet are available "
                 "on request. Email us and a person will reply.")),
@@ -1019,25 +1086,26 @@ def press():
                 "value": "399–405 Oxford Street, Mayfair, London W1C 2BU"}}),
             ("f3", {"type": "row", "settings": {
                 "label": "Product", "kind": "text",
-                "value": "One waterproof sock: three-layer knit, licensed "
-                         "Porelle® membrane, four colourways, UK 3–14"}}),
+                "value": "One waterproof sock: three-layer knit, Porelle® "
+                         "waterproof layer, four colours, UK 3\u201314"}}),
             ("f4", {"type": "row", "settings": {
                 "label": "Price", "kind": "text",
-                "value": "£20.00 a pair, £16.00 a pair in a five-pack"}}),
+                "value": "£20.00 a pair, or £16.00 each in a five-pack"}}),
             ("f5", {"type": "row", "settings": {
-                "label": "Membrane", "kind": "text",
-                "value": "Porelle®, licensed third party"}}),
+                "label": "Waterproof layer", "kind": "text",
+                "value": "Porelle®, made by a separate company"}}),
             ("f6", {"type": "row", "settings": {
                 "label": "Test data", "kind": "text",
-                "value": "None published. We do not have independently tested "
-                         "figures."}}),
+                "value": "None published. We don’t have independently "
+                         "tested figures."}}),
             ("f7", {"type": "row", "settings": {
                 "label": "Reviews", "kind": "text",
-                "value": "None published. There are none yet."}}),
+                "value": "None published. There aren’t any yet."}}),
             ("f8", {"type": "row", "settings": {
-                "label": "Certification", "kind": "text",
-                "value": "No certificate has been issued in relation to "
-                         "masah, by us or by anyone else."}}),
+                "label": "Wudu", "kind": "text",
+                "value": "Examined by Shaykh Mufti Saiful Islam and Mufti "
+                         "Amjad Mohammed. No certificate has been issued, by "
+                         "us or anyone else."}}),
         ])),
         ("block_order", ["f%d" % n for n in range(1, 9)]),
     ])
@@ -1055,44 +1123,55 @@ def partner_with_us():
     header, d = read("page.partner-with-us.json")
     S = d["sections"]
 
+    # v4 Document 4: the trade hero and the doc's words.
+    S["intro"]["settings"].update({
+        "eyebrow": "Partner with us",
+        "heading": "Wholesale and trade",
+        "body": rich(
+            "Trade enquiries answered by a person. No public trade pricing "
+            "and no automated tiering — tell us what you sell and to "
+            "whom, and we’ll come back with terms that fit."),
+    })
     S["proposition"] = cols(
-        "proposition", "What you would be stocking",
-        "What you would be stocking", None,
+        "proposition", "What you’d be stocking",
+        "What you’d be stocking", None,
         [("One product, properly specified",
-          "A named, licensed membrane and a published construction. Easier to "
-          "sell than an unnamed laminate, and it stands up to a customer "
-          "asking what is actually in it."),
-         ("A price that does not move",
-          "One retail price across every channel, so you are never undercut by "
-          "our own storefront."),
+          "A named waterproof layer and a published build. Easier to sell "
+          "than an unnamed laminate, and it stands up when a customer asks "
+          "what’s actually in it."),
+         ("A price that doesn’t move",
+          "One retail price across every channel, so you’re never "
+          "undercut by our own shop."),
          ("Stated limits",
-          "We publish what the product will not do. That reduces returns, and "
-          "it is the reason customers believe the rest of it."),
+          "We publish what the product won’t do. That reduces "
+          "returns, and it’s why customers believe the rest of it."),
          ("UK company, UK stock",
           "Registered address and phone published. Shipped from the UK, not "
           "drop-shipped from elsewhere."),
          ("A category with a defined audience",
-          "Waterproof socks sell to walkers, cyclists, runners and trades. The "
-          "wudu segment adds a large, geographically concentrated audience "
-          "that mainstream outdoor brands do not serve at all."),
-         ("Four sizes, four colours, one SKU family",
-          "A small range to hold and a simple one to merchandise. No seasonal "
-          "carryover and no size curve to guess at beyond UK 3 to 14.")])
+          "Waterproof socks sell to walkers, cyclists, runners and trades. "
+          "The wudu segment adds a large, geographically concentrated "
+          "audience that mainstream outdoor brands don’t serve at "
+          "all."),
+         ("Four sizes, four colours, one product",
+          "A small range to hold and a simple one to merchandise. No "
+          "seasonal carryover and no size curve to guess at beyond UK 3 to "
+          "14.")])
 
     # The form asks "what is this about" but the page never said who it was
     # for. Naming the channels helps the right enquiries arrive.
     S["audience"] = cols(
         "who-this-is-for", "Who this is for",
-        "The kinds of enquiry we can act on.", None,
+        "The kinds of enquiry we can act on", None,
         [("Independent outdoor and cycling retailers",
           "Physical or online, UK based."),
          ("Islamic retailers and mosque shops",
-          "A segment mainstream outdoor wholesalers do not serve, and where "
-          "the product argument is strongest."),
+          "A segment mainstream outdoor wholesalers don’t serve, and "
+          "where the product argument is strongest."),
          ("Workwear and safety suppliers",
           "Selling into trades, agriculture, groundworks and facilities."),
          ("Corporate and bulk orders",
-          "Staff kit, event supply, and charitable distribution.")],
+          "Staff kit, event supply and charitable distribution.")],
         scheme="wash")
 
     # Presentation, to the mockup DOM (2026-08-07): the audience as the band
@@ -1124,24 +1203,50 @@ def contact():
     # Eight tiles rather than six. Masah is one of the most common reasons
     # someone will contact this business and the grid had no route to it;
     # warranty is a legitimate contact reason and completes the second row.
+    # v4 Document 4: the opening, the columns note (minus the red-gated
+    # one-working-day promise, which waits for the client to confirm it can
+    # be met), and the doc's eight tiles. The questions tile says
+    # thirty-two, not the doc's thirty-three: the Amazon answer is held, and
+    # printing a count the page doesn’t deliver would be false.
+    S["intro"]["settings"].update({
+        "eyebrow": "Contact",
+        "heading": "Contact us",
+        "body": rich(
+            "A phone number, an email address and a person. Both are on "
+            "every page of this site rather than behind a form. The form "
+            "below is for when writing it out is easier."),
+    })
+    S["details"]["settings"]["lede"] = rich(
+        "Phone during the day, or email any time.")
+    S["routes"]["settings"].update({
+        "eyebrow": "Faster than waiting",
+        "heading": "Most answers are already written down",
+        "lede": rich(
+            "If one of these covers it, you don’t need to wait for a "
+            "reply."),
+    })
     tiles = [
         ("Size guide",
-         "Measurement-led, four bands, and what to do if you fall between two.",
+         "Four sizes, set by foot length, and what to do if you’re "
+         "between two.",
          "/pages/size-guide"),
-        ("Shipping and delivery",
-         "What is settled and what is still being confirmed.",
+        ("Delivery",
+         "What’s settled and what’s still being confirmed.",
          "/pages/shipping-and-delivery"),
-        ("Returns and refunds", "Fourteen days, no reason needed.",
+        ("Returns", "Fourteen days, no reason needed.",
          "/pages/returns-and-refunds"),
-        ("Care and washing", "What shortens the life of a membrane.",
+        ("Care and washing",
+         "What shortens the life of a waterproof sock.",
          "/pages/care-and-washing"),
         ("How to make masah",
-         "The conditions, the method and how long it lasts.",
+         "The conditions, the method, and how long it lasts.",
          "/pages/how-to-make-masah"),
-        ("Warranty", "Where you stand if a pair is faulty rather than worn.",
+        ("Warranty", "Where you stand if something’s wrong.",
          "/pages/warranty"),
-        ("Track an order", "Ask us and we will look.", "/pages/track-order"),
-        ("Questions", "The things people ask before they buy.", "/pages/faq"),
+        ("Track an order", "Ask us and we’ll look.",
+         "/pages/track-order"),
+        ("Common questions", "Thirty-two answers in six groups.",
+         "/pages/faq"),
     ]
     blocks, order = collections.OrderedDict(), []
     for n, (title, body, link) in enumerate(tiles, 1):

@@ -11,8 +11,8 @@
         "heading_size": "h2",
         "hide_rule": true,
         "eyebrow": "About HydroSox",
-        "heading": "A UK company selling one product properly.",
-        "body": "<p>One sock, one page, one price. The interesting part of this business is the membrane and the honesty, not the origin story.</p>"
+        "heading": "About HydroSox",
+        "body": "<p>A UK company selling one waterproof sock properly. One product, one price, and every claim on this site either checkable or absent.</p>"
       }
     },
     "what": {
@@ -22,7 +22,7 @@
         "layout": "band",
         "numbered": false,
         "anchor_id": "what",
-        "eyebrow": "What there is to say",
+        "eyebrow": "The short version",
         "heading": "What there is to say",
         "outlined": true
       },
@@ -31,14 +31,14 @@
           "type": "item",
           "settings": {
             "title": "What we sell",
-            "body": "<p>A waterproof sock with a licensed Porelle® membrane sealed inside a three-layer knit, in four colourways and four sizes, at one price that does not change depending on how you arrived.</p>"
+            "body": "<p>One waterproof sock, with a Porelle® layer sealed inside a three-layer knit, in four colours and four sizes, at one price that doesn’t change depending on how you got here.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "How we talk about it",
-            "body": "<p>Every claim on this site is either checkable or absent. We publish what the product will not do on the homepage, which is the half most brands leave out.</p>"
+            "body": "<p>Every claim on this site is either checkable or absent. We publish what the socks won’t do on the homepage, which is the half most brands leave out.</p>"
           }
         },
         "i3": {
@@ -51,8 +51,8 @@
         "i4": {
           "type": "item",
           "settings": {
-            "title": "What it costs and why",
-            "body": "<p>Twenty pounds a pair, against thirty to fifty for the established performance brands. That is not a lower-quality membrane; it is one product sold direct, with no retail markup and no thirty-item accessory range to fund.</p>"
+            "title": "What it costs, and why",
+            "body": "<p>Twenty pounds a pair against thirty to fifty for the established names. That isn’t a cheaper waterproof layer — it’s one product sold direct, with no shop markup and no range of hats and jackets to fund.</p>"
           }
         }
       },
@@ -70,30 +70,30 @@
         "layout": "band",
         "numbered": false,
         "anchor_id": "missing",
-        "eyebrow": "What is missing",
-        "heading": "What is missing, and why we are saying so",
+        "eyebrow": "What’s missing",
+        "heading": "What’s missing, and why we’re saying so",
         "divided": true
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Who is behind it",
-            "body": "<p>No founder or team is named on this site yet. That is a real gap, not a stylistic choice, and it will be filled with named people rather than a stock photograph and a mission statement.</p>"
+            "title": "Who’s behind it",
+            "body": "<p>No founder or team is named on this site yet. That’s a real gap rather than a stylistic choice, and it’ll be filled with named people rather than a stock photograph and a mission statement.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "How the product was developed",
-            "body": "<p>Not written yet. When it is, it will not carry invented timelines or test counts.</p>"
+            "body": "<p>Not written yet. When it is, it won’t carry invented timelines or made-up test counts.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "Independent test data",
-            "body": "<p>We publish no hydrostatic head or breathability figure, because we do not have independently tested ones. The technology page explains what those numbers mean and why we would rather have none than an unverified one.</p>"
+            "body": "<p>We don’t publish a waterproof rating or a breathability figure, because we don’t have independently tested ones. The technology page explains what those numbers mean and why we’d rather have none than an unverified one.</p>"
           }
         }
       },
@@ -108,7 +108,7 @@
       "settings": {
         "color_scheme": "wash",
         "eyebrow": "The company",
-        "heading": "Who you are buying from, in full.",
+        "heading": "Who you’re buying from",
         "lede": "<p>If something goes wrong you should know exactly who you are dealing with.</p>",
         "link_label": "",
         "link_url": ""
@@ -182,10 +182,10 @@
       "settings": {
         "color_scheme": "paper",
         "anchor_id": "beyond-the-product",
-        "eyebrow": "Beyond the product",
-        "heading": "Two partnerships, and no logo wall.",
-        "body": "<p>HydroSox works with The Fair Group, supporting mental health innovation and neuro-diagnostic services, and with Humanity Welfare Trust, which delivers humanitarian aid projects. The detail of each arrangement is published on the partners page once it can be evidenced rather than asserted.</p>",
-        "link_label": "What each partnership actually involves",
+        "eyebrow": "Beyond the socks",
+        "heading": "Two partnerships, and no logo wall",
+        "body": "<p>HydroSox works with The Fair Group, supporting mental health innovation and neuro-diagnostic services, and with Humanity Welfare Trust, which delivers humanitarian aid projects. What each arrangement actually involves is published on the partners page once it can be shown rather than asserted.</p>",
+        "link_label": "What each partnership involves",
         "link_url": "/pages/our-partners"
       }
     }
@@ -194,8 +194,8 @@
     "intro",
     "what",
     "gap",
-    "support",
     "company",
+    "support",
     "reviews",
     "close"
   ]

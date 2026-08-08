@@ -17,11 +17,11 @@
         "anchor_id": "",
         "max_width": 46,
         "eyebrow": "Size guide",
-        "heading": "Measure the foot, not the shoe.",
+        "heading": "Sock size guide",
         "heading_tag": "h1",
         "heading_size": "h2",
         "lead_first_para": false,
-        "body": "<p>Shoe sizing is not consistent between brands, and the foot length is what actually has to fit. Four bands cover UK 3 to UK 14.</p>",
+        "body": "<p>Shoe sizes aren’t consistent between brands, and it’s your foot that has to fit. Four sizes cover UK 3 to UK 14.</p>",
         "footnote": "",
         "pointer_label": "",
         "pointer_link_label": "",
@@ -38,8 +38,8 @@
       "settings": {
         "color_scheme": "paper",
         "anchor_id": "bands",
-        "eyebrow": "The four bands",
-        "heading": "The four bands",
+        "eyebrow": "The sizes",
+        "heading": "The four sizes",
         "head_note": "<p>The same measurements appear in the size guide that opens over the buy widget. They are read from one place, so the two cannot disagree.</p>",
         "col1": "Band",
         "col2": "Foot length",
@@ -103,8 +103,8 @@
         "layout": "band",
         "numbered": false,
         "anchor_id": "measuring",
-        "eyebrow": "Measuring and choosing",
-        "heading": "Measuring and choosing",
+        "eyebrow": "How to measure",
+        "heading": "How to measure and choose",
         "card_columns": "two"
       },
       "blocks": {
@@ -112,28 +112,28 @@
           "type": "item",
           "settings": {
             "title": "How to measure",
-            "body": "<p>Stand on a sheet of paper with your heel against a wall, mark the tip of your longest toe, and measure from the wall to the mark. Do it in the afternoon — feet are slightly larger later in the day.</p>"
+            "body": "<p>Stand on a sheet of paper with your heel against a wall, mark where your longest toe ends, and measure from the wall to the mark. Do it in the afternoon — feet are slightly bigger later in the day.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Between two sizes",
-            "body": "<p>Take the larger one. These are a close, stretchy fit, and a size down grips the toes and shortens the life of the membrane.</p>"
+            "body": "<p>Take the bigger one. These are a close, stretchy fit, and going down grips your toes and shortens the life of the waterproof layer.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "Measure both feet",
-            "body": "<p>Most people have one foot slightly larger than the other. Size to the larger one. It is a small thing and it is the reason a lot of socks feel right on one foot and tight on the other.</p>"
+            "body": "<p>Most people have one foot slightly bigger than the other. Size to the bigger one. It’s a small thing and it’s why a lot of socks feel right on one foot and tight on the other.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
-            "title": "Inside boots and cycling shoes",
-            "body": "<p>They sit at roughly the bulk of a mid-weight sock. Snug walking boots and race-fit cycling shoes are where that matters — the use-case pages cover each in more detail.</p>"
+            "title": "In boots and cycling shoes",
+            "body": "<p>They’re about the bulk of a mid-weight sock. Snug walking boots and race-fit cycling shoes are where that matters most — the use-case pages cover each of them.</p>"
           }
         }
       },
@@ -152,7 +152,7 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "Before you choose a band.",
+        "heading": "Common questions",
         "cta_link": "#buy",
         "help_link": "/pages/contact"
       },
@@ -160,29 +160,29 @@
         "q1": {
           "type": "question",
           "settings": {
-            "question": "What if I am between two size bands?",
-            "answer": "<p>Take the larger. A sock that grips across the toes is uncomfortable over a full day and puts constant tension on the membrane, which shortens its life. The fit is stretchy enough that the larger band will not feel loose.</p>"
+            "question": "What if I’m between two sizes?",
+            "answer": "<p>Take the bigger one. A sock that grips across your toes is uncomfortable over a full day and puts constant tension on the waterproof layer. The fit is stretchy enough that the bigger size won’t feel loose.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
-            "question": "Are the sizes unisex?",
-            "answer": "<p>Yes. One range from UK 3 to UK 14, sized on foot length rather than on a men's or women's scale. Take the band your measurement falls into and ignore the label you are used to.</p>"
+            "question": "Are the sizes the same for everyone?",
+            "answer": "<p>Yes. One range from UK 3 to 14, set by foot length rather than a men’s or women’s scale. Take the size your measurement falls into and ignore the label you’re used to.</p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
             "question": "Do they fit the same as my normal socks?",
-            "answer": "<p>Closer. They are shaped and structural rather than loose-knit, so they feel more fitted than a standard sock at the same nominal size. That is deliberate and it is what keeps them in place.</p>"
+            "answer": "<p>Closer. They’re shaped rather than loose-knit, so they feel more fitted at the same nominal size. That’s deliberate — it’s what keeps them in place.</p>"
           }
         },
         "q4": {
           "type": "question",
           "settings": {
             "question": "What if I order the wrong size?",
-            "answer": "<p>Return the unworn pair within fourteen days and order the right one. Contact us first and we will tell you exactly what to do — it is quicker than guessing.</p>"
+            "answer": "<p>Return the unworn pair within fourteen days and order the right one. Get in touch first and we’ll tell you exactly what to do — it’s quicker than guessing.</p>"
           }
         }
       },

@@ -18,9 +18,9 @@
         "color_scheme": "paper",
         "heading_tag": "h1",
         "heading_size": "h2",
-        "eyebrow": "Care and washing",
-        "heading": "What shortens the life of a membrane.",
-        "body": "<p>These are washable and meant to be washed. Almost everything that ends a waterproof sock early is heat, softener or abrasion — not wear.</p>"
+        "eyebrow": "Care & washing",
+        "heading": "How to wash waterproof socks",
+        "body": "<p>They’re washable and meant to be washed. Almost everything that finishes a waterproof sock off early is heat, softener or rubbing — not wear.</p>"
       }
     },
     "wash": {
@@ -31,56 +31,56 @@
         "numbered": false,
         "anchor_id": "washing",
         "eyebrow": "Washing instructions",
-        "heading": "Washing instructions"
+        "heading": "Washing them"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "Wash cool",
-            "body": "<p>A laminate fails from heat long before it fails from age. Cool wash, gentle cycle.</p>"
+            "body": "<p>A waterproof layer gives up from heat long before it gives up from age. Cool wash, gentle cycle.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "Turn them inside out",
-            "body": "<p>It puts the knit face, not the lining, against the drum.</p>"
+            "body": "<p>It puts the outer knit, not the lining, against the drum.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "No fabric softener",
-            "body": "<p>Softener coats the pores the membrane breathes through. Once they are clogged the sock still keeps water out, but it stops moving vapour — which is the worst of both.</p>"
+            "body": "<p>Softener coats the holes the layer breathes through. Once they’re clogged the sock still keeps water out but stops letting sweat out, which is the worst of both.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
             "title": "No bleach",
-            "body": "<p>It attacks the laminate, not just the colour.</p>"
+            "body": "<p>It attacks the waterproof layer, not just the colour.</p>"
           }
         },
         "i5": {
           "type": "item",
           "settings": {
             "title": "Air dry",
-            "body": "<p>Away from a radiator. A membrane does not need heat to dry, and heat is the thing most likely to end it.</p>"
+            "body": "<p>Away from a radiator. A waterproof layer doesn’t need heat to dry, and heat is the thing most likely to end it.</p>"
           }
         },
         "i6": {
           "type": "item",
           "settings": {
             "title": "Never tumble dry or iron",
-            "body": "<p>Both are heat, applied directly.</p>"
+            "body": "<p>Both are heat, straight onto the layer.</p>"
           }
         },
         "i7": {
           "type": "item",
           "settings": {
             "title": "Rinse the grit out first",
-            "body": "<p>After a muddy walk or a wet ride, rinse under a cold tap before washing. Fine grit trapped in the knit is abrasive against the membrane from the inside, and it does more damage than the mud does.</p>"
+            "body": "<p>After a muddy walk or a wet ride, rinse under a cold tap before washing. Fine grit trapped in the knit rubs against the waterproof layer from the inside, and does more damage than the mud.</p>"
           }
         }
       },
@@ -101,36 +101,36 @@
         "layout": "band",
         "numbered": false,
         "anchor_id": "damage",
-        "eyebrow": "What damages the membrane",
-        "heading": "What damages the membrane",
+        "eyebrow": "What damages them",
+        "heading": "What damages them",
         "card_columns": "two"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
-            "title": "They are not indestructible",
-            "body": "<p>A membrane is a membrane. Abrasion, toenails and the wrong wash cycle will eventually end one.</p>"
+            "title": "They aren’t indestructible",
+            "body": "<p>A waterproof layer is a thin sheet. Rubbing, toenails and the wrong wash cycle will eventually end one.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "Breathable does not mean dry inside",
-            "body": "<p>Work hard enough and you will sweat faster than any membrane can move vapour. Breathability slows that. It does not repeal it.</p>"
+            "title": "Breathable doesn’t mean dry inside",
+            "body": "<p>Work hard enough and you’ll sweat faster than the layer can move it. It slows that down. It doesn’t stop it.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "Keep your toenails short",
-            "body": "<p>The least glamorous advice on this site and one of the most useful. A long toenail inside a close-fitting sock is a puncture waiting to happen, and a punctured membrane cannot be repaired.</p>"
+            "body": "<p>The least glamorous advice on this site and one of the most useful. A long toenail inside a close-fitting sock is a hole waiting to happen, and a hole can’t be repaired.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
-            "title": "Do not leave them damp in a bag",
+            "title": "Don’t leave them damp in a bag",
             "body": "<p>A wet sock left in a kit bag or a boot overnight is where odour starts, and prolonged damp does the knit no good either. Air dry them the same day.</p>"
           }
         }
@@ -176,7 +176,7 @@
         "eyebrow": "If something changes",
         "heading": "If a pair stops keeping water out.",
         "lede": "<p>There are three usual explanations, and they need different responses.</p>",
-        "link_label": "Where you stand if it is a fault",
+        "link_label": "Where you stand if it’s a fault",
         "link_url": "/pages/warranty",
         "mirror": false,
         "divided": true
@@ -185,22 +185,22 @@
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Water came in over the cuff",
+            "title": "Water came in over the top",
             "body": "<p>The most common one, and not a fault. If the water was deeper than the sock is tall, it went in the top. Nothing is wrong with the sock.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "The membrane is clogged rather than failed",
-            "body": "<p>If they feel clammy but still keep water out, that is usually fabric softener build-up. A cool wash with no detergent residue sometimes recovers it. Sometimes it does not.</p>"
+            "title": "It’s clogged rather than failed",
+            "body": "<p>If they feel clammy but still keep water out, that’s usually fabric softener build-up. A cool wash with no detergent residue sometimes recovers it. Sometimes it doesn’t.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "The membrane is punctured",
-            "body": "<p>If water comes through the body of the sock, the laminate has been pierced. That cannot be repaired or reproofed. If it happened within the first weeks of normal use, that is a fault and we want to hear about it.</p>"
+            "title": "There’s a hole in it",
+            "body": "<p>If water comes through the body of the sock, the waterproof layer has been pierced. That can’t be repaired or reproofed. If it happened in the first few weeks of normal use, that’s a fault and we want to hear about it.</p>"
           }
         }
       },
@@ -218,7 +218,7 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "About washing them.",
+        "heading": "Common questions",
         "cta_link": "/products/hydrosox-waterproof-socks",
         "help_link": "/pages/contact"
       },
@@ -227,24 +227,31 @@
           "type": "question",
           "settings": {
             "question": "How often should I wash them?",
-            "answer": "<p>After every wet or muddy outing, and otherwise as often as you would wash any sock. Washing them correctly does no harm; leaving grit and sweat in them does.</p>"
+            "answer": "<p>After every wet or muddy outing, and otherwise as often as you’d wash any sock. Washing them properly does no harm. Leaving grit and sweat in them does.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
             "question": "Can I wash them by hand?",
-            "answer": "<p>Yes, and for a single muddy pair it is often quicker. Cool water, a little detergent, no softener, rinse thoroughly and air dry.</p>"
+            "answer": "<p>Yes, and for one muddy pair it’s often quicker. Cool water, a little detergent, no softener, rinse thoroughly and air dry.</p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
             "question": "Can I put them on a radiator to dry?",
-            "answer": "<p>No. Direct heat is the fastest way to end a laminate, and a radiator is the most common culprit precisely because it is the most tempting after a wet day.</p>"
+            "answer": "<p>No. Direct heat is the fastest way to end a waterproof layer, and a radiator is the most common culprit precisely because it’s the most tempting after a wet day.</p>"
           }
         },
         "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use a waterproofing spray on them?",
+            "answer": "<p>No, and it wouldn’t help. Sprays work on the outside of a fabric. They can’t reach or repair a layer sealed inside a sock.</p>"
+          }
+        },
+        "q5": {
           "type": "question",
           "settings": {
             "question": "How long should a pair last?",
@@ -256,7 +263,8 @@
         "q1",
         "q2",
         "q3",
-        "q4"
+        "q4",
+        "q5"
       ]
     }
   },

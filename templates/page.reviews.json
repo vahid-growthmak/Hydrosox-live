@@ -28,11 +28,11 @@
         "anchor_id": "",
         "max_width": 46,
         "eyebrow": "Reviews",
-        "heading": "There are none yet, and we are not going to invent any.",
+        "heading": "No reviews yet",
         "heading_tag": "h1",
         "heading_size": "h2",
         "lead_first_para": false,
-        "body": "<p>HydroSox is new. A rating with nothing behind it is worth nothing, and a feed of five-star reviews with no negatives in it reads as filtered to exactly the person who is reading carefully.</p>",
+        "body": "<p>We’re new, so there aren’t any. A rating with nothing behind it is worth nothing, and a page of five-star reviews with no negatives reads as filtered to anyone paying attention.</p>",
         "footnote": "",
         "pointer_label": "",
         "pointer_link_label": "",
@@ -52,14 +52,14 @@
         "numbered": false,
         "anchor_id": "standard",
         "eyebrow": "The standard",
-        "heading": "The standard this feed will be held to"
+        "heading": "The standard we’ll hold them to"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
             "title": "Verified buyers only",
-            "body": "<p>A review has to come from an order. No unverified submissions, and no reviews written by us.</p>"
+            "body": "<p>A review has to come from an order. No unverified submissions, and none written by us.</p>"
           }
         },
         "i2": {
@@ -72,22 +72,22 @@
         "i3": {
           "type": "item",
           "settings": {
-            "title": "Filterable by activity and rating",
-            "body": "<p>A commuter's experience is more useful to another commuter than an overall average is. The filters go live with the feed.</p>"
+            "title": "Filterable by use and rating",
+            "body": "<p>A commuter’s experience is more useful to another commuter than an overall average. The filters go live with the reviews.</p>"
           }
         },
         "i4": {
           "type": "item",
           "settings": {
-            "title": "The aggregate is the real one",
-            "body": "<p>Whatever the average turns out to be is what gets printed, including the rating and the total volume in one line.</p>"
+            "title": "The average is the real one",
+            "body": "<p>Whatever it turns out to be is what gets printed, along with how many reviews it’s based on.</p>"
           }
         },
         "i5": {
           "type": "item",
           "settings": {
-            "title": "We will not offer anything for a review",
-            "body": "<p>No discount, no free pair, no prize draw. A review bought with an incentive is not evidence, and it is not permitted to be presented as though it were.</p>"
+            "title": "We won’t offer anything for a review",
+            "body": "<p>No discount, no free pair, no prize draw. A review bought with an incentive isn’t evidence, and presenting it as though it were is now specifically prohibited.</p>"
           }
         }
       },
@@ -101,38 +101,34 @@
     },
     "meanwhile": {
       "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "list",
+        "numbered": false,
+        "anchor_id": "instead",
+        "eyebrow": "Instead",
+        "heading": "What you can check instead"
+      },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
-            "title": "The membrane is named",
-            "body": "<p>Porelle®, licensed from a third party. You can look it up, which is more than an unnamed laminate offers.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "title": "The waterproof layer is named",
+            "body": "<p>Porelle®, made by a separate company. You can look it up, which is more than an unnamed layer offers.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
             "title": "The limits are published",
-            "body": "<p>What the socks will not do is on the homepage. No competitor in this category publishes that.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>What the socks won’t do is on the homepage. Nobody else in this category publishes that.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
             "title": "The company is named",
-            "body": "<p>UK registered, with the address and phone number on every page rather than behind a contact form.</p>",
-            "link_label": "",
-            "link_url": "",
-            "image_fallback": "",
-            "image_alt": ""
+            "body": "<p>UK registered, with the address and phone number on every page rather than behind a contact form.</p>"
           }
         }
       },
@@ -140,32 +136,7 @@
         "i1",
         "i2",
         "i3"
-      ],
-      "settings": {
-        "color_scheme": "wash",
-        "layout": "list",
-        "mirror": false,
-        "numbered": false,
-        "row_density": "standard",
-        "hide_rule": false,
-        "anchor_id": "",
-        "eyebrow": "The problem",
-        "heading": "What you can check instead",
-        "head_note": "<p>Reviews are one kind of evidence. Until there are some, here is the kind that does not depend on volume.</p>",
-        "link_label": "",
-        "link_url": "",
-        "link2_label": "",
-        "link2_url": "",
-        "lede": "",
-        "lead_first_para": false,
-        "prose": "",
-        "gallery_aspect": "4 / 5",
-        "footnote": "",
-        "cta_label": "",
-        "cta_url": "",
-        "media_fallback": "",
-        "media_alt": ""
-      }
+      ]
     },
     "faq": {
       "type": "faq-accordion",
@@ -175,7 +146,7 @@
         "one_at_a_time": false,
         "emit_schema": true,
         "eyebrow": "Questions",
-        "heading": "About the feed that is not here yet.",
+        "heading": "Common questions",
         "cta_link": "#buy",
         "help_link": "/pages/contact"
       },
@@ -184,14 +155,14 @@
           "type": "question",
           "settings": {
             "question": "When will there be reviews?",
-            "answer": "<p>When enough people have bought and used a pair to make a rating mean something. We would rather show nothing than show four reviews and an average.</p>"
+            "answer": "<p>When enough people have bought and used a pair for a rating to mean something. We’d rather show nothing than show four reviews and an average.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
             "question": "Will you publish bad reviews?",
-            "answer": "<p>Yes, unedited and alongside the rest. A feed with no negatives in it tells a careful reader that it has been filtered, which is worse than a mixed one.</p>"
+            "answer": "<p>Yes, unedited and alongside the rest. A page with no negatives on it tells a careful reader it’s been filtered, which is worse than a mixed one.</p>"
           }
         }
       },

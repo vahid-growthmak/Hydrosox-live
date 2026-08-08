@@ -30,8 +30,8 @@
         "heading_size": "h2",
         "hide_rule": true,
         "eyebrow": "Track order",
-        "heading": "Ask us and we will look.",
-        "body": "<p>There is no tracking widget on this page yet, because tracking is still being confirmed with the carrier. In the meantime a person will check for you.</p>"
+        "heading": "Track your order",
+        "body": "<p>There’s no tracking widget here yet, because tracking is still being confirmed with the carrier. In the meantime a person will check for you.</p>"
       }
     },
     "how": {
@@ -40,14 +40,15 @@
         "color_scheme": "paper",
         "layout": "list",
         "numbered": false,
-        "heading": "Three ways to find out"
+        "heading": "Three ways to find out",
+        "eyebrow": "Three ways"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Email us the order number",
-            "body": "<p>It is in your confirmation email, and it starts with a hash. We will tell you where the parcel actually is.</p>"
+            "title": "Email us your order number",
+            "body": "<p>It’s in your confirmation email and it starts with a hash. We’ll tell you where the parcel actually is.</p>"
           }
         },
         "i2": {
@@ -61,7 +62,7 @@
           "type": "item",
           "settings": {
             "title": "Order history, if you made an account",
-            "body": "<p>Guest checkout is the default here, so most orders will not have one. Nothing is hidden behind an account.</p>"
+            "body": "<p>Guest checkout is the default here, so most orders won’t have one. Nothing is hidden behind an account.</p>"
           }
         }
       },

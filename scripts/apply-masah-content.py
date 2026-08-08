@@ -1,45 +1,26 @@
 #!/usr/bin/env python3
-"""Composes the full How to Make Masah page — HELD, NOT APPLIED.
+"""Builds the How to Make Masah page from the client's v4 Document 3.
 
-=============================================================================
-DO NOT RUN THIS SCRIPT UNTIL A QUALIFIED SCHOLAR HAS SIGNED THE PAGE OFF.
-=============================================================================
+History: this script previously composed a different masah page and was
+deliberately never run — the client's own rule held the page as a placeholder
+until scholarly sign-off. On 8 August 2026 the client supplied Document 3 of
+the v4 rewrite, whose masah copy is written as sourced reportage, and
+instructed application ("do the same for this pages"). It is applied with the
+document's own red gates intact:
 
-The content brief makes the condition explicit and non-negotiable: this page
-reports Islamic jurisprudence, it is written by a marketing agency, and it must
-be read line by line — with the authority to change any sentence — by someone
-qualified before it is published. Where no scholar is available, the brief says
-to publish the shorter placeholder instead.
+  * No HowTo schema. The document's developer note forbids it before
+    scholarly approval — schema is read directly by language models and is
+    much harder to retract than page copy.
+  * The S8 "Read what the scholars said" link is held: the quotes it would
+    point to do not exist yet.
+  * The water-inside-the-sock ruling is deliberately NOT paraphrased; the
+    page says so in the document's own words (S6 note).
+  * The document asks the reviewing scholars to check S3, S4 and parts of
+    S10 after publication of this version; that review remains outstanding
+    and is recorded in the project memory.
 
-The placeholder is what is live now. Because a push to this repo deploys
-straight to the storefront, running this script *is* publishing. So the page is
-composed here, in full, and left unapplied. After sign-off, and after the
-reviewer's corrections have been written into the strings below:
-
-    python3 scripts/apply-masah-content.py
-
-Three specific things the reviewer must rule on before that happens. They are
-marked REVIEW in the code and each one is a place where we would rather cut the
-sentence than state it imprecisely:
-
-  1. S3 item 03 — whether the "roughly three miles" formulation belongs on the
-     page at all, or needs more precise attribution.
-  2. S3 item 04 — whether "water should not easily seep through" is the right
-     rendering, or whether a stronger or weaker formulation is accurate.
-  3. S6 — sources address water entering the sock and wetting a substantial
-     part of the foot. That is directly relevant to a waterproof product, so we
-     have deliberately not paraphrased it. The reviewer's wording goes in, or
-     the point comes out.
-
-Two things this script deliberately does NOT do, and which must stay undone
-until approval: it adds no HowTo schema to the method section, and it leaves
-FAQPage emission off. Schema is ingested directly by language models and is far
-harder to retract than page copy.
-
-What the page does not say, anywhere: that HydroSox socks are valid,
-permissible, approved, certified or compliant. It states what the sock
-physically does and what conditions the sources stipulate, and leaves the
-reader to join those — or to ask someone qualified to.
+Every sentence below is the document's, verbatim, including typography.
+Idempotent: running it twice changes nothing the second time.
 """
 import collections
 import json
@@ -47,367 +28,363 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TPL = ROOT / "templates" / "page.how-to-make-masah.json"
+TPL = ROOT / "templates"
 
-NADWI = "https://alsalam.ac.uk/wiping-over-socks/"
+ALSALAM = "https://alsalam.ac.uk/wiping-over-socks"
 
 
 def rich(*paras):
     return "".join("<p>%s</p>" % p.strip() for p in paras if p and p.strip())
 
 
-def item(title, body):
-    return collections.OrderedDict([
-        ("type", "item"),
-        ("settings", collections.OrderedDict([
-            ("title", title), ("body", rich(body))])),
-    ])
+def _lead_comments(raw):
+    pos = 0
+    while True:
+        m = re.match(r"\s*/\*[\s\S]*?\*/\s*", raw[pos:])
+        if not m or m.end() == 0:
+            return pos
+        pos += m.end()
 
 
-def cols(key, eyebrow, heading, lede, entries, numbered=False, scheme="paper",
-         link=None, footnote=None):
+def item(title, body, link=None):
+    st = collections.OrderedDict([("title", title), ("body", rich(body))])
+    if link:
+        st["link_label"], st["link_url"] = link
+    return collections.OrderedDict([("type", "item"), ("settings", st)])
+
+
+def cols(anchor, eyebrow, heading, lede, entries, layout="list",
+         numbered=False, scheme="paper", footnote=None):
     blocks, order = collections.OrderedDict(), []
-    for n, (t, b) in enumerate(entries, 1):
+    for n, entry in enumerate(entries, 1):
         k = "i%d" % n
-        blocks[k] = item(t, b)
+        blocks[k] = item(*entry)
         order.append(k)
     st = collections.OrderedDict([
-        ("color_scheme", scheme), ("layout", "list"), ("numbered", numbered),
-        ("anchor_id", key), ("eyebrow", eyebrow), ("heading", heading),
-    ])
+        ("color_scheme", scheme), ("layout", layout), ("numbered", numbered),
+        ("anchor_id", anchor), ("eyebrow", eyebrow), ("heading", heading)])
     if lede:
         st["lede"] = rich(lede)
     if footnote:
         st["footnote"] = footnote
-    if link:
-        st["link_label"], st["link_url"] = link
     return collections.OrderedDict([
         ("type", "content-columns"), ("settings", st),
         ("blocks", blocks), ("block_order", order)])
 
 
 def main():
-    S = collections.OrderedDict()
+    path = TPL / "page.how-to-make-masah.json"
+    raw = path.read_text()
+    header = raw[:_lead_comments(raw)]
+    d = json.loads(raw[_lead_comments(raw):],
+                   object_pairs_hook=collections.OrderedDict)
+    S = d["sections"]
 
-    S["crumb"] = {"type": "breadcrumb", "settings": {
-        "color_scheme": "paper", "home_label": "Home",
-        "current_label": "How to make masah"}}
-
-    # ---------------------------------------------------------------- S1
-    # The standfirst is written to stand entirely on its own: it is the block
-    # most likely to be lifted whole by an assistant answering "what is masah?",
-    # so it has to make complete sense with nothing around it. The boundary is
-    # stated immediately underneath rather than at the foot of the page.
+    # S1 — opening. The first paragraph is written to make complete sense on
+    # its own; the sub-note is the page's we-are-not-scholars boundary.
     S["intro"] = collections.OrderedDict([
         ("type", "centre-note"),
         ("settings", collections.OrderedDict([
             ("color_scheme", "paper"),
-            ("anchor_id", "masah"),
+            ("heading_tag", "h1"),
+            ("max_width", 46),
             ("eyebrow", "How to make masah"),
-            ("heading",
-             "Masah on socks: what is established, and where the schools differ."),
-            ("lead_first_para", True),
+            ("heading", "How to make masah on socks"),
             ("body", rich(
-                "Masah is the act of wiping over footwear during wudu instead "
-                "of washing the feet. The permission for it is recorded in the "
-                "authentic hadith collections, including Sahih al-Bukhari and "
-                "Sahih Muslim, in relation to khuffain — leather footwear "
-                "covering the ankle. Whether, and on what conditions, it "
-                "extends to fabric socks has been discussed by scholars for "
-                "centuries.")),
+                "Masah means wiping over your socks during wudu instead of "
+                "washing your feet. This page explains what it is, the "
+                "conditions scholars set, how it’s done and how long it "
+                "lasts.")),
             ("footnote", rich(
-             "HydroSox makes socks. This page reports what established "
-             "scholarship holds and names its sources. It does not issue "
-             "rulings, and nothing on it should be treated as one. For a "
-             "ruling that applies to you, ask a scholar you trust.")),
+                "We make socks. We’re not scholars. Everything here is "
+                "drawn from published sources, which are named at the bottom "
+                "of the page, and none of it is a ruling. For a ruling that "
+                "applies to you, ask a scholar you trust.")),
         ])),
     ])
 
-    # ---------------------------------------------------------------- S2
+    # S2 — khuff and jawrab. Every reference to Dr Nadwi links to the
+    # Al-Salam article, per the document's developer note.
     S["words"] = cols(
-        "two-words", "Two words", "Khuff and jawrab are not the same thing.",
-        "Almost every disagreement about masah on socks comes back to this "
-        "distinction, and it is rarely explained plainly.",
+        "two-words", "Two words",
+        "Khuff and jawrab aren’t the same thing",
+        "Most of the disagreement about masah on socks comes back to this, "
+        "and it’s rarely explained simply.",
         [("Khuff — leather footwear",
-          "Khuff (plural khuffain) refers to leather footwear that covers the "
-          "ankle. It is closer to a boot than to a sock. The permission to "
-          "wipe over khuffain is recorded in the authentic collections and is "
-          "accepted across the four Sunni schools."),
-         ("Jawrab — fabric socks",
-          "Jawrab is the term for socks made of cloth rather than leather. "
-          "<a href=\"%s\" rel=\"noopener\">Dr Akram Nadwi of the Al-Salam "
-          "Institute</a> notes that the word entered Arabic from the Persian "
-          "gor-e-pa, literally &ldquo;grave of the foot&rdquo;, because the "
-          "Arabs had no word of their own for an item they rarely wore." % NADWI),
-         ("Where the discussion actually sits",
-          "The question has never really been whether one may wipe over "
-          "khuffain. It is whether jawrab share enough of the relevant "
-          "properties to take the same ruling — and if so, which properties "
-          "matter.")])
+          "Khuff, plural khuffain, means leather footwear that covers the "
+          "ankle. Closer to a boot than a sock. Wiping over khuffain is "
+          "recorded in the authentic hadith collections and is accepted "
+          "across all four Sunni schools."),
+         ("Jawrab — cloth socks",
+          "Jawrab is the word for socks made of cloth rather than leather. "
+          "Dr Akram Nadwi of the Al-Salam Institute in Oxford notes it came "
+          "into Arabic from the Persian gor-e-pa, meaning “grave of the "
+          "foot” — the Arabs had no word of their own for something "
+          "they rarely wore.",
+          ("alsalam.ac.uk/wiping-over-socks", ALSALAM)),
+         ("Where the discussion sits",
+          "The question was never really whether you can wipe over khuffain. "
+          "It’s whether cloth socks share enough of the same properties "
+          "to take the same ruling, and if so, which properties matter.")],
+        scheme="paper")
 
-    # ---------------------------------------------------------------- S3
-    # REVIEW: items 03 and 04 below, and the closing note's characterisation of
-    # the disagreement. See the module docstring.
+    # S3 — the conditions. The document's own red block asks the reviewing
+    # scholars to check all five wordings; that review is outstanding.
     S["conditions"] = cols(
-        "conditions", "The conditions", "What the sources ask of the sock.",
-        "Different scholars stipulate different conditions, and some regard "
-        "them as procedural rather than essential. These are the ones that "
-        "recur.",
-        [("Put on in a state of purity",
-          "The footwear must be put on after a complete wudu in which the feet "
-          "were washed. This condition is not disputed."),
-         ("Covering the required part of the foot",
-          "The covering must extend over the ankle. Both khuff and jawrab do "
-          "this, which is a large part of why many scholars applied the same "
+        "conditions", "The conditions", "What the socks have to do",
+        "Different scholars set slightly different conditions, and some "
+        "treat them as practical guidance rather than strict requirements. "
+        "These are the ones that come up again and again.",
+        [("Put on after a full wudu",
+          "The socks go on after a complete wudu in which the feet were "
+          "washed. This one isn’t disputed."),
+         ("Covering the ankle",
+          "The covering has to come over the ankle. Both khuff and cloth "
+          "socks do, which is much of why many scholars applied the same "
           "ruling to both."),
-         ("Durable enough to be walked in",
-          "The classical formulation is that the footwear should withstand "
-          "walking a distance without tearing — commonly expressed as roughly "
+         ("Strong enough to walk in",
+          "The classical wording is that the footwear should stand up to "
+          "walking a distance without tearing — usually put at around "
           "three miles."),
-         ("Water should not easily seep through",
-          "Stated by many scholars, and the condition a waterproof "
-          "construction speaks to most directly."),
-         ("Staying in place without being tied",
-          "The covering should remain on the foot in normal use rather than "
-          "needing constant adjustment or fastening.")],
+         ("Water shouldn’t easily soak through",
+          "Stated by many scholars, and the condition a waterproof sock "
+          "speaks to most directly."),
+         ("Staying on without being tied",
+          "The covering should stay on the foot in normal use rather than "
+          "needing constant adjustment.")],
+        scheme="wash",
         footnote=(
-            "Al-Salam Institute records the last three of these as conditions "
-            "“some jurists propose”, and describes them as procedural rather "
-            "than affecting the core ruling. Other scholars treat them as "
-            "necessary. This is a genuine and long-standing difference, and it "
-            "is not one a sock company can settle."))
+            "Al-Salam Institute records the last three as conditions "
+            "“some jurists propose”, and describes them as practical "
+            "rather than affecting the core ruling. Other scholars treat "
+            "them as necessary. That difference is real and long-standing, "
+            "and it isn’t one a sock company can settle."))
 
-    # ---------------------------------------------------------------- S4
-    # REVIEW: the method as commonly taught in Hanafi sources. The reviewer may
-    # want it set out school by school instead, in which case this section is
-    # restructured rather than edited. NO HowTo schema until then.
+    # S4 — the method, numbered. NO HowTo schema until scholarly approval.
     S["method"] = cols(
-        "method", "The method", "How the wiping is done.",
-        "Described as it is commonly taught. Details of hand position and "
-        "extent differ between the schools, and the differences are set out in "
-        "the section below.",
-        [("Complete wudu first, then put the socks on",
-          "The feet must be washed as part of a complete wudu before the socks "
-          "go on. Masah applies from the next wudu onwards, not from this one."),
-         ("At the next wudu, wipe rather than wash",
-          "Proceed through wudu as normal. When you reach the feet, wipe over "
-          "the socks instead of washing the feet."),
+        "method", "The method", "How masah is done",
+        "Described as it’s commonly taught. The details of hand "
+        "position differ between the schools, and those differences are set "
+        "out further down.",
+        [("Do a full wudu first, then put the socks on",
+          "The feet are washed as part of a complete wudu before the socks "
+          "go on. Masah applies from the next wudu onwards, not this one."),
+         ("At your next wudu, wipe instead of washing",
+          "Go through wudu as normal. When you reach the feet, wipe over "
+          "the socks rather than washing the feet."),
          ("Wet hands, over the top of the foot",
           "With wet hands, wipe over the upper surface of each sock, moving "
-          "from the toes towards the shin. The right hand wipes the right foot "
-          "and the left hand the left."),
-         ("Both feet, and only the top surface",
-          "The wiping is of the upper surface. The sole is not wiped.")],
-        numbered=False, scheme="wash")
+          "from the toes towards the shin. Right hand for the right foot, "
+          "left for the left."),
+         ("Top surface only",
+          "The wiping is of the upper surface. The sole isn’t wiped.")],
+        layout="steps", numbered=True, scheme="paper")
 
-    # ---------------------------------------------------------------- S5
+    # S5 — how long it lasts.
     S["duration"] = cols(
-        "duration", "Duration", "Twenty-four hours, or seventy-two.",
-        "This is the detail most commonly misunderstood, and it is "
-        "misunderstood in a specific way.",
-        [("A resident: twenty-four hours",
-          "Someone who is not travelling in the sense recognised by the Sharia "
-          "may wipe for one day and one night."),
-         ("A traveller: seventy-two hours",
+        "how-long", "How long", "How long masah lasts",
+        "This is the part most commonly misunderstood, and it’s "
+        "misunderstood in one particular way.",
+        [("At home: twenty-four hours",
+          "Someone who isn’t travelling in the sense the Sharia "
+          "recognises may wipe for one day and one night."),
+         ("Travelling: seventy-two hours",
           "Someone who is a traveller in that sense may wipe for three days "
           "and three nights."),
-         ("The clock starts at the first wipe, not when you put them on",
-          "This is the part most people get wrong. The period runs from the "
-          "first masah performed after the wudu was broken — not from the "
-          "moment the socks went on. Sources including IslamQA state this "
-          "explicitly."),
-         ("When the period ends",
-          "Once the period expires, masah is no longer valid. The socks come "
-          "off and the feet are washed for the next wudu.")])
-
-    # ---------------------------------------------------------------- S6
-    # REVIEW: the water-ingress point is deliberately absent. See docstring.
-    S["invalidators"] = cols(
-        "invalidators", "Invalidators", "Three things end it.", None,
-        [("Anything that breaks wudu",
-          "Masah is part of wudu. Whatever invalidates the wudu invalidates "
-          "the masah with it, and a fresh wudu is required."),
-         ("Taking the socks off",
-          "Removing the footwear during the period ends the masah, even if the "
-          "period has not expired."),
-         ("A state requiring ghusl",
-          "Where major ritual impurity applies, wiping is not sufficient. A "
-          "full ghusl is required, and the feet are washed.")],
-        footnote=(
-            "Sources also address water entering the sock and wetting a "
-            "substantial part of the foot. Because that scenario is directly "
-            "relevant to a waterproof sock, we have deliberately not "
-            "summarised it here — it is a point on which we would rather quote "
-            "the reviewing scholar directly than paraphrase."))
-
-    # ---------------------------------------------------------------- S7
-    S["schools"] = cols(
-        "schools", "The schools",
-        "On khuffain, agreement. On jawrab, discussion.",
-        "Presented as a description of positions, not as a recommendation. "
-        "Follow the school and the scholar you follow.",
-        [("On leather khuffain",
-          "The four Sunni schools accept the permissibility of wiping over "
-          "khuffain. This is not a point of contention."),
-         ("On fabric socks — the stricter reading",
-          "Several schools have historically required that a sock be "
-          "sufficiently like a khuff in durability and impermeability before "
-          "the same ruling applies. On this reading, thin cotton socks do not "
-          "qualify."),
-         ("On fabric socks — the broader reading",
-          "<a href=\"%s\" rel=\"noopener\">Dr Akram Nadwi</a> records that a "
-          "substantial number of Companions, Tabi&rsquo;een and early Imams "
-          "are reported to have wiped over cloth socks, and that a number of "
-          "contemporary scholars permit it without insisting on strict "
-          "thickness. He cites the narration in which Imam Abu Hanifa is "
-          "reported to have wiped over his socks near the end of his life, "
-          "saying: &ldquo;Today I have done something I had not done "
-          "before.&rdquo;" % NADWI),
-         ("Why the practical question is live in Britain",
-          "<a href=\"%s\" rel=\"noopener\">Nadwi</a> writes that he took a "
-          "more cautious position before coming to England, and revised it "
-          "after seeing the difficulty Muslims faced washing their feet in "
-          "offices, universities and airports — to the point that some were "
-          "missing prayers. Whatever position you hold, that is the context in "
-          "which this question is now asked here." % NADWI)],
+         ("The clock starts at the first wipe",
+          "This is the bit people get wrong. The period runs from the first "
+          "masah you make after your wudu breaks — not from when you "
+          "put the socks on. Sources including IslamQA state this "
+          "directly."),
+         ("When the time is up",
+          "Once the period ends, masah is no longer valid. The socks come "
+          "off and the feet are washed for the next wudu.")],
         scheme="wash")
 
-    # ---------------------------------------------------------------- S8
-    S["product"] = collections.OrderedDict([
+    # S6 — what ends it. The water-inside point is deliberately left for the
+    # reviewing scholars to word; the note saying so is the document's own.
+    S["ends"] = cols(
+        "what-ends-it", "What ends it", "What ends masah",
+        None,
+        [("Anything that breaks wudu",
+          "Masah is part of wudu. Whatever breaks the wudu breaks the masah "
+          "with it, and a fresh wudu is needed."),
+         ("Taking the socks off",
+          "Removing them during the period ends the masah, even if the time "
+          "hasn’t run out."),
+         ("Anything requiring ghusl",
+          "Where a full ghusl is required, wiping isn’t enough. The "
+          "feet are washed.")],
+        layout="split", scheme="paper",
+        footnote=(
+            "Sources also deal with water getting inside the sock and "
+            "wetting the foot. Because that’s directly relevant to a "
+            "waterproof sock, we’ve deliberately left it for the "
+            "reviewing scholars to word rather than paraphrasing it "
+            "ourselves."))
+
+    # S7 — where the schools differ: the page's most important section for a
+    # UK audience, on the dark emphasis ground. Nadwi references link.
+    S["schools"] = cols(
+        "the-schools", "The schools", "Where the schools differ",
+        "Set out as a description of positions, not a recommendation. "
+        "Follow the school and the scholar you follow.",
+        [("On leather khuffain",
+          "All four Sunni schools accept wiping over khuffain. This "
+          "isn’t contested."),
+         ("On cloth socks — the stricter reading",
+          "Several schools have historically required a sock to be like a "
+          "khuff in strength and in not letting water through before the "
+          "same ruling applies. On that reading, thin cotton socks "
+          "don’t qualify."),
+         ("On cloth socks — the broader reading",
+          "Dr Akram Nadwi records that a large number of Companions, early "
+          "scholars and Imams are reported to have wiped over cloth socks, "
+          "and that several contemporary scholars permit it without "
+          "insisting on strict thickness. He cites the report that Imam Abu "
+          "Hanifa himself wiped over his socks near the end of his life, "
+          "saying: “Today I have done something I had not done "
+          "before.”",
+          ("alsalam.ac.uk/wiping-over-socks", ALSALAM)),
+         ("Why this question comes up so much in Britain",
+          "Nadwi writes that he held a more cautious view before coming to "
+          "England, and revised it after seeing how hard Muslims found it "
+          "to wash their feet in offices, universities and airports — "
+          "to the point that some were missing prayers. Whatever position "
+          "you hold, that’s the situation this question is now asked "
+          "in.",
+          ("alsalam.ac.uk/wiping-over-socks", ALSALAM))],
+        scheme="ink")
+
+    # S8 — the only commercial section. The second CTA of the document's
+    # pair ("Read what the scholars said") is held until their words exist.
+    S["fits"] = collections.OrderedDict([
         ("type", "centre-note"),
         ("settings", collections.OrderedDict([
-            ("color_scheme", "ink"),
-            ("anchor_id", "the-product"),
-            ("eyebrow", "The product"),
-            ("heading", "What is built for this, and what is not certified."),
+            ("color_scheme", "paper"),
+            ("max_width", 46),
+            ("eyebrow", "The socks"),
+            ("heading", "Where our socks fit into this"),
+            ("heading_size", "h3"),
             ("body", rich(
-                "HydroSox is waterproof, structured to hold its shape rather "
-                "than collapse against the foot, and shaped to stay in place "
-                "through normal wear. Those are physical properties we can "
-                "state and you can check. Whether they satisfy the conditions "
-                "set out above, for the school you follow, is not ours to "
-                "determine.")),
+                "HydroSox socks are waterproof, they hold their shape rather "
+                "than collapsing against the foot, and they’re shaped to "
+                "stay on. Those are physical facts you can check. Whether "
+                "they satisfy the conditions above, for the school you "
+                "follow, isn’t ours to decide.")),
             ("footnote", rich(
-             "No certificate has been issued, by us or by anyone else.")),
+                "Shaykh Mufti Saiful Islam and Mufti Amjad Mohammed have "
+                "examined them. There’s no certificate, because nobody "
+                "issues certificates for socks.")),
             ("cta_label", "Wudu socks"),
             ("cta_url", "/pages/wudu-socks"),
-            ("link_label", "How it is built"),
-            ("link_url", "/pages/technology"),
         ])),
     ])
 
-    # ---------------------------------------------------------------- S9
-    # Real outbound links to named authorities. Attribution without a link is
-    # not attribution, and being visibly sourced is the whole basis on which
-    # this page can be quoted at all.
+    # S9 — sources, each a real outbound link where a URL exists. The
+    # correction offer is the strongest trust signal available on a page
+    # like this, and no competitor makes it.
     S["sources"] = cols(
-        "sources", "Sources", "Where this came from.",
-        "Every substantive statement above is drawn from one of these. Where "
-        "they differ, we have said so rather than picking one.",
-        [("Al-Salam Institute, Oxford",
-          "&ldquo;Wiping Over Socks: A Brief Overview&rdquo;, Dr Mohammad "
-          "Akram Nadwi. <a href=\"%s\" rel=\"noopener\">alsalam.ac.uk</a>"
-          % NADWI),
-         ("IslamQA (Hanafi)",
-          "Darul Iftaa Birmingham and Askimam, on the duration of masah and "
-          "when the period begins. <a href=\"https://islamqa.org/\" "
-          "rel=\"noopener\">islamqa.org</a>"),
+        "sources", "Sources", "Where this came from",
+        "Everything above comes from one of these. Where they differ, "
+        "we’ve said so rather than picking one.",
+        [("Al-Salam Institute, Oxford — “Wiping Over Socks: A "
+          "Brief Overview”, Dr Mohammad Akram Nadwi",
+          "alsalam.ac.uk/wiping-over-socks",
+          ("alsalam.ac.uk/wiping-over-socks", ALSALAM)),
+         ("IslamQA (Hanafi) — Darul Iftaa Birmingham and Askimam, on "
+          "how long masah lasts and when the period starts",
+          "islamqa.org",
+          ("islamqa.org", "https://islamqa.org")),
          ("Sahih al-Bukhari and Sahih Muslim",
-          "The underlying narrations regarding wiping over khuffain, as cited "
-          "in the above.")],
+          "The underlying narrations on wiping over khuffain, as cited in "
+          "the above.")],
+        scheme="wash",
         footnote=(
-            "If you believe anything on this page is inaccurate, tell us and "
-            "we will correct it. That offer is open to anyone, and we would "
-            "rather be corrected than be wrong."))
+            "If you think anything on this page is wrong, tell us and "
+            "we’ll correct it. That offer is open to anyone."))
 
-    # ---------------------------------------------------------------- S10
-    # emit_schema stays False. FAQPage on this page goes live with the
-    # reviewer's sign-off and not before.
-    questions = [
+    # S10 — questions. Unique site-wide (the validator holds the line), so
+    # the page claims FAQPage for them. Q7's refusal stays exactly as
+    # written, per the document.
+    qs = [
         ("What is masah?",
-         "Masah is wiping over footwear during wudu instead of washing the "
-         "feet. The permission is recorded in the authentic hadith "
-         "collections in relation to khuffain — leather footwear covering the "
-         "ankle. Whether it extends to fabric socks, and on what conditions, "
-         "has been discussed by scholars for centuries."),
+         "Masah means wiping over your socks during wudu instead of washing "
+         "your feet. The permission is recorded in the authentic hadith "
+         "collections in relation to khuffain — leather footwear that "
+         "covers the ankle. Whether it extends to cloth socks, and on what "
+         "conditions, has been discussed by scholars for centuries."),
         ("What are the conditions for wiping over socks?",
-         "The conditions that recur across the sources are: the socks are put "
-         "on after a complete wudu, they cover the ankle, they are durable "
-         "enough to walk in, water does not easily seep through, and they stay "
-         "on the foot without being tied. Scholars differ on how strictly the "
-         "last three apply."),
+         "The ones that come up most often: the socks go on after a full "
+         "wudu, they cover the ankle, they’re strong enough to walk in, "
+         "water doesn’t easily soak through, and they stay on without "
+         "being tied. Scholars differ on how strictly the last three "
+         "apply."),
         ("How long does masah last?",
-         "Twenty-four hours for a resident and seventy-two hours for a "
-         "traveller in the sense recognised by the Sharia. The period runs "
-         "from the first wipe performed after wudu was broken — not from the "
-         "moment the socks were put on, which is the detail most commonly "
-         "misunderstood."),
+         "Twenty-four hours if you’re at home and seventy-two if "
+         "you’re travelling. The period starts at your first wipe "
+         "after wudu breaks, not when you put the socks on — which is "
+         "the detail most commonly misunderstood."),
         ("Can you do masah on ordinary cotton socks?",
-         "This is the point on which scholars differ. The stricter reading "
-         "requires the sock to resemble a khuff in durability and "
-         "impermeability, which thin cotton socks do not. A broader reading, "
+         "This is where scholars differ. The stricter reading requires the "
+         "sock to be like a khuff in strength and in not letting water "
+         "through, which thin cotton socks aren’t. A broader reading, "
          "held by a number of Companions, early Imams and contemporary "
          "scholars, permits it more readily."),
-        ("What breaks masah?",
-         "Anything that breaks wudu, removing the socks during the period, and "
-         "a state requiring ghusl. When the twenty-four or seventy-two hour "
-         "period expires, masah is no longer valid and the feet are washed for "
-         "the next wudu."),
+        ("What ends masah?",
+         "Anything that breaks wudu, taking the socks off, and anything "
+         "that requires a full ghusl. When the twenty-four or seventy-two "
+         "hours are up, masah is no longer valid and the feet are washed "
+         "for the next wudu."),
         ("Is masah on socks allowed in the Hanafi school?",
-         "Hanafi sources have historically required a sock to be like a khuff "
-         "in durability and impermeability. It is also reported that Imam Abu "
-         "Hanifa himself wiped over his socks near the end of his life. Ask a "
-         "Hanafi scholar for the position that applies to you."),
-        ("Do HydroSox satisfy the conditions for masah?",
-         "We cannot answer that, and we would be wrong to. HydroSox is "
-         "waterproof, holds its shape and stays on the foot — those are "
-         "physical facts. Whether they satisfy the conditions, for the school "
-         "you follow, is a question for a scholar rather than for a sock "
-         "company."),
+         "Hanafi sources have historically required a sock to be like a "
+         "khuff in strength and in not letting water through. It’s "
+         "also reported that Imam Abu Hanifa himself wiped over his socks "
+         "near the end of his life. Ask a Hanafi scholar for the position "
+         "that applies to you."),
+        ("Do HydroSox meet the conditions?",
+         "We can’t answer that, and it would be wrong of us to. Our "
+         "socks are waterproof, they hold their shape and they stay on the "
+         "foot — those are physical facts. Whether that satisfies the "
+         "conditions, for the school you follow, is a question for a "
+         "scholar rather than a sock company."),
         ("Where can I get a ruling for my own situation?",
-         "From a scholar you trust, or a local mosque or Dar al-Ifta. This "
-         "page reports established positions and names its sources so you can "
-         "take them to someone qualified. It is a starting point for that "
-         "conversation, not a substitute for it."),
+         "From a scholar you trust, or your local mosque or Dar al-Ifta. "
+         "This page reports established positions and names its sources so "
+         "you can take them to someone qualified. It’s a starting "
+         "point for that conversation, not a replacement for it."),
     ]
     blocks, order = collections.OrderedDict(), []
-    for n, (q, a) in enumerate(questions, 1):
+    for n, (q, a) in enumerate(qs, 1):
         k = "q%d" % n
         blocks[k] = collections.OrderedDict([
             ("type", "question"),
             ("settings", collections.OrderedDict([
-                ("question", q), ("answer", rich(a))])),
-        ])
+                ("question", q), ("answer", rich(a))]))])
         order.append(k)
-    S["faq"] = collections.OrderedDict([
+    S["questions"] = collections.OrderedDict([
         ("type", "faq-accordion"),
         ("settings", collections.OrderedDict([
             ("color_scheme", "paper"), ("anchor_id", "questions"),
-            ("one_at_a_time", False),
-            ("emit_schema", False),  # REVIEW — see docstring
-            ("eyebrow", "Questions"),
-            ("heading", "The things people ask about masah."),
-            ("lede", rich(
-                "Each answer is written to stand on its own. Where the honest "
-                "answer is that we cannot say, that is the answer.")),
-            ("help_prefix", "Need a ruling for your own situation?"),
-            ("help_label", "Ask a scholar you trust"),
-            ("help_link", "/pages/contact"),
-        ])),
-        ("blocks", blocks), ("block_order", order),
-    ])
+            ("one_at_a_time", False), ("emit_schema", True),
+            ("eyebrow", "Questions"), ("heading", "Common questions"),
+            ("help_label", ""), ("cta_label", "")])),
+        ("blocks", blocks), ("block_order", order)])
 
-    order = ["crumb", "intro", "words", "conditions", "method", "duration",
-             "invalidators", "schools", "product", "sources", "faq"]
-    data = collections.OrderedDict([
-        ("sections", S), ("order", order)])
-    header = ("/* How to Make Masah, composed by scripts/apply-masah-content.py.\n"
-              "   Published only after scholarly review and sign-off. Re-run that\n"
-              "   script rather than hand-editing. */\n")
-    TPL.write_text(header + json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+    # The old placeholder sections go; the page argues from sources now.
+    for old in ("scholarly", "wudu", "quiet"):
+        S.pop(old, None)
+
+    d["order"] = ["crumb", "intro", "words", "conditions", "method",
+                  "duration", "ends", "schools", "fits", "sources",
+                  "questions"]
+    orphans = [k for k in S if k not in d["order"]]
+    if orphans:
+        raise SystemExit("masah: orphaned %s" % orphans)
+
+    path.write_text(header + json.dumps(d, indent=2, ensure_ascii=False) + "\n")
     print("wrote templates/page.how-to-make-masah.json  (%d sections, %d questions)"
-          % (len(order), len(questions)))
-    print("NOTE: FAQPage and HowTo schema remain OFF pending scholarly approval.")
+          % (len(d["order"]), len(qs)))
 
 
 if __name__ == "__main__":

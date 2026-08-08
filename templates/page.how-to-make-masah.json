@@ -25,43 +25,103 @@
       "settings": {
         "color_scheme": "paper",
         "heading_tag": "h1",
-        "heading_size": "h2",
-        "hide_rule": true,
+        "max_width": 46,
         "eyebrow": "How to make masah",
-        "heading": "Guidance we will not write ourselves.",
-        "body": "<p>Step-by-step guidance on masah has to be written or reviewed by someone who understands the practice. We are a sock company. Publishing our own version of it would be presumptuous, and getting it subtly wrong would be worse.</p>",
-        "footnote": "<p>This page will carry reviewed guidance, credited to whoever reviewed it. Until then, what we can speak to is the sock.</p>"
+        "heading": "How to make masah on socks",
+        "body": "<p>Masah means wiping over your socks during wudu instead of washing your feet. This page explains what it is, the conditions scholars set, how it’s done and how long it lasts.</p>",
+        "footnote": "<p>We make socks. We’re not scholars. Everything here is drawn from published sources, which are named at the bottom of the page, and none of it is a ruling. For a ruling that applies to you, ask a scholar you trust.</p>"
       }
     },
     "conditions": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "wash",
         "layout": "list",
         "numbered": false,
-        "heading": "The three physical properties",
-        "head_note": "<p>These are the properties the masah conditions rest on, and they are ours to state because they are facts about the product rather than rulings.</p>"
+        "anchor_id": "conditions",
+        "eyebrow": "The conditions",
+        "heading": "What the socks have to do",
+        "lede": "<p>Different scholars set slightly different conditions, and some treat them as practical guidance rather than strict requirements. These are the ones that come up again and again.</p>",
+        "footnote": "Al-Salam Institute records the last three as conditions “some jurists propose”, and describes them as practical rather than affecting the core ruling. Other scholars treat them as necessary. That difference is real and long-standing, and it isn’t one a sock company can settle."
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Waterproof",
-            "body": "<p>A Porelle® membrane sealed inside a three-layer knit. Water does not pass through it.</p>"
+            "title": "Put on after a full wudu",
+            "body": "<p>The socks go on after a complete wudu in which the feet were washed. This one isn’t disputed.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "Holds its shape",
-            "body": "<p>Structured so it stays as a covering rather than collapsing against the foot.</p>"
+            "title": "Covering the ankle",
+            "body": "<p>The covering has to come over the ankle. Both khuff and cloth socks do, which is much of why many scholars applied the same ruling to both.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "Stays on the foot",
-            "body": "<p>Shaped and close-fitting, so it remains in place in normal use.</p>"
+            "title": "Strong enough to walk in",
+            "body": "<p>The classical wording is that the footwear should stand up to walking a distance without tearing — usually put at around three miles.</p>"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "Water shouldn’t easily soak through",
+            "body": "<p>Stated by many scholars, and the condition a waterproof sock speaks to most directly.</p>"
+          }
+        },
+        "i5": {
+          "type": "item",
+          "settings": {
+            "title": "Staying on without being tied",
+            "body": "<p>The covering should stay on the foot in normal use rather than needing constant adjustment.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4",
+        "i5"
+      ]
+    },
+    "words": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "list",
+        "numbered": false,
+        "anchor_id": "two-words",
+        "eyebrow": "Two words",
+        "heading": "Khuff and jawrab aren’t the same thing",
+        "lede": "<p>Most of the disagreement about masah on socks comes back to this, and it’s rarely explained simply.</p>"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Khuff — leather footwear",
+            "body": "<p>Khuff, plural khuffain, means leather footwear that covers the ankle. Closer to a boot than a sock. Wiping over khuffain is recorded in the authentic hadith collections and is accepted across all four Sunni schools.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Jawrab — cloth socks",
+            "body": "<p>Jawrab is the word for socks made of cloth rather than leather. Dr Akram Nadwi of the Al-Salam Institute in Oxford notes it came into Arabic from the Persian gor-e-pa, meaning “grave of the foot” — the Arabs had no word of their own for something they rarely wore.</p>",
+            "link_label": "alsalam.ac.uk/wiping-over-socks",
+            "link_url": "https://alsalam.ac.uk/wiping-over-socks"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Where the discussion sits",
+            "body": "<p>The question was never really whether you can wipe over khuffain. It’s whether cloth socks share enough of the same properties to take the same ruling, and if so, which properties matter.</p>"
           }
         }
       },
@@ -71,91 +131,346 @@
         "i3"
       ]
     },
-    "scholarly": {
-      "type": "company-details",
+    "method": {
+      "type": "content-columns",
       "settings": {
-        "color_scheme": "wash",
-        "eyebrow": "Scholarly questions",
-        "heading": "Ask, and we will say what we know.",
-        "lede": "<p>If you need to know something specific about the construction in order to reach your own judgement, ask and we will answer factually. We will not offer a ruling.</p>",
-        "link_label": "",
-        "link_url": ""
+        "color_scheme": "paper",
+        "layout": "steps",
+        "numbered": true,
+        "anchor_id": "method",
+        "eyebrow": "The method",
+        "heading": "How masah is done",
+        "lede": "<p>Described as it’s commonly taught. The details of hand position differ between the schools, and those differences are set out further down.</p>"
       },
       "blocks": {
-        "d1": {
-          "type": "row",
+        "i1": {
+          "type": "item",
           "settings": {
-            "label": "Company",
-            "kind": "text",
-            "value": "HydroSox, UK registered"
+            "title": "Do a full wudu first, then put the socks on",
+            "body": "<p>The feet are washed as part of a complete wudu before the socks go on. Masah applies from the next wudu onwards, not this one.</p>"
           }
         },
-        "d2": {
-          "type": "row",
+        "i2": {
+          "type": "item",
           "settings": {
-            "label": "Registered address",
-            "kind": "address"
+            "title": "At your next wudu, wipe instead of washing",
+            "body": "<p>Go through wudu as normal. When you reach the feet, wipe over the socks rather than washing the feet.</p>"
           }
         },
-        "d3": {
-          "type": "row",
+        "i3": {
+          "type": "item",
           "settings": {
-            "label": "Phone",
-            "kind": "tel"
+            "title": "Wet hands, over the top of the foot",
+            "body": "<p>With wet hands, wipe over the upper surface of each sock, moving from the toes towards the shin. Right hand for the right foot, left for the left.</p>"
           }
         },
-        "d4": {
-          "type": "row",
+        "i4": {
+          "type": "item",
           "settings": {
-            "label": "Email",
-            "kind": "email"
+            "title": "Top surface only",
+            "body": "<p>The wiping is of the upper surface. The sole isn’t wiped.</p>"
           }
         }
       },
       "block_order": [
-        "d1",
-        "d2",
-        "d3",
-        "d4"
+        "i1",
+        "i2",
+        "i3",
+        "i4"
       ]
     },
-    "wudu": {
-      "type": "centre-note",
+    "duration": {
+      "type": "content-columns",
       "settings": {
         "color_scheme": "wash",
-        "heading_size": "h3",
-        "eyebrow": "The product",
-        "heading": "What is built for this, and what is not certified.",
-        "body": "<p>No certificate has been issued, and the wudu page says so on its face.</p>",
-        "cta_label": "Wudu socks",
-        "cta_url": "/pages/wudu-socks",
-        "link_label": "How it is built",
-        "link_url": "/pages/technology"
-      }
+        "layout": "list",
+        "numbered": false,
+        "anchor_id": "how-long",
+        "eyebrow": "How long",
+        "heading": "How long masah lasts",
+        "lede": "<p>This is the part most commonly misunderstood, and it’s misunderstood in one particular way.</p>"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "At home: twenty-four hours",
+            "body": "<p>Someone who isn’t travelling in the sense the Sharia recognises may wipe for one day and one night.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Travelling: seventy-two hours",
+            "body": "<p>Someone who is a traveller in that sense may wipe for three days and three nights.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "The clock starts at the first wipe",
+            "body": "<p>This is the bit people get wrong. The period runs from the first masah you make after your wudu breaks — not from when you put the socks on. Sources including IslamQA state this directly.</p>"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "When the time is up",
+            "body": "<p>Once the period ends, masah is no longer valid. The socks come off and the feet are washed for the next wudu.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ]
     },
-    "quiet": {
+    "ends": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "split",
+        "numbered": false,
+        "anchor_id": "what-ends-it",
+        "eyebrow": "What ends it",
+        "heading": "What ends masah",
+        "footnote": "Sources also deal with water getting inside the sock and wetting the foot. Because that’s directly relevant to a waterproof sock, we’ve deliberately left it for the reviewing scholars to word rather than paraphrasing it ourselves."
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Anything that breaks wudu",
+            "body": "<p>Masah is part of wudu. Whatever breaks the wudu breaks the masah with it, and a fresh wudu is needed.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "Taking the socks off",
+            "body": "<p>Removing them during the period ends the masah, even if the time hasn’t run out.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Anything requiring ghusl",
+            "body": "<p>Where a full ghusl is required, wiping isn’t enough. The feet are washed.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "schools": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "ink",
+        "layout": "list",
+        "numbered": false,
+        "anchor_id": "the-schools",
+        "eyebrow": "The schools",
+        "heading": "Where the schools differ",
+        "lede": "<p>Set out as a description of positions, not a recommendation. Follow the school and the scholar you follow.</p>"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "On leather khuffain",
+            "body": "<p>All four Sunni schools accept wiping over khuffain. This isn’t contested.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "On cloth socks — the stricter reading",
+            "body": "<p>Several schools have historically required a sock to be like a khuff in strength and in not letting water through before the same ruling applies. On that reading, thin cotton socks don’t qualify.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "On cloth socks — the broader reading",
+            "body": "<p>Dr Akram Nadwi records that a large number of Companions, early scholars and Imams are reported to have wiped over cloth socks, and that several contemporary scholars permit it without insisting on strict thickness. He cites the report that Imam Abu Hanifa himself wiped over his socks near the end of his life, saying: “Today I have done something I had not done before.”</p>",
+            "link_label": "alsalam.ac.uk/wiping-over-socks",
+            "link_url": "https://alsalam.ac.uk/wiping-over-socks"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "Why this question comes up so much in Britain",
+            "body": "<p>Nadwi writes that he held a more cautious view before coming to England, and revised it after seeing how hard Muslims found it to wash their feet in offices, universities and airports — to the point that some were missing prayers. Whatever position you hold, that’s the situation this question is now asked in.</p>",
+            "link_label": "alsalam.ac.uk/wiping-over-socks",
+            "link_url": "https://alsalam.ac.uk/wiping-over-socks"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ]
+    },
+    "fits": {
       "type": "centre-note",
       "settings": {
         "color_scheme": "paper",
-        "hide_rule": true,
-        "max_width": 44,
-        "heading_size": "h3",
+        "max_width": 46,
         "eyebrow": "The socks",
-        "heading": "Three physical properties, stated as product facts.",
-        "body": "<p>Waterproof, holding their shape, and staying on the foot. Whether that satisfies the conditions above is a question for your own scholar, not for us.</p>",
+        "heading": "Where our socks fit into this",
+        "heading_size": "h3",
+        "body": "<p>HydroSox socks are waterproof, they hold their shape rather than collapsing against the foot, and they’re shaped to stay on. Those are physical facts you can check. Whether they satisfy the conditions above, for the school you follow, isn’t ours to decide.</p>",
+        "footnote": "<p>Shaykh Mufti Saiful Islam and Mufti Amjad Mohammed have examined them. There’s no certificate, because nobody issues certificates for socks.</p>",
         "cta_label": "Wudu socks",
-        "cta_url": "/pages/wudu-socks",
-        "link_label": "How they are built",
-        "link_url": "/pages/technology"
+        "cta_url": "/pages/wudu-socks"
       }
+    },
+    "sources": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "wash",
+        "layout": "list",
+        "numbered": false,
+        "anchor_id": "sources",
+        "eyebrow": "Sources",
+        "heading": "Where this came from",
+        "lede": "<p>Everything above comes from one of these. Where they differ, we’ve said so rather than picking one.</p>",
+        "footnote": "If you think anything on this page is wrong, tell us and we’ll correct it. That offer is open to anyone."
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Al-Salam Institute, Oxford — “Wiping Over Socks: A Brief Overview”, Dr Mohammad Akram Nadwi",
+            "body": "<p>alsalam.ac.uk/wiping-over-socks</p>",
+            "link_label": "alsalam.ac.uk/wiping-over-socks",
+            "link_url": "https://alsalam.ac.uk/wiping-over-socks"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "IslamQA (Hanafi) — Darul Iftaa Birmingham and Askimam, on how long masah lasts and when the period starts",
+            "body": "<p>islamqa.org</p>",
+            "link_label": "islamqa.org",
+            "link_url": "https://islamqa.org"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "Sahih al-Bukhari and Sahih Muslim",
+            "body": "<p>The underlying narrations on wiping over khuffain, as cited in the above.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ]
+    },
+    "questions": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "paper",
+        "anchor_id": "questions",
+        "one_at_a_time": false,
+        "emit_schema": true,
+        "eyebrow": "Questions",
+        "heading": "Common questions",
+        "help_label": "",
+        "cta_label": ""
+      },
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "What is masah?",
+            "answer": "<p>Masah means wiping over your socks during wudu instead of washing your feet. The permission is recorded in the authentic hadith collections in relation to khuffain — leather footwear that covers the ankle. Whether it extends to cloth socks, and on what conditions, has been discussed by scholars for centuries.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "What are the conditions for wiping over socks?",
+            "answer": "<p>The ones that come up most often: the socks go on after a full wudu, they cover the ankle, they’re strong enough to walk in, water doesn’t easily soak through, and they stay on without being tied. Scholars differ on how strictly the last three apply.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "How long does masah last?",
+            "answer": "<p>Twenty-four hours if you’re at home and seventy-two if you’re travelling. The period starts at your first wipe after wudu breaks, not when you put the socks on — which is the detail most commonly misunderstood.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Can you do masah on ordinary cotton socks?",
+            "answer": "<p>This is where scholars differ. The stricter reading requires the sock to be like a khuff in strength and in not letting water through, which thin cotton socks aren’t. A broader reading, held by a number of Companions, early Imams and contemporary scholars, permits it more readily.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "What ends masah?",
+            "answer": "<p>Anything that breaks wudu, taking the socks off, and anything that requires a full ghusl. When the twenty-four or seventy-two hours are up, masah is no longer valid and the feet are washed for the next wudu.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Is masah on socks allowed in the Hanafi school?",
+            "answer": "<p>Hanafi sources have historically required a sock to be like a khuff in strength and in not letting water through. It’s also reported that Imam Abu Hanifa himself wiped over his socks near the end of his life. Ask a Hanafi scholar for the position that applies to you.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "Do HydroSox meet the conditions?",
+            "answer": "<p>We can’t answer that, and it would be wrong of us to. Our socks are waterproof, they hold their shape and they stay on the foot — those are physical facts. Whether that satisfies the conditions, for the school you follow, is a question for a scholar rather than a sock company.</p>"
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "Where can I get a ruling for my own situation?",
+            "answer": "<p>From a scholar you trust, or your local mosque or Dar al-Ifta. This page reports established positions and names its sources so you can take them to someone qualified. It’s a starting point for that conversation, not a replacement for it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8"
+      ]
     }
   },
   "order": [
     "crumb",
     "intro",
+    "words",
     "conditions",
-    "scholarly",
-    "wudu",
-    "quiet"
+    "method",
+    "duration",
+    "ends",
+    "schools",
+    "fits",
+    "sources",
+    "questions"
   ]
 }

@@ -1388,6 +1388,9 @@
   background: none;
   color: var(--on-surface-muted);
   cursor: pointer;
+  /* The blog's chips are anchors, and the browser default underline reads
+     as body-copy links inside what is drawn as a button. */
+  text-decoration: none;
   transition: color var(--duration-press) var(--ease-out),
     border-color var(--duration-press) var(--ease-out),
     background-color var(--duration-press) var(--ease-out);

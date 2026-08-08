@@ -109,16 +109,19 @@ def main():
         ("settings", collections.OrderedDict([
             ("color_scheme", "ink"),
             ("full_height", False),
-            ("eyebrow", "Designed with wudu in mind"),
-            ("heading", "Built for the\nthree conditions\nmasah turns on."),
+            # v4 (8 Aug 2026): the doc's H1 is the exact search phrase, and
+            # the sub-headline names the scholars deliberately — the fact
+            # that decides the sale, above the fold.
+            ("eyebrow", "Wudu socks"),
+            ("heading", "Waterproof socks made\nfor wudu and masah"),
             ("body", rich(
-                "Waterproof, structured to hold its shape, shaped to stay on "
-                "the foot. Those are physical properties we can state plainly. "
-                "What they mean for you is yours to judge.")),
+                "Wipe over them during wudu instead of taking them off and "
+                "washing your feet. Examined by Shaykh Mufti Saiful Islam "
+                "and Mufti Amjad Mohammed.")),
             ("cta_label", "Buy a pair"),
             ("cta_link", "/products/hydrosox-waterproof-socks"),
-            ("link_label", "How it is built"),
-            ("link_url", "/pages/technology"),
+            ("link_label", "How masah works"),
+            ("link_url", "/pages/how-to-make-masah"),
             ("image_fallback", "wudu-pulling-on.webp"),
             ("image_alt", "Pulling on a pair of white HydroSox while seated, "
                           "before wudu"),
@@ -129,84 +132,158 @@ def main():
             ("image_aspect", "9 / 8"),
             ("image_position", "50% 85%"),
         ])),
+        # The doc's S2 spec bar, rendered by the hero's own spec strip —
+        # the fourth cell is the page's argument in two words.
+        ("blocks", collections.OrderedDict([
+            ("sp1", {"type": "spec", "settings": {
+                "label": "Waterproof layer", "value": "Porelle® membrane"}}),
+            ("sp2", {"type": "spec", "settings": {
+                "label": "Build", "value": "Three layers"}}),
+            ("sp3", {"type": "spec", "settings": {
+                "label": "Sizes", "value": "UK 3 to 14"}}),
+            ("sp4", {"type": "spec", "settings": {
+                "label": "Examined by", "value": "Two UK scholars"}}),
+        ])),
+        ("block_order", ["sp1", "sp2", "sp3", "sp4"]),
     ])
 
     # ---------------------------------------------------------------- eyebrows
     for key, eyebrow in (
-        ("conditions", "The three properties"),
-        ("credentials", "The difference"),
-        ("travel", "Travel"),
+        ("conditions", "The conditions"),
+        ("credentials", "Examined by"),
+        ("travel", "Travelling"),
     ):
         S[key]["settings"]["eyebrow"] = eyebrow
 
-    # ------------------------------------------------- the certification note
-    # 2026-08-07, the client's explicit instruction, replacing the earlier
-    # bounded-citation section wholesale: a centred note — "On certification"
-    # over "Verified by prominent scholars" over the two names. The earlier
-    # design cited the JKN ruling and stated no certificate exists; the client
-    # was told (their own research said the same) that a "verified by" claim
-    # naming living scholars needs their written approval, and asked for this
-    # anyway. Their store, their call, recorded here so a regeneration never
-    # silently reverses it in either direction.
-    #
-    # Shaykh Mufti Saiful Islam links to the JKN ruling he attested — the one
-    # source the store holds. No source URL exists in the repo for Mufti Amjad
-    # Mohammed; his name ships unlinked until the client supplies one (asked).
+    # ------------------------------------------------- what masah is (v4 S3)
+    # The v4 document replaces the certification note with the plain-language
+    # explainer, and moves the scholars to their own section below. The
+    # "Verified by prominent scholars" note (client-ordered 2026-08-07) is
+    # superseded by the same client's v4 document (8 Aug 2026), whose framing
+    # is "examined by" — the wording their own research always required.
     S["certificate"] = collections.OrderedDict([
-        ("type", "centre-note"),
+        ("type", "content-columns"),
         ("settings", collections.OrderedDict([
-            ("color_scheme", "blue"),
-            ("anchor_id", "certification"),
-            ("max_width", 46),
-            ("eyebrow", "On certification"),
-            ("heading", "Verified by prominent scholars"),
-            ("heading_size", "h3"),
-            ("body", (
-                '<p><a href="https://jknfatawa.co.uk/wiping-over-durable-'
-                'wudhu-socks/" rel="noopener">Shaykh Mufti Saiful Islam</a> '
-                'and Mufti Amjad Mohammed</p>')),
+            ("color_scheme", "paper"),
+            ("layout", "prose"),
+            ("anchor_id", "masah"),
+            ("eyebrow", "If you’re new to this"),
+            ("heading", "What masah is"),
+            ("prose", (
+                "<p>Masah means wiping over your socks during wudu instead of "
+                "taking them off and washing your feet. It’s permitted on "
+                "footwear that meets certain conditions, and scholars have "
+                "written about those conditions for a very long time.</p>"
+                "<p>In everyday terms, it means you can make wudu at your "
+                "desk, at the mosque, or at a service station, without finding "
+                "somewhere to wash your feet and without going back to your "
+                "prayer in wet socks.</p>")),
+            ("footnote", (
+                "We make socks. We’re not scholars, and nothing on this "
+                "page is a ruling. We’ll tell you what the socks are and "
+                "what the conditions are, so you can decide — or ask "
+                "someone qualified.")),
         ])),
     ])
 
     # ------------------------------------------------------------------ ledes
-    S["credentials"]["settings"]["lede"] = rich(
-        "The differentiator is the named membrane. Everything else in this "
-        "category tends to be asserted rather than evidenced.")
+    # ------------------------------------------------- the conditions (v4 S4)
+    S["conditions"]["settings"].update({
+        "heading": "What the socks have to do",
+        "lede": rich(
+            "Scholars set conditions for the footwear you’re allowed to "
+            "wipe over. Three of them are about the sock itself, and those are "
+            "the three we can speak to."),
+        "footnote": (
+            "There’s one more condition, and it’s about you rather "
+            "than the socks. You put them on after a full wudu, with your feet "
+            "washed. From your next wudu onwards, you wipe."),
+    })
+    cond_rows = [
+        ("Water mustn’t get through to your foot",
+         "Cotton socks soak through. Ours have a Porelle® waterproof layer "
+         "sealed inside them, so water doesn’t reach the skin. It’s "
+         "the same layer in every pair we make — there’s no separate "
+         "wudu version."),
+        ("They have to hold their shape",
+         "They need to sit over the foot as a covering rather than collapse "
+         "flat against it. Ours stand up on their own when you take them off, "
+         "and there’s a photograph of that below."),
+        ("They have to stay on your foot",
+         "Shaped so they stay in place through a normal day rather than "
+         "working loose and sliding down."),
+    ]
+    for pos, (title, body) in enumerate(cond_rows, 1):
+        row = nth(S, "conditions", pos)
+        row["title"] = title
+        row["body"] = rich(body)
+        row.pop("image_fallback", None)
+        row.pop("image_alt", None)
 
-    # The upright-unworn form is the physical property the masah conditions
-    # rest on, and it is the one thing no competitor photograph in the mapped
-    # set demonstrates. The sentence and the photograph ship together.
-    holds_shape = nth(S, "conditions", 2)
-    holds_shape["body"] = rich(
-        "Structured so it stays a covering over the foot rather than "
-        "collapsing flat against it. It stands upright when it is not being "
-        "worn, and you can see that in the photographs on this page.")
-    # That sentence has to be able to point at something. Per the mockup, the
-    # evidence moved from a row thumbnail to the design sheet standing under
-    # the sticky heading — the head figure the section renders from its media
-    # settings — so the old row image is removed rather than left to compete.
-    holds_shape.pop("image_fallback", None)
-    holds_shape.pop("image_alt", None)
+    # --------------------------------------------------- the scholars (v4 S5)
+    # The document's own red block: nothing conclusive can be published until
+    # each scholar's written confirmation, permission and exact words exist.
+    # Its stated fallback applies — the section says only that they examined
+    # the socks, with no conclusion attached. The "[His own words, to be
+    # supplied]" placeholders, the "published in full, unedited" claim and
+    # the "Read what they said" link all wait for the client's material.
+    S["credentials"]["settings"].update({
+        "heading": "Who has looked at them",
+        "lede": rich(
+            "We didn’t want to make a religious claim about our own "
+            "socks, so we asked people qualified to look at them."),
+        "footnote": (
+            "There’s no certificate, because no organisation issues "
+            "certificates for socks. What we have is two qualified scholars "
+            "who examined them. If you follow a different school or a "
+            "different scholar, ask them. We’d rather you were sure than "
+            "take our word for it."),
+        "link_label": "", "link_url": "",
+    })
+    S["credentials"]["blocks"] = collections.OrderedDict([
+        ("sc1", item(
+            "Shaykh Mufti Saiful Islam",
+            "Founder and Principal of the JKN Institute in Bradford, where "
+            "he also heads the fatwa service.")),
+        ("sc2", item(
+            "Mufti Amjad Mohammed",
+            "Founder and Principal of Dār al-ʿUlūm al-Zaytuniyya in "
+            "Bradford, and a lecturer in Islamic jurisprudence. He has "
+            "written extensively on Islamic law for Muslims living in "
+            "Britain.")),
+    ])
+    S["credentials"]["block_order"] = ["sc1", "sc2"]
 
-    nth(S, "travel", 2)["body"] = rich(
-        "Most people buying for travel buy more than one pair. The quantity "
-        "ladder on this page prices that rather than treating it as a bulk "
-        "request.")
+    # ---------------------------------------------------- travel (v4 S7)
+    S["travel"]["settings"]["heading"] = "Hajj, Umrah and travel"
+    S["travel"]["blocks"] = collections.OrderedDict([
+        ("tv1", item(
+            "Long days, shared facilities",
+            "Pilgrimage means long days, busy washrooms and nowhere to dry "
+            "anything properly. A pair that keeps water out and dries "
+            "overnight is worth the space in the bag.")),
+        ("tv2", item(
+            "Take more than one pair",
+            "Most people travelling take two or three. They wash cool and "
+            "air dry, which is slower than a tumble dryer, so one pair "
+            "won’t keep up.")),
+    ])
+    S["travel"]["block_order"] = ["tv1", "tv2"]
 
     # ------------------------------------------------------- everyday wudu (new)
     everyday = collections.OrderedDict()
     everyday_order = []
     for n, (title, body) in enumerate([
-        ("The washroom that was not designed for it",
-         "Washing your feet in a shared sink at work is awkward, cold and "
-         "slow, and you go back to your desk in wet socks. This is the problem "
-         "the sock exists for."),
-        ("Ten minutes back, three times a day",
-         "The time is not the headline reason people buy, but it is the reason "
-         "they buy a second pair."),
-        ("Winter, travel, and everywhere in between",
-         "Service stations, airports, sites, university prayer rooms. The "
-         "places wudu actually happens are rarely the places designed for it."),
+        ("Wudu at work",
+         "Washing your feet in a basin built for hands is awkward, cold and "
+         "slow — and then you sit in damp socks for the rest of the "
+         "afternoon."),
+        ("Ten minutes back, several times a day",
+         "Not usually the reason people buy the first pair. Often the reason "
+         "they come back for a second."),
+        ("Everywhere that isn’t a mosque",
+         "Airports, building sites, university prayer rooms, car parks in "
+         "February. Wudu rarely happens somewhere designed for it."),
     ], 1):
         k = "e%d" % n
         everyday[k] = item(title, body)
@@ -220,13 +297,13 @@ def main():
             ("numbered", False),
             ("anchor_id", "every-day"),
             ("eyebrow", "Every day"),
-            ("heading", "Wudu at work, five times a day."),
+            ("heading", "Why people buy them"),
             ("lede", rich(
-                "Hajj is a few weeks. The reason most people buy waterproof "
-                "wudhu socks is the other fifty-one weeks.")),
+                "Hajj comes round once. Most people buy these for the other "
+                "fifty-one weeks of the year.")),
             # The highest-value internal link on the site: commercial intent
             # handing off to informational intent, and back again.
-            ("link_label", "How masah is performed"),
+            ("link_label", "How masah is done, step by step"),
             ("link_url", "/pages/how-to-make-masah"),
         ])),
         ("blocks", everyday),
@@ -234,45 +311,49 @@ def main():
     ])
 
     # ------------------------------------------------------------------- FAQ
+    # v4 doc questions. Q2's "Their words are published in full" clause waits
+    # with the quotes themselves (the doc's red block); the answer ships
+    # truncated to what is true today. Q4 and Q6 carry the doc's own fiqh
+    # framing and are flagged in its red block for scholar checking — the
+    # client instructed publication of the document as supplied.
     questions = [
         ("What are wudhu socks?",
-         "Waterproof socks built to the physical properties the masah "
-         "conditions rest on: water does not pass through them, they hold "
-         "their shape rather than collapsing against the foot, and they stay "
-         "in place through normal wear. HydroSox states those properties. It "
-         "does not issue rulings on them."),
-        ("Are HydroSox certified for wudu?",
-         "No. No certificate has been issued, by us or by anyone else. A brand "
-         "cannot award itself one. What we publish is what the sock is made of "
-         "and how it behaves, so that you — or the scholar you follow — can "
-         "judge it."),
-        ("What is the difference between these and ordinary waterproof socks?",
-         "Nothing in the membrane, and everything in the structure. It is the "
-         "same Porelle® laminate in every HydroSox pair. What matters for "
-         "masah is that the sock holds its shape as a covering over the foot, "
-         "and that is built into the construction rather than added for this "
-         "page."),
+         "Waterproof socks made so you can wipe over them during wudu instead "
+         "of washing your feet. They need to keep water out, hold their shape "
+         "and stay on the foot — those are the conditions scholars set "
+         "for the footwear itself."),
+        ("Are these certified for wudu?",
+         "No, and no sock is — there’s no organisation that issues "
+         "certificates for this. What we have is two UK scholars who examined "
+         "the socks."),
+        ("Do I still have to wash my feet?",
+         "You wash them as part of a full wudu before the socks go on. From "
+         "your next wudu onwards, you wipe over them instead. The masah page "
+         "sets it out step by step."),
+        ("How long can I keep wiping for?",
+         "Scholars give twenty-four hours if you’re at home and "
+         "seventy-two if you’re travelling. The clock starts at your "
+         "first wipe after wudu breaks, not when you put the socks on. "
+         "That’s the part most people have slightly wrong."),
+        ("What’s different about these and your other socks?",
+         "Nothing in the waterproof layer — it’s the same in every "
+         "pair. What matters for masah is that the sock holds its shape "
+         "rather than collapsing onto the foot, and that’s built into how "
+         "it’s knitted."),
         ("Are these the same as leather socks or khuffs?",
-         "Not the same material, and the same intent. Khuffain are the leather "
-         "footwear the classical rulings were written about. These are a "
-         "modern waterproof construction aimed at the same physical "
-         "properties. Whether that equivalence holds is a question for "
-         "scholarship, and the masah page sets out how it is discussed."),
-        ("Can women wear these?",
-         "Yes. The sock is unisex and the bands start at UK 3. Size on foot "
-         "length rather than on the label you are used to."),
-        ("How many pairs do I need for daily use?",
-         "Most people performing wudu daily keep three. They are washed cool "
-         "and air-dried, which takes longer than a tumble dryer would, so a "
-         "rotation of three keeps a dry pair available every day."),
-        ("Can I wash them without damaging the waterproofing?",
-         "Cool wash, inside out, no fabric softener, no bleach, then air dry "
-         "away from any heat source. Heat and softener end a membrane far "
-         "faster than wearing it does."),
-        ("Where can I read about the masah conditions themselves?",
-         "On the masah page, which sets out the conditions, how masah is "
-         "performed, how long it lasts, and where the schools differ — with "
-         "every source named. We report that scholarship. We do not add to it."),
+         "Not the same material. Khuffs are the leather footwear the "
+         "classical rulings were written about. These are a modern waterproof "
+         "version aimed at the same three properties. Whether that counts as "
+         "equivalent is a question for scholars, and the masah page explains "
+         "how it’s discussed."),
+        ("Can women wear them?",
+         "Yes. They’re unisex and start at UK 3. Go by your foot length "
+         "rather than the men’s or women’s size you’re used "
+         "to."),
+        ("Will washing them ruin them?",
+         "Cool wash, inside out, no fabric softener, then air dry away from "
+         "the radiator. Heat and softener are what finish off a waterproof "
+         "layer, not wearing them."),
     ]
     blocks, order = collections.OrderedDict(), []
     for n, (q, a) in enumerate(questions, 1):
@@ -292,6 +373,24 @@ def main():
 
     # --------------------------------------------------------------- quantity
     S["buy"]["settings"]["default_quantity"] = 3
+    # v4 S8: the buy heading and the three-pair intro that explains the
+    # pre-selected quantity.
+    S["buy"]["settings"]["heading"] = "Choose your colour and size"
+    S["buy"]["settings"]["lede"] = rich(
+        "Praying five times a day means washing them often. Most people here "
+        "keep three pairs so there’s always a dry one, which is why three "
+        "is already selected.")
+
+    # ---------------------------------------------------- ask us (v4 S10)
+    S["scholarly"]["settings"].update({
+        "eyebrow": "Ask us",
+        "heading": "Ask us anything about how they’re made",
+        "lede": rich(
+            "If you need a specific detail to make up your own mind, or your "
+            "imam does, ask us. We’ll tell you what’s in them and how "
+            "they behave. We won’t tell you whether your wudu is valid, "
+            "because that isn’t ours to say."),
+    })
 
     # ------------------------------------------------- presentation (2026-08-07)
     # The client's wudu mockup, layout only — not a word moves. The rhythm rule

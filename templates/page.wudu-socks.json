@@ -25,29 +25,65 @@
       "settings": {
         "color_scheme": "ink",
         "full_height": false,
-        "eyebrow": "Designed with wudu in mind",
-        "heading": "Built for the\nthree conditions\nmasah turns on.",
-        "body": "<p>Waterproof, structured to hold its shape, shaped to stay on the foot. Those are physical properties we can state plainly. What they mean for you is yours to judge.</p>",
+        "eyebrow": "Wudu socks",
+        "heading": "Waterproof socks made\nfor wudu and masah",
+        "body": "<p>Wipe over them during wudu instead of taking them off and washing your feet. Examined by Shaykh Mufti Saiful Islam and Mufti Amjad Mohammed.</p>",
         "cta_label": "Buy a pair",
         "cta_link": "/products/hydrosox-waterproof-socks",
-        "link_label": "How it is built",
-        "link_url": "/pages/technology",
+        "link_label": "How masah works",
+        "link_url": "/pages/how-to-make-masah",
         "image_fallback": "wudu-pulling-on.webp",
         "image_alt": "Pulling on a pair of white HydroSox while seated, before wudu",
         "image_aspect": "9 / 8",
         "image_position": "50% 85%"
-      }
+      },
+      "blocks": {
+        "sp1": {
+          "type": "spec",
+          "settings": {
+            "label": "Waterproof layer",
+            "value": "Porelle® membrane"
+          }
+        },
+        "sp2": {
+          "type": "spec",
+          "settings": {
+            "label": "Build",
+            "value": "Three layers"
+          }
+        },
+        "sp3": {
+          "type": "spec",
+          "settings": {
+            "label": "Sizes",
+            "value": "UK 3 to 14"
+          }
+        },
+        "sp4": {
+          "type": "spec",
+          "settings": {
+            "label": "Examined by",
+            "value": "Two UK scholars"
+          }
+        }
+      },
+      "block_order": [
+        "sp1",
+        "sp2",
+        "sp3",
+        "sp4"
+      ]
     },
     "certificate": {
-      "type": "centre-note",
+      "type": "content-columns",
       "settings": {
-        "color_scheme": "blue",
-        "anchor_id": "certification",
-        "max_width": 46,
-        "eyebrow": "On certification",
-        "heading": "Verified by prominent scholars",
-        "heading_size": "h3",
-        "body": "<p><a href=\"https://jknfatawa.co.uk/wiping-over-durable-wudhu-socks/\" rel=\"noopener\">Shaykh Mufti Saiful Islam</a> and Mufti Amjad Mohammed</p>"
+        "color_scheme": "paper",
+        "layout": "prose",
+        "anchor_id": "masah",
+        "eyebrow": "If you’re new to this",
+        "heading": "What masah is",
+        "prose": "<p>Masah means wiping over your socks during wudu instead of taking them off and washing your feet. It’s permitted on footwear that meets certain conditions, and scholars have written about those conditions for a very long time.</p><p>In everyday terms, it means you can make wudu at your desk, at the mosque, or at a service station, without finding somewhere to wash your feet and without going back to your prayer in wet socks.</p>",
+        "footnote": "We make socks. We’re not scholars, and nothing on this page is a ruling. We’ll tell you what the socks are and what the conditions are, so you can decide — or ask someone qualified."
       }
     },
     "conditions": {
@@ -56,33 +92,35 @@
         "color_scheme": "wash",
         "layout": "list",
         "numbered": true,
-        "heading": "The three properties, one at a time",
-        "eyebrow": "The three properties",
+        "heading": "What the socks have to do",
+        "eyebrow": "The conditions",
         "row_scale": "large",
         "media_fallback": "wudu-design-sheet.jpg",
         "media_alt": "HydroSox wudu design sheet: structured construction that holds its shape and stands upright when not worn, durable waterproof materials, and long-term durability.",
-        "media_caption": "A pair of black HydroSox standing upright unworn, holding their shape."
+        "media_caption": "A pair of black HydroSox standing upright unworn, holding their shape.",
+        "lede": "<p>Scholars set conditions for the footwear you’re allowed to wipe over. Three of them are about the sock itself, and those are the three we can speak to.</p>",
+        "footnote": "There’s one more condition, and it’s about you rather than the socks. You put them on after a full wudu, with your feet washed. From your next wudu onwards, you wipe."
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Waterproof",
-            "body": "<p>A licensed Porelle® membrane sealed between two knitted layers. Water does not pass through it. This is the same membrane in every HydroSox pair, not a separate wudu version.</p>"
+            "title": "Water mustn’t get through to your foot",
+            "body": "<p>Cotton socks soak through. Ours have a Porelle® waterproof layer sealed inside them, so water doesn’t reach the skin. It’s the same layer in every pair we make — there’s no separate wudu version.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "Holds its shape",
-            "body": "<p>Structured so it stays a covering over the foot rather than collapsing flat against it. It stands upright when it is not being worn, and you can see that in the photographs on this page.</p>"
+            "title": "They have to hold their shape",
+            "body": "<p>They need to sit over the foot as a covering rather than collapse flat against it. Ours stand up on their own when you take them off, and there’s a photograph of that below.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "Stays on the foot",
-            "body": "<p>A close, shaped fit that stays in place through normal wear, rather than working loose over a day.</p>"
+            "title": "They have to stay on your foot",
+            "body": "<p>Shaped so they stay in place through a normal day rather than working loose and sliding down.</p>"
           }
         }
       },
@@ -98,39 +136,34 @@
         "color_scheme": "paper",
         "layout": "split",
         "numbered": false,
-        "heading": "Why this pair rather than another",
+        "heading": "Who has looked at them",
         "head_note": "<p>The differentiator is the named membrane. Everything else in this category tends to be asserted rather than evidenced.</p>",
-        "eyebrow": "The difference",
-        "lede": "<p>The differentiator is the named membrane. Everything else in this category tends to be asserted rather than evidenced.</p>",
-        "wide_head": true
+        "eyebrow": "Examined by",
+        "lede": "<p>We didn’t want to make a religious claim about our own socks, so we asked people qualified to look at them.</p>",
+        "wide_head": true,
+        "footnote": "There’s no certificate, because no organisation issues certificates for socks. What we have is two qualified scholars who examined them. If you follow a different school or a different scholar, ask them. We’d rather you were sure than take our word for it.",
+        "link_label": "",
+        "link_url": ""
       },
       "blocks": {
-        "i1": {
+        "sc1": {
           "type": "item",
           "settings": {
-            "title": "The membrane is named and licensed",
-            "body": "<p>Porelle® is a third-party laminate. You can look it up, and someone other than us stands behind it. Compare that with an unnamed waterproof layer.</p>"
+            "title": "Shaykh Mufti Saiful Islam",
+            "body": "<p>Founder and Principal of the JKN Institute in Bradford, where he also heads the fatwa service.</p>"
           }
         },
-        "i2": {
+        "sc2": {
           "type": "item",
           "settings": {
-            "title": "Three layers, each specified",
-            "body": "<p>Lining, membrane, wear face. The construction page sets out what each one is for.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "PFOA free, stated",
-            "body": "<p>Printed because it is true, not because it tests well.</p>"
+            "title": "Mufti Amjad Mohammed",
+            "body": "<p>Founder and Principal of Dār al-ʿUlūm al-Zaytuniyya in Bradford, and a lecturer in Islamic jurisprudence. He has written extensively on Islamic law for Muslims living in Britain.</p>"
           }
         }
       },
       "block_order": [
-        "i1",
-        "i2",
-        "i3"
+        "sc1",
+        "sc2"
       ]
     },
     "travel": {
@@ -140,27 +173,27 @@
         "layout": "band",
         "numbered": false,
         "heading": "Hajj, Umrah and travel",
-        "eyebrow": "Travel"
+        "eyebrow": "Travelling"
       },
       "blocks": {
-        "i1": {
+        "tv1": {
           "type": "item",
           "settings": {
-            "title": "Long days away from home",
-            "body": "<p>Pilgrimage travel means long days, shared ablution facilities and little chance to dry anything properly. A pair that keeps water out and can be washed cool and air-dried overnight is doing useful work.</p>"
+            "title": "Long days, shared facilities",
+            "body": "<p>Pilgrimage means long days, busy washrooms and nowhere to dry anything properly. A pair that keeps water out and dries overnight is worth the space in the bag.</p>"
           }
         },
-        "i2": {
+        "tv2": {
           "type": "item",
           "settings": {
-            "title": "Multiples, not singles",
-            "body": "<p>Most people buying for travel buy more than one pair. The quantity ladder on this page prices that rather than treating it as a bulk request.</p>"
+            "title": "Take more than one pair",
+            "body": "<p>Most people travelling take two or three. They wash cool and air dry, which is slower than a tumble dryer, so one pair won’t keep up.</p>"
           }
         }
       },
       "block_order": [
-        "i1",
-        "i2"
+        "tv1",
+        "tv2"
       ]
     },
     "buy": {
@@ -393,8 +426,8 @@
         "color_scheme": "paper",
         "anchor_id": "buy",
         "eyebrow": "Order",
-        "heading": "Two decisions and a quantity.",
-        "lede": "<p>One product, one page, one price that does not change depending on how you found us.</p>",
+        "heading": "Choose your colour and size",
+        "lede": "<p>Praying five times a day means washing them often. Most people here keep three pairs so there’s always a dry one, which is why three is already selected.</p>",
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
@@ -432,56 +465,56 @@
           "type": "question",
           "settings": {
             "question": "What are wudhu socks?",
-            "answer": "<p>Waterproof socks built to the physical properties the masah conditions rest on: water does not pass through them, they hold their shape rather than collapsing against the foot, and they stay in place through normal wear. HydroSox states those properties. It does not issue rulings on them.</p>"
+            "answer": "<p>Waterproof socks made so you can wipe over them during wudu instead of washing your feet. They need to keep water out, hold their shape and stay on the foot — those are the conditions scholars set for the footwear itself.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
-            "question": "Are HydroSox certified for wudu?",
-            "answer": "<p>No. No certificate has been issued, by us or by anyone else. A brand cannot award itself one. What we publish is what the sock is made of and how it behaves, so that you — or the scholar you follow — can judge it.</p>"
+            "question": "Are these certified for wudu?",
+            "answer": "<p>No, and no sock is — there’s no organisation that issues certificates for this. What we have is two UK scholars who examined the socks.</p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
-            "question": "What is the difference between these and ordinary waterproof socks?",
-            "answer": "<p>Nothing in the membrane, and everything in the structure. It is the same Porelle® laminate in every HydroSox pair. What matters for masah is that the sock holds its shape as a covering over the foot, and that is built into the construction rather than added for this page.</p>"
+            "question": "Do I still have to wash my feet?",
+            "answer": "<p>You wash them as part of a full wudu before the socks go on. From your next wudu onwards, you wipe over them instead. The masah page sets it out step by step.</p>"
           }
         },
         "q4": {
           "type": "question",
           "settings": {
-            "question": "Are these the same as leather socks or khuffs?",
-            "answer": "<p>Not the same material, and the same intent. Khuffain are the leather footwear the classical rulings were written about. These are a modern waterproof construction aimed at the same physical properties. Whether that equivalence holds is a question for scholarship, and the masah page sets out how it is discussed.</p>"
+            "question": "How long can I keep wiping for?",
+            "answer": "<p>Scholars give twenty-four hours if you’re at home and seventy-two if you’re travelling. The clock starts at your first wipe after wudu breaks, not when you put the socks on. That’s the part most people have slightly wrong.</p>"
           }
         },
         "q5": {
           "type": "question",
           "settings": {
-            "question": "Can women wear these?",
-            "answer": "<p>Yes. The sock is unisex and the bands start at UK 3. Size on foot length rather than on the label you are used to.</p>"
+            "question": "What’s different about these and your other socks?",
+            "answer": "<p>Nothing in the waterproof layer — it’s the same in every pair. What matters for masah is that the sock holds its shape rather than collapsing onto the foot, and that’s built into how it’s knitted.</p>"
           }
         },
         "q6": {
           "type": "question",
           "settings": {
-            "question": "How many pairs do I need for daily use?",
-            "answer": "<p>Most people performing wudu daily keep three. They are washed cool and air-dried, which takes longer than a tumble dryer would, so a rotation of three keeps a dry pair available every day.</p>"
+            "question": "Are these the same as leather socks or khuffs?",
+            "answer": "<p>Not the same material. Khuffs are the leather footwear the classical rulings were written about. These are a modern waterproof version aimed at the same three properties. Whether that counts as equivalent is a question for scholars, and the masah page explains how it’s discussed.</p>"
           }
         },
         "q7": {
           "type": "question",
           "settings": {
-            "question": "Can I wash them without damaging the waterproofing?",
-            "answer": "<p>Cool wash, inside out, no fabric softener, no bleach, then air dry away from any heat source. Heat and softener end a membrane far faster than wearing it does.</p>"
+            "question": "Can women wear them?",
+            "answer": "<p>Yes. They’re unisex and start at UK 3. Go by your foot length rather than the men’s or women’s size you’re used to.</p>"
           }
         },
         "q8": {
           "type": "question",
           "settings": {
-            "question": "Where can I read about the masah conditions themselves?",
-            "answer": "<p>On the masah page, which sets out the conditions, how masah is performed, how long it lasts, and where the schools differ — with every source named. We report that scholarship. We do not add to it.</p>"
+            "question": "Will washing them ruin them?",
+            "answer": "<p>Cool wash, inside out, no fabric softener, then air dry away from the radiator. Heat and softener are what finish off a waterproof layer, not wearing them.</p>"
           }
         }
       },
@@ -515,9 +548,9 @@
       "type": "company-details",
       "settings": {
         "color_scheme": "blue",
-        "eyebrow": "Scholarly questions",
-        "heading": "Ask about the construction, and we will answer factually.",
-        "lede": "<p>If you need a specific detail about how the sock is made in order to reach your own judgement, ask. We will tell you what it is made of and how it behaves. We will not offer a ruling on your behalf.</p>",
+        "eyebrow": "Ask us",
+        "heading": "Ask us anything about how they’re made",
+        "lede": "<p>If you need a specific detail to make up your own mind, or your imam does, ask us. We’ll tell you what’s in them and how they behave. We won’t tell you whether your wudu is valid, because that isn’t ours to say.</p>",
         "link_label": "",
         "link_url": "",
         "centre_head": true,
@@ -583,31 +616,31 @@
         "numbered": false,
         "anchor_id": "every-day",
         "eyebrow": "Every day",
-        "heading": "Wudu at work, five times a day.",
-        "lede": "<p>Hajj is a few weeks. The reason most people buy waterproof wudhu socks is the other fifty-one weeks.</p>",
-        "link_label": "How masah is performed",
+        "heading": "Why people buy them",
+        "lede": "<p>Hajj comes round once. Most people buy these for the other fifty-one weeks of the year.</p>",
+        "link_label": "How masah is done, step by step",
         "link_url": "/pages/how-to-make-masah"
       },
       "blocks": {
         "e1": {
           "type": "item",
           "settings": {
-            "title": "The washroom that was not designed for it",
-            "body": "<p>Washing your feet in a shared sink at work is awkward, cold and slow, and you go back to your desk in wet socks. This is the problem the sock exists for.</p>"
+            "title": "Wudu at work",
+            "body": "<p>Washing your feet in a basin built for hands is awkward, cold and slow — and then you sit in damp socks for the rest of the afternoon.</p>"
           }
         },
         "e2": {
           "type": "item",
           "settings": {
-            "title": "Ten minutes back, three times a day",
-            "body": "<p>The time is not the headline reason people buy, but it is the reason they buy a second pair.</p>"
+            "title": "Ten minutes back, several times a day",
+            "body": "<p>Not usually the reason people buy the first pair. Often the reason they come back for a second.</p>"
           }
         },
         "e3": {
           "type": "item",
           "settings": {
-            "title": "Winter, travel, and everywhere in between",
-            "body": "<p>Service stations, airports, sites, university prayer rooms. The places wudu actually happens are rarely the places designed for it.</p>"
+            "title": "Everywhere that isn’t a mosque",
+            "body": "<p>Airports, building sites, university prayer rooms, car parks in February. Wudu rarely happens somewhere designed for it.</p>"
           }
         }
       },

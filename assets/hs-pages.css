@@ -2953,3 +2953,11 @@
     padding: 2rem;
   }
 }
+
+/* A band section's closing button: the body column is display:contents under
+   this layout, so without a placement the CTA paragraph would drop into the
+   first grid track alone. The homepage product summary is the one band that
+   carries the page's action. */
+.hs-cols__grid--band .hs-cols__cta {
+  grid-column: 1 / -1;
+}

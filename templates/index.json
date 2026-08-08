@@ -111,9 +111,9 @@
       ],
       "settings": {
         "color_scheme": "paper",
-        "layout": "list",
+        "layout": "band",
         "mirror": false,
-        "numbered": false,
+        "numbered": true,
         "row_density": "standard",
         "hide_rule": false,
         "anchor_id": "product",

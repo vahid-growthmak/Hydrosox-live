@@ -8,9 +8,17 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
-    {%- if settings.logo -%}
-      <link rel="icon" type="image/png" href="{{ settings.logo | image_url: width: 48 }}">
-    {%- endif -%}
+    {%- comment -%}
+      The favicon is the square HS shield, bundled as assets rather than read
+      from a setting: the logo setting holds the full wordmark, which is an
+      unreadable strip at 16px, and settings_schema.json cannot gain a
+      favicon setting after theme creation — the GitHub sync never re-imports
+      it. The apple-touch size carries its own white ground because iOS
+      composites transparency onto black.
+    {%- endcomment -%}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ 'favicon-32.png' | asset_url }}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ 'favicon-512.png' | asset_url }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ 'favicon-180.png' | asset_url }}">
 
     {%- comment -%}
       The homepage's title and description live in the Shopify admin, where they

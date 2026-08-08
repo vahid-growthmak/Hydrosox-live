@@ -118,7 +118,7 @@ def privacy():
           "399–405 Oxford Street, Mayfair, London W1C 2BU, is the data "
           "controller for personal data processed through this website."),
          ("How to reach us about data",
-          "Email info@hydrosox.com or phone 0203 4322 920. We do not currently "
+          "Email info@hydrosox.com or phone +44 7441 396244. We do not currently "
           "have a Data Protection Officer, and are not required to appoint "
           "one.")],
         layout="split")
@@ -285,7 +285,7 @@ def terms():
           "This website is operated by Hydrosox Ltd, a company registered in "
           "England and Wales, with its registered office at 399–405 Oxford "
           "Street, Mayfair, London W1C 2BU. You can contact us at "
-          "info@hydrosox.com or on 0203 4322 920."),
+          "info@hydrosox.com or on +44 7441 396244."),
          ("Using this website",
           "By using this site you confirm you are at least 18, or have the "
           "consent of a parent or guardian. You agree to use it lawfully, and "
@@ -377,7 +377,7 @@ def terms():
           "applies to your order is the one published when you placed it."),
          ("Complaints",
           "If something has gone wrong, email info@hydrosox.com or phone "
-          "0203 4322 920 and we will try to resolve it directly. We are not "
+          "+44 7441 396244 and we will try to resolve it directly. We are not "
           "currently a member of an alternative dispute resolution scheme. If "
           "we cannot resolve a complaint between us, you retain your right to "
           "bring a claim in the courts."),

@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 /* Terms of service, composed by scripts/build-legal-pages.py.
    Re-run that script rather than hand-editing; the section content
    itself stays editable in the Shopify theme editor. */
@@ -47,7 +38,7 @@
           "type": "item",
           "settings": {
             "title": "Who we are",
-            "body": "<p>This website is operated by Hydrosox Ltd, a company registered in England and Wales, with its registered office at 399–405 Oxford Street, Mayfair, London W1C 2BU. You can contact us at info@hydrosox.com or on 0203 4322 920.</p>"
+            "body": "<p>This website is operated by Hydrosox Ltd, a company registered in England and Wales, with its registered office at 399–405 Oxford Street, Mayfair, London W1C 2BU. You can contact us at info@hydrosox.com or on +44 7441 396244.</p>"
           }
         },
         "i2": {
@@ -208,7 +199,7 @@
           "type": "item",
           "settings": {
             "title": "Complaints",
-            "body": "<p>If something has gone wrong, email info@hydrosox.com or phone 0203 4322 920 and we will try to resolve it directly. We are not currently a member of an alternative dispute resolution scheme. If we cannot resolve a complaint between us, you retain your right to bring a claim in the courts.</p>"
+            "body": "<p>If something has gone wrong, email info@hydrosox.com or phone +44 7441 396244 and we will try to resolve it directly. We are not currently a member of an alternative dispute resolution scheme. If we cannot resolve a complaint between us, you retain your right to bring a claim in the courts.</p>"
           }
         },
         "i3": {

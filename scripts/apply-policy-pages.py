@@ -291,7 +291,7 @@ def accessibility():
     S["close"]["settings"].update({
         "heading": "Found something that does not work?",
         "body": rich(
-            "Email info@hydrosox.com or phone 0203 4322 920. Tell us what you "
+            "Email info@hydrosox.com or phone +44 7441 396244. Tell us what you "
             "were trying to do and what happened, and we will tell you "
             "honestly whether and when we can fix it.",
             "If you would rather not use the site at all, phone us and we will "

@@ -1084,6 +1084,9 @@ def press():
             ("f2", {"type": "row", "settings": {
                 "label": "Registered address", "kind": "text",
                 "value": "399–405 Oxford Street, Mayfair, London W1C 2BU"}}),
+            ("f2b", {"type": "row", "settings": {
+                "label": "WhatsApp", "kind": "whatsapp",
+                "value": "+44 7441 396244"}}),
             ("f3", {"type": "row", "settings": {
                 "label": "Product", "kind": "text",
                 "value": "One waterproof sock: three-layer knit, Porelle® "
@@ -1107,7 +1110,8 @@ def press():
                          "Amjad Mohammed. No certificate has been issued, by "
                          "us or anyone else."}}),
         ])),
-        ("block_order", ["f%d" % n for n in range(1, 9)]),
+        ("block_order", ["f1", "f2", "f2b", "f3", "f4", "f5", "f6", "f7",
+                         "f8"]),
     ])
 
     d["order"] = ["breadcrumb", "intro", "facts", "form"]
@@ -1184,7 +1188,8 @@ def partner_with_us():
     S["audience"]["settings"].update({
         "layout": "band", "color_scheme": "wash", "card_columns": "two"})
     S["form"]["settings"].update({
-        "color_scheme": "paper", "centre": False})
+        "color_scheme": "paper", "centre": False,
+        "whatsapp": "+44 7441 396244"})
 
     d["order"] = ["intro", "proposition", "audience", "proof", "direct",
                   "form", "press"]

@@ -51,7 +51,8 @@
         "heading": "Press enquiries.",
         "lede": "<p>We can supply product for review, photography, and figures we are able to stand behind. We do not supply claims we cannot evidence.</p>",
         "submit_label": "Send enquiry",
-        "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>"
+        "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>",
+        "whatsapp": "+44 7441 396244"
       },
       "blocks": {
         "c1": {
@@ -162,6 +163,14 @@
             "value": "399–405 Oxford Street, Mayfair, London W1C 2BU"
           }
         },
+        "f2b": {
+          "type": "row",
+          "settings": {
+            "label": "WhatsApp",
+            "kind": "whatsapp",
+            "value": "+44 7441 396244"
+          }
+        },
         "f3": {
           "type": "row",
           "settings": {
@@ -214,6 +223,7 @@
       "block_order": [
         "f1",
         "f2",
+        "f2b",
         "f3",
         "f4",
         "f5",

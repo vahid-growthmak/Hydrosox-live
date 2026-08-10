@@ -25,7 +25,8 @@
         "heading": "Send us a message.",
         "lede": "<p>We answer every message ourselves. If the answer is already written down, the routes below are faster than waiting for us.</p>",
         "submit_label": "Send message",
-        "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>"
+        "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>",
+        "whatsapp": "+44 7441 396244"
       },
       "blocks": {
         "c1": {
@@ -137,12 +138,21 @@
             "label": "Email",
             "kind": "email"
           }
+        },
+        "wa": {
+          "type": "row",
+          "settings": {
+            "label": "WhatsApp",
+            "kind": "whatsapp",
+            "value": "+44 7441 396244"
+          }
         }
       },
       "block_order": [
         "d1",
         "d2",
         "d3",
+        "wa",
         "d4"
       ]
     },

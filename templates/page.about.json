@@ -142,12 +142,21 @@
             "label": "Email",
             "kind": "email"
           }
+        },
+        "wa": {
+          "type": "row",
+          "settings": {
+            "label": "WhatsApp",
+            "kind": "whatsapp",
+            "value": "+44 7441 396244"
+          }
         }
       },
       "block_order": [
         "d1",
         "d2",
         "d3",
+        "wa",
         "d4"
       ]
     },

@@ -78,6 +78,14 @@
                   {%- case block.settings.kind -%}
                     {%- when 'tel' -%}
                       <a class="hs-tap hs-company__link hs-tnum" href="tel:{{ value | replace: ' ', '' }}">{{ value }}</a>
+                    {%- when 'whatsapp' -%}
+                      {%- comment -%}
+                        WhatsApp numbers open the chat, never the dialler —
+                        the client's split: 0203 for calls, the +44 74 41
+                        number for WhatsApp only. wa.me wants digits with the
+                        country code and no plus.
+                      {%- endcomment -%}
+                      <a class="hs-tap hs-company__link hs-tnum" href="https://wa.me/{{ value | replace: ' ', '' | replace: '+', '' }}" rel="noopener">{{ value }}</a>
                     {%- when 'email' -%}
                       <a class="hs-tap hs-company__link" href="mailto:{{ value }}">{{ value }}</a>
                     {%- when 'address' -%}
@@ -219,6 +227,7 @@
             { "value": "text", "label": "t:sections.company.kind_text" },
             { "value": "address", "label": "t:sections.company.kind_address" },
             { "value": "tel", "label": "t:sections.company.kind_tel" },
+            { "value": "whatsapp", "label": "t:sections.company.kind_whatsapp" },
             { "value": "email", "label": "t:sections.company.kind_email" }
           ],
           "default": "text"

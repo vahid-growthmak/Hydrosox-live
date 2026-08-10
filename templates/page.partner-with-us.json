@@ -26,7 +26,8 @@
         "lede": "<p>We are selective rather than exclusive. The more of this you fill in, the faster we can tell you whether we are a fit.</p>",
         "submit_label": "Send enquiry",
         "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>",
-        "centre": false
+        "centre": false,
+        "whatsapp": "+44 7441 396244"
       },
       "blocks": {
         "c1": {
@@ -254,12 +255,21 @@
             "label": "Email",
             "kind": "email"
           }
+        },
+        "wa": {
+          "type": "row",
+          "settings": {
+            "label": "WhatsApp",
+            "kind": "whatsapp",
+            "value": "+44 7441 396244"
+          }
         }
       },
       "block_order": [
         "d1",
         "d2",
         "d3",
+        "wa",
         "d4"
       ]
     },

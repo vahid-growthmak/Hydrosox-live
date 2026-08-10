@@ -76,7 +76,7 @@
         "type": "text",
         "id": "phone",
         "label": "t:settings.brand.phone",
-        "default": "+44 7441 396244"
+        "default": "0203 4322 920"
       },
       {
         "type": "text",

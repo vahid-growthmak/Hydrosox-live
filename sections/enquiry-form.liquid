@@ -60,6 +60,18 @@
                 </a>
               </li>
             {%- endif -%}
+            {%- if section.settings.whatsapp != blank -%}
+              <li>
+                <a
+                  class="hs-enquiry__direct-link hs-small-body"
+                  href="https://wa.me/{{ section.settings.whatsapp | replace: ' ', '' | replace: '+', '' }}"
+                  rel="noopener"
+                >
+                  {% render 'hs-icon', icon: 'phone', size: 16 %}
+                  WhatsApp {{ section.settings.whatsapp }}
+                </a>
+              </li>
+            {%- endif -%}
           </ul>
         {%- endif -%}
       </header>
@@ -234,6 +246,11 @@
         { "value": "ink", "label": "t:common.scheme_ink" }
       ],
       "default": "paper"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp",
+      "label": "t:sections.footer.whatsapp"
     },
     {
       "type": "checkbox",

@@ -29,6 +29,17 @@
                 {{- settings.phone -}}
               </a>
             {%- endif -%}
+            {%- comment -%}
+              Calls and WhatsApp are different numbers by the client's rule:
+              settings.phone is the dialler, this one opens the chat. A
+              section setting rather than a theme setting, because the
+              settings schema is never re-imported after theme creation.
+            {%- endcomment -%}
+            {%- if section.settings.whatsapp != blank -%}
+              <a class="hs-tap hs-tnum hs-footer__contact-link" href="https://wa.me/{{ section.settings.whatsapp | replace: ' ', '' | replace: '+', '' }}" rel="noopener">
+                WhatsApp {{ section.settings.whatsapp }}
+              </a>
+            {%- endif -%}
             {%- if settings.email != blank -%}
               <a class="hs-tap hs-footer__contact-link" href="mailto:{{ settings.email }}">
                 {{- settings.email -}}
@@ -196,6 +207,11 @@
       "id": "company_heading",
       "label": "t:sections.footer.company_heading",
       "default": "Company"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp",
+      "label": "t:sections.footer.whatsapp"
     },
     {
       "type": "textarea",

@@ -106,6 +106,14 @@
     {%- endif -%}
   </div>
 </section>
+{%- comment -%}
+  The steppers work as plain forms without this; with it, each change swaps
+  the server-rendered section in place instead of reloading the page. The
+  drawer normally carries this script, but the drawer is not rendered on the
+  cart template, so the page loads it itself.
+{%- endcomment -%}
+<script src="{{ 'hs-cart.js' | asset_url }}" defer></script>
+
 {% schema %}
 {
   "name": "t:sections.cart.name",

@@ -1033,11 +1033,17 @@
   transform: translateX(0);
 }
 
-/* A pending request dims the panel rather than replacing it, so the reader
-   keeps their place while the server answers. */
+/* A pending request dims the panel's CONTENT, never the panel itself: opacity
+   on the panel made the whole drawer translucent, and the page underneath
+   showed through it on every quantity change — which read as the layout
+   breaking. The panel stays an opaque sheet; only what is written on it dims. */
 .hs-cartd.is-busy .hs-cartd__panel {
-  opacity: 0.6;
   pointer-events: none;
+}
+
+.hs-cartd.is-busy .hs-cartd__panel > * {
+  opacity: 0.6;
+  transition: opacity var(--duration-press) var(--ease-out);
 }
 
 .hs-cartd__head {

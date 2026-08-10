@@ -307,3 +307,69 @@ class HSCartDrawer extends HTMLElement {
 }
 
 if (!customElements.get('hs-cart-drawer')) customElements.define('hs-cart-drawer', HSCartDrawer);
+
+/*
+ * Cart page steppers.
+ *
+ * The − and + on /cart are real submit buttons in real forms, so the page
+ * works with no script at all — one reload per change. This upgrade keeps
+ * those forms exactly as they are and intercepts the submit: the same
+ * change goes to Shopify's cart endpoint with the page's own cart section
+ * requested back in the round trip, and the server-rendered result is
+ * swapped in place. Same rule as the drawer: the script never computes a
+ * price — it only moves HTML the server wrote.
+ *
+ * The section id is read from the wrapper Shopify renders around the
+ * template section, so this needs no configuration and survives the
+ * template id changing.
+ */
+(function enhanceCartPage() {
+  const layout = document.querySelector('.hs-cart__layout');
+  if (!layout) return;
+  const wrapper = layout.closest('[id^="shopify-section-"]');
+  if (!wrapper) return;
+  const sectionId = wrapper.id.replace('shopify-section-', '');
+  const root = window.Shopify?.routes?.root || '/';
+
+  document.addEventListener('submit', async (e) => {
+    const form = e.target;
+    if (!(form instanceof HTMLFormElement)) return;
+    if (!form.classList.contains('hs-cart__stepper')) return;
+
+    const line = form.querySelector('[name="line"]')?.value;
+    const quantity = e.submitter?.value;
+    if (line === undefined || quantity === undefined) return; // no-JS path
+
+    e.preventDefault();
+    wrapper.classList.add('is-busy');
+    try {
+      const res = await fetch(`${root}cart/change.js`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          line: Number(line),
+          quantity: Number(quantity),
+          sections: sectionId,
+        }),
+      });
+      const data = await res.json();
+      const html = data.sections && data.sections[sectionId];
+      if (!html) throw new Error('no section in response');
+
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const fresh = doc.body.firstElementChild;
+      wrapper.innerHTML = fresh ? fresh.innerHTML : html;
+
+      document.querySelectorAll('[data-hs-cart-count]').forEach((el) => {
+        el.textContent = data.item_count;
+        el.hidden = data.item_count === 0;
+      });
+    } catch {
+      // The server is the only thing that knows the cart now; fall back to
+      // the full page the form would have produced anyway.
+      form.submit();
+    } finally {
+      wrapper.classList.remove('is-busy');
+    }
+  });
+})();

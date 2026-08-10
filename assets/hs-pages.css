@@ -2997,3 +2997,10 @@
     text-decoration-color: var(--blue);
   }
 }
+
+/* The cart page while a change is in flight: content dims, clicks wait. */
+[id^="shopify-section-"].is-busy .hs-cart__layout {
+  opacity: 0.6;
+  pointer-events: none;
+  transition: opacity var(--duration-press) var(--ease-out);
+}

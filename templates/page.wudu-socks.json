@@ -149,14 +149,14 @@
         "sc1": {
           "type": "item",
           "settings": {
-            "title": "Shaykh Mufti Saiful Islam",
+            "title": "<a href=\"https://www.jkn.org.uk/about-us/\" rel=\"noopener\">Shaykh Mufti Saiful Islam</a>",
             "body": "<p>Founder and Principal of the JKN Institute in Bradford, where he also heads the fatwa service.</p>"
           }
         },
         "sc2": {
           "type": "item",
           "settings": {
-            "title": "Mufti Amjad Mohammed",
+            "title": "<a href=\"https://en.wikipedia.org/wiki/Amjad_M._Mohammed\" rel=\"noopener\">Mufti Amjad Mohammed</a>",
             "body": "<p>Founder and Principal of Dār al-ʿUlūm al-Zaytuniyya in Bradford, and a lecturer in Islamic jurisprudence. He has written extensively on Islamic law for Muslims living in Britain.</p>"
           }
         }

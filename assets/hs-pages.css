@@ -2978,3 +2978,22 @@
 .hs-limits__footnote {
   margin-top: 2rem;
 }
+
+/* A name in a row title that is itself the link — the wudu scholars. Quiet
+   underline in the resting state, the site's blue on hover. */
+.hs-cols__row-title a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule-strong);
+  text-underline-offset: 4px;
+  transition:
+    color var(--duration-press) var(--ease-out),
+    text-decoration-color var(--duration-press) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hs-cols__row-title a:hover {
+    color: var(--blue);
+    text-decoration-color: var(--blue);
+  }
+}

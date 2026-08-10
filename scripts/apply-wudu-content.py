@@ -240,13 +240,19 @@ def main():
             "take our word for it."),
         "link_label": "", "link_url": "",
     })
+    # The names carry the client-verified links (supplied 10 Aug 2026):
+    # Saiful Islam to the JKN Institute's own about page, Amjad Mohammed to
+    # his Wikipedia biography. Liquid renders titles unescaped, so the
+    # anchor survives; the row-title link style lives in hs-pages.css.
     S["credentials"]["blocks"] = collections.OrderedDict([
         ("sc1", item(
-            "Shaykh Mufti Saiful Islam",
+            '<a href="https://www.jkn.org.uk/about-us/" rel="noopener">'
+            "Shaykh Mufti Saiful Islam</a>",
             "Founder and Principal of the JKN Institute in Bradford, where "
             "he also heads the fatwa service.")),
         ("sc2", item(
-            "Mufti Amjad Mohammed",
+            '<a href="https://en.wikipedia.org/wiki/Amjad_M._Mohammed" '
+            'rel="noopener">Mufti Amjad Mohammed</a>',
             "Founder and Principal of Dār al-ʿUlūm al-Zaytuniyya in "
             "Bradford, and a lecturer in Islamic jurisprudence. He has "
             "written extensively on Islamic law for Muslims living in "

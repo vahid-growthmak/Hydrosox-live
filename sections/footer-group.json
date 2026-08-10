@@ -15,6 +15,8 @@
    the group synced in the same second as the schema that defines it —
    settings unknown to the live schema are dropped, silently. The schema
    is live now; this line re-imports the group against it.
+   Re-uploaded 2026-08-10: same race, same cure — `whatsapp` was stripped
+   because the footer schema defining it landed in the same push.
 */
 {
   "name": "t:section_groups.footer",

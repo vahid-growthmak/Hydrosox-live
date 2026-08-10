@@ -460,7 +460,7 @@
         "a4": {
           "type": "activity",
           "settings": {
-            "size": "standard",
+            "size": "wide",
             "title": "Cycling and commuting",
             "problem": "Road spray at the ankle, and shoes that are still wet when it’s time to ride home.",
             "meta": "No drying option at the other end",
@@ -472,7 +472,7 @@
         "a5": {
           "type": "activity",
           "settings": {
-            "size": "standard",
+            "size": "full",
             "title": "Running and trail",
             "problem": "Cold, wet winter miles and muddy trails, where wet feet mean blisters.",
             "meta": "Weight and bulk, stated honestly",
@@ -483,11 +483,11 @@
         }
       },
       "block_order": [
+        "a_wudu",
         "a1",
         "a3",
         "a4",
-        "a5",
-        "a_wudu"
+        "a5"
       ],
       "settings": {
         "color_scheme": "ink",

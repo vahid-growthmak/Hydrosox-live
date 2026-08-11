@@ -211,14 +211,6 @@
             "link": "/pages/how-to-make-masah"
           }
         },
-        "r6": {
-          "type": "card",
-          "settings": {
-            "title": "Warranty",
-            "body": "Where you stand if something’s wrong.",
-            "link": "/pages/warranty"
-          }
-        },
         "r7": {
           "type": "card",
           "settings": {
@@ -242,7 +234,6 @@
         "r3",
         "r4",
         "r5",
-        "r6",
         "r7",
         "r8"
       ]

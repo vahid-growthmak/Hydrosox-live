@@ -472,7 +472,9 @@ def main():
                   "Within six months of delivery a fault is assumed to have "
                   "been there from the start unless we can show it "
                   "wasn’t.")],
-                link=("The full warranty position", "/pages/warranty"))),
+                # /pages/warranty is unpublished (2026-08-11, client's request);
+                # the page template is kept for restoring, the links are not.
+                link=("Where you stand if it’s a fault", "/pages/returns-and-refunds"))),
         ]),
         ["problem", "durability", "fit"],
         faq([

@@ -607,9 +607,9 @@
           "type": "item",
           "settings": {
             "title": "A fault isn’t the same as wear.",
-            "body": "<p>A seam letting water through in the first few weeks is a fault. Thinning at the heel after months is wear. The warranty page draws that line honestly.</p>",
-            "link_label": "The warranty page",
-            "link_url": "/pages/warranty"
+            "body": "<p>A seam letting water through in the first few weeks is a fault. Thinning at the heel after months is wear. The returns page draws that line honestly.</p>",
+            "link_label": "The returns page",
+            "link_url": "/pages/returns-and-refunds"
           }
         }
       },

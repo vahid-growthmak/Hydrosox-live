@@ -555,8 +555,8 @@
         "numbered": false,
         "eyebrow": "If something goes wrong",
         "heading": "Where you stand",
-        "link_label": "The full warranty position",
-        "link_url": "/pages/warranty",
+        "link_label": "Where you stand if it’s a fault",
+        "link_url": "/pages/returns-and-refunds",
         "mirror": false
       },
       "blocks": {

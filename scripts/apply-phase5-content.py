@@ -841,7 +841,7 @@ def care():
           "layer has been pierced. That can\u2019t be repaired or "
           "reproofed. If it happened in the first few weeks of normal use, "
           "that\u2019s a fault and we want to hear about it.")],
-        link=("Where you stand if it\u2019s a fault", "/pages/warranty"))
+        link=("Where you stand if it\u2019s a fault", "/pages/returns-and-refunds"))
 
     # v4 questions. The lifespan answer keeps the standing honest interim
     # form — the doc's own answer is a [CLIENT TO CONFIRM] placeholder and
@@ -1250,8 +1250,8 @@ def contact():
         ("How to make masah",
          "The conditions, the method, and how long it lasts.",
          "/pages/how-to-make-masah"),
-        ("Warranty", "Where you stand if something’s wrong.",
-         "/pages/warranty"),
+        # The Warranty card is gone: /pages/warranty was unpublished on
+        # 2026-08-11 and the Returns card above already leads there.
         ("Track an order", "Ask us and we’ll look.",
          "/pages/track-order"),
         ("Common questions", "Thirty-two answers in six groups.",

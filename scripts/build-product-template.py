@@ -330,9 +330,10 @@ def main():
          'The returns policy', '/pages/returns-and-refunds'),
         ('A fault isn’t the same as wear.',
          'A seam letting water through in the first few weeks is a fault. '
-         'Thinning at the heel after months is wear. The warranty page draws '
+         'Thinning at the heel after months is wear. The returns page draws '
          'that line honestly.',
-         'The warranty page', '/pages/warranty'),
+         # /pages/warranty is unpublished (2026-08-11, client's request).
+         'The returns page', '/pages/returns-and-refunds'),
     ], 1):
         k = 'ab%d' % n
         after[k] = od(('type', 'item'), ('settings', od(

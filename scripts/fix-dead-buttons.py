@@ -72,7 +72,10 @@ DESTINATIONS = {
     "the size guide": "/pages/size-guide",
     "open the size guide": "/pages/size-guide",
     "how to wash them": "/pages/care-and-washing",
-    "the warranty page": "/pages/warranty",
+    # /pages/warranty was unpublished on 2026-08-11; anything still labelled
+    # for it should land on the returns page, which now carries that content.
+    "the warranty page": "/pages/returns-and-refunds",
+    "the full warranty position": "/pages/returns-and-refunds",
 }
 
 

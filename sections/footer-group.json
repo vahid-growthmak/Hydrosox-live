@@ -173,13 +173,6 @@
             "link": "/pages/returns-and-refunds"
           }
         },
-        "help_3": {
-          "type": "column_link",
-          "settings": {
-            "label": "Warranty",
-            "link": "/pages/warranty"
-          }
-        },
         "help_4": {
           "type": "column_link",
           "settings": {
@@ -270,7 +263,6 @@
         "col_help",
         "help_1",
         "help_2",
-        "help_3",
         "help_4",
         "help_5",
         "help_6",

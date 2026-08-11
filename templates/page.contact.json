@@ -26,7 +26,9 @@
         "lede": "<p>We answer every message ourselves. If the answer is already written down, the routes below are faster than waiting for us.</p>",
         "submit_label": "Send message",
         "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>",
-        "whatsapp": "+44 7441 396244"
+        "whatsapp": "+44 7441 396244",
+        "name_placeholder": "Your full name",
+        "email_placeholder": "you@example.com"
       },
       "blocks": {
         "c1": {

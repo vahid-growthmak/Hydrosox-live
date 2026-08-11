@@ -26,7 +26,7 @@
         "scrim_vertical": 70,
         "scrim_horizontal": 55,
         "cta_label": "Buy a pair",
-        "cta_url": "#buy",
+        "cta_url": "/products/hydrosox-waterproof-socks",
         "link_label": "How they work",
         "link_url": "/pages/technology"
       }
@@ -402,7 +402,7 @@
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
         "help_link": "/pages/contact",
-        "cta_link": "#buy"
+        "cta_link": "/products/hydrosox-waterproof-socks"
       },
       "blocks": {
         "q1": {
@@ -512,7 +512,7 @@
         "heading": "When these are the wrong sock",
         "lede": "<p>Every brand tells you when to wear their product. On a running page that’s close to useless, because the conditions these suit are narrower than the conditions people run in.</p>",
         "footnote": "Cold and wet is where these earn their place. That’s most of a British winter. It isn’t July.",
-        "cta_link": "#buy",
+        "cta_link": "/products/hydrosox-waterproof-socks",
         "link_url": "/pages/technology"
       },
       "blocks": {

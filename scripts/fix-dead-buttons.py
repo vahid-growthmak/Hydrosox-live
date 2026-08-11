@@ -132,13 +132,25 @@ def main():
             continue
         sections = data.get("sections") or {}
 
-        # An in-page anchor is only offered where the page actually has one.
+        # An in-page anchor is only offered on the two templates where the
+        # order block is unmissable and its position is fixed: the product
+        # page and the homepage. Everywhere else "Buy a pair" goes to the
+        # product page.
+        #
+        # The client reported the anchor doing nothing on the FAQ, size guide
+        # and reviews pages (2026-08-11). Those templates all carry the block,
+        # so the anchor should resolve — but a button that silently does
+        # nothing is the worst outcome on the page, and a link to the product
+        # is right whether the block renders or not. So the anchor is now
+        # opt-in by template rather than inferred.
+        ANCHOR_TEMPLATES = {"index.json", "product.json"}
         buy_anchor = None
-        for sec in sections.values():
-            if sec.get("type") == "buy-widget":
-                buy_anchor = "#%s" % (sec.get("settings", {}).get("anchor_id")
-                                      or "buy")
-                break
+        if path.name in ANCHOR_TEMPLATES:
+            for sec in sections.values():
+                if sec.get("type") == "buy-widget":
+                    buy_anchor = "#%s" % (sec.get("settings", {}).get("anchor_id")
+                                          or "buy")
+                    break
 
         changed = False
         for key, sec in sections.items():
@@ -160,7 +172,7 @@ def main():
                 # block is corrected, not just left because it is non-empty.
                 stale_anchor = (
                     isinstance(current, str)
-                    and current.strip().startswith("#buy")
+                    and current.strip().lstrip("/").startswith("#buy")
                     and buy_anchor is None
                 )
                 if current and not stale_anchor:

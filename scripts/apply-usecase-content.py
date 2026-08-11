@@ -100,9 +100,11 @@ def faq(entries, heading="The things people ask on this page."):
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
         "help_link": "/pages/contact",
-        # The label is a schema default; the link is not, so a CTA built without
-        # this line renders as a button that looks fine and does nothing.
-        "cta_link": "#buy",
+        # Left empty on purpose: fix-dead-buttons.py resolves it, and it is
+        # the only thing that knows whether this template may use an in-page
+        # anchor or must send the reader to the product page. Hardcoding
+        # "#buy" here put a dead anchor on every use-case page.
+        "cta_link": "",
     }, "blocks": blocks, "block_order": order}
 
 

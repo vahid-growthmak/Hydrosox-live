@@ -30,7 +30,7 @@
         "heading": "Waterproof socks that\nkeep your feet dry",
         "body": "<p>A waterproof layer sealed inside a knitted sock. Your boots can soak through and your feet stay dry. Hiking, work, cycling, running and wudu.</p>",
         "cta_label": "Buy a pair",
-        "cta_link": "#buy",
+        "cta_link": "/products/hydrosox-waterproof-socks",
         "link_label": "How they work",
         "link_url": "#mechanism",
         "image_fallback": "wet-run-daylight.webp",
@@ -159,7 +159,7 @@
         "lede": "<p>Nobody in this category writes this bit down. It’s also the part that decides whether waterproof socks are right for you, so it goes above the price rather than below it.</p>",
         "link_label": "How they are built",
         "link_url": "/pages/technology",
-        "cta_link": "#buy"
+        "cta_link": "/products/hydrosox-waterproof-socks"
       },
       "blocks": {
         "l1": {
@@ -650,7 +650,7 @@
         "help_label": "Phone or email us",
         "help_link": "/pages/contact",
         "cta_label": "Buy a pair",
-        "cta_link": "#buy",
+        "cta_link": "/products/hydrosox-waterproof-socks",
         "cta_note": "Two decisions and a quantity. No account needed."
       },
       "blocks": {

@@ -57,12 +57,24 @@ class HSCartDrawer extends HTMLElement {
       })
     );
 
-    this.querySelectorAll('[data-hs-cart-remove]').forEach((link) =>
-      link.addEventListener('click', (e) => {
+    /*
+      Remove is delegated from the panel rather than bound per link. A bound
+      listener is lost the moment the panel's markup is replaced, and it only
+      ever existed for the links present when bind() last ran — so a row that
+      arrived with a swap could be left with a link that navigated away
+      instead of removing. Delegation covers every row, now and after any
+      swap, and it is attached once.
+    */
+    if (this.panel && !this.panel.dataset.hsRemoveBound) {
+      this.panel.dataset.hsRemoveBound = '1';
+      this.panel.addEventListener('click', (e) => {
+        const link = e.target.closest('[data-hs-cart-remove]');
+        if (!link || !this.panel.contains(link)) return;
         e.preventDefault();
-        this.change(link.dataset.line, 0);
-      })
-    );
+        const line = link.dataset.line || link.getAttribute('data-line');
+        if (line) this.change(line, 0);
+      });
+    }
 
     const note = this.querySelector('[data-hs-cart-note]');
     if (note) {
@@ -187,6 +199,8 @@ class HSCartDrawer extends HTMLElement {
     }
 
     this.status = this.querySelector('[data-hs-cart-status]');
+    // innerHTML was replaced, not the panel itself, so the delegated remove
+    // listener above is still attached to this same node.
     this.bind();
   }
 

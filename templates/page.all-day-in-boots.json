@@ -26,7 +26,7 @@
         "scrim_vertical": 70,
         "scrim_horizontal": 55,
         "cta_label": "Buy a pair",
-        "cta_url": "#buy",
+        "cta_url": "/products/hydrosox-waterproof-socks",
         "link_label": "How they work",
         "link_url": "/pages/technology"
       }
@@ -402,7 +402,7 @@
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
         "help_link": "/pages/contact",
-        "cta_link": "#buy"
+        "cta_link": "/products/hydrosox-waterproof-socks"
       },
       "blocks": {
         "q1": {

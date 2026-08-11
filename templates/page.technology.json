@@ -261,7 +261,7 @@
         "emit_schema": true,
         "eyebrow": "Questions",
         "heading": "Common questions",
-        "cta_link": "#buy",
+        "cta_link": "/products/hydrosox-waterproof-socks",
         "help_link": "/pages/contact"
       },
       "blocks": {
@@ -586,7 +586,7 @@
         "eyebrow": "The product",
         "heading": "The mechanism is the argument. This is the sock.",
         "cta_label": "Buy a pair",
-        "cta_url": "#buy",
+        "cta_url": "/products/hydrosox-waterproof-socks",
         "alt_label": "How to wash them",
         "alt_url": "/pages/care-and-washing"
       }

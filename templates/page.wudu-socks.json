@@ -540,7 +540,7 @@
         "help_label": "Phone or email us",
         "help_link": "/#about",
         "cta_label": "Buy a pair",
-        "cta_link": "/#buy",
+        "cta_link": "/products/hydrosox-waterproof-socks",
         "cta_note": "Two decisions and a quantity. No account needed.",
         "emit_schema": true
       }

@@ -52,7 +52,9 @@
         "lede": "<p>We can supply product for review, photography, and figures we are able to stand behind. We do not supply claims we cannot evidence.</p>",
         "submit_label": "Send enquiry",
         "consent_note": "<p>We use these details to answer your message and nothing else. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>",
-        "whatsapp": "+44 7441 396244"
+        "whatsapp": "+44 7441 396244",
+        "name_placeholder": "Your full name",
+        "email_placeholder": "you@example.com"
       },
       "blocks": {
         "c1": {
@@ -123,7 +125,8 @@
             "rows": 5,
             "input_type": "text",
             "help": "",
-            "required": true
+            "required": true,
+            "placeholder": "What you are after — product, images, figures, or a comment"
           }
         }
       },

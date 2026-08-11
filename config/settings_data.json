@@ -9,10 +9,6 @@
  */
 {
   "current": {
-    "free_delivery_threshold": 35,
-    "schema_product": "hydrosox-waterproof-socks",
-    "home_seo_title": "Waterproof Socks UK | All Terrain & Wudu | HydroSox",
-    "home_seo_description": "Waterproof socks for hiking, work, cycling, running and wudu. Three layers with a Porelle® membrane, UK 3–14, from £20 a pair. Free delivery on two pairs.",
     "logo": "shopify://shop_images/imgi_1_hydrosox-logo.png",
     "logo_width": 110,
     "phone": "0203 4322 920",
@@ -119,6 +115,10 @@
     "ease_drawer": "cubic-bezier(0.32, 0.72, 0, 1)",
     "cart_type": "drawer",
     "cart_show_note": false,
+    "free_delivery_threshold": 35,
+    "home_seo_title": "Waterproof Socks UK | All Terrain & Wudu | HydroSox",
+    "home_seo_description": "Waterproof socks for hiking, work, cycling, running and wudu. Three layers with a Porelle® membrane, UK 3–14, from £20 a pair. Free delivery on two pairs.",
+    "schema_product": "hydrosox-waterproof-socks",
     "sections": {
       "cart-drawer": {
         "type": "cart-drawer",
@@ -169,6 +169,11 @@
       "14060646107696862457": {
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": true,
+        "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
         "settings": {}
       }
     }

@@ -278,7 +278,7 @@ def main():
                 "image_alt": "Pulling on a pair of white HydroSox while seated",
                 "body": rich(
                     "Performing wudu five times a day, often somewhere that was not "
-                    "designed for it. <a href=\"/pages/wudu-socks\">Waterproof wudhu "
+                    "designed for it. <a href=\"/pages/wudu-socks\">Waterproof wudu "
                     "socks</a> are the reason most people find this site."
                 )}}),
             ("u2", {"type": "item", "settings": {

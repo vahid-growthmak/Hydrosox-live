@@ -197,7 +197,23 @@
 
 .hs-specs-wrap {
   position: relative;
-  border-top: 1px solid var(--rule);
+}
+
+/*
+  The rule above the spec strip belongs to the copy column, not to the strip.
+  As a full-width border on the strip it was drawn straight across the bottom
+  of the hero photograph — a hairline seam between the picture and the specs on
+  every page that uses this banner. On the copy it still divides the two black
+  areas, and at the breakpoint where the plate takes the right-hand columns it
+  stops exactly where the photograph starts.
+*/
+.hs-hero__copy {
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Nothing below it to divide when the banner carries no spec strip. */
+.hs-hero__frame:not(:has(.hs-specs-wrap)) .hs-hero__copy {
+  border-bottom: 0;
 }
 
 .hs-specs {

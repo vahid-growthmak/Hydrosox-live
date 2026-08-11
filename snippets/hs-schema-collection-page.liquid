@@ -71,8 +71,14 @@
       "@context": "https://schema.org",
       "@type": "DefinedTerm",
       "@id": "{{ page_url }}#term",
-      "name": "Wudhu socks",
-      "alternateName": ["Wudu socks", "Ablution socks", "Masah socks"],
+      {%- comment -%}
+        "Wudu" is the store's spelling, so it is the term's name. The variants
+        people actually type stay on alternateName, which is what that field is
+        for — the search coverage is kept without a second spelling ever
+        reaching a reader.
+      {%- endcomment -%}
+      "name": "Wudu socks",
+      "alternateName": ["Wudhu socks", "Wudoo socks", "Ablution socks", "Masah socks"],
       "description": "Waterproof socks built to the physical properties the masah conditions rest on: water does not pass through them, they hold their shape rather than collapsing against the foot, and they stay in place through normal wear.",
       "inDefinedTermSet": "{{ shop.url }}/pages/how-to-make-masah",
       "mainEntityOfPage": { "@id": "{{ page_url }}#page" }

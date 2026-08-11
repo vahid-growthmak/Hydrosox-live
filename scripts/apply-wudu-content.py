@@ -323,7 +323,7 @@ def main():
     # framing and are flagged in its red block for scholar checking — the
     # client instructed publication of the document as supplied.
     questions = [
-        ("What are wudhu socks?",
+        ("What are wudu socks?",
          "Waterproof socks made so you can wipe over them during wudu instead "
          "of washing your feet. They need to keep water out, hold their shape "
          "and stay on the foot — those are the conditions scholars set "

@@ -1289,7 +1289,7 @@ def wudu_faq():
     covers, deliberately reworded — identical Q&A across two URLs competes for
     the same rich result, and the validator fails the build on it."""
     QUESTIONS = [
-        ("What are wudhu socks?",
+        ("What are wudu socks?",
          "Waterproof socks built to the physical properties the masah conditions rest "
          "on: water does not pass through them, they hold their shape rather than "
          "collapsing against the foot, and they stay in place through normal wear. "
@@ -1413,7 +1413,7 @@ def build_wudu_page():
                  "<p>Service stations, airports, sites, university prayer rooms. The places wudu "
                  "actually happens are rarely the places designed for it.</p>"),
             ], eyebrow="Every day", heading="Wudu at work, five times a day.",
-                head_note="<p>Hajj is a few weeks. The reason most people buy waterproof wudhu "
+                head_note="<p>Hajj is a few weeks. The reason most people buy waterproof wudu "
                           "socks is the other fifty-one weeks.</p>",
                 link_label="How masah is performed",
                 link_url="/pages/how-to-make-masah"),

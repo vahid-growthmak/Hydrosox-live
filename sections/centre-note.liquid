@@ -45,7 +45,14 @@
         </div>
       {%- endif -%}
       {%- if section.settings.footnote != blank -%}
-        <div class="hs-caption hs-note__footnote hs-measure-52 hs-pretty hs-faint">
+        {%- comment -%}
+          Body size, not caption. A single paragraph set smaller than the one
+          above it reads as a mistake rather than as an aside — the client's
+          call on the technology page, where the footnote is a full sentence of
+          real information. The aside quality now comes from the lighter colour
+          alone, which is enough.
+        {%- endcomment -%}
+        <div class="hs-body hs-note__footnote hs-measure-52 hs-pretty hs-faint">
           {{ section.settings.footnote }}
         </div>
       {%- endif -%}

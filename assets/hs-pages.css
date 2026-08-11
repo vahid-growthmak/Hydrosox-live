@@ -1630,8 +1630,15 @@
 }
 
 @media (min-width: 48rem) {
+  /*
+    auto-fit rather than a fixed pair of tracks. With one guide published the
+    fixed grid left the card in the left half and two thirds of the row empty;
+    auto-fit collapses the track it is not using and the lone card fills the
+    width. The 30rem floor caps it at two columns at every width this theme
+    reaches, so a full list looks exactly as it did.
+  */
   .hs-guides__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(30rem, 100%), 1fr));
   }
 }
 

@@ -198,6 +198,10 @@ def technology():
             "is a waterproof layer with a short life.</p>"),
         # A shorter track than the homepage's: this page has more below it.
         "track_height": 220,
+        # No scroll hint: the client removed it on 2026-08-10. The visual
+        # already invites the scroll, and a caption saying so read as a
+        # stage direction printed on the set.
+        "scroll_hint": "",
         # Wash, as the mockup sets this section on this page (the homepage
         # copy stays paper). Safe for the frames: the sequence draws inside
         # the stage's own rounded --plate panel, so the section ground never

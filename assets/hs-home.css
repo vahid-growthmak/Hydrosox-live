@@ -1390,9 +1390,9 @@
 .hs-layers__foot {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--rule);
+  justify-content: center;
+  gap: 0.75rem 1rem;
+  padding-top: 2.5rem;
 }
 
 /* The film's footer is a bare line of links — no rule above it. */
@@ -1914,14 +1914,19 @@
   }
 }
 
+/* Centred and closer to the grid it closes. Left-aligned at 46ch it sat as a
+   short line with the whole right-hand side empty beside it, and a wide gap
+   above — which read as something missing rather than as a closing note. */
 .hs-activity__footnote {
-  margin-top: 2.5rem;
-  max-width: 46ch;
+  margin-top: 2rem;
+  margin-inline: auto;
+  max-width: 60ch;
+  text-align: center;
 }
 
 @media (min-width: 40rem) {
   .hs-activity__footnote {
-    margin-top: 3rem;
+    margin-top: 2.25rem;
   }
 }
 

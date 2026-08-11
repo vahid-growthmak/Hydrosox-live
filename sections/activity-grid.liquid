@@ -29,15 +29,23 @@
   {% endif %}
   {{ section.shopify_attributes }}
 >
-  <div class="hs-shell hs-pace-loose">
+  {%- comment -%}
+    Base pace, not loose: this section sits between two others and the loose
+    rhythm opened a gap at the top that read as a mistake rather than as
+    breathing room.
+
+    The lede takes the same size, measure and tone as every other section
+    head on the site. It was set a step smaller, narrower and paler than its
+    neighbours, which made the same element look like a different one from
+    section to section.
+  {%- endcomment -%}
+  <div class="hs-shell hs-pace-base">
     {% render 'hs-section-head',
       eyebrow: section.settings.eyebrow,
       heading: section.settings.heading,
       lede: section.settings.lede,
       heading_measure: 'hs-activity__measure',
-      lede_size: 'caption',
-      lede_measure: 'hs-measure-32',
-      lede_tone: 'faint'
+      lede_size: 'body'
     %}
 
     {%- if activity_count > 0 -%}

@@ -407,7 +407,7 @@
         "eyebrow": "How they work",
         "heading": "How they work",
         "lede": "<p>Three layers. Only the middle one is waterproof, and it never touches your skin or the inside of your boot.</p>",
-        "scroll_hint": "Scroll to take it apart.",
+        "scroll_hint": "",
         "track_height": 320,
         "frame_count": 100,
         "frame_prefix": "hs-layer-frame-",

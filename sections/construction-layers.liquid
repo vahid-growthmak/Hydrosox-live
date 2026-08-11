@@ -182,15 +182,21 @@
   -%}
   {%- if link_count > 0 -%}
     <div class="hs-shell hs-layers__foot-wrap">
+      {%- comment -%}
+        A centred button rather than a text link on a ruled line. The rule
+        read as a section divider closing the page, and a quiet link under a
+        scroll-scrub is the one place a reader has just been given a reason
+        to want more — so it earns a button.
+      {%- endcomment -%}
       <div class="hs-layers__foot">
         {%- for block in link_blocks -%}
-          <a
-            class="hs-tap hs-small-body hs-layers__foot-link"
-            href="{{ block.settings.link | default: '#' }}"
-            {{ block.shopify_attributes }}
-          >
-            {{- block.settings.label -}}
-          </a>
+          <span {{ block.shopify_attributes }}>
+            {% render 'hs-button',
+              label: block.settings.label,
+              href: block.settings.link,
+              style: 'outline'
+            %}
+          </span>
         {%- endfor -%}
       </div>
     </div>

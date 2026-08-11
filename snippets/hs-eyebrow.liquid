@@ -9,7 +9,10 @@
   duplicate back.
 
   The comparison ignores case and a trailing full stop, because the headings
-  take one and eyebrows never do.
+  take one and the eyebrows never do. It compares "eyebrow plus a full stop"
+  against the heading rather than stripping the stop off the heading: Liquid
+  has no `ends_with` operator, and `remove_last` on its own would strike out a
+  mid-sentence full stop in a heading that does not end with one.
 
   Accepts:
   - eyebrow: {String} The label. Required — nothing renders without it.
@@ -20,12 +23,10 @@
   {% render 'hs-eyebrow', eyebrow: section.settings.eyebrow, heading: section.settings.heading %}
 {%- endcomment -%}
 {%- liquid
-  assign eyebrow_key = eyebrow | strip | downcase | strip_html | replace: '’', "'"
-  assign heading_key = heading | strip | downcase | strip_html | replace: '’', "'"
-  if heading_key ends_with '.'
-    assign heading_key = heading_key | remove_last: '.'
-  endif
+  assign eyebrow_key = eyebrow | strip_html | strip | downcase | replace: '’', "'"
+  assign heading_key = heading | strip_html | strip | downcase | replace: '’', "'"
+  assign eyebrow_stopped = eyebrow_key | append: '.'
 -%}
-{%- if eyebrow != blank and eyebrow_key != heading_key -%}
+{%- if eyebrow != blank and eyebrow_key != heading_key and eyebrow_stopped != heading_key -%}
   <p class="hs-eyebrow{% if class != blank %} {{ class }}{% endif %}">{{ eyebrow }}</p>
 {%- endif -%}

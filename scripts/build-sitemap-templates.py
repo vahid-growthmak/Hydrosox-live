@@ -829,11 +829,20 @@ def rich(text):
 
 
 def items(pairs, numbered=False, **settings):
-    """A content-columns section from (title, body) pairs."""
+    """A content-columns section from (title, body) pairs.
+
+    A pair may carry a third element, `disabled`. That keeps the block in the
+    template but out of the rendered page — how this theme retires copy it may
+    want back, rather than deleting it and losing the wording.
+    """
     blocks, order = {}, []
-    for i, (title, body) in enumerate(pairs, 1):
+    for i, entry in enumerate(pairs, 1):
+        title, body = entry[0], entry[1]
         key = f"i{i}"
-        blocks[key] = {"type": "item", "settings": {"title": title, "body": rich(body)}}
+        block = {"type": "item", "settings": {"title": title, "body": rich(body)}}
+        if len(entry) > 2 and entry[2]:
+            block["disabled"] = True
+        blocks[key] = block
         order.append(key)
     base = {"color_scheme": "paper", "layout": "list", "numbered": numbered}
     base.update(settings)
@@ -1083,14 +1092,25 @@ def build_content_pages():
             "intro": note(heading_tag="h1", heading_size="h2", hide_rule=True,
                 eyebrow="Returns and refunds",
                 heading="Fourteen days, no reason needed.",
-                body="<p>Your statutory rights are the floor here, not the ceiling. Nothing on this page reduces them.</p>"),
+                body="<p>Your statutory rights are the floor here, not the ceiling. Nothing on this page reduces them.</p>"
+                     "<p><strong>No reason needed</strong> means what it says. For fourteen days after the parcel arrives you can change your mind without explaining why — you do not have to tell us the socks did not fit, or did not suit you, or anything at all, and we will not ask. What we do check is their condition: they come back unworn and complete, and every pair is inspected when it reaches us.</p>"),
             "how": items([
                 ("Tell us within 14 days",
                  "<p>Fourteen days from the day the parcel arrives. Email or phone us — a clear statement that you are cancelling is enough, there is no form to find.</p>"),
                 ("Send them back within 14 more",
                  "<p>Unworn, in the original packaging, with any seal intact. You may inspect them as you would in a shop.</p>"),
+                ("Checked on arrival",
+                 "<p>Our safety and compliance team goes through every pair that comes back. They make the final decision on whether a return is viable for a refund.</p>"),
+                ("Refunded to the card you paid with",
+                 "<p>The price of the socks. Once a refund has been accepted it can take up to 30 days to reach your account.</p>"),
+                # Retired 2026-08-11 on the client's instruction: the outbound
+                # delivery charge is no longer refunded. Disabled rather than
+                # deleted, so restoring it is one toggle in the theme editor
+                # and the exact wording is not lost. See the note in the
+                # commit for the consumer-law position on this.
                 ("Refunded within 14 days of arrival",
-                 "<p>The price plus the standard outbound delivery charge if you paid one, back to the card you used.</p>"),
+                 "<p>The price plus the standard outbound delivery charge if you paid one, back to the card you used.</p>",
+                 True),
             ], numbered=False, heading="Changing your mind"),
             "faulty": items([
                 ("Within 30 days, reject and get a full refund",

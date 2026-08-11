@@ -32,7 +32,7 @@
         "heading_tag": "h1",
         "heading_size": "h2",
         "lead_first_para": false,
-        "body": "<p>Your statutory rights are the floor here, not the ceiling. Nothing on this page reduces them.</p>",
+        "body": "<p>Your statutory rights are the floor here, not the ceiling. Nothing on this page reduces them.</p><p><strong>No reason needed</strong> means what it says. For fourteen days after the parcel arrives you can change your mind without explaining why — you do not have to tell us the socks did not fit, or did not suit you, or anything at all, and we will not ask. What we do check is their condition: they come back unworn and complete, and every pair is inspected when it reaches us.</p>",
         "footnote": "",
         "pointer_label": "",
         "pointer_link_label": "",
@@ -72,19 +72,44 @@
         "i3": {
           "type": "item",
           "settings": {
+            "title": "Checked on arrival",
+            "body": "<p>Our safety and compliance team goes through every pair that comes back. They make the final decision on whether a return is viable for a refund.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "Refunded to the card you paid with",
+            "body": "<p>The price of the socks. Once a refund has been accepted it can take up to 30 days to reach your account.</p>",
+            "link_label": "",
+            "link_url": "",
+            "image_fallback": "",
+            "image_alt": ""
+          }
+        },
+        "i3_retired": {
+          "type": "item",
+          "settings": {
             "title": "Refunded within 14 days of arrival",
             "body": "<p>The price plus the standard outbound delivery charge if you paid one, back to the card you used.</p>",
             "link_label": "",
             "link_url": "",
             "image_fallback": "",
             "image_alt": ""
-          }
+          },
+          "disabled": true
         }
       },
       "block_order": [
         "i1",
         "i2",
-        "i3"
+        "i3",
+        "i4",
+        "i3_retired"
       ],
       "settings": {
         "color_scheme": "paper",

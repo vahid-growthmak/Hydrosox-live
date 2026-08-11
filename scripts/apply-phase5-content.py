@@ -410,7 +410,9 @@ def faq_page():
     # published in full) wait with the scholars' material, per Document 3's
     # own red blocks.
     groups = [
-        ("product", "The socks", None, [
+        ("product", "The socks",
+         "How they are built, and what they will and will not do. The full "
+         "make-up is on the technology page.", [
             ("Can water get in over the top?",
              "Yes. A sock is open at the top, so water deeper than the sock "
              "will go in, exactly as it would with any sock. No waterproof "
@@ -526,7 +528,8 @@ def faq_page():
         ]),
         # No warranty is offered any more (2026-08-11), so the group no
         # longer names one.
-        ("delivery", "Delivery and returns", None, [
+        ("delivery", "Delivery and returns",
+         "The binding terms are in the shipping and refund policies.", [
             ("Where do you deliver to?",
              "The United Kingdom, from our UK warehouse. Delivery is free on "
              "two pairs or more. On a single pair there\u2019s a charge, "
@@ -557,7 +560,8 @@ def faq_page():
              "sending anything back and we\u2019ll tell you exactly what "
              "to do."),
         ]),
-        ("company", "The company", None, [
+        ("company", "The company",
+         "Who we are, and how to reach a person. More is on the about page.", [
             # Kept from the previous rewrite: the doc's answer here is a
             # [CLIENT TO CONFIRM] placeholder, and an unanswered question is
             # the thing its red block most fears. This one states the truth

@@ -24,7 +24,7 @@
 -%}
 
 <section
-  class="hs-table hs-scheme-{{ section.settings.color_scheme }}{% unless section.settings.hide_rule %} hs-border-b{% endunless %} hs-anchor"
+  class="hs-table hs-scheme-{{ section.settings.color_scheme }}{% if section.settings.hide_rule %} hs-no-rule{% else %} hs-border-b{% endif %} hs-anchor"
   {% if section.settings.anchor_id != blank %}
     id="{{ section.settings.anchor_id }}"
   {% endif %}

@@ -1261,9 +1261,32 @@
 
 .hs-breadcrumb__list {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 0.375rem 0.5rem;
+  /*
+    One line, scrolled sideways if it does not fit — not wrapped. A three-level
+    trail ("Home / Waterproof socks / All day in boots") wraps onto a second
+    line on any phone, which doubles the height of the bar and reads as a
+    layout fault rather than as navigation. Every level stays reachable.
+  */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  /* The trail is flush with the gutter; the padding is what the scroll eats. */
+  scroll-padding-inline: var(--gutter);
+}
+
+.hs-breadcrumb__list::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  /* Room for the whole trail from here, so let it lay out normally again. */
+  .hs-breadcrumb__list {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
 }
 
 .hs-breadcrumb__item {
@@ -1271,6 +1294,8 @@
   align-items: center;
   gap: 0.5rem;
   min-width: 0;
+  /* Items keep their width in the scrolling row rather than compressing. */
+  flex: none;
 }
 
 .hs-breadcrumb__link {
@@ -1312,6 +1337,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 22ch;
+  /* In a nowrap row a flex item may still be shrunk; the trail scrolls
+     instead, so the last crumb keeps its own width. */
+  flex: none;
 }
 
 @media (min-width: 48rem) {
@@ -2310,7 +2338,19 @@
   border-radius: var(--radius-2xl);
   display: flex;
   flex-direction: column;
-  min-height: 24rem;
+}
+
+@media (min-width: 64rem) {
+  /*
+    The 24rem floor is there so the panel holds its own beside the column of
+    items it sits next to. On a phone there is no column beside it — the panel
+    is an eyebrow, a heading and a button — and the forced height opened a void
+    between the heading and the CTA, which is the "much gap for small screens"
+    report.
+  */
+  .hs-cols__head-panel {
+    min-height: 24rem;
+  }
 }
 
 .hs-cols__panel-cta {
@@ -2811,6 +2851,23 @@
   border-top: 1px solid var(--rule);
 }
 
+@media (min-width: 48rem) {
+  /*
+    The divided variant stays a stacked list, ruled between items, until 64rem
+    — where the rules below turn it into a divided row with its own side
+    padding and a left border.
+
+    Without this it inherited the generic cards rule at 48rem and went three
+    columns immediately, while `gap: 0` and the padding-free base card were
+    still in force. Three 249px columns touched edge to edge with nothing
+    between them, so the end of one column's text sat against the start of the
+    next: the "text is merging" report at tablet width.
+  */
+  .hs-cols .hs-cols__cards--divided {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (min-width: 64rem) {
   .hs-cols .hs-cols__cards--divided {
     grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
@@ -2901,6 +2958,13 @@
 
 .hs-table__cell {
   padding: 1.25rem 1.5rem 1.25rem 0;
+  /* Same rule as the size-guide overlay: first lines line up across the row,
+     so a one-word band never floats against a wrapped measurement. */
+  vertical-align: baseline;
+}
+
+.hs-table__table th.hs-table__cell {
+  vertical-align: bottom;
 }
 
 .hs-table__cell:last-child {

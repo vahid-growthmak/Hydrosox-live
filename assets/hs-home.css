@@ -787,6 +787,14 @@
 .hs-guide__table th {
   padding-bottom: 0.5rem;
   color: var(--grey);
+  /*
+    Aligned on the bottom, not the middle. Below about 360px "FOOT LENGTH" and
+    "UK SHOE" wrap to two lines while "SIZE" stays on one; centred in the same
+    46px cell it floated between its neighbours' two lines and read as a
+    misaligned header row. Bottom puts the single line level with the last line
+    of the wrapped ones.
+  */
+  vertical-align: bottom;
 }
 
 .hs-guide__table tbody tr {
@@ -799,6 +807,12 @@
 
 .hs-guide__table td {
   padding-block: 0.75rem;
+  /*
+    First lines line up across the row. Centred, a one-line "S" sat halfway
+    down a two-line measurement, which is what made adjacent rows look like
+    they were running together on a narrow screen.
+  */
+  vertical-align: baseline;
 }
 
 .hs-guide__cell--name {

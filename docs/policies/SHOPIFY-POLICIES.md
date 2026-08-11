@@ -34,12 +34,34 @@ and rules as the Cookie Policy and Accessibility pages. That went live at
 14:09 on 6 August 2026, so if you looked before then you saw the unstyled
 version.
 
-### Why `{{ shop_name }}` and `{{ email }}` appear below
+### 3. The contact details below are written out, not templated
 
-Shopify renders policies through Liquid, so these resolve automatically from
-**Settings → Store details**. Leave them as they are — it means the address and
-phone number stay correct in one place instead of being retyped into six
-policies.
+An earlier version of this file used Liquid tags here — `shop_name`, `phone`,
+`email`, `address` in double braces — on the assumption that Shopify would
+resolve them from **Settings → Store details**.
+
+**It does not.** A policy body is stored as plain HTML and is never parsed as
+Liquid. The theme renders it with `policy.body`, and Liquid prints a variable's
+value; it does not re-parse what is inside it. Shopify's own checkout policy
+modals do not parse it either.
+
+The result was that customers saw the literal braces on
+/policies/refund-policy and, worse, inside the Contact modal at checkout.
+
+So every value below is written out in full. The cost is that changing the
+phone number means editing these six policies as well as Settings; that is the
+price of it being right on screen. The values as at 11 August 2026:
+
+| Tag that used to be here | Value now written out |
+| --- | --- |
+| shop_name | HydroSox |
+| phone | 0203 4322 920 *(calls only)* |
+| email | info@hydrosox.com |
+| address | 399-405 Oxford Street, Mayfair, London, W1C 2BU, United Kingdom |
+
+WhatsApp (+44 7441 396244) is now given alongside the phone number wherever a
+policy offers a way to reach a person, per the client's rule that the calls
+number and the WhatsApp number always appear together.
 
 ---
 
@@ -56,7 +78,7 @@ policies.
 
 <p><strong>On a single pair, delivery is charged.</strong> The exact amount is shown with the price before you add anything to the basket, not revealed at checkout. You are never charged a delivery cost you have not already seen.</p>
 
-<p><strong>Dispatched from the United Kingdom.</strong> {{ shop_name }} is a UK company holding UK stock. Nothing is drop-shipped from elsewhere, and nothing arrives with an unexpected customs charge.</p>
+<p><strong>Dispatched from the United Kingdom.</strong> HydroSox is a UK company holding UK stock. Nothing is drop-shipped from elsewhere, and nothing arrives with an unexpected customs charge.</p>
 
 <p><strong>No delivery speed is promised.</strong> We will not print a next-day promise that confirmed stock cannot support, so no delivery speed appears anywhere on this site until it can. When a service level is confirmed it will be stated here in full.</p>
 
@@ -74,7 +96,7 @@ policies.
 
 <h2>Questions</h2>
 
-<p>Phone {{ phone }} during the day or email {{ email }} at any time. Both are published on every page of this site rather than held behind a form.</p>
+<p>Phone 0203 4322 920 during the day, message us on WhatsApp at +44 7441 396244, or email info@hydrosox.com at any time. Both are published on every page of this site rather than held behind a form.</p>
 ```
 
 ---
@@ -92,7 +114,9 @@ policies.
 
 <p><strong>Send them back within 14 more.</strong> Unworn, in the original packaging, with any seal intact. You may inspect them as you would in a shop — trying a pair on briefly to check the size is inspection, not use.</p>
 
-<p><strong>Refunded within 14 days of arrival.</strong> The price you paid plus the standard outbound delivery charge if you paid one, back to the card you used. If you chose a more expensive delivery option than our standard one, we refund the standard cost.</p>
+<p><strong>Checked on arrival.</strong> Every pair that comes back is inspected by our safety and compliance team. They make the final decision on whether a return is viable for a refund.</p>
+
+<p><strong>Refunded to the card you paid with.</strong> Where a refund is accepted we return the price of the socks. It can take up to 30 days from our side for the funds to reach your account.</p>
 
 <p><strong>Who pays to send them back.</strong> We do, on your first return. After that, return postage is yours to cover unless the goods are faulty — in which case we pay, every time.</p>
 
@@ -110,7 +134,7 @@ policies.
 
 <h2>What is not covered</h2>
 
-<p><strong>Normal wear is not a fault.</strong> A membrane ends through abrasion, heat and clogged pores. That is wear, not a defect. The warranty page draws the line between the two in detail.</p>
+<p><strong>Normal wear is not a fault.</strong> A membrane ends through abrasion, heat and clogged pores. That is wear, not a defect. The returns page draws the line between the two in detail.</p>
 
 <p><strong>Damage from misuse or incorrect care.</strong> Tumble drying, ironing, direct heat, bleach and fabric softener will all shorten or end the life of a membrane. Care instructions are published in full and linked from the product page.</p>
 
@@ -118,7 +142,7 @@ policies.
 
 <h2>How to start a return</h2>
 
-<p>Email {{ email }} or phone {{ phone }} with your order number. Contact us before sending anything back and we will tell you exactly what to do.</p>
+<p>Email info@hydrosox.com, phone 0203 4322 920, or message us on WhatsApp at +44 7441 396244 with your order number. Contact us before sending anything back and we will tell you exactly what to do.</p>
 ```
 
 ---
@@ -131,7 +155,7 @@ policies.
 <p>These govern your use of this website and anything you buy from us. Nothing in them reduces your statutory rights as a consumer.</p>
 
 <h2>1. Who we are</h2>
-<p>This website is operated by Hydrosox Ltd, a company registered in England and Wales under company number [TO CONFIRM], with its registered office at {{ address }}. You can contact us at {{ email }} or on {{ phone }}.</p>
+<p>This website is operated by Hydrosox Ltd, a company registered in England and Wales under company number [TO CONFIRM], with its registered office at 399-405 Oxford Street, Mayfair, London, W1C 2BU, United Kingdom. You can contact us at info@hydrosox.com, on 0203 4322 920, or on WhatsApp at +44 7441 396244.</p>
 
 <h2>2. Using this website</h2>
 <p>By using this site you confirm you are at least 18, or have the consent of a parent or guardian.</p>
@@ -181,7 +205,7 @@ policies.
 <p>We may update these terms. The version that applies to your order is the one published when you placed it.</p>
 
 <h2>12. Complaints</h2>
-<p>If something has gone wrong, email {{ email }} or phone {{ phone }} and we will try to resolve it directly.</p>
+<p>If something has gone wrong, email info@hydrosox.com or phone 0203 4322 920 and we will try to resolve it directly.</p>
 <p>We are not currently a member of an alternative dispute resolution scheme. If we cannot resolve a complaint between us, you retain your right to bring a claim in the courts.</p>
 
 <h2>13. Governing law</h2>
@@ -199,9 +223,9 @@ policies.
 
 <h2>Who we are</h2>
 
-<p><strong>The controller.</strong> Hydrosox Ltd, a company registered in England and Wales [company number to be inserted], of {{ address }}, is the data controller for personal data processed through this website.</p>
+<p><strong>The controller.</strong> Hydrosox Ltd, a company registered in England and Wales [company number to be inserted], of 399-405 Oxford Street, Mayfair, London, W1C 2BU, United Kingdom, is the data controller for personal data processed through this website.</p>
 
-<p><strong>How to reach us about data.</strong> Email {{ email }} or phone {{ phone }}. We do not currently have a Data Protection Officer, and are not required to appoint one.</p>
+<p><strong>How to reach us about data.</strong> Email info@hydrosox.com or phone 0203 4322 920. We do not currently have a Data Protection Officer, and are not required to appoint one.</p>
 
 <h2>What we collect</h2>
 
@@ -254,7 +278,7 @@ policies.
 
 <p><strong>What you can ask for.</strong> Access to the data we hold about you; correction of anything inaccurate; erasure; restriction of processing; objection to processing carried out on the basis of legitimate interests; portability of data you gave us; and withdrawal of consent at any time where processing relies on it.</p>
 
-<p><strong>How to exercise them.</strong> Email {{ email }}. We will respond within one month. We may ask you to confirm your identity first, which is a protection for you rather than an obstacle.</p>
+<p><strong>How to exercise them.</strong> Email info@hydrosox.com. We will respond within one month. We may ask you to confirm your identity first, which is a protection for you rather than an obstacle.</p>
 
 <p><strong>It is free.</strong> There is no charge for making a request, unless a request is manifestly unfounded or excessive.</p>
 
@@ -283,13 +307,15 @@ Act 2006 require, which the document does call for. Built only from company
 details already published on the site:
 
 ```html
-<p>{{ shop_name }} is operated by Hydrosox Ltd, a company registered in England and Wales under company number [TO CONFIRM].</p>
+<p>HydroSox is operated by Hydrosox Ltd, a company registered in England and Wales under company number [TO CONFIRM].</p>
 
-<p><strong>Registered address.</strong> {{ address }}</p>
+<p><strong>Registered address.</strong> 399-405 Oxford Street, Mayfair, London, W1C 2BU, United Kingdom</p>
 
-<p><strong>Phone.</strong> {{ phone }}</p>
+<p><strong>Phone.</strong> 0203 4322 920</p>
 
-<p><strong>Email.</strong> {{ email }}</p>
+<p><strong>WhatsApp.</strong> +44 7441 396244</p>
+
+<p><strong>Email.</strong> info@hydrosox.com</p>
 
 <p>Both the phone number and the email address are published on every page of this site rather than held behind a contact form.</p>
 ```

@@ -414,6 +414,17 @@ summary::-webkit-details-marker {
   .shopify-section:has(> .hs-scheme-ink) + .shopify-section > .hs-scheme-ink {
     border-top: 1px solid var(--rule);
   }
+
+  /*
+    Except after a section that turned its own rule off. "Hide rule" means the
+    author wants this section to run into the next one; drawing the hairline
+    here anyway put a line under the Our partners opening that the template had
+    explicitly asked not to have. A section with no rule *setting* is untouched
+    — this only honours an explicit no.
+  */
+  .shopify-section:has(> .hs-no-rule) + .shopify-section > [class*='hs-scheme-'] {
+    border-top: 0;
+  }
 }
 
 .hs-muted {

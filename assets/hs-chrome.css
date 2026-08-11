@@ -881,6 +881,15 @@
   display: flex;
   align-items: center;
   min-height: 2.75rem;
+  /*
+    The target stops at the end of the text. The list is a column flex
+    container, so a stretched item ran the full width of the column and every
+    blank inch beside a short label like "FAQ" was still the link — you could
+    click well clear of the words and navigate. The 44px height stays, so the
+    tap target is still big enough; it is only the dead width that goes.
+  */
+  align-self: flex-start;
+  max-width: 100%;
   color: var(--on-surface-muted);
   text-decoration: none;
   transition: color var(--duration-press) var(--ease-out);
@@ -888,7 +897,7 @@
 
 @media (min-width: 64rem) {
   .hs-footer__link {
-    display: block;
+    display: inline-flex;
     min-height: 0;
   }
 }

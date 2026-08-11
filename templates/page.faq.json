@@ -40,7 +40,7 @@
           "type": "card",
           "settings": {
             "title": "The socks",
-            "body": "",
+            "body": "How they are built, and what they will and will not do. The full make-up is on the technology page.",
             "meta": "6 questions",
             "link": "#product"
           }
@@ -76,7 +76,7 @@
           "type": "card",
           "settings": {
             "title": "Delivery and returns",
-            "body": "",
+            "body": "The binding terms are in the shipping and refund policies.",
             "meta": "6 questions",
             "link": "#delivery"
           }
@@ -85,7 +85,7 @@
           "type": "card",
           "settings": {
             "title": "The company",
-            "body": "",
+            "body": "Who we are, and how to reach a person. More is on the about page.",
             "meta": "4 questions",
             "link": "#company"
           }

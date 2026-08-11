@@ -1537,7 +1537,18 @@
   padding-block: 1.5rem;
   text-align: left;
   border-top: 1px solid var(--rule);
-  cursor: pointer;
+}
+
+/*
+  No hand cursor on a fine pointer: hovering the row already switches the
+  stage, so the click that the pointer promises adds nothing — it read as a
+  dead control. Touch and keyboard keep the real button underneath, where the
+  press IS the interaction and no cursor is drawn anyway.
+*/
+@media (hover: hover) and (pointer: fine) {
+  .hs-film__chapter {
+    cursor: default;
+  }
 }
 
 @media (min-width: 64rem) {
@@ -1621,6 +1632,8 @@
 
 .hs-film__foot {
   margin-top: 3.5rem;
+  justify-content: center;
+  text-align: center;
 }
 
 .hs-measure-15 {
@@ -2404,3 +2417,20 @@
   }
 }
 
+
+/* The play control shows one glyph at a time: play while paused, pause while
+   playing. Driven by aria-pressed, so the state a screen reader hears and the
+   state the eye sees can never disagree. */
+.hs-film__play .hs-film__play-icon--pause,
+.hs-film__play[aria-pressed='true'] .hs-film__play-icon--play {
+  display: none;
+}
+
+.hs-film__play[aria-pressed='true'] .hs-film__play-icon--pause {
+  display: block;
+}
+
+/* The play glyph is optically off-centre in its disc; the pause bars are not. */
+.hs-film__play-icon--pause {
+  translate: 0 0;
+}

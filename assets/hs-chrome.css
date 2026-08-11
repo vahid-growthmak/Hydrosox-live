@@ -38,10 +38,6 @@
     text-decoration-color var(--duration-press) var(--ease-out);
 }
 
-.hs-announcement__link--muted {
-  color: var(--on-surface-muted);
-}
-
 @media (hover: hover) and (pointer: fine) {
   a.hs-announcement__link {
     text-decoration-line: underline;

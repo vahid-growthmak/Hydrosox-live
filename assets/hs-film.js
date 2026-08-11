@@ -37,7 +37,29 @@ class HSFilm extends HTMLElement {
 
     if (this.playButton) {
       this.playButton.addEventListener('click', () => this.togglePlayback());
+      this.playLabels = {
+        play: this.playButton.dataset.labelPlay || 'Play',
+        pause: this.playButton.dataset.labelPause || 'Pause',
+      };
+      this.labelNode = this.playButton.querySelector('[data-hs-film-play-label]');
     }
+
+    /*
+      The control follows the video rather than the click. Autoplay, the
+      intersection observer and a chapter change all start and stop playback
+      without anyone pressing anything, and a button that only flipped on
+      click drifted out of step with what was on screen within one scroll.
+      Listening to the media events themselves is the only state that cannot
+      lie, so every layer's video reports in.
+    */
+    this.layers.forEach((layer) => {
+      const video = layer.querySelector('video');
+      if (!video) return;
+      ['play', 'pause', 'ended', 'emptied'].forEach((type) =>
+        video.addEventListener(type, () => this.paintPlayState())
+      );
+    });
+    this.paintPlayState();
 
     this.autoplay = this.hasAttribute('data-autoplay')
       && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -80,6 +102,26 @@ class HSFilm extends HTMLElement {
     });
   }
 
+  /*
+    One place decides how the control looks: the video on the stage. No video
+    on this chapter — a poster-only one — and the control has nothing to drive,
+    so it goes away rather than sitting there inert.
+  */
+  paintPlayState() {
+    if (!this.playButton) return;
+    const video = this.activeVideo();
+    if (!video) {
+      this.playButton.hidden = true;
+      return;
+    }
+    this.playButton.hidden = false;
+    const playing = !video.paused && !video.ended;
+    this.playButton.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    if (this.labelNode && this.playLabels) {
+      this.labelNode.textContent = playing ? this.playLabels.pause : this.playLabels.play;
+    }
+  }
+
   activeVideo() {
     const layer = this.layers[this.active];
     return layer ? layer.querySelector('video') : null;
@@ -110,13 +152,17 @@ class HSFilm extends HTMLElement {
     // The chapter that just arrived takes over, so switching never leaves the
     // stage on a frozen frame.
     if (this.autoplay && this.onScreen !== false) this.resume();
+    this.paintPlayState();
   }
 
   togglePlayback() {
     const video = this.activeVideo();
     if (!video) return;
-    if (video.paused) video.play();
+    if (video.paused) video.play().catch(() => {});
     else video.pause();
+    // The media events repaint the control; this covers a play() the browser
+    // refuses outright, where no event ever arrives.
+    this.paintPlayState();
   }
 }
 

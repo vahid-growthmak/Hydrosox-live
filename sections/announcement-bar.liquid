@@ -36,7 +36,7 @@
           {%- else -%}
             {%- if block.settings.link != blank -%}
               <a
-                class="hs-tap hs-announcement__link hs-announcement__link--muted{% if hide_on_mobile %} hs-announcement__part--desktop{% endif %}"
+                class="hs-tap hs-announcement__link{% if hide_on_mobile %} hs-announcement__part--desktop{% endif %}"
                 href="{{ block.settings.link }}"
                 {{ block.shopify_attributes }}
               >
@@ -44,7 +44,7 @@
               </a>
             {%- else -%}
               <span
-                class="hs-announcement__link hs-announcement__link--muted{% if hide_on_mobile %} hs-announcement__part--desktop{% endif %}"
+                class="hs-announcement__link{% if hide_on_mobile %} hs-announcement__part--desktop{% endif %}"
                 {{ block.shopify_attributes }}
               >
                 {{- block.settings.text -}}

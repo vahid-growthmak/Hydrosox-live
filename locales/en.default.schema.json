@@ -439,7 +439,8 @@
       "video_fallback": "Bundled clip filename",
       "video_fallback_info": "An .mp4 in the theme assets, played when no video is chosen above. Nothing downloads until the visitor presses play.",
       "autoplay": "Play chapters automatically",
-      "autoplay_info": "Plays the chapter on the stage, muted, while the section is on screen — muted because every browser blocks autoplay with sound and leaves the frame frozen instead. Off automatically for visitors who ask their device to reduce motion. Chapters carrying only a still photograph are unaffected."
+      "autoplay_info": "Plays the chapter on the stage, muted, while the section is on screen — muted because every browser blocks autoplay with sound and leaves the frame frozen instead. Off automatically for visitors who ask their device to reduce motion. Chapters carrying only a still photograph are unaffected.",
+      "pause_label": "Pause button label"
     },
     "activity": {
       "name": "Shop by activity",

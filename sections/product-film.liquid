@@ -129,9 +129,22 @@
               {%- endfor -%}
 
               {%- if section.settings.play_label != blank -%}
-                <button class="hs-tap hs-film__play" type="button" data-hs-film-play>
-                  {% render 'hs-icon', icon: 'play', size: 16, class: 'hs-film__play-icon' %}
-                  <span class="hs-visually-hidden">{{ section.settings.play_label }}</span>
+                {%- comment -%}
+                  Both glyphs ship and CSS shows whichever matches the state,
+                  so the control never waits on a script to look right — and
+                  `aria-pressed` carries the same state to a screen reader.
+                {%- endcomment -%}
+                <button
+                  class="hs-tap hs-film__play"
+                  type="button"
+                  data-hs-film-play
+                  aria-pressed="false"
+                  data-label-play="{{ section.settings.play_label | escape }}"
+                  data-label-pause="{{ section.settings.pause_label | default: section.settings.play_label | escape }}"
+                >
+                  {% render 'hs-icon', icon: 'play', size: 16, class: 'hs-film__play-icon hs-film__play-icon--play' %}
+                  {% render 'hs-icon', icon: 'pause', size: 16, class: 'hs-film__play-icon hs-film__play-icon--pause' %}
+                  <span class="hs-visually-hidden" data-hs-film-play-label>{{ section.settings.play_label }}</span>
                 </button>
               {%- endif -%}
             </div>
@@ -267,6 +280,12 @@
       "id": "play_label",
       "label": "t:sections.film.play_label",
       "default": "Play the clip"
+    },
+    {
+      "type": "text",
+      "id": "pause_label",
+      "label": "t:sections.film.pause_label",
+      "default": "Pause the clip"
     }
   ],
   "blocks": [

@@ -2137,15 +2137,23 @@
 }
 
 @media (min-width: 64rem) {
+  /*
+    The lede used to start at column 9 while the heading ran to 7, which left
+    a whole empty column between a two-line heading and its own description —
+    the reader's eye had to cross a void to connect them. They now sit either
+    side of the grid's own 4rem gutter, and the lede tops out with the heading
+    rather than floating mid-air beside it.
+  */
   .hs-cols__grid--band .hs-cols__head-col {
-    grid-column: 1 / span 7;
+    grid-column: 1 / span 6;
     grid-row: 1;
   }
 
   .hs-cols__grid--band .hs-cols__lede {
-    grid-column: 9 / -1;
+    grid-column: 7 / -1;
     grid-row: 1;
-    align-self: center;
+    align-self: start;
+    padding-top: 0.5rem;
     margin-top: 0;
   }
 
@@ -2966,6 +2974,9 @@
    carries the page's action. */
 .hs-cols__grid--band .hs-cols__cta {
   grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
 }
 
 /* The sentence under the quantity ladder — why most people buy two. */

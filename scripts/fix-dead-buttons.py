@@ -36,6 +36,11 @@ PAIRS = [
     ("link_label", "link_url"), ("link2_label", "link2_url"),
     ("alt_label", "alt_url"), ("pointer_link_label", "pointer_url"),
     ("help_label", "help_link"), ("empty_cta_label", "empty_cta_url"),
+    # The size overlay's own footer link. It shipped on nine templates with a
+    # label and no URL, which the widget turned into href="#" — clicking it
+    # scrolled the page under the open overlay to the top and left the
+    # overlay standing there.
+    ("guide_link_label", "guide_link_url"),
 ]
 
 # Where a label should go, by what it says. Anything not listed here is left
@@ -50,6 +55,8 @@ DESTINATIONS = {
     "phone or email us": "/pages/contact",
     "ask a person": "/pages/contact",
     "wudu socks": "/pages/wudu-socks",
+    "the full sizing and fit guide": "/pages/size-guide",
+    "open the size guide": "/pages/size-guide",
     "partner with us": "/pages/partner-with-us",
     "press": "/pages/press",
     "read the refund policy": "/policies/refund-policy",

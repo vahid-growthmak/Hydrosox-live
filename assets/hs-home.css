@@ -282,9 +282,23 @@
     grid-column: span 7;
   }
 
+  /*
+    The image holds near the top of the screen while the form is worked
+    through beside it. It is also capped to the visible height: at 4:5 the
+    plate was taller than a laptop viewport, so the pinned image had its foot
+    cut off the whole way down and only re-appeared, bottom-first, as the
+    section ended — which read as the image sticking to the bottom.
+  */
   .hs-buy__gallery-sticky {
     position: sticky;
-    top: calc(var(--chrome) + 2rem);
+    top: calc(var(--chrome) + 1.5rem);
+  }
+
+  .hs-buy__gallery-sticky .hs-buy__media {
+    width: auto;
+    max-width: 100%;
+    max-height: calc(100svh - var(--chrome) - 4rem);
+    margin-inline: auto;
   }
 }
 
@@ -707,11 +721,26 @@
   color: var(--grey);
 }
 
+/* Fixed layout so the three columns keep the same widths whatever lands in
+   them, and one alignment down the whole table — the shoe column used to be
+   flushed right against two left-aligned neighbours, so no two columns lined
+   up with each other. */
 .hs-guide__table {
   margin-top: 1.5rem;
   width: 100%;
   text-align: left;
   border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.hs-guide__table th:first-child,
+.hs-guide__table td:first-child {
+  width: 20%;
+}
+
+.hs-guide__table th:nth-child(2),
+.hs-guide__table td:nth-child(2) {
+  width: 45%;
 }
 
 .hs-guide__table thead tr {
@@ -737,6 +766,12 @@
 
 .hs-guide__cell--name {
   font-weight: var(--weight-semibold);
+}
+
+/* Inside the size table every column reads left; the modifier stays for any
+   other caller of it. */
+.hs-guide__table .hs-guide__cell--end {
+  text-align: left;
 }
 
 .hs-guide__cell--end {

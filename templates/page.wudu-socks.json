@@ -443,7 +443,8 @@
         "guide_col_length": "Foot length",
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
-        "guide_close_label": "Close"
+        "guide_close_label": "Close",
+        "guide_link_url": "/pages/size-guide"
       }
     },
     "reviews": {

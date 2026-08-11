@@ -526,8 +526,14 @@
           </div>
         {%- endif -%}
 
-        {%- if section.settings.guide_link_label != blank -%}
-          <a class="hs-tap hs-caption hs-guide__link" href="{{ section.settings.guide_link_url | default: '#' }}">
+        {%- comment -%}
+          Both parts required. Falling back to '#' turned a missing URL into
+          a link that scrolled the page under the open overlay to the top and
+          left the overlay sitting there — which is exactly what it did on
+          every template, since none of them set the URL.
+        {%- endcomment -%}
+        {%- if section.settings.guide_link_label != blank and section.settings.guide_link_url != blank -%}
+          <a class="hs-tap hs-caption hs-guide__link" href="{{ section.settings.guide_link_url }}">
             {{- section.settings.guide_link_label -}}
           </a>
         {%- endif -%}

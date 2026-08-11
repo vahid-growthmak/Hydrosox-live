@@ -75,7 +75,7 @@
         "g5": {
           "type": "card",
           "settings": {
-            "title": "Delivery, returns and warranty",
+            "title": "Delivery and returns",
             "body": "",
             "meta": "6 questions",
             "link": "#delivery"
@@ -652,7 +652,7 @@
         "one_at_a_time": false,
         "emit_schema": false,
         "eyebrow": "",
-        "heading": "Delivery, returns and warranty",
+        "heading": "Delivery and returns",
         "cta_link": "/products/hydrosox-waterproof-socks",
         "help_link": "/pages/contact"
       },

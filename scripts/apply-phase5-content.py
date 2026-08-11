@@ -524,7 +524,9 @@ def faq_page():
              "toenail, a thorn or a stone, water goes through and no spray "
              "or treatment brings it back."),
         ]),
-        ("delivery", "Delivery, returns and warranty", None, [
+        # No warranty is offered any more (2026-08-11), so the group no
+        # longer names one.
+        ("delivery", "Delivery and returns", None, [
             ("Where do you deliver to?",
              "The United Kingdom, from our UK warehouse. Delivery is free on "
              "two pairs or more. On a single pair there\u2019s a charge, "

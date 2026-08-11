@@ -150,14 +150,30 @@ def main():
                 if url not in sdef:          # this section has no such pair
                     continue
                 label = st.get(lab, sdef.get(lab))
-                if not label or st.get(url):
+                if not label:
+                    continue
+
+                current = st.get(url)
+                # An in-page anchor that this page has no anchor FOR is worse
+                # than an empty field: it looks like a working button and
+                # does nothing. So a stale "#buy" on a page carrying no order
+                # block is corrected, not just left because it is non-empty.
+                stale_anchor = (
+                    isinstance(current, str)
+                    and current.strip().startswith("#buy")
+                    and buy_anchor is None
+                )
+                if current and not stale_anchor:
                     continue
 
                 target = DESTINATIONS.get(str(label).strip().lower())
                 if target is None:
-                    unknown.append((path.name, key, lab, label))
+                    if not current:
+                        unknown.append((path.name, key, lab, label))
                     continue
                 if target == "#buy":
+                    # No order block on this page: send them to the product,
+                    # which is where the button was always promising to go.
                     target = buy_anchor or PRODUCT_URL
 
                 st[url] = target

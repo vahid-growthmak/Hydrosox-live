@@ -158,7 +158,8 @@ def main():
             )),
             ("scroll_hint", "Scroll to take it apart."),
             ("track_height", 260),
-            ("frame_count", 100),
+            # The re-shot sequence is 60 frames; the first was 100.
+            ("frame_count", 60),
             ("frame_prefix", "hs-layer-frame-"),
             ("frame_ext", "webp"),
             ("frame_alt", "A HydroSox sock separating into its three layers"),

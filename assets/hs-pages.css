@@ -641,6 +641,31 @@
   margin-top: 2.25rem;
 }
 
+@media (min-width: 64rem) {
+  /*
+    The copy holds to the left of the banner so the subject of the photograph —
+    the sock, and the HydroSox label on it — is never behind the headline. At
+    18ch the heading ran to 65% of the viewport and crossed straight over the
+    sock on all four activity pages.
+
+    Moving the picture instead is not available: at this width the hero crops
+    the photograph vertically only (the container is wider in aspect than the
+    source), so the focal-point setting has no horizontal room to work in.
+  */
+  .hs-phero__heading,
+  .hs-phero__lede,
+  .hs-phero__actions {
+    max-width: 46%;
+  }
+
+  /* Two lines in the narrower column instead of four. */
+  .hs-phero__heading {
+    font-size: var(--type-h2);
+    letter-spacing: var(--tracking-h2);
+    line-height: var(--leading-h2);
+  }
+}
+
 /* --------------------------------------------------------------------------
    Content columns
    -------------------------------------------------------------------------- */

@@ -790,12 +790,13 @@
   padding-bottom: 0.75rem;
 }
 
-@media (min-width: 48rem) {
-  .hs-footer__top {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 3rem;
-  }
-
+/*
+  Phones and tablets both get the folded footer: the company block, then four
+  headings that open and close. The columns only lay out as columns once there
+  is room for all four side by side, which is 64rem — below that a two-up grid
+  of half-open accordions was neither one thing nor the other.
+*/
+@media (min-width: 64rem) {
   /* From here the columns are always open and stop looking like controls. */
   .hs-footer__col {
     border-top: 0;
@@ -817,52 +818,36 @@
 }
 
 @media (min-width: 64rem) {
+  /*
+    The company block down the left, the four link columns in a row beside it.
+    It was a full-width band across the top, which pushed the columns into a
+    strip below and left a short address sitting in a very wide space.
+  */
   .hs-footer__top {
-    grid-template-columns: 1.15fr repeat(3, 1fr);
-    gap: 2.5rem;
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: start;
   }
 
-  /* The company block leads the footer — the client's call (2026-08-11):
-     who you are buying from is the first thing the footer should say, not
-     the last column on the right. Full width above the link columns, laid
-     out as a band — mark, then the detail, then the social accounts at the
-     far end — so a short address does not leave three quarters of the row
-     empty, which is what a plain first column would have done. */
   .hs-footer__company {
-    order: -1;
-    grid-column: 1 / -1;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1.5rem 3.5rem;
-    padding-bottom: 2rem;
-    margin-bottom: 2.5rem;
-    border-bottom: 1px solid var(--rule);
+    display: block;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
   }
 
   .hs-footer__mark-link {
-    margin-bottom: 0;
+    margin-bottom: 1.75rem;
   }
 
-  .hs-footer__company-detail {
-    flex: 1 1 20rem;
-  }
-
-  /* Address lines and the two contact routes sit side by side in the band. */
-  .hs-footer__address {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.5rem 3rem;
-  }
-
-  .hs-footer__contact {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.375rem 2rem;
+  .hs-footer__cols {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2.5rem 2rem;
+    align-items: start;
   }
 }
+
 
 .hs-footer__col-heading {
   display: block;

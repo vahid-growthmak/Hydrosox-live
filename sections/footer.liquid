@@ -1,8 +1,8 @@
 {%- comment -%}
   Footer.
 
-  A company block that leads at every width — brand mark, address and the two
-  contact numbers — then three link columns.
+  A company block down the left — brand mark, address and the two contact
+  numbers — with the link columns in a row beside it, then the legal strip.
   A "column" block takes its links either from a navigation menu — managed
   once under Navigation — or from the "column link" blocks that follow it in
   the editor; the menu wins when both are set. The closing row carries the
@@ -70,7 +70,12 @@
         {% render 'hs-social' %}
       </div>
 
-      {%- comment -%} Link columns {%- endcomment -%}
+      {%- comment -%}
+        Link columns. Wrapped in their own grid so the whole set sits beside
+        the company block rather than under it, which is what puts four short
+        columns in the space one wide one used to take.
+      {%- endcomment -%}
+      <div class="hs-footer__cols">
       {%- for block in section.blocks -%}
         {%- if block.type == 'column' -%}
           {%- comment -%}
@@ -110,6 +115,7 @@
           </details>
         {%- endif -%}
       {%- endfor -%}
+      </div>
     </div>
 
     {%- comment -%} Legal row {%- endcomment -%}

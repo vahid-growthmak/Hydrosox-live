@@ -1,7 +1,8 @@
 {%- comment -%}
   Footer.
 
-  Three link columns and a company column that sits last on wide screens.
+  A company block that leads at every width — brand mark, address and the two
+  contact numbers — then three link columns.
   A "column" block takes its links either from a navigation menu — managed
   once under Navigation — or from the "column link" blocks that follow it in
   the editor; the menu wins when both are set. The closing row carries the
@@ -11,42 +12,60 @@
 <footer class="hs-footer hs-scheme-{{ section.settings.color_scheme }}" {{ section.shopify_attributes }}>
   <div class="hs-shell hs-footer__pad">
     <div class="hs-footer__top">
-      {%- comment -%} Company column — pushed last on wide screens {%- endcomment -%}
+      {%- comment -%} Company block — leads the footer at every width {%- endcomment -%}
       <div class="hs-footer__company">
-        {%- if section.settings.company_heading != blank -%}
-          <h3 class="hs-eyebrow hs-footer__col-heading hs-faint">{{ section.settings.company_heading }}</h3>
-        {%- endif -%}
+        {%- comment -%}
+          The mark opens the footer and is a link home. It was a bare <img> in
+          the legal row, so the one thing every visitor tries in a footer did
+          nothing. `routes.root_url` rather than "/" so a shop on a subpath
+          still lands in the right place, and the hash sends a reader already
+          on the homepage back to the top of it.
+        {%- endcomment -%}
+        <a class="hs-footer__mark-link" href="{{ routes.root_url }}#top" aria-label="{{ shop.name | escape }} — home">
+          {% render 'hs-logo', inverse: true, class: 'hs-footer__mark' %}
+        </a>
 
-        <address class="hs-caption hs-footer__address">
-          {%- if settings.address != blank -%}
-            <p class="hs-footer__address-lines hs-leading-relaxed hs-muted">
-              {{ settings.address | newline_to_br }}
-            </p>
+        {%- comment -%}
+          Heading and address travel together: on wide screens the band lays
+          out as mark | detail | social, and the heading has to stay attached
+          to the detail rather than becoming a third column of its own.
+        {%- endcomment -%}
+        <div class="hs-footer__company-detail">
+          {%- if section.settings.company_heading != blank -%}
+            <h3 class="hs-eyebrow hs-footer__col-heading hs-faint">{{ section.settings.company_heading }}</h3>
           {%- endif -%}
-          <p class="hs-footer__contact">
-            {%- if settings.phone != blank -%}
-              <a class="hs-tap hs-tnum hs-footer__contact-link" href="tel:{{ settings.phone | replace: ' ', '' }}">
-                {{- settings.phone -}}
-              </a>
+
+          <address class="hs-caption hs-footer__address">
+            {%- if settings.address != blank -%}
+              <p class="hs-footer__address-lines hs-leading-relaxed hs-muted">
+                {{ settings.address | newline_to_br }}
+              </p>
             {%- endif -%}
-            {%- comment -%}
-              Calls and WhatsApp are different numbers by the client's rule:
-              settings.phone is the dialler, this one opens the chat. A
-              section setting rather than a theme setting, because the
-              settings schema is never re-imported after theme creation.
-            {%- endcomment -%}
-            {%- if section.settings.whatsapp != blank -%}
-              <a class="hs-tap hs-tnum hs-footer__contact-link" href="https://wa.me/{{ section.settings.whatsapp | replace: ' ', '' | replace: '+', '' }}" rel="noopener">
-                WhatsApp {{ section.settings.whatsapp }}
-              </a>
-            {%- endif -%}
-            {%- if settings.email != blank -%}
-              <a class="hs-tap hs-footer__contact-link" href="mailto:{{ settings.email }}">
-                {{- settings.email -}}
-              </a>
-            {%- endif -%}
-          </p>
-        </address>
+            <p class="hs-footer__contact">
+              {%- if settings.phone != blank -%}
+                <a class="hs-tap hs-tnum hs-footer__contact-link" href="tel:{{ settings.phone | replace: ' ', '' }}">
+                  {{- settings.phone -}}
+                </a>
+              {%- endif -%}
+              {%- comment -%}
+                Calls and WhatsApp are different numbers by the client's rule:
+                settings.phone is the dialler, this one opens the chat. A
+                section setting rather than a theme setting, because the
+                settings schema is never re-imported after theme creation.
+              {%- endcomment -%}
+              {%- if section.settings.whatsapp != blank -%}
+                <a class="hs-tap hs-tnum hs-footer__contact-link" href="https://wa.me/{{ section.settings.whatsapp | replace: ' ', '' | replace: '+', '' }}" rel="noopener">
+                  WhatsApp {{ section.settings.whatsapp }}
+                </a>
+              {%- endif -%}
+              {%- if settings.email != blank -%}
+                <a class="hs-tap hs-footer__contact-link" href="mailto:{{ settings.email }}">
+                  {{- settings.email -}}
+                </a>
+              {%- endif -%}
+            </p>
+          </address>
+        </div>
 
         {% render 'hs-social' %}
       </div>
@@ -95,8 +114,6 @@
 
     {%- comment -%} Legal row {%- endcomment -%}
     <div class="hs-footer__bottom">
-      {% render 'hs-logo', inverse: true, class: 'hs-footer__mark' %}
-
       {%- liquid
         assign has_legal = false
         for block in section.blocks

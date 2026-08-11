@@ -30,9 +30,10 @@
 >
   <div class="hs-shell hs-pace-base">
     <div class="hs-folds__head">
-      {%- if section.settings.eyebrow != blank -%}
-        <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
-      {%- endif -%}
+      {% render 'hs-eyebrow',
+        eyebrow: section.settings.eyebrow,
+        heading: section.settings.heading
+      %}
       {%- if section.settings.heading != blank -%}
         <h2 class="hs-h2 hs-folds__heading hs-measure-18 hs-balance">
           {{- section.settings.heading -}}

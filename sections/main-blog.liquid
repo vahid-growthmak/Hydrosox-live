@@ -32,9 +32,15 @@
           {{ 'blogs.tagged.title' | t: tag: current_tags.first }}
         </h1>
       {%- else -%}
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
-        {%- endif -%}
+        {%- comment -%}
+          The heading falls back to the blog's own title, so the duplicate
+          check has to compare against the same value the reader will see.
+        {%- endcomment -%}
+        {%- assign blog_heading = section.settings.heading | default: blog.title -%}
+        {% render 'hs-eyebrow',
+          eyebrow: section.settings.eyebrow,
+          heading: blog_heading
+        %}
         <h1 class="hs-h2 hs-measure-19 hs-balance hs-page__title">
           {{ section.settings.heading | default: blog.title }}
         </h1>

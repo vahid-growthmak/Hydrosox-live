@@ -346,14 +346,25 @@
                           </span>
                           <span class="hs-buy__tier-price hs-tnum">
                             <span class="hs-small-body hs-buy__tier-total">{{ net | money }}</span>
+                            {%- comment -%}
+                              Each clause is its own span so the caption wraps
+                              between them on a narrow screen rather than
+                              splitting a figure from its word.
+                            {%- endcomment -%}
                             {%- if tier_pays_delivery -%}
                               <span class="hs-caption hs-buy__tier-unit">
-                                {{ '+' }} {{ delivery_cents | money }} {{ section.settings.delivery_label }}
-                                &middot; {{ tier_total | money }} {{ section.settings.total_label }}
+                                <span class="hs-buy__tier-part">
+                                  {{- '+' }} {{ delivery_cents | money }} {{ section.settings.delivery_label -}}
+                                </span>
+                                <span class="hs-buy__tier-part">
+                                  &middot; {{ tier_total | money }} {{ section.settings.total_label -}}
+                                </span>
                               </span>
                             {%- elsif qty > 1 -%}
                               <span class="hs-caption hs-buy__tier-unit">
-                                {{ per_unit | money }} {{ section.settings.per_unit_label }}
+                                <span class="hs-buy__tier-part">
+                                  {{- per_unit | money }} {{ section.settings.per_unit_label -}}
+                                </span>
                               </span>
                             {%- endif -%}
                           </span>

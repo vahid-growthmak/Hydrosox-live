@@ -73,9 +73,10 @@
           as a dead end.
         {%- endcomment -%}
         <div class="hs-cols__head-sticky{% if layout == 'panel' %} hs-scheme-ink hs-cols__head-panel{% endif %}">
-          {%- if section.settings.eyebrow != blank -%}
-            <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
-          {%- endif -%}
+          {% render 'hs-eyebrow',
+            eyebrow: section.settings.eyebrow,
+            heading: section.settings.heading
+          %}
           {%- if section.settings.heading != blank -%}
             <h2 class="hs-h2 hs-cols__heading hs-measure-18 hs-balance">
               {{- section.settings.heading -}}

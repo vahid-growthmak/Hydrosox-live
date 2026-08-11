@@ -13,11 +13,12 @@
   {% endif %}
   {{ section.shopify_attributes }}
 >
-  <div class="hs-shell hs-pace-base">
+  <div class="hs-shell hs-pace-{{ section.settings.pace | default: 'base' }}">
     <div class="hs-note__inner" style="--hs-note-max: {{ section.settings.max_width }}rem;">
-      {%- if section.settings.eyebrow != blank -%}
-        <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
-      {%- endif -%}
+      {% render 'hs-eyebrow',
+        eyebrow: section.settings.eyebrow,
+        heading: section.settings.heading
+      %}
       {%- if section.settings.heading != blank -%}
         {%- liquid
           # A page that opens with this section owns the h1; one used as a band
@@ -114,6 +115,17 @@
       "id": "hide_rule",
       "label": "t:sections.cols.hide_rule",
       "default": false
+    },
+    {
+      "type": "select",
+      "id": "pace",
+      "label": "t:sections.reviews.pace",
+      "options": [
+        { "value": "tight", "label": "t:sections.reviews.pace_tight" },
+        { "value": "base", "label": "t:sections.reviews.pace_base" },
+        { "value": "loose", "label": "t:sections.reviews.pace_loose" }
+      ],
+      "default": "base"
     },
     {
       "type": "text",

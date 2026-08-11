@@ -1,0 +1,31 @@
+{%- comment -%}
+  A section eyebrow — the small label that sits above a heading.
+
+  Renders nothing when the eyebrow only repeats the heading it labels. The v4
+  copy pass gave several sections a heading identical to the eyebrow already in
+  place ("How they work" over "How they work"), which reads as a mistake rather
+  than a label. Guarding here rather than blanking the settings means a
+  generator re-run, a theme-editor save, or the next copy pass cannot bring the
+  duplicate back.
+
+  The comparison ignores case and a trailing full stop, because the headings
+  take one and eyebrows never do.
+
+  Accepts:
+  - eyebrow: {String} The label. Required — nothing renders without it.
+  - heading: {String} The heading it sits above. Optional.
+  - class:   {String} Extra classes for the element. Optional.
+
+  Usage:
+  {% render 'hs-eyebrow', eyebrow: section.settings.eyebrow, heading: section.settings.heading %}
+{%- endcomment -%}
+{%- liquid
+  assign eyebrow_key = eyebrow | strip | downcase | strip_html | replace: '’', "'"
+  assign heading_key = heading | strip | downcase | strip_html | replace: '’', "'"
+  if heading_key ends_with '.'
+    assign heading_key = heading_key | remove_last: '.'
+  endif
+-%}
+{%- if eyebrow != blank and eyebrow_key != heading_key -%}
+  <p class="hs-eyebrow{% if class != blank %} {{ class }}{% endif %}">{{ eyebrow }}</p>
+{%- endif -%}

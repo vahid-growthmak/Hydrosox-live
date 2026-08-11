@@ -18,6 +18,10 @@
   margin-top: 1rem;
 }
 
+.hs-page__title:first-child {
+  margin-top: 0;
+}
+
 .hs-page__lede {
   margin-top: 1rem;
 }
@@ -670,6 +674,11 @@
   margin-top: 1.25rem;
 }
 
+/* No eyebrow above it — see hs-eyebrow.liquid — means no gap to leave behind. */
+.hs-cols__heading:first-child {
+  margin-top: 0;
+}
+
 .hs-cols__head-note {
   margin-top: 1.25rem;
 }
@@ -832,6 +841,13 @@
 
 .hs-note__heading {
   margin-top: 1.25rem;
+}
+
+/* The eyebrow above it is suppressed when it only repeats the heading, and the
+   gap it used to fill should go with it rather than sitting as dead space at
+   the top of the section. */
+.hs-note__heading:first-child {
+  margin-top: 0;
 }
 
 .hs-note__body {
@@ -2458,6 +2474,10 @@
 
 .hs-folds__heading {
   margin-top: 1.25rem;
+}
+
+.hs-folds__heading:first-child {
+  margin-top: 0;
 }
 
 .hs-folds__intro {

@@ -249,12 +249,12 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'link' -%}
-            <a class="hs-drawer__link hs-h4" href="{{ block.settings.link | default: '#' }}">
+            <a class="hs-drawer__link hs-body" href="{{ block.settings.link | default: '#' }}">
               {{- block.settings.label -}}
             </a>
 
           {%- when 'dropdown' -%}
-            <a class="hs-drawer__link hs-h4" href="{{ block.settings.link | default: '#' }}">
+            <a class="hs-drawer__link hs-body" href="{{ block.settings.link | default: '#' }}">
               {{- block.settings.label -}}
             </a>
             <ul class="hs-drawer__sublist" role="list">
@@ -263,7 +263,7 @@
                   {%- break -%}
                 {%- endunless -%}
                 <li>
-                  <a class="hs-drawer__sublink hs-small-body" href="{{ item.settings.link | default: '#' }}">
+                  <a class="hs-drawer__sublink hs-nav" href="{{ item.settings.link | default: '#' }}">
                     {{- item.settings.label -}}
                   </a>
                 </li>

@@ -22,7 +22,7 @@
   {% endif %}
   {{ section.shopify_attributes }}
 >
-  <div class="hs-shell hs-pace-loose">
+  <div class="hs-shell hs-pace-base">
     {%- comment -%}
       Two head shapes: the default sets the lede beside the heading; centred
       stacks everything on the centre line and can carry the brand email as a
@@ -31,9 +31,10 @@
     {%- endcomment -%}
     <div class="hs-company__head{% if section.settings.centre_head %} hs-company__head--centre{% endif %}">
       <div>
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="hs-eyebrow">{{ section.settings.eyebrow }}</p>
-        {%- endif -%}
+        {% render 'hs-eyebrow',
+          eyebrow: section.settings.eyebrow,
+          heading: section.settings.heading
+        %}
         {%- if section.settings.heading != blank -%}
           <h2 class="hs-h3 hs-company__heading hs-measure-18 hs-balance">{{ section.settings.heading }}</h2>
         {%- endif -%}

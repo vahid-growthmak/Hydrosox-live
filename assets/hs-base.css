@@ -452,14 +452,25 @@ summary::-webkit-details-marker {
   justify-content: center;
   gap: 0.5rem;
   border-radius: var(--radius-pill);
-  white-space: nowrap;
+  /*
+    A long label has to wrap. `nowrap` sent "How masah works, and what the
+    scholars said" straight through the right-hand edge of the pill and off a
+    phone screen. Block padding keeps a wrapped label off the pill edges, and
+    `min-height` still governs the single-line case — 3.25rem is taller than
+    one line plus this padding, so no existing button changes height.
+  */
+  white-space: normal;
+  text-wrap: balance;
   user-select: none;
   text-decoration: none;
   font-size: var(--type-small-body);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-small-body);
   min-height: 3.25rem;
-  min-width: 12rem;
+  /* Capped, or the 12rem floor overflows a narrow column or a small phone. */
+  min-width: min(12rem, 100%);
+  max-width: 100%;
+  padding-block: 0.875rem;
   padding-inline: 2rem;
   width: 100%;
   transition:

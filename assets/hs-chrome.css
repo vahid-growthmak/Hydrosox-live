@@ -594,6 +594,16 @@
 .hs-drawer__link {
   display: block;
   padding-block: 0.75rem;
+  /*
+    Body size, not h4. At h4 the drawer was 20px on a phone and read as a page
+    of headings rather than a menu — and it sat only 4px above the sublinks,
+    so the hierarchy did not come across either. The heading face and the
+    semibold weight are kept here so the drawer still looks like the rest of
+    the theme; only the size comes down. Sublinks moved to nav size (14px) to
+    open the gap back up.
+  */
+  font-family: var(--font-heading);
+  font-weight: var(--weight-semibold);
   color: var(--ink);
   text-decoration: none;
 }
@@ -812,9 +822,45 @@
     gap: 2.5rem;
   }
 
-  /* The company column reads last on wide screens, as designed. */
+  /* The company block leads the footer — the client's call (2026-08-11):
+     who you are buying from is the first thing the footer should say, not
+     the last column on the right. Full width above the link columns, laid
+     out as a band — mark, then the detail, then the social accounts at the
+     far end — so a short address does not leave three quarters of the row
+     empty, which is what a plain first column would have done. */
   .hs-footer__company {
-    order: 1;
+    order: -1;
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem 3.5rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hs-footer__mark-link {
+    margin-bottom: 0;
+  }
+
+  .hs-footer__company-detail {
+    flex: 1 1 20rem;
+  }
+
+  /* Address lines and the two contact routes sit side by side in the band. */
+  .hs-footer__address {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 3rem;
+  }
+
+  .hs-footer__contact {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.375rem 2rem;
   }
 }
 
@@ -915,18 +961,32 @@
   }
 }
 
+/* The mark now opens the company block rather than closing the legal row.
+   inline-block so the anchor shrink-wraps the image — a stretched anchor would
+   give a full-width click target across the footer, which is not what a logo
+   should be. */
+.hs-footer__mark-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  transition: opacity var(--duration-press) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hs-footer__mark-link:hover .hs-footer__mark {
+    opacity: 1;
+  }
+}
+
 .hs-footer__mark {
+  display: block;
   height: var(--logo-height-footer);
-  width: auto;
   /*
-    .hs-footer__bottom is a column flex container, so its cross axis is
-    horizontal and the default `align-items: stretch` pulled the mark out to the
-    full column width. `width: auto` then resolved to that width rather than to
-    the logo's own 1000:271 ratio, and the image was squashed to a quarter of its
-    proper height — which read as a blurry logo on a phone. Opting out of the
-    stretch lets the width follow from the height and the aspect ratio.
+    `width: auto` must resolve against the logo's own 1000:271 ratio and nothing
+    else. As a flex item in the old legal row it resolved against the stretched
+    cross axis and the mark came out squashed; `display: block` inside a
+    shrink-wrapping anchor keeps that from recurring here.
   */
-  align-self: flex-start;
+  width: auto;
   /* Belt and braces: never resample the mark wider than its own pixels. */
   max-width: 100%;
   opacity: var(--logo-opacity-footer);

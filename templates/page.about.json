@@ -3,16 +3,24 @@
    content itself is editable in the Shopify theme editor. */
 {
   "sections": {
+    "crumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "paper",
+        "home_label": "Home"
+      }
+    },
     "intro": {
       "type": "centre-note",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "wash",
         "heading_tag": "h1",
         "heading_size": "h2",
         "hide_rule": true,
         "eyebrow": "About HydroSox",
         "heading": "About HydroSox",
-        "body": "<p>A UK company selling one waterproof sock properly. One product, one price, and every claim on this site either checkable or absent.</p>"
+        "body": "<p>A UK company selling one waterproof sock properly. One product, one price, and every claim on this site either checkable or absent.</p>",
+        "pace": "tight"
       }
     },
     "what": {
@@ -200,6 +208,7 @@
     }
   },
   "order": [
+    "crumb",
     "intro",
     "what",
     "gap",

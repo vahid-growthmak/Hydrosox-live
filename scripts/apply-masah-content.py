@@ -121,7 +121,7 @@ def main():
           "into Arabic from the Persian gor-e-pa, meaning “grave of the "
           "foot” — the Arabs had no word of their own for something "
           "they rarely wore.",
-          ("alsalam.ac.uk/wiping-over-socks", ALSALAM)),
+          ("Al-Salam Institute, Oxford", ALSALAM)),
          ("Where the discussion sits",
           "The question was never really whether you can wipe over khuffain. "
           "It’s whether cloth socks share enough of the same properties "
@@ -245,7 +245,7 @@ def main():
           "Hanifa himself wiped over his socks near the end of his life, "
           "saying: “Today I have done something I had not done "
           "before.”",
-          ("alsalam.ac.uk/wiping-over-socks", ALSALAM)),
+          ("Al-Salam Institute, Oxford", ALSALAM)),
          ("Why this question comes up so much in Britain",
           "Nadwi writes that he held a more cautious view before coming to "
           "England, and revised it after seeing how hard Muslims found it "
@@ -253,7 +253,7 @@ def main():
           "to the point that some were missing prayers. Whatever position "
           "you hold, that’s the situation this question is now asked "
           "in.",
-          ("alsalam.ac.uk/wiping-over-socks", ALSALAM))],
+          ("Al-Salam Institute, Oxford", ALSALAM))],
         scheme="ink")
 
     # S8 — the only commercial section. The second CTA of the document's
@@ -290,11 +290,13 @@ def main():
         "we’ve said so rather than picking one.",
         [("Al-Salam Institute, Oxford — “Wiping Over Socks: A "
           "Brief Overview”, Dr Mohammad Akram Nadwi",
-          "alsalam.ac.uk/wiping-over-socks",
+          "The overview this page draws its account of the two readings "
+          "from.",
           ("alsalam.ac.uk/wiping-over-socks", ALSALAM)),
          ("IslamQA (Hanafi) — Darul Iftaa Birmingham and Askimam, on "
           "how long masah lasts and when the period starts",
-          "islamqa.org",
+          "Where the twenty-four and seventy-two hour periods, and the "
+          "point the clock starts, are set out.",
           ("islamqa.org", "https://islamqa.org")),
          ("Sahih al-Bukhari and Sahih Muslim",
           "The underlying narrations on wiping over khuffain, as cited in "

@@ -121,6 +121,12 @@
               <label class="hs-caption hs-form__label" for="hs-contact-name-{{ section.id }}">
                 {{ section.settings.name_label }}
               </label>
+              {%- comment -%}
+                `required` alone accepts a single space, so the pattern makes
+                a name with no actual characters in it fail too. Both are
+                native constraints: the browser blocks the submit itself, no
+                script involved.
+              {%- endcomment -%}
               <input
                 class="hs-field"
                 id="hs-contact-name-{{ section.id }}"
@@ -128,6 +134,8 @@
                 name="contact[name]"
                 autocomplete="name"
                 value="{{ form.name }}"
+                placeholder="{{ section.settings.name_placeholder | escape }}"
+                pattern=".*\S.*"
                 required
               >
             </div>
@@ -144,6 +152,7 @@
                 autocomplete="email"
                 spellcheck="false"
                 value="{{ form.email }}"
+                placeholder="{{ section.settings.email_placeholder | escape }}"
                 required
               >
             </div>
@@ -192,7 +201,8 @@
                   id="hs-contact-{{ key }}-{{ section.id }}"
                   name="contact[{{ key }}]"
                   rows="{{ block.settings.rows }}"
-                  {% if block.settings.required %}required{% endif %}
+                  placeholder="{{ block.settings.placeholder | escape }}"
+                  {% if block.settings.required %}required minlength="10"{% endif %}
                 ></textarea>
               {%- else -%}
                 <input
@@ -200,8 +210,9 @@
                   id="hs-contact-{{ key }}-{{ section.id }}"
                   type="{{ block.settings.input_type }}"
                   name="contact[{{ key }}]"
+                  placeholder="{{ block.settings.placeholder | escape }}"
                   {% if block.settings.input_type == 'tel' %}autocomplete="tel"{% endif %}
-                  {% if block.settings.required %}required{% endif %}
+                  {% if block.settings.required %}required pattern=".*\S.*"{% endif %}
                 >
               {%- endif -%}
               {%- if block.settings.help != blank -%}
@@ -282,7 +293,19 @@
     { "type": "richtext", "id": "lede", "label": "t:common.lede" },
     { "type": "header", "content": "t:sections.enquiry.labels_group" },
     { "type": "text", "id": "name_label", "label": "t:sections.enquiry.name_label", "default": "Your name" },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "t:sections.enquiry.name_placeholder",
+      "default": "Your full name"
+    },
     { "type": "text", "id": "email_label", "label": "t:sections.enquiry.email_label", "default": "Email address" },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "t:sections.enquiry.email_placeholder",
+      "default": "you@example.com"
+    },
     { "type": "text", "id": "topic_label", "label": "t:sections.enquiry.topic_label", "default": "What is this about" },
     { "type": "text", "id": "submit_label", "label": "t:common.button_label", "default": "Send message" },
     { "type": "header", "content": "t:sections.enquiry.after_group" },
@@ -332,6 +355,11 @@
             { "value": "number", "label": "t:sections.enquiry.type_number" }
           ],
           "default": "text"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "t:sections.enquiry.placeholder"
         },
         { "type": "text", "id": "help", "label": "t:sections.enquiry.help" },
         { "type": "checkbox", "id": "required", "label": "t:sections.enquiry.required", "default": false }

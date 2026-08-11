@@ -799,7 +799,10 @@
       "block_choice": "Routing option",
       "block_choice_info": "Add two or more to show a dropdown asking what the enquiry is about. With fewer than two, no dropdown appears.",
       "centre": "Centre the header and card the form",
-      "centre_info": "Stacks the header on the centre line and sets the form in a bordered card beneath it, instead of the two-column layout."
+      "centre_info": "Stacks the header on the centre line and sets the form in a bordered card beneath it, instead of the two-column layout.",
+      "name_placeholder": "Name placeholder",
+      "email_placeholder": "Email placeholder",
+      "placeholder": "Placeholder"
     },
     "policy": {
       "name": "Policy text",

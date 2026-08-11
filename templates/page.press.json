@@ -87,7 +87,8 @@
             "rows": 5,
             "input_type": "text",
             "help": "",
-            "required": true
+            "required": true,
+            "placeholder": "Where the piece will run"
           }
         },
         "f2": {
@@ -98,7 +99,8 @@
             "rows": 5,
             "input_type": "url",
             "help": "",
-            "required": false
+            "required": false,
+            "placeholder": "hydrosox.com"
           }
         },
         "f3": {
@@ -109,7 +111,8 @@
             "rows": 5,
             "input_type": "text",
             "help": "So we know what is realistic.",
-            "required": false
+            "required": false,
+            "placeholder": "When you need a reply by"
           }
         },
         "f4": {

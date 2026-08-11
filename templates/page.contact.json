@@ -73,7 +73,8 @@
             "rows": 5,
             "input_type": "text",
             "help": "If your message is about an order, this saves us asking.",
-            "required": false
+            "required": false,
+            "placeholder": "e.g. #1042"
           }
         },
         "f2": {
@@ -84,7 +85,8 @@
             "rows": 5,
             "input_type": "text",
             "help": "",
-            "required": true
+            "required": true,
+            "placeholder": "Tell us what you need — the more detail, the better we can answer."
           }
         }
       },

@@ -871,6 +871,12 @@ summary::-webkit-details-marker {
     box-shadow var(--duration-press) var(--ease-out);
 }
 
+/* A textarea may grow taller, never wider: dragging it sideways pushed it
+   out past the form column and over the page's right-hand edge. */
+textarea.hs-field {
+  resize: vertical;
+}
+
 .hs-field::placeholder {
   color: var(--grey);
 }

@@ -68,7 +68,8 @@
             "rows": 5,
             "input_type": "text",
             "help": "",
-            "required": true
+            "required": true,
+            "placeholder": "Registered or trading name"
           }
         },
         "f2": {
@@ -79,7 +80,8 @@
             "rows": 5,
             "input_type": "url",
             "help": "",
-            "required": false
+            "required": false,
+            "placeholder": "hydrosox.com"
           }
         },
         "f3": {
@@ -90,7 +92,8 @@
             "rows": 5,
             "input_type": "tel",
             "help": "",
-            "required": false
+            "required": false,
+            "placeholder": "Optional, if a call is easier"
           }
         },
         "f4": {
@@ -101,7 +104,8 @@
             "rows": 5,
             "input_type": "text",
             "help": "Stores, marketplaces, or the regions you cover.",
-            "required": true
+            "required": true,
+            "placeholder": "Stores, marketplaces, or the regions you cover"
           }
         },
         "f5": {
@@ -112,7 +116,8 @@
             "rows": 5,
             "input_type": "number",
             "help": "In pairs. An estimate is fine.",
-            "required": false
+            "required": false,
+            "placeholder": "In pairs. An estimate is fine."
           }
         },
         "f6": {
@@ -123,7 +128,8 @@
             "rows": 5,
             "input_type": "text",
             "help": "",
-            "required": false
+            "required": false,
+            "placeholder": "Anything that helps us reply properly"
           }
         }
       },

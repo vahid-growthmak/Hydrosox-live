@@ -272,6 +272,7 @@
     "footer": {
       "name": "Footer",
       "company_heading": "Company label",
+      "company_heading_info": "Optional, and empty by default: the brand mark directly above the address already says whose details these are.",
       "fineprint": "Fine print",
       "block_column": "Link column",
       "column_menu": "Menu",

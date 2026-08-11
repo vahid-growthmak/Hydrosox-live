@@ -897,6 +897,11 @@
   }
 }
 
+/* No label above it any more, so nothing to stand clear of. */
+.hs-footer__company-detail > .hs-footer__address:first-child {
+  margin-top: 0;
+}
+
 .hs-footer__address {
   font-style: normal;
   margin-top: 1.25rem;

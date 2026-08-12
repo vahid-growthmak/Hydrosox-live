@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-"""Builds /pages/privacy-policy and /pages/terms-of-service as theme pages.
+"""RETIRED 2026-08-12 — do not run.
+
+Built /pages/privacy-policy and /pages/terms-of-service as theme pages. Both
+are unpublished now: the footer links Shopify's own policy records directly, so
+those words live in one place. Running this again would rebuild the duplicates
+the client asked to remove. Kept for the page shapes it documents.
+
+Original note follows.
+
+Builds /pages/privacy-policy and /pages/terms-of-service as theme pages.
 
 Shopify's own policies at /policies/* are one blob of merchant HTML rendered
 through a single section. However well that section is styled it can only ever

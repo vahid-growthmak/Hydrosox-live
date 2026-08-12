@@ -20,7 +20,7 @@
     "close": {
       "type": "closing-cta",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "ink",
         "show_rule": false,
         "eyebrow": "When you have read enough",
         "heading": "The socks these guides are about.",

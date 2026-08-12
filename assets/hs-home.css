@@ -725,7 +725,7 @@
 .hs-company__foot-link,
 .hs-band__link {
   font-weight: var(--weight-medium);
-  color: var(--on-surface);
+  color: var(--link-cta);
   text-decoration: underline;
   text-decoration-color: var(--rule-strong);
   text-underline-offset: 6px;
@@ -869,7 +869,7 @@
 .hs-guide__link {
   margin-top: 1.25rem;
   font-weight: var(--weight-medium);
-  color: var(--blue);
+  color: var(--link-cta);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -1191,7 +1191,7 @@
 
 .hs-limits__link {
   font-weight: var(--weight-medium);
-  color: var(--on-surface);
+  color: var(--link-cta);
   text-decoration: underline;
   text-decoration-color: var(--rule);
   text-underline-offset: 6px;
@@ -2155,7 +2155,7 @@
   min-height: 0;
   padding-block: 0.5rem;
   font-weight: var(--weight-medium);
-  color: var(--on-surface);
+  color: var(--link-cta);
   text-decoration: underline;
   text-decoration-color: var(--rule-strong);
   text-underline-offset: 6px;

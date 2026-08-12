@@ -742,6 +742,17 @@
   flex-shrink: 0;
 }
 
+/*
+  The intro paragraph stands clear of whatever follows it in the body column.
+  Its bottom edge sat exactly on the first row's top edge — zero space — so the
+  sentence ran straight into the first heading and the column read as one
+  clotted block. Only when something follows it; a lede on its own is
+  unaffected.
+*/
+.hs-cols__body-col > .hs-cols__lede:not(:only-child) {
+  margin-bottom: 1.75rem;
+}
+
 .hs-cols__lede > :first-child {
   margin-top: 0;
 }
@@ -827,7 +838,7 @@
 .hs-cols__row-link {
   margin-top: 0.75rem;
   font-weight: var(--weight-medium);
-  color: var(--eyebrow);
+  color: var(--link-cta);
   text-decoration: underline;
   text-underline-offset: 5px;
 }

@@ -352,6 +352,15 @@ summary::-webkit-details-marker {
   color: var(--on-surface);
 }
 
+/*
+  --link-cta: the colour of a text-style call to action — "See how they work",
+  "The full sizing and fit guide", "Where you stand if it's a fault". The
+  homepage alone had five different colours for these: 70% white and full white
+  on ink, near-black and blue on paper, plus a grey inline link. They now
+  resolve from the scheme: the accent blue where the background is light, and
+  plain white where it is dark, since blue on ink does not carry enough
+  contrast for a line of text.
+*/
 .hs-scheme-paper {
   --surface: var(--paper);
   --on-surface: var(--ink);
@@ -360,6 +369,7 @@ summary::-webkit-details-marker {
   --rule: var(--hairline);
   --rule-strong: var(--hairline-strong);
   --eyebrow: var(--blue-deep);
+  --link-cta: var(--blue-deep);
   --well: var(--wash);
   --well-deep: var(--wash-deep);
 }
@@ -372,6 +382,7 @@ summary::-webkit-details-marker {
   --rule: var(--hairline);
   --rule-strong: var(--hairline-strong);
   --eyebrow: var(--blue-deep);
+  --link-cta: var(--blue-deep);
   --well: var(--paper);
   --well-deep: var(--wash-deep);
 }
@@ -385,6 +396,7 @@ summary::-webkit-details-marker {
   --rule: var(--hairline);
   --rule-strong: var(--hairline-strong);
   --eyebrow: var(--blue-deep);
+  --link-cta: var(--blue-deep);
   --well: var(--paper);
   --well-deep: var(--wash-deep);
 }
@@ -397,6 +409,7 @@ summary::-webkit-details-marker {
   --rule: var(--rule-dark);
   --rule-strong: var(--paper-45);
   --eyebrow: var(--blue);
+  --link-cta: var(--paper);
   --well: var(--ink-80);
   --well-deep: var(--ink-80);
 }
@@ -568,7 +581,7 @@ summary::-webkit-details-marker {
   font-size: var(--type-nav);
   font-weight: var(--weight-medium);
   line-height: var(--leading-nav);
-  color: var(--on-surface-muted);
+  color: var(--link-cta);
   text-decoration: underline;
   text-decoration-color: var(--rule);
   text-underline-offset: 5px;

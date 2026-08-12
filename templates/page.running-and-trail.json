@@ -108,7 +108,7 @@
     "close": {
       "type": "closing-cta",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "ink",
         "show_rule": false,
         "heading": "One sock. Weight and bulk, stated honestly.",
         "cta_label": "Buy a pair",

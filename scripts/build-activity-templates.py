@@ -223,8 +223,11 @@ def build(handle, page, activities):
     ), b, o))
 
     # 9 — closing line
+    # Ink, like every other closing line in the theme. On paper it followed a
+    # paper section and merged into it, which is why this band read as dark on
+    # some pages and absent on others.
     add('close', section('closing-cta', od(
-        ('color_scheme', 'paper'), ('show_rule', False),
+        ('color_scheme', 'ink'), ('show_rule', False),
         ('heading', close['heading']),
         ('cta_label', close_actions[0]['label'] if close_actions else 'Buy a pair'),
         ('cta_url', PRODUCT_URL),

@@ -53,10 +53,17 @@ class HSBuyBar extends HTMLElement {
     const submitIn = document.querySelector('[data-hs-submit]');
     if (!variantIn) return;
 
+    const buyNow = this.querySelector('[data-hs-bar-buy]');
     const sync = () => {
       if (variantIn.value) variantOut.value = variantIn.value;
       if (qtyOut && qtyIn && qtyIn.value) qtyOut.value = qtyIn.value;
       if (addBtn && submitIn) addBtn.disabled = submitIn.disabled;
+      // Buy now is a cart permalink, so the URL *is* the order: it has to
+      // carry the same variant and quantity the widget shows.
+      if (buyNow && variantOut.value) {
+        const qty = (qtyOut && qtyOut.value) || '1';
+        buyNow.href = '/cart/' + variantOut.value + ':' + qty;
+      }
     };
     sync();
 

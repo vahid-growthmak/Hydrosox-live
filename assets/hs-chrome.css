@@ -729,16 +729,11 @@
   font-size: var(--type-nav);
 }
 
-/* Shopify renders its own markup in here; only the size is ours. */
-.hs-buybar__pay {
-  display: flex;
-  align-items: center;
-  min-width: 9rem;
-}
-
-.hs-buybar__pay .shopify-payment-button__button {
+.hs-buybar__buy {
   min-height: 3rem;
-  border-radius: var(--radius-pill);
+  min-width: 9rem;
+  width: auto;
+  padding-inline: 1.5rem;
   font-size: var(--type-nav);
 }
 
@@ -754,7 +749,7 @@
   }
 
   .hs-buybar__add,
-  .hs-buybar__pay {
+  .hs-buybar__buy {
     flex: 1 1 0;
     min-width: 0;
   }

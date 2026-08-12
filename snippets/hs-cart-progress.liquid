@@ -50,7 +50,14 @@
           reads as English either way rather than "add 1 more pairs".
         {%- endcomment -%}
         {%- if charge > 0 -%}
-          {{ 'cart.delivery.add_more_saving' | t: count: short_by, amount: charge | money }}
+          {%- comment -%}
+            The charge is formatted on its own line first. Piped at the end of
+            the `t` call, `money` ran on the whole translated sentence — and
+            money of a string is £0.00, which is exactly what the bar showed.
+            Same left-to-right filter trap as the WhatsApp link.
+          {%- endcomment -%}
+          {%- assign charge_money = charge | money -%}
+          {{ 'cart.delivery.add_more_saving' | t: count: short_by, amount: charge_money }}
         {%- else -%}
           {{ 'cart.delivery.add_more' | t: count: short_by }}
         {%- endif -%}

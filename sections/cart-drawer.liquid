@@ -184,8 +184,13 @@
             assign tier_saving = next_tier.settings.discount_pence | default: 0
           -%}
           {%- if tier_saving > 0 -%}
+            {%- comment -%}
+              Formatted before the t call. Piped at the end, `money` ran on the
+              whole translated sentence and printed £0.00 in place of it.
+            {%- endcomment -%}
+            {%- assign tier_saving_money = tier_saving | money -%}
             <p class="hs-caption hs-cartd__tier">
-              {{ 'cart.tier.prompt' | t: count: short, amount: tier_saving | money }}
+              {{ 'cart.tier.prompt' | t: count: short, amount: tier_saving_money }}
             </p>
           {%- endif -%}
         {%- endif -%}

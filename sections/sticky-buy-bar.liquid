@@ -94,11 +94,21 @@
           </button>
 
           {%- comment -%}
-            Renders nothing unless the merchant has a dynamic checkout method
-            enabled, which is the right failure: an empty slot beats a button
-            that goes nowhere.
+            Straight to checkout, skipping the cart. A Shopify cart permalink
+            (/cart/variant:quantity) builds a checkout from exactly what is in
+            the URL, which is what "buy now" should mean. The dynamic payment
+            button that used to sit here showed the wallet's own branding —
+            "Buy with shop" — and opened a wallet sheet; the client wants the
+            checkout page. hs-buybar.js keeps the href on the variant and
+            quantity the widget currently holds.
           {%- endcomment -%}
-          <div class="hs-buybar__pay">{{ form | payment_button }}</div>
+          <a
+            class="hs-btn hs-btn--primary hs-buybar__buy"
+            href="{{ routes.cart_url }}/{{ bar_variant.id }}:1"
+            data-hs-bar-buy
+          >
+            {{- section.settings.buy_now_label | default: 'Buy now' -}}
+          </a>
         {% endform %}
       {%- else -%}
         {% render 'hs-button',
@@ -164,6 +174,13 @@
     {
       "type": "header",
       "content": "t:sections.buybar.cta_group"
+    },
+    {
+      "type": "text",
+      "id": "buy_now_label",
+      "label": "t:sections.buybar.buy_now_label",
+      "info": "t:sections.buybar.buy_now_label_info",
+      "default": "Buy now"
     },
     {
       "type": "text",

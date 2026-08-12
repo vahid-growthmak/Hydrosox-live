@@ -305,6 +305,8 @@
       "title_info": "Leave blank to use the product title.",
       "note": "Supporting note",
       "cta_group": "Button",
+      "buy_now_label": "Buy now label",
+      "buy_now_label_info": "Goes straight to checkout with the selected variant and quantity.",
       "add_label": "Add to cart label",
       "add_label_info": "Shown on a product page, where the bar carries the real controls.",
       "cta_label_info": "Used only where there is no product to add — elsewhere the bar shows Add to cart and the checkout button.",

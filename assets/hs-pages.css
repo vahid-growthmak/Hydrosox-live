@@ -563,12 +563,21 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-color: var(--wash-deep);
+  /*
+    The placeholder behind the photograph follows the section's own scheme, not
+    a fixed pale grey. On an ink hero, --wash-deep showed as a pale hairline
+    wherever the image's rounded height left the box a sub-pixel short — a
+    light line drawn between the picture and the dark strip below it — and it
+    flashed pale for a moment while the image loaded.
+  */
+  background-color: var(--surface);
 }
 
 .hs-phero__img {
   width: 100%;
-  height: 100%;
+  /* A hair over, so a fractional section height can never leave a strip of
+     the box uncovered along the bottom edge. `cover` crops it, not stretches. */
+  height: 100.5%;
   object-fit: cover;
 }
 
@@ -2225,11 +2234,18 @@
     grid-row: 1;
   }
 
+  /*
+    The description settles on the heading's last line, not on the eyebrow.
+    Aligned to the start of the row it began 38px above the heading's cap —
+    level with the small label instead of with the words it describes — so the
+    two read as unrelated blocks either side of the page rather than as a
+    heading and its standfirst. The half-rem nudge that was trying to correct
+    this goes with it.
+  */
   .hs-cols__grid--band .hs-cols__lede {
     grid-column: 7 / -1;
     grid-row: 1;
-    align-self: start;
-    padding-top: 0.5rem;
+    align-self: end;
     margin-top: 0;
   }
 

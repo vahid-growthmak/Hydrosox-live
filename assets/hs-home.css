@@ -89,7 +89,14 @@
 
 .hs-hero__media {
   height: 100%;
-  background-color: var(--wash-deep);
+  /*
+    The placeholder behind the photograph follows the section's own scheme, not
+    a fixed pale grey. On an ink hero, --wash-deep showed as a pale hairline
+    wherever the image's rounded height left the box a sub-pixel short — a
+    light line drawn between the picture and the dark strip below it — and it
+    flashed pale for a moment while the image loaded.
+  */
+  background-color: var(--surface);
 }
 
 .hs-hero__img {
@@ -312,12 +319,27 @@
   .hs-buy__gallery-sticky {
     position: sticky;
     top: calc(var(--chrome) + 1.5rem);
+    /*
+      The sticky box itself is capped, not only the picture inside it. A sticky
+      element taller than the space between its top offset and the bottom of
+      the window is bottom-aligned by the browser, so on a short window — a
+      laptop with a deep browser chrome — the gallery hung from the bottom of
+      the screen instead of holding at the top. At 900px tall it needed 765px
+      and fitted; at 720px it needed 45px more than there was.
+    */
+    max-height: calc(100svh - var(--chrome) - 3rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 0;
   }
 
   .hs-buy__gallery-sticky .hs-buy__media {
     width: auto;
     max-width: 100%;
-    max-height: calc(100svh - var(--chrome) - 4rem);
+    /* Fills the capped box and shrinks with it, keeping its 4/5 ratio. */
+    max-height: 100%;
+    min-height: 0;
     margin-inline: auto;
   }
 }
@@ -2205,6 +2227,23 @@
 .hs-faq__answer {
   padding-right: 2rem;
   padding-bottom: 2rem;
+}
+
+@media (min-width: 64rem) {
+  /*
+    The questions and answers use the column they are in. At 30ch and 62ch they
+    stopped 228px short of its right edge on a 1440 screen, so every answer ran
+    a line longer than it needed to and the section was taller than its content
+    required. 72ch is still inside a readable measure; a question is a heading
+    and takes a longer line comfortably.
+  */
+  .hs-faq__question {
+    max-width: 42ch;
+  }
+
+  .hs-faq__answer {
+    max-width: 72ch;
+  }
 }
 
 .hs-faq__answer > :first-child {

@@ -1181,6 +1181,17 @@
   background-color: var(--wash-deep);
 }
 
+/*
+  The close control sits in the top corner of the panel. The header carries a
+  full gutter either side — 64px on a wide drawer — which left the cross
+  floating well inside the panel rather than at the corner a reader reaches
+  for. The negative margin pulls it out to 12px from the edge; its own 44px
+  target is untouched, so it stays as easy to hit.
+*/
+.hs-cartd__head > [data-hs-cart-close] {
+  margin-right: calc((var(--gutter) - 0.75rem) * -1);
+}
+
 .hs-cartd__title {
   display: block;
   color: var(--ink);

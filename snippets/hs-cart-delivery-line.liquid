@@ -1,0 +1,49 @@
+{%- comment -%}
+  The delivery line under the cart subtotal.
+
+  Shared by the drawer and the cart page so the rule exists once, and driven by
+  the same two theme settings as the progress bar and the buy widget's tiers:
+  the minimum item count and the charge in whole pence. One pair shows the
+  £4.99 and the grand total including it — the DMCCA reading of an invitation
+  to purchase is that the parts are not enough, the sum must be shown — and
+  from two pairs the line reads Free.
+
+  Renders nothing when the rule is off or the cart is empty. Checkout remains
+  the authority on what is actually charged; this is the theme saying the same
+  thing earlier, not a second source of truth.
+{%- endcomment -%}
+
+{%- liquid
+  assign dl_min = settings.free_delivery_min_items | plus: 0
+  assign dl_charge = settings.delivery_charge_pence | plus: 0
+
+  assign dl_show = false
+  if dl_min > 0 and dl_charge > 0 and cart.item_count > 0
+    assign dl_show = true
+  endif
+
+  assign dl_free = false
+  if cart.item_count >= dl_min
+    assign dl_free = true
+  endif
+-%}
+
+{%- if dl_show -%}
+  <p class="hs-small-body hs-tnum hs-cart-delivery">
+    <span>{{ 'cart.general.delivery' | t }}</span>
+    <span>
+      {%- if dl_free -%}
+        {{ 'cart.general.delivery_free' | t }}
+      {%- else -%}
+        {{ dl_charge | money }}
+      {%- endif -%}
+    </span>
+  </p>
+  {%- unless dl_free -%}
+    {%- assign dl_total = cart.total_price | plus: dl_charge -%}
+    <p class="hs-small-body hs-tnum hs-cart-delivery hs-cart-delivery--total">
+      <span>{{ 'cart.general.estimated_total' | t }}</span>
+      <span>{{ dl_total | money }}</span>
+    </p>
+  {%- endunless -%}
+{%- endif -%}

@@ -1672,3 +1672,21 @@ body:has(hs-buybar.is-visible) .hs-wa {
     transition: none;
   }
 }
+
+
+/* The delivery line under the cart subtotal — drawer and page both. */
+.hs-cart-delivery {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.375rem;
+  color: var(--on-surface-muted);
+}
+
+/* The grand total including delivery carries the weight; it is the number
+   the shopper is actually deciding on. */
+.hs-cart-delivery--total {
+  color: var(--on-surface);
+  font-weight: var(--weight-semibold);
+}

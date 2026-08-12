@@ -86,7 +86,12 @@
               <span>{{ 'cart.general.subtotal' | t }}</span>
               <span>{{ cart.total_price | money }}</span>
             </p>
-            <p class="hs-caption hs-muted">{{ 'cart.general.taxes_and_shipping' | t }}</p>
+            {% render 'hs-cart-delivery-line' %}
+            {%- if settings.free_delivery_min_items > 0 and settings.delivery_charge_pence > 0 -%}
+              <p class="hs-caption hs-muted">{{ 'cart.general.taxes_only' | t }}</p>
+            {%- else -%}
+              <p class="hs-caption hs-muted">{{ 'cart.general.taxes_and_shipping' | t }}</p>
+            {%- endif -%}
             {%- if settings.delivery_estimate != blank -%}
               <p class="hs-caption hs-cartd__eta">
                 {% render 'hs-icon', icon: 'check', size: 14 %}

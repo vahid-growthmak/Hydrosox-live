@@ -220,7 +220,18 @@
           <span>{{ cart.total_price | money }}</span>
         </p>
 
-        <p class="hs-caption hs-muted hs-cartd__taxes">{{ 'cart.general.taxes_and_shipping' | t }}</p>
+        {% render 'hs-cart-delivery-line' %}
+
+        {%- comment -%}
+          With the delivery line printed above, a caption saying shipping is
+          calculated at checkout would contradict it; only the taxes clause
+          remains. Without the line the full caption stands.
+        {%- endcomment -%}
+        {%- if settings.free_delivery_min_items > 0 and settings.delivery_charge_pence > 0 -%}
+          <p class="hs-caption hs-muted hs-cartd__taxes">{{ 'cart.general.taxes_only' | t }}</p>
+        {%- else -%}
+          <p class="hs-caption hs-muted hs-cartd__taxes">{{ 'cart.general.taxes_and_shipping' | t }}</p>
+        {%- endif -%}
 
         {%- if settings.delivery_estimate != blank -%}
           <p class="hs-caption hs-cartd__eta">

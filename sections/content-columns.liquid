@@ -327,20 +327,44 @@
                         class: 'hs-cols__row-img'
                       %}
                     {%- endif -%}
+                    {%- comment -%}
+                      `link_title` makes the row's own heading the link and
+                      drops the separate line beneath it. A source is named in
+                      full in its title — "Al-Salam Institute, Oxford — Wiping
+                      Over Socks" — so printing the bare URL underneath as a
+                      second link said the same thing twice, once in a form
+                      nobody reads. The title carries the destination instead.
+                    {%- endcomment -%}
+                    {%- liquid
+                      assign row_titled_link = false
+                      if block.settings.link_title and block.settings.link_url != blank
+                        assign row_titled_link = true
+                      endif
+                    -%}
                     <div class="hs-cols__row-text">
                       {%- if block.settings.title != blank -%}
-                        <h3 class="hs-h4 hs-cols__row-title">{{ block.settings.title }}</h3>
+                        <h3 class="hs-h4 hs-cols__row-title">
+                          {%- if row_titled_link -%}
+                            <a class="hs-cols__row-title-link" href="{{ block.settings.link_url }}">
+                              {{- block.settings.title -}}
+                            </a>
+                          {%- else -%}
+                            {{- block.settings.title -}}
+                          {%- endif -%}
+                        </h3>
                       {%- endif -%}
                       {%- if block.settings.body != blank -%}
                         <div class="hs-small-body hs-cols__row-body hs-measure-56 hs-pretty hs-muted">
                           {{ block.settings.body }}
                         </div>
                       {%- endif -%}
-                      {%- if block.settings.link_label != blank -%}
-                        <a class="hs-tap hs-small-body hs-cols__row-link" href="{{ block.settings.link_url | default: '#' }}">
-                          {{- block.settings.link_label -}}
-                        </a>
-                      {%- endif -%}
+                      {%- unless row_titled_link -%}
+                        {%- if block.settings.link_label != blank -%}
+                          <a class="hs-tap hs-small-body hs-cols__row-link" href="{{ block.settings.link_url | default: '#' }}">
+                            {{- block.settings.link_label -}}
+                          </a>
+                        {%- endif -%}
+                      {%- endunless -%}
                     </div>
                   </li>
                 {%- endfor -%}

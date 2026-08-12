@@ -2234,15 +2234,20 @@
     The questions and answers use the column they are in. At 30ch and 62ch they
     stopped 228px short of its right edge on a 1440 screen, so every answer ran
     a line longer than it needed to and the section was taller than its content
-    required. 72ch is still inside a readable measure; a question is a heading
-    and takes a longer line comfortably.
+    required.
+
+    Measured on the live page at 1440 wide: 72ch left the section 1447px tall,
+    78ch 1391px, and filling the column outright (84ch) 1335px. 78ch is the
+    last step that still keeps a right-hand margin and a line a reader can
+    track back from. A question is a heading and takes a longer line
+    comfortably, so it gets the room to stay on one.
   */
   .hs-faq__question {
     max-width: 42ch;
   }
 
   .hs-faq__answer {
-    max-width: 72ch;
+    max-width: 78ch;
   }
 }
 

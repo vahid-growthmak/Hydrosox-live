@@ -7,17 +7,6 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-/* Footer section group.
-   Re-uploaded 2026-08-04: Shopify's GitHub sync applies the newest
-   commit's diff, so a file it once refused is never retried until it
-   changes again. This line puts it back in a diff.
-   Re-uploaded 2026-08-07: `product_only` was stripped on import because
-   the group synced in the same second as the schema that defines it —
-   settings unknown to the live schema are dropped, silently. The schema
-   is live now; this line re-imports the group against it.
-   Re-uploaded 2026-08-10: same race, same cure — `whatsapp` was stripped
-   because the footer schema defining it landed in the same push.
-*/
 {
   "name": "t:section_groups.footer",
   "type": "footer",
@@ -25,42 +14,11 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "legal_1": {
-          "type": "legal_link",
-          "settings": {
-            "label": "Privacy Policy",
-            "policy": "custom",
-            "link": "/pages/privacy-policy"
-          }
-        },
-        "legal_2": {
-          "type": "legal_link",
-          "settings": {
-            "label": "Terms of Service",
-            "policy": "custom",
-            "link": "/pages/terms-of-service"
-          }
-        },
-        "legal_3": {
-          "type": "legal_link",
-          "settings": {
-            "label": "Refund Policy",
-            "policy": "custom",
-            "link": "/pages/returns-and-refunds"
-          }
-        },
-        "legal_4": {
-          "type": "legal_link",
-          "settings": {
-            "label": "Shipping Policy",
-            "policy": "custom",
-            "link": "/pages/shipping-and-delivery"
-          }
-        },
         "col_shop": {
           "type": "column",
           "settings": {
-            "heading": "Shop"
+            "heading": "Shop",
+            "menu": ""
           }
         },
         "shop_1": {
@@ -68,6 +26,13 @@
           "settings": {
             "label": "Waterproof Socks",
             "link": "/pages/waterproof-socks"
+          }
+        },
+        "shop_6": {
+          "type": "column_link",
+          "settings": {
+            "label": "Wudu Socks",
+            "link": "/pages/wudu-socks"
           }
         },
         "shop_2": {
@@ -98,24 +63,11 @@
             "link": "/pages/running-and-trail"
           }
         },
-        "shop_6": {
-          "type": "column_link",
-          "settings": {
-            "label": "Wudu Socks",
-            "link": "/pages/wudu-socks"
-          }
-        },
-        "shop_7": {
-          "type": "column_link",
-          "settings": {
-            "label": "Size Guide",
-            "link": "/pages/size-guide"
-          }
-        },
         "col_explore": {
           "type": "column",
           "settings": {
-            "heading": "Explore"
+            "heading": "Explore",
+            "menu": ""
           }
         },
         "explore_1": {
@@ -153,10 +105,18 @@
             "link": "/pages/care-and-washing"
           }
         },
+        "shop_7": {
+          "type": "column_link",
+          "settings": {
+            "label": "Size Guide",
+            "link": "/pages/size-guide"
+          }
+        },
         "col_help": {
           "type": "column",
           "settings": {
-            "heading": "Help & Trade"
+            "heading": "Help & Trade",
+            "menu": ""
           }
         },
         "help_1": {
@@ -197,7 +157,8 @@
         "col_company": {
           "type": "column",
           "settings": {
-            "heading": "Company"
+            "heading": "Company",
+            "menu": ""
           }
         },
         "company_1": {
@@ -226,6 +187,38 @@
           "settings": {
             "label": "Contact Us",
             "link": "/pages/contact"
+          }
+        },
+        "legal_1": {
+          "type": "legal_link",
+          "settings": {
+            "policy": "custom",
+            "label": "Privacy Policy",
+            "link": "/pages/privacy-policy"
+          }
+        },
+        "legal_2": {
+          "type": "legal_link",
+          "settings": {
+            "policy": "terms",
+            "label": "Terms of Service",
+            "link": "/pages/terms-of-service"
+          }
+        },
+        "legal_3": {
+          "type": "legal_link",
+          "settings": {
+            "policy": "refund",
+            "label": "Refund Policy",
+            "link": "/pages/returns-and-refunds"
+          }
+        },
+        "legal_4": {
+          "type": "legal_link",
+          "settings": {
+            "policy": "shipping",
+            "label": "Shipping Policy",
+            "link": "/pages/shipping-and-delivery"
           }
         },
         "legal_cookies": {
@@ -281,22 +274,23 @@
       "settings": {
         "color_scheme": "ink",
         "company_heading": "",
-        "fineprint": "HydroSox is a UK registered company. All prices in GBP and include VAT.",
-        "whatsapp": "+44 7441 396244"
+        "whatsapp": "+44 7441 396244",
+        "fineprint": "HydroSox is a UK registered company. All prices in GBP and include VAT."
       }
     },
     "buybar": {
       "type": "sticky-buy-bar",
       "settings": {
         "enabled": true,
+        "product_only": true,
         "color_scheme": "paper",
+        "product": "",
         "title": "HydroSox Waterproof Socks",
         "note": "Free UK delivery on two pairs or more",
         "cta_label": "Buy a pair",
         "cta_link": "#buy",
         "show_after": 80,
-        "hide_near_selector": "#buy",
-        "product_only": true
+        "hide_near_selector": "#buy"
       }
     }
   },

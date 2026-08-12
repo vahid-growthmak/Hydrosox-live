@@ -231,14 +231,6 @@
             "link": "/pages/how-to-make-masah"
           }
         },
-        "r7": {
-          "type": "card",
-          "settings": {
-            "title": "Track an order",
-            "body": "Ask us and we’ll look.",
-            "link": "/pages/track-order"
-          }
-        },
         "r8": {
           "type": "card",
           "settings": {
@@ -254,7 +246,6 @@
         "r3",
         "r4",
         "r5",
-        "r7",
         "r8"
       ]
     }

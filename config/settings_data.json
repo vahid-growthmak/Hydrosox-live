@@ -178,6 +178,7 @@
       }
     },
     "free_delivery_min_items": 2,
-    "delivery_charge_pence": 499
+    "delivery_charge_pence": 499,
+    "whatsapp_number": "+44 7441 396244"
   }
 }

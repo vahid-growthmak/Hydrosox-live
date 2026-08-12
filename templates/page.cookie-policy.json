@@ -1,4 +1,6 @@
-/* Cookie policy, composed by scripts/apply-spec-structural.py. */
+/* Composed from the client's supplied copy, 12 August 2026.
+   The bracketed note about naming the analytics and marketing tools is a
+   instruction to the client, not customer copy, so it is not published here. */
 {
   "sections": {
     "crumb": {
@@ -6,53 +8,77 @@
       "settings": {
         "color_scheme": "paper",
         "home_label": "Home",
-        "current_label": "Cookie policy"
+        "parent_label": "Help",
+        "parent_url": "/pages/faq",
+        "current_label": "Cookie policy",
+        "aria_label": "Breadcrumb"
       }
     },
     "intro": {
       "type": "centre-note",
       "settings": {
         "color_scheme": "paper",
-        "heading_tag": "h1",
-        "heading_size": "h2",
-        "hide_rule": true,
-        "max_width": 46,
+        "anchor_id": "top",
         "eyebrow": "Cookie policy",
-        "heading": "What we set, and how to turn it off.",
-        "body": "<p>Only the cookies needed to make the site work run without your permission. Everything else waits until you say yes, and you can change your mind at any time.</p>"
+        "heading": "Cookie Policy",
+        "body": "<p>This page explains what cookies are, which ones this site uses, and how you control them. It works alongside our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>",
+        "heading_tag": "h1",
+        "footnote": "<p>Last updated: 12 August 2026</p>"
       }
     },
-    "kinds": {
+    "what": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "wash",
         "layout": "list",
         "numbered": false,
-        "anchor_id": "categories",
-        "eyebrow": "The categories",
-        "heading": "Three categories, and which need asking.",
-        "lede": "<p>The Privacy and Electronic Communications Regulations 2003 require consent before anything that is not strictly necessary. That is the line the three categories below are drawn on.</p>"
+        "anchor_id": "what",
+        "eyebrow": "The basics",
+        "heading": "What cookies are"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Strictly necessary — always on",
-            "body": "<p>These make the site function: keeping your basket, remembering your session, processing payment and keeping the site secure. They cannot be switched off and do not require consent, because the site does not work without them.</p>"
+            "title": "Small files on your device",
+            "body": "<p>Cookies are small text files a website stores on your device. They let the site work properly, remember your basket, and help us understand how the site is used so we can improve it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1"
+      ]
+    },
+    "use": {
+      "type": "content-columns",
+      "settings": {
+        "color_scheme": "paper",
+        "layout": "cards",
+        "numbered": false,
+        "anchor_id": "use",
+        "eyebrow": "What we set",
+        "heading": "The cookies we use"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "Essential — always on",
+            "body": "<p>We use essential cookies that make the site work, for example keeping items in your basket. These cannot be switched off.</p>"
           }
         },
         "i2": {
           "type": "item",
           "settings": {
-            "title": "Analytics — off until you agree",
-            "body": "<p>These tell us how the site is used: which pages are read, where people leave, what is not working. They help us improve it. They do not run unless you accept them.</p>"
+            "title": "Analytics — with your consent",
+            "body": "<p>With your consent, we also use analytics cookies to understand how visitors use the site.</p>"
           }
         },
         "i3": {
           "type": "item",
           "settings": {
-            "title": "Marketing and advertising — off until you agree",
-            "body": "<p>These let us measure advertising and show relevant ads elsewhere, including on Meta and Google platforms. They do not run unless you accept them.</p>"
+            "title": "Marketing — with your consent",
+            "body": "<p>Where applicable, marketing cookies measure and improve our advertising.</p>"
           }
         }
       },
@@ -66,33 +92,28 @@
       "type": "centre-note",
       "settings": {
         "color_scheme": "wash",
-        "heading_size": "h3",
-        "max_width": 44,
+        "anchor_id": "control",
         "eyebrow": "Your choices",
-        "heading": "Changing your mind is as easy as agreeing was.",
-        "body": "<p>Use the cookie settings link in the footer, available on every page. Withdrawing consent is exactly as easy as giving it, which is what the regulations require.</p><p>Every major browser also lets you block or delete cookies directly. Blocking the strictly necessary ones will stop parts of this site working, including checkout.</p>",
-        "link_label": "How we handle personal data",
-        "link_url": "/policies/privacy-policy"
+        "heading": "Your consent and control",
+        "body": "<p>When you first visit, our cookie banner lets you accept or reject non-essential cookies, in line with UK PECR and GDPR. You can change your choice at any time through the cookie settings on the site, or by adjusting your browser settings. Rejecting non-essential cookies will not stop you from shopping.</p>"
       }
     },
     "close": {
       "type": "centre-note",
       "settings": {
         "color_scheme": "paper",
-        "hide_rule": true,
-        "max_width": 44,
-        "heading_size": "h3",
-        "heading": "Questions about any of this reach a person.",
-        "body": "<p>Cookies are the least interesting thing on this site and the easiest to get vague about, so if anything here is unclear, ask.</p>",
-        "cta_label": "Contact us",
-        "cta_url": "/pages/contact"
+        "anchor_id": "more",
+        "eyebrow": "More information",
+        "heading": "Where to go next",
+        "body": "<p>For how we handle the data these cookies generate, see our <a href=\"/policies/privacy-policy\">Privacy Policy</a>, or contact <a href=\"mailto:info@hydrosox.com\">info@hydrosox.com</a>.</p>"
       }
     }
   },
   "order": [
     "crumb",
     "intro",
-    "kinds",
+    "what",
+    "use",
     "control",
     "close"
   ]

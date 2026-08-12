@@ -16,6 +16,8 @@
       "logo_inverse": "Logo for dark backgrounds",
       "logo_inverse_info": "Used in the footer and any section on the ink background. Falls back to the main logo.",
       "phone": "Phone number",
+      "whatsapp": "WhatsApp number",
+      "whatsapp_info": "The chat number, which is not the same as the phone number. Used by the floating button and available to the footer.",
       "email": "Email address",
       "address": "Registered address",
       "logo_height_mobile": "Logo height on phones",
@@ -823,6 +825,17 @@
       "standfirst_info": "Optional line under the title. Shown on every policy, so keep it general.",
       "footnote": "Closing note",
       "aria_label": "Breadcrumb landmark label"
+    },
+    "whatsapp": {
+      "name": "WhatsApp button",
+      "enabled": "Show the button",
+      "number": "Number",
+      "number_info": "Leave empty to use the WhatsApp number from theme settings.",
+      "message": "Message to pre-fill",
+      "message_info": "Appears in the chat ready to send. The visitor can edit it before sending.",
+      "label": "Label beside the icon",
+      "label_info": "Optional. Left empty the button is the icon alone.",
+      "aria_label": "Accessible name"
     }
   }
 }

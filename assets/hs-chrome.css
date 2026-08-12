@@ -1612,3 +1612,68 @@
   flex-wrap: wrap;
   gap: 0.5rem 1.25rem;
 }
+
+
+/* --------------------------------------------------------------------------
+   Floating WhatsApp button
+   -------------------------------------------------------------------------- */
+
+.hs-wa {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* 56px, which is the floating-action size and clears the 44px minimum. */
+  min-width: 3.5rem;
+  min-height: 3.5rem;
+  padding: 0 1rem;
+  border-radius: var(--radius-pill);
+  /* WhatsApp's own green: the button is only recognisable as WhatsApp if it
+     is the colour people know, so this one is deliberately not a theme token. */
+  background-color: #25d366;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 6px 20px -6px rgb(0 0 0 / 0.35);
+  transition:
+    scale var(--duration-press) var(--ease-out),
+    box-shadow var(--duration-press) var(--ease-out),
+    bottom var(--duration-drawer) var(--ease-out);
+}
+
+/* Icon-only is a circle; a label makes it a pill. */
+.hs-wa:not(:has(.hs-wa__label)) {
+  padding: 0;
+  justify-content: center;
+  width: 3.5rem;
+}
+
+.hs-wa__glyph {
+  flex: none;
+}
+
+.hs-wa:active {
+  scale: 0.96;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hs-wa:hover {
+    box-shadow: 0 10px 26px -6px rgb(0 0 0 / 0.45);
+  }
+}
+
+/*
+  Steps up over the sticky buy bar while that is showing, so the two never sit
+  on top of each other on a product page. The bar is roughly 4.5rem tall.
+*/
+body:has(hs-buybar.is-visible) .hs-wa {
+  bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 4.75rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hs-wa {
+    transition: none;
+  }
+}

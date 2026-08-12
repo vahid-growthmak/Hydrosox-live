@@ -80,6 +80,12 @@
       },
       {
         "type": "text",
+        "id": "whatsapp_number",
+        "label": "t:settings.brand.whatsapp",
+        "info": "t:settings.brand.whatsapp_info"
+      },
+      {
+        "type": "text",
         "id": "email",
         "label": "t:settings.brand.email",
         "default": "info@hydrosox.com"

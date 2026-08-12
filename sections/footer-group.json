@@ -133,13 +133,6 @@
             "link": "/pages/returns-and-refunds"
           }
         },
-        "help_4": {
-          "type": "column_link",
-          "settings": {
-            "label": "Track Order",
-            "link": "/pages/track-order"
-          }
-        },
         "help_5": {
           "type": "column_link",
           "settings": {
@@ -256,7 +249,6 @@
         "col_help",
         "help_1",
         "help_2",
-        "help_4",
         "help_5",
         "help_6",
         "col_company",
@@ -292,10 +284,21 @@
         "show_after": 80,
         "hide_near_selector": "#buy"
       }
+    },
+    "whatsapp": {
+      "type": "whatsapp-button",
+      "settings": {
+        "enabled": true,
+        "number": "",
+        "message": "Hi HydroSox — I have a question about your waterproof socks.",
+        "label": "",
+        "aria_label": "Message us on WhatsApp"
+      }
     }
   },
   "order": [
     "footer",
-    "buybar"
+    "buybar",
+    "whatsapp"
   ]
 }

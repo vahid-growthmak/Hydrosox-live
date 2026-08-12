@@ -1168,6 +1168,9 @@ def build_content_pages():
     print("  page.warranty: 4 sections + contact + buy widget")
 
     # 27. Track order
+    # RETIRED 2026-08-12 — /pages/track-order is unpublished at the client's
+    # request. This still writes the template; delete the call, or unpublish
+    # the page again, if you re-run the whole builder.
     save("track-order", {
         "sections": {
             "crumb": breadcrumb("track-order", "Track order"),
@@ -1491,7 +1494,7 @@ def enrich_form_pages():
             ("Shipping and delivery", "<p>What is settled and what is still being confirmed.</p>", "/pages/shipping-and-delivery"),
             ("Returns and refunds", "<p>Fourteen days, no reason needed.</p>", "/pages/returns-and-refunds"),
             ("Care and washing", "<p>What shortens the life of a membrane.</p>", "/pages/care-and-washing"),
-            ("Track an order", "<p>Ask us and we will look.</p>", "/pages/track-order"),
+            # Track order removed 2026-08-12 at the client's request.
             ("Questions", "<p>The things people ask before they buy.</p>", "/pages/faq"),
         ], columns=3, color_scheme="wash", eyebrow="Faster than waiting",
             heading="Most answers are already written down.",

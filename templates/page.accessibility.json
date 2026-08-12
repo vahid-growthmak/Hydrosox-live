@@ -1,4 +1,6 @@
-/* Accessibility statement, composed by scripts/apply-spec-structural.py. */
+/* Composed from the client's supplied copy, 12 August 2026.
+   The bracketed note about naming the analytics and marketing tools is a
+   instruction to the client, not customer copy, so it is not published here. */
 {
   "sections": {
     "crumb": {
@@ -6,110 +8,73 @@
       "settings": {
         "color_scheme": "paper",
         "home_label": "Home",
-        "current_label": "Accessibility"
+        "parent_label": "Help",
+        "parent_url": "/pages/faq",
+        "current_label": "Accessibility",
+        "aria_label": "Breadcrumb"
       }
     },
     "intro": {
       "type": "centre-note",
       "settings": {
         "color_scheme": "paper",
-        "heading_tag": "h1",
-        "heading_size": "h2",
-        "hide_rule": true,
-        "max_width": 46,
+        "anchor_id": "top",
         "eyebrow": "Accessibility",
-        "heading": "What works, what does not, and who to tell.",
-        "body": "<p>We want this site to be usable by everyone. It is not perfect, and this page says where it falls short rather than claiming it does not.</p>"
+        "heading": "Accessibility",
+        "body": "<p>HydroSox wants everyone to be able to use our site and buy from us easily. This statement explains our commitment and how to reach us if something is not working for you.</p>",
+        "heading_tag": "h1",
+        "footnote": "<p>Last updated: 12 August 2026</p>"
       }
     },
-    "done": {
+    "commitment": {
       "type": "content-columns",
       "settings": {
-        "color_scheme": "paper",
+        "color_scheme": "wash",
         "layout": "list",
         "numbered": false,
-        "anchor_id": "what-we-have-done",
-        "eyebrow": "Specifics",
-        "heading": "What we have done.",
-        "lede": "<p>We aim to meet the Web Content Accessibility Guidelines 2.1 at level AA — the standard used across UK public sector sites, and a reasonable bar for a retailer.</p>"
+        "anchor_id": "commitment",
+        "eyebrow": "The standard",
+        "heading": "Our commitment"
       },
       "blocks": {
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Text resizes without breaking",
-            "body": "<p>Every size on this site is set in relative units, so enlarging text in your browser reflows the page rather than clipping it.</p>"
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "title": "Images carry alternative text",
-            "body": "<p>Every photograph describes what it shows, including the colour swatches, rather than repeating the file name.</p>"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "title": "It works from the keyboard",
-            "body": "<p>Every menu, drawer and accordion can be reached and operated without a mouse, and focus is visible and returns where you left it.</p>"
-          }
-        },
-        "i4": {
-          "type": "item",
-          "settings": {
-            "title": "Forms have real labels",
-            "body": "<p>Visible labels rather than placeholder text alone, which disappears the moment you start typing.</p>"
-          }
-        },
-        "i5": {
-          "type": "item",
-          "settings": {
-            "title": "Motion can be turned off",
-            "body": "<p>Every animation on this site is behind the reduced-motion setting your device already has, and there is a switch in the theme as well.</p>"
+            "title": "WCAG 2.2 AA across the site",
+            "body": "<p>We aim to meet recognised accessibility standards (WCAG 2.2 AA) across the site — clear text, good colour contrast, keyboard navigation, and descriptive labels — so the shop works for people using assistive technology.</p>"
           }
         }
       },
       "block_order": [
-        "i1",
-        "i2",
-        "i3",
-        "i4",
-        "i5"
+        "i1"
       ]
     },
-    "gaps": {
+    "ongoing": {
       "type": "centre-note",
       "settings": {
-        "color_scheme": "wash",
-        "heading_size": "h3",
-        "max_width": 46,
-        "eyebrow": "Where it falls short",
-        "heading": "What we know is not right yet.",
-        "body": "<p>This site has not yet had a full independent accessibility audit, so this section is honest rather than complete: we are listing what we know, not everything there is.</p><p>Some muted text sits close to the AA contrast threshold rather than comfortably above it. The scroll-driven sections have been tested with motion turned off but not with every assistive technology. When the audit is done, what it finds will be published here — including the parts that are awkward.</p>"
+        "color_scheme": "paper",
+        "anchor_id": "ongoing",
+        "eyebrow": "Where it stands",
+        "heading": "Ongoing work",
+        "body": "<p>Accessibility is something we keep working on as the site grows. We test and improve it over time, and we treat any barrier a customer reports as a priority to fix.</p>"
       }
     },
     "close": {
       "type": "centre-note",
       "settings": {
-        "color_scheme": "paper",
-        "hide_rule": true,
-        "max_width": 44,
-        "heading_size": "h3",
-        "heading": "Found something that does not work?",
-        "body": "<p>Email info@hydrosox.com or phone 0203 4322 920. Tell us what you were trying to do and what happened, and we will tell you honestly whether and when we can fix it.</p><p>If you would rather not use the site at all, phone us and we will take the order over the phone. There is no charge for that.</p>",
-        "cta_label": "Contact us",
-        "cta_url": "/pages/contact",
-        "link_label": "Company details",
-        "link_url": "/pages/about"
+        "color_scheme": "wash",
+        "anchor_id": "help",
+        "eyebrow": "Tell us",
+        "heading": "If something is not working for you",
+        "body": "<p>If you have any difficulty using the site or completing an order, please tell us at <a href=\"mailto:info@hydrosox.com\">info@hydrosox.com</a> or <a href=\"tel:02034322920\">0203 4322 920</a>. We will help you complete your purchase and fix the problem where we can.</p>"
       }
     }
   },
   "order": [
     "crumb",
     "intro",
-    "done",
-    "gaps",
+    "commitment",
+    "ongoing",
     "close"
   ]
 }

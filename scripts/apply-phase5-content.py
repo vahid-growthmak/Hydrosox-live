@@ -1258,8 +1258,7 @@ def contact():
          "/pages/how-to-make-masah"),
         # The Warranty card is gone: /pages/warranty was unpublished on
         # 2026-08-11 and the Returns card above already leads there.
-        ("Track an order", "Ask us and we’ll look.",
-         "/pages/track-order"),
+        # Track order was removed on 2026-08-12 at the client's request.
         ("Common questions", "Thirty-two answers in six groups.",
          "/pages/faq"),
     ]

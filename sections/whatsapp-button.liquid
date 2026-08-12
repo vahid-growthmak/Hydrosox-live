@@ -22,9 +22,14 @@
 
 {%- if show -%}
   {%- liquid
+    # The message is encoded on its own line. Liquid chains filters left to
+    # right, so `... | append: message | url_encode` encodes the whole string
+    # it has built by then — the scheme and the slashes included — and WhatsApp
+    # gets one long escaped blob instead of a link.
     assign href = 'https://wa.me/' | append: digits
     if section.settings.message != blank
-      assign href = href | append: '?text=' | append: section.settings.message | url_encode
+      assign encoded = section.settings.message | url_encode
+      assign href = href | append: '?text=' | append: encoded
     endif
   -%}
   <a

@@ -828,7 +828,13 @@
 }
 
 .hs-cols__row-body {
-  margin-top: 0.625rem;
+  /*
+    A 20px heading needs more than 10px under it before its paragraph starts.
+    At 0.625rem the two ran together and every list of steps and cards read as
+    a solid block — the "cluttered" report on the masah method and the care
+    page. The card variant sets its own gap and is untouched.
+  */
+  margin-top: 0.875rem;
 }
 
 .hs-cols__row-body > :first-child {
@@ -2014,7 +2020,8 @@
 .hs-cols__card {
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  /* Matches the row spacing above, for the same reason. */
+  gap: 0.875rem;
   padding: 1.5rem;
   border: 1px solid var(--rule);
   border-radius: var(--radius-xl);

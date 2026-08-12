@@ -119,13 +119,6 @@
             "menu": ""
           }
         },
-        "help_4": {
-          "type": "column_link",
-          "settings": {
-            "label": "Track Order",
-            "link": "/pages/track-order"
-          }
-        },
         "help_5": {
           "type": "column_link",
           "settings": {
@@ -180,7 +173,7 @@
           "settings": {
             "policy": "privacy",
             "label": "Privacy Policy",
-            "link": "/pages/privacy-policy"
+            "link": ""
           }
         },
         "legal_2": {
@@ -188,7 +181,7 @@
           "settings": {
             "policy": "terms",
             "label": "Terms of Service",
-            "link": "/pages/terms-of-service"
+            "link": ""
           }
         },
         "legal_3": {
@@ -196,7 +189,7 @@
           "settings": {
             "policy": "refund",
             "label": "Refund Policy",
-            "link": "/pages/returns-and-refunds"
+            "link": ""
           }
         },
         "legal_4": {
@@ -204,7 +197,7 @@
           "settings": {
             "policy": "shipping",
             "label": "Shipping Policy",
-            "link": "/pages/shipping-and-delivery"
+            "link": ""
           }
         },
         "legal_cookies": {
@@ -221,6 +214,20 @@
             "policy": "custom",
             "label": "Accessibility",
             "link": "/pages/accessibility"
+          }
+        },
+        "help_1": {
+          "type": "column_link",
+          "settings": {
+            "label": "Shipping & Delivery",
+            "link": "/pages/shipping-and-delivery"
+          }
+        },
+        "help_2": {
+          "type": "column_link",
+          "settings": {
+            "label": "Returns & Refunds",
+            "link": "/pages/returns-and-refunds"
           }
         }
       },
@@ -240,7 +247,8 @@
         "explore_5",
         "shop_7",
         "col_help",
-        "help_4",
+        "help_1",
+        "help_2",
         "help_5",
         "help_6",
         "col_company",
@@ -276,10 +284,21 @@
         "show_after": 80,
         "hide_near_selector": "#buy"
       }
+    },
+    "whatsapp": {
+      "type": "whatsapp-button",
+      "settings": {
+        "enabled": true,
+        "number": "",
+        "message": "Hi HydroSox — I have a question about your waterproof socks.",
+        "label": "",
+        "aria_label": "Message us on WhatsApp"
+      }
     }
   },
   "order": [
     "footer",
-    "buybar"
+    "buybar",
+    "whatsapp"
   ]
 }

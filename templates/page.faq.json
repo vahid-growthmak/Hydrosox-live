@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "crumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "paper",
+        "home_label": "Home",
+        "parent_label": "",
+        "parent_url": "",
+        "current_label": "Common questions",
+        "aria_label": "Breadcrumb"
+      }
+    },
     "intro": {
       "type": "centre-note",
       "settings": {
@@ -407,7 +418,8 @@
         "eyebrow": "",
         "heading": "The socks",
         "cta_link": "/products/hydrosox-waterproof-socks",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair"
       },
       "blocks": {
         "q1": {
@@ -473,7 +485,8 @@
         "heading": "Wudu and masah",
         "lede": "<p>The conditions and the rulings are on the masah page. These are the everyday questions.</p>",
         "cta_link": "/products/hydrosox-waterproof-socks",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair"
       },
       "blocks": {
         "q1": {
@@ -539,7 +552,8 @@
         "heading": "Sizing and fit",
         "lede": "<p>The size chart itself is on the size guide.</p>",
         "cta_link": "/products/hydrosox-waterproof-socks",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair"
       },
       "blocks": {
         "q1": {
@@ -597,7 +611,8 @@
         "heading": "Washing and looking after them",
         "lede": "<p>Full instructions are on the care page.</p>",
         "cta_link": "/products/hydrosox-waterproof-socks",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair"
       },
       "blocks": {
         "q1": {
@@ -654,7 +669,8 @@
         "eyebrow": "",
         "heading": "Delivery and returns",
         "cta_link": "/products/hydrosox-waterproof-socks",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair"
       },
       "blocks": {
         "q1": {
@@ -719,7 +735,8 @@
         "eyebrow": "",
         "heading": "The company",
         "cta_link": "/products/hydrosox-waterproof-socks",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair"
       },
       "blocks": {
         "q1": {
@@ -760,6 +777,7 @@
     }
   },
   "order": [
+    "crumb",
     "intro",
     "groups",
     "product",

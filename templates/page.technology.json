@@ -262,7 +262,8 @@
         "eyebrow": "Questions",
         "heading": "Common questions",
         "cta_link": "/products/hydrosox-waterproof-socks",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair"
       },
       "blocks": {
         "q1": {

@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "crumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "paper",
+        "home_label": "Home",
+        "parent_label": "Help",
+        "parent_url": "/pages/faq",
+        "current_label": "Size guide",
+        "aria_label": "Breadcrumb"
+      }
+    },
     "intro": {
       "type": "centre-note",
       "settings": {
@@ -154,7 +165,8 @@
         "eyebrow": "Questions",
         "heading": "Common questions",
         "cta_link": "/products/hydrosox-waterproof-socks",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair"
       },
       "blocks": {
         "q1": {
@@ -469,6 +481,7 @@
     }
   },
   "order": [
+    "crumb",
     "intro",
     "chart",
     "howto",

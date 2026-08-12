@@ -12,6 +12,17 @@
    content itself is editable in the Shopify theme editor. */
 {
   "sections": {
+    "crumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "paper",
+        "home_label": "Home",
+        "parent_label": "Help",
+        "parent_url": "/pages/faq",
+        "current_label": "Care and washing",
+        "aria_label": "Breadcrumb"
+      }
+    },
     "intro": {
       "type": "centre-note",
       "settings": {
@@ -220,7 +231,8 @@
         "eyebrow": "Questions",
         "heading": "Common questions",
         "cta_link": "/products/hydrosox-waterproof-socks",
-        "help_link": "/pages/contact"
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair"
       },
       "blocks": {
         "q1": {
@@ -269,6 +281,7 @@
     }
   },
   "order": [
+    "crumb",
     "intro",
     "wash",
     "damage",

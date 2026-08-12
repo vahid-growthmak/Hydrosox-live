@@ -402,7 +402,8 @@
         "help_prefix": "Something not here?",
         "help_label": "Phone or email us",
         "help_link": "/pages/contact",
-        "cta_link": "/products/hydrosox-waterproof-socks"
+        "cta_link": "/products/hydrosox-waterproof-socks",
+        "cta_label": "Buy a pair"
       },
       "blocks": {
         "q1": {

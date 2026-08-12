@@ -12,6 +12,17 @@
    content itself is editable in the Shopify theme editor. */
 {
   "sections": {
+    "crumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "paper",
+        "home_label": "Home",
+        "parent_label": "",
+        "parent_url": "",
+        "current_label": "Partner with us",
+        "aria_label": "Breadcrumb"
+      }
+    },
     "intro": {
       "type": "centre-note",
       "settings": {
@@ -354,6 +365,7 @@
     }
   },
   "order": [
+    "crumb",
     "intro",
     "proposition",
     "audience",

@@ -10,6 +10,7 @@
 /* Composed by scripts/build-sitemap-templates.py from the sitemap.
    Re-run that script rather than hand-editing this file; section
    content itself is editable in the Shopify theme editor. */
+/* Source rows link their own titles (2026-08-12). */
 {
   "sections": {
     "crumb": {

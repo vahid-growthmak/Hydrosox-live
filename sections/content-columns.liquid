@@ -341,6 +341,7 @@
                         assign row_titled_link = true
                       endif
                     -%}
+                    <!-- hsprobe link_title={{ block.settings.link_title | json }} url={{ block.settings.link_url | json }} flag={{ row_titled_link | json }} -->
                     <div class="hs-cols__row-text">
                       {%- if block.settings.title != blank -%}
                         <h3 class="hs-h4 hs-cols__row-title">

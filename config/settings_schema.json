@@ -1175,6 +1175,20 @@
         "default": 40
       },
       {
+        "type": "number",
+        "id": "free_delivery_min_items",
+        "label": "t:settings.cart.min_items",
+        "info": "t:settings.cart.min_items_info",
+        "default": 2
+      },
+      {
+        "type": "number",
+        "id": "delivery_charge_pence",
+        "label": "t:settings.cart.delivery_charge",
+        "info": "t:settings.cart.delivery_charge_info",
+        "default": 499
+      },
+      {
         "type": "checkbox",
         "id": "cart_show_progress",
         "label": "t:settings.cart.show_progress",

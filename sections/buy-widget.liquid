@@ -316,10 +316,17 @@
                           # cart cannot disagree about where delivery becomes
                           # free.
                           assign delivery_cents = section.settings.delivery_charge_pence | default: 0
-                          assign free_from_cents = settings.free_delivery_threshold | times: 100 | round
+                          # Pairs, not money — the same rule the cart bar uses
+                          # and the same one the announcement bar promises.
+                          # Measured against the old £35 money threshold this
+                          # happened to give the right answer for these tiers,
+                          # but only by coincidence: the two-pair price is
+                          # £36.99, so a £36 threshold would have quietly made
+                          # a single pair qualify.
+                          assign free_from_items = settings.free_delivery_min_items | plus: 0
                           assign tier_total = net | plus: delivery_cents
                           assign tier_pays_delivery = false
-                          if delivery_cents > 0 and net < free_from_cents
+                          if delivery_cents > 0 and free_from_items > 0 and qty < free_from_items
                             assign tier_pays_delivery = true
                           endif
                         -%}

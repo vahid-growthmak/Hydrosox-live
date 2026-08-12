@@ -32,7 +32,12 @@
 -%}
 {%- if show_bar and section.settings.cta_label != blank -%}
   {%- liquid
-    assign bar_product = all_products[section.settings.product]
+    # The page's own product first on a product template — the bar has to sell
+    # what the visitor is looking at, not whatever was pinned in the editor.
+    assign bar_product = product
+    if section.settings.product != blank
+      assign bar_product = all_products[section.settings.product]
+    endif
     assign title = section.settings.title
     if title == blank and bar_product != blank
       assign title = bar_product.title
@@ -68,12 +73,41 @@
         {%- endif -%}
       </p>
 
-      {% render 'hs-button',
-        label: section.settings.cta_label,
-        href: hs_cta_href,
-        style: 'primary',
-        class: 'hs-buybar__cta'
-      %}
+      {%- comment -%}
+        On a product page the bar carries the real controls, not a link that
+        scrolls back to them: the whole point of it appearing is that the buy
+        block is off screen. Add to cart posts the variant the widget currently
+        has selected — hs-buybar.js mirrors it — and the payment button is
+        Shopify's own dynamic checkout, so "buy" means buy rather than "scroll".
+
+        Anywhere without a product, or with the widget missing, it falls back to
+        the single link it always was.
+      {%- endcomment -%}
+      {%- if bar_product != blank and bar_product.available -%}
+        {%- assign bar_variant = bar_product.selected_or_first_available_variant -%}
+        {% form 'product', bar_product, id: 'hs-buybar-form', class: 'hs-buybar__form', novalidate: 'novalidate' %}
+          <input type="hidden" name="id" value="{{ bar_variant.id }}" data-hs-bar-variant>
+          <input type="hidden" name="quantity" value="1" data-hs-bar-quantity>
+
+          <button class="hs-btn hs-btn--ink hs-buybar__add" type="submit" name="add" data-hs-bar-add>
+            {{- section.settings.add_label | default: 'Add to cart' -}}
+          </button>
+
+          {%- comment -%}
+            Renders nothing unless the merchant has a dynamic checkout method
+            enabled, which is the right failure: an empty slot beats a button
+            that goes nowhere.
+          {%- endcomment -%}
+          <div class="hs-buybar__pay">{{ form | payment_button }}</div>
+        {% endform %}
+      {%- else -%}
+        {% render 'hs-button',
+          label: section.settings.cta_label,
+          href: hs_cta_href,
+          style: 'primary',
+          class: 'hs-buybar__cta'
+        %}
+      {%- endif -%}
     </div>
   </hs-buybar>
 
@@ -133,8 +167,16 @@
     },
     {
       "type": "text",
+      "id": "add_label",
+      "label": "t:sections.buybar.add_label",
+      "info": "t:sections.buybar.add_label_info",
+      "default": "Add to cart"
+    },
+    {
+      "type": "text",
       "id": "cta_label",
       "label": "t:common.button_label",
+      "info": "t:sections.buybar.cta_label_info",
       "default": "Buy a pair"
     },
     {

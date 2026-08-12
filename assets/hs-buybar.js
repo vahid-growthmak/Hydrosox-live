@@ -14,6 +14,7 @@ class HSBuyBar extends HTMLElement {
     this.scrolledEnough = false;
 
     this.watchTarget();
+    this.mirrorWidget();
 
     this.onScroll = this.onScroll.bind(this);
     window.addEventListener('scroll', this.onScroll, { passive: true });
@@ -25,6 +26,58 @@ class HSBuyBar extends HTMLElement {
     window.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('resize', this.onScroll);
     if (this.observer) this.observer.disconnect();
+    if (this.mirror) this.mirror.disconnect();
+  }
+
+  /**
+   * Keeps the bar's form in step with the buy widget.
+   *
+   * The bar posts a real add-to-cart, so it has to post the variant and the
+   * quantity the visitor actually chose rather than the ones the page loaded
+   * with. The widget owns that state in two hidden inputs; this copies them
+   * across whenever they change, and turns the button off while the chosen
+   * variant is unavailable so the bar cannot offer what the widget refuses.
+   *
+   * Absent widget, absent form, or no MutationObserver: the bar keeps whatever
+   * the server rendered, which is the first available variant. Still a valid
+   * add, just not a synced one.
+   */
+  mirrorWidget() {
+    const variantOut = this.querySelector('[data-hs-bar-variant]');
+    const qtyOut = this.querySelector('[data-hs-bar-quantity]');
+    const addBtn = this.querySelector('[data-hs-bar-add]');
+    if (!variantOut) return;
+
+    const variantIn = document.querySelector('[data-hs-variant-id]');
+    const qtyIn = document.querySelector('[data-hs-quantity]');
+    const submitIn = document.querySelector('[data-hs-submit]');
+    if (!variantIn) return;
+
+    const sync = () => {
+      if (variantIn.value) variantOut.value = variantIn.value;
+      if (qtyOut && qtyIn && qtyIn.value) qtyOut.value = qtyIn.value;
+      if (addBtn && submitIn) addBtn.disabled = submitIn.disabled;
+    };
+    sync();
+
+    if (!('MutationObserver' in window)) return;
+    this.mirror = new MutationObserver(sync);
+    this.mirror.observe(variantIn, { attributes: true, attributeFilter: ['value'] });
+    if (qtyIn) this.mirror.observe(qtyIn, { attributes: true, attributeFilter: ['value'] });
+    if (submitIn) this.mirror.observe(submitIn, { attributes: true, attributeFilter: ['disabled'] });
+
+    // The widget sets .value in script, which does not fire a mutation for the
+    // attribute on every browser — a cheap input/change listener covers it.
+    ['input', 'change'].forEach((evt) => {
+      variantIn.addEventListener(evt, sync);
+      if (qtyIn) qtyIn.addEventListener(evt, sync);
+    });
+    // And the widget's own controls, whose clicks precede the value write.
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('[data-hs-tier], [data-hs-option]')) {
+        requestAnimationFrame(sync);
+      }
+    });
   }
 
   // Watches the buy widget, if the merchant pointed at one.

@@ -708,6 +708,58 @@
   }
 }
 
+/*
+  The bar's own controls on a product page: add to cart, then the dynamic
+  checkout button beside it. Both sit hard right like the single CTA used to,
+  and both keep a 48px target.
+*/
+.hs-buybar__form {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+
+.hs-buybar__add {
+  min-height: 3rem;
+  min-width: 9rem;
+  width: auto;
+  padding-inline: 1.5rem;
+  font-size: var(--type-nav);
+}
+
+/* Shopify renders its own markup in here; only the size is ours. */
+.hs-buybar__pay {
+  display: flex;
+  align-items: center;
+  min-width: 9rem;
+}
+
+.hs-buybar__pay .shopify-payment-button__button {
+  min-height: 3rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--type-nav);
+}
+
+@media (max-width: 39.9375rem) {
+  /* On a phone the copy gives way so both controls stay reachable. */
+  .hs-buybar__copy {
+    display: none;
+  }
+
+  .hs-buybar__form {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .hs-buybar__add,
+  .hs-buybar__pay {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
 .hs-buybar__cta {
   margin-left: auto;
   flex-shrink: 0;

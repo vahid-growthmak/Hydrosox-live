@@ -110,6 +110,14 @@
     },
     "delivery": {
       "remaining_html": "{{ amount }} away from free delivery",
+      "add_more": {
+        "one": "Add one more pair for free UK delivery",
+        "other": "Add {{ count }} more pairs for free UK delivery"
+      },
+      "add_more_saving": {
+        "one": "Add one more pair and delivery is free — that is {{ amount }} saved",
+        "other": "Add {{ count }} more pairs and delivery is free — that is {{ amount }} saved"
+      },
       "qualified": "Free delivery unlocked",
       "progress_label": "Progress towards free delivery"
     },

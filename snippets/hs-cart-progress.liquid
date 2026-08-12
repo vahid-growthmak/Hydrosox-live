@@ -1,28 +1,38 @@
 {%- comment -%}
   Progress towards free delivery.
 
-  Shared by the cart drawer and the cart page so the threshold, the wording and
-  the maths exist once. All of it is computed in Liquid from the real cart —
+  Shared by the cart drawer and the cart page so the rule, the wording and the
+  maths exist once. All of it is computed in Liquid from the real cart —
   nothing here is passed in from a script.
 
-  Renders nothing when no threshold is set, which is how a merchant turns the
-  promise off: an unset threshold should not become "£0.00 away".
+  It counts pairs, not money. The promise this site makes everywhere — the
+  announcement bar, the shipping policy, the buy widget's tiers — is "free UK
+  delivery on two pairs or more". Measuring that against a money threshold said
+  something different and wrong: with one pair in the basket the bar read
+  "£15.00 away from free delivery", which is neither the price of the second
+  pair (£16.99) nor anything a shopper could act on. It now says what to do —
+  add one more pair — and what it saves, which is the £4.99 delivery charge.
+
+  Renders nothing when the rule is switched off, which is how a merchant turns
+  the promise off: an unset minimum should not become "0 more to go".
 {%- endcomment -%}
 
 {%- liquid
-  assign threshold = settings.free_delivery_threshold | plus: 0 | times: 100
+  assign min_items = settings.free_delivery_min_items | plus: 0
+  assign charge = settings.delivery_charge_pence | plus: 0
+
   assign show = false
-  if settings.cart_show_progress and threshold > 0 and cart.item_count > 0
+  if settings.cart_show_progress and min_items > 0 and cart.item_count > 0
     assign show = true
   endif
 
-  assign remaining = threshold | minus: cart.total_price
+  assign short_by = min_items | minus: cart.item_count
   assign qualified = false
-  if remaining <= 0
+  if short_by <= 0
     assign qualified = true
   endif
 
-  assign pct = cart.total_price | times: 100 | divided_by: threshold
+  assign pct = cart.item_count | times: 100 | divided_by: min_items
   if pct > 100
     assign pct = 100
   endif
@@ -35,7 +45,15 @@
         {% render 'hs-icon', icon: 'check', size: 14 %}
         {{ 'cart.delivery.qualified' | t }}
       {%- else -%}
-        {{ 'cart.delivery.remaining_html' | t: amount: remaining | money }}
+        {%- comment -%}
+          One string for one more pair and another for several, so the line
+          reads as English either way rather than "add 1 more pairs".
+        {%- endcomment -%}
+        {%- if charge > 0 -%}
+          {{ 'cart.delivery.add_more_saving' | t: count: short_by, amount: charge | money }}
+        {%- else -%}
+          {{ 'cart.delivery.add_more' | t: count: short_by }}
+        {%- endif -%}
       {%- endif -%}
     </p>
     {%- comment -%}

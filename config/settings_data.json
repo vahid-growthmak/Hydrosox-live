@@ -176,6 +176,8 @@
         "disabled": false,
         "settings": {}
       }
-    }
+    },
+    "free_delivery_min_items": 2,
+    "delivery_charge_pence": 499
   }
 }

@@ -841,6 +841,24 @@
   margin-top: 0;
 }
 
+/*
+  A row heading that carries its own link. Underlined on the heading rather
+  than recoloured, so a list of sources still reads as a list of titles.
+*/
+.hs-cols__row-title-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule-strong);
+  text-underline-offset: 5px;
+  transition: text-decoration-color var(--duration-press) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hs-cols__row-title-link:hover {
+    text-decoration-color: var(--link-cta);
+  }
+}
+
 .hs-cols__row-link {
   margin-top: 0.75rem;
   font-weight: var(--weight-medium);

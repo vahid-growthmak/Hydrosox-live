@@ -46,10 +46,18 @@ def _lead_comments(raw):
         pos += m.end()
 
 
-def item(title, body, link=None):
+def item(title, body, link=None, title_link=False):
+    """A row. `title_link` makes the heading itself the link.
+
+    A source is already named in full in its title, so printing the bare URL
+    underneath as a second link says the same thing twice — once in a form
+    nobody reads. The title carries the destination instead.
+    """
     st = collections.OrderedDict([("title", title), ("body", rich(body))])
     if link:
         st["link_label"], st["link_url"] = link
+        if title_link:
+            st["link_title"] = True
     return collections.OrderedDict([("type", "item"), ("settings", st)])
 
 
@@ -292,12 +300,12 @@ def main():
           "Brief Overview”, Dr Mohammad Akram Nadwi",
           "The overview this page draws its account of the two readings "
           "from.",
-          ("alsalam.ac.uk/wiping-over-socks", ALSALAM)),
+          ("alsalam.ac.uk/wiping-over-socks", ALSALAM), True),
          ("IslamQA (Hanafi) — Darul Iftaa Birmingham and Askimam, on "
           "how long masah lasts and when the period starts",
           "Where the twenty-four and seventy-two hour periods, and the "
           "point the clock starts, are set out.",
-          ("islamqa.org", "https://islamqa.org")),
+          ("islamqa.org", "https://islamqa.org"), True),
          ("Sahih al-Bukhari and Sahih Muslim",
           "The underlying narrations on wiping over khuffain, as cited in "
           "the above.")],

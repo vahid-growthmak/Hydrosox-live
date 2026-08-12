@@ -352,7 +352,8 @@
             "title": "Al-Salam Institute, Oxford — “Wiping Over Socks: A Brief Overview”, Dr Mohammad Akram Nadwi",
             "body": "<p>The overview this page draws its account of the two readings from.</p>",
             "link_label": "alsalam.ac.uk/wiping-over-socks",
-            "link_url": "https://alsalam.ac.uk/wiping-over-socks"
+            "link_url": "https://alsalam.ac.uk/wiping-over-socks",
+            "link_title": true
           }
         },
         "i2": {
@@ -361,7 +362,8 @@
             "title": "IslamQA (Hanafi) — Darul Iftaa Birmingham and Askimam, on how long masah lasts and when the period starts",
             "body": "<p>Where the twenty-four and seventy-two hour periods, and the point the clock starts, are set out.</p>",
             "link_label": "islamqa.org",
-            "link_url": "https://islamqa.org"
+            "link_url": "https://islamqa.org",
+            "link_title": true
           }
         },
         "i3": {

@@ -635,7 +635,9 @@
       "layout_boxes": "Numbered boxes",
       "layout_panel": "Panel (dark heading card, rows as cards)",
       "flag": "Status label",
-      "flag_info": "Renders in place of the value on the definition layout — for a figure honestly not published yet. The body becomes the muted explanation beneath it."
+      "flag_info": "Renders in place of the value on the definition layout — for a figure honestly not published yet. The body becomes the muted explanation beneath it.",
+      "link_title": "Make the heading the link",
+      "link_title_info": "Links the row heading itself and hides the separate link line — for a named source, where a bare URL underneath repeats it."
     },
     "folds": {
       "name": "Detail folds",

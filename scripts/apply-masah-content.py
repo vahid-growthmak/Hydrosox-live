@@ -378,7 +378,12 @@ def main():
             ("color_scheme", "paper"), ("anchor_id", "questions"),
             ("one_at_a_time", False), ("emit_schema", True),
             ("eyebrow", "Questions"), ("heading", "Common questions"),
-            ("help_label", ""), ("cta_label", "")])),
+            # No buy button under a religious ruling — the page closes on a
+            # commercial band instead. The route to a person takes its place.
+            ("help_prefix", "Something not here?"),
+            ("help_label", "Phone or email us"),
+            ("help_link", "/pages/contact"),
+            ("cta_label", "")])),
         ("blocks", blocks), ("block_order", order)])
 
     # The old placeholder sections go; the page argues from sources now.

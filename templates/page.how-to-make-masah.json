@@ -390,8 +390,10 @@
         "emit_schema": true,
         "eyebrow": "Questions",
         "heading": "Common questions",
-        "help_label": "",
-        "cta_label": ""
+        "help_label": "Phone or email us",
+        "cta_label": "",
+        "help_prefix": "Something not here?",
+        "help_link": "/pages/contact"
       },
       "blocks": {
         "q1": {

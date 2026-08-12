@@ -98,15 +98,17 @@
       if request.path contains '/cart' or request.path contains '/account'
         assign noindex = true
       endif
-      # Shopify's own policies say the same thing as the designed pages at
-      # /pages/privacy-policy, /pages/terms-of-service,
-      # /pages/returns-and-refunds and /pages/shipping-and-delivery. They have
-      # to exist — checkout links to them and they are the binding text — but
-      # indexing both would be two URLs competing with the same words, and the
-      # blob is the weaker page of the pair.
-      if request.path contains '/policies/'
-        assign noindex = true
-      endif
+      # The Shopify policies are now the policy pages: the footer links them
+      # directly and the theme copies of privacy and terms are unpublished, so
+      # they are the only place those words exist and have to be indexable.
+      # This block used to noindex every /policies/ URL, on the reasoning that
+      # the designed theme page was the stronger of a duplicated pair. With the
+      # duplicates gone that reasoning goes with them — and left in place it
+      # would have meant a store with no indexable privacy policy at all.
+      #
+      # /pages/returns-and-refunds and /pages/shipping-and-delivery stay
+      # indexed. They explain; the policies state. Different words, different
+      # job, so the pair is no longer a duplicate.
       if collection.handle != blank
         assign held = settings.noindex_collections | default: '' | replace: ' ', '' | split: ','
         if held contains collection.handle

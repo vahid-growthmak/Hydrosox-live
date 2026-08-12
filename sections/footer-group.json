@@ -192,9 +192,9 @@
         "legal_1": {
           "type": "legal_link",
           "settings": {
-            "policy": "custom",
+            "policy": "privacy",
             "label": "Privacy Policy",
-            "link": "/pages/privacy-policy"
+            "link": ""
           }
         },
         "legal_2": {

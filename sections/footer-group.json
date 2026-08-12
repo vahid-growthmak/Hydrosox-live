@@ -215,20 +215,6 @@
             "label": "Accessibility",
             "link": "/pages/accessibility"
           }
-        },
-        "help_1": {
-          "type": "column_link",
-          "settings": {
-            "label": "Shipping & Delivery",
-            "link": "/pages/shipping-and-delivery"
-          }
-        },
-        "help_2": {
-          "type": "column_link",
-          "settings": {
-            "label": "Returns & Refunds",
-            "link": "/pages/returns-and-refunds"
-          }
         }
       },
       "block_order": [
@@ -247,8 +233,6 @@
         "explore_5",
         "shop_7",
         "col_help",
-        "help_1",
-        "help_2",
         "help_5",
         "help_6",
         "col_company",
@@ -279,6 +263,7 @@
         "product": "",
         "title": "HydroSox Waterproof Socks",
         "note": "Free UK delivery on two pairs or more",
+        "add_label": "Add to cart",
         "cta_label": "Buy a pair",
         "cta_link": "#buy",
         "show_after": 80,

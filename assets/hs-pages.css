@@ -569,9 +569,16 @@
     ground it is standing on are in view, which is the entire point of these
     pictures. min-height stays as the floor for a short viewport; phones keep
     the fixed height, where a 16:9 letterbox would render the sock tiny.
+
+    Capped at the viewport, like the homepage hero. Uncapped, a 1920 screen
+    got a 1080px banner — taller than the window — which read as broken. Where
+    the cap bites, some crop returns; each template's focal point steers it
+    onto the sock, which is why they are set per photograph rather than
+    "center".
   */
   .hs-phero {
     aspect-ratio: 16 / 9;
+    max-height: calc(100svh - var(--chrome));
   }
 }
 

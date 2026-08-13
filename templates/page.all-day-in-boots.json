@@ -22,7 +22,7 @@
         "lede": "<p>A good boot keeps the rain out. What it also does, across a ten-hour shift, is keep everything your foot produces on the inside.</p>",
         "image_fallback": "activity-all-day-in-boots.webp",
         "image_alt": "All Day in Boots in HydroSox waterproof socks",
-        "focal_point": "center",
+        "focal_point": "50% 55%",
         "scrim_vertical": 70,
         "scrim_horizontal": 55,
         "cta_label": "Buy a pair",

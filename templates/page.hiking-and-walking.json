@@ -32,7 +32,7 @@
         "lede": "<p>Every waterproof boot soaks through eventually. This is the layer still working when yours does, four hours into a wet day with eleven miles to go.</p>",
         "image_fallback": "activity-hiking.webp",
         "image_alt": "Hiking in HydroSox waterproof socks",
-        "focal_point": "center",
+        "focal_point": "50% 55%",
         "scrim_vertical": 70,
         "scrim_horizontal": 55,
         "cta_label": "Buy a pair",

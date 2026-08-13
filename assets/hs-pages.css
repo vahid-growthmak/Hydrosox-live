@@ -579,6 +579,14 @@
   .hs-phero {
     aspect-ratio: 16 / 9;
     max-height: calc(100svh - var(--chrome));
+    /*
+      Pinned, or the ratio resolves the wrong axis: when max-height binds,
+      aspect-ratio derives the width from the capped height and the banner
+      shrank to 1415px inside a 1920 viewport, leaving a white strip down the
+      right. With the width fixed the ratio sets height, the cap clamps it,
+      and cover crops the difference under the focal point.
+    */
+    width: 100%;
   }
 }
 

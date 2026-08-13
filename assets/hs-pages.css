@@ -559,6 +559,22 @@
   overflow: hidden;
 }
 
+@media (min-width: 48rem) {
+  /*
+    The banner takes the photograph's own shape. All the activity photography
+    is 16:9, and against the old fixed-height box `cover` threw away almost a
+    third of every frame — at 1440 wide the box was 575px where the image
+    wanted 810, so the sock was cut mid-calf and the scenery reduced to a
+    strip. With the ratio matched nothing is cropped: the whole sock and the
+    ground it is standing on are in view, which is the entire point of these
+    pictures. min-height stays as the floor for a short viewport; phones keep
+    the fixed height, where a 16:9 letterbox would render the sock tiny.
+  */
+  .hs-phero {
+    aspect-ratio: 16 / 9;
+  }
+}
+
 .hs-phero__media {
   position: absolute;
   inset: 0;

@@ -343,6 +343,8 @@
       "quantity_label": "Quantity heading",
       "default_quantity": "Quantity selected first",
       "default_quantity_info": "Must match one of the tier quantities below.",
+      "recommend_label": "Recommendation badge",
+      "recommend_label_info": "Shown on the default tier. Leave empty for no badge.",
       "labels_group": "Labels",
       "add_label": "Add to cart label",
       "save_label": "Savings word",

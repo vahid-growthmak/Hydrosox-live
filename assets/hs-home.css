@@ -573,6 +573,12 @@
   flex: 1;
 }
 
+.hs-buy__tier-flag {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--blue-deep);
+}
+
 .hs-buy__tier-label {
   display: block;
   font-weight: var(--weight-semibold);

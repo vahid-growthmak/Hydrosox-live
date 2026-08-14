@@ -344,6 +344,14 @@
                             {% render 'hs-icon', icon: 'check', size: 12, class: 'hs-buy__tier-check' %}
                           </span>
                           <span class="hs-buy__tier-main">
+                            {%- if is_default and section.settings.recommend_label != blank -%}
+                              {%- comment -%}
+                                The recommendation rides on whichever tier is
+                                the default, so the two can never point at
+                                different rungs of the ladder.
+                              {%- endcomment -%}
+                              <span class="hs-eyebrow hs-buy__tier-flag">{{ section.settings.recommend_label }}</span>
+                            {%- endif -%}
                             <span class="hs-small-body hs-buy__tier-label">{{ block.settings.label }}</span>
                             {%- if discount_cents > 0 -%}
                               <span class="hs-caption hs-tnum hs-buy__tier-save">
@@ -682,7 +690,14 @@
       "id": "default_quantity",
       "label": "t:sections.buy.default_quantity",
       "info": "t:sections.buy.default_quantity_info",
-      "default": 2
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "recommend_label",
+      "label": "t:sections.buy.recommend_label",
+      "info": "t:sections.buy.recommend_label_info",
+      "default": "Recommended — best value"
     },
     {
       "type": "header",

@@ -511,7 +511,9 @@ def main():
                 "option most people on site end up taking."),
             # Mark needs a fresh pair every working day; the ladder is
             # framed as a week's worth, per the document's developer note.
-            "default_quantity": 5,
+            # Three everywhere — the client's call (2026-08-14): the
+            # three-pair combo is the recommended default on every page.
+            "default_quantity": 3,
         },
         after_buy=["warranty"],
         hero={

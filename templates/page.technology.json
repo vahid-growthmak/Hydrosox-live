@@ -563,7 +563,7 @@
         "delivery_label": "delivery",
         "total_label": "total",
         "quantity_label": "Quantity",
-        "default_quantity": 2,
+        "default_quantity": 3,
         "add_label": "Add to cart",
         "save_label": "Save",
         "per_unit_label": "per pair",

@@ -102,18 +102,38 @@ class HSBuy extends HTMLElement {
    * its own configured script — sat two elements further down.
    *
    * The right place to fix that is the app's own settings; this is the
-   * theme's guarantee that its controls stay usable regardless. Each swatch's
-   * markup is snapshotted at load and restored if something external empties
-   * it. Restores are capped so a script that reapplies forever gets the last
-   * word rather than a spin loop — by then the shopper has a working picker
-   * for as long as it lasted, and the console says who won.
+   * theme's guarantee that its controls stay usable regardless.
+   *
+   * The clean markup cannot be snapshotted from the DOM: the app runs before
+   * this script, so by the time we look the damage is already there and a DOM
+   * snapshot would faithfully restore the damage. The pristine swatch comes
+   * from the server instead, through the Section Rendering API — the same
+   * channel the cart already uses — and is matched back by option value.
+   * Restores are capped so a script that reapplies forever gets the last word
+   * rather than a spin loop, and the console says who won.
    */
   guardSwatches() {
     const swatches = [...this.querySelectorAll('.hs-buy__swatch')];
     if (!swatches.length || !('MutationObserver' in window)) return;
 
+    const sectionEl = this.closest('.shopify-section');
+    const sectionId = sectionEl ? sectionEl.id.replace(/^shopify-section-/, '') : null;
+
     const snapshots = new Map();
-    swatches.forEach((b) => snapshots.set(b, { html: b.innerHTML, cls: b.className }));
+    const healthy = (b) => !!b.querySelector('.hs-buy__swatch-ring');
+
+    const snapshotFrom = (doc) => {
+      doc.querySelectorAll('.hs-buy__swatch').forEach((clean) => {
+        const value = clean.getAttribute('data-hs-value');
+        const mine = swatches.find((b) => b.getAttribute('data-hs-value') === value);
+        if (mine && clean.querySelector('.hs-buy__swatch-ring')) {
+          snapshots.set(mine, {
+            html: clean.innerHTML,
+            cls: clean.className.replace(/\bis-selected\b/g, '').trim(),
+          });
+        }
+      });
+    };
 
     let budget = 20;
     let queued = false;
@@ -121,12 +141,10 @@ class HSBuy extends HTMLElement {
     const repair = () => {
       queued = false;
       swatches.forEach((b) => {
-        if (b.querySelector('.hs-buy__swatch-ring')) return;
+        if (healthy(b)) return;
         const snap = snapshots.get(b);
         if (!snap || budget <= 0) return;
         budget -= 1;
-        // The selection may have moved since the snapshot; keep today's, not
-        // load-time's, while shedding whatever classes the rewriter added.
         const selectedNow = b.classList.contains('is-selected');
         b.innerHTML = snap.html;
         b.className = snap.cls;
@@ -137,14 +155,38 @@ class HSBuy extends HTMLElement {
       });
     };
 
-    this.swatchGuard = new MutationObserver(() => {
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(repair);
-    });
-    swatches.forEach((b) => this.swatchGuard.observe(b, { childList: true, subtree: true, characterData: true }));
-    // The rewrite may already have happened before this script ran.
-    repair();
+    const arm = () => {
+      this.swatchGuard = new MutationObserver(() => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(repair);
+      });
+      swatches.forEach((b) => this.swatchGuard.observe(b, { childList: true, subtree: true, characterData: true }));
+      repair();
+    };
+
+    if (swatches.every(healthy)) {
+      // Nothing damaged yet: the DOM itself is the clean source.
+      swatches.forEach((b) => snapshots.set(b, {
+        html: b.innerHTML,
+        cls: b.className.replace(/\bis-selected\b/g, '').trim(),
+      }));
+      arm();
+      return;
+    }
+
+    if (!sectionId || !window.fetch) return;
+    fetch(`${window.location.pathname}?sections=${sectionId}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((data) => {
+        const html = data[sectionId];
+        if (!html) return;
+        snapshotFrom(new DOMParser().parseFromString(html, 'text/html'));
+        arm();
+      })
+      .catch(() => {
+        // Better a rewritten swatch than a broken widget.
+      });
   }
 
   readVariants() {

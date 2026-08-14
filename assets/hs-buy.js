@@ -95,94 +95,89 @@ class HSBuy extends HTMLElement {
    *
    * The Restock Rocket app's collection-page script treats any non-product
    * page as a listing, takes the first button inside the product form to be
-   * the buy button, and replaces its contents with the word "Preorder". On
-   * every landing page that embeds this widget the first button in the form
-   * is the first colour swatch, so the Black swatch lost its dot and label
-   * site-wide while the real submit — which the app labels correctly through
-   * its own configured script — sat two elements further down.
+   * the buy button, and replaces it with its own "Preorder" control. On every
+   * landing page that embeds this widget the first button in the form is the
+   * first colour swatch, so the Black swatch lost its dot and label
+   * site-wide. The right place to fix that is the app's settings; this is the
+   * theme's guarantee that its picker stays whole regardless.
    *
-   * The right place to fix that is the app's own settings; this is the
-   * theme's guarantee that its controls stay usable regardless.
+   * Two things this has to survive, both observed live rather than guessed:
+   * the app runs before this script, so the clean markup cannot come from the
+   * DOM — it is fetched from the Section Rendering API instead; and the app
+   * replaces the element rather than editing it, so nothing here holds a
+   * reference to a button — the container is observed and buttons are looked
+   * up fresh by their option value at repair time.
    *
-   * The clean markup cannot be snapshotted from the DOM: the app runs before
-   * this script, so by the time we look the damage is already there and a DOM
-   * snapshot would faithfully restore the damage. The pristine swatch comes
-   * from the server instead, through the Section Rendering API — the same
-   * channel the cart already uses — and is matched back by option value.
-   * Restores are capped so a script that reapplies forever gets the last word
-   * rather than a spin loop, and the console says who won.
+   * Restores are throttled and budgeted: enough to outlast the app's warmup,
+   * finite so a script that reapplies forever gets the last word rather than
+   * a spin loop, with a console warning naming the fight.
    */
   guardSwatches() {
-    const swatches = [...this.querySelectorAll('.hs-buy__swatch')];
-    if (!swatches.length || !('MutationObserver' in window)) return;
+    const container = this.querySelector('.hs-buy__swatches');
+    if (!container || !('MutationObserver' in window) || !window.fetch) return;
 
     const sectionEl = this.closest('.shopify-section');
     const sectionId = sectionEl ? sectionEl.id.replace(/^shopify-section-/, '') : null;
+    if (!sectionId) return;
 
-    const snapshots = new Map();
+    const cleanByValue = new Map();
     const healthy = (b) => !!b.querySelector('.hs-buy__swatch-ring');
+    const findByValue = (value) =>
+      [...container.querySelectorAll('.hs-buy__swatch')]
+        .find((b) => b.getAttribute('data-hs-value') === value);
 
-    const snapshotFrom = (doc) => {
-      doc.querySelectorAll('.hs-buy__swatch').forEach((clean) => {
-        const value = clean.getAttribute('data-hs-value');
-        const mine = swatches.find((b) => b.getAttribute('data-hs-value') === value);
-        if (mine && clean.querySelector('.hs-buy__swatch-ring')) {
-          snapshots.set(mine, {
-            html: clean.innerHTML,
-            cls: clean.className.replace(/\bis-selected\b/g, '').trim(),
-          });
-        }
-      });
-    };
-
-    let budget = 20;
+    let budget = 40;
+    let lastRepair = 0;
     let queued = false;
 
     const repair = () => {
       queued = false;
-      swatches.forEach((b) => {
-        if (healthy(b)) return;
-        const snap = snapshots.get(b);
-        if (!snap || budget <= 0) return;
+      const now = Date.now();
+      if (now - lastRepair < 300) {
+        queued = true;
+        setTimeout(repair, 320);
+        return;
+      }
+      let touched = false;
+      cleanByValue.forEach((snap, value) => {
+        const b = findByValue(value);
+        if (!b || healthy(b) || budget <= 0) return;
         budget -= 1;
+        touched = true;
         const selectedNow = b.classList.contains('is-selected');
-        b.innerHTML = snap.html;
-        b.className = snap.cls;
-        b.classList.toggle('is-selected', selectedNow);
+        const fresh = snap.node.cloneNode(true);
+        fresh.classList.toggle('is-selected', selectedNow);
+        fresh.setAttribute('aria-checked', selectedNow ? 'true' : 'false');
+        b.replaceWith(fresh);
+        // A clone carries no listeners; wire the replacement up like the rest.
+        this.attachOption(fresh);
         if (budget === 0) {
           console.warn('hs-buy: swatch guard budget exhausted; an external script keeps rewriting the colour swatches.');
         }
       });
+      if (touched) lastRepair = now;
     };
 
-    const arm = () => {
-      this.swatchGuard = new MutationObserver(() => {
-        if (queued) return;
-        queued = true;
-        requestAnimationFrame(repair);
-      });
-      swatches.forEach((b) => this.swatchGuard.observe(b, { childList: true, subtree: true, characterData: true }));
-      repair();
-    };
-
-    if (swatches.every(healthy)) {
-      // Nothing damaged yet: the DOM itself is the clean source.
-      swatches.forEach((b) => snapshots.set(b, {
-        html: b.innerHTML,
-        cls: b.className.replace(/\bis-selected\b/g, '').trim(),
-      }));
-      arm();
-      return;
-    }
-
-    if (!sectionId || !window.fetch) return;
     fetch(`${window.location.pathname}?sections=${sectionId}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
       .then((data) => {
         const html = data[sectionId];
         if (!html) return;
-        snapshotFrom(new DOMParser().parseFromString(html, 'text/html'));
-        arm();
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        doc.querySelectorAll('.hs-buy__swatch').forEach((clean) => {
+          if (!clean.querySelector('.hs-buy__swatch-ring')) return;
+          const node = clean.cloneNode(true);
+          node.classList.remove('is-selected');
+          cleanByValue.set(clean.getAttribute('data-hs-value'), { node });
+        });
+        if (!cleanByValue.size) return;
+        this.swatchGuard = new MutationObserver(() => {
+          if (queued) return;
+          queued = true;
+          setTimeout(repair, 50);
+        });
+        this.swatchGuard.observe(container, { childList: true, subtree: true, characterData: true });
+        repair();
       })
       .catch(() => {
         // Better a rewritten swatch than a broken widget.
@@ -202,20 +197,24 @@ class HSBuy extends HTMLElement {
   /* ------------------------------------------------------------- selection */
 
   bindOptions() {
-    this.querySelectorAll('[data-hs-option]').forEach((button) => {
-      button.addEventListener('click', () => {
-        const kind = button.dataset.hsOption;
-        this.selection[kind] = button.dataset.hsValue;
+    this.querySelectorAll('[data-hs-option]').forEach((button) => this.attachOption(button));
+  }
 
-        // Move the checked state across this group only.
-        this.querySelectorAll(`[data-hs-option="${kind}"]`).forEach((sibling) => {
-          const on = sibling === button;
-          sibling.classList.toggle('is-selected', on);
-          sibling.setAttribute('aria-checked', on ? 'true' : 'false');
-        });
+  // One button's worth of the option binding, callable on its own so the
+  // swatch guard can wire up a freshly rebuilt button.
+  attachOption(button) {
+    button.addEventListener('click', () => {
+      const kind = button.dataset.hsOption;
+      this.selection[kind] = button.dataset.hsValue;
 
-        this.update();
+      // Move the checked state across this group only.
+      this.querySelectorAll(`[data-hs-option="${kind}"]`).forEach((sibling) => {
+        const on = sibling === button;
+        sibling.classList.toggle('is-selected', on);
+        sibling.setAttribute('aria-checked', on ? 'true' : 'false');
       });
+
+      this.update();
     });
   }
 

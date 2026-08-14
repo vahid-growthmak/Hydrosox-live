@@ -74,6 +74,8 @@ class HSBuy extends HTMLElement {
 
     this.tier = this.querySelector('[data-hs-tier].is-selected') || this.querySelector('[data-hs-tier]');
 
+    this.guardSwatches();
+
     /*
       The gallery sits beside this element rather than inside it — the layout
       puts the picture in one column and the form in the other — so it has to be
@@ -86,6 +88,63 @@ class HSBuy extends HTMLElement {
     this.bindTiers();
     this.bindGuide();
     this.update();
+  }
+
+  /**
+   * Keeps the colour swatches intact when a third-party script rewrites them.
+   *
+   * The Restock Rocket app's collection-page script treats any non-product
+   * page as a listing, takes the first button inside the product form to be
+   * the buy button, and replaces its contents with the word "Preorder". On
+   * every landing page that embeds this widget the first button in the form
+   * is the first colour swatch, so the Black swatch lost its dot and label
+   * site-wide while the real submit — which the app labels correctly through
+   * its own configured script — sat two elements further down.
+   *
+   * The right place to fix that is the app's own settings; this is the
+   * theme's guarantee that its controls stay usable regardless. Each swatch's
+   * markup is snapshotted at load and restored if something external empties
+   * it. Restores are capped so a script that reapplies forever gets the last
+   * word rather than a spin loop — by then the shopper has a working picker
+   * for as long as it lasted, and the console says who won.
+   */
+  guardSwatches() {
+    const swatches = [...this.querySelectorAll('.hs-buy__swatch')];
+    if (!swatches.length || !('MutationObserver' in window)) return;
+
+    const snapshots = new Map();
+    swatches.forEach((b) => snapshots.set(b, { html: b.innerHTML, cls: b.className }));
+
+    let budget = 20;
+    let queued = false;
+
+    const repair = () => {
+      queued = false;
+      swatches.forEach((b) => {
+        if (b.querySelector('.hs-buy__swatch-ring')) return;
+        const snap = snapshots.get(b);
+        if (!snap || budget <= 0) return;
+        budget -= 1;
+        // The selection may have moved since the snapshot; keep today's, not
+        // load-time's, while shedding whatever classes the rewriter added.
+        const selectedNow = b.classList.contains('is-selected');
+        b.innerHTML = snap.html;
+        b.className = snap.cls;
+        b.classList.toggle('is-selected', selectedNow);
+        if (budget === 0) {
+          console.warn('hs-buy: swatch guard budget exhausted; an external script keeps rewriting the colour swatches.');
+        }
+      });
+    };
+
+    this.swatchGuard = new MutationObserver(() => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(repair);
+    });
+    swatches.forEach((b) => this.swatchGuard.observe(b, { childList: true, subtree: true, characterData: true }));
+    // The rewrite may already have happened before this script ran.
+    repair();
   }
 
   readVariants() {

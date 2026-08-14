@@ -81,8 +81,23 @@
       {% if position %}style="object-position: {{ position }};"{% endif %}
     >
   {%- elsif fallback != blank -%}
+    {%- liquid
+      # Bundled assets cannot be resized by the CDN the way uploaded images
+      # can, so the responsive variants are pre-generated into assets/ by
+      # scripts/generate-image-variants.py — every photo asset has a -480w and
+      # a -960w sibling, which is what lets this srcset be emitted without an
+      # existence check Liquid cannot perform. Before this, a phone downloaded
+      # the full desktop file for every picture on the site: the single
+      # largest item in the PageSpeed report.
+      assign fb_ext = fallback | split: '.' | last
+      assign fb_base = fallback | split: '.' | first
+      assign fb_480 = fb_base | append: '-480w.' | append: fb_ext
+      assign fb_960 = fb_base | append: '-960w.' | append: fb_ext
+    -%}
     <img
-      src="{{ fallback | asset_url }}"
+      src="{{ fb_960 | asset_url }}"
+      srcset="{{ fb_480 | asset_url }} 480w, {{ fb_960 | asset_url }} 960w, {{ fallback | asset_url }} 1672w"
+      sizes="{{ sizes_attr }}"
       alt="{{ img_alt | escape }}"
       width="{{ fb_width }}"
       height="{{ fb_height }}"

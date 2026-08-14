@@ -97,6 +97,12 @@
                     immediately and still reads without JavaScript. It is
                     hidden once the canvas has painted.
                   {%- endcomment -%}
+                  {%- comment -%}
+                    Lazy, and at normal priority. This section sits mid-page
+                    on every template that uses it, and `fetchpriority=high`
+                    here made a below-the-fold frame compete with the hero for
+                    the connection during the exact window that decides LCP.
+                  {%- endcomment -%}
                   <img
                     class="hs-layers__first"
                     data-hs-first
@@ -104,7 +110,7 @@
                     alt="{{ section.settings.frame_alt | escape }}"
                     width="{{ section.settings.frame_width }}"
                     height="{{ section.settings.frame_height }}"
-                    fetchpriority="high"
+                    loading="lazy"
                     decoding="async"
                   >
                   <canvas

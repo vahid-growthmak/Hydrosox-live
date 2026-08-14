@@ -118,6 +118,7 @@
       "view": "View full cart",
       "added": "added to your cart",
       "updated": "Cart updated",
+      "update_failed": "The cart could not be updated just now — please try again.",
       "increase": "Increase quantity of {{ title }}",
       "decrease": "Decrease quantity of {{ title }}"
     },

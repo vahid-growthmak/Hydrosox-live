@@ -161,21 +161,70 @@ class HSCartDrawer extends HTMLElement {
   async post(url, payload) {
     this.setBusy(true);
     try {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...payload, sections: SECTION_ID }),
-      });
-      const data = await res.json();
-      if (data.sections) this.swap(data.sections);
-      this.announce();
+      const send = () =>
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ ...payload, sections: SECTION_ID }),
+        });
+
+      let res = await send();
+      /*
+        Shopify rate-limits the cart endpoints, and a shopper stepping a
+        quantity up quickly hits the limit with ordinary use. A 429 comes back
+        as an HTML page, so the old code threw on .json() and fell into a
+        whole-page reload — from the shopper's side, clicking Remove reloaded
+        the page with the item still in the cart, which reads as the button
+        simply not working. One paced retry clears a burst limit almost every
+        time.
+      */
+      if (res.status === 429) {
+        await new Promise((r) => setTimeout(r, 1500));
+        res = await send();
+      }
+
+      let data = null;
+      try {
+        data = await res.json();
+      } catch {
+        data = null;
+      }
+
+      if (res.ok && data) {
+        if (data.sections) this.swap(data.sections);
+        this.announce();
+        return;
+      }
+
+      // The mutation failed. Show the server's actual cart rather than stale
+      // numbers, and say so — a silent reload looks like a broken control.
+      await this.resync();
+      this.announceError();
     } catch {
-      // Reload rather than leave stale numbers on screen; the server is the
-      // only thing that knows what the cart now contains.
+      // Network gone or the resync itself failed: the reload is the last
+      // resort, not the first.
       window.location.reload();
     } finally {
       this.setBusy(false);
     }
+  }
+
+  /*
+    Pulls the drawer section fresh from the server and swaps it in. Section
+    rendering is a plain GET, which is not throttled with the cart mutation
+    endpoints, so this works precisely when they are refusing.
+  */
+  async resync() {
+    const res = await fetch(`${this.root()}?sections=${SECTION_ID}`);
+    if (!res.ok) throw new Error(String(res.status));
+    const sections = await res.json();
+    this.swap(sections);
+  }
+
+  announceError() {
+    if (!this.status) return;
+    this.status.textContent =
+      this.dataset.errorLabel || 'The cart could not be updated just now — please try again.';
   }
 
   /*

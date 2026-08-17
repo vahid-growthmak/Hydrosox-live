@@ -254,7 +254,7 @@
           "type": "trust",
           "settings": {
             "label": "Delivery",
-            "value": "Free UK delivery on two pairs or more"
+            "value": "Free UK delivery on every order"
           }
         },
         "r2": {
@@ -677,7 +677,7 @@
           "type": "question",
           "settings": {
             "question": "Where do you deliver to?",
-            "answer": "<p>The United Kingdom, from our UK warehouse. Delivery is free on two pairs or more. On a single pair there’s a charge, and you’ll see the full total before anything goes in your basket.</p>"
+            "answer": "<p>The United Kingdom, from our UK warehouse. Delivery is free on every order, whether you buy one pair or five.</p>"
           }
         },
         "q2": {

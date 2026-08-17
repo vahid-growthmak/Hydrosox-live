@@ -28,7 +28,7 @@
         "delivery": {
           "type": "message",
           "settings": {
-            "text": "Free UK delivery on two pairs or more",
+            "text": "Free UK delivery on every order",
             "link": "/pages/shipping-and-delivery"
           }
         },

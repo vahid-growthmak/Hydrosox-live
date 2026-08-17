@@ -74,7 +74,7 @@
           "type": "item",
           "settings": {
             "title": "From £20 a pair",
-            "body": "<p>Free UK delivery on two pairs or more. Buying more than one brings the per-pair price down to £16.</p>",
+            "body": "<p>Free UK delivery on every order. Buying more than one brings the per-pair price down to £16.</p>",
             "link_label": "",
             "link_url": "",
             "image_fallback": "",
@@ -606,7 +606,7 @@
           "type": "trust",
           "settings": {
             "label": "Delivery",
-            "value": "Free on two pairs or more"
+            "value": "Free UK delivery on every order"
           }
         },
         "r2": {
@@ -802,7 +802,7 @@
           "type": "question",
           "settings": {
             "question": "How much is delivery?",
-            "answer": "<p>Free on two pairs or more. On a single pair there’s a delivery charge, and you’ll see the full total before anything goes in your basket.</p>"
+            "answer": "<p>Free. UK delivery is included on every order, whether you buy one pair or five — the price you see is the price you pay.</p>"
           }
         },
         "q6": {

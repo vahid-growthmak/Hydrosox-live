@@ -74,9 +74,9 @@ number and the WhatsApp number always appear together.
 
 <h2>Settled today</h2>
 
-<p><strong>Free on two pairs or more.</strong> The threshold sits at the two-pair price, so the saving and the free delivery arrive together. Buying a second pair costs £16.99 and removes the delivery charge.</p>
+<p><strong>Free UK delivery on every order.</strong> There is no minimum. One pair or five, delivery is included in the price you see.</p>
 
-<p><strong>On a single pair, delivery is charged.</strong> The exact amount is shown with the price before you add anything to the basket, not revealed at checkout. You are never charged a delivery cost you have not already seen.</p>
+<p><strong>No delivery charge, ever.</strong> The price shown with the socks is the total. Nothing is added at checkout for delivery.</p>
 
 <p><strong>Dispatched from the United Kingdom.</strong> HydroSox is a UK company holding UK stock. Nothing is drop-shipped from elsewhere, and nothing arrives with an unexpected customs charge.</p>
 

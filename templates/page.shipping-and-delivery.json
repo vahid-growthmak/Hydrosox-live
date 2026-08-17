@@ -50,8 +50,8 @@
         "i1": {
           "type": "item",
           "settings": {
-            "title": "Free on two pairs or more",
-            "body": "<p>The threshold sits at the two-pair price, so the saving and the free delivery arrive together.</p>",
+            "title": "Free UK delivery on every order",
+            "body": "<p>There is no minimum. One pair or five, delivery is included in the price you see.</p>",
             "link_label": "",
             "link_url": "",
             "image_fallback": "",
@@ -61,8 +61,8 @@
         "i2": {
           "type": "item",
           "settings": {
-            "title": "On a single pair, delivery is charged",
-            "body": "<p>The exact amount is shown at checkout before you pay. You are never charged a delivery cost you have not seen.</p>",
+            "title": "No delivery charge, ever",
+            "body": "<p>The price shown with the socks is the total. Nothing is added at checkout for delivery.</p>",
             "link_label": "",
             "link_url": "",
             "image_fallback": "",
@@ -335,7 +335,7 @@
           "type": "trust",
           "settings": {
             "label": "Delivery",
-            "value": "Free UK delivery on two pairs or more"
+            "value": "Free UK delivery on every order"
           }
         },
         "r2": {

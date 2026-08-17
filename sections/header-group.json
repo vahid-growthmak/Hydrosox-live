@@ -7,17 +7,6 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-/* Header section group.
-   Re-stamped 2026-08-04. The dropdown picture settings (image_fallback,
-   image_alt, focal_point, image_zoom) were added to sections/header.liquid and
-   used here in the same commit. Shopify validated this file against the schema
-   it held at that moment, did not recognise them, and silently dropped all four
-   while still reporting the file as updated — so the mega menu fell back to its
-   plain text list on the live store. The schema is deployed now, so this stamp
-   exists only to put the file back in a diff: Shopify's GitHub sync applies the
-   newest commit's changes and never revisits a file that has not changed.
-
-   Lesson: land a section's schema first, then the values that use it. */
 {
   "name": "t:section_groups.header",
   "type": "header",
@@ -29,7 +18,8 @@
           "type": "message",
           "settings": {
             "text": "Exclusive offer: free UK delivery — even on a single pair",
-            "link": "/pages/shipping-and-delivery"
+            "link": "shopify://products/hydrosox-waterproof-socks",
+            "hide_on_mobile": false
           }
         },
         "shop": {
@@ -67,6 +57,19 @@
             "link": "/#activity"
           }
         },
+        "act_wudu": {
+          "type": "dropdown_item",
+          "settings": {
+            "label": "Wudu & Masah",
+            "description": "Wudu at work, five times a day, without taking your socks off.",
+            "link": "/pages/wudu-socks",
+            "image_fallback": "activity-wudu-masah.webp",
+            "image_alt": "Pulling on a pair of white HydroSox while seated",
+            "focal_point": "50% 60%",
+            "full_width": true,
+            "image_zoom": 100
+          }
+        },
         "act_hiking": {
           "type": "dropdown_item",
           "settings": {
@@ -76,6 +79,7 @@
             "image_fallback": "activity-hiking.webp",
             "image_alt": "Hiking on a wet hillside in HydroSox waterproof socks",
             "focal_point": "66% 52%",
+            "full_width": false,
             "image_zoom": 210
           }
         },
@@ -88,6 +92,7 @@
             "image_fallback": "activity-all-day-in-boots.webp",
             "image_alt": "A long shift in work boots wearing HydroSox waterproof socks",
             "focal_point": "63% 45%",
+            "full_width": false,
             "image_zoom": 150
           }
         },
@@ -100,6 +105,7 @@
             "image_fallback": "activity-cycling-and-commuting.webp",
             "image_alt": "Riding on a city road in HydroSox waterproof socks",
             "focal_point": "52% 66%",
+            "full_width": false,
             "image_zoom": 200
           }
         },
@@ -112,6 +118,7 @@
             "image_fallback": "activity-running-and-trail.webp",
             "image_alt": "Running a wet winter trail in HydroSox waterproof socks",
             "focal_point": "45% 56%",
+            "full_width": false,
             "image_zoom": 180
           }
         },
@@ -134,19 +141,6 @@
           "settings": {
             "label": "About",
             "link": "/pages/about"
-          }
-        },
-        "act_wudu": {
-          "type": "dropdown_item",
-          "settings": {
-            "label": "Wudu & Masah",
-            "description": "Wudu at work, five times a day, without taking your socks off.",
-            "link": "/pages/wudu-socks",
-            "image_fallback": "activity-wudu-masah.webp",
-            "image_alt": "Pulling on a pair of white HydroSox while seated",
-            "focal_point": "50% 60%",
-            "image_zoom": 100,
-            "full_width": true
           }
         }
       },

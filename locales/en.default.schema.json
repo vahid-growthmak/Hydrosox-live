@@ -330,7 +330,10 @@
       "line_stagger": "Delay between heading lines",
       "body_delay": "Body delay",
       "actions_delay": "Buttons delay",
-      "block_spec": "Spec"
+      "block_spec": "Spec",
+      "offer_tag": "Offer tag",
+      "offer_text": "Offer line",
+      "offer_text_info": "A short promotion line under the buttons. Leave empty to show nothing."
     },
     "buy": {
       "name": "Buy widget",
@@ -343,6 +346,8 @@
       "quantity_label": "Quantity heading",
       "default_quantity": "Quantity selected first",
       "default_quantity_info": "Must match one of the tier quantities below.",
+      "offer_label": "Single-pair offer badge",
+      "offer_label_info": "Shown on the single-pair tier. Leave empty for no badge.",
       "recommend_label": "Recommendation badge",
       "recommend_label_info": "Shown on the default tier. Leave empty for no badge.",
       "labels_group": "Labels",

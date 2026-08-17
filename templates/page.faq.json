@@ -254,7 +254,7 @@
           "type": "trust",
           "settings": {
             "label": "Delivery",
-            "value": "Free UK delivery on every order"
+            "value": "Free UK delivery on every order — single pairs included, as an exclusive offer"
           }
         },
         "r2": {
@@ -405,7 +405,8 @@
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
         "guide_link_url": "/pages/size-guide",
-        "guide_close_label": "Close"
+        "guide_close_label": "Close",
+        "offer_label": "Exclusive offer — free UK delivery on a single pair"
       }
     },
     "product": {

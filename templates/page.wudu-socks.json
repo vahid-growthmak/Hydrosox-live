@@ -35,7 +35,9 @@
         "image_fallback": "wudu-pulling-on.webp",
         "image_alt": "Pulling on a pair of white HydroSox while seated, before wudu",
         "image_aspect": "9 / 8",
-        "image_position": "50% 85%"
+        "image_position": "50% 85%",
+        "offer_tag": "Exclusive offer",
+        "offer_text": "Free UK delivery on every order — even a single pair."
       },
       "blocks": {
         "sp1": {
@@ -301,7 +303,7 @@
           "type": "trust",
           "settings": {
             "label": "Delivery",
-            "value": "Free UK delivery on every order"
+            "value": "Free UK delivery on every order — single pairs included, as an exclusive offer"
           }
         },
         "r2": {
@@ -444,7 +446,8 @@
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
         "guide_close_label": "Close",
-        "guide_link_url": "/pages/size-guide"
+        "guide_link_url": "/pages/size-guide",
+        "offer_label": "Exclusive offer — free UK delivery on a single pair"
       }
     },
     "reviews": {

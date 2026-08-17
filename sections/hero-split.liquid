@@ -107,6 +107,17 @@
                 style: 'link'
               %}
             </div>
+            {%- if section.settings.offer_text != blank -%}
+              {%- comment -%}
+                A promotion line under the calls to action. Sits inside the
+                actions wrapper so it rides the same rise animation and stays
+                with the buttons on every width.
+              {%- endcomment -%}
+              <p class="hs-caption hs-hero__offer">
+                <span class="hs-hero__offer-tag hs-eyebrow">{{ section.settings.offer_tag | default: 'Exclusive offer' }}</span>
+                <span class="hs-hero__offer-text">{{ section.settings.offer_text }}</span>
+              </p>
+            {%- endif -%}
           </div>
         {%- endif -%}
       </div>
@@ -199,6 +210,18 @@
       "id": "link_label",
       "label": "t:common.link_label",
       "default": "See how it is built"
+    },
+    {
+      "type": "text",
+      "id": "offer_tag",
+      "label": "t:sections.hero.offer_tag",
+      "default": "Exclusive offer"
+    },
+    {
+      "type": "text",
+      "id": "offer_text",
+      "label": "t:sections.hero.offer_text",
+      "info": "t:sections.hero.offer_text_info"
     },
     {
       "type": "url",

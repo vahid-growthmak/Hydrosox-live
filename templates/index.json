@@ -64,7 +64,9 @@
         "image_position": "50% 41%",
         "line_stagger": 90,
         "body_delay": 260,
-        "actions_delay": 420
+        "actions_delay": 420,
+        "offer_tag": "Exclusive offer",
+        "offer_text": "Free UK delivery on every order — even a single pair."
       }
     },
     "summary": {
@@ -606,7 +608,7 @@
           "type": "trust",
           "settings": {
             "label": "Delivery",
-            "value": "Free UK delivery on every order"
+            "value": "Free UK delivery on every order — single pairs included, as an exclusive offer"
           }
         },
         "r2": {
@@ -757,7 +759,8 @@
         "guide_link_label": "The full sizing and fit guide",
         "guide_link_url": "/pages/size-guide",
         "guide_close_label": "Close",
-        "ladder_note": "Most people buy two. They air dry rather than tumble dry, so one pair doesn’t always keep up with a wet week."
+        "ladder_note": "Most people buy two. They air dry rather than tumble dry, so one pair doesn’t always keep up with a wet week.",
+        "offer_label": "Exclusive offer — free UK delivery on a single pair"
       }
     },
     "faq": {

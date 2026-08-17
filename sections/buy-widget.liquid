@@ -344,6 +344,18 @@
                             {% render 'hs-icon', icon: 'check', size: 12, class: 'hs-buy__tier-check' %}
                           </span>
                           <span class="hs-buy__tier-main">
+                            {%- comment -%}
+                              The exclusive-offer flag on the single pair —
+                              free delivery on one pair is a limited promotion
+                              and the tier says so, since a shopper comparing
+                              rungs would otherwise assume it is the standing
+                              rule. Keyed on quantity 1 rather than on a block
+                              setting so the ladder can be re-ordered without
+                              the badge wandering.
+                            {%- endcomment -%}
+                            {%- if qty == 1 and section.settings.offer_label != blank -%}
+                              <span class="hs-eyebrow hs-buy__tier-flag hs-buy__tier-flag--offer">{{ section.settings.offer_label }}</span>
+                            {%- endif -%}
                             {%- if is_default and section.settings.recommend_label != blank -%}
                               {%- comment -%}
                                 The recommendation rides on whichever tier is
@@ -691,6 +703,13 @@
       "label": "t:sections.buy.default_quantity",
       "info": "t:sections.buy.default_quantity_info",
       "default": 3
+    },
+    {
+      "type": "text",
+      "id": "offer_label",
+      "label": "t:sections.buy.offer_label",
+      "info": "t:sections.buy.offer_label_info",
+      "default": "Exclusive offer — free UK delivery on a single pair"
     },
     {
       "type": "text",

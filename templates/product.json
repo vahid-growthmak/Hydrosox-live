@@ -126,7 +126,7 @@
           "type": "trust",
           "settings": {
             "label": "Delivery",
-            "value": "Free UK delivery on every order"
+            "value": "Free UK delivery on every order — single pairs included, as an exclusive offer"
           }
         },
         "r2": {
@@ -277,7 +277,8 @@
         "guide_link_label": "The full sizing and fit guide",
         "guide_link_url": "/pages/size-guide",
         "guide_close_label": "Close",
-        "ladder_note": "Two is the most common order. A pair needs a day to air dry, so a second one means there is always a dry pair ready."
+        "ladder_note": "Two is the most common order. A pair needs a day to air dry, so a second one means there is always a dry pair ready.",
+        "offer_label": "Exclusive offer — free UK delivery on a single pair"
       }
     },
     "about": {

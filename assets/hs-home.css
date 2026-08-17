@@ -173,6 +173,23 @@
   margin-top: 1.75rem;
 }
 
+.hs-hero__offer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-top: 1.25rem;
+  color: var(--on-surface-muted);
+}
+
+.hs-hero__offer-tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--blue);
+  color: var(--paper);
+}
+
 @media (min-width: 40rem) {
   .hs-hero__body {
     margin-top: 2rem;
@@ -577,6 +594,16 @@
   display: block;
   margin-bottom: 0.25rem;
   color: var(--blue-deep);
+}
+
+/* The offer reads as a promotion, not a recommendation: a filled pill. */
+.hs-buy__tier-flag--offer {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  margin-bottom: 0.4rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--blue);
+  color: var(--paper);
 }
 
 .hs-buy__tier-label {

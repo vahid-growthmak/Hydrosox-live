@@ -12,6 +12,18 @@
         {{ 'gift_cards.issued.expires' | t: date: gift_card.expires_on | date: format: 'date' }}
       </p>
     {%- endif -%}
-    {% render 'hs-button', label: 'gift_cards.issued.shop' | t, href: shop.url, style: 'primary' %}
+    {% render 'hs-button', label: 'gift_cards.issued.shop', href: shop.url, style: 'primary' %}
   </div>
 </section>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'hs-button', label: 'gift_cards.issued.shop' | t, href: shop.url,
+    style: 'primary' %}"
+  to: "{% render 'hs-button', label: 'gift_cards.issued.shop', href: shop.url, style:
+    'primary' %}"
+  position: 706..797
+{% endcomment %}

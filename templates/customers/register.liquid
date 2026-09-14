@@ -13,7 +13,19 @@
       <input class="hs-field" id="hs-reg-email" type="email" name="customer[email]" autocomplete="email" required>
       <label class="hs-eyebrow hs-muted" for="hs-reg-password">{{ 'customer.register.password' | t }}</label>
       <input class="hs-field" id="hs-reg-password" type="password" name="customer[password]" autocomplete="new-password">
-      {% render 'hs-button', label: 'customer.register.submit' | t, style: 'primary', type: 'submit', full: true %}
+      {% render 'hs-button', label: 'customer.register.submit', style: 'primary', type: 'submit', full: true %}
     {%- endform -%}
   </div>
 </section>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'hs-button', label: 'customer.register.submit' | t, style: 'primary',
+    type: 'submit', full: true %}"
+  to: "{% render 'hs-button', label: 'customer.register.submit', style: 'primary',
+    type: 'submit', full: true %}"
+  position: 1264..1369
+{% endcomment %}

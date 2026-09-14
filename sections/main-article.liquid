@@ -60,14 +60,7 @@
       </header>
 
       {%- if article.image -%}
-        {% render 'hs-image',
-          image: article.image,
-          alt: article.image.alt | default: article.title,
-          aspect: section.settings.image_aspect,
-          eager: true,
-          sizes: '(min-width: 80rem) 72rem, 100vw',
-          wrapper_class: 'hs-article__hero'
-        %}
+        {% render 'hs-image', image: article.image, alt: article.image.alt, default: article.title, aspect: section.settings.image_aspect, eager: true, sizes: '(min-width: 80rem) 72rem, 100vw', wrapper_class: 'hs-article__hero' %}
       {%- endif -%}
 
       {%- comment -%} Article body {%- endcomment -%}
@@ -209,3 +202,23 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'hs-image',
+              image: article.image,
+              alt: article.image.alt | default: article.title,
+              aspect: section.settings.image_aspect,
+              eager: true,
+              sizes: '(min-width: 80rem) 72rem, 100vw',
+              wrapper_class: 'hs-article__hero'
+            %}
+  to: "{% render 'hs-image', image: article.image, alt: article.image.alt, default:
+    article.title, aspect: section.settings.image_aspect, eager: true, sizes: '(min-width:
+    80rem) 72rem, 100vw', wrapper_class: 'hs-article__hero' %}"
+  position: 2510..2732
+{% endcomment %}

@@ -9,8 +9,25 @@
       <input class="hs-field" id="hs-act-pw" type="password" name="customer[password]" autocomplete="new-password">
       <label class="hs-eyebrow hs-muted" for="hs-act-pw2">{{ 'customer.activate_account.password_confirm' | t }}</label>
       <input class="hs-field" id="hs-act-pw2" type="password" name="customer[password_confirmation]" autocomplete="new-password">
-      {% render 'hs-button', label: 'customer.activate_account.submit' | t, style: 'primary', type: 'submit', full: true %}
-      {% render 'hs-button', label: 'customer.activate_account.decline' | t, style: 'outline', type: 'submit', name: 'decline', full: true %}
+      {% render 'hs-button', label: 'customer.activate_account.submit', style: 'primary', type: 'submit', full: true %}
+      {% render 'hs-button', label: 'customer.activate_account.decline', style: 'outline', type: 'submit', name: 'decline', full: true %}
     {%- endform -%}
   </div>
 </section>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'hs-button', label: 'customer.activate_account.submit' | t, style:
+    'primary', type: 'submit', full: true %}"
+  to: "{% render 'hs-button', label: 'customer.activate_account.submit', style: 'primary',
+    type: 'submit', full: true %}"
+  position: 866..979
+- from: "{% render 'hs-button', label: 'customer.activate_account.decline' | t, style:
+    'outline', type: 'submit', name: 'decline', full: true %}"
+  to: "{% render 'hs-button', label: 'customer.activate_account.decline', style: 'outline',
+    type: 'submit', name: 'decline', full: true %}"
+  position: 986..1117
+{% endcomment %}

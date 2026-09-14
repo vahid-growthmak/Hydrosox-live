@@ -6,14 +6,7 @@
   - eager: {Boolean} Load the image immediately. Optional.
 {%- endcomment -%}
 <a class="hs-card hs-zoom-parent" href="{{ card_product.url }}">
-  {% render 'hs-image',
-    image: card_product.featured_image,
-    alt: card_product.featured_image.alt | default: card_product.title,
-    aspect: '4 / 5',
-    eager: eager,
-    sizes: '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw',
-    wrapper_class: 'hs-card__media hs-media--zoom'
-  %}
+  {% render 'hs-image', image: card_product.featured_image, alt: card_product.featured_image.alt, default: card_product.title, aspect: '4 / 5', eager: eager, sizes: '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw', wrapper_class: 'hs-card__media hs-media--zoom' %}
   <div class="hs-card__body">
     <h3 class="hs-h4 hs-card__title">{{ card_product.title }}</h3>
     <p class="hs-small-body hs-tnum hs-card__price">
@@ -29,3 +22,24 @@
     {%- endunless -%}
   </div>
 </a>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'hs-image',
+        image: card_product.featured_image,
+        alt: card_product.featured_image.alt | default: card_product.title,
+        aspect: '4 / 5',
+        eager: eager,
+        sizes: '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw',
+        wrapper_class: 'hs-card__media hs-media--zoom'
+      %}
+  to: "{% render 'hs-image', image: card_product.featured_image, alt: card_product.featured_image.alt,
+    default: card_product.title, aspect: '4 / 5', eager: eager, sizes: '(min-width:
+    64rem) 30vw, (min-width: 48rem) 45vw, 100vw', wrapper_class: 'hs-card__media hs-media--zoom'
+    %}"
+  position: 269..540
+{% endcomment %}

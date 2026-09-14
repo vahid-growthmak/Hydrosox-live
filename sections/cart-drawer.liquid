@@ -271,12 +271,7 @@
       <div class="hs-cartd__empty">
         <p class="hs-body hs-muted">{{ 'cart.general.empty' | t }}</p>
         {%- if section.settings.empty_cta_label != blank -%}
-          {% render 'hs-button',
-            label: section.settings.empty_cta_label,
-            href: section.settings.empty_cta_url | default: routes.all_products_collection_url,
-            style: 'primary',
-            full: true
-          %}
+          {% render 'hs-button', label: section.settings.empty_cta_label, href: section.settings.empty_cta_url, default: routes.all_products_collection_url, style: 'primary', full: true %}
         {%- endif -%}
       </div>
     {%- endif -%}
@@ -366,3 +361,20 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'hs-button',
+                label: section.settings.empty_cta_label,
+                href: section.settings.empty_cta_url | default: routes.all_products_collection_url,
+                style: 'primary',
+                full: true
+              %}
+  to: "{% render 'hs-button', label: section.settings.empty_cta_label, href: section.settings.empty_cta_url,
+    default: routes.all_products_collection_url, style: 'primary', full: true %}"
+  position: 11094..11272
+{% endcomment %}

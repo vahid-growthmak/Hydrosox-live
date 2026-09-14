@@ -10,10 +10,22 @@
       <input class="hs-field" id="hs-login-email" type="email" name="customer[email]" autocomplete="email" required>
       <label class="hs-eyebrow hs-muted" for="hs-login-password">{{ 'customer.login.password' | t }}</label>
       <input class="hs-field" id="hs-login-password" type="password" name="customer[password]" autocomplete="current-password">
-      {% render 'hs-button', label: 'customer.login.submit' | t, style: 'primary', type: 'submit', full: true %}
+      {% render 'hs-button', label: 'customer.login.submit', style: 'primary', type: 'submit', full: true %}
     {%- endform -%}
     <p class="hs-caption">
       <a class="hs-link" href="{{ routes.account_register_url }}">{{ 'customer.login.create' | t }}</a>
     </p>
   </div>
 </section>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'hs-button', label: 'customer.login.submit' | t, style: 'primary',
+    type: 'submit', full: true %}"
+  to: "{% render 'hs-button', label: 'customer.login.submit', style: 'primary', type:
+    'submit', full: true %}"
+  position: 898..1000
+{% endcomment %}

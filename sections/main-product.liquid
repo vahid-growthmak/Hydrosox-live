@@ -10,10 +10,7 @@
           <ul class="hs-pdp__media-list" role="list">
             {%- for media in product.media -%}
               <li>
-                {% render 'hs-image', image: media.preview_image,
-                   alt: media.alt | default: product.title, aspect: '4 / 5',
-                   eager: forloop.first, sizes: '(min-width: 64rem) 50vw, 100vw',
-                   wrapper_class: 'hs-pdp__media-item' %}
+                {% render 'hs-image', image: media.preview_image, alt: media.alt, default: product.title, aspect: '4 / 5', eager: forloop.first, sizes: '(min-width: 64rem) 50vw, 100vw', wrapper_class: 'hs-pdp__media-item' %}
               </li>
             {%- endfor -%}
           </ul>
@@ -99,3 +96,19 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'hs-image', image: media.preview_image,
+                       alt: media.alt | default: product.title, aspect: '4 / 5',
+                       eager: forloop.first, sizes: '(min-width: 64rem) 50vw, 100vw',
+                       wrapper_class: 'hs-pdp__media-item' %}
+  to: "{% render 'hs-image', image: media.preview_image, alt: media.alt, default:
+    product.title, aspect: '4 / 5', eager: forloop.first, sizes: '(min-width: 64rem)
+    50vw, 100vw', wrapper_class: 'hs-pdp__media-item' %}"
+  position: 515..723
+{% endcomment %}

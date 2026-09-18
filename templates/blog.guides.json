@@ -25,16 +25,71 @@
     },
     "main": {
       "type": "main-blog",
+      "blocks": {
+        "topic_how": {
+          "type": "topic",
+          "settings": {
+            "tag": "How they work",
+            "title": "How Waterproof Socks Work",
+            "chip_label": "How they work",
+            "description": "What they are, how the membrane keeps water out, and where it stops.",
+            "icon": "layers"
+          }
+        },
+        "topic_choosing": {
+          "type": "topic",
+          "settings": {
+            "tag": "Choosing",
+            "title": "Choosing Your Pair",
+            "chip_label": "Choosing",
+            "description": "Which sock for your day: commuting, dog walks, work boots, trails.",
+            "icon": "compass"
+          }
+        },
+        "topic_care": {
+          "type": "topic",
+          "settings": {
+            "tag": "Care",
+            "title": "Care & Longevity",
+            "chip_label": "Care",
+            "description": "Wash them right, dodge the mistakes that kill a membrane, make a pair last.",
+            "icon": "droplet"
+          }
+        },
+        "topic_wudu": {
+          "type": "topic",
+          "settings": {
+            "tag": "Wudu & Masah",
+            "title": "Wudu & Masah",
+            "chip_label": "Wudu & Masah",
+            "description": "Straight answers on masah over waterproof socks, checked with UK scholars.",
+            "icon": "moon"
+          }
+        }
+      },
+      "block_order": [
+        "topic_how",
+        "topic_choosing",
+        "topic_care",
+        "topic_wudu"
+      ],
       "settings": {
         "color_scheme": "paper",
         "pace": "base",
-        "per_page": 9,
+        "per_page": 12,
         "eyebrow": "Guides",
         "heading": "Guides",
         "lede": "<p>Straight answers about waterproofing, sizing, care and masah. Written for people who get wet, not for search engines.</p>",
         "empty_note": "The first guides are being written. Nothing has been published here as a placeholder.",
         "show_tags": true,
-        "all_label": "Everything"
+        "all_label": "All guides",
+        "show_images": false,
+        "showing_label": "Showing",
+        "show_topic_cards": true,
+        "topics_eyebrow": "Browse by topic",
+        "count_one": "guide",
+        "count_other": "guides",
+        "count_none": "Coming soon"
       }
     },
     "close": {

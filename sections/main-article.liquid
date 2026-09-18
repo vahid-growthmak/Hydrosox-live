@@ -1,9 +1,32 @@
 {%- comment -%}
   Guide article.
 
-  Carries the sitemap's article header, body and the mandatory activity link.
-  The breadcrumb, inline buy widget, related guides and email capture around it
-  are separate sections in templates/article.json.
+  Carries the article header, a table of contents, the body, the article's own
+  questions and the mandatory activity link. The breadcrumb, inline buy widget,
+  related guides and email capture around it are separate sections in
+  templates/article.json.
+
+  Layout: the header and hero sit centred; below them the body runs in a
+  centred reading column with the contents list in the left gutter on wide
+  screens, and as a collapsible "In this guide" panel above the body on small
+  ones. Every heading in the body is given an id here, so the contents list,
+  shared links and the FAQ jump all land on the right heading.
+
+  Questions are per article, and come from one of two places:
+
+  1. The blog post's own "FAQs" field — article.metafields.custom.faqs, a list
+     of `faq` metaobject entries (question + answer). Filled in on the blog
+     post page in admin, under Metafields.
+  2. Otherwise, the article body itself: a heading 2 whose text contains
+     "Frequently asked questions" (or "FAQ"), followed by one heading 3 per
+     question with the answer below it. That is how the guides are already
+     written, so an existing guide gets its questions without re-entering them.
+
+  Either way the questions are lifted out of the body and rendered in the same
+  accordion as every other page, and emitted as FAQPage structured data built
+  from the same strings, so what a reader sees and what a crawler reads cannot
+  disagree. When the field has entries it wins, and a FAQ section in the body is
+  dropped rather than shown twice.
 
   The sitemap makes one rule structural rather than editorial: every article
   must route to exactly one activity page, so no article is a dead end. The
@@ -31,6 +54,138 @@
       break
     endif
   endfor
+
+  # ---------------------------------------------------------------------------
+  # Questions from the blog post's FAQs field, when it has any.
+  # ---------------------------------------------------------------------------
+  assign faq_items = ''
+  assign faq_ld = ''
+  assign faq_count = 0
+  assign faq_heading = section.settings.faq_heading
+  assign faq_entries = article.metafields.custom.faqs.value
+
+  for entry in faq_entries
+    assign q_text = entry.question.value | strip_html | strip
+    if entry.answer.type == 'rich_text_field'
+      assign a_html = entry.answer | metafield_tag
+    else
+      assign a_html = entry.answer.value | escape | newline_to_br | prepend: '<p>' | append: '</p>'
+    endif
+    assign a_text = a_html | strip_html | strip
+    if q_text == blank or a_text == blank
+      continue
+    endif
+    assign faq_count = faq_count | plus: 1
+    capture faq_item
+      render 'hs-article-faq-item', question: q_text, answer: a_html
+    endcapture
+    assign faq_items = faq_items | append: faq_item
+    if faq_count > 1
+      assign faq_ld = faq_ld | append: ','
+    endif
+    assign q_json = q_text | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
+    assign a_json = a_text | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
+    assign faq_ld = faq_ld | append: '{"@type":"Question","name":' | append: q_json | append: ',"acceptedAnswer":{"@type":"Answer","text":' | append: a_json | append: '}}'
+  endfor
+  assign faq_from_field = false
+  if faq_count > 0
+    assign faq_from_field = true
+  endif
+
+  # ---------------------------------------------------------------------------
+  # Walk the body's heading 2s once: give each an id, collect the contents
+  # list, and lift out the FAQ section.
+  # ---------------------------------------------------------------------------
+  assign body_html = ''
+  assign toc_items = ''
+  assign toc_count = 0
+  assign h2_parts = article.content | split: '<h2'
+
+  for part in h2_parts
+    if forloop.first
+      assign body_html = part
+      continue
+    endif
+
+    assign part_bits = part | split: '</h2>'
+    assign heading_text = part_bits.first | prepend: '<h2' | strip_html | strip
+    assign heading_key = heading_text | downcase
+
+    assign is_faq = false
+    if heading_key contains 'frequently asked' or heading_key contains 'faq'
+      assign is_faq = true
+    endif
+
+    if is_faq
+      # A FAQ section in the body. Parsed only when the field is empty; when
+      # the field has entries it is simply dropped, so nothing shows twice.
+      unless faq_from_field
+        if section.settings.faq_heading_from_body and heading_text != blank
+          assign faq_heading = heading_text
+        endif
+        assign faq_body = part | remove_first: part_bits.first | remove_first: '</h2>'
+        assign h3_parts = faq_body | split: '<h3'
+        for q_part in h3_parts
+          if forloop.first
+            continue
+          endif
+          assign q_bits = q_part | split: '</h3>'
+          if q_bits.size < 2
+            continue
+          endif
+          assign q_text = q_bits.first | prepend: '<h3' | strip_html | strip
+          assign a_html = q_part | remove_first: q_bits.first | remove_first: '</h3>' | strip
+          assign a_text = a_html | strip_html | strip
+          if q_text == blank or a_text == blank
+            continue
+          endif
+          assign faq_count = faq_count | plus: 1
+          capture faq_item
+            render 'hs-article-faq-item', question: q_text, answer: a_html
+          endcapture
+          assign faq_items = faq_items | append: faq_item
+          if faq_count > 1
+            assign faq_ld = faq_ld | append: ','
+          endif
+          assign q_json = q_text | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
+          assign a_json = a_text | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
+          assign faq_ld = faq_ld | append: '{"@type":"Question","name":' | append: q_json | append: ',"acceptedAnswer":{"@type":"Answer","text":' | append: a_json | append: '}}'
+        endfor
+      endunless
+      continue
+    endif
+
+    # An ordinary section: give its heading an id. The id goes first, so if
+    # the editor already wrote one this one is the id the browser keeps.
+    assign heading_id = heading_text | handleize
+    if heading_id == blank
+      assign heading_id = 'section-' | append: forloop.index0
+    endif
+    assign body_html = body_html | append: '<h2 id="' | append: heading_id | append: '"' | append: part
+
+    if heading_text != blank
+      assign toc_count = toc_count | plus: 1
+      assign toc_items = toc_items | append: '<li><a class="hs-article__toc-link" href="#' | append: heading_id | append: '">' | append: heading_text | append: '</a></li>'
+    endif
+  endfor
+
+  if faq_count > 0 and section.settings.faq_toc_label != blank
+    assign faq_toc_text = section.settings.faq_toc_label | escape
+    assign toc_items = toc_items | append: '<li><a class="hs-article__toc-link" href="#faq">' | append: faq_toc_text | append: '</a></li>'
+    assign toc_count = toc_count | plus: 1
+  endif
+
+  assign show_toc = false
+  if section.settings.show_toc and toc_count >= section.settings.toc_min
+    assign show_toc = true
+  endif
+
+  # Reading time, from the words in the body.
+  assign word_count = article.content | strip_html | split: ' ' | size
+  assign read_minutes = word_count | divided_by: section.settings.words_per_minute
+  if read_minutes < 1
+    assign read_minutes = 1
+  endif
 -%}
 
 <section class="hs-scheme-{{ section.settings.color_scheme }}" {{ section.shopify_attributes }}>
@@ -42,6 +197,12 @@
           <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
             {{- article.published_at | date: format: 'date' -}}
           </time>
+          {%- if section.settings.show_read_time and section.settings.read_time_label != blank -%}
+            <span class="hs-article__kicker-sep" aria-hidden="true">
+              {{- section.settings.kicker_divider -}}
+            </span>
+            <span>{{ read_minutes }} {{ section.settings.read_time_label }}</span>
+          {%- endif -%}
           {%- if section.settings.show_author and article.author != blank -%}
             <span class="hs-article__kicker-sep" aria-hidden="true">
               {{- section.settings.kicker_divider -}}
@@ -50,57 +211,151 @@
           {%- endif -%}
         </p>
 
-        <h1 class="hs-h1 hs-article__title hs-measure-19 hs-balance">{{ article.title }}</h1>
+        <h1 class="hs-h1 hs-article__title hs-balance">{{ article.title }}</h1>
 
         {%- if article.excerpt != blank -%}
-          <div class="hs-hero-body hs-article__standfirst hs-measure-46 hs-pretty hs-muted">
+          <div class="hs-hero-body hs-article__standfirst hs-pretty hs-muted">
             {{ article.excerpt }}
           </div>
         {%- endif -%}
       </header>
 
       {%- if article.image -%}
-        {% render 'hs-image', image: article.image, alt: article.image.alt, default: article.title, aspect: section.settings.image_aspect, eager: true, sizes: '(min-width: 80rem) 72rem, 100vw', wrapper_class: 'hs-article__hero' %}
+        {%- assign hero_alt = article.image.alt | default: article.title -%}
+        {% render 'hs-image',
+          image: article.image,
+          alt: hero_alt,
+          aspect: section.settings.image_aspect,
+          eager: true,
+          sizes: '(min-width: 80rem) 72rem, 100vw',
+          wrapper_class: 'hs-article__hero'
+        %}
       {%- endif -%}
 
-      {%- comment -%} Article body {%- endcomment -%}
-      <div class="hs-body hs-rte hs-article__body hs-measure-62 hs-pretty">
-        {{ article.content }}
-      </div>
+      <div class="hs-article__layout{% if show_toc %} hs-article__layout--toc{% endif %}">
+        {%- if show_toc -%}
+          <aside class="hs-article__aside">
+            <nav class="hs-article__toc" aria-label="{{ section.settings.toc_label | escape }}">
+              <p class="hs-eyebrow hs-article__toc-title">{{ section.settings.toc_label }}</p>
+              <ol class="hs-article__toc-list" role="list">
+                {{- toc_items -}}
+              </ol>
+            </nav>
+          </aside>
+        {%- endif -%}
 
-      {%- comment -%} Mandatory activity link {%- endcomment -%}
-      {%- if activity_label != blank and activity_url != blank -%}
-        <aside class="hs-article__route">
-          {%- if section.settings.route_eyebrow != blank -%}
-            <p class="hs-eyebrow">{{ section.settings.route_eyebrow }}</p>
+        <div class="hs-article__main">
+          {%- if show_toc -%}
+            <details class="hs-article__toc-fold">
+              <summary class="hs-article__toc-summary">
+                <span class="hs-eyebrow">{{ section.settings.toc_label }}</span>
+                {% render 'hs-icon', icon: 'chevron-down', size: 18, class: 'hs-article__toc-chevron' %}
+              </summary>
+              <ol class="hs-article__toc-list" role="list">
+                {{- toc_items -}}
+              </ol>
+            </details>
           {%- endif -%}
-          <a class="hs-h4 hs-article__route-link" href="{{ activity_url }}">
-            {{ activity_label }}
-            {% render 'hs-icon', icon: 'arrow-right', size: 18 %}
-          </a>
-          {%- if activity_note != blank -%}
-            <p class="hs-small-body hs-article__route-note hs-measure-54 hs-pretty hs-muted">
-              {{ activity_note }}
+
+          {%- comment -%} Article body {%- endcomment -%}
+          <div class="hs-body hs-rte hs-article__body hs-pretty">
+            {{ body_html }}
+          </div>
+
+          {%- comment -%} The article's own questions {%- endcomment -%}
+          {%- if faq_count > 0 -%}
+            <section class="hs-article__faq" id="faq" aria-labelledby="ArticleFaq-{{ section.id }}">
+              {%- if section.settings.faq_eyebrow != blank -%}
+                <p class="hs-eyebrow">{{ section.settings.faq_eyebrow }}</p>
+              {%- endif -%}
+              <h2 class="hs-h3 hs-article__faq-heading hs-balance" id="ArticleFaq-{{ section.id }}">
+                {{- faq_heading | default: section.settings.faq_heading -}}
+              </h2>
+              <hs-accordion
+                class="hs-faq__list hs-article__faq-list"
+                {% if section.settings.faq_one_at_a_time %}
+                  data-single
+                {% endif %}
+              >
+                {{- faq_items -}}
+              </hs-accordion>
+            </section>
+            <script src="{{ 'hs-accordion.js' | asset_url }}" defer></script>
+          {%- endif -%}
+
+          {%- comment -%} Mandatory activity link {%- endcomment -%}
+          {%- if activity_label != blank and activity_url != blank -%}
+            <aside class="hs-article__route">
+              {%- if section.settings.route_eyebrow != blank -%}
+                <p class="hs-eyebrow">{{ section.settings.route_eyebrow }}</p>
+              {%- endif -%}
+              <a class="hs-h4 hs-article__route-link" href="{{ activity_url }}">
+                {{ activity_label }}
+                {% render 'hs-icon', icon: 'arrow-right', size: 18 %}
+              </a>
+              {%- if activity_note != blank -%}
+                <p class="hs-small-body hs-article__route-note hs-measure-54 hs-pretty hs-muted">
+                  {{ activity_note }}
+                </p>
+              {%- endif -%}
+            </aside>
+          {%- elsif request.design_mode -%}
+            {%- comment -%}
+              Editor only. The storefront shows nothing rather than an empty band.
+            {%- endcomment -%}
+            <aside class="hs-article__route hs-article__route--unset">
+              <p class="hs-small-body">{{ section.settings.route_missing_note }}</p>
+            </aside>
+          {%- endif -%}
+
+          {%- if section.settings.back_label != blank -%}
+            <p class="hs-article__back">
+              <a class="hs-guides__all hs-link" href="{{ blog.url }}">
+                {% render 'hs-icon', icon: 'arrow-right', size: 16, class: 'hs-article__back-icon' %}
+                {{ section.settings.back_label }}
+              </a>
             </p>
           {%- endif -%}
-        </aside>
-      {%- elsif request.design_mode -%}
-        {%- comment -%}
-          Editor only. The storefront shows nothing rather than an empty band.
-        {%- endcomment -%}
-        <aside class="hs-article__route hs-article__route--unset">
-          <p class="hs-small-body">{{ section.settings.route_missing_note }}</p>
-        </aside>
-      {%- endif -%}
-
-      {%- if section.settings.back_label != blank -%}
-        <p class="hs-article__back">
-          <a class="hs-link" href="{{ blog.url }}">{{ section.settings.back_label }}</a>
-        </p>
-      {%- endif -%}
+        </div>
+      </div>
     </article>
   </div>
 </section>
+
+{%- comment -%}
+  Structured data. BlogPosting for the article itself, FAQPage for its own
+  questions — both built from the values rendered above.
+{%- endcomment -%}
+{%- if section.settings.emit_article_schema -%}
+  {%- liquid
+    assign ld_description = article.excerpt_or_content | strip_html | strip | truncate: 300
+    assign ld_url = request.origin | append: article.url
+    assign ld_publisher = shop.name
+  -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": {{ article.title | json }},
+      "description": {{ ld_description | json }},
+      "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+      "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+      "mainEntityOfPage": {{ ld_url | json }},
+      "url": {{ ld_url | json }},
+      "wordCount": {{ word_count | json }},
+      {%- if article.image %}
+      "image": {{ article.image | image_url: width: 1600 | prepend: 'https:' | json }},
+      {%- endif %}
+      "author": { "@type": "Organization", "name": {{ ld_publisher | json }}, "url": {{ request.origin | json }} },
+      "publisher": { "@type": "Organization", "name": {{ ld_publisher | json }}, "url": {{ request.origin | json }} }
+    }
+  </script>
+{%- endif -%}
+{%- if faq_count > 0 and section.settings.emit_faq_schema -%}
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{{ faq_ld }}]}
+  </script>
+{%- endif -%}
 
 {% schema %}
 {
@@ -128,6 +383,27 @@
       "default": false
     },
     {
+      "type": "checkbox",
+      "id": "show_read_time",
+      "label": "t:sections.article.show_read_time",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "read_time_label",
+      "label": "t:sections.article.read_time_label",
+      "default": "min read"
+    },
+    {
+      "type": "range",
+      "id": "words_per_minute",
+      "min": 150,
+      "max": 300,
+      "step": 10,
+      "label": "t:sections.article.words_per_minute",
+      "default": 220
+    },
+    {
       "type": "text",
       "id": "kicker_divider",
       "label": "t:sections.article.kicker_divider",
@@ -145,6 +421,81 @@
       "id": "back_label",
       "label": "t:sections.article.back_label",
       "default": "All guides"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.article.toc_group"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_toc",
+      "label": "t:sections.article.show_toc",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "toc_label",
+      "label": "t:sections.article.toc_label",
+      "default": "In this guide"
+    },
+    {
+      "type": "range",
+      "id": "toc_min",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "label": "t:sections.article.toc_min",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "t:sections.article.faq_group"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.article.faq_info"
+    },
+    {
+      "type": "text",
+      "id": "faq_eyebrow",
+      "label": "t:common.eyebrow",
+      "default": "Questions"
+    },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "t:common.heading",
+      "default": "Frequently asked questions"
+    },
+    {
+      "type": "checkbox",
+      "id": "faq_heading_from_body",
+      "label": "t:sections.article.faq_heading_from_body",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "faq_toc_label",
+      "label": "t:sections.article.faq_toc_label",
+      "default": "Frequently asked questions"
+    },
+    {
+      "type": "checkbox",
+      "id": "faq_one_at_a_time",
+      "label": "t:sections.faq.one_at_a_time",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "emit_faq_schema",
+      "label": "t:sections.article.emit_faq_schema",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "emit_article_schema",
+      "label": "t:sections.article.emit_article_schema",
+      "default": true
     },
     {
       "type": "header",
@@ -202,23 +553,3 @@
   ]
 }
 {% endschema %}
-{% comment %}
-
-This file has been rewritten to preserve the original behavior.
-
----
-Changes:
-- from: |-
-    {% render 'hs-image',
-              image: article.image,
-              alt: article.image.alt | default: article.title,
-              aspect: section.settings.image_aspect,
-              eager: true,
-              sizes: '(min-width: 80rem) 72rem, 100vw',
-              wrapper_class: 'hs-article__hero'
-            %}
-  to: "{% render 'hs-image', image: article.image, alt: article.image.alt, default:
-    article.title, aspect: section.settings.image_aspect, eager: true, sizes: '(min-width:
-    80rem) 72rem, 100vw', wrapper_class: 'hs-article__hero' %}"
-  position: 2510..2732
-{% endcomment %}

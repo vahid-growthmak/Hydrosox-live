@@ -5,17 +5,23 @@
   guides" strip, so an article looks the same wherever it is surfaced.
 
   Accepts:
-    article (object)   required
-    eager   (boolean)  load the image eagerly, for a card above the fold
+    article    (object)   required
+    eager      (boolean)  load the image eagerly, for a card above the fold
+    show_image (boolean)  false hides the image, for a text-only grid. Optional.
+    label      (string)   the eyebrow, e.g. the guide's topic. Falls back to
+                          the first tag, then the date. Optional.
 {%- endcomment -%}
+{%- assign card_alt = article.image.alt | default: article.title -%}
 
-<a class="hs-card hs-guide-card hs-zoom-parent" href="{{ article.url }}">
-  {%- if article.image -%}
-    {% render 'hs-image', image: article.image, alt: article.image.alt, default: article.title, aspect: '3 / 2', eager: eager, sizes: '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw', wrapper_class: 'hs-card__media hs-media--zoom' %}
+<a class="hs-card hs-guide-card hs-zoom-parent{% if show_image == false or article.image == blank %} hs-guide-card--text{% endif %}" href="{{ article.url }}">
+  {%- if article.image and show_image != false -%}
+    {% render 'hs-image', image: article.image, alt: card_alt, aspect: '3 / 2', eager: eager, sizes: '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw', wrapper_class: 'hs-card__media hs-media--zoom' %}
   {%- endif -%}
   <div class="hs-card__body">
     <p class="hs-eyebrow hs-guide-card__meta">
-      {%- if article.tags.size > 0 -%}
+      {%- if label != blank -%}
+        {{ label }}
+      {%- elsif article.tags.size > 0 -%}
         {{ article.tags.first }}
       {%- else -%}
         {{ article.published_at | date: format: 'date' }}
@@ -33,24 +39,3 @@
     </span>
   </div>
 </a>
-{% comment %}
-
-This file has been rewritten to preserve the original behavior.
-
----
-Changes:
-- from: |-
-    {% render 'hs-image',
-          image: article.image,
-          alt: article.image.alt | default: article.title,
-          aspect: '3 / 2',
-          eager: eager,
-          sizes: '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw',
-          wrapper_class: 'hs-card__media hs-media--zoom'
-        %}
-  to: "{% render 'hs-image', image: article.image, alt: article.image.alt, default:
-    article.title, aspect: '3 / 2', eager: eager, sizes: '(min-width: 64rem) 30vw,
-    (min-width: 48rem) 45vw, 100vw', wrapper_class: 'hs-card__media hs-media--zoom'
-    %}"
-  position: 418..656
-{% endcomment %}

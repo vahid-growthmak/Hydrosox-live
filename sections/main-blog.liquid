@@ -6,43 +6,82 @@
   whether current_tags is set. Keeping them together means the tag index cannot
   drift out of step with the hub it belongs to.
 
-  The tag list is built from the blog's own tags rather than typed in, so a tag
-  appears the moment an article carries it and disappears when none do — a
-  category link can never lead to an empty index.
+  Topics are blocks. Each maps one article tag to a named topic with an icon
+  and a line of description, and renders as a "Browse by topic" card with a
+  live count of the guides carrying that tag. The same topics become the filter
+  chips above the grid and the eyebrow on each guide card, so a guide is filed
+  once, by tagging it in the blog post editor, and appears in the right place
+  everywhere. Tags are compared by handle, so "Wudu & Masah", "wudu-masah" and
+  "Wudu masah" are the same topic.
+
+  With no topic blocks the chips fall back to the blog's own tag list, which is
+  how this section behaved before topics existed.
 {%- endcomment -%}
 
 {%- liquid
   assign is_tagged = false
+  assign current_key = ''
   if current_tags.size > 0
     assign is_tagged = true
+    assign current_key = current_tags.first | handleize
   endif
+
+  assign topics = section.blocks | where: 'type', 'topic'
+
+  # Handles of the tags each article carries, collected once. Counted outside
+  # the paginate block, where blog.articles is the first 50 guides — ample for
+  # a guides hub, and the count is a label, not a promise.
+  assign topic_counts = ''
+  assign current_topic = nil
+  for topic in topics
+    assign topic_key = topic.settings.tag | handleize
+    assign n = 0
+    for a in blog.articles
+      for t in a.tags
+        assign t_key = t | handleize
+        if t_key == topic_key
+          assign n = n | plus: 1
+          break
+        endif
+      endfor
+    endfor
+    assign topic_counts = topic_counts | append: n | append: ','
+    if is_tagged and topic_key == current_key
+      assign current_topic = topic
+    endif
+  endfor
+  assign topic_counts = topic_counts | split: ','
 -%}
 
-<section class="hs-scheme-{{ section.settings.color_scheme }}">
+<section class="hs-scheme-{{ section.settings.color_scheme }}" {{ section.shopify_attributes }}>
   <div class="hs-shell hs-pace-{{ section.settings.pace }}">
-    <header class="hs-page__head">
+    <header class="hs-page__head hs-blog__head">
       {%- if is_tagged -%}
         {%- comment -%}
           On a tag index the tag is the subject, and the blog is the way back.
         {%- endcomment -%}
         <p class="hs-eyebrow">
-          <a class="hs-link" href="{{ blog.url }}">{{ blog.title }}</a>
+          <a class="hs-link" href="{{ blog.url }}">{{ section.settings.heading | default: blog.title }}</a>
         </p>
-        <h1 class="hs-h2 hs-balance hs-page__title">
-          {{ 'blogs.tagged.title' | t: tag: current_tags.first }}
+        <h1 class="hs-h1 hs-balance hs-page__title hs-blog__title">
+          {%- if current_topic -%}
+            {{ current_topic.settings.title }}
+          {%- else -%}
+            {{ 'blogs.tagged.title' | t: tag: current_tags.first }}
+          {%- endif -%}
         </h1>
+        {%- if current_topic and current_topic.settings.description != blank -%}
+          <p class="hs-body hs-measure-46 hs-pretty hs-muted hs-page__lede">{{ current_topic.settings.description }}</p>
+        {%- endif -%}
       {%- else -%}
         {%- comment -%}
           The heading falls back to the blog's own title, so the duplicate
           check has to compare against the same value the reader will see.
         {%- endcomment -%}
         {%- assign blog_heading = section.settings.heading | default: blog.title -%}
-        {% render 'hs-eyebrow',
-          eyebrow: section.settings.eyebrow,
-          heading: blog_heading
-        %}
-        <h1 class="hs-h2 hs-measure-19 hs-balance hs-page__title">
-          {{ section.settings.heading | default: blog.title }}
+        {% render 'hs-eyebrow', eyebrow: section.settings.eyebrow, heading: blog_heading %}
+        <h1 class="hs-h1 hs-balance hs-page__title hs-blog__title">
+          {{ blog_heading }}
         </h1>
         {%- if section.settings.lede != blank -%}
           <div class="hs-body hs-measure-46 hs-pretty hs-muted hs-page__lede">{{ section.settings.lede }}</div>
@@ -50,32 +89,130 @@
       {%- endif -%}
     </header>
 
-    {%- comment -%} Category tags, from the blog's own tag list. {%- endcomment -%}
-    {%- if section.settings.show_tags and blog.all_tags.size > 0 -%}
-      <nav class="hs-blog__tags" aria-label="{{ section.settings.tags_label | escape }}">
-        <a
-          class="hs-chip hs-caption{% unless is_tagged %} is-active{% endunless %}"
-          href="{{ blog.url }}"
-        >
-          {{- section.settings.all_label -}}
-        </a>
-        {%- for tag in blog.all_tags -%}
+    {%- comment -%} Browse by topic {%- endcomment -%}
+    {%- if section.settings.show_topic_cards and topics.size > 0 and is_tagged == false -%}
+      <div class="hs-blog__topics">
+        {%- if section.settings.topics_eyebrow != blank -%}
+          <p class="hs-eyebrow hs-blog__topics-label">{{ section.settings.topics_eyebrow }}</p>
+        {%- endif -%}
+        <ul class="hs-blog__topic-grid hs-stagger" role="list">
+          {%- for topic in topics -%}
+            {%- liquid
+              assign n = topic_counts[forloop.index0] | plus: 0
+              assign topic_key = topic.settings.tag | handleize
+            -%}
+            <li class="hs-reveal" {{ topic.shopify_attributes }}>
+              {%- if n > 0 -%}
+                {%- assign topic_el = 'a' -%}
+              {%- else -%}
+                {%- assign topic_el = 'div' -%}
+              {%- endif -%}
+              <{{ topic_el }}
+                class="hs-blog__topic{% if n == 0 %} is-empty{% endif %}"
+                {% if n > 0 %}
+                  href="{{ blog.url }}/tagged/{{ topic_key }}"
+                {% endif %}
+              >
+              <span class="hs-blog__topic-icon" aria-hidden="true">
+                {% render 'hs-icon', icon: topic.settings.icon, size: 18 %}
+              </span>
+              <span class="hs-h4 hs-blog__topic-title hs-balance">{{ topic.settings.title }}</span>
+              {%- if topic.settings.description != blank -%}
+                <span class="hs-small-body hs-muted hs-pretty hs-blog__topic-text">{{ topic.settings.description }}</span>
+              {%- endif -%}
+              <span class="hs-caption hs-muted hs-blog__topic-count">
+                {%- if n == 0 -%}
+                  {{ section.settings.count_none }}
+                {%- elsif n == 1 -%}
+                  {{ n }} {{ section.settings.count_one }}
+                {%- else -%}
+                  {{ n }} {{ section.settings.count_other }}
+                {%- endif -%}
+              </span>
+              </{{ topic_el }}>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Filter chips {%- endcomment -%}
+    {%- if section.settings.show_tags -%}
+      {%- capture chips -%}
+        {%- if topics.size > 0 -%}
+          {%- for topic in topics -%}
+            {%- assign n = topic_counts[forloop.index0] | plus: 0 -%}
+            {%- assign topic_key = topic.settings.tag | handleize -%}
+            {%- if n > 0 -%}
+              <a
+                class="hs-chip hs-caption{% if topic_key == current_key %} is-active{% endif %}"
+                href="{{ blog.url }}/tagged/{{ topic_key }}"
+                {% if topic_key == current_key %}
+                  aria-current="page"
+                {% endif %}
+              >
+                {{- topic.settings.chip_label | default: topic.settings.title -}}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for tag in blog.all_tags -%}
+            {%- assign tag_key = tag | handleize -%}
+            <a
+              class="hs-chip hs-caption{% if tag_key == current_key %} is-active{% endif %}"
+              href="{{ blog.url }}/tagged/{{ tag_key }}"
+            >
+              {{- tag -}}
+            </a>
+          {%- endfor -%}
+        {%- endif -%}
+      {%- endcapture -%}
+      {%- if chips != blank -%}
+        <nav class="hs-blog__tags" aria-label="{{ section.settings.tags_label | escape }}">
+          {%- if section.settings.showing_label != blank -%}
+            <span class="hs-caption hs-muted hs-blog__tags-label">{{ section.settings.showing_label }}</span>
+          {%- endif -%}
           <a
-            class="hs-chip hs-caption{% if current_tags contains tag %} is-active{% endif %}"
-            href="{{ blog.url }}/tagged/{{ tag | handleize }}"
+            class="hs-chip hs-caption{% unless is_tagged %} is-active{% endunless %}"
+            href="{{ blog.url }}"
+            {% unless is_tagged %}
+              aria-current="page"
+            {% endunless %}
           >
-            {{- tag -}}
+            {{- section.settings.all_label -}}
           </a>
-        {%- endfor -%}
-      </nav>
+          {{- chips -}}
+        </nav>
+      {%- endif -%}
     {%- endif -%}
 
     {%- paginate blog.articles by section.settings.per_page -%}
       {%- if blog.articles.size > 0 -%}
-        <ul class="hs-guides__grid hs-stagger" role="list">
+        <ul class="hs-guides__grid hs-blog__grid hs-stagger" role="list">
           {%- for article in blog.articles -%}
+            {%- liquid
+              assign card_label = ''
+              for topic in topics
+                assign topic_key = topic.settings.tag | handleize
+                for t in article.tags
+                  assign t_key = t | handleize
+                  if t_key == topic_key
+                    assign card_label = topic.settings.chip_label | default: topic.settings.title
+                    break
+                  endif
+                endfor
+                if card_label != ''
+                  break
+                endif
+              endfor
+            -%}
             <li class="hs-reveal">
-              {% render 'hs-guide-card', article: article, eager: forloop.first %}
+              {% render 'hs-guide-card',
+                article: article,
+                eager: forloop.first,
+                show_image: section.settings.show_images,
+                label: card_label
+              %}
             </li>
           {%- endfor -%}
         </ul>
@@ -138,7 +275,14 @@
       "max": 24,
       "step": 3,
       "label": "t:sections.collection.per_page",
-      "default": 9
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_images",
+      "label": "t:sections.blog.show_images",
+      "info": "t:sections.blog.show_images_info",
+      "default": false
     },
     { "type": "header", "content": "t:sections.blog.intro_group" },
     { "type": "text", "id": "eyebrow", "label": "t:common.eyebrow" },
@@ -155,6 +299,18 @@
       "label": "t:sections.blog.empty_note",
       "info": "t:sections.blog.empty_note_info"
     },
+    { "type": "header", "content": "t:sections.blog.topics_group" },
+    { "type": "paragraph", "content": "t:sections.blog.topics_info" },
+    {
+      "type": "checkbox",
+      "id": "show_topic_cards",
+      "label": "t:sections.blog.show_topic_cards",
+      "default": true
+    },
+    { "type": "text", "id": "topics_eyebrow", "label": "t:common.eyebrow", "default": "Browse by topic" },
+    { "type": "text", "id": "count_one", "label": "t:sections.blog.count_one", "default": "guide" },
+    { "type": "text", "id": "count_other", "label": "t:sections.blog.count_other", "default": "guides" },
+    { "type": "text", "id": "count_none", "label": "t:sections.blog.count_none", "default": "Coming soon" },
     { "type": "header", "content": "t:sections.blog.tags_group" },
     {
       "type": "checkbox",
@@ -163,8 +319,45 @@
       "info": "t:sections.blog.show_tags_info",
       "default": true
     },
-    { "type": "text", "id": "all_label", "label": "t:sections.blog.all_label", "default": "Everything" },
+    { "type": "text", "id": "showing_label", "label": "t:sections.blog.showing_label", "default": "Showing" },
+    { "type": "text", "id": "all_label", "label": "t:sections.blog.all_label", "default": "All guides" },
     { "type": "text", "id": "tags_label", "label": "t:sections.blog.tags_label", "default": "Guide categories" }
+  ],
+  "blocks": [
+    {
+      "type": "topic",
+      "name": "t:sections.blog.block_topic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "t:sections.blog.topic_tag",
+          "info": "t:sections.blog.topic_tag_info"
+        },
+        { "type": "text", "id": "title", "label": "t:common.title" },
+        {
+          "type": "text",
+          "id": "chip_label",
+          "label": "t:sections.blog.topic_chip_label",
+          "info": "t:sections.blog.topic_chip_label_info"
+        },
+        { "type": "textarea", "id": "description", "label": "t:common.description" },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "t:sections.blog.topic_icon",
+          "options": [
+            { "value": "layers", "label": "t:sections.blog.icon_layers" },
+            { "value": "compass", "label": "t:sections.blog.icon_compass" },
+            { "value": "droplet", "label": "t:sections.blog.icon_droplet" },
+            { "value": "moon", "label": "t:sections.blog.icon_moon" },
+            { "value": "ruler", "label": "t:sections.blog.icon_ruler" },
+            { "value": "book", "label": "t:sections.blog.icon_book" }
+          ],
+          "default": "book"
+        }
+      ]
+    }
   ]
 }
 {% endschema %}

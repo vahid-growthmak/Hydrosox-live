@@ -6,7 +6,8 @@
 
   Accepts:
   - icon: {String} One of: chevron-down, chevron-right, search, bag, menu,
-    close, plus, minus, arrow-right, play, check, phone, mail, external.
+    close, plus, minus, arrow-right, play, check, phone, mail, external,
+    layers, compass, droplet, moon, ruler, book.
   - class: {String} Classes for the <svg>. Optional.
   - size: {Number} Pixel size, applied as width and height. Default 24.
 
@@ -68,5 +69,17 @@
       <path d="M15 3h6v6" /><path d="M10 14 21 3" /><path
         d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
       />
+    {%- when 'layers' -%}
+      <path d="m12 2 9 5-9 5-9-5 9-5z" /><path d="m3 12 9 5 9-5" /><path d="m3 17 9 5 9-5" />
+    {%- when 'compass' -%}
+      <circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z" />
+    {%- when 'droplet' -%}
+      <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5S5 13 5 15a7 7 0 0 0 7 7z" />
+    {%- when 'moon' -%}
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z" />
+    {%- when 'ruler' -%}
+      <path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0z" /><path d="m14.5 12.5 2-2" /><path d="m11.5 9.5 2-2" /><path d="m8.5 6.5 2-2" /><path d="m17.5 15.5 2-2" />
+    {%- when 'book' -%}
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
   {%- endcase -%}
 </svg>

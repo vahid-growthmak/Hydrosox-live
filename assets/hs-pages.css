@@ -332,6 +332,10 @@
 
 /* --------------------------------------------------------------------------
    Article
+
+   Centred throughout. The header and hero share the page's centre line; the
+   body is a reading column of about 70 characters, with the contents list in
+   the left gutter on wide screens and folded above the body on small ones.
    -------------------------------------------------------------------------- */
 
 .hs-article {
@@ -340,13 +344,22 @@
 }
 
 .hs-article__head {
-  margin-bottom: 2rem;
+  max-width: 50rem;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+@media (min-width: 64rem) {
+  .hs-article__head {
+    margin-bottom: 3rem;
+  }
 }
 
 .hs-article__kicker {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   color: var(--eyebrow);
 }
@@ -356,11 +369,13 @@
 }
 
 .hs-article__title {
-  margin-top: 1rem;
+  margin: 1rem auto 0;
+  max-width: 24ch;
 }
 
 .hs-article__standfirst {
-  margin-top: 1.25rem;
+  margin: 1.25rem auto 0;
+  max-width: 42rem;
 }
 
 .hs-article__standfirst > :first-child {
@@ -368,8 +383,223 @@
 }
 
 .hs-article__hero {
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
   margin-bottom: 2.5rem;
+}
+
+@media (min-width: 64rem) {
+  .hs-article__hero {
+    margin-bottom: 4rem;
+  }
+}
+
+.hs-article__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+
+.hs-article__main {
+  min-width: 0;
+  width: 100%;
+  max-width: 44rem;
+  margin-inline: auto;
+}
+
+.hs-article__aside {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  /*
+    Three tracks: contents, body, and an empty track that mirrors the first, so
+    the body sits on the same centre line as the title above it.
+  */
+  .hs-article__layout--toc {
+    grid-template-columns: minmax(12rem, 1fr) minmax(0, 44rem) minmax(0, 1fr);
+    gap: 3rem;
+  }
+
+  .hs-article__layout--toc .hs-article__main {
+    grid-column: 2;
+    max-width: none;
+  }
+
+  .hs-article__aside {
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+    width: 100%;
+    max-width: 15rem;
+  }
+
+  .hs-article__toc {
+    position: sticky;
+    top: calc(var(--chrome) + 2rem);
+    max-height: calc(100vh - var(--chrome) - 4rem);
+    overflow-y: auto;
+  }
+
+  .hs-article__toc-fold {
+    display: none;
+  }
+}
+
+.hs-article__toc-title {
+  margin-bottom: 1rem;
+}
+
+.hs-article__toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--rule);
+}
+
+.hs-article__toc-link {
+  display: block;
+  margin-left: -1px;
+  padding: 0.4375rem 0 0.4375rem 1rem;
+  border-left: 2px solid transparent;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--on-surface-muted);
+  text-decoration: none;
+  transition:
+    color var(--duration-press) var(--ease-out),
+    border-color var(--duration-press) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hs-article__toc-link:hover {
+    color: var(--blue-deep);
+    border-left-color: var(--blue);
+  }
+}
+
+.hs-article__toc-link:focus-visible {
+  color: var(--blue-deep);
+  border-left-color: var(--blue);
+}
+
+/* The contents list on small screens: folded, above the body. */
+.hs-article__toc-fold {
+  margin-bottom: 2rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  background-color: var(--well);
+}
+
+.hs-article__toc-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.125rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.hs-article__toc-summary::-webkit-details-marker {
+  display: none;
+}
+
+.hs-article__toc-chevron {
+  flex-shrink: 0;
+  transition: rotate var(--duration-press) var(--ease-out);
+}
+
+.hs-article__toc-fold[open] .hs-article__toc-chevron {
+  rotate: 180deg;
+}
+
+.hs-article__toc-fold .hs-article__toc-list {
+  margin: 0 1.125rem 1rem;
+}
+
+/* Body copy */
+.hs-article__body {
+  overflow-wrap: break-word;
+}
+
+.hs-article__body h2,
+.hs-article__body h3 {
+  scroll-margin-top: calc(var(--chrome) + 1.5rem);
+}
+
+.hs-article__body h2 {
+  margin-top: 2.25em;
+}
+
+.hs-article__body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+.hs-article__body p:has(> img:only-child),
+.hs-article__body p:has(> span > img:only-child) {
+  margin-block: 1.75em;
+}
+
+/* A table from the rich-text editor scrolls inside the column, never the page. */
+.hs-article__body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  margin-block: 1.75em;
+}
+
+.hs-article__body td,
+.hs-article__body th {
+  padding: 0.75rem 1rem 0.75rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  text-align: left;
+  min-width: 8rem;
+}
+
+.hs-article__body tr:first-child td,
+.hs-article__body th {
+  font-weight: var(--weight-semibold);
+  color: var(--on-surface);
+  border-bottom-color: var(--rule-strong);
+}
+
+.hs-article__body hr {
+  margin-block: 2.5em;
+  border: 0;
+  border-top: 1px solid var(--rule);
+}
+
+/* The article's own questions. */
+.hs-article__faq {
+  margin-top: 3.5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--rule);
+  scroll-margin-top: calc(var(--chrome) + 1.5rem);
+}
+
+.hs-article__faq-heading {
+  margin-top: 0.75rem;
+}
+
+.hs-article__faq-list {
+  margin-top: 1.75rem;
+}
+
+.hs-article__faq .hs-faq__summary {
+  padding-block: 1.375rem;
+}
+
+.hs-article__faq .hs-faq__answer {
+  padding-bottom: 1.5rem;
 }
 
 /* The band routing the reader to exactly one activity page. */
@@ -418,6 +648,10 @@
 
 .hs-article__back {
   margin-top: 2.5rem;
+}
+
+.hs-article__back-icon {
+  rotate: 180deg;
 }
 
 /* --------------------------------------------------------------------------
@@ -1792,15 +2026,162 @@
    Blog
    -------------------------------------------------------------------------- */
 
+.hs-blog__head {
+  margin-bottom: 0;
+}
+
+/* Browse by topic */
+.hs-blog__topics {
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 64rem) {
+  .hs-blog__topics {
+    margin-top: 3rem;
+  }
+}
+
+.hs-blog__topics-label {
+  margin-bottom: 1rem;
+}
+
+.hs-blog__topic-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 40rem) {
+  .hs-blog__topic-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .hs-blog__topic-grid {
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1rem;
+  }
+}
+
+.hs-blog__topic {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1.25rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-xl);
+  background-color: var(--well);
+  color: var(--on-surface);
+  text-decoration: none;
+  transition:
+    transform var(--duration-drawer) var(--ease-out),
+    border-color var(--duration-press) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.hs-blog__topic:hover {
+    transform: translateY(-3px);
+    border-color: var(--blue);
+  }
+
+  a.hs-blog__topic:hover .hs-blog__topic-title {
+    color: var(--blue-deep);
+  }
+}
+
+a.hs-blog__topic:focus-visible {
+  border-color: var(--blue);
+}
+
+.hs-blog__topic-icon {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  background-color: var(--surface);
+  color: var(--blue);
+}
+
+.hs-blog__topic-title {
+  transition: color var(--duration-press) var(--ease-out);
+}
+
+.hs-blog__topic-count {
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+.hs-blog__topic.is-empty {
+  opacity: 0.7;
+}
+
+/* Filter chips */
 .hs-blog__tags {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.5rem;
-  margin-top: 1.75rem;
+  margin-top: 2.5rem;
+}
+
+.hs-blog__tags-label {
+  margin-right: 0.25rem;
 }
 
 .hs-blog__tags + * {
-  margin-top: 2.25rem;
+  margin-top: 1.5rem;
+}
+
+.hs-blog__head + .hs-guides__grid {
+  margin-top: 2.5rem;
+}
+
+/* Guide grid */
+.hs-blog__grid {
+  gap: 1rem;
+}
+
+@media (min-width: 64rem) {
+  .hs-blog__grid {
+    gap: 1.25rem;
+  }
+}
+
+/* A text-only guide card: outlined like the topic cards above it. */
+.hs-guide-card--text {
+  border: 1px solid var(--rule);
+}
+
+.hs-guide-card--text .hs-card__body {
+  padding: 1.5rem;
+}
+
+@media (min-width: 64rem) {
+  .hs-guide-card--text .hs-card__body {
+    padding: 1.75rem 2rem;
+  }
+}
+
+.hs-guide-card .hs-card__title {
+  transition: color var(--duration-press) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.hs-guide-card:hover .hs-card__title {
+    color: var(--blue-deep);
+  }
+}
+
+.hs-guide-card__cue {
+  margin-top: auto;
+  padding-top: 0.875rem;
 }
 
 .hs-blog__empty {

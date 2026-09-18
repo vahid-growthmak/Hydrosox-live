@@ -1,0 +1,29 @@
+{%- comment -%}
+  One question in an article's FAQ.
+
+  The same markup as a row of the faq-accordion section, so an article's
+  questions look and behave exactly like the questions on every other page,
+  and hs-accordion.js animates them without knowing the difference.
+
+  Accepts:
+  - question: {String} Plain text.
+  - answer: {String} HTML.
+
+  Usage:
+  {% render 'hs-article-faq-item', question: q_text, answer: a_html %}
+{%- endcomment -%}
+<details class="hs-faq__item">
+  <summary class="hs-faq__summary">
+    <span class="hs-h4 hs-faq__question hs-pretty">
+      {{- question -}}
+    </span>
+    <span class="hs-faq__marker" aria-hidden="true">
+      {% render 'hs-icon', icon: 'plus', size: 20 %}
+    </span>
+  </summary>
+  <div class="hs-faq__answer-wrap">
+    <div class="hs-small-body hs-rte hs-faq__answer hs-pretty hs-muted">
+      {{ answer }}
+    </div>
+  </div>
+</details>

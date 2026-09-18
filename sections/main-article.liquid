@@ -236,7 +236,7 @@
 {%- endcomment -%}
 {%- if section.settings.emit_article_schema -%}
   {%- liquid
-    assign ld_description = article.excerpt_or_content | strip_html | strip | truncate: 300
+    assign ld_description = article.excerpt_or_content | strip_html | strip_newlines | strip | truncate: 300
     assign ld_url = request.origin | append: article.url
     assign ld_publisher = shop.name
   -%}

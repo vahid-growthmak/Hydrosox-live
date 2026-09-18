@@ -250,8 +250,8 @@
           "mainEntity": [
             {%- for q_text in faq_questions -%}
               {%- liquid
-                assign q_json = q_text | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
-                assign a_json = faq_answers[forloop.index0] | strip_html | strip | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
+                assign q_json = q_text | strip_newlines | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
+                assign a_json = faq_answers[forloop.index0] | strip_html | strip_newlines | strip | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
               -%}
               {%- unless forloop.first %},{% endunless -%}
               {

@@ -389,11 +389,31 @@
         "tag": "newsletter",
         "note": "<p>One email to set you up, then only when there is something worth sending. Unsubscribe any time. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>"
       }
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "wash",
+        "anchor_id": "faq",
+        "source": "article",
+        "one_at_a_time": false,
+        "emit_schema": true,
+        "eyebrow": "Questions",
+        "heading": "Frequently asked questions",
+        "lede": "<p>Short answers to what people ask about this guide's subject. If one of them contradicts the product pages, tell us.</p>",
+        "help_prefix": "Something not here?",
+        "help_label": "Phone or email us",
+        "help_link": "/pages/contact",
+        "cta_label": "Buy a pair",
+        "cta_link": "/products/hydrosox-waterproof-socks",
+        "cta_note": "Two decisions and a quantity. No account needed."
+      }
     }
   },
   "order": [
     "breadcrumb",
     "main",
+    "faq",
     "buy",
     "related",
     "signup"

@@ -492,7 +492,12 @@
       "question": "Question",
       "answer": "Answer",
       "emit_schema": "Publish FAQ structured data",
-      "emit_schema_info": "Turn on for ONE page only. Two pages carrying this for the same questions compete for the same search result."
+      "emit_schema_info": "Turn on for ONE page only. Two pages carrying this for the same questions compete for the same search result.",
+      "source": "Questions from",
+      "source_info": "On the blog post template, choose \"This blog post\" so every guide shows its own questions. The question blocks are then not used.",
+      "source_blocks": "The question blocks in this section",
+      "source_article": "This blog post (FAQs field, or FAQ heading in the post)",
+      "article_empty_note": "Theme editor note when the post has no questions"
     },
     "company": {
       "name": "Company details",
@@ -605,12 +610,11 @@
       "show_toc": "Show \"In this guide\" contents list",
       "toc_label": "Contents list title",
       "toc_min": "Only show when the guide has at least this many headings",
-      "faq_group": "Questions (FAQ)",
-      "faq_info": "Each guide's questions are its own. Add them on the blog post in admin, under Metafields → FAQs. If that field is empty, a heading 2 called \"Frequently asked questions\" in the post, with one heading 3 per question and the answer under it, is used instead. Either way they render as the accordion below and as FAQ structured data for Google.",
-      "faq_heading_from_body": "Use the post's own FAQ heading text",
+      "faq_group": "Questions",
+      "faq_info": "The post's questions are shown by the Questions section below this one (set to \"Questions from: this blog post\"). Add them on the blog post under Metafields → FAQs, or write a \"Frequently asked questions\" heading 2 in the post with one heading 3 per question.",
       "faq_toc_label": "Contents list entry for the questions",
-      "emit_faq_schema": "Add FAQ structured data (FAQPage)",
-      "emit_article_schema": "Add article structured data (BlogPosting)"
+      "emit_article_schema": "Add article structured data (BlogPosting)",
+      "lift_faq": "Move the post's FAQ into the Questions section"
     },
     "phero": {
       "name": "Page hero",

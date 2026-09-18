@@ -25,7 +25,108 @@
 {%- liquid
   assign questions = section.blocks | where: 'type', 'question'
   assign question_count = questions | size
+
+  # ---------------------------------------------------------------------------
+  # Questions from the blog post.
+  #
+  # On a blog post, with "Questions from" set to the post, the questions are
+  # the post's own rather than this section's blocks, so one section on the
+  # article template serves every guide. They come from the post's FAQs field
+  # (article.metafields.custom.faqs, a list of `faq` metaobject entries with
+  # `question` and `answer` fields) when it has entries, otherwise from the
+  # post body: a heading 2 containing "Frequently asked questions" (or "FAQ"),
+  # then one heading 3 per question with the answer beneath it. main-article
+  # lifts that part out of the body so it is not shown twice.
+  #
+  # Liquid has no arrays to build into, so questions and answers collect as
+  # two strings joined on a marker that cannot occur in the content, then split.
+  # A post with no questions renders nothing — the blocks below are for the
+  # other pages this section serves, and are never shown on a post instead.
+  # ---------------------------------------------------------------------------
+  assign use_article = false
+  if section.settings.source == 'article' and article != blank
+    assign use_article = true
+  endif
+
+  if use_article
+    assign faq_sep = '<!--hs-faq-sep-->'
+    assign faq_q_raw = ''
+    assign faq_a_raw = ''
+    assign question_count = 0
+
+    for entry in article.metafields.custom.faqs.value
+      assign q_text = entry.question.value | strip_html | strip
+      if entry.answer.type == 'rich_text_field'
+        assign a_html = entry.answer | metafield_tag
+      else
+        assign a_html = entry.answer.value | escape | newline_to_br | prepend: '<p>' | append: '</p>'
+      endif
+      assign a_text = a_html | strip_html | strip
+      if q_text == blank or a_text == blank
+        continue
+      endif
+      if question_count > 0
+        assign faq_q_raw = faq_q_raw | append: faq_sep
+        assign faq_a_raw = faq_a_raw | append: faq_sep
+      endif
+      assign faq_q_raw = faq_q_raw | append: q_text
+      assign faq_a_raw = faq_a_raw | append: a_html
+      assign question_count = question_count | plus: 1
+    endfor
+
+    if question_count == 0
+      assign h2_parts = article.content | split: '<h2'
+      for part in h2_parts
+        if forloop.first
+          continue
+        endif
+        assign part_bits = part | split: '</h2>'
+        assign heading_key = part_bits.first | prepend: '<h2' | strip_html | strip | downcase
+        unless heading_key contains 'frequently asked' or heading_key contains 'faq'
+          continue
+        endunless
+        assign faq_body = part | remove_first: part_bits.first | remove_first: '</h2>'
+        assign h3_parts = faq_body | split: '<h3'
+        for q_part in h3_parts
+          if forloop.first
+            continue
+          endif
+          assign q_bits = q_part | split: '</h3>'
+          if q_bits.size < 2
+            continue
+          endif
+          assign q_text = q_bits.first | prepend: '<h3' | strip_html | strip
+          assign a_html = q_part | remove_first: q_bits.first | remove_first: '</h3>' | strip
+          assign a_text = a_html | strip_html | strip
+          if q_text == blank or a_text == blank
+            continue
+          endif
+          if question_count > 0
+            assign faq_q_raw = faq_q_raw | append: faq_sep
+            assign faq_a_raw = faq_a_raw | append: faq_sep
+          endif
+          assign faq_q_raw = faq_q_raw | append: q_text
+          assign faq_a_raw = faq_a_raw | append: a_html
+          assign question_count = question_count | plus: 1
+        endfor
+        break
+      endfor
+    endif
+
+    assign faq_questions = faq_q_raw | split: faq_sep
+    assign faq_answers = faq_a_raw | split: faq_sep
+  endif
 -%}
+
+{%- if use_article and question_count == 0 -%}
+  {%- if request.design_mode -%}
+    <section class="hs-faq hs-scheme-{{ section.settings.color_scheme }}" {{ section.shopify_attributes }}>
+      <div class="hs-shell hs-pace-tight">
+        <p class="hs-small-body hs-muted">{{ section.settings.article_empty_note }}</p>
+      </div>
+    </section>
+  {%- endif -%}
+{%- else -%}
 
 <section
   class="hs-faq hs-scheme-{{ section.settings.color_scheme }} hs-border-b hs-anchor"
@@ -74,6 +175,25 @@
             data-single
           {% endif %}
         >
+          {%- if use_article -%}
+            {%- for q_text in faq_questions -%}
+              <details class="hs-faq__item hs-reveal">
+                <summary class="hs-faq__summary">
+                  <span class="hs-h4 hs-faq__question hs-measure-30 hs-pretty">
+                    {{- q_text -}}
+                  </span>
+                  <span class="hs-faq__marker" aria-hidden="true">
+                    {% render 'hs-icon', icon: 'plus', size: 20 %}
+                  </span>
+                </summary>
+                <div class="hs-faq__answer-wrap">
+                  <div class="hs-small-body hs-rte hs-faq__answer hs-measure-62 hs-pretty hs-muted">
+                    {{ faq_answers[forloop.index0] }}
+                  </div>
+                </div>
+              </details>
+            {%- endfor -%}
+          {%- else -%}
           {%- for block in questions -%}
             <details class="hs-faq__item hs-reveal" {{ block.shopify_attributes }}>
               <summary class="hs-faq__summary">
@@ -91,6 +211,7 @@
               </div>
             </details>
           {%- endfor -%}
+          {%- endif -%}
 
           {%- if section.settings.cta_label != blank -%}
             <div class="hs-faq__foot">
@@ -120,7 +241,33 @@
   rich result rather than reinforcing each other.
 {%- endcomment -%}
 {%- if section.settings.emit_schema -%}
-  {% render 'hs-schema-faq', blocks: section.blocks %}
+  {%- if use_article -%}
+    {%- if question_count > 0 -%}
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {%- for q_text in faq_questions -%}
+              {%- liquid
+                assign q_json = q_text | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
+                assign a_json = faq_answers[forloop.index0] | strip_html | strip | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
+              -%}
+              {%- unless forloop.first %},{% endunless -%}
+              {
+                "@type": "Question",
+                "name": {{ q_json }},
+                "acceptedAnswer": { "@type": "Answer", "text": {{ a_json }} }
+              }
+            {%- endfor -%}
+          ]
+        }
+      </script>
+    {%- endif -%}
+  {%- else -%}
+    {% render 'hs-schema-faq', blocks: section.blocks %}
+  {%- endif -%}
+{%- endif -%}
 {%- endif -%}
 
 {% schema %}
@@ -145,6 +292,23 @@
       "label": "t:common.anchor_id",
       "info": "t:common.anchor_id_info",
       "default": "faq"
+    },
+    {
+      "type": "select",
+      "id": "source",
+      "label": "t:sections.faq.source",
+      "info": "t:sections.faq.source_info",
+      "options": [
+        { "value": "blocks", "label": "t:sections.faq.source_blocks" },
+        { "value": "article", "label": "t:sections.faq.source_article" }
+      ],
+      "default": "blocks"
+    },
+    {
+      "type": "text",
+      "id": "article_empty_note",
+      "label": "t:sections.faq.article_empty_note",
+      "default": "This blog post has no questions yet, so this section is hidden on the live site. Add them on the post under Metafields → FAQs, or as a \"Frequently asked questions\" heading 2 in the post with one heading 3 per question."
     },
     {
       "type": "checkbox",

@@ -12,21 +12,14 @@
   ones. Every heading in the body is given an id here, so the contents list,
   shared links and the FAQ jump all land on the right heading.
 
-  Questions are per article, and come from one of two places:
-
-  1. The blog post's own "FAQs" field — article.metafields.custom.faqs, a list
-     of `faq` metaobject entries (question + answer). Filled in on the blog
-     post page in admin, under Metafields.
-  2. Otherwise, the article body itself: a heading 2 whose text contains
-     "Frequently asked questions" (or "FAQ"), followed by one heading 3 per
-     question with the answer below it. That is how the guides are already
-     written, so an existing guide gets its questions without re-entering them.
-
-  Either way the questions are lifted out of the body and rendered in the same
-  accordion as every other page, and emitted as FAQPage structured data built
-  from the same strings, so what a reader sees and what a crawler reads cannot
-  disagree. When the field has entries it wins, and a FAQ section in the body is
-  dropped rather than shown twice.
+  Questions are not rendered here. They live in their own Questions section
+  (faq-accordion, "Questions from: this blog post") below this one in
+  templates/article.json, so they can be moved, restyled or removed in the
+  theme editor like the questions on every other page. This section's only
+  part in it: when "Move the post's FAQ into the Questions section" is on, a
+  "Frequently asked questions" heading 2 in the body — and everything under it
+  up to the next heading 2 — is left out of the body, so the questions are not
+  shown twice, and the contents list links down to them.
 
   The sitemap makes one rule structural rather than editorial: every article
   must route to exactly one activity page, so no article is a dead end. The
@@ -55,46 +48,15 @@
     endif
   endfor
 
-  # ---------------------------------------------------------------------------
-  # Questions from the blog post's FAQs field, when it has any.
-  # ---------------------------------------------------------------------------
-  assign faq_items = ''
-  assign faq_ld = ''
-  assign faq_count = 0
-  assign faq_heading = section.settings.faq_heading
-  assign faq_entries = article.metafields.custom.faqs.value
-
-  for entry in faq_entries
-    assign q_text = entry.question.value | strip_html | strip
-    if entry.answer.type == 'rich_text_field'
-      assign a_html = entry.answer | metafield_tag
-    else
-      assign a_html = entry.answer.value | escape | newline_to_br | prepend: '<p>' | append: '</p>'
-    endif
-    assign a_text = a_html | strip_html | strip
-    if q_text == blank or a_text == blank
-      continue
-    endif
-    assign faq_count = faq_count | plus: 1
-    capture faq_item
-      render 'hs-article-faq-item', question: q_text, answer: a_html
-    endcapture
-    assign faq_items = faq_items | append: faq_item
-    if faq_count > 1
-      assign faq_ld = faq_ld | append: ','
-    endif
-    assign q_json = q_text | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
-    assign a_json = a_text | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
-    assign faq_ld = faq_ld | append: '{"@type":"Question","name":' | append: q_json | append: ',"acceptedAnswer":{"@type":"Answer","text":' | append: a_json | append: '}}'
-  endfor
-  assign faq_from_field = false
-  if faq_count > 0
-    assign faq_from_field = true
+  # Does this post have questions for the Questions section to show?
+  assign has_faq = false
+  if article.metafields.custom.faqs.value.size > 0
+    assign has_faq = true
   endif
 
   # ---------------------------------------------------------------------------
   # Walk the body's heading 2s once: give each an id, collect the contents
-  # list, and lift out the FAQ section.
+  # list, and leave out the FAQ part.
   # ---------------------------------------------------------------------------
   assign body_html = ''
   assign toc_items = ''
@@ -116,42 +78,9 @@
       assign is_faq = true
     endif
 
-    if is_faq
-      # A FAQ section in the body. Parsed only when the field is empty; when
-      # the field has entries it is simply dropped, so nothing shows twice.
-      unless faq_from_field
-        if section.settings.faq_heading_from_body and heading_text != blank
-          assign faq_heading = heading_text
-        endif
-        assign faq_body = part | remove_first: part_bits.first | remove_first: '</h2>'
-        assign h3_parts = faq_body | split: '<h3'
-        for q_part in h3_parts
-          if forloop.first
-            continue
-          endif
-          assign q_bits = q_part | split: '</h3>'
-          if q_bits.size < 2
-            continue
-          endif
-          assign q_text = q_bits.first | prepend: '<h3' | strip_html | strip
-          assign a_html = q_part | remove_first: q_bits.first | remove_first: '</h3>' | strip
-          assign a_text = a_html | strip_html | strip
-          if q_text == blank or a_text == blank
-            continue
-          endif
-          assign faq_count = faq_count | plus: 1
-          capture faq_item
-            render 'hs-article-faq-item', question: q_text, answer: a_html
-          endcapture
-          assign faq_items = faq_items | append: faq_item
-          if faq_count > 1
-            assign faq_ld = faq_ld | append: ','
-          endif
-          assign q_json = q_text | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
-          assign a_json = a_text | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&#39;', "'" | replace: '&quot;', '"' | json
-          assign faq_ld = faq_ld | append: '{"@type":"Question","name":' | append: q_json | append: ',"acceptedAnswer":{"@type":"Answer","text":' | append: a_json | append: '}}'
-        endfor
-      endunless
+    if is_faq and section.settings.lift_faq
+      # Shown by the Questions section instead; see the note at the top.
+      assign has_faq = true
       continue
     endif
 
@@ -169,7 +98,7 @@
     endif
   endfor
 
-  if faq_count > 0 and section.settings.faq_toc_label != blank
+  if has_faq and section.settings.lift_faq and section.settings.faq_toc_label != blank
     assign faq_toc_text = section.settings.faq_toc_label | escape
     assign toc_items = toc_items | append: '<li><a class="hs-article__toc-link" href="#faq">' | append: faq_toc_text | append: '</a></li>'
     assign toc_count = toc_count | plus: 1
@@ -262,27 +191,6 @@
             {{ body_html }}
           </div>
 
-          {%- comment -%} The article's own questions {%- endcomment -%}
-          {%- if faq_count > 0 -%}
-            <section class="hs-article__faq" id="faq" aria-labelledby="ArticleFaq-{{ section.id }}">
-              {%- if section.settings.faq_eyebrow != blank -%}
-                <p class="hs-eyebrow">{{ section.settings.faq_eyebrow }}</p>
-              {%- endif -%}
-              <h2 class="hs-h3 hs-article__faq-heading hs-balance" id="ArticleFaq-{{ section.id }}">
-                {{- faq_heading | default: section.settings.faq_heading -}}
-              </h2>
-              <hs-accordion
-                class="hs-faq__list hs-article__faq-list"
-                {% if section.settings.faq_one_at_a_time %}
-                  data-single
-                {% endif %}
-              >
-                {{- faq_items -}}
-              </hs-accordion>
-            </section>
-            <script src="{{ 'hs-accordion.js' | asset_url }}" defer></script>
-          {%- endif -%}
-
           {%- comment -%} Mandatory activity link {%- endcomment -%}
           {%- if activity_label != blank and activity_url != blank -%}
             <aside class="hs-article__route">
@@ -323,8 +231,8 @@
 </section>
 
 {%- comment -%}
-  Structured data. BlogPosting for the article itself, FAQPage for its own
-  questions — both built from the values rendered above.
+  Structured data for the article itself. FAQPage comes from the Questions
+  section, from the same questions it renders.
 {%- endcomment -%}
 {%- if section.settings.emit_article_schema -%}
   {%- liquid
@@ -349,11 +257,6 @@
       "author": { "@type": "Organization", "name": {{ ld_publisher | json }}, "url": {{ request.origin | json }} },
       "publisher": { "@type": "Organization", "name": {{ ld_publisher | json }}, "url": {{ request.origin | json }} }
     }
-  </script>
-{%- endif -%}
-{%- if faq_count > 0 and section.settings.emit_faq_schema -%}
-  <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{{ faq_ld }}]}
   </script>
 {%- endif -%}
 
@@ -456,40 +359,16 @@
       "content": "t:sections.article.faq_info"
     },
     {
-      "type": "text",
-      "id": "faq_eyebrow",
-      "label": "t:common.eyebrow",
-      "default": "Questions"
-    },
-    {
-      "type": "text",
-      "id": "faq_heading",
-      "label": "t:common.heading",
-      "default": "Frequently asked questions"
-    },
-    {
       "type": "checkbox",
-      "id": "faq_heading_from_body",
-      "label": "t:sections.article.faq_heading_from_body",
-      "default": false
+      "id": "lift_faq",
+      "label": "t:sections.article.lift_faq",
+      "default": true
     },
     {
       "type": "text",
       "id": "faq_toc_label",
       "label": "t:sections.article.faq_toc_label",
       "default": "Frequently asked questions"
-    },
-    {
-      "type": "checkbox",
-      "id": "faq_one_at_a_time",
-      "label": "t:sections.faq.one_at_a_time",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "emit_faq_schema",
-      "label": "t:sections.article.emit_faq_schema",
-      "default": true
     },
     {
       "type": "checkbox",

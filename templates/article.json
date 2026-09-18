@@ -15,7 +15,9 @@
         "color_scheme": "paper",
         "home_label": "Home",
         "parent_label": "Guides",
-        "parent_url": "/blogs/guides"
+        "parent_url": "/blogs/guides",
+        "current_label": "",
+        "aria_label": "Breadcrumb"
       }
     },
     "main": {
@@ -90,7 +92,8 @@
         "kicker_divider": "·",
         "image_aspect": "16 / 9",
         "back_label": "All guides",
-        "route_eyebrow": "Made for this"
+        "route_eyebrow": "Made for this",
+        "route_missing_note": "This article carries no activity tag, so it routes nowhere. Tag it with one of the activity tags set up on this section before publishing."
       }
     },
     "buy": {
@@ -100,7 +103,8 @@
           "type": "colour",
           "settings": {
             "value": "Black",
-            "colour_one": "#111111"
+            "colour_one": "#111111",
+            "colour_two": ""
           }
         },
         "c2": {
@@ -123,7 +127,8 @@
           "type": "colour",
           "settings": {
             "value": "White",
-            "colour_one": "#f4f6f8"
+            "colour_one": "#f4f6f8",
+            "colour_two": ""
           }
         },
         "z1": {
@@ -226,6 +231,7 @@
           "type": "link",
           "settings": {
             "label": "Full product details",
+            "link": "",
             "use_product_url": true
           }
         },
@@ -233,14 +239,16 @@
           "type": "link",
           "settings": {
             "label": "How it is built",
-            "link": "/#construction"
+            "link": "/#construction",
+            "use_product_url": false
           }
         },
         "l3": {
           "type": "link",
           "settings": {
             "label": "Delivery and sizing",
-            "link": "/#faq"
+            "link": "/#faq",
+            "use_product_url": false
           }
         },
         "g1": {
@@ -318,6 +326,7 @@
         "n1",
         "n2"
       ],
+      "disabled": true,
       "settings": {
         "product": "hydrosox-waterproof-socks",
         "color_scheme": "paper",
@@ -328,11 +337,18 @@
         "image_alt": "The four HydroSox colourways side by side: black with grey, white, black with navy and black.",
         "colour_option_name": "Colour",
         "size_option_name": "Size",
+        "delivery_charge_pence": 499,
+        "delivery_label": "delivery",
+        "total_label": "total",
         "quantity_label": "Quantity",
+        "ladder_note": "",
         "default_quantity": 3,
+        "offer_label": "Exclusive offer — free UK delivery on a single pair",
+        "recommend_label": "Recommended — best value",
         "add_label": "Add to cart",
         "save_label": "Save",
         "per_unit_label": "per pair",
+        "empty_help": "Choose a product for this section in the theme editor.",
         "guide_label": "Size guide",
         "guide_heading": "Size guide",
         "guide_intro": "Measure the foot rather than relying on shoe size — sizing is not consistent across brands, and the foot length is what actually has to fit.",
@@ -341,8 +357,7 @@
         "guide_col_shoe": "UK shoe",
         "guide_link_label": "The full sizing and fit guide",
         "guide_link_url": "/pages/size-guide",
-        "guide_close_label": "Close",
-        "offer_label": "Exclusive offer — free UK delivery on a single pair"
+        "guide_close_label": "Close"
       }
     },
     "related": {
@@ -353,6 +368,7 @@
         "count": 2,
         "color_scheme": "paper",
         "pace": "base",
+        "anchor_id": "",
         "eyebrow": "Guides",
         "heading": "Worth reading first.",
         "link_label": "All guides",
@@ -363,6 +379,7 @@
       "type": "newsletter-offer",
       "settings": {
         "color_scheme": "wash",
+        "anchor_id": "",
         "eyebrow": "£5 off your first pair",
         "heading": "Get the code before the weather turns.",
         "body": "<p>Applies to a single pair. The two-pair saving is already built into the price.</p>",

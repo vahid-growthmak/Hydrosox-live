@@ -140,20 +140,21 @@
     {%- if section.settings.show_tags -%}
       {%- capture chips -%}
         {%- if topics.size > 0 -%}
+          {%- comment -%}
+            Every topic gets a chip, guides or not, so the row reads as the
+            full set of categories. An empty topic's index says so plainly.
+          {%- endcomment -%}
           {%- for topic in topics -%}
-            {%- assign n = topic_counts[forloop.index0] | plus: 0 -%}
             {%- assign topic_key = topic.settings.tag | handleize -%}
-            {%- if n > 0 -%}
-              <a
-                class="hs-chip hs-caption{% if topic_key == current_key %} is-active{% endif %}"
-                href="{{ blog.url }}/tagged/{{ topic_key }}"
-                {% if topic_key == current_key %}
-                  aria-current="page"
-                {% endif %}
-              >
-                {{- topic.settings.chip_label | default: topic.settings.title -}}
-              </a>
-            {%- endif -%}
+            <a
+              class="hs-chip hs-caption{% if topic_key == current_key %} is-active{% endif %}"
+              href="{{ blog.url }}/tagged/{{ topic_key }}"
+              {% if topic_key == current_key %}
+                aria-current="page"
+              {% endif %}
+            >
+              {{- topic.settings.chip_label | default: topic.settings.title -}}
+            </a>
           {%- endfor -%}
         {%- else -%}
           {%- for tag in blog.all_tags -%}

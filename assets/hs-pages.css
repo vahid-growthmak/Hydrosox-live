@@ -2134,7 +2134,28 @@ a.hs-blog__topic:focus-visible {
 }
 
 .hs-blog__tags-label {
-  margin-right: 0.25rem;
+  margin-right: 0.5rem;
+}
+
+/* The guides filter: outlined pills with dark labels, the active one filled. */
+.hs-blog__tags .hs-chip {
+  padding-inline: 1.125rem;
+  border-color: var(--rule);
+  background-color: var(--surface);
+  color: var(--on-surface);
+  font-weight: var(--weight-semibold);
+}
+
+@media (hover: hover) {
+  .hs-blog__tags .hs-chip:hover {
+    border-color: var(--on-surface);
+  }
+}
+
+.hs-blog__tags .hs-chip.is-active {
+  background-color: var(--on-surface);
+  border-color: var(--on-surface);
+  color: var(--surface);
 }
 
 .hs-blog__tags + * {

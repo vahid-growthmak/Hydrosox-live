@@ -142,19 +142,29 @@
         {%- if topics.size > 0 -%}
           {%- comment -%}
             Every topic gets a chip, guides or not, so the row reads as the
-            full set of categories. An empty topic's index says so plainly.
+            full set of categories. A topic with no guides yet is shown but
+            not linked, same as its card above.
           {%- endcomment -%}
           {%- for topic in topics -%}
-            {%- assign topic_key = topic.settings.tag | handleize -%}
-            <a
-              class="hs-chip hs-caption{% if topic_key == current_key %} is-active{% endif %}"
-              href="{{ blog.url }}/tagged/{{ topic_key }}"
-              {% if topic_key == current_key %}
-                aria-current="page"
-              {% endif %}
-            >
-              {{- topic.settings.chip_label | default: topic.settings.title -}}
-            </a>
+            {%- liquid
+              assign topic_key = topic.settings.tag | handleize
+              assign n = topic_counts[forloop.index0] | plus: 0
+            -%}
+            {%- if n > 0 -%}
+              <a
+                class="hs-chip hs-caption{% if topic_key == current_key %} is-active{% endif %}"
+                href="{{ blog.url }}/tagged/{{ topic_key }}"
+                {% if topic_key == current_key %}
+                  aria-current="page"
+                {% endif %}
+              >
+                {{- topic.settings.chip_label | default: topic.settings.title -}}
+              </a>
+            {%- else -%}
+              <span class="hs-chip hs-caption is-empty" aria-disabled="true">
+                {{- topic.settings.chip_label | default: topic.settings.title -}}
+              </span>
+            {%- endif -%}
           {%- endfor -%}
         {%- else -%}
           {%- for tag in blog.all_tags -%}

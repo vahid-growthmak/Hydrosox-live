@@ -2128,6 +2128,19 @@ a.hs-blog__topic:focus-visible {
   }
 }
 
+/* A topic with no guides yet: shown for completeness, not a link. */
+.hs-blog__tags .hs-chip.is-empty {
+  color: var(--on-surface-muted);
+  cursor: default;
+  opacity: 0.6;
+}
+
+@media (hover: hover) {
+  .hs-blog__tags .hs-chip.is-empty:hover {
+    border-color: var(--rule);
+  }
+}
+
 .hs-blog__tags .hs-chip.is-active {
   background-color: var(--on-surface);
   border-color: var(--on-surface);

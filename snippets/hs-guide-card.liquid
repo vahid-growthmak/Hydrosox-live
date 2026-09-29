@@ -11,11 +11,17 @@
     label      (string)   the eyebrow, e.g. the guide's topic. Falls back to
                           the first tag, then the date. Optional.
 {%- endcomment -%}
-{%- assign card_alt = article.image.alt | default: article.title -%}
+{%- liquid
+  assign card_alt = article.image.alt | default: article.title
+  # The box takes the image's own shape, so a guide's banner shows uncropped.
+  if article.image
+    assign card_aspect = article.image.width | append: ' / ' | append: article.image.height
+  endif
+-%}
 
 <a class="hs-card hs-guide-card hs-zoom-parent{% if show_image == false or article.image == blank %} hs-guide-card--text{% endif %}" href="{{ article.url }}">
   {%- if article.image and show_image != false -%}
-    {% render 'hs-image', image: article.image, alt: card_alt, aspect: '3 / 2', eager: eager, sizes: '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw', wrapper_class: 'hs-card__media hs-media--zoom' %}
+    {% render 'hs-image', image: article.image, alt: card_alt, aspect: card_aspect, eager: eager, sizes: '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw', wrapper_class: 'hs-card__media hs-media--zoom' %}
   {%- endif -%}
   <div class="hs-card__body">
     <p class="hs-eyebrow hs-guide-card__meta">

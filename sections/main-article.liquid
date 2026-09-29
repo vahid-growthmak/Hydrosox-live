@@ -106,6 +106,9 @@
 
   # Each table sits in a scroll box, so the table fills the column on desktop
   # and scrolls sideways on phones without breaking its own layout.
+  # Blank lines the editor leaves behind (a paragraph holding only a line
+  # break) would add a second gap on top of the normal spacing.
+  assign body_html = body_html | remove: '<p><b><br></b></p>' | remove: '<p><br></p>' | remove: '<p><strong><br></strong></p>' | remove: '<p><span><br></span></p>' | remove: '<p>&nbsp;</p>'
   assign body_html = body_html | replace: '<table', '<div class="hs-table-wrap"><table' | replace: '</table>', '</table></div>'
 
   assign show_toc = false

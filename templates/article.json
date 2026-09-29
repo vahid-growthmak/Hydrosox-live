@@ -90,7 +90,7 @@
         "color_scheme": "paper",
         "show_author": false,
         "kicker_divider": "·",
-        "image_aspect": "16 / 9",
+        "image_aspect": "",
         "back_label": "All guides",
         "route_eyebrow": "Made for this",
         "route_missing_note": "This article carries no activity tag, so it routes nowhere. Tag it with one of the activity tags set up on this section before publishing."

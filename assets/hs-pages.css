@@ -71,6 +71,70 @@
   text-underline-offset: 3px;
 }
 
+/* Tables in guides: a bordered card with a tinted header row and hairline
+   rows. Editor-pasted inline widths and paddings are overridden so every
+   article's tables read the same. Wide tables scroll sideways on phones
+   rather than squashing their columns. */
+.hs-rte table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-block: 2em;
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9375em;
+  line-height: 1.45;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 48rem) {
+  .hs-rte table {
+    display: table;
+    overflow: hidden;
+  }
+}
+
+.hs-rte th,
+.hs-rte td {
+  min-width: 8rem;
+  padding: 0.875rem 1.125rem !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--rule) !important;
+  text-align: left;
+  vertical-align: top;
+}
+
+.hs-rte thead th,
+.hs-rte thead td,
+.hs-rte tr:first-child th {
+  background-color: var(--wash);
+  color: var(--on-surface);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+}
+
+.hs-rte tbody tr:last-child > * {
+  border-bottom: 0 !important;
+}
+
+.hs-rte td:first-child {
+  color: var(--on-surface);
+  font-weight: var(--weight-semibold);
+}
+
+/* Empty paragraphs the editor leaves around tables open up big gaps. */
+.hs-rte p:empty {
+  display: none;
+}
+
+.hs-rte td p,
+.hs-rte th p {
+  margin: 0;
+}
+
 .hs-rte blockquote {
   padding-left: 1.25rem;
   border-left: 2px solid var(--rule-strong);
@@ -344,14 +408,14 @@
 }
 
 .hs-article__head {
-  max-width: 50rem;
-  margin: 0 auto 2.5rem;
+  max-width: 72rem;
+  margin: 0 auto 2rem;
   text-align: center;
 }
 
 @media (min-width: 64rem) {
   .hs-article__head {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
 }
 
@@ -368,14 +432,17 @@
   color: var(--rule-strong);
 }
 
+/* Sized so a typical guide title sits on two lines across the hero's width. */
 .hs-article__title {
-  margin: 1rem auto 0;
-  max-width: 30ch;
+  margin: 0.75rem auto 0;
+  max-width: 34ch;
+  font-size: clamp(2rem, 1.25rem + 2.6vw, 3.5rem);
 }
 
 .hs-article__standfirst {
-  margin: 1.25rem auto 0;
-  max-width: 42rem;
+  margin: 1rem auto 0;
+  max-width: 48rem;
+  text-align: center;
 }
 
 .hs-article__standfirst > :first-child {

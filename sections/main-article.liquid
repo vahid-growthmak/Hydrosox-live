@@ -150,11 +150,18 @@
       </header>
 
       {%- if article.image -%}
-        {%- assign hero_alt = article.image.alt | default: article.title -%}
+        {%- liquid
+          assign hero_alt = article.image.alt | default: article.title
+          # Blank aspect: the box takes the image's own shape, so nothing is cropped.
+          assign hero_aspect = section.settings.image_aspect
+          if hero_aspect == blank
+            assign hero_aspect = article.image.width | append: ' / ' | append: article.image.height
+          endif
+        -%}
         {% render 'hs-image',
           image: article.image,
           alt: hero_alt,
-          aspect: section.settings.image_aspect,
+          aspect: hero_aspect,
           eager: true,
           sizes: '(min-width: 80rem) 72rem, 100vw',
           wrapper_class: 'hs-article__hero'
@@ -316,8 +323,7 @@
       "type": "text",
       "id": "image_aspect",
       "label": "t:sections.article.image_aspect",
-      "info": "t:sections.hero.image_aspect_info",
-      "default": "16 / 9"
+      "info": "t:sections.hero.image_aspect_info"
     },
     {
       "type": "text",

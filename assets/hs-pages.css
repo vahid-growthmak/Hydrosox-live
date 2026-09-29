@@ -76,7 +76,7 @@
    a wide table scroll on phones. Editor-pasted inline widths and paddings are
    overridden so every article's tables read the same. */
 .hs-table-wrap {
-  margin-block: 2em;
+  margin-block: 2em 0;
   overflow-x: auto;
   border: 1px solid var(--rule-strong);
   border-radius: var(--radius-lg);
@@ -94,7 +94,7 @@
 
 /* A table outside the wrapper (other rich-text blocks) still gets the frame. */
 .hs-rte :not(.hs-table-wrap) > table {
-  margin-block: 2em;
+  margin-block: 2em 0;
   border: 1px solid var(--rule-strong);
 }
 

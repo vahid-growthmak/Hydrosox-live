@@ -104,6 +104,10 @@
     assign toc_count = toc_count | plus: 1
   endif
 
+  # Each table sits in a scroll box, so the table fills the column on desktop
+  # and scrolls sideways on phones without breaking its own layout.
+  assign body_html = body_html | replace: '<table', '<div class="hs-table-wrap"><table' | replace: '</table>', '</table></div>'
+
   assign show_toc = false
   if section.settings.show_toc and toc_count >= section.settings.toc_min
     assign show_toc = true

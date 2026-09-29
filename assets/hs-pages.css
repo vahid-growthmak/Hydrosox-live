@@ -71,30 +71,31 @@
   text-underline-offset: 3px;
 }
 
-/* Tables in guides: a bordered card with a tinted header row and hairline
-   rows. Editor-pasted inline widths and paddings are overridden so every
-   article's tables read the same. Wide tables scroll sideways on phones
-   rather than squashing their columns. */
-.hs-rte table {
-  display: block;
-  width: 100%;
-  max-width: 100%;
+/* Tables in guides: a bordered grid with a dark header row. The scroll box
+   (added around each table by the article section) carries the frame and lets
+   a wide table scroll on phones. Editor-pasted inline widths and paddings are
+   overridden so every article's tables read the same. */
+.hs-table-wrap {
   margin-block: 2em;
   overflow-x: auto;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--rule-strong);
   border-radius: var(--radius-lg);
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 0.9375em;
-  line-height: 1.45;
   -webkit-overflow-scrolling: touch;
 }
 
-@media (min-width: 48rem) {
-  .hs-rte table {
-    display: table;
-    overflow: hidden;
-  }
+.hs-rte table {
+  width: 100% !important;
+  margin: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.9375em;
+  line-height: 1.45;
+}
+
+/* A table outside the wrapper (other rich-text blocks) still gets the frame. */
+.hs-rte :not(.hs-table-wrap) > table {
+  margin-block: 2em;
+  border: 1px solid var(--rule-strong);
 }
 
 .hs-rte th,
@@ -102,18 +103,14 @@
   min-width: 8rem;
   padding: 0.875rem 1.125rem !important;
   border: 0 !important;
+  border-right: 1px solid var(--rule) !important;
   border-bottom: 1px solid var(--rule) !important;
   text-align: left;
   vertical-align: top;
 }
 
-.hs-rte thead th,
-.hs-rte thead td,
-.hs-rte tr:first-child th {
-  background-color: var(--wash);
-  color: var(--on-surface);
-  font-weight: var(--weight-semibold);
-  white-space: nowrap;
+.hs-rte tr > :last-child {
+  border-right: 0 !important;
 }
 
 .hs-rte tbody tr:last-child > * {
@@ -121,8 +118,22 @@
 }
 
 .hs-rte td:first-child {
+  background-color: var(--wash);
   color: var(--on-surface);
   font-weight: var(--weight-semibold);
+}
+
+/* Header row: a thead, or the first row when the editor saved it as cells. */
+.hs-rte thead th,
+.hs-rte thead td,
+.hs-rte table > tbody:first-child > tr:first-child > *,
+.hs-rte tr:first-child > th {
+  background-color: var(--ink);
+  border-right-color: var(--rule-dark) !important;
+  border-bottom: 0 !important;
+  color: var(--paper);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
 }
 
 /* Empty paragraphs the editor leaves around tables open up big gaps. */
@@ -470,7 +481,6 @@
 .hs-article__main {
   min-width: 0;
   width: 100%;
-  max-width: 44rem;
   margin-inline: auto;
 }
 
@@ -479,13 +489,10 @@
 }
 
 @media (min-width: 64rem) {
-  /*
-    Three tracks: contents, body, and an empty track that mirrors the first, so
-    the body sits on the same centre line as the title above it.
-  */
+  /* Contents and body together span the hero image's width. */
   .hs-article__layout--toc {
-    grid-template-columns: minmax(12rem, 1fr) minmax(0, 44rem) minmax(0, 1fr);
-    gap: 3rem;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: 3.5rem;
   }
 
   .hs-article__layout--toc .hs-article__main {
@@ -497,9 +504,7 @@
     display: block;
     grid-column: 1;
     grid-row: 1;
-    justify-self: end;
     width: 100%;
-    max-width: 15rem;
   }
 
   .hs-article__toc {
@@ -613,32 +618,6 @@
 .hs-article__body p:has(> img:only-child),
 .hs-article__body p:has(> span > img:only-child) {
   margin-block: 1.75em;
-}
-
-/* A table from the rich-text editor scrolls inside the column, never the page. */
-.hs-article__body table {
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
-  border-collapse: collapse;
-  font-size: 0.9375rem;
-  margin-block: 1.75em;
-}
-
-.hs-article__body td,
-.hs-article__body th {
-  padding: 0.75rem 1rem 0.75rem 0;
-  border-bottom: 1px solid var(--rule);
-  vertical-align: top;
-  text-align: left;
-  min-width: 8rem;
-}
-
-.hs-article__body tr:first-child td,
-.hs-article__body th {
-  font-weight: var(--weight-semibold);
-  color: var(--on-surface);
-  border-bottom-color: var(--rule-strong);
 }
 
 .hs-article__body hr {
